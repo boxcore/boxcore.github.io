@@ -1,0 +1,420 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_cn">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>最新解决Ecshop2.73与Jquery的冲突 | BoxCore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="chunze.huang">
+    
+    <meta name="description" content="早些年就有人在ecshop论坛反映，为何ecshop不兼容jquery？可是ecshop官网却一直未解决这个问题。由插件联盟网亲自测试并验证过的解决jquery冲突的方法如下：1.复制一份 transport.js 改名为 transport.org.js 提供给后台使用
+2.注释掉js/trans">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+	
+	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BoxCore">BoxCore</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="https://github.com/boxcore">Project</a></li>
+					
+					<li>
+					
+					</li>
+                <li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>
+
+				</ul>
+			</nav>	
+</div>
+
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/11/21/ecshop-jquery-conflict/" title="最新解决Ecshop2.73与Jquery的冲突" itemprop="url">最新解决Ecshop2.73与Jquery的冲突</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://boxcore.org" title="chunze.huang">chunze.huang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-11-21T02:32:50.000Z" itemprop="datePublished">11月 21 2013</time>
+    Updated:<time datetime="2015-01-28T11:48:45.000Z" itemprop="dateModified">1月 28 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>早些年就有人在ecshop论坛反映，为何ecshop不兼容jquery？可是ecshop官网却一直未解决这个问题。由插件联盟网亲自测试并验证过的解决jquery冲突的方法如下：<br>1.复制一份 transport.js 改名为 transport.org.js 提供给后台使用</p>
+<p>2.注释掉js/transport.js里的toJSON功能 行数为497-737行之间。其中将 legalParams = “JSON=” + $.toJSON(params); 替换为result = $.evalJSON(result);</p>
+<p>3.修改js/index.js里的第44行，将其改为：var res = $.evalJSON(result);</p>
+<p>4.修改js/改common.js,将第34行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);然后将850行改为:Ajax.call(‘flow.php?step=add_package_to_cart’, ‘package_info=’ + $.toJSON(package_info), addPackageToCartResponse, ‘POST’, ‘JSON’);最后将1056行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);</p>
+<p>5.修改compare.js文件<br>第49行改为:this.data = $.evalJSON(cookieValue);第67行改为:var obj = $.evalJSON(cookieValue);第133行改为:document.setCookie(“compareItems”, $.toJSON(this.data));</p>
+<p>6.修改js/global.js文件,其中将第16行改函数名 :function $e()。然后第114和126行都改为: var element = $e(element);</p>
+<p>7.修改后台头部引入transport.js路径 admin/templates/pageheader.htm 第9行改为: {insert_scripts files=”../js/transport.org.js,common.js”}</p>
+<p>8.修改themes/default/library/page_header.lbi文件在{insert_scripts files=’transport.js,utils.js’}上面加上如下代码<br>{insert_scripts files=’jquery.js,jquery.json.js’}</p>
+<p>9.修改你的模板下的library/comment_list.lbi。将第188行 替换为：Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’);</p>
+<p>10.修改模板compare.dwt。将第20行 改为：var obj = $.evalJSON(document.getCookie(“compareItems”));然后第24行 替换为：document.setCookie(“compareItems”, $.toJSON(obj));</p>
+<p>11.修改模板flow.dwt，将第138行 替换为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), collect_to_flow_response, ‘POST’, ‘JSON’);然后将第199行 改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), fittings_to_flow_response, ‘POST’, ‘JSON’);</p>
+<p>12.over</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ecshop/">ecshop</a><a href="/tags/jquery/">jquery</a><a href="/tags/jquery冲突/">jquery冲突</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://boxcore.org/2013/11/21/ecshop-jquery-conflict/" data-title="最新解决Ecshop2.73与Jquery的冲突 | BoxCore" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/22/ecshop-backend-images-upload/" title="Ecshop 后台添加图片上传">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Ecshop 后台添加图片上传</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/11/21/ecshop-orgin-javascript-for-login-frame/"  title="ecshop原生态js实现登录和注册弹窗">
+ <strong>NEXT:</strong><br/> 
+ <span>ecshop原生态js实现登录和注册弹窗
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	
+	<section class="author-info">
+		
+			<p> 人穷志短愿望多</p>
+		
+		
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/abanet" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/boxcore" target="_blank" title="github"></a>
+		
+		
+	</div>
+</div>
+<aside class="clearfix">
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>0</sup></a></li>
+		
+			<li><a href="/categories/Journal/" title="Journal">Journal<sup>1</sup></a></li>
+		
+			<li><a href="/categories/linux/MySQL/" title="MySQL">MySQL<sup>0</sup></a></li>
+		
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>3</sup></a></li>
+		
+			<li><a href="/categories/linux/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>9</sup></a></li>
+		
+			<li><a href="/categories/MySQL/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/" title="linux">linux<sup>17</sup></a></li>
+		
+			<li><a href="/categories/未分类/" title="未分类">未分类<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">10</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/CTags/" title="CTags">CTags<sup>0</sup></a></li>
+		
+			<li><a href="/tags/DocBlockr/" title="DocBlockr">DocBlockr<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>1</sup></a></li>
+		
+			<li><a href="/tags/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Package-Control/" title="Package Control">Package Control<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Packges/" title="Packges">Packges<sup>0</sup></a></li>
+		
+			<li><a href="/tags/PyV8/" title="PyV8">PyV8<sup>0</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>0</sup></a></li>
+		
+			<li><a href="/tags/USING-BTREE/" title="USING BTREE">USING BTREE<sup>1</sup></a></li>
+		
+			<li><a href="/tags/apache/" title="apache">apache<sup>0</sup></a></li>
+		
+			<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+		
+			<li><a href="/tags/da/" title="da">da<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dedecms/" title="dedecms">dedecms<sup>0</sup></a></li>
+		
+			<li><a href="/tags/direactadmin/" title="direactadmin">direactadmin<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dropbox/" title="dropbox">dropbox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ecshop/" title="ecshop">ecshop<sup>8</sup></a></li>
+		
+			<li><a href="/tags/fancybox/" title="fancybox">fancybox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

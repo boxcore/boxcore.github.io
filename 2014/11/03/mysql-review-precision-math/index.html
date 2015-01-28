@@ -1,0 +1,430 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_cn">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MySQL Review - Precision Math | BoxCore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="chunze.huang">
+    
+    <meta name="description" content="本月第一次复习mysql，我的第一天mysql复习。本次主题是： MySQL的数学运算。
+首先要从mysql的面试题开始：
+问题一、表结构如：
+
+S (SNO,SNAME） 学生关系。SNO 为学号，SNAME 为姓名
+C (CNO,CNAME,CTEACHER) 课程关系。CNO 为课程号，CNAME 为课程名，CTEACHER 为任课教师
+SC(SNO,CNO,SCGRADE) 选课关系。SCGRADE 为成绩">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+	
+	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BoxCore">BoxCore</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="https://github.com/boxcore">Project</a></li>
+					
+					<li>
+					
+					</li>
+                <li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>
+
+				</ul>
+			</nav>	
+</div>
+
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/03/mysql-review-precision-math/" title="MySQL Review - Precision Math" itemprop="url">MySQL Review - Precision Math</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://boxcore.org" title="chunze.huang">chunze.huang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-03T14:31:11.000Z" itemprop="datePublished">11月 3 2014</time>
+    Updated:<time datetime="2015-01-28T11:48:45.000Z" itemprop="dateModified">1月 28 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>本月第一次复习mysql，我的第一天mysql复习。本次主题是： MySQL的数学运算。</p>
+<p>首先要从mysql的面试题开始：</p>
+<p><strong>问题一、表结构如：</strong></p>
+<ul>
+<li>S (SNO,SNAME） 学生关系。SNO 为学号，SNAME 为姓名</li>
+<li>C (CNO,CNAME,CTEACHER) 课程关系。CNO 为课程号，CNAME 为课程名，CTEACHER 为任课教师</li>
+<li>SC(SNO,CNO,SCGRADE) 选课关系。SCGRADE 为成绩<a id="more"></a>
+问：</li>
+</ul>
+<p>（1）列出有二门以上（含两门）不及格课程的学生姓名及其平均成绩</p>
+<p><pre class="brush:sql">SELECT <code>SNAME</code>, AVG(<code>SCGRADE</code>)<br>FROM S, SC<br>WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.SCGRADE&lt;60<br>GROUP BY <code>SNO</code>,<code>SNAME</code>;</pre><br>（2）列出既学过“1”号课程，又学过“2”号课程的所有学生姓名</p>
+<p><pre class="brush:sql">—如果１号课程指　CNO =1<br>SELECT S.<code>SNAME</code><br>FROM S, SC<br>WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code> IN (1,2)<br>GROUP BY S.<code>SNAME</code><br>HAVING COUNT(<em>)=2;<br>—如果１号课程指　cname=’1号’<br>SELECT S.<code>SNAME</code><br>FROM S, SC, C<br>WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code> = C.<code>CNO</code> AND C.<code>CNAME</code> IN (‘1号’,’2号’)<br>GROUP BY S.<code>SNAME</code><br>HAVING COUNT(</em>)=2;</pre><br>（3）列出“1”号课成绩比“2”号同学该门课成绩高的所有学生的学号</p>
+<p><pre class="brush:sql">— 如果１号课程指　cno =1<br>SELECT <code>SNO</code><br>FROM (<br>    SELECT A.<code>SNO</code>, A.Grade1, B.Grade2<br>    FROM<br>        (SELECT <code>SNO</code>, <code>SCGRADE</code> AS Grade1 FROM S, SC WHERE s.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code>=1) AS A,<br>        (SELECT <code>SNO</code>,<code>SCGRADE</code> AS Grade2 FROM S,SC WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code>=2) B<br>    WHERE A.<code>SNO</code> = B.<code>SNO</code><br>    ) AS C<br>WHERE Grade1&gt;Grade2;</pre></p>
+<p>— 如果１号课程指　cname =’1号’<br>SELECT <code>SNO</code><br>FROM (<br>    SELECT A.<code>SNO</code>, A.Grade1, B.Grade2<br>    FROM<br>        (SELECT <code>SNO</code>, <code>SCGRADE</code> AS Grade1 FROM S, SC, C WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code>=C.<code>CNO</code> AND C.CNAME=’1号’) AS A,<br>        (SELECT <code>SNO</code>, <code>SCGRADE</code> AS Grade2 FROM S,SC,C WHERE S.<code>SNO</code>=SC.<code>SNO</code> AND SC.<code>CNO</code>=C.<code>CNO</code> AND C.CNAME=’2号’) AS B<br>    WHERE A.<code>SNO</code> = B.<code>SNO</code><br>) AS C<br>WHERE Grade1&gt;Grade2<br>（4）列出“1”号课成绩比“2”号课成绩高的所有学生的学号及其“1”号课和“2”号课的成绩</p>
+<p>&nbsp;</p>
+<p>参考出处：<a href="http://bbs.chinaunix.net/thread-1669984-1-1.html" target="_blank" rel="external">http://bbs.chinaunix.net/thread-1669984-1-1.html</a></p>
+<p>&nbsp;</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mysql/">mysql</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://boxcore.org/2014/11/03/mysql-review-precision-math/" data-title="MySQL Review - Precision Math | BoxCore" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/11/08/php-interview-question/" title="PHP面试中常见问题">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  PHP面试中常见问题</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/10/31/ubuntu-use-shadowsocks-gui/"  title="Ubuntu Use Shadowsocks-GUI">
+ <strong>NEXT:</strong><br/> 
+ <span>Ubuntu Use Shadowsocks-GUI
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	
+	<section class="author-info">
+		
+			<p> 人穷志短愿望多</p>
+		
+		
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/abanet" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/boxcore" target="_blank" title="github"></a>
+		
+		
+	</div>
+</div>
+<aside class="clearfix">
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>0</sup></a></li>
+		
+			<li><a href="/categories/Journal/" title="Journal">Journal<sup>1</sup></a></li>
+		
+			<li><a href="/categories/linux/MySQL/" title="MySQL">MySQL<sup>0</sup></a></li>
+		
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>3</sup></a></li>
+		
+			<li><a href="/categories/linux/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>9</sup></a></li>
+		
+			<li><a href="/categories/MySQL/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/" title="linux">linux<sup>17</sup></a></li>
+		
+			<li><a href="/categories/未分类/" title="未分类">未分类<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">10</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/CTags/" title="CTags">CTags<sup>0</sup></a></li>
+		
+			<li><a href="/tags/DocBlockr/" title="DocBlockr">DocBlockr<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>1</sup></a></li>
+		
+			<li><a href="/tags/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Package-Control/" title="Package Control">Package Control<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Packges/" title="Packges">Packges<sup>0</sup></a></li>
+		
+			<li><a href="/tags/PyV8/" title="PyV8">PyV8<sup>0</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>0</sup></a></li>
+		
+			<li><a href="/tags/USING-BTREE/" title="USING BTREE">USING BTREE<sup>1</sup></a></li>
+		
+			<li><a href="/tags/apache/" title="apache">apache<sup>0</sup></a></li>
+		
+			<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+		
+			<li><a href="/tags/da/" title="da">da<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dedecms/" title="dedecms">dedecms<sup>0</sup></a></li>
+		
+			<li><a href="/tags/direactadmin/" title="direactadmin">direactadmin<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dropbox/" title="dropbox">dropbox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ecshop/" title="ecshop">ecshop<sup>8</sup></a></li>
+		
+			<li><a href="/tags/fancybox/" title="fancybox">fancybox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

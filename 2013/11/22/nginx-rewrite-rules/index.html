@@ -1,0 +1,512 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_cn">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Nginx下重写规则 | BoxCore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="chunze.huang">
+    
+    <meta name="description" content="推荐使用自动转换工具:
+http://www.anilcetin.com/convert-apache-htaccess-to-nginx/
+http://winginx.com/htaccess
+&amp;nbsp;
+Nginx Rewrite规则相关指令Nginx Rewrite规则相关指令有if、re">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+	
+	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BoxCore">BoxCore</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="https://github.com/boxcore">Project</a></li>
+					
+					<li>
+					
+					</li>
+                <li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>
+
+				</ul>
+			</nav>	
+</div>
+
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/11/22/nginx-rewrite-rules/" title="Nginx下重写规则" itemprop="url">Nginx下重写规则</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://boxcore.org" title="chunze.huang">chunze.huang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-11-22T07:10:59.000Z" itemprop="datePublished">11月 22 2013</time>
+    Updated:<time datetime="2015-01-28T11:48:45.000Z" itemprop="dateModified">1月 28 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastcgi_pass_unix:/tmp/php-cgi-sock;"><span class="toc-number">1.</span> <span class="toc-text">fastcgi_pass unix:/tmp/php-cgi.sock;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fastcgi_pass_unix:/tmp/php-cgi-sock;-1"><span class="toc-number">2.</span> <span class="toc-text">fastcgi_pass unix:/tmp/php-cgi.sock;</span></a></li></ol>
+		</div>
+		
+		<p>推荐使用自动转换工具:</p>
+<p><a href="http://www.anilcetin.com/convert-apache-htaccess-to-nginx/" target="_blank" rel="external">http://www.anilcetin.com/convert-apache-htaccess-to-nginx/</a></p>
+<p><a href="http://winginx.com/htaccess" target="_blank" rel="external">http://winginx.com/htaccess</a></p>
+<p>&nbsp;</p>
+<p>Nginx Rewrite规则相关指令<br>Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下：</p>
+<p>rewrite ^/b/(.*).html /play.php?video=$1 break;</p>
+<p>如果加上if语句，示例如下：</p>
+<p>if (!-f $request_filename)</p>
+<p>rewrite ^/img/(.*)$ /site/$host/images/$1 last;</p>
+<p>Nginx与Apache的Rewrite规则实例对比</p>
+<p>简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如：</p>
+<p>Apache Rewrite 规则：</p>
+<p>RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L]</p>
+<p>RewriteRule ^/ceshi/$ /zl/ceshi.php [L]</p>
+<p>RewriteRule ^/(mianshi)<em>([a-zA-Z]+)/$ /zl/index.php?name=$1</em>$2 [L]</p>
+<p>RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L]</p>
+<p>Nginx Rewrite 规则：</p>
+<p>rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;</p>
+<p>rewrite ^/ceshi/$ /zl/ceshi.php last;</p>
+<p>rewrite ^/(mianshi)<em>([a-zA-Z]+)/$ /zl/index.php?name=$1</em>$2 last;</p>
+<p>rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last;</p>
+<p>由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。</p>
+<p>如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误：</p>
+<p>rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last;</p>
+<p>加上引号就正确了：<br>rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last;</p>
+<p>Apache与Nginx的Rewrite规则在URL跳转时有细微的区别：</p>
+<p>Apache Rewrite 规则：<br>RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L]</p>
+<p>Nginx Rewrite 规则：<br>rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ <a href="http://$host/$1/" target="_blank" rel="external">http://$host/$1/</a> permanent;</p>
+<p>以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“<a href="http://$host”，这是在Nginx中要求的。" target="_blank" rel="external">http://$host”，这是在Nginx中要求的。</a></p>
+<p>另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如：</p>
+<p>Apache Rewrite 规则：<br>RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://%{HTTP_HOST}" target="_blank" rel="external">http://%{HTTP_HOST}</a> [L]</p>
+<p>Nginx Rewrite 规则：<br>rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://$host" target="_blank" rel="external">http://$host</a> last;</p>
+<p>Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系：</p>
+<p>Apache的RewriteCond指令对应Nginx的if指令；<br>Apache的RewriteRule指令对应Nginx的rewrite指令；<br>Apache的[R]标记对应Nginx的redirect标记；<br>Apache的[P]标记对应Nginx的last标记；<br>Apache的[R,L]标记对应Nginx的redirect标记；<br>Apache的[P,L]标记对应Nginx的last标记；<br>Apache的[PT,L]标记对应Nginx的last标记；</p>
+<p>允许指定的域名访问本站，其他域名一律跳转到<a href="http://www.aaa.com" target="_blank" rel="external">http://www.aaa.com</a></p>
+<p>Apache Rewrite 规则：<br>RewriteCond %{HTTP_HOST} ^(.*?).domain.com$<br>RewriteCond %{HTTP_HOST} !^qita.domain.com$<br>RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -f<br>RewriteRule ^/wu/$ /market/%1/index.htm [L]</p>
+<p>Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例：</p>
+<p>Nginx Rewrite 规则：<br>if ($host ~<em> ^(.</em>?).domain.com$) set $var_wupin_city $1;<br>set $var_wupin ‘1′;</p>
+<p>if ($host ~* ^qita.domain.com$)</p>
+<p>set $var_wupin ‘0′;</p>
+<p>if (!-f $document_root/market/$var_wupin_city/index.htm)</p>
+<p>set $var_wupin ‘0′;</p>
+<p>if ($var_wupin ~ ‘1′)</p>
+<p>rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;<br>}</p>
+<p>&nbsp;</p>
+<p>rewrite 的语法</p>
+<p>&nbsp;</p>
+<p>语法: rewrite regex replacement flag</p>
+<p>默认: none</p>
+<p>作用域: server, location, if</p>
+<p>This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file.</p>
+<p>这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。</p>
+<p>Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so:</p>
+<p>注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。</p>
+<p>rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 <em>*</em>https=1就可以了。</p>
+<p>nginx的rewrite规则参考：</p>
+<p>~ 为区分大小写匹配<br>~<em> 为不区分大小写匹配<br>!~和!~</em>分别为区分大小写不匹配及不区分大小写不匹<br>-f和!-f用来判断是否存在文件<br>-d和!-d用来判断是否存在目录<br>-e和!-e用来判断是否存在文件或目录<br>-x和!-x用来判断文件是否可执行<br>last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的<br>break 终止匹配, 不再匹配后面的规则<br>redirect 返回302临时重定向 地址栏会显示跳转后的地址<br>permanent 返回301永久重定向 地址栏会显示跳转后的地址<br>$args<br>$content_length<br>$content_type<br>$document_root<br>$document_uri<br>$host<br>$http_user_agent<br>$http_cookie<br>$limit_rate<br>$request_body_file<br>$request_method<br>$remote_addr<br>$remote_port<br>$remote_user<br>$request_filename<br>$request_uri<br>$query_string<br>$scheme<br>$server_protocol<br>$server_addr<br>$server_name<br>$server_port<br>$uri<br>结合QeePHP的例子</p>
+<p>if (!-d $request_filename) {<br>rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;<br>rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;<br>break;<br>多目录转成参数<br>abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2</p>
+<p>if ($host ~<em> (.</em>).domain.com) {<br>set $sub_name $1;<br>rewrite ^/sort\/(\d+)\/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;<br>}<br>目录对换<br>/123456/xxxx -&gt; /xxxx?id=123456</p>
+<p>rewrite ^/(\d+)/(.+)/ /$2?id=$1 last;<br>例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下：</p>
+<p>if ($http_user_agent ~ MSIE) {<br>rewrite ^(.*)$ /nginx-ie/$1 break;<br>}<br>目录自动加“/”</p>
+<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>禁止htaccess</p>
+<p>location ~/.ht {<br>deny all;<br>}<br>禁止多个目录</p>
+<p>location ~ ^/(cron|templates)/ {<br>deny all;<br>break;<br>}<br>禁止以/data开头的文件<br>可以禁止/data/下多级目录下.log.txt等请求;</p>
+<p>location ~ ^/data {<br>deny all;<br>}<br>禁止单个目录<br>不能禁止.log.txt能请求</p>
+<p>location /searchword/cron/ {<br>deny all;<br>}<br>禁止单个文件</p>
+<p>location ~ /data/sql/data.sql {<br>deny all;<br>}<br>给favicon.ico和robots.txt设置过期时间;<br>这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志</p>
+<p>location ~(favicon.ico) {<br>log_not_found off;<br>expires 99d;<br>break;<br>}</p>
+<p>location ~(robots.txt) {<br>log_not_found off;<br>expires 7d;<br>break;<br>}<br>设定某个文件的过期时间;这里为600秒，并不记录访问日志</p>
+<p>location ^~ /html/scripts/loadhead_1.js {<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 600;<br>break;<br>}<br>文件反盗链并设置过期时间<br>这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求<br>“rewrite ^/ <a href="http://leech.divmy.com/leech.gif;”显示一张防盗链图片" target="_blank" rel="external">http://leech.divmy.com/leech.gif;”显示一张防盗链图片</a><br>“access_log off;”不记录访问日志，减轻压力<br>“expires 3d”所有文件3天的浏览器缓存</p>
+<p>location ~<em> ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {<br>valid_referers none blocked </em>.c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;<br>if ($invalid_referer) {<br>rewrite ^/ <a href="http://leech.divmy.com/leech.gif" target="_blank" rel="external">http://leech.divmy.com/leech.gif</a>;<br>return 412;<br>break;<br>}<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 3d;<br>break;<br>}<br>只充许固定ip访问网站，并加上密码</p>
+<p>root /opt/htdocs/www;<br>allow 208.97.167.194;<br>allow 222.33.1.2;<br>allow 231.152.49.4;<br>deny all;<br>auth_basic “C1G_ADMIN”;<br>auth_basic_user_file htpasswd;<br>将多级目录下的文件转成一个文件，增强seo效果<br>/job-123-456-789.html 指向/job/123/456/789.html</p>
+<p>rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;<br>将根目录下某个文件夹指向2级目录<br>如/shanghaijob/ 指向 /area/shanghai/<br>如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/</p>
+<p>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>上面例子有个问题是访问/shanghai 时将不会匹配</p>
+<p>rewrite ^/([0-9a-z]+)job$ /area/$1/ last;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>这样/shanghai 也可以访问了，但页面中的相对链接无法使用，<br>如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。</p>
+<p>那我加上自动跳转也是不行咯<br>(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果</p>
+<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>知道原因后就好办了，让我手动跳转吧</p>
+<p>rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>文件和目录不存在的时候重定向：</p>
+<p>if (!-e $request_filename) {<br>proxy_pass <a href="http://127.0.0.1" target="_blank" rel="external">http://127.0.0.1</a>;<br>}<br>域名跳转</p>
+<p>server<br>{<br>listen 80;<br>server_name jump.88dgw.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/ <a href="http://www.88dgw.com/" target="_blank" rel="external">http://www.88dgw.com/</a>;<br>access_log off;<br>}<br>多域名转向</p>
+<p>server_name www.7oom.com/ www.divmy.com/;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs;<br>if ($host ~ “c1gstudio.net”) {<br>rewrite ^(.*) <a href="http://www.7oom.com$1/" target="_blank" rel="external">http://www.7oom.com$1/</a> permanent;<br>}<br>三级域名跳转</p>
+<p>if ($http_host ~<em> “^(.</em>).i.c1gstudio.com$”) {<br>rewrite ^(.*) <a href="http://top.88dgw.com$1/" target="_blank" rel="external">http://top.88dgw.com$1/</a>;<br>break;<br>}<br>域名镜向</p>
+<p>server<br>{<br>listen 80;<br>server_name mirror.c1gstudio.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/(.*) <a href="http://www.divmy.com/$1" target="_blank" rel="external">http://www.divmy.com/$1</a> last;<br>access_log off;<br>}<br>某个子目录作镜向</p>
+<p>location ^~ /zhaopinhui {<br>rewrite ^.+ <a href="http://zph.divmy.com/" target="_blank" rel="external">http://zph.divmy.com/</a> last;<br>break;<br>}<br>discuz ucenter home (uchome) rewrite</p>
+<p>rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;<br>rewrite ^/(space|network).html$ /$1.php last;<br>rewrite ^/([0-9]+)$ /space.php?uid=$1 last;<br>discuz 7 rewrite</p>
+<p>rewrite ^(.<em>)/archiver/((fid|tid)-[\w-]+.html)$ $1/archiver/index.php?$2 last;<br>rewrite ^(.</em>)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;<br>rewrite ^(.<em>)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page\%3D$4&amp;page=$3 last;<br>rewrite ^(.</em>)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;<br>rewrite ^(.<em>)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;<br>rewrite ^(.</em>)/tag-(.+).html$ $1/tag.php?name=$2 last;<br>给discuz某版块单独配置域名</p>
+<p>server_name bbs.c1gstudio.com news.c1gstudio.com;</p>
+<p>location = / {<br>if ($http_host ~ news.divmy.com$) {<br>rewrite ^.+ <a href="http://news.divmy.com/forum-831-1.html" target="_blank" rel="external">http://news.divmy.com/forum-831-1.html</a> last;<br>break;<br>}<br>}<br>discuz ucenter 头像 rewrite 优化</p>
+<p>location ^~ /ucenter {<br>location ~ .*.php?$<br>{</p>
+<h1 id="fastcgi_pass_unix:/tmp/php-cgi-sock;">fastcgi_pass unix:/tmp/php-cgi.sock;</h1>
+<p>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
+<p>location /ucenter/data/avatar {<br>log_not_found off;<br>access_log off;<br>location ~ /(.<em>)_big.jpg$ {<br>error_page 404 /ucenter/images/noavatar_big.gif;<br>}<br>location ~ /(.</em>)_middle.jpg$ {<br>error_page 404 /ucenter/images/noavatar_middle.gif;<br>}<br>location ~ /(.*)_small.jpg$ {<br>error_page 404 /ucenter/images/noavatar_small.gif;<br>}<br>expires 300;<br>break;<br>}<br>}<br>jspace rewrite</p>
+<p>location ~ .*.php?$<br>{</p>
+<h1 id="fastcgi_pass_unix:/tmp/php-cgi-sock;-1">fastcgi_pass unix:/tmp/php-cgi.sock;</h1>
+<p>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
+<p>location ~<em> ^/index.php/<br>{<br>rewrite ^/index.php/(.</em>) /index.php?$1 break;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}<br>另外这里还有一个工具可以直接把apache规则转化为nginx规则</p>
+<p><a href="http://www.anilcetin.com/convert-apache-htaccess-to-nginx/" target="_blank" rel="external">http://www.anilcetin.com/convert-apache-htaccess-to-nginx/</a></p>
+<p>参考：</p>
+<p><a href="http://wiki.nginx.org/NginxChsHttpRewriteModule" target="_blank" rel="external">http://wiki.nginx.org/NginxChsHttpRewriteModule</a></p>
+<p><a href="http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx" target="_blank" rel="external">http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx</a></p>
+<p><a href="http://www.divmy.com/" target="_blank" rel="external">http://www.divmy.com/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Nginx/">Nginx</a><a href="/tags/rewrite/">rewrite</a><a href="/tags/重写/">重写</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://boxcore.org/2013/11/22/nginx-rewrite-rules/" data-title="Nginx下重写规则 | BoxCore" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/22/ecshop-cls_captcha/" title="ecshop 的验证码 类cls_captcha 原理">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  ecshop 的验证码 类cls_captcha 原理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/11/22/ecshop-template-smarty-foreach/"  title="ecshop模板smarty foreach详解">
+ <strong>NEXT:</strong><br/> 
+ <span>ecshop模板smarty foreach详解
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastcgi_pass_unix:/tmp/php-cgi-sock;"><span class="toc-number">1.</span> <span class="toc-text">fastcgi_pass unix:/tmp/php-cgi.sock;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fastcgi_pass_unix:/tmp/php-cgi-sock;-1"><span class="toc-number">2.</span> <span class="toc-text">fastcgi_pass unix:/tmp/php-cgi.sock;</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	
+	<section class="author-info">
+		
+			<p> 人穷志短愿望多</p>
+		
+		
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/abanet" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/boxcore" target="_blank" title="github"></a>
+		
+		
+	</div>
+</div>
+<aside class="clearfix">
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>0</sup></a></li>
+		
+			<li><a href="/categories/Journal/" title="Journal">Journal<sup>1</sup></a></li>
+		
+			<li><a href="/categories/linux/MySQL/" title="MySQL">MySQL<sup>0</sup></a></li>
+		
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>3</sup></a></li>
+		
+			<li><a href="/categories/linux/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>9</sup></a></li>
+		
+			<li><a href="/categories/MySQL/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/Tools/" title="Tools">Tools<sup>0</sup></a></li>
+		
+			<li><a href="/categories/linux/" title="linux">linux<sup>17</sup></a></li>
+		
+			<li><a href="/categories/未分类/" title="未分类">未分类<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">10</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/CTags/" title="CTags">CTags<sup>0</sup></a></li>
+		
+			<li><a href="/tags/DocBlockr/" title="DocBlockr">DocBlockr<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>1</sup></a></li>
+		
+			<li><a href="/tags/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Package-Control/" title="Package Control">Package Control<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Packges/" title="Packges">Packges<sup>0</sup></a></li>
+		
+			<li><a href="/tags/PyV8/" title="PyV8">PyV8<sup>0</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>0</sup></a></li>
+		
+			<li><a href="/tags/USING-BTREE/" title="USING BTREE">USING BTREE<sup>1</sup></a></li>
+		
+			<li><a href="/tags/apache/" title="apache">apache<sup>0</sup></a></li>
+		
+			<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+		
+			<li><a href="/tags/da/" title="da">da<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dedecms/" title="dedecms">dedecms<sup>0</sup></a></li>
+		
+			<li><a href="/tags/direactadmin/" title="direactadmin">direactadmin<sup>0</sup></a></li>
+		
+			<li><a href="/tags/dropbox/" title="dropbox">dropbox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ecshop/" title="ecshop">ecshop<sup>8</sup></a></li>
+		
+			<li><a href="/tags/fancybox/" title="fancybox">fancybox<sup>0</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
