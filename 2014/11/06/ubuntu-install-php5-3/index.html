@@ -1,0 +1,731 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_cn">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Ubuntu编译安装PHP5.3 | BoxCore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="chunze.huang">
+    
+    <meta name="description" content="PHP 是一种在服务器端执行的脚本语言，主要用来制作动态网页以提供浏览器读取，但也可以用来开发命令行脚本程序和用户端的GUI应用程序。PHP 可以在许多的不同种的服务器、操作系统、平台上运行，也可以和许多数据库系统结合。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+	
+	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BoxCore">BoxCore</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="https://github.com/boxcore">Project</a></li>
+					
+					<li>
+					
+					</li>
+                <li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>
+
+				</ul>
+			</nav>	
+</div>
+
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/06/ubuntu-install-php5-3/" title="Ubuntu编译安装PHP5.3" itemprop="url">Ubuntu编译安装PHP5.3</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://boxcore.org" title="chunze.huang">chunze.huang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-05T16:11:05.000Z" itemprop="datePublished">11月 6 2014</time>
+    Updated:<time datetime="2015-01-28T11:48:45.000Z" itemprop="dateModified">1月 28 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、准备工作"><span class="toc-number">1.</span> <span class="toc-text">一、准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、编译安装_GD"><span class="toc-number">2.</span> <span class="toc-text">二、编译安装 GD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、编译安装_Zlib"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、编译安装 Zlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、编译安装_PNG"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、编译安装 PNG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、编译安装_JPEG"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、编译安装 JPEG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4、编译安装_Libiconv"><span class="toc-number">2.4.</span> <span class="toc-text">2.4、编译安装 Libiconv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5、编译安装_FreeType"><span class="toc-number">2.5.</span> <span class="toc-text">2.5、编译安装 FreeType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6、编译安装_GD"><span class="toc-number">2.6.</span> <span class="toc-text">2.6、编译安装 GD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、编译安装_PHP_5"><span class="toc-number">3.</span> <span class="toc-text">三、编译安装 PHP 5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、编译安装_LibXML"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、编译安装 LibXML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2、编译安装_Mhash"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、编译安装 Mhash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3、编译安装_LibMcrypt_&_Mcrypt"><span class="toc-number">3.3.</span> <span class="toc-text">3.3、编译安装 LibMcrypt & Mcrypt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4、安装编译_Curl"><span class="toc-number">3.4.</span> <span class="toc-text">3.4、安装编译 Curl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5、编译安装_php5-3-3"><span class="toc-number">3.5.</span> <span class="toc-text">3.5、编译安装 php5.3.3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1、设置php文件后缀"><span class="toc-number">3.5.1.</span> <span class="toc-text">4.1、设置php文件后缀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2、设置apache的默认文件名次序"><span class="toc-number">3.5.2.</span> <span class="toc-text">4.2、设置apache的默认文件名次序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3、开启Apache_Rewrite_模块"><span class="toc-number">3.5.3.</span> <span class="toc-text">4.3、开启Apache Rewrite 模块</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4、关闭非必须的Apache模块"><span class="toc-number">3.6.</span> <span class="toc-text">4.4、关闭非必须的Apache模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5、编译安装_ZendOptimizer"><span class="toc-number">3.7.</span> <span class="toc-text">4.5、编译安装 ZendOptimizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6、重启Apache服务器"><span class="toc-number">3.8.</span> <span class="toc-text">4.6、重启Apache服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、添加_php5_扩展"><span class="toc-number">4.</span> <span class="toc-text">五、添加 php5 扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1、编译安装Memcache服务器端_(可选）"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、编译安装Memcache服务器端 (可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2、编译安装Memcache的PHP扩展"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、编译安装Memcache的PHP扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3、编译安装_eaccelerator"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、编译安装 eaccelerator</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、安装_phpmyadmin"><span class="toc-number">5.</span> <span class="toc-text">五、安装 phpmyadmin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1、安装_phpMyAdmin-3-3-8"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、安装 phpMyAdmin-3.3.8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2、激活链接表的附加功能"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、激活链接表的附加功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3、配置文件设置短语密码"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、配置文件设置短语密码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、结语"><span class="toc-number">6.</span> <span class="toc-text">五、结语</span></a></li></ol>
+		</div>
+		
+		<p>PHP 是一种在服务器端执行的脚本语言，主要用来制作动态网页以提供浏览器读取，但也可以用来开发命令行脚本程序和用户端的GUI应用程序。PHP 可以在许多的不同种的服务器、操作系统、平台上运行，也可以和许多数据库系统结合。<a id="more"></a></p>
+<h3 id="一、准备工作">一、准备工作</h3>
+<p>系统版本：Ubuntu-14.10 64位桌面版</p>
+<p>OpenSSL 版本</p>
+<p>OpenSSH 版本</p>
+<p>Apache 版本</p>
+<p>MySQL 5 版本</p>
+<h3 id="二、编译安装_GD">二、编译安装 GD</h3>
+<p>GD不是必须的，如果要安装GD，那么 jpeg 库，png 库，zlib 库则是必须的，其余的选择安装。</p>
+<h4 id="2-1、编译安装_Zlib">2.1、编译安装 Zlib</h4>
+<pre class="brush:bash; first-line: 1;">wget http://zlib.net/zlib-1.2.5.tar.gz
+tar -zxf zlib-1.2.5.tar.gz
+cd zlib-1.2.5/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="2-2、编译安装_PNG">2.2、编译安装 PNG</h4>
+<pre class="brush:bash; first-line: 1;">wget ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.4.4.tar.gz
+tar -zxf libpng-1.4.4.tar.gz
+cd libpng-1.4.4/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="2-3、编译安装_JPEG">2.3、编译安装 JPEG</h4>
+<pre class="brush:bash; first-line: 1;">wget http://www.ijg.org/files/jpegsrc.v8b.tar.gz
+tar -zxf jpegsrc.v8b.tar.gz
+cd jpeg-8b/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="2-4、编译安装_Libiconv">2.4、编译安装 Libiconv</h4>
+<pre class="brush:bash; first-line: 1;">wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz
+tar -zxf libiconv-1.13.1.tar.gz 
+cd libiconv-1.13.1/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="2-5、编译安装_FreeType">2.5、编译安装 FreeType</h4>
+<pre class="brush:bash; first-line: 1;">wget http://nchc.dl.sourceforge.net/project/freetype/freetype2/2.4.3/freetype-2.4.3.tar.bz2
+tar -jxf freetype-2.4.3.tar.bz2 
+cd freetype-2.4.3/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="2-6、编译安装_GD">2.6、编译安装 GD</h4>
+<pre class="brush:bash; first-line: 1;">wget http://www.libgd.org/releases/gd-2.0.36RC1.tar.gz
+tar -zxf gd-2.0.36RC1.tar.gz
+cd gd-2.0.36RC1/
+./configure --prefix=/usr/local --with-libiconv-prefix=/usr/local --with-png=/usr/local --with-freetype=/usr/local --with-jpeg=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h3 id="三、编译安装_PHP_5">三、编译安装 PHP 5</h3>
+<h4 id="3-1、编译安装_LibXML">3.1、编译安装 LibXML</h4>
+<pre class="brush:bash; first-line: 1;">wget http://xmlsoft.org/sources/libxml2-2.7.8.tar.gz
+tar -zxf libxml2-2.7.8.tar.gz
+cd libxml2-2.7.8
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="3-2、编译安装_Mhash">3.2、编译安装 Mhash</h4>
+<pre class="brush:bash; first-line: 1;">wget http://nchc.dl.sourceforge.net/project/mhash/mhash/0.9.9.9/mhash-0.9.9.9.tar.bz2
+tar -jxf mhash-0.9.9.9.tar.bz2
+cd mhash-0.9.9.9/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+
+<h4 id="3-3、编译安装_LibMcrypt_&amp;_Mcrypt">3.3、编译安装 LibMcrypt &amp; Mcrypt</h4>
+<pre class="brush:bash; first-line: 1;">wget http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz
+tar -zxf libmcrypt-2.5.8.tar.gz
+cd libmcrypt-2.5.8/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+如果要编译安装 Mcrypt，那么必须先安装 Mhash 和 LibMcrypt，否则会报错。
+<pre class="brush:bash; first-line: 1;">wget http://nchc.dl.sourceforge.net/project/mcrypt/MCrypt/2.6.8/mcrypt-2.6.8.tar.gz
+tar -zxf mcrypt-2.6.8.tar.gz
+cd mcrypt-2.6.8/
+ln -s   /usr/local/bin/libmcrypt-config   /usr/local/bin
+LD_LIBRARY_PATH=/usr/local/lib ./configure --prefix=/usr/local
+make &amp;&amp; make install
+</pre>
+编译安装 Mcrypt，配置时切勿遗漏了在环境变量 LD_LIBRARY_PATH 中指明库的搜索路径 ，或者按一下方法在 /etc/ld.so.conf 动态链接库文件中添加库的搜索路径。（[资料1](http://blog.csdn.net/zwhfyy/archive/2009/03/09/3971350.aspx)、[资料2](http://hi.baidu.com/ever__love/blog/item/62473a97ed1aa145d1135eba.html)）。
+<pre class="brush:bash; first-line: 1;">#编辑，添加共享库路径。
+sudo vim /etc/ld.so.conf 
+添加一行：/usr/local/lib
+sudo ldconfig //更新ld.so.cache
+</pre>
+
+<h4 id="3-4、安装编译_Curl">3.4、安装编译 Curl</h4>
+<pre class="brush:bash; first-line: 1;">wget http://www.libssh2.org/download/libssh2-1.2.7.tar.gz
+tar -zxf libssh2-1.2.7.tar.gz
+cd libssh2-1.2.7/
+./configure --prefix=/usr/local
+make &amp;&amp; make install
+
+wget http://curl.haxx.se/download/curl-7.21.2.tar.gz
+tar -zxf curl-7.21.2.tar.gz
+cd curl-7.21.2/
+./configure --prefix=/usr/local --with-ssl=/usr/local/ssl --with-libssh2=/usr/local
+make &amp;&amp; make install</pre>
+
+<h4 id="3-5、编译安装_php5-3-3">3.5、编译安装 php5.3.3</h4>
+<pre class="brush:bash; first-line: 1;">wget http://cn.php.net/distributions/php-5.3.3.tar.gz
+tar -zxf php-5.3.3.tar.gz
+cd php-5.3.3/
+./configure --prefix=/usr/local/php \
+--with-apxs2=/usr/local/apache/bin/apxs \
+--with-mysql=/usr/local/mysql \
+--with-mysqli=/usr/local/mysql/bin/mysql_config \
+--with-jpeg-dir=/usr/local \
+--with-png-dir=/usr/local \
+--with-zlib-dir=/usr/local \
+--with-freetype-dir=/usr/local \
+--with-iconv-dir=/usr/local \
+--enable-gd-native-ttf \
+--enable-gd-jis-conv \
+--with-gd=/usr/local \
+--with-libxml-dir=/usr/local \
+--with-mhash=/usr/local \
+--with-mcrypt=/usr/local \
+--with-openssl=/usr/local \
+--with-curl=/usr/local \
+--with-curlwrappers \
+--enable-bcmath \
+--enable-wddx \
+--enable-calendar \
+--enable-mbstring \
+--enable-ftp \
+--enable-zip \
+--enable-sockets
+make &amp;&amp; make install
+</pre>
+编译时可能遇到问题：“make: *** [sapi/cli/php] Error 1"
+
+解决 方法是 make 命令换成make ZEND_EXTRA_LIBS='-liconv' 再进行（[参考](http://blog.sina.com.cn/s/blog_6eee53080100utjf.html)）
+
+### 四、将Apache与PHP5相结合
+
+<pre class="brush:bash; first-line: 1;">cp php.ini-production /usr/local/php/lib/php.ini
+vim /usr/local/apache/conf/httpd.conf
+</pre>
+
+<h5 id="4-1、设置php文件后缀">4.1、设置php文件后缀</h5>
+<p>查找”AddType application/x-gzip .gz .tgz”，在下面添加：</p>
+<pre class="brush:bash; first-line: 1;">AddHander application/x-httpd-php .php
+</pre>
+
+<h5 id="4-2、设置apache的默认文件名次序">4.2、设置apache的默认文件名次序</h5>
+<p>查找”index.html”，后面添加“index.php”</p>
+<pre class="brush:bash; first-line: 1;">index.htm index.html  index.php 
+</pre>
+
+<h5 id="4-3、开启Apache_Rewrite_模块">4.3、开启Apache Rewrite 模块</h5>
+<p>查找”Options FileInfo” 将”AllowOverride none”</p>
+<p>改为 “AllowOverride all” //</p>
+<h4 id="4-4、关闭非必须的Apache模块">4.4、关闭非必须的Apache模块</h4>
+<p>因为前期我将所有模块都编译了，所以现在要关闭暂不需要的模块以节省资源。必须开启的模块如下：</p>
+<pre class="brush:bash; first-line: 1;">LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule autoindex_module modules/mod_autoindex.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule alias_module modules/mod_alias.so
+LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule php5_module        modules/libphp5.so
+</pre>
+
+<h4 id="4-5、编译安装_ZendOptimizer">4.5、编译安装 ZendOptimizer</h4>
+<p>官方说明最新版的ZendOptimizer-3.3.9只适用于php5.2，不过你用在php5.3倒也不至于出错。</p>
+<pre class="brush:bash; first-line: 1;">wget http://downloads.zend.com/optimizer/3.3.9/ZendOptimizer-3.3.9-linux-glibc23-i386.tar.gz
+tar -zxf ZendOptimizer-3.3.9-linux-glibc23-i386.tar.gz
+cd ZendOptimizer-3.3.9-linux-glibc23-i386/data/5_2_x_comp
+cp ZendOptimizer.so /usr/local/lib
+</pre>
+<pre class="brush:bash; first-line: 1;">vim /usr/local/php/lib/php.ini
+[ZendOptimizer]
+zend_optimizer.optimization_level=15
+zend_extension=/usr/local/lib/ZendOptimizer.so
+</pre>
+
+<h4 id="4-6、重启Apache服务器">4.6、重启Apache服务器</h4>
+<pre class="brush:bash; first-line: 1;">httpd -k restart
+</pre>
+
+<h3 id="五、添加_php5_扩展">五、添加 php5 扩展</h3>
+<p>服务器运行一段时间后，可能需求额外添加某个扩展，这就需要在不重新编译PHP的情况下独立添加扩展。下面以Memcache为例说明。</p>
+<h4 id="4-1、编译安装Memcache服务器端_(可选）">4.1、编译安装Memcache服务器端 (可选）</h4>
+<p>因为Memcache用到了libevent这个库用于Socket的处理，所以先安装libevent。（<a href="http://blog.csdn.net/canduecho/archive/2008/01/31/2074168.aspx" target="_blank" rel="external">Memcache是什么？</a>、<a href="http://www.ccvita.com/257.html" target="_blank" rel="external">Memcache如何安装？</a>）</p>
+<pre class="brush:bash; first-line: 1;">wget http://www.monkey.org/~provos/libevent-1.4.14b-stable.tar.gz
+tar -zxf libevent-1.4.14b-stable.tar.gz
+cd libevent-1.4.14b-stable/
+./configure --prefix=/usr/local
+make &amp;&amp; sudo make install
+</pre>
+<pre class="brush:bash; first-line: 1;">wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+tar -zxf memcached-1.4.5.tar.gz
+cd memcached-1.4.5/
+./configure --prefix=/usr/local --with-libevent=/usr/local
+make &amp;&amp; sudo make install
+</pre>
+
+<h4 id="4-2、编译安装Memcache的PHP扩展">4.2、编译安装Memcache的PHP扩展</h4>
+<p>添加扩展一般我们只需到php源码ext目录下找即可，但因为php没有自带Memcache扩展，所以你需要另外下载。</p>
+<pre class="brush:bash; first-line: 1;">wget http://pecl.php.net/get/memcache-3.0.5.tgz
+tar -zxf memcache-3.0.5.tgz
+cd memcache-3.0.5/
+sudo /usr/local/php5/bin/phpize
+./configure --enable-memcache --with-php-config=/usr/local/php5/bin/php-config
+make &amp;&amp; sudo make install
+</pre>
+安装完后会看倒下面提示：Installing shared extensions:/usr/local/php5/lib/php/extensions/no-debug-non-zts-20090626/
+
+运行memcached： "/usr/local/bin/memcached"，新建php文件检测是否成功：
+<pre class="brush:php">&lt;!--?php
+$mem = new Memcache;
+$mem---&gt;connect("127.0.0.1", 11211);
+$mem-&gt;set('key', 'This is a test!', 0, 60);
+$val = $mem-&gt;get('key');
+echo $val;
+?&gt;
+</pre>
+&nbsp;
+
+#### 4.3、修改php.ini文件
+
+<pre class="brush:bash; first-line: 1;">sudo gvim /usr/local/php/lib/php.ini</pre>
+将 extension_dir = "./" 改为
+<pre class="brush:bash; first-line: 1;">extension_dir ="/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/"
+extension=memcache.so
+</pre>
+保存退出后，用以下命令检查php配置文件是否正确，然后重启Apache服务器
+<pre class="brush:bash; first-line: 1;">/usr/local/php5/bin/php -v
+sudo httpd -k restart
+</pre>
+
+<h4 id="4-3、编译安装_eaccelerator">4.3、编译安装 eaccelerator</h4>
+<p>eaccelerator安装方法同上面基本一致（<a href="http://blog.s135.com/post/202/" target="_blank" rel="external">详细资料</a>）</p>
+<pre class="brush:bash; first-line: 1;">wget http://bart.eaccelerator.net/source/0.9.6.1/eaccelerator-0.9.6.1.tar.bz2
+tar jxf eaccelerator-0.9.6.1.tar.bz2
+cd eaccelerator-0.9.6.1/
+sudo /usr/local/php5/bin/phpize
+./configure --enable-eaccelerator=shared --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; sudo make install
+sudo mkdir /usr/local/cache
+</pre>
+修改php.ini文件，在[ZendOptimizer]前面加入下面代码，然后重启apache
+<pre class="brush:bash; first-line: 1;">[eaccelerator]
+extension='/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/eaccelerator.so'
+eaccelerator.shm_size='32'
+eaccelerator.cache_dir='/usr/local/cache'
+eaccelerator.enable='1'
+eaccelerator.optimizer='1'
+eaccelerator.check_mtime='1'
+eaccelerator.debug='0'
+eaccelerator.filter=''
+eaccelerator.shm_max='0'
+eaccelerator.shm_ttl='3600'
+eaccelerator.shm_prune_period='3600'
+eaccelerator.shm_only='0'
+eaccelerator.compress='1'
+eaccelerator.compress_level='9'
+</pre>
+
+<h3 id="五、安装_phpmyadmin">五、安装 phpmyadmin</h3>
+<h4 id="5-1、安装_phpMyAdmin-3-3-8">5.1、安装 phpMyAdmin-3.3.8</h4>
+<pre class="brush:bash; first-line: 1;">wget http://nchc.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/3.3.8.1/phpMyAdmin-3.3.8.1-all-languages.tar.gz
+tar -zxf phpMyAdmin-3.3.8.1-all-languages.tar.gz -C /usr/local/apache/htdocs/
+mv /usr/local/apache/htdocs/phpMyAdmin-3.3.8.1-all-languages/ /usr/local/apache/htdocs/phpMyAdmin
+cd /usr/local/apache/htdocs/phpMyAdmin
+cp libraries/config.default.php ./config.inc.php
+</pre>
+
+<h4 id="5-2、激活链接表的附加功能">5.2、激活链接表的附加功能</h4>
+<p>不想出现“链接表的附加功能尚未激活。要查出原因，请点击此处“这样提示就照做吧。</p>
+<p>5.2.1.先建立一个名为phpmyadmin的数据库</p>
+<pre class="brush:bash; first-line: 1;">/usr/local/mysql/bin/mysql -u root -p 
+CREATE DATABASE `phpmyadmin`;
+</pre>
+5.2.2.然后把目录下scripts/create_tables.sql导入到这个库
+<pre class="brush:bash; first-line: 1;">/usr/local/mysql/bin/mysql -u root -p 
+use phpmyadmin
+source /usr/local/apache/htdocs/phpMyAdmin/scripts/create_tables.sql
+</pre>
+3.编辑config.inc.php配置文件.
+<pre class="brush:bash; first-line: 1;">vim /usr/local/apache/htdocs/phpMyAdmin/config.inc.php
+</pre>
+<pre class="brush:bash; first-line: 1;">$cfg['Servers'][$i]['pmadb']           = ''; 
+$cfg['Servers'][$i]['bookmarktable']   = ''; 
+$cfg['Servers'][$i]['relation']        = ''; 
+$cfg['Servers'][$i]['table_info']      = ''; 
+$cfg['Servers'][$i]['table_coords']    = '';  
+$cfg['Servers'][$i]['pdf_pages']       = ''; 
+$cfg['Servers'][$i]['column_info']     = '';  
+$cfg['Servers'][$i]['history']         = ''; 
+$cfg['Servers'][$i]['tracking']        = '';
+</pre>
+将上面语句改成下面的
+<pre class="brush:bash; first-line: 1;">$cfg['Servers'][$i]['pmadb']           = 'phpmyadmin'; 
+$cfg['Servers'][$i]['bookmarktable']   = 'pma_bookmark'; 
+$cfg['Servers'][$i]['relation']        = 'pma_relation';
+$cfg['Servers'][$i]['table_info']      = 'pma_table_info';
+$cfg['Servers'][$i]['table_coords']    = 'pma_table_coords'; 
+$cfg['Servers'][$i]['pdf_pages']       = 'pma_pdf_pages'; 
+$cfg['Servers'][$i]['column_info']     = 'pma_column_info';
+$cfg['Servers'][$i]['history']         = 'pma_history'; 
+$cfg['Servers'][$i]['designer_coords'] = 'pma_designer_coords';
+$cfg['Servers'][$i]['tracking']        = 'pma_tracking';
+</pre>
+
+<h4 id="5-3、配置文件设置短语密码">5.3、配置文件设置短语密码</h4>
+<p>同理，不想出现“配置文件现在需要一个短语密码。“这样提示，就照做吧。</p>
+<p>编辑config.inc.php配置文件. 修改$cfg[‘blowfish_secret’]的值，其中’abc’为任意值</p>
+<pre class="brush:bash; first-line: 1;">$cfg['blowfish_secret'] = 'abc';</pre>
+
+<h3 id="五、结语">五、结语</h3>
+<p>至此，基本的LAMP环境搭建结束了，上述方法同样适用于ubuntu server 和 Debian 。需要说的是目前只是进行了初步的配置，没做任何安全配置，实际部署还请参考其他相关文章。</p>
+<p>From：<a href="http://wangyan.org/blog/install-php-from-source.html" target="_blank" rel="external">http://wangyan.org/blog/install-php-from-source.html</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ubuntu/">ubuntu</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/linux/">linux</a>►<a class="article-category-link" href="/categories/linux/PHP/">PHP</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://boxcore.org/2014/11/06/ubuntu-install-php5-3/" data-title="Ubuntu编译安装PHP5.3 | BoxCore" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/11/06/ubuntu-install-mysql5-5/" title="Ubuntu编译安装MySQL5.5">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Ubuntu编译安装MySQL5.5</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/11/06/ubuntu-install-apache/"  title="Ubuntu编译安装Apache">
+ <strong>NEXT:</strong><br/> 
+ <span>Ubuntu编译安装Apache
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、准备工作"><span class="toc-number">1.</span> <span class="toc-text">一、准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、编译安装_GD"><span class="toc-number">2.</span> <span class="toc-text">二、编译安装 GD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、编译安装_Zlib"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、编译安装 Zlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、编译安装_PNG"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、编译安装 PNG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、编译安装_JPEG"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、编译安装 JPEG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4、编译安装_Libiconv"><span class="toc-number">2.4.</span> <span class="toc-text">2.4、编译安装 Libiconv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5、编译安装_FreeType"><span class="toc-number">2.5.</span> <span class="toc-text">2.5、编译安装 FreeType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6、编译安装_GD"><span class="toc-number">2.6.</span> <span class="toc-text">2.6、编译安装 GD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、编译安装_PHP_5"><span class="toc-number">3.</span> <span class="toc-text">三、编译安装 PHP 5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、编译安装_LibXML"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、编译安装 LibXML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2、编译安装_Mhash"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、编译安装 Mhash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3、编译安装_LibMcrypt_&_Mcrypt"><span class="toc-number">3.3.</span> <span class="toc-text">3.3、编译安装 LibMcrypt & Mcrypt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4、安装编译_Curl"><span class="toc-number">3.4.</span> <span class="toc-text">3.4、安装编译 Curl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5、编译安装_php5-3-3"><span class="toc-number">3.5.</span> <span class="toc-text">3.5、编译安装 php5.3.3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1、设置php文件后缀"><span class="toc-number">3.5.1.</span> <span class="toc-text">4.1、设置php文件后缀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2、设置apache的默认文件名次序"><span class="toc-number">3.5.2.</span> <span class="toc-text">4.2、设置apache的默认文件名次序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3、开启Apache_Rewrite_模块"><span class="toc-number">3.5.3.</span> <span class="toc-text">4.3、开启Apache Rewrite 模块</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4、关闭非必须的Apache模块"><span class="toc-number">3.6.</span> <span class="toc-text">4.4、关闭非必须的Apache模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5、编译安装_ZendOptimizer"><span class="toc-number">3.7.</span> <span class="toc-text">4.5、编译安装 ZendOptimizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6、重启Apache服务器"><span class="toc-number">3.8.</span> <span class="toc-text">4.6、重启Apache服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、添加_php5_扩展"><span class="toc-number">4.</span> <span class="toc-text">五、添加 php5 扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1、编译安装Memcache服务器端_(可选）"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、编译安装Memcache服务器端 (可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2、编译安装Memcache的PHP扩展"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、编译安装Memcache的PHP扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3、编译安装_eaccelerator"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、编译安装 eaccelerator</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、安装_phpmyadmin"><span class="toc-number">5.</span> <span class="toc-text">五、安装 phpmyadmin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1、安装_phpMyAdmin-3-3-8"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、安装 phpMyAdmin-3.3.8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2、激活链接表的附加功能"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、激活链接表的附加功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3、配置文件设置短语密码"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、配置文件设置短语密码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、结语"><span class="toc-number">6.</span> <span class="toc-text">五、结语</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	
+	<section class="author-info">
+		
+			<p> 人穷志短愿望多</p>
+		
+		
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/abanet" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/boxcore" target="_blank" title="github"></a>
+		
+		
+	</div>
+</div>
+<aside class="clearfix">
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Journal/" title="Journal">Journal<sup>5</sup></a></li>
+		
+			<li><a href="/categories/linux/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>5</sup></a></li>
+		
+			<li><a href="/categories/linux/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>15</sup></a></li>
+		
+			<li><a href="/categories/MySQL/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>9</sup></a></li>
+		
+			<li><a href="/categories/linux/Tools/" title="Tools">Tools<sup>1</sup></a></li>
+		
+			<li><a href="/categories/linux/" title="linux">linux<sup>30</sup></a></li>
+		
+			<li><a href="/categories/未分类/" title="未分类">未分类<sup>4</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">11</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/CTags/" title="CTags">CTags<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DocBlockr/" title="DocBlockr">DocBlockr<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>2</sup></a></li>
+		
+			<li><a href="/tags/PHP/" title="PHP">PHP<sup>0</sup></a></li>
+		
+			<li><a href="/tags/Package-Control/" title="Package Control">Package Control<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Packges/" title="Packges">Packges<sup>2</sup></a></li>
+		
+			<li><a href="/tags/PyV8/" title="PyV8">PyV8<sup>1</sup></a></li>
+		
+			<li><a href="/tags/RSS/" title="RSS">RSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>6</sup></a></li>
+		
+			<li><a href="/tags/USING-BTREE/" title="USING BTREE">USING BTREE<sup>1</sup></a></li>
+		
+			<li><a href="/tags/apache/" title="apache">apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+		
+			<li><a href="/tags/da/" title="da">da<sup>1</sup></a></li>
+		
+			<li><a href="/tags/dedecms/" title="dedecms">dedecms<sup>1</sup></a></li>
+		
+			<li><a href="/tags/direactadmin/" title="direactadmin">direactadmin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/directadmin/" title="directadmin">directadmin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/dropbox/" title="dropbox">dropbox<sup>1</sup></a></li>
+		
+			<li><a href="/tags/ecshop/" title="ecshop">ecshop<sup>10</sup></a></li>
+		
+			<li><a href="/tags/fancybox/" title="fancybox">fancybox<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
