@@ -71,10 +71,10 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-api/api-standards" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql/mysql-note" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/api/api-standards.html" class="article-date">
-  <time datetime="2015-02-05T13:44:52.000Z" itemprop="datePublished">2月 5 2015</time>
+    <a href="/mysql/mysql-note.html" class="article-date">
+  <time datetime="2015-04-06T15:35:58.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/api/api-standards.html">API标准</a>
+      <a class="article-title" href="/mysql/mysql-note.html">MySQL note</a>
     </h1>
   
 
@@ -93,26 +93,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工作中会遇到许多API的工作，目前最流行的方案是使用<code>RESTful API</code>。</p>
+        <h2 id="MySQL连接字符串">MySQL连接字符串</h2>
+<figure class="highlight mysql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">CONCAT</span>(<span class="string">'My'</span>, <span class="string">'S'</span>, <span class="string">'QL'</span>);</div><div class="line">-&gt; <span class="string">'MySQL'</span></div></pre></td></tr></table></figure>
 
-        
-          <p class="article-more-link">
-            <a href="/api/api-standards.html#more">Read More</a>
-          </p>
-        
+<h2 id="获取最后插入的ID:_LAST_INSERT_ID()">获取最后插入的ID: LAST_INSERT_ID()</h2>
+<p>从名字可以看出，LAST_INSERT_ID即为最后插入的ID值，它有2种使用方法:<br>一是不带参数：LAST_INSERT_ID()，这种方法和AUTO_INCREMENT属性一起使用，当往带有‘AUTO_INCREMENT’属性字段的表中新增记录时，LAST_INSERT_ID()即返回该字段的值，大家可试下（我已经验证过）；<br>二是带有表达式：如上面介绍的LAST_INSERT_ID(value+1)，它返回的是表达式的值，即‘value+1’；  </p>
+<blockquote>
+<p>SELECT LAST_INSERT_ID();</p>
+</blockquote>
+<h2 id="插入系统时间应">插入系统时间应</h2>
+<p>now()：以’yyyy-mm-dd hh:mm:ss’返回当前的日期时间，可以直接存到datetime字段中。<br>curdate()：’yyyy-mm-dd’的格式返回今天的日期，可以直接存到date字段中。 </p>
+<blockquote>
+<p>insert into table (name,makedate) values(‘测试’,now());</p>
+</blockquote>
+<p>使用实例1:</p>
+<figure class="highlight mysql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*  第一次使用 */</span></div><div class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`cocksucker`</span>.<span class="string">`article`</span> ( <span class="string">`url`</span>, <span class="string">`author_id`</span>, <span class="string">`author`</span>, <span class="string">`last_editor`</span>, <span class="string">`last_checker`</span>, <span class="string">`source`</span>, <span class="string">`title`</span>, <span class="string">`summary`</span>, <span class="string">`item_cat_id`</span>, <span class="string">`item_id`</span>, <span class="string">`sub_title`</span>, <span class="string">`keywords`</span>, <span class="string">`thumb`</span>, <span class="string">`site_id`</span>, <span class="string">`nav_id`</span>, <span class="string">`publish_time`</span>) <span class="keyword">VALUES</span> (<span class="string">'http://fushi.7808.cn/zixun/52999.html'</span>, <span class="string">'1'</span>, <span class="string">'Superman'</span>, <span class="string">''</span>, <span class="string">'超级管理员(1)'</span>, <span class="string">'E'</span>, <span class="string">'服饰测试文章1'</span>, <span class="string">'服饰测试文章1'</span>, <span class="string">'9'</span>, <span class="string">'0'</span>, <span class="string">'服饰测试文章1服饰测试文章1服饰'</span>, <span class="string">'服饰测试文章1meta'</span>, <span class="string">''</span>, <span class="string">'18'</span>, <span class="string">'156'</span>, <span class="keyword">now</span>() );</span></div><div class="line"></div><div class="line"><span class="operator"><span class="keyword">update</span> article <span class="keyword">set</span> url= <span class="keyword">CONCAT</span>(<span class="string">'http://fushi.7808.cn/zixun/'</span>, <span class="keyword">LAST_INSERT_ID</span>(), <span class="string">'.html'</span>) <span class="keyword">where</span> id=<span class="keyword">LAST_INSERT_ID</span>();</span></div><div class="line"></div><div class="line"><span class="comment">/* 第二次使用 */</span></div><div class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`cocksucker`</span>.<span class="string">`article`</span> ( <span class="string">`url`</span>, <span class="string">`author_id`</span>, <span class="string">`author`</span>, <span class="string">`last_editor`</span>, <span class="string">`last_checker`</span>, <span class="string">`source`</span>, <span class="string">`title`</span>, <span class="string">`summary`</span>, <span class="string">`item_cat_id`</span>, <span class="string">`item_id`</span>, <span class="string">`sub_title`</span>, <span class="string">`keywords`</span>, <span class="string">`thumb`</span>, <span class="string">`site_id`</span>, <span class="string">`nav_id`</span>, <span class="string">`publish_time`</span>) <span class="keyword">VALUES</span> (<span class="keyword">CONCAT</span>(<span class="string">'http://fushi.7808.cn/zixun/'</span>, <span class="keyword">LAST_INSERT_ID</span>()+<span class="number">1</span>, <span class="string">'.html'</span>) , <span class="string">'1'</span>, <span class="string">'Superman'</span>, <span class="string">''</span>, <span class="string">'超级管理员(1)'</span>, <span class="string">'E'</span>, <span class="keyword">CONCAT</span>(<span class="string">'财富商机服饰文章-'</span>, <span class="keyword">LAST_INSERT_ID</span>()+<span class="number">1</span>), <span class="keyword">CONCAT</span>(<span class="string">'财富商机服饰文章-'</span>, <span class="keyword">LAST_INSERT_ID</span>()+<span class="number">1</span>), <span class="string">'9'</span>, <span class="string">'0'</span>, <span class="string">'财富商机服饰文章副标题'</span>, <span class="string">'meta信息'</span>, <span class="string">''</span>, <span class="string">'18'</span>, <span class="string">'160'</span>, <span class="keyword">now</span>() );</span></div></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/api/api-standards.html" data-id="94il31jq1vkn3t6h" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/mysql/mysql-note.html" data-id="3z9ja8jbgy9iz7nr" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/api/api-standards.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/mysql/mysql-note.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
 
     </footer>
   </div>
@@ -121,10 +131,10 @@
 
 
   
-    <article id="post-hadoop/index" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql/mysqldump" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/hadoop/index.html" class="article-date">
-  <time datetime="2015-02-05T10:01:36.000Z" itemprop="datePublished">2月 5 2015</time>
+    <a href="/mysql/mysqldump.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -135,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/hadoop/index.html">Hadoop Note</a>
+      <a class="article-title" href="/mysql/mysqldump.html">mysqldump命令</a>
     </h1>
   
 
@@ -143,23 +153,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="高效绘制_序列图">高效绘制 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图" target="_blank" rel="external">序列图</a></h3>
-<figure class="highlight seq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">Alice</span>-&gt;<span class="type">Bob</span>: <span class="type">Hello</span> <span class="type">Bob</span>, how are you?</div><div class="line"><span class="type">Note</span> right <span class="keyword">of</span> <span class="type">Bob</span>: <span class="type">Bob</span> thinks</div><div class="line"><span class="type">Bob</span><span class="comment">--&gt;Alice: I am good thanks!</span></div></pre></td></tr></table></figure>
-
+        <p>mysqldump语法：</p>
+<p>mysqldump按条件查找：<br>mysqldump按条件查找的参数是 -where/-w，例子如：</p>
+<blockquote>
+<p>mysqldump -uroot -p123456 dbname table_name -where “id&gt;90” &gt; ~/db.sql</p>
+</blockquote>
+<h2 id="指定每行都有insert语句和字段">指定每行都有insert语句和字段</h2>
+<p>mysqldump -uroot -p123456 cocksucker_online sea_item_effect —extended-insert=false -c —where=” created&lt;=’2014-07-17 00:00:00’” &gt; ~/web/db/test.sql</p>
+<h2 id="解决导出时时区错误问题">解决导出时时区错误问题</h2>
+<p>mysqldump -uroot -p123456 cocksucker_online sea_item_effect —skip-tz-utc —where=” created&lt;=’2014-07-17 00:00:00’” &gt; ~/web/db/test.sql</p>
+<h2 id="导入导出遇到中文乱码问题">导入导出遇到中文乱码问题</h2>
+<p>带上参数<code>--default-character-set=utf8</code>就指定默认为utf8的。例如：<br>mysqldump   -uroot  -p  —default-character-set=utf8   dbname tablename  &gt;  bak.sql<br>mysql -uroot -p —default-character-set=utf8 dbname &lt; bak.sql</p>
+<h2 id="排除指定表导出">排除指定表导出</h2>
+<p><code>mysqldump -uroot -p123456 database --ignore-table=database.table1 --ignore-table=database.table2 &gt; backup.sql</code></p>
+<h2 id="不锁表导出：_-lock-tables=0">不锁表导出： <code>--lock-tables=0</code></h2>
+<h2 id="用mysqldump导出压缩文件">用mysqldump导出压缩文件</h2>
+<p><code>mysqldump -uroot -p --add-drop-table db_name | gzip &gt; /path/db_back_name.sql.gz</code></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/hadoop/index.html" data-id="qqon4hox7hazgo4z" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/mysql/mysqldump.html" data-id="g5u9q2kx44mu7sll" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/hadoop/index.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/mysql/mysqldump.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
 
     </footer>
   </div>
@@ -168,10 +191,10 @@
 
 
   
-    <article id="post-linux/shell/index" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql/mysql-hight-level" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/shell/index.html" class="article-date">
-  <time datetime="2015-02-01T07:10:16.000Z" itemprop="datePublished">2月 1 2015</time>
+    <a href="/mysql/mysql-hight-level.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -182,7 +205,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/shell/index.html">Shell学习笔记</a>
+      <a class="article-title" href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
     </h1>
   
 
@@ -190,67 +213,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>linux操作系统默认shell环境是Bash（Bourne Again Shell），但现在比较少弄到shell，许多不常用或者复杂一点的bash语法都已经忘得差不多了，特在此开辟Bash编程频道。</p>
-<p>首先，bash是一个比较简单的shell.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/linux/shell/index.html" data-id="69yf5hdwlsa50372" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/linux/shell/index.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mysql/mysql-basic" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/mysql/mysql-basic.html" class="article-date">
-  <time datetime="2015-01-31T17:19:45.000Z" itemprop="datePublished">2月 1 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/mysql/mysql-basic.html">MySQL基础复习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>好久没有弄MySQL了。。。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> world <span class="keyword">where</span> <span class="number">1</span>;</span></div></pre></td></tr></table></figure>
+        <h2 id="正则替换里内容">正则替换里内容</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">update</span> comment <span class="keyword">set</span> url=<span class="keyword">IF</span>(url <span class="keyword">REGEXP</span> <span class="string">'test.yahoo.com.cn'</span>,<span class="keyword">REPLACE</span>(url,<span class="string">'www1.sohu.com'</span>,<span class="string">'www.sina.com'</span>),<span class="keyword">REPLACE</span>(url,<span class="string">'www2.yahoo.com'</span>,<span class="string">'www.sina.com'</span>)) <span class="keyword">where</span> <span class="number">1</span>=<span class="number">1</span>;</span></div><div class="line"><span class="operator"><span class="keyword">update</span> comment <span class="keyword">set</span> author_url=<span class="keyword">REPLACE</span>(author_url,<span class="string">'sohu'</span>,<span class="string">'sina'</span>) <span class="keyword">where</span> author_url <span class="keyword">REGEXP</span> <span class="string">'www.sohu.com'</span>;</span></div></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/mysql/mysql-basic.html" data-id="ezpokxqe57q2sdus" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/mysql/mysql-hight-level.html" data-id="ff2je015fvfqgfjb" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/mysql/mysql-basic.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/mysql/mysql-hight-level.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
 
     </footer>
   </div>
@@ -259,10 +238,10 @@
 
 
   
-    <article id="post-mysql/index" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-php/php-string" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/mysql/index.html" class="article-date">
-  <time datetime="2015-01-31T17:19:45.000Z" itemprop="datePublished">2月 1 2015</time>
+    <a href="/php/php-string.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -273,7 +252,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/mysql/index.html">MySQL学习笔记</a>
+      <a class="article-title" href="/php/php-string.html">PHP 字符串</a>
     </h1>
   
 
@@ -281,21 +260,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Note</p>
+        <h1 id="字符串函数">字符串函数</h1>
+<h4 id="strlen():_计算字符串的长度">strlen(): 计算字符串的长度</h4>
+<h4 id="substr_count():_获取指定字符串出现次数,_语法如:">substr_count(): 获取指定字符串出现次数, 语法如:</h4>
+<blockquote>
+<p>int substr_count(string $haystack, string $needle [, int $offset [, int $length]]);</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="variable">$haystack</span> = <span class="string">"Hello worldaa, aa is bb, I am aa?"</span>;</div><div class="line"><span class="variable">$handle</span> = <span class="string">"aa"</span>;</div><div class="line"><span class="variable">$count</span> = substr_count(<span class="variable">$haystack</span>, <span class="variable">$handle</span>);</div><div class="line"><span class="keyword">echo</span> <span class="string">"aa 共出现次数: "</span>.<span class="variable">$count</span>;  <span class="comment">// 3次</span></div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
 
+<h4 id="str_word_count():_统计某个单词出现的次数,_语法格式如:">str_word_count(): 统计某个单词出现的次数, 语法格式如:</h4>
+<p>mixed str_word_count( string $string [, int $format [, string $charlist]] )</p>
+<pre><code>. <span class="built_in">format</span>: 指定返回模式. 该参数可取值如:
+    <span class="number">0</span> - 默认值, 返回找到单词的数目;
+    <span class="number">1</span> - 返回一个数组,其中键名是从<span class="number">0</span>开始的连续整数, 值是实际单词;
+    <span class="number">2</span> - 返回一个数组,其中键名是单词在字符串中的位置, 值是实际的单词;
+</code></pre>
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/mysql/index.html" data-id="tibjbikw2emlfjlu" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/php/php-string.html" data-id="5mkpkoxarhiimer9" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/mysql/index.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/php/php-string.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
     </footer>
   </div>
@@ -304,10 +296,10 @@
 
 
   
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql/mysql-statement" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/hello.html" class="article-date">
-  <time datetime="2015-01-28T14:47:12.000Z" itemprop="datePublished">1月 28 2015</time>
+    <a href="/mysql/mysql-statement.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -318,7 +310,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/hello.html">Hello World!</a>
+      <a class="article-title" href="/mysql/mysql-statement.html">MySQL编写规范</a>
     </h1>
   
 
@@ -326,31 +318,142 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Hello World! 每开一个博客，必需给世界打个招呼。经过深思熟虑的思考，决定还是在github上开启博客了。在这里开博最主要的原因无非是：</p>
-<ol>
-<li>Github提供强大免费空间驱动！妈妈再也不担心我的钱包了！</li>
-<li>编辑文件方便！直接用markdown写博客，真心有种牛逼哄哄的赶脚！</li>
-<li>Hexo生成文章速度快，况且哥现在在研究Node.js！</li>
-<li>语法高亮，许多简洁高大上模板提供！</li>
+        <h2 id="数据定义语法">数据定义语法</h2>
+<h3 id="有关DATABASE语法">有关DATABASE语法</h3>
+<p>使用create database语句, 可以创建一个数据库.在这个过程中, 可以指定默认的字符集和默认的字符串比较方法.</p>
+<blockquote>
+<p><code>&lt;create database statement&gt; = create database [if not exists] &lt;database name&gt; [&lt;database option&gt;...];</code></p>
+<blockquote>
+<p><code>&lt;database option&gt; = [default] character set &lt;character set name&gt; | [default] collate &lt;collate name&gt;</code></p>
+</blockquote>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span> <span class="string">`book`</span> <span class="built_in">character</span> <span class="keyword">set</span> <span class="string">"utf8"</span> <span class="keyword">collate</span> <span class="string">"utf8_general_ci"</span>;</span></div></pre></td></tr></table></figure>
+
+<h3 id="有关TABLE语法">有关TABLE语法</h3>
+<h4 id="create_table相关语法">create table相关语法</h4>
+<blockquote>
+<p><code>&lt;create table statement&gt; = create [tmporary] table [if not exists] &lt;table specification&gt; &lt;table structure&gt; [&lt;table option&gt;...]</code></p>
+<blockquote>
+<p><code>&lt;table specification&gt; = [&lt;database name&gt;.] &lt;table name&gt;</code><br><code>&lt;table structure&gt; = &lt;table schema&gt;</code></p>
+<blockquote>
+<p><code>&lt;table schema&gt; = (&lt;table element&gt;[,&lt;table element&gt;...])</code></p>
+<blockquote>
+<p>``</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/mysql/mysql-statement.html" data-id="znsnrmtq0kcyxde7" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/mysql/mysql-statement.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php/phpdocumentor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/phpdocumentor.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/php/phpdocumentor.html">phpDocumentor安装和使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>phpDocument是很好的php文档生成工具，参考phpdoc生成的文档能方便阅读和理解项目，安装和生产好phpdoc后必须要解决<strong>中文乱码问题</strong>（直达电梯）。</p>
+<h2 id="一、安装phpDocumentor_">一、安装<code>phpDocumentor</code> </h2>
+<p>pear命令安装：</p>
+<pre><code>pear <span class="operator"><span class="keyword">install</span> PhpDocumentor</span>
+</code></pre><p>源码安装：</p>
+<h2 id="二、phpDocumentor使用">二、<code>phpDocumentor</code>使用</h2>
+<p>查看所有帮助：</p>
+<pre><code> <span class="title">phpdoc</span> -h
+</code></pre><p>phpdocmentor参数:</p>
+<pre><code>-<span class="ruby">f     要进行分析的文件名，多个文件用逗号隔开
+</span>-<span class="ruby">d     要分析的目录，多个目录用逗号分割
+</span>-<span class="ruby">t     生成的文档的存放路径
+</span>-<span class="ruby">o     输出的文档格式，结构为输出格式：转换器名：模板目录。    <span class="constant">Format</span><span class="symbol">:</span> <span class="symbol">output:</span><span class="symbol">converter:</span>templatedir like
+</span>    例如： HTML:Smarty:PHP | HTML:frames:phpedit |
+</code></pre><p>可以执行一下代码生成phpdoc：</p>
+<pre><code>phpdoc -d /home/www/site -o <span class="constant">HTML</span><span class="symbol">:frames</span><span class="symbol">:phpedit</span>  -t docs
+</code></pre><p>have fun！</p>
+<h2 id="三、php代码中phpdoc支持">三、php代码中phpdoc支持</h2>
+<p>这部分是要求编码者写代码的时候要养成按phpdoc风格添加注释，常用到的有：</p>
+<pre><code><span class="variable">@author</span> 程序作者名称，联络方式 
+<span class="variable">@const</span> 常数 
+<span class="variable">@deprecate</span> 不建议使用的 <span class="constant">API</span> 
+<span class="variable">@global</span> 全域变量 
+<span class="variable">@param</span> 函数的参数 
+<span class="variable">@return</span> 回传值 
+<span class="variable">@see</span> 可参考函数 
+<span class="variable">@since</span> 开始时间 
+<span class="variable">@static</span> 静态变量 
+<span class="variable">@var</span> 物件成员变量 
+<span class="variable">@todo</span> 计划中要进行的项目
+</code></pre><h2 id="四、可能遇到问题">四、可能遇到问题</h2>
+<p>1.如果目录文件过多，生成时可能内存不够，虚拟机上需要调大内存。</p>
+<pre><code>PHP Fatal error:  Allowed memory size <span class="operator">of</span> <span class="number">268435456</span> <span class="keyword">bytes</span> exhausted (tried <span class="built_in">to</span> allocate <span class="number">35</span> <span class="keyword">bytes</span>) <span class="operator">in</span> /usr/share/pear/PhpDocumentor/phpDocumentor/phpDocumentorTWordParser.inc <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">332</span></span>
+</code></pre><p>2.中文乱码问题</p>
+<p>phpdoc默认编码是ISO-8859-1，如果要支持中文需要修改编码格式：<br>文件： /usr/share/pear/data/PhpDocumentor/phpDocumentor/Converters/HTML/frames/templates/default/templates/<em>.</em><br>下的模板文件均替换成utf-8即可。</p>
+<p>进入PhpDocumentor的模板目录把模板文件修改成utf-8编码：</p>
+<pre><code>cd <span class="regexp">/usr/</span>share<span class="regexp">/php/</span>data<span class="regexp">/PhpDocumentor/</span>phpDocumentor<span class="regexp">/Converters/</span>
+<span class="comment">// 或</span>
+cd <span class="regexp">/usr/</span>share<span class="regexp">/pear/</span>data<span class="regexp">/PhpDocumentor/</span>phpDocumentor<span class="regexp">/Converters/</span>
+</code></pre><p>执行字符串查找并替换命令：</p>
+<pre><code><span class="built_in">find</span> ./ -name <span class="string">'*.tpl'</span> | xargs sed -<span class="built_in">i</span> <span class="string">'s/iso-8859-1/utf-8/g'</span>
+</code></pre><ol>
+<li><p>其他测试：</p>
+<p> phpdoc -d /home/www/romeo/trunk/sites/ucenter -o HTML:Smarty:PHP  -t docs1<br> phpdoc -d /home/www/romeo/trunk/sites/ucenter -o HTML:frames:phphtmllib  -t docs2<br> phpdoc -d /home/www/romeo/trunk/sites/ucenter -o HTML:frames:phpdoc.de  -t docs3<br> phpdoc -d /home/www/romeo/trunk/sites/ucenter -o HTML:frames:earthli  -t docs4<br> phpdoc -d /home/www/romeo/trunk/sites/ucenter -o HTML:frames:l0l33t  -t docs5</p>
+</li>
 </ol>
-<p>不管你喜欢还是不喜欢，我就在这里。最后用php打个hello world：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="string">"Hello World"</span>;</div></pre></td></tr></table></figure>
-
-<p>打完收工!</p>
+<h2 id="参考：">参考：</h2>
+<ol>
+<li><a href="http://www.laruence.com/2009/04/21/680.html" title="laruenced的phpdocumentor安装" target="_blank" rel="external">phpdocumentor</a></li>
+<li><a href="http://bbs.phpchina.com/thread-110594-1-1.html" title="windows下安装phpdocumentor" target="_blank" rel="external">windows下安装phpdocumentor</a></li>
+<li><a href="http://www.phpdoc.org/docs/latest/index.html" target="_blank" rel="external">phpDocumentor官方文档</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/php/pear3/" target="_blank" rel="external">PEAR：使用PHPDoc轻松建立你的PEAR文档</a></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/hello.html" data-id="7wzzz2vhfgo03g59" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/php/phpdocumentor.html" data-id="krmvqv2216f9kgbo" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/hello.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/php/phpdocumentor.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hello/">hello</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
     </footer>
   </div>
@@ -359,18 +462,242 @@
 
 
   
+    <article id="post-mysql/mysql-source" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mysql/mysql-source.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/mysql/mysql-source.html">MySQL source命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="常见问题:_在win下导入sql文件乱码问题">常见问题: 在win下导入sql文件乱码问题</h3>
+<p>中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的文件会出现乱码,故需要特别指定下编码的格式.</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在cmd下导出</div><div class="line">mysqldump -uroot -p --default-character-<span class="keyword">set</span>=utf8 mo（dbname） &gt; E://xxxx.sql</div><div class="line"></div><div class="line"># 在cmd下导入</div><div class="line">mysql -u root -p --default-character-<span class="keyword">set</span>=utf8 </div><div class="line">use dbname </div><div class="line">source /root/newsdata.sql</div></pre></td></tr></table></figure>
+
+<p>而且需要注意,在linux中要配置默认编码为:<code>default-character-set=utf8</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/mysql/mysql-source.html" data-id="184810r5f83t0nu9" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/mysql/mysql-source.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php/phpsh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/phpsh.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/php/phpsh.html">phpsh工具安装使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>phpsh是facebook开发的</p>
+<p>一、phpsh的安装</p>
+<p>安装phpsh依赖包：</p>
+<pre><code>yum <span class="operator"><span class="keyword">install</span> php-posix
+wget http://github.com/facebook/phpsh/tarball/<span class="keyword">master</span>
+tar zxf <span class="keyword">master</span></span>
+</code></pre><p>复制src目录更名为phpsh</p>
+<p>将其中的phpsh.php中的 rc.php之前得路径清空</p>
+<p>chmod +x phpsh </p>
+<p>ln -s /xxx/xxx/phpsh /bin/phpsh </p>
+<p>如果不安装posix，执行phpsh后报错：</p>
+<pre><code><span class="title">Fatal</span> <span class="built_in">error</span>: phpsh requires the following extensions: posix
+</code></pre><h2 id="二、phpsh使用">二、phpsh使用</h2>
+<p>三、常见报错</p>
+<p>3.1 </p>
+<pre><code>PHP Warning:  require_once(/etc/phpsh/rc.php): failed <span class="built_in">to</span> <span class="built_in">open</span> stream: No such <span class="built_in">file</span> <span class="operator">or</span> <span class="built_in">directory</span> <span class="operator">in</span> /opt/phpsh/src/phpsh.php <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">49</span></span>
+PHP Fatal error:  require_once(): Failed opening required <span class="string">'/etc/phpsh/rc.php'</span> (include_path=<span class="string">'.:/usr/share/pear:/usr/share/php'</span>) <span class="operator">in</span> /opt/phpsh/src/phpsh.php <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">49</span></span>
+</code></pre><h2 id="参考：_">参考：  </h2>
+<p><a href="http://www.phpsh.org/" target="_blank" rel="external">http://www.phpsh.org/</a><br><a href="http://www.cnblogs.com/daiye/archive/2011/01/29/1947548.html" target="_blank" rel="external">http://www.cnblogs.com/daiye/archive/2011/01/29/1947548.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/php/phpsh.html" data-id="u8g96ckdq5xk3g6f" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/php/phpsh.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-skill/cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/skill/cmd.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/skill/cmd.html">CMD note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Boxcore的CMD常用命令手册。</p>
+<h2 id="进入指定目录">进入指定目录</h2>
+<ol>
+<li>切换盘： &gt; D:\dir\dir</li>
+<li>切目录： cd dir\dir\</li>
+</ol>
+<h2 id="环境变量">环境变量</h2>
+<blockquote>
+<p>set path=%path%;C:\python27<br>说明，windows中添加环境变量后可以直接在cmd窗口中敲其快捷的命令，一般设置命令的目录为环境变量即可。</p>
+<p>添加环境变量设置生效： set PATH=dir  （需要重开cmd窗口）</p>
+<p>查看环境变量： echo %PATH%</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/skill/cmd.html" data-id="ypv1f30f8p1rfvpo" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/skill/cmd.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-skill/Photoshop设置英文" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/skill/Photoshop设置英文.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/skill/Photoshop设置英文.html">PS设置英文</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>将C:\Program Files\Adobe\Adobe Photoshop CC (64 Bit)\Locales\zh_CN\Support Files\tw10428.dat文件改名即可。如果需要回复中文界面，只要将该文件改名回去就行。不需要语言包。<br>    photoshop不管什么语言版本，其内核都是英文的，多国语言版无非是增加了对应语言的资源文件，如果没有资源文件，或者系统找不到资源文件，系统就按照英文的方式显示界面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/skill/Photoshop设置英文.html" data-id="2x4fat1jmb8s5tlh" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/skill/Photoshop设置英文.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/photoshop/">photoshop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="page-number" href="/archives/2015/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/7/">7</a><a class="extend next" rel="next" href="/archives/2015/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
       
       <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Journal/">Journal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/压力测试/">压力测试</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -379,7 +706,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/mysql/" style="font-size: 20.00px;">mysql</a>
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
     </div>
   </div>
 
@@ -388,7 +715,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -400,23 +727,23 @@
       <ul>
         
           <li>
-            <a href="/api/api-standards.html">API标准</a>
+            <a href="/mysql/mysql-note.html">MySQL note</a>
           </li>
         
           <li>
-            <a href="/hadoop/index.html">Hadoop Note</a>
+            <a href="/mysql/mysqldump.html">mysqldump命令</a>
           </li>
         
           <li>
-            <a href="/linux/shell/index.html">Shell学习笔记</a>
+            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-basic.html">MySQL基础复习</a>
+            <a href="/php/php-string.html">PHP 字符串</a>
           </li>
         
           <li>
-            <a href="/mysql/index.html">MySQL学习笔记</a>
+            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
           </li>
         
       </ul>

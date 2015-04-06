@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2015 | BoxCore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BoxCore">
+<meta property="og:url" content="http://boxcore.org/archives/2015/page/3/">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BoxCore">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@_boxcore">
+
+  
+    <link rel="alternative" href="/atom.xml" title="BoxCore" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BoxCore</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="boxcore.org">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main">
+  
+    <article id="post-php/php-array" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/php-array.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/php/php-array.html">PHP数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>数组的类型</strong></p>
+<ol>
+<li>索引数组  以数字作为键名的数组.</li>
+<li>关联数组  以数字或字符串混合或纯字符串作为键名的数组.</li>
+</ol>
+<p>数字的其他分类: 一维数组, 二维数组, 多维数组</p>
+<h3 id="数组使用">数组使用</h3>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="comment">/* 定义数组 */</span></div><div class="line"><span class="variable">$arr</span> = <span class="keyword">array</span>();</div><div class="line"><span class="variable">$a</span>[<span class="number">1</span>] = <span class="string">'aa'</span>;</div><div class="line"><span class="variable">$b</span>[<span class="string">'aa'</span>] = <span class="string">'hello'</span>;</div><div class="line"></div><div class="line"><span class="comment">/* 删除数组 */</span></div><div class="line"><span class="keyword">unset</span>(<span class="variable">$arr</span>[<span class="number">1</span>]);</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p><strong>遍历数组</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="comment">/* foreach遍历 */</span></div><div class="line"><span class="variable">$arr</span> = range(<span class="string">'A'</span>,<span class="string">'Z'</span>);</div><div class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$value</span>){</div><div class="line">    <span class="keyword">echo</span> <span class="variable">$key</span>.<span class="string">'=&gt;'</span>.<span class="variable">$value</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/* for循环结构 */</span>*</div><div class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;count(<span class="variable">$arr</span>); <span class="variable">$i</span>++){</div><div class="line">    <span class="keyword">echo</span> <span class="variable">$i</span>.<span class="string">'----'</span>.<span class="variable">$arr</span>[<span class="variable">$i</span>];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/* list(), each() 和 reset()遍历 */</span>*</div><div class="line">reset(<span class="variable">$arr</span>);</div><div class="line"><span class="keyword">while</span>(<span class="keyword">list</span>(<span class="variable">$key</span>, <span class="variable">$value</span>)=each(<span class="variable">$arr</span>)){</div><div class="line">    <span class="keyword">print</span> <span class="string">"$key --- $value&lt;br /&gt;"</span>;</div><div class="line">}</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="数组函数">数组函数</h3>
+<p>数组排序函数:<br>sort()<br>rsort()<br>asort()<br>arsort()<br>ksort()<br>krsort()</p>
+<h4 id="sort()">sort()</h4>
+<p>sort() 对数组元素进行从低到高排序</p>
+<h4 id="rsort()">rsort()</h4>
+<p>rsort()对数组元素进行从高到低排序</p>
+<h4 id="asort()">asort()</h4>
+<h4 id="arsort()">arsort()</h4>
+<h4 id="ksort()">ksort()</h4>
+<h4 id="kasort()">kasort()</h4>
+<h4 id="in_array()">in_array()</h4>
+<h4 id="array_key_exits()">array_key_exits()</h4>
+<h4 id="count()">count()</h4>
+<h4 id="sizeof()">sizeof()</h4>
+<h4 id="array_merge()">array_merge()</h4>
+<h4 id="array_chunk()">array_chunk()</h4>
+<h4 id="range()">range()</h4>
+<h4 id="array_reverse()">array_reverse()</h4>
+<h4 id="array_sum()">array_sum()</h4>
+<h4 id="array_flip()">array_flip()</h4>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/php/php-array.html" data-id="yjmirbnq12cno29g" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/php/php-array.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-network" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-network.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-network.html">Linux网络服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="相关配置文件">相关配置文件</h2>
+<p>网络服务常用命令: </p>
+<blockquote>
+<p><code>/etc/rc.d/init.d/network restart|start|stop</code>（脚本服务启动与关闭)</p>
+<blockquote>
+<p>也可以使用 <code>service network restart</code>(同上，是命令执行）</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>/etc/hosts (本地主机ip地址映射,可以有多个别名）</li>
+<li>/etc/services (端口号与标准服务之间的对应关系）</li>
+<li>/etc/sysconfig/network（设置主机名，网关，域名）</li>
+<li>/etc/resolv.conf (配置dns)</li>
+<li>/etc/sysconfig/network-scripts/ifcfg-eth0 (网卡配置文件)</li>
+</ul>
+<h2 id="修改主机名">修改主机名</h2>
+<p><code>vi /etc/sysconfig/network</code>（设置主机名，网关，域名）。</p>
+<blockquote>
+<p>HOSTANME=BOXCORE(主机名）（需要重启计算机才有效）<br>GATEWAY=192.168.1.1（网关）</p>
+</blockquote>
+<h2 id="修改网卡">修改网卡</h2>
+<p><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<blockquote>
+<p>DEVICE=eth0(哪张网卡）<br>ONBOOT=yes<br>BOOTPROTO=static(静态ip状态设置）<br>BOOTPROTO=dhcp(dhcp获取）<br>IPADDR=192.168.1.8(静态ip地址)<br>NETMASK=255.255.255.0<br>GATEWAY=192.168.1.1（网关）(如果在此设置网关，则上面的无效）<br>MACADDR=00:0C:29:96:38:F8（修改mac地址）(永久有效）</p>
+</blockquote>
+<p>然后执行<code>service network restart</code>重启即可</p>
+<h2 id="配置临时网卡设置">配置临时网卡设置</h2>
+<p>IP配置方法及自动获取ip: </p>
+<pre><code><span class="title">ifconfig</span> eth0 <span class="number">192.168.0.10</span> 将采用默认子网掩码
+ifconfig eth0 <span class="number">192.168.0.10</span> netmask <span class="number">255.255.255.252</span> (手动定义子网掩码)
+ifconfig eth0 up(激活网卡）
+</code></pre><h3 id="关闭网卡">关闭网卡</h3>
+<pre><code>ifconfig eth0 down(关闭网卡）
+<span class="regexp">/etc/</span>sysconfig<span class="regexp">/netowrk-scripts/i</span>fdown eth0(脚本关闭网卡）或者
+ifdown eth0(指向<span class="regexp">/sbin/i</span>fdown的符号链接）
+</code></pre><h3 id="手动设置获取DHCP_IP地址">手动设置获取DHCP IP地址</h3>
+<pre><code>ifconfig eth0 -<span class="keyword">dynamic</span>(手动设置获取dhcp ip地址）
+</code></pre><h3 id="图形窗口设置IP的命令netconfig">图形窗口设置IP的命令<code>netconfig</code></h3>
+<pre><code>netconfig是文本窗口的形式设置IP的命令,修改好之后用 
+<span class="escape">`s</span>ervice network restart<span class="escape">`重</span>启网卡.
+</code></pre><h3 id="修改MAC地址">修改MAC地址</h3>
+<pre><code>ifconfig eth0 <span class="preprocessor">down</span>
+ifconfig eth0 hw ether <span class="number">00</span>:<span class="number">00</span>:0c:<span class="number">12</span>:<span class="number">34</span>:<span class="number">56</span>
+/etc/rd.d/init.d/network(上面的修改可存储在此脚本中）
+ifconfig eth0 <span class="preprocessor">up</span>
+</code></pre><h2 id="常用测试命令">常用测试命令</h2>
+<pre><code><span class="title">ping</span> -c <span class="number">4</span> <span class="number">172.16.1.1</span>
+route (对内核的ip路由表进行操作，主要对己配置的接口的主机或网络设置静态路由，如通过ifconfig程序配)
+route add -net <span class="number">192.168.1.0</span> netmask <span class="number">255.255.255.0</span> eth0 (添加一条到<span class="number">192.168.1.0</span>网络的路由条目)
+route del -net <span class="number">192.168.1.0</span> netmask <span class="number">255.255.255.0</span> （删除路由条目）
+route -C 查看缓冲表
+route -n 查看本地路由表
+traceroute 路由跟踪
+</code></pre><blockquote>
+<p>注：netconfig、ifconfig、route三者结合使用,不用重启系统及服务。</p>
+</blockquote>
+<h2 id="创建ADSL连接">创建ADSL连接</h2>
+<pre><code><span class="title">rpm</span> -qa |grep rp-pppoe
+<span class="title">rpm</span> -ivh rp-pppoe* (将光盘)
+<span class="title">route</span> del <span class="default"><span class="keyword">default</span><span class="container">(删除默认路由)</span></span>
+<span class="title">adsl</span>-setup (设置连接)
+<span class="title">adsl</span>-start (连接测试)
+<span class="title">adsl</span>-status (查看状态)
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-network.html" data-id="5vebuitjbrby9a9l" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-network.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-iptable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-iptable.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-iptable.html">Linux iptable 防火墙设置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>配置防火墙规则文件: <code>/etc/sysconfig/iptables</code></p>
+<p>启动和关闭防火墙: <code>service iptables restart|start|stop</code></p>
+<p>在防火墙中，来往的数据流被称为IP压缩（本文下面也称数据流为IP压缩）。防火墙有三条缺省规则链来过滤IP压缩，分别为：</p>
+<pre><code>INPUT：所有以主机为目的地的<span class="literal">IP</span>压缩
+OUTPUT：所有以主机为源的<span class="literal">IP</span>压缩
+FORWARD：所有经过主机，但是既不是以主机为源，也不是以主机为目的地的压缩
+</code></pre><p>而我们最关注的是INPUT规则，这样可以屏蔽一些黑客行为，或者局域网共享。下面以centOS 6.5的默认规则为例子，讲解下各条规则大概的意思：</p>
+<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> ESTABLISHED,RELATED -j ACCEPT
+</code></pre><p>-m 选项: 装入一个模块（state）。state 模块能够查看一个压缩并判断它的状态是  NEW、ESTABLISHED 还是 RELATED。<br>NEW 指內进的压缩属于不是由主机主导的新增连接。<br>ESTABLISHED 及 RELATED 指內进的压缩隶属于一条现存的连接，或者与现存的连接有关系。  </p>
+<p>这条规则的意思是：以本主机为目的地的IP压缩，如果隶属于现有的连接，则接受（accept）</p>
+<pre><code><span class="deletion">-A INPUT -p icmp -j ACCEPT</span>
+</code></pre><p>表示接受icmp协议的IP压缩，icmp协议主要是ping，很多同学在局域网能ping通一台机器，但是无法通过web访问，就是因为开启了icmp协议，但是http等协议没有开，后面会讲解如何解决这个问题</p>
+<pre><code>-A INPUT -<span class="built_in">i</span> lo -<span class="built_in">j</span> ACCEPT
+</code></pre><p>这条规则表示接受那些来自本机（localhost或者127.0.0.1的IP压缩）</p>
+<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> NEW -<span class="keyword">m</span> tcp  -p tcp –dport <span class="number">22</span> -j ACCEPT
+</code></pre><p>表示表示接受不是由本机引导的新增的，基于端口号22的连接（句子有点长，仔细体会哈）。22端口是ssh连接用的，所以如果你想远程操作机器，需要开启端口22</p>
+<pre><code>-A INPUT -j <span class="keyword">REJECT</span> –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝来自已经被禁止的主机的icmp的IP压缩</p>
+<pre><code>-A FORWARD -j REJECTED –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝经过本机且源自那些已经被禁止的主机的icmp的IP压缩</p>
+<p>下面再详细说说各个参数的意思：</p>
+<p>-A：表示添加一条规则(add)</p>
+<p>相应的还有：-P（设置规则的缺省值，比如-P INPUT ACCEPT表示没有以本机为目的地的IP压缩默认是接受的）</p>
+<p>-F（清楚所有存在的规则，好添加新的规则）</p>
+<p>-j：表示满足规则执行的相应的操作，意为jump，比如 ……-j ACCEPT就表示满足相应的规则就接受</p>
+<p>-i：界面的意思（interface），lo是本机的意思（localhost）</p>
+<p>注意，编辑完iptables文件之后，使用service iptables restart重启防火墙，可以使用命令：iptables -L查看规则是否生效</p>
+<p>或者使用命令行</p>
+<p>（1）重启后永久性生效：</p>
+<pre><code>开启：chkconfig iptables <span class="literal">on</span>
+关闭：chkconfig iptables <span class="literal">off</span>
+</code></pre><p>（2）即时生效，重启后失效：</p>
+<pre><code>开启：service iptables <span class="operator"><span class="keyword">start</span>
+关闭：service iptables <span class="keyword">stop</span></span>
+</code></pre><p>比如局域网中搭建了一台centOS作为服务器，并且建立了LAMP或者LNMP环境，想让局域网中的其他人都能通过web访问该机器，那么先得固定机器的IP地址，将BOOTPROTO改成static，然后将IPADDR设置一个固定的IP（比如192.168.1.22），在设置子网掩码NETMASK（比如255.255.255.0），NETWORK和GATAWAY和DNS等也设置好，然后就是信任来自本局域网的访问了，添加下面的规则到iptables中，再重启防火墙即可。具体如何配置网络看这里：CentOS网络配置详解</p>
+<pre><code>-A INPUT -i eth0 -j ACCEPT                                       <span class="comment">#eth0是你的网卡号，用ifconfig -a命令查看你自己的网卡号</span>
+</code></pre><p>或者你想信任来自一系列IP的访问，可以用斜线记法规定IP的范围，比如：</p>
+<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.0</span>/<span class="number">24</span> -j ACCEPT                <span class="comment">#即接受来自192.168.1.0-192.168.1.255的ip区段的IP压缩</span>
+</code></pre><p>或者为每一个IP添加一条规则，但是当IP比较多时会很麻烦，比如</p>
+<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.22</span> -j ACCEPT
+</code></pre><p>打开80端口的规则</p>
+<pre><code><span class="deletion">-A INPUT -p tcp –dport 80 -j ACCEPT</span>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-iptable.html" data-id="109m07p211rvr1m2" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-iptable.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iptable/">iptable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-free-mem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-free-mem.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-free-mem.html">Linux释放内存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">free -m //查看内存</div><div class="line">sync // 把内存数据同步到硬盘</div><div class="line"><span class="built_in">echo</span> <span class="number">3</span> &gt; /proc/sys/vm/drop_caches //删除内存缓存</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-free-mem.html" data-id="9p2mc129i2h7xpk0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-free-mem.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-files" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-files.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-files.html">Linux文件管理常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="du目录统计">du目录统计</h2>
+<blockquote>
+<p>参数说明  </p>
+<blockquote>
+<p>-h, —human-readable 显示mb, 同样,可以使用b、k、m来表示单位<br>-s, —summarize 只显示统计的目录,不带<code>-s</code>参数会递归显示所有文件和大小  </p>
+</blockquote>
+</blockquote>
+<h2 id="wc文字统计">wc文字统计</h2>
+<p>wc(Word Count)命令的功能为统计指定文件中的字节数、字数、行数，并将统计结果显示输出。</p>
+<blockquote>
+<p>命令参数：</p>
+</blockquote>
+<pre><code>-<span class="ruby">c 统计字节数。
+</span>-<span class="ruby">l 统计行数。
+</span>-<span class="ruby">m 统计字符数。这个标志不能与 -c 标志一起使用。
+</span>-<span class="ruby">w 统计字数。一个字被定义为由空白、跳格或换行字符分隔的字符串。
+</span>-<span class="ruby"><span class="constant">L</span> 打印最长行的长度。
+</span>-<span class="ruby">help 显示帮助信息
+</span>-<span class="ruby">-version 显示版本信息</span>
+</code></pre><h2 id="_"> </h2>
+<h2 id="_-1"> </h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-files.html" data-id="9q0g5bbqs6wgn6da" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-files.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/files/">files</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-crontab" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-crontab.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-crontab.html">Linux Crontab定时任务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装crontab">安装crontab</h2>
+<p><code>yum install crontabs</code></p>
+<p>说明:</p>
+<pre><code><span class="regexp">/sbin/</span>service crond start <span class="comment">//启动服务</span>
+<span class="regexp">/sbin/</span>service crond stop <span class="comment">//关闭服务</span>
+<span class="regexp">/sbin/</span>service crond restart <span class="comment">//重启服务</span>
+<span class="regexp">/sbin/</span>service crond reload <span class="comment">//重新载入配置</span>
+</code></pre><p>crontab 格式：</p>
+<p>基本格式 :</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">分钟   小时   日   月   星期   命令</div><div class="line"></div><div class="line"><span class="keyword">*</span>        <span class="keyword">*</span>      <span class="keyword">*</span>    <span class="keyword">*</span>     <span class="keyword">*</span>       <span class="keyword">*</span></div><div class="line"></div><div class="line">第1列表示分钟1～59 每分钟用<span class="keyword">*</span>或者 <span class="keyword">*</span>/1表示</div><div class="line">第2列表示小时1～23（0表示0点）</div><div class="line">第3列表示日期1～31</div><div class="line">第4列 表示月份1～12</div><div class="line">第5列标识号星期0～6（0表示星期天）</div><div class="line">第6列要运行的命令</div><div class="line"></div><div class="line">记住几个特殊符号的含义: </div><div class="line">“<span class="keyword">*</span>”代表取值范围内的数字, </div><div class="line">“/”代表”每”, </div><div class="line">“-”代表从某个数字到某个数字, </div><div class="line">“,”分开几个离散的数字 </div><div class="line"></div><div class="line"><span class="comment"># Use the hash sign to prefix a comment</span></div><div class="line"><span class="comment"># +—————- minute (0 – 59)</span></div><div class="line"><span class="comment"># | +————- hour (0 – 23)</span></div><div class="line"><span class="comment"># | | +———- day of month (1 – 31)</span></div><div class="line"><span class="comment"># | | | +——- month (1 – 12)</span></div><div class="line"><span class="comment"># | | | | +—- day of week (0 – 7) (Sunday=0 or 7)</span></div><div class="line"><span class="comment"># | | | | |</span></div><div class="line"><span class="comment"># * * * * * command to be executed</span></div></pre></td></tr></table></figure>
+
+<h2 id="添加crontab任务">添加crontab任务</h2>
+<p><code>crontab -e</code>然后输入如:</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-crontab.html" data-id="xhvnjivkjrmv0j1x" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-crontab.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-cmake" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-cmake.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-cmake.html">cmake安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>centos6默认安装的cmake版本是2.6的, 这个版本有bug而且很多新软件都需要cmake2.8以上才能运行</p>
+<p>卸载cmake:<br>yum remove cmake # 卸载cmake</p>
+<p>安装  wget <a href="http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz" target="_blank" rel="external">http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz</a><br> tar xvf cmake-2.8.12.2-Linux-i386.tar.gz</p>
+<p>建立连接<br>ln -s /usr/cmake-2.8.12.2-Linux-i386/bin/* /usr/bin/ </p>
+<h2 id="again">again</h2>
+<p>yum install -y libarchive<br>rpm -ivh cmake-2.8.8-4.el6.i686.rpm</p>
+<p>卸载: rpm -e cmake-2.8.8-4.el6.i686</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-cmake.html" data-id="qk2jm7bfcuri63j4" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-cmake.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmake/">cmake</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-rpm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-rpm.html" class="article-date">
+  <time datetime="2015-04-06T15:28:37.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-rpm.html">Linux RPM安装与卸载命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RPM（Red Hat Package Manager）<br>命令：rpm<br>1、查询、检查软件包<br>rpm {-q|—query} [select-options] [query-options]<br>rpm {-V|—verify} [select-options] [verify-options]<br>2、安装、升级、删除软件包<br>rpm {-i|—install} [install-options] PACKAGE_FILE …<br>rpm {-U|—upgrade} [install-options] PACKAGE_FILE …<br>rpm {-F|—freshen} [install-options] PACKAGE_FILE …<br>rpm {-e|—erase} [—allmatches] [—nodeps] [—noscripts]<br>   [—notriggers] [—repackage] [—test] PACKAGE_NAME …<br>3、其他<br>rpm {—initdb|—rebuilddb}<br>rpm {—addsign|—resign} PACKAGE_FILE …<br>rpm {—querytags|—showrc}<br>rpm {—setperms|—setugids} PACKAGE_NAME …<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>select-options<br>         [PACKAGE_NAME] [-a,—all] [-f,—file FILE]<br>         [-g,—group GROUP] {-p,—package PACKAGE_FILE]<br>         [—fileid MD5] [—hdrid SHA1] [—pkgid MD5] [—tid TID]<br>         [—querybynumber HDRNUM] [—triggeredby PACKAGE_NAME]<br>         [—whatprovides CAPABILITY] [—whatrequires CAPABILITY]<br>query-options<br>         [—changelog] [-c,—configfiles] [-d,—docfiles] [—dump]<br>         [—filesbypkg] [-i,—info] [—last] [-l,—list]<br>         [—provides] [—qf,—queryformat QUERYFMT]<br>         [-R,—requires] [—scripts] [-s,—state]<br>         [—triggers,—triggerscripts]<br>verify-options<br>         [—nodeps] [—nofiles] [—noscripts]<br>         [—nodigest] [—nosignature]<br>         [—nolinkto] [—nomd5] [—nosize] [—nouser]<br>         [—nogroup] [—nomtime] [—nomode] [—nordev]<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>install-options<br>         [—aid] [—allfiles] [—badreloc] [—excludepath OLDPATH]<br>         [—excludedocs] [—force] [-h,—hash]<br>         [—ignoresize] [—ignorearch] [—ignoreos]<br>         [—includedocs] [—justdb] [—nodeps]<br>         [—nodigest] [—nosignature] [—nosuggest]<br>         [—noorder] [—noscripts] [—notriggers]<br>         [—oldpackage] [—percent] [—prefix NEWPATH]<br>         [—relocate OLDPATH=NEWPATH]<br>         [—repackage] [—replacefiles] [—replacepkgs]<br>         [—test]</p>
+<p>【示例】<br>rpm -v    显示rpm程序的详细信息<br>rpm —version   显示rpm的版本号<br>rpm -qa    显示系统中安装的所有软件包<br>rpm -q gcc   查询指定软件包是否已安装<br>rpm -qi gcc   显示指定软件包的详细信息<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm -ql gcc    显示指定软件包所包含的文件列表<br>rpm -qf /usr/lib/bash   查看指定文件所属的软件包<br>rpm -qp /tmp/webmin.rpm   查询RPM包文件中的文件信息<br>rpm -i webmin-1.290-1.noarch.rpm   安装指定的RPM包<br>rpm -ivh webmin-1.290-1.noarch.rpm 安装并显示详信息<br>rpm -ivh —test webmin-1.290-1.noarch.rpm 对安装进行测试，并不是安装<br>rpm -ivh —replacepkgs webmin-1.290-1.noarch.rpm<br>软件包重复安装将会失败，若仍需要安装必须加—replacepkgs<br>rpm -ivh —replacefiles webmin-1.290-1.noarch.rpm<br>软件包的某个文件已在安装其他软件包时安装过，则安装将会失败，若仍需要安装必须加—replacefiles<br>rpm -ivh —nodeps webmin-1.290-1.noarch.rpm<br>软件包所依赖的软件包未安装，则安装将会失败，若仍需要安装必须加—nodeps<br>rpm -ivh —force webmin-1.290-1.noarch.rpm 强制安装指定软件包<br>     （忽略软件包依赖性和文件冲突，不建议）<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm –U webmin-1.29   升级指定的软件包<br>rpm –Uvh webmin-1.29   升级指定的软件包（显示详细信息）</p>
+<p>rpm -e webmin-1.29   删除指定的软件包<br>rpm -V webmin    验证软件包webmin<br>rpm -Vf /bin/vi    验证包含指定文件的软件包是否正确<br>rpm -Va     验证所有已经安装的软件包<br>rpm -Vp webmin.rpm   利用RPM文件验证软件包<br>注：如校验正确将没有任何输出（.表示验证通过）<br>5 MD5校验<br>S 文件尺寸<br>L 符号链接<br>T 文件修改日期<br>D 设备<br>U 用户<br>G 用户组<br>M 模式（包括权限和文件类型）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-rpm.html" data-id="kl4on8wprjxy02b2" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-rpm.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rpm/">rpm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-service-mem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-service-mem.html" class="article-date">
+  <time datetime="2015-04-06T15:28:04.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-service-mem.html">Linux内存管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="linux下手动清理内存－缓存">linux下手动清理内存－缓存</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">free -m</div><div class="line"><span class="comment"># 释放内存</span></div><div class="line">/bin/sync </div><div class="line">/bin/<span class="built_in">echo</span> <span class="string">"1"</span>&gt;/proc/sys/vm/drop_caches</div><div class="line">free -m</div></pre></td></tr></table></figure>
+
+<p>使用sync命令以确保文件系统的完整性，sync 命令运行 sync 子例程，将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件。</p>
+<p>/proc是一个虚拟文件系统，我们可以通过对它的读写操作作为与kernel实体间进行通信的一种手段。也就是说可以通过修改/proc中的文件，来对当前kernel的行为做出调整。也就是说我们可以通过调整/proc/sys/vm/drop_caches来释放内存。</p>
+<hr>
+<p><strong>参考</strong></p>
+<p><a href="http://os.51cto.com/art/201003/186885.htm" target="_blank" rel="external">http://os.51cto.com/art/201003/186885.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-service-mem.html" data-id="81gy0mmca4jy06a5" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-service-mem.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mem/">mem</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/ubuntu/ubuntu-install-sublime" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/ubuntu/ubuntu-install-sublime.html" class="article-date">
+  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/ubuntu/ubuntu-install-sublime.html">Sublime For Ubuntu</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="install_sublime_by_ppa">install sublime by ppa</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> add-apt-repository ppa:webupd8team/sublime-text-<span class="number">2</span></div><div class="line"><span class="built_in">sudo</span> apt-get update</div><div class="line"></div><div class="line"><span class="built_in">sudo</span> apt-get install sublime-text <span class="comment"># or use `sudo apt-get install sublime-text-dev` for install Sublime Text 2 development build</span></div></pre></td></tr></table></figure>
+
+<h2 id="referance">referance</h2>
+<p><a href="http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html" target="_blank" rel="external">http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/ubuntu/ubuntu-install-sublime.html" data-id="8tyjztljy4n4nic0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/ubuntu/ubuntu-install-sublime.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2015/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><a class="page-number" href="/archives/2015/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2015/page/4/">4</a><a class="page-number" href="/archives/2015/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/7/">7</a><a class="extend next" rel="next" href="/archives/2015/page/4/">Next &raquo;</a>
+    </nav>
+  
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Journal/">Journal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/压力测试/">压力测试</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/mysql/mysql-note.html">MySQL note</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+          </li>
+        
+          <li>
+            <a href="/php/php-string.html">PHP 字符串</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.baibaobing.com/" target="_blank">白宝冰&#39;s Blog</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.liwenrui.com/" target="_blank">李文瑞&#39;s Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 boxcore<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"boxcore"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+</div>
+</body>
+</html>

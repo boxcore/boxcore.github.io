@@ -1,0 +1,945 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives | BoxCore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BoxCore">
+<meta property="og:url" content="http://boxcore.org/archives/page/6/">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BoxCore">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@_boxcore">
+
+  
+    <link rel="alternative" href="/atom.xml" title="BoxCore" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BoxCore</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="boxcore.org">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main">
+  
+    <article id="post-java/index" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/java/index.html" class="article-date">
+  <time datetime="2015-02-22T03:10:04.000Z" itemprop="datePublished">2月 22 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/java/index.html">Java Note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Part_1-_基础知识">Part 1. 基础知识</h3>
+<h3 id="Part_2-_核心技术">Part 2. 核心技术</h3>
+<h3 id="Part_3-_高级应用">Part 3. 高级应用</h3>
+<h3 id="Part_4-_项目实践">Part 4. 项目实践</h3>
+<p>学习参考图书：</p>
+<ul>
+<li>《Java从入门到精通》(第3版)</li>
+<li>《Java教程》(第4版) . Sharon Zakhour  Scott Hommel  Jacob Royal等著  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/java/index.html" data-id="7qgu7v8mg4x6twai" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/java/index.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-wget" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-wget.html" class="article-date">
+  <time datetime="2015-02-14T01:30:15.000Z" itemprop="datePublished">2月 14 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-wget.html">Linux wget命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="应用场景">应用场景</h2>
+<h3 id="批量下载或递归下载网页中的所有文件">批量下载或递归下载网页中的所有文件</h3>
+<pre><code>wget -r http:<span class="comment">//site.com/content_dir</span>
+</code></pre><h3 id="指定下载编码后再重命名">指定下载编码后再重命名</h3>
+<pre><code>wget --restrict-<span class="keyword">file</span>-names=<span class="keyword">ascii</span> -<span class="keyword">m</span> www.xxx.<span class="keyword">com</span>/
+</code></pre><p>下载为ascii的文件名, 可以使用软件RenamePro8.0在“高级文件名变”更里面有一个“文件名编码与解码”，“ANSI编码URL字符串转换为文字”</p>
+<hr>
+<p><strong>参考</strong></p>
+<ul>
+<li><a href="http://moper.me/wget-download-the-file-name-garbled.html" target="_blank" rel="external">http://moper.me/wget-download-the-file-name-garbled.html</a></li>
+<li><a href="http://rubyer.me/blog/111/" target="_blank" rel="external">http://rubyer.me/blog/111/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-wget.html" data-id="6skvuzwj58jkn7wp" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-wget.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/">wget</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/samba" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/samba.html" class="article-date">
+  <time datetime="2015-02-14T01:30:15.000Z" itemprop="datePublished">2月 14 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/samba.html">Samba文件共享服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>samba简写smb, 是linux下局域网共享服务.</p>
+<h2 id="安装samba">安装samba</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">yum -y install samba    <span class="comment"># yum安装smb</span></div><div class="line">rpm -qa | grep samba    <span class="comment"># 查看smb是否安装</span></div><div class="line">whereis samba           <span class="comment"># 查看smb目录目录</span></div><div class="line"></div><div class="line">chkconfig smb on        <span class="comment"># 开机自启smb服务</span></div><div class="line">chkconfig --list smb　   <span class="comment"># 确认 Samba 启动标签，确认 2-5 为 on 的状态</span></div><div class="line"></div><div class="line">/etc/rc.d/init.d/smb start　<span class="comment"># 启动 Samba 服务  </span></div><div class="line">service smb restart     <span class="comment"># 重启Samba 同上</span></div></pre></td></tr></table></figure>
+
+<p>如果iptables防火墙是启用状态，那么需要添加以下防火墙规则:</p>
+<pre><code>vi /etc/sysconfig/iptables
+# 写入: 
+-<span class="ruby"><span class="constant">A</span> <span class="constant">INPUT</span> -m state --state <span class="constant">NEW</span> -m tcp -p tcp --dport <span class="number">139</span> -j <span class="constant">ACCEPT</span>
+</span>-<span class="ruby"><span class="constant">A</span> <span class="constant">INPUT</span> -m state --state <span class="constant">NEW</span> -m tcp -p tcp --dport <span class="number">445</span> -j <span class="constant">ACCEPT</span>
+</span>-<span class="ruby"><span class="constant">A</span> <span class="constant">INPUT</span> -p udp -m udp --dport <span class="number">137</span> -j <span class="constant">ACCEPT</span>
+</span>-<span class="ruby"><span class="constant">A</span> <span class="constant">INPUT</span> -p udp -m udp --dport <span class="number">138</span> -j <span class="constant">ACCEPT</span></span>
+</code></pre><h2 id="samba配置">samba配置</h2>
+<blockquote>
+<p>vi /etc/samba/smb.conf</p>
+</blockquote>
+<pre><code>[global]
+<span class="variable">workgroup  =</span>  工作组
+server  <span class="variable">string  =</span>  描述
+log  <span class="variable">file  =</span>    日志位置
+max  log  <span class="variable">size  =</span>  日志最大大小           KB
+<span class="variable">security  =</span>  user       安全等级
+user    使用samba用户登录。注意：samba用户由系统用户转变过来。要把用户生成为samba用户，此用户必须已经是系统用户
+share   不用密码
+server  使用验证服务器验证
+domain  域控制器验证
+
+·share   definitions        共享设置
+
+[共享目录名]
+<span class="variable">commetn  =</span>  目录描述
+<span class="variable">browseable  =</span>  yes      目录是否对没有权限的用户可见
+<span class="variable">writeable  =</span>  yes       可写（要与系统目录权限相与）
+valid  <span class="variable">users  =</span>  用户名    用户限制（目录是哪个用户所有）
+<span class="variable">path  =</span>  /www           指定共享目录位置
+</code></pre><h2 id="添加samba用户">添加samba用户</h2>
+<pre><code>smbpasswd  <span class="operator">-a</span>  username     <span class="comment"># 添加samba用户, 用户名必须存在系统用户名中</span>
+smbpasswd  -x  username     <span class="comment"># 删除samba用户</span>
+pdbedit  -L 查看samba用户
+</code></pre><p>添加用户和目录后,确认目录下用户的权限:</p>
+<pre><code><span class="keyword">mkdir</span>  /pub
+<span class="keyword">mkdir</span>  /soft
+<span class="keyword">chmod</span> <span class="number">777</span> /pub
+<span class="keyword">chmod</span> <span class="number">700</span> /soft
+<span class="keyword">chown</span> aa  /soft
+service smb  restart
+</code></pre><p><strong>注意:</strong></p>
+<ul>
+<li>samba权限和系统权限取最严格权限</li>
+<li>samba用户必须是系统用户</li>
+<li>启动的服务名是smb</li>
+</ul>
+<h2 id="我常用的Samba服务配置">我常用的Samba服务配置</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 如果要用root账号，需要关闭selinux</span></div><div class="line"><span class="comment"># SELINUX=enforcing 修改为 SELINUX=disabled</span></div><div class="line"><span class="comment"># 并注释SELINUXTYPE=targeted这一行内容。</span></div><div class="line"><span class="keyword">if</span> [ <span class="operator">-s</span> /etc/selinux/config ]; <span class="keyword">then</span></div><div class="line">    sed -i <span class="string">'s/SELINUX=enforcing/SELINUX=disabled/g'</span> /etc/selinux/config</div><div class="line">    sed -i <span class="string">'s/^SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g'</span> /etc/selinux/config</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># samba添加root目录</span></div><div class="line">cat &gt;&gt;/etc/samba/smb.conf&lt;&lt;eof</div><div class="line">[root]</div><div class="line">comment = Root Stuff</div><div class="line">path = /root</div><div class="line">public = no</div><div class="line">writable = yes</div><div class="line">eof</div><div class="line"></div><div class="line">smbpasswd <span class="operator">-a</span> root</div><div class="line">chkconfig smb on</div><div class="line">chkconfig iptables off</div><div class="line">service smb restart</div><div class="line">reboot</div></pre></td></tr></table></figure>
+
+<h2 id="客户端使用">客户端使用</h2>
+<ol>
+<li>windows：</li>
+</ol>
+<p>文件夹地址栏: <code>\\192.168.56.220\www</code></p>
+<p>如果修改了密码或用户后,验证信息错误,可以在dos下删除缓存<br>    net  use  *  /del           删除缓存</p>
+<pre><code>net <span class="operator"><span class="keyword">use</span> * /del /y 或 net <span class="keyword">use</span> \\{servename} /del /y
+net <span class="keyword">use</span> \\{servername} /<span class="keyword">user</span>:{username} {<span class="keyword">password</span>}</span>
+</code></pre><ol>
+<li>linux客户端：<br> smbclient  //192.168.140.253/soft -U aa</li>
+</ol>
+<h2 id="Linux挂载网络共享目录">Linux挂载网络共享目录</h2>
+<p>当在linux上要连接windows或者其他服务共享的目录，可以通过mount命令挂载到指定目录中，具体操作如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 直接挂载远程目录到本地</span></div><div class="line">mount -t cifs -o dir_mode=<span class="number">0777</span>,file_mode=<span class="number">0666</span>,username=xxx,password=ooo //<span class="number">192.168</span>.<span class="number">56.1</span>/SoftPacket /mnt/share</div><div class="line"></div><div class="line"><span class="comment"># 设置开机自动挂载（重启后生效）</span></div><div class="line">vi /etc/fstab</div><div class="line">//<span class="number">192.168</span>.<span class="number">56.1</span>/SoftPacket  /mnt/share   cifs   defaults,username=xxx,password=ooo <span class="number">0</span> <span class="number">2</span></div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/samba.html" data-id="r8xgukksgsh5crz4" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/samba.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/samba/">samba</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tools/phpstorm-keymap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/tools/phpstorm-keymap.html" class="article-date">
+  <time datetime="2015-02-12T02:41:30.000Z" itemprop="datePublished">2月 12 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/tools/phpstorm-keymap.html">PhpStorm快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><code>CTRL + D</code>  复制当前行或复制选中内容</li>
+<li><code>CTRL + Y</code>  删除当前行或选中内容所涉及的行</li>
+<li><code>CTRL + R</code>  查找替换</li>
+<li><code>ALT + W</code>   选中单词</li>
+<li><code>ALT + 上下箭头</code> 向上向下函数间切换</li>
+<li><code>CTRL + SHIFT + V</code>  显示最近粘贴板中的内容，选择后内容插入到光标位置</li>
+<li><code>CTRL + Q</code>  显示说明文档</li>
+<li><code>CTRL + B</code>  跳转到声明处</li>
+<li><code>CTRL + N</code>  类名查找</li>
+<li><code>CTRL + SHIFT + N</code>  文件名查找</li>
+<li><code>CTRL + SHIFT + ALT + N</code>   函数名查找</li>
+<li><code>ALT + SHIFT + C</code> 快速回顾最近修改的项目</li>
+<li><code>CTRL + SHIFT + I</code>  查看变量初始化的值</li>
+<li><code>CTRL + ALT + T</code>  插入环绕代码</li>
+<li><code>CTRL + ALT + F12</code>  跳转至当前文件所在磁盘上的位置</li>
+<li><code>ALT + 左右键</code> 标签切换</li>
+<li><code>CTRL + F12</code> 在当前类文件中快速查找方法</li>
+</ul>
+<h2 id="PHPstorm默认快捷键">PHPstorm默认快捷键</h2>
+<ul>
+<li><code>CTRL + J</code>    插入活动代码提示</li>
+</ul>
+<p>ctrl+alt+t        当前位置插入环绕代码<br>alt+insert        生成代码菜单<br>Shift + Enter   新一行<br>ctrl+q            查看代码注释<br>ctrl+d            复制当前行<br>ctrl+y            删除当前行<br>shift+F6          重命名<br>ctrl+shift+u      字母大小写转换<br>ctrl+f            查找<br>ctrl+r            替换<br>ctrl+shift+I      查看变量或方法定义源<br>ctrl+g            跳转行<br>ctrl+alt+F12      跳转至当前文件在磁盘上的位置<br>alt+down          查看下一个方法<br>alt+up            查看上一个方法<br>ctrl+alt+l        重新格式化代码<br>ctrl+shift+down   statement向下移动<br>ctrl+shift+up     statement向上移动<br>alt+shift+down    line向下移动<br>alt+shift+up      line向上移动<br>ctrl+/            行注释<br>ctrl+shift+/      块注释</p>
+<p>Ctrl + Shift + Z：redo</p>
+<p>Ctrl + Shift + F：区域查找<br>ctrl+shift+n      打开工程中的文件<br>ctrl+b            跳到变量申明处<br>ctrl+[]           匹配 {}[]<br>ctrl+shift+]/[    选中块代码</p>
+<p>….<br>ctrl+x            剪切行<br>ctrl+shift+v      复制多个文本<br>alt+left/right    标签切换<br>ctrl+p            显示默认参数</p>
+<p>ctrl + ‘-/+’: 可以折叠项目中的任何代码块</p>
+<p>===================================================</p>
+<p>2013-12-27 新增</p>
+<p>CTRL + SHIFT + R   快速查找该关键字在整个项目中的位置，或者替换整个项目目录中的匹配字符。</p>
+<p>这个快捷键找了好久终于发现了 ，哈哈</p>
+<p>CTRL + T     更新当前项目的svn 代码。</p>
+<p>CTRL + K     提交当前的目录下的svn 代码。 </p>
+<p>其实在做项目的过程中 最常用的就是 查找文件位置，类，函数，关键字符，行号。</p>
+<p>我使用的主题 theme : Darcula</p>
+<p>代码区主题   fonts :monospaced</p>
+<p>(<em>^__^</em>) 欢迎补充……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/tools/phpstorm-keymap.html" data-id="i9ikta32t9nh3f7u" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/tools/phpstorm-keymap.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpstorm/">phpstorm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php/php-different-version-error_report" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/php-different-version-error_report.html" class="article-date">
+  <time datetime="2015-02-06T04:28:18.000Z" itemprop="datePublished">2月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/php/php-different-version-error_report.html">PHP不同版本报错差异</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开发和生产环境中经常会在PHP5.2、5.3和5.4版间切换，但各个版本函数和报错情况又不一样，下面发上工作中遇到报表不同后出现的各种坑。</p>
+<h2 id="PHP5-2升级后问题汇总">PHP5.2升级后问题汇总</h2>
+<h3 id="Deprecated:_Assigning_the_return_value_of_new_by_reference_is_deprecated_in_XXX">Deprecated: Assigning the return value of new by reference is deprecated in XXX</h3>
+<p>出现<code>Deprecated: Assigning the return value of new by reference is deprecated in</code>报错。这是因为5.3以后，不能使用”=&amp;”符号，可以直接用”=”就可以了。 所以当出现这个问题后有两种解决方法：</p>
+<ol>
+<li>把php的版本降级到5.3以下，但后退的不是明智的选择。</li>
+<li>对程序中”=&amp;”符号全部用”=” 代替。</li>
+</ol>
+<p>示例如下：<br><code>Deprecated: Assigning the return value of new by reference is deprecated in</code></p>
+<p>定位到出错的那一行： <code>$this-&gt;_ole =&amp; new OLERead();</code></p>
+<p>我本地环境用的是PHP/5.3.8。</p>
+<p>下面这段话引用于因思而变</p>
+<p>解决办法：php5.3开始后，废除了php中的”=&amp;”符号，所以要想复制，直接用=引用即可。详细如下：</p>
+<p>1、PHP5对象复制是采用引用的方式；<br>2、如果不采用引用方式，则需要在复制对象时加关键字 clone;<br>3、如果在复制的过程中，同时要变更某些属性，则增加函数_clone();</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/php/php-different-version-error_report.html" data-id="znci0mqm4m39qxdj" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/php/php-different-version-error_report.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript/index" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript/index.html" class="article-date">
+  <time datetime="2015-02-05T14:15:21.000Z" itemprop="datePublished">2月 5 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/javascript/index.html">JAVASCIPT　Note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript_简介">JavaScript 简介</h2>
+<p>略</p>
+<h2 id="JavaScript_简单实例">JavaScript 简单实例</h2>
+<p>略</p>
+<h2 id="JavaScript_基本语法">JavaScript 基本语法</h2>
+<p>JavaScript 语言是区分大小写的，不管是命名变量还是使用关键字的时候。</p>
+<p>大多数情况下，JavaScript 忽略空白或者 JavaScript 语句之间的空格（也包括 Tab 键产生的空白缩进）。</p>
+<p>js变量的声明:  </p>
+<blockquote>
+<p> var 变量名;</p>
+</blockquote>
+<p>js中可以同时赋值多个变量:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">2</span> , b =<span class="number">12</span>;</div><div class="line">alert(a);</div></pre></td></tr></table></figure>
+
+<h2 id="JavaScript_数据类型">JavaScript 数据类型</h2>
+<p>JavaScript 主要有如下 6 种数据类型：</p>
+<ol>
+<li>字符串（String）类型: 字符串类型使用双引号 “ 或单引号 ‘ 括起来</li>
+<li>数值（Number）类型: 数值（Number）类型包括整数和浮点数（包含小数点的数或科学记数法的数）</li>
+<li>布尔（Boolean）类型</li>
+<li>空值（Null）: 空值类型表示该变量或内容无任何值</li>
+<li>未定义（Undefined）类型: 变量被创建后，未给该变量赋值，该变量即为未定义类型</li>
+<li>对象（Object）类型</li>
+</ol>
+<blockquote>
+<p>JavaScript 是一门松散的语言，甚至可以说是混合语言，因此导致其数据类型以及类型之间的关系比较复杂。另外也有一些人把 function（函数） 列为数据类型之一，对于这些有一定争议的说法</p>
+</blockquote>
+<h2 id="JavaScript_运算符">JavaScript 运算符</h2>
+<p>JavaScript 运算符主要包括：</p>
+<ol>
+<li>算术运算符 : + - * / % ++ —</li>
+<li>赋值运算符</li>
+<li>比较运算符</li>
+<li>三元运算符</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">2</span>;</div><div class="line">y = (x == <span class="number">2</span>) ? x : <span class="number">1</span>;</div><div class="line">alert(y);   <span class="comment">//输出：2</span></div></pre></td></tr></table></figure>
+
+<ol>
+<li>逻辑运算符: &amp;&amp; || !</li>
+<li>字符串连接运算符: 连接运算符 + 主要用于连接两个字符串或字符串变量。因此，在对字符串或字符串变量使用该运算符时，并不是对它们做加法计算。</li>
+</ol>
+<h2 id="JavaScript_循环控制">JavaScript 循环控制</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) {</div><div class="line">    <span class="built_in">document</span>.write(i + <span class="string">"&lt;br /&gt;"</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="JavaScript_流程控制">JavaScript 流程控制</h2>
+<p>JavaScript for 循环用于反复执行一段代码，其语法如下：</p>
+<pre><code><span class="keyword">for</span> (expr1; expr2; expr3){
+    statement
+}
+</code></pre><p>for 循环语法解读<br>. expr1 在循环开始前无条件求值一次<br>. expr2 在每次循环开始前求值，如果值为 TRUE，则继续循环，执行嵌套的循环语句；如果值为 FALSE，则终止循环。<br>. expr3 在每次循环之后被求值（执行）<br>. 每个表达式都可以为空。如果expr2 为空意则将无限循环下去，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) {</div><div class="line">    <span class="built_in">document</span>.write(i + <span class="string">"&lt;br /&gt;"</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="JavaScript_消息提示框">JavaScript 消息提示框</h2>
+<p>alert(): </p>
+<p>confirm(): 创建一个消息确认框</p>
+<p>prompt(): 创建一个消息提示框</p>
+<h2 id="JavaScript_函数">JavaScript 函数</h2>
+<p>函数是 JavaScript 语言的核心之一，其基本语法如下：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">functionName</span><span class="params">(arg0, arg1, <span class="rest_arg">...) {
+    statements</span>
+}</span></span>
+</code></pre><p><strong>JavaScript 函数参数错误</strong></p>
+<p>JavaScript 函数参数并没有严格要求哪些参数是必选参数，哪些参数是可选参数，因此传入的参数个数是允许不等于定义函数时参数的个数的。<br>如果在函数中使用了未定义的参数，则会提示语法错误（参数未定义），JavaScript 代码不会正常运行。<br>如果参数已经定义，但未正确的传入参数时，相关参数值会以 undefined 替换，JavaScript 代码仍正常运行，如下例所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">(name,age)</span></span>{</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"我叫"</span> + name + <span class="string">"，今年"</span> + age + <span class="string">"岁！"</span>);</div><div class="line">}</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"hello('小明')"</span> <span class="attribute">value</span>=<span class="value">"确定"</span> /&gt;</span></div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出：我叫小明，今年undefined岁！</p>
+</blockquote>
+<p><strong>JavaScript arguments 对象</strong></p>
+<p>在 JavaScript 函数中，有个特殊的 arguments 对象，它以类似数组的形式保存了当前函数调用的参数。因此，开发者无需定义具体的参数名，就可以方便的访问函数参数：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span></span>{</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"我叫"</span> + <span class="built_in">arguments</span>[<span class="number">0</span>] + <span class="string">"，今年"</span> + <span class="built_in">arguments</span>[<span class="number">1</span>] + <span class="string">"岁！"</span>);</div><div class="line">}</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"hello('小明',18)"</span> <span class="attribute">value</span>=<span class="value">"确定"</span> /&gt;</span></div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出：我叫小明，今年18岁！</p>
+</blockquote>
+<p>通常在函数定义中，为便于代码的可读性，一般不会使用 arguments 对象。在处理不定数目的参数，或者模拟函数重载时，可方便的使用 arguments 对象来处理。</p>
+<p>arguments.length 可以很方便的检测函数的参数个数。  </p>
+<blockquote>
+<p>document.write(arguments.length);</p>
+</blockquote>
+<h2 id="JavaScript_事件">JavaScript 事件</h2>
+<h2 id="JavaScript_面向对象">JavaScript 面向对象</h2>
+<h2 id="JavaScript_字符串处理(String对象)">JavaScript 字符串处理(String对象)</h2>
+<h2 id="JavaScript_数组">JavaScript 数组</h2>
+<h2 id="JavaScript_时间日期(Date_对象)">JavaScript 时间日期(Date 对象)</h2>
+<h2 id="JavaScript_数学计算(Math对象)">JavaScript 数学计算(Math对象)</h2>
+<h2 id="JavaScript_Boolean_对象">JavaScript Boolean 对象</h2>
+<h2 id="JavaScript_History_对象">JavaScript History 对象</h2>
+<h2 id="JavaScript_Location_对象">JavaScript Location 对象</h2>
+<h2 id="JavaScript_Navigator_对象">JavaScript Navigator 对象</h2>
+<h2 id="JavaScript_Screen_对象">JavaScript Screen 对象</h2>
+<h2 id="JavaScript_Document_对象">JavaScript Document 对象</h2>
+<h2 id="JavaScript_Window_对象">JavaScript Window 对象</h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/javascript/index.html" data-id="rr619tde4f24c3gy" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/javascript/index.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript/ajax-json-and-jsonp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript/ajax-json-and-jsonp.html" class="article-date">
+  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/javascript/ajax-json-and-jsonp.html">AJAX中的JSON和JSONP区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JSON和JSONP的区别">JSON和JSONP的区别</h2>
+<ul>
+<li><a href="http://www.cnblogs.com/dolphinX/p/3391136.html" target="_blank" rel="external">http://www.cnblogs.com/dolphinX/p/3391136.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/javascript/ajax-json-and-jsonp.html" data-id="12jnjyyv2ux3pr1b" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/javascript/ajax-json-and-jsonp.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tools/git-clean-history-files" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/tools/git-clean-history-files.html" class="article-date">
+  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/tools/git-clean-history-files.html">Git如何永久删除文件(包括历史记录)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="步骤一:_从你的资料库中清除文件">步骤一: 从你的资料库中清除文件</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.gz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.tgz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.zip'</span> --prune-empty --tag-name-filter cat -- --all</div></pre></td></tr></table></figure>
+
+<h2 id="步骤二:_推送我们修改后的repo">步骤二: 推送我们修改后的repo</h2>
+<p>以强制覆盖的方式推送你的repo, 命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master --force</div></pre></td></tr></table></figure>
+
+<h2 id="步骤三:_清理和回收空间">步骤三: 清理和回收空间</h2>
+<p> 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间.</p>
+<p>命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rm -rf .git/refs/original/</div><div class="line">git reflog expire --expire=now --all</div><div class="line">git gc --prune=now</div><div class="line">git gc --aggressive --prune=now</div></pre></td></tr></table></figure>
+
+<p>设置完成之后, 你可以使用命令<code>du -s .git</code>查看仓库地址空间大小是否有明显减少了. </p>
+<hr>
+<p><strong>参考:</strong></p>
+<ul>
+<li><a href="https://help.github.com/articles/remove-sensitive-data" target="_blank" rel="external">https://help.github.com/articles/remove-sensitive-data</a></li>
+<li><a href="http://www.cnblogs.com/shines77/p/3460274.html" target="_blank" rel="external">http://www.cnblogs.com/shines77/p/3460274.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/tools/git-clean-history-files.html" data-id="iw2m7tgr7xhpy44p" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/tools/git-clean-history-files.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tools/Chrome修改UserAgent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/tools/Chrome修改UserAgent.html" class="article-date">
+  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/tools/Chrome修改UserAgent.html">Chrome修改UserAgent</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C:\Users\boxcore\AppData\Local\Google\Chrome\Application\chrome.exe —user-agent=”iPad” —profile-directory=”Profile 1” </p>
+<p>—user-agent=”iPhone”</p>
+<p>Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/tools/Chrome修改UserAgent.html" data-id="aazx5pxtbvcdhmm0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/tools/Chrome修改UserAgent.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UserAgent/">UserAgent</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-api/api-standards" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/api/api-standards.html" class="article-date">
+  <time datetime="2015-02-05T13:44:52.000Z" itemprop="datePublished">2月 5 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/api/api-standards.html">API标准</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工作中会遇到许多API的工作，目前最流行的方案是使用<code>RESTful API</code>。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/api/api-standards.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/api/api-standards.html" data-id="p7v6zba90pb4zaat" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/api/api-standards.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/7/">Next &raquo;</a>
+    </nav>
+  
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Journal/">Journal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/压力测试/">压力测试</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/mysql/mysql-note.html">MySQL note</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+          </li>
+        
+          <li>
+            <a href="/php/php-string.html">PHP 字符串</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.baibaobing.com/" target="_blank">白宝冰&#39;s Blog</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.liwenrui.com/" target="_blank">李文瑞&#39;s Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 boxcore<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"boxcore"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+</div>
+</body>
+</html>

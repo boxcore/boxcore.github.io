@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP基础 | BoxCore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PHP 标记
+php文档的解析标识是&lt;?php 代码 ?&gt;，在&lt;?php到?&gt;之间的代码会被php解析器解析。
+纯php文档建议不写php结束标签”?&gt;”,这可以避免在 PHP 结束标记之后万一意外加入了空格或者换行符，会导致 PHP 开始输出这些空白。
+短标记 &lt;? 和 ?&gt;，开启方法：
+
+修改php.ini 中的 short_open_tag 配置指令">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP基础">
+<meta property="og:url" content="http://boxcore.org/php/php-basic.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="PHP 标记
+php文档的解析标识是&lt;?php 代码 ?&gt;，在&lt;?php到?&gt;之间的代码会被php解析器解析。
+纯php文档建议不写php结束标签”?&gt;”,这可以避免在 PHP 结束标记之后万一意外加入了空格或者换行符，会导致 PHP 开始输出这些空白。
+短标记 &lt;? 和 ?&gt;，开启方法：
+
+修改php.ini 中的 short_open_tag 配置指令">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP基础">
+<meta name="twitter:description" content="PHP 标记
+php文档的解析标识是&lt;?php 代码 ?&gt;，在&lt;?php到?&gt;之间的代码会被php解析器解析。
+纯php文档建议不写php结束标签”?&gt;”,这可以避免在 PHP 结束标记之后万一意外加入了空格或者换行符，会导致 PHP 开始输出这些空白。
+短标记 &lt;? 和 ?&gt;，开启方法：
+
+修改php.ini 中的 short_open_tag 配置指令">
+<meta name="twitter:creator" content="@_boxcore">
+
+  
+    <link rel="alternative" href="/atom.xml" title="BoxCore" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BoxCore</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="boxcore.org">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-php/php-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/php-basic.html" class="article-date">
+  <time datetime="2015-04-06T15:33:40.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PHP_标记">PHP 标记</h2>
+<p>php文档的解析标识是&lt;?php 代码 ?&gt;，在&lt;?php到?&gt;之间的代码会被php解析器解析。</p>
+<p>纯php文档建议不写php结束标签”?&gt;”,这可以避免在 PHP 结束标记之后万一意外加入了空格或者换行符，会导致 PHP 开始输出这些空白。</p>
+<p><strong>短标记 &lt;? 和 ?&gt;，开启方法：</strong></p>
+<ol>
+<li><p>修改php.ini 中的 short_open_tag 配置指令</p>
+</li>
+<li><p>在编译 PHP 时使用了配置选项 —enable-short-tags 时才能使用短标记。</p>
+</li>
+</ol>
+<h2 id="PHP注释">PHP注释</h2>
+<p>注释不会被php解析，添加注释是为了更好的描述代码的功能或特殊说明，php的注释风格如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line">    <span class="keyword">echo</span> <span class="string">"This is a test"</span>; <span class="comment">// 单行c++风格注释</span></div><div class="line">    <span class="comment">/* 多行注释风格</span></div><div class="line">       yet another line of comment */</div><div class="line">    <span class="keyword">echo</span> <span class="string">"This is yet another test"</span>;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'One Final Test'</span>; <span class="comment"># 单行shell风格注释</span></div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p>php的注释格式要求和方法请参考：<a href="http://www.phpdoc.org" target="_blank" rel="external">http://www.phpdoc.org</a></p>
+<h2 id="PHP类型">PHP类型</h2>
+<p>PHP 支持 8 种原始数据类型。 </p>
+<p>四种标量类型：</p>
+<p>◦ boolean（布尔型）<br>◦ integer（整型）<br>◦ float（浮点型，也称作 double)<br>◦ string（字符串）  </p>
+<p>两种复合类型： </p>
+<p>◦ array（数组）<br>◦ object（对象）  </p>
+<p>最后是两种特殊类型： </p>
+<p>◦ resource（资源）<br>◦ NULL（无类型） </p>
+<p>具体说明请参考：<a href="http://www.php.net/manual/zh/language.types.intro.php" target="_blank" rel="external">http://www.php.net/manual/zh/language.types.intro.php</a></p>
+<h3 id="布尔类型（Boolean）">布尔类型（Boolean）</h3>
+<p>boolean表示真假，使用关键字为true或false，通常运算结果会返回给控制流程。两者不区分大小，但建议用小写，php编译时候会转成小写。</p>
+<p>以下几种情况的转换会被认为是false：<br>布尔值 FALSE 本身<br>◦ 整型值 0（零）<br>◦ 浮点型值 0.0（零）<br>◦ 空字符串，以及字符串 “0”<br>◦ 不包括任何元素的数组<br>◦ 不包括任何成员变量的对象（仅 PHP 4.0 适用）<br>◦ 特殊类型 NULL（包括尚未赋值的变量）<br>◦ 从空标记生成的 SimpleXML 对象 </p>
+<h3 id="整型（Integer）">整型（Integer）</h3>
+<p>整型值可以使用十进制，十六进制，八进制或二进制表示，前面可以加上可选的符号（- 或者 +）。</p>
+<p>要使用八进制表达，数字前必须加上 0（零）。要使用十六进制表达，数字前必须加上 0x。要使用二进制表达，数字前必须加上 0b。</p>
+<p>如果向八进制数传递了一个非法数字（即 8 或 9），则后面其余数字会被忽略。 如下例(八进制数的怪事)：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line">var_dump(<span class="number">01090</span>); <span class="comment">// 八进制 010 = 十进制 8</span></div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p>整型转函数：<br>. (int)或(integer)强制转换<br>. intval()</p>
+<h3 id="浮点型（Float）">浮点型（Float）</h3>
+<p>浮点型（也叫浮点数 float，双精度数 double 或实数 real）</p>
+<p>注意：1和1.0是不相等的，1.0的浮点，真实的值只能是无线接近于1而不等于一的。如判断 if(1==1.0)是返回false的。</p>
+<h3 id="字符串（String）">字符串（String）</h3>
+<p>一个字符串 string 就是由一系列的字符组成，其中每个字符等同于一个字节。这意味着 PHP 只能支持 256 的字符集，因此不支持 Unicode 。</p>
+<blockquote>
+<p>string 最大可以达到 2GB。 </p>
+</blockquote>
+<p>一个字符串可以用 4 种方式表达：<br>◦ 单引号<br>◦ 双引号<br>◦ heredoc 语法结构<br>◦ nowdoc 语法结构（自 PHP 5.3.0 起） </p>
+<h4 id="单引号">单引号</h4>
+<p>在单引号中的字符串要表达一个单引号自身，需在它的前面加个反斜线（\）来转义。要表达一个反斜线自身，则用两个反斜线（\）。其它任何方式的反斜线都会被当成反斜线本身：也就是说如果想使用其它转义序列例如 \r 或者 \n，并不代表任何特殊含义，就单纯是这两个字符本身。 </p>
+<p>在单引号字符串中的变量和特殊字符的转义序列将不会被替换。</p>
+<h4 id="双引号">双引号</h4>
+<p>如果字符串是包围在双引号（”）中， PHP 将对一些特殊的字符进行解析： </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="command">\n</span> 换行（ASCII 字符集中的 LF 或 0x0A (10)） </div><div class="line"><span class="command">\r</span> 回车（ASCII 字符集中的 CR 或 0x0D (13)） </div><div class="line"><span class="command">\t</span> 水平制表符（ASCII 字符集中的 HT 或 0x09 (9)） </div><div class="line"><span class="command">\v</span> 垂直制表符（ASCII 字符集中的 VT 或 0x0B (11)）（自 PHP 5.2.5 起） </div><div class="line"><span class="command">\e</span> Escape（ASCII 字符集中的 ESC 或 0x1B (27)）（自 PHP 5.4.0 起） </div><div class="line"><span class="command">\f</span> 换页（ASCII 字符集中的 FF 或 0x0C (12)）（自 PHP 5.2.5 起） </div><div class="line"><span class="command">\\</span> 反斜线 </div><div class="line"><span class="command">\$</span> 美元标记 </div><div class="line"><span class="command">\"</span> 双引号 </div><div class="line"><span class="command">\[</span>0-7<span class="special">]</span><span class="special">{</span>1,3<span class="special">}</span> 符合该正则表达式序列的是一个以八进制方式来表达的字符  </div><div class="line"><span class="command">\x</span><span class="special">[</span>0-9A-Fa-f<span class="special">]</span><span class="special">{</span>1,2<span class="special">}</span> 符合该正则表达式序列的是一个以十六进制方式来表达的字符</div></pre></td></tr></table></figure>
+
+<h4 id="Heredoc_结构">Heredoc 结构</h4>
+<p>第三种表达字符串的方法是用 heredoc 句法结构：&lt;&lt;&lt;。在该运算符之后要提供一个标识符，然后换行。接下来是字符串 string 本身，最后要用前面定义的标识符作为结束标志。 </p>
+<p>结束时所引用的标识符必须在该行的第一列，而且，标识符的命名也要像其它标签一样遵守 PHP 的规则：只能包含字母、数字和下划线，并且必须以字母和下划线作为开头。 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt;"FOOBAR"</span></div><div class="line">Hello World!</div><div class="line">FOOBAR;</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<h4 id="Nowdoc_结构">Nowdoc 结构</h4>
+<p>就象 heredoc 结构类似于双引号字符串，Nowdoc 结构是类似于单引号字符串的。Nowdoc 结构很象 heredoc 结构，但是 nowdoc 中不进行解析操作。这种结构很适合用于嵌入 PHP 代码或其它大段文本而无需对其中的特殊字符进行转义。</p>
+<p>例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt;'EOT'</span></div><div class="line">My name is "$name". I am printing some $foo-&gt;foo.</div><div class="line">Now, I am printing some {$foo-&gt;bar[1]}.</div><div class="line">This should not print a capital 'A': \x41</div><div class="line">EOT;</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="数组（Array）">数组（Array）</h3>
+<h3 id="对象（Object）">对象（Object）</h3>
+<h3 id="资源类型（Resource）">资源类型（Resource）</h3>
+<h3 id="其他类型">其他类型</h3>
+<h4 id="NULL">NULL</h4>
+<h4 id="伪变量">伪变量</h4>
+<h4 id="回调（Callback）">回调（Callback）</h4>
+<h2 id="变量">变量</h2>
+<p>变量以一个美元符号（$）开头后跟变量名。变量名由字母或者下划线开头，后面跟上任意数量的字母，数字，或者下划线。  </p>
+<blockquote>
+<p>表达式：’[a-zA-Z<em>\x7f-\xff][a-zA-Z0-9</em>\x7f-\xff]*’</p>
+</blockquote>
+<p>注意：$this 是一个特殊的变量，它不能被赋值。 </p>
+<blockquote>
+<p>传值赋值: $a = $b;<br>引用赋值: $a = &amp;$b;</p>
+</blockquote>
+<h3 id="预定义变量">预定义变量</h3>
+<h3 id="变量范围">变量范围</h3>
+<ol>
+<li><p>局部变量:局部变量是声明在某一函数体内的变量, 该变量的作用范围仅限于其所在函数体的内部. 如果在该函数体外部引用这个变量, 系统将会认为引用的是另外一个变量.</p>
+</li>
+<li><p>全局变量: 全局变量可以在程序的任务地方被修改. 声明全局变量可以在变量前加上关键字 global.</p>
+</li>
+</ol>
+<h3 id="静态变量">静态变量</h3>
+<p>变量可以有存活的周期(生命周期). 变量的生命周期指的是变量可被使用的一个时间段, 在这个时间段内变量是有效的; 而一旦超出这个时间段变量将会失效.</p>
+<p>PHP变量的生命周期规定如:  </p>
+<ol>
+<li>局部变量的生命周期为其所在函数被调用的整个过程. 当局部变量所在的函数结束时, 局部变量的生命周期也随之结束;</li>
+<li>全局变量的生命周期为其所在php脚本文件被调用的整个过程. 当全局变量所在的脚本结束调用时, 全局变量的生命周期结束.</li>
+<li>某个自定义函数结束后, 我们希望该函数内的变量依然存在, 就需要将这个变量声明为静态变量. 语法为在函数体内的变量前添加static关键字.</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="variable">$a</span> = <span class="string">'hello'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test_static</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">static</span> <span class="variable">$a</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">echo</span> <span class="variable">$a</span>.<span class="string">"\n"</span>;</div><div class="line">    ++<span class="variable">$a</span>;</div><div class="line">}</div><div class="line"></div><div class="line">test_static();  <span class="comment">// 0</span></div><div class="line">test_static();  <span class="comment">// 1</span></div><div class="line">test_static();  <span class="comment">// 2</span></div><div class="line"><span class="keyword">echo</span> <span class="variable">$a</span>.<span class="string">"\n"</span>;   <span class="comment">// hello</span></div><div class="line">test_static();  <span class="comment">// 3</span></div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="可变变量">可变变量</h3>
+<p>如:</p>
+<pre><code><span class="variable">$a</span> = <span class="string">'hello'</span>;
+<span class="variable">$hello</span> = <span class="string">'aa'</span>;
+<span class="built_in">echo</span> $<span class="variable">$a</span>;
+</code></pre><h3 id="PHP_之外的变量">PHP 之外的变量</h3>
+<h2 id="常量">常量</h2>
+<p>定义常量的语法:  </p>
+<blockquote>
+<p>bool define ( string $name, mixed $value [, bool case_$insensitive] )</p>
+</blockquote>
+<h3 id="魔术常量">魔术常量</h3>
+<p>常见魔术常量:  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="strong">__FILE__</span></div><div class="line"><span class="strong">__LINE__</span></div><div class="line"><span class="strong">__FUNCTION__</span></div><div class="line"><span class="strong">__CLASS__</span></div><div class="line">PHP_VERSION</div><div class="line">PHP_OS</div></pre></td></tr></table></figure>
+
+<h2 id="运算符">运算符</h2>
+<p>•运算符优先级<br>•算术运算符<br>•赋值运算符<br>•位运算符<br>•比较运算符<br>•错误控制运算符<br>•执行运算符<br>•递增／递减运算符<br>•逻辑运算符<br>•字符串运算符<br>•数组运算符<br>•类型运算符  </p>
+<h3 id="运算符优先级">运算符优先级</h3>
+<h3 id="算术运算符">算术运算符</h3>
+<h3 id="赋值运算符">赋值运算符</h3>
+<h3 id="位运算符">位运算符</h3>
+<h3 id="比较运算符">比较运算符</h3>
+<h3 id="错误控制运算符">错误控制运算符</h3>
+<h3 id="递增／递减运算符">递增／递减运算符</h3>
+<h3 id="逻辑运算符">逻辑运算符</h3>
+<h3 id="字符串运算符">字符串运算符</h3>
+<h3 id="数组运算符">数组运算符</h3>
+<h3 id="类型运算符">类型运算符</h3>
+<p>类型运算符instanceof可以用来判断指定对象是否来自指定的类:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>{}</div><div class="line"><span class="variable">$a</span> = <span class="keyword">new</span> A();</div><div class="line">var_dump(<span class="variable">$a</span> <span class="keyword">instanceof</span> A);</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="执行运算符">执行运算符</h3>
+<p>执行运算符 <code>命令</code> 内的字符串会被当做DOS命令或shell命令来执行,例如:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$a</span> = `ls`;</div><div class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</div></pre></td></tr></table></figure>
+
+<h3 id="判断运算符">判断运算符</h3>
+<p>格式: 表达式1 ? 表达式2 : 表达式3; </p>
+<h2 id="流程控制">流程控制</h2>
+<p>php中的流程控制语句可以分为如下几类:</p>
+<ol>
+<li>条件语句: if/else/elseif/switch</li>
+<li>循环语句: foreach/while/do while/for</li>
+<li>跳转语句: braak/continue/return</li>
+</ol>
+<p>•简介<br>•if<br>•else<br>•elseif/else if<br>•流程控制的替代语法<br>•while<br>•do-while<br>•for<br>•foreach<br>•break: 中断循环执行的语句;<br>•continue: 跳过本次循环中后面的代码并进入下一次循环;<br>•switch<br>•declare<br>•return<br>•require<br>•include<br>•require_once<br>•include_once<br>•goto  </p>
+<h2 id="函数">函数</h2>
+<p>•用户自定义函数<br>•函数的参数<br>•返回值<br>•可变函数<br>•内部（内置）函数<br>•匿名函数  </p>
+<h3 id="用户自定义函数">用户自定义函数</h3>
+<h3 id="函数的参数">函数的参数</h3>
+<h3 id="返回值">返回值</h3>
+<h3 id="可变函数">可变函数</h3>
+<h3 id="内部（内置）函数">内部（内置）函数</h3>
+<h3 id="匿名函数">匿名函数</h3>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/php/php-basic.html" data-id="ez0wh0c536mnoglx" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/php/php-basic.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/php/php-oop.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PHP面向对象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/php/php-mysql.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP使用MySQL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="php/php-basic.html" data-title="PHP基础" data-url="http://boxcore.org/php/php-basic.html"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Journal/">Journal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/压力测试/">压力测试</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/mysql/mysql-note.html">MySQL note</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+          </li>
+        
+          <li>
+            <a href="/php/php-string.html">PHP 字符串</a>
+          </li>
+        
+          <li>
+            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.baibaobing.com/" target="_blank">白宝冰&#39;s Blog</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.liwenrui.com/" target="_blank">李文瑞&#39;s Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 boxcore<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"boxcore"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+</div>
+</body>
+</html>
