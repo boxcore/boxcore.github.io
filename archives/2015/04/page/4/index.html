@@ -71,10 +71,10 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-linux/linux-ssh" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux/linux-files" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/linux-ssh.html" class="article-date">
-  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
+    <a href="/linux/linux-files.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-ssh.html">Linux ssh</a>
+      <a class="article-title" href="/linux/linux-files.html">Linux文件管理常用命令</a>
     </h1>
   
 
@@ -93,32 +93,186 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Linux修改SSH默认端口">Linux修改SSH默认端口</h2>
-<p><code>vim /etc/ssh/sshd_config</code><br>找到#Port 22一段，这里是标识默认使用22端口，修改为如下：<br>Port 22<br>Port 50000<br>然后保存退出</p>
-<p>如果添加了iptables规则, 则需要做相应的修改</p>
-<p><code>vim /etc/sysconfig/iptables</code></p>
-<h2 id="SSH添加登陆后邮件提醒">SSH添加登陆后邮件提醒</h2>
-<p>**安装sendmail</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install sendmail   <span class="comment">#ubuntu安装</span></div><div class="line"><span class="built_in">sudo</span> yum install sendmail       <span class="comment">#rehat安装</span></div></pre></td></tr></table></figure>
-
-<p>**设置发邮件内容</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh  </span></div><div class="line"></div><div class="line">sendmail -t &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span> &lt;&lt;EOF  </div><div class="line">to:receive@exmaple.com  </div><div class="line">from:sender@example.com</div><div class="line">subject:<span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span> </div><div class="line"></div><div class="line"><span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span></div><div class="line">EOF</div></pre></td></tr></table></figure>
-
-<p>上面的内容放到用户文件<code>~/.bashrc</code>中,下次登陆就有邮件提醒了!</p>
+        <h2 id="du目录统计">du目录统计</h2>
+<blockquote>
+<p>参数说明  </p>
+<blockquote>
+<p>-h, —human-readable 显示mb, 同样,可以使用b、k、m来表示单位<br>-s, —summarize 只显示统计的目录,不带<code>-s</code>参数会递归显示所有文件和大小  </p>
+</blockquote>
+</blockquote>
+<h2 id="wc文字统计">wc文字统计</h2>
+<p>wc(Word Count)命令的功能为统计指定文件中的字节数、字数、行数，并将统计结果显示输出。</p>
+<blockquote>
+<p>命令参数：</p>
+</blockquote>
+<pre><code>-<span class="ruby">c 统计字节数。
+</span>-<span class="ruby">l 统计行数。
+</span>-<span class="ruby">m 统计字符数。这个标志不能与 -c 标志一起使用。
+</span>-<span class="ruby">w 统计字数。一个字被定义为由空白、跳格或换行字符分隔的字符串。
+</span>-<span class="ruby"><span class="constant">L</span> 打印最长行的长度。
+</span>-<span class="ruby">help 显示帮助信息
+</span>-<span class="ruby">-version 显示版本信息</span>
+</code></pre><h2 id="_"> </h2>
+<h2 id="_-1"> </h2>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/linux/linux-ssh.html" data-id="ndjrdfjnnythjgsd" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/linux/linux-files.html" data-id="9q0g5bbqs6wgn6da" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/linux/linux-ssh.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/linux/linux-files.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/files/">files</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-free-mem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-free-mem.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-free-mem.html">Linux释放内存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">free -m //查看内存</div><div class="line">sync // 把内存数据同步到硬盘</div><div class="line"><span class="built_in">echo</span> <span class="number">3</span> &gt; /proc/sys/vm/drop_caches //删除内存缓存</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-free-mem.html" data-id="9p2mc129i2h7xpk0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-free-mem.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-rpm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-rpm.html" class="article-date">
+  <time datetime="2015-04-06T15:28:37.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-rpm.html">Linux RPM安装与卸载命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RPM（Red Hat Package Manager）<br>命令：rpm<br>1、查询、检查软件包<br>rpm {-q|—query} [select-options] [query-options]<br>rpm {-V|—verify} [select-options] [verify-options]<br>2、安装、升级、删除软件包<br>rpm {-i|—install} [install-options] PACKAGE_FILE …<br>rpm {-U|—upgrade} [install-options] PACKAGE_FILE …<br>rpm {-F|—freshen} [install-options] PACKAGE_FILE …<br>rpm {-e|—erase} [—allmatches] [—nodeps] [—noscripts]<br>   [—notriggers] [—repackage] [—test] PACKAGE_NAME …<br>3、其他<br>rpm {—initdb|—rebuilddb}<br>rpm {—addsign|—resign} PACKAGE_FILE …<br>rpm {—querytags|—showrc}<br>rpm {—setperms|—setugids} PACKAGE_NAME …<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>select-options<br>         [PACKAGE_NAME] [-a,—all] [-f,—file FILE]<br>         [-g,—group GROUP] {-p,—package PACKAGE_FILE]<br>         [—fileid MD5] [—hdrid SHA1] [—pkgid MD5] [—tid TID]<br>         [—querybynumber HDRNUM] [—triggeredby PACKAGE_NAME]<br>         [—whatprovides CAPABILITY] [—whatrequires CAPABILITY]<br>query-options<br>         [—changelog] [-c,—configfiles] [-d,—docfiles] [—dump]<br>         [—filesbypkg] [-i,—info] [—last] [-l,—list]<br>         [—provides] [—qf,—queryformat QUERYFMT]<br>         [-R,—requires] [—scripts] [-s,—state]<br>         [—triggers,—triggerscripts]<br>verify-options<br>         [—nodeps] [—nofiles] [—noscripts]<br>         [—nodigest] [—nosignature]<br>         [—nolinkto] [—nomd5] [—nosize] [—nouser]<br>         [—nogroup] [—nomtime] [—nomode] [—nordev]<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>install-options<br>         [—aid] [—allfiles] [—badreloc] [—excludepath OLDPATH]<br>         [—excludedocs] [—force] [-h,—hash]<br>         [—ignoresize] [—ignorearch] [—ignoreos]<br>         [—includedocs] [—justdb] [—nodeps]<br>         [—nodigest] [—nosignature] [—nosuggest]<br>         [—noorder] [—noscripts] [—notriggers]<br>         [—oldpackage] [—percent] [—prefix NEWPATH]<br>         [—relocate OLDPATH=NEWPATH]<br>         [—repackage] [—replacefiles] [—replacepkgs]<br>         [—test]</p>
+<p>【示例】<br>rpm -v    显示rpm程序的详细信息<br>rpm —version   显示rpm的版本号<br>rpm -qa    显示系统中安装的所有软件包<br>rpm -q gcc   查询指定软件包是否已安装<br>rpm -qi gcc   显示指定软件包的详细信息<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm -ql gcc    显示指定软件包所包含的文件列表<br>rpm -qf /usr/lib/bash   查看指定文件所属的软件包<br>rpm -qp /tmp/webmin.rpm   查询RPM包文件中的文件信息<br>rpm -i webmin-1.290-1.noarch.rpm   安装指定的RPM包<br>rpm -ivh webmin-1.290-1.noarch.rpm 安装并显示详信息<br>rpm -ivh —test webmin-1.290-1.noarch.rpm 对安装进行测试，并不是安装<br>rpm -ivh —replacepkgs webmin-1.290-1.noarch.rpm<br>软件包重复安装将会失败，若仍需要安装必须加—replacepkgs<br>rpm -ivh —replacefiles webmin-1.290-1.noarch.rpm<br>软件包的某个文件已在安装其他软件包时安装过，则安装将会失败，若仍需要安装必须加—replacefiles<br>rpm -ivh —nodeps webmin-1.290-1.noarch.rpm<br>软件包所依赖的软件包未安装，则安装将会失败，若仍需要安装必须加—nodeps<br>rpm -ivh —force webmin-1.290-1.noarch.rpm 强制安装指定软件包<br>     （忽略软件包依赖性和文件冲突，不建议）<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm –U webmin-1.29   升级指定的软件包<br>rpm –Uvh webmin-1.29   升级指定的软件包（显示详细信息）</p>
+<p>rpm -e webmin-1.29   删除指定的软件包<br>rpm -V webmin    验证软件包webmin<br>rpm -Vf /bin/vi    验证包含指定文件的软件包是否正确<br>rpm -Va     验证所有已经安装的软件包<br>rpm -Vp webmin.rpm   利用RPM文件验证软件包<br>注：如校验正确将没有任何输出（.表示验证通过）<br>5 MD5校验<br>S 文件尺寸<br>L 符号链接<br>T 文件修改日期<br>D 设备<br>U 用户<br>G 用户组<br>M 模式（包括权限和文件类型）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-rpm.html" data-id="kl4on8wprjxy02b2" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-rpm.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rpm/">rpm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-service-mem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-service-mem.html" class="article-date">
+  <time datetime="2015-04-06T15:28:04.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-service-mem.html">Linux内存管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="linux下手动清理内存－缓存">linux下手动清理内存－缓存</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">free -m</div><div class="line"><span class="comment"># 释放内存</span></div><div class="line">/bin/sync </div><div class="line">/bin/<span class="built_in">echo</span> <span class="string">"1"</span>&gt;/proc/sys/vm/drop_caches</div><div class="line">free -m</div></pre></td></tr></table></figure>
+
+<p>使用sync命令以确保文件系统的完整性，sync 命令运行 sync 子例程，将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件。</p>
+<p>/proc是一个虚拟文件系统，我们可以通过对它的读写操作作为与kernel实体间进行通信的一种手段。也就是说可以通过修改/proc中的文件，来对当前kernel的行为做出调整。也就是说我们可以通过调整/proc/sys/vm/drop_caches来释放内存。</p>
+<hr>
+<p><strong>参考</strong></p>
+<p><a href="http://os.51cto.com/art/201003/186885.htm" target="_blank" rel="external">http://os.51cto.com/art/201003/186885.htm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-service-mem.html" data-id="81gy0mmca4jy06a5" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-service-mem.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mem/">mem</a></li></ul>
 
     </footer>
   </div>
@@ -180,9 +334,120 @@
 
 
   
-    <article id="post-linux/linux-sudo" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux/ssh" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/linux-sudo.html" class="article-date">
+    <a href="/linux/ssh.html" class="article-date">
+  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/ssh.html">Linux ssh</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Linux修改SSH默认端口">Linux修改SSH默认端口</h3>
+<p><code>vim /etc/ssh/sshd_config</code><br>找到#Port 22一段，这里是标识默认使用22端口，修改为如下：<br>Port 22<br>Port 50000<br>然后保存退出</p>
+<p>如果添加了iptables规则, 则需要做相应的修改</p>
+<p><code>vim /etc/sysconfig/iptables</code></p>
+<h3 id="SSH添加登陆后邮件提醒">SSH添加登陆后邮件提醒</h3>
+<p>**安装sendmail</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install sendmail   <span class="comment">#ubuntu安装</span></div><div class="line"><span class="built_in">sudo</span> yum install sendmail       <span class="comment">#rehat安装</span></div></pre></td></tr></table></figure>
+
+<p>**设置发邮件内容</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh  </span></div><div class="line"></div><div class="line">sendmail -t &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span> &lt;&lt;EOF  </div><div class="line">to:receive@exmaple.com  </div><div class="line">from:sender@example.com</div><div class="line">subject:<span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span> </div><div class="line"></div><div class="line"><span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span></div><div class="line">EOF</div></pre></td></tr></table></figure>
+
+<p>上面的内容放到用户文件<code>~/.bashrc</code>中,下次登陆就有邮件提醒了!</p>
+<h3 id="使用ssh公钥密钥自动登陆linux服务器">使用ssh公钥密钥自动登陆linux服务器</h3>
+<p>文件: <code>.ssh/authorized_keys</code></p>
+<p>vim /etc/ssh/sshd_config, 去掉下面语句的注释</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#RSAAuthentication yes</span></div><div class="line"><span class="preprocessor">#PubkeyAuthentication yes</span></div><div class="line"><span class="preprocessor">#AuthorizedKeysFile     .ssh/authorized_keys</span></div></pre></td></tr></table></figure>
+
+<p>chmod 600 authorized_keys # 必需设置为700或600，否则ssh拒绝登录<br><code>service sshd restart</code> 重启ssh,完成!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/ssh.html" data-id="24w3y3uts946a3bf" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/ssh.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/ubuntu/ubuntu-install-sublime" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/ubuntu/ubuntu-install-sublime.html" class="article-date">
+  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/ubuntu/ubuntu-install-sublime.html">Sublime For Ubuntu</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="install_sublime_by_ppa">install sublime by ppa</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> add-apt-repository ppa:webupd8team/sublime-text-<span class="number">2</span></div><div class="line"><span class="built_in">sudo</span> apt-get update</div><div class="line"></div><div class="line"><span class="built_in">sudo</span> apt-get install sublime-text <span class="comment"># or use `sudo apt-get install sublime-text-dev` for install Sublime Text 2 development build</span></div></pre></td></tr></table></figure>
+
+<h2 id="referance">referance</h2>
+<p><a href="http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html" target="_blank" rel="external">http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/ubuntu/ubuntu-install-sublime.html" data-id="8tyjztljy4n4nic0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/ubuntu/ubuntu-install-sublime.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/sudo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/sudo.html" class="article-date">
   <time datetime="2015-04-06T15:27:02.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
@@ -194,7 +459,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-sudo.html">sudo配置</a>
+      <a class="article-title" href="/linux/sudo.html">sudo配置</a>
     </h1>
   
 
@@ -211,11 +476,11 @@ chmod u-w /etc/sudoers
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/linux/linux-sudo.html" data-id="e5tt3jyrtiyoeyzq" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/linux/sudo.html" data-id="uzvgerexhvjz6xz4" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/linux/linux-sudo.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/linux/sudo.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
@@ -343,327 +608,6 @@ chmod u-w /etc/sudoers
 
 
   
-    <article id="post-tools/svn-2-git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/svn-2-git.html" class="article-date">
-  <time datetime="2015-04-04T15:25:21.000Z" itemprop="datePublished">4月 4 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/svn-2-git.html">svn 迁移到 git</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装命令">安装命令</h1>
-<p>yum install git-svn<br>git svn clone <a href="http://jiangli-project.googlecode.com/svn/" target="_blank" rel="external">http://jiangli-project.googlecode.com/svn/</a></p>
-<p>建立SVN用户到git用户的映射文件，文件格式如下：</p>
-<pre><code><span class="keyword">cat</span> /tmp/userinfo.txt
-usr1=usr1&lt;usr1@<span class="number">163</span>.<span class="keyword">com</span>&gt;
-usr12=usr12&lt;usr12@<span class="number">163</span>.<span class="keyword">com</span>&gt;
-</code></pre><p>Create a new repository on the command line:<br>    touch README.md<br>    git init<br>    git add README.md<br>    git commit -m “first commit”<br>    git remote add origin git@github.com:boxcore/yzl.git<br>    git push -u origin master</p>
-<p>Push an existing repository from the command line</p>
-<pre><code>git remote <span class="keyword">add</span> origin git@github.com:boxcore/yzl.git
-git <span class="keyword">push</span> -u origin master
-</code></pre><p>git@github.com:boxcore/Note.git</p>
-<p>err:<br>fatal: remote origin already exists.</p>
-<pre><code>解决办法如下：
-
-<span class="number">1</span>、先输入<span class="variable">$ </span>git remote rm origin
-</code></pre><p><a href="http://jiangli.easymorse.com/?p=509" target="_blank" rel="external">http://jiangli.easymorse.com/?p=509</a><br><a href="http://sfzhang88.blog.51cto.com/4995876/1198867" target="_blank" rel="external">http://sfzhang88.blog.51cto.com/4995876/1198867</a></p>
-<p>error:<a href="http://blog.csdn.net/dengjianqiang2011/article/details/9260435" target="_blank" rel="external">http://blog.csdn.net/dengjianqiang2011/article/details/9260435</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/svn-2-git.html" data-id="lsaozfxruusdmuwa" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/svn-2-git.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/vim-expandtab" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/vim-expandtab.html" class="article-date">
-  <time datetime="2015-04-04T15:25:21.000Z" itemprop="datePublished">4月 4 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/vim-expandtab.html">VIM中空格代替tab</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>修改文件: <code>vi /etc/vim/vimrc</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> expandtab     <span class="string">" 使用空格代替tab. </span></div><div class="line">set tabstop=4     " 空格数量是<span class="number">4</span>。 </div><div class="line"><span class="keyword">set</span> shiftwidth=<span class="number">4</span>  <span class="string">" 自动缩进的宽度。</span></div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/vim-expandtab.html" data-id="0rk658huloaysnqc" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/vim-expandtab.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/google-calendar" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/google-calendar.html" class="article-date">
-  <time datetime="2015-04-04T15:24:26.000Z" itemprop="datePublished">4月 4 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: 工具推荐: Google日历<br>date: 2015-04-04 23:25:21<br>tags:</p>
-<ul>
-<li>calendar</li>
-<li>tools</li>
-</ul>
-<hr>
-<p>谷歌日历地址:<a href="https://www.google.com/calendar/" target="_blank" rel="external">https://www.google.com/calendar/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/google-calendar.html" data-id="cofmk80yg9mp68nu" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/google-calendar.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/windows共享wifi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/windows共享wifi.html" class="article-date">
-  <time datetime="2015-04-04T14:11:30.000Z" itemprop="datePublished">4月 4 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/windows共享wifi.html">Windows共享Wifi</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>win7以上共享虚拟wifi:</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">netsh wlan <span class="keyword">set</span> hostednetwork [mode=]allow|disallow  //开启或关闭共享网络</div><div class="line">netsh wlan <span class="keyword">set</span> hostednetwork mode=allow ssid=wifi_name key=password</div><div class="line">netsh wlan start hostednetwork</div><div class="line">netsh wlan stop hostednetwork</div><div class="line">netsh wlan show drivers</div><div class="line"></div><div class="line">netsh wlan refresh hostednetwork [data=] key  //更改密码</div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/windows共享wifi.html" data-id="3i3v5xy0x27h92rk" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/windows共享wifi.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wifi/">wifi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/github-collection" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/github-collection.html" class="article-date">
-  <time datetime="2015-04-04T03:03:02.000Z" itemprop="datePublished">4月 4 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/github-collection.html">GitHub最佳轮子收藏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文收藏的绝对是一些干货，照着做轮子最佳推荐项目!</p>
-<h2 id="技术指导收集">技术指导收集</h2>
-<h3 id="技术数汇总">技术数汇总</h3>
-<ul>
-<li><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="external">免费的编程中文书籍索引</a></li>
-<li><a href="https://github.com/justjavac/awesome-awesomeness-zh_CN" target="_blank" rel="external">awesome awesomeness</a></li>
-<li><a href="https://github.com/justjavac/Programming-Alpha-To-Omega" target="_blank" rel="external">Programming-Alpha-To-Omega</a></li>
-</ul>
-<h3 id="线上工具">线上工具</h3>
-<ul>
-<li><a href="https://www.devtest.net/" target="_blank" rel="external">devtest</a> : 一个线上测试编程水平的网站</li>
-</ul>
-<h2 id="PHP篇">PHP篇</h2>
-<h3 id="Basic">Basic</h3>
-<ul>
-<li><a href="http://www.phptherightway.com/" target="_blank" rel="external">PHP - The Right Way</a>: <a href="http://www.phptherightway.com/" target="_blank" rel="external">官方网站</a></li>
-</ul>
-<h3 id="Databse">Databse</h3>
-<p>Databse 数据库ORM:</p>
-<ul>
-<li>Doctrine 2</li>
-<li>RedBeanPHP</li>
-</ul>
-<h3 id="Documents_&amp;_Testing">Documents &amp; Testing</h3>
-<ul>
-<li><a href="http://www.phpdoc.org/" target="_blank" rel="external">phpDocumentor 2</a></li>
-<li><a href="https://github.com/fzaninotto/Faker" target="_blank" rel="external">Faker</a></li>
-</ul>
-<h3 id="File_System">File System</h3>
-<ul>
-<li><a href="https://github.com/KnpLabs/Gaufrette" target="_blank" rel="external">Gaufrette</a>: 文件系统几乎是所有项目都会遇到的问题，Gaufrette为常见的文件系统提供了一套统一接口，包括本地文件/FTP/Dropbox/GridFS/Zip/AmazonS3等等，是大型系统必备的组件。</li>
-</ul>
-<h3 id="Queue_任务队列">Queue 任务队列</h3>
-<ul>
-<li><a href="https://github.com/chrisboulton/php-resque" target="_blank" rel="external">php-resque</a>: 。</li>
-</ul>
-<h3 id="Payment_Gateways_支付网关">Payment Gateways 支付网关</h3>
-<ul>
-<li><a href="Aktive Merchant for PHP">Aktive Merchant for PHP</a>: Ruby项目Active Merchant的php版本。对PayPal、Authorize.net等多家支付网关提供了统一的接口。<br>应用范围：需要支付网关的项目，有国内支付宝等网关支付需求的完全可以贡献代码。</li>
-<li><a href="https://github.com/adrianmacneil/omnipay" target="_blank" rel="external">Omnipay</a>: 统一接口的支付网关，支持的支付接口更丰富一些。。</li>
-<li><a href=""></a>: 。</li>
-</ul>
-<h3 id="Markups_标记语言">Markups 标记语言</h3>
-<ul>
-<li><a href="https://github.com/michelf/php-markdown" target="_blank" rel="external">PHP Markdown</a>: Markdown在轻量级标记语言中已经俨然有一统天下的趋势，PHP Markdown应该是目前以PHP编写的最好的Markdown解析器。当然一般来说使用Markdown作为标记语言需要搭配一个JS编辑器，比如PageDown-Bootstrap。</li>
-</ul>
-<h3 id="Log处理">Log处理</h3>
-<ul>
-<li><a href="https://github.com/Seldaek/monolog" target="_blank" rel="external">Monolog</a>: 可以非常简单的规定Log格式，并有众多的后端支持。虽然像Zend Framework也内置了Zend\Log这样的组件，但是Monolog仍然是最全面专业的Log处理首选方案。</li>
-</ul>
-<h3 id="Image_图形处理">Image 图形处理</h3>
-<ul>
-<li><a href="http://imagine.readthedocs.org/en/latest/" target="_blank" rel="external">Imagine</a>: Imagine为几大图形处理库提供了一个统一接口，即后台可以为Gd、Imagick、Gmagick的任意一种，而代码保持不变。其实Pear也提供过类似的库Image_Transform，但是Imagine明显更胜一筹。我还基于Imagine做了一个可以用URL操作图片的项目EvaThumber，可以更加简单的集成。 应用范围：缩略图生成等任何图形相关的功能。 </li>
-</ul>
-<h2 id="PHP扩展">PHP扩展</h2>
-<ul>
-<li><a href="https://github.com/hightman/scws" target="_blank" rel="external">PHP分词scws</a>  官方网站:<a href="http://www.xunsearch.com/scws/" target="_blank" rel="external">http://www.xunsearch.com/scws/</a></li>
-</ul>
-<h2 id="前端_Front-end">前端 Front-end</h2>
-<h3 id="UI">UI</h3>
-<ul>
-<li><a href="https://github.com/dxq613/bui" target="_blank" rel="external">BUI</a>: 基于jQuery，兼容KISSY 的富客户端控件库,官方网站：<a href="http://www.builive.com/" target="_blank" rel="external">http://www.builive.com/</a></li>
-</ul>
-<h3 id="javascript相关">javascript相关</h3>
-<ul>
-<li><a href="https://github.com/ruanyf/es6tutorial" target="_blank" rel="external">ECMAScript 6入门</a>   《ECMAScript 6入门》是一本开源的JavaScript语言教程，全面介绍ECMAScript 6新增的语法特性。</li>
-</ul>
-<h2 id="Node-js">Node.js</h2>
-<ul>
-<li><a href="https://github.com/turingou/candy" target="_blank" rel="external">candy</a> : Candy 是基于多说社交评论的社会化论坛系统，采用 Node.js/Mongodb 构建。营造简洁、实用、具有人情味的下一代论坛系统，是 Candy 的设计目标。</li>
-</ul>
-<p>博客</p>
-<ul>
-<li><a href="https://github.com/samoay/NejBlog" target="_blank" rel="external">NejBlog</a> NejBlog是一个基于node.js服务、express应用框架、jade模板引擎和Markdown文档语言的一款简洁的个人博客，博客项目的名称就是来至node.js、express和jade三个项目的首字母。</li>
-</ul>
-<h2 id="数据库篇">数据库篇</h2>
-<ul>
-<li><a href="https://github.com/Qihoo360/Atlas" target="_blank" rel="external">Atlas</a>    基于MySQL协议的数据库中间层项目</li>
-</ul>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="http://avnpc.com/pages/best-wheels-for-php" target="_blank" rel="external">那些最好的轮子 - PHP篇</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/github-collection.html" data-id="3po8398b7ny4nwxq" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/github-collection.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/archives/2015/04/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2015/04/">1</a><a class="page-number" href="/archives/2015/04/page/2/">2</a><a class="page-number" href="/archives/2015/04/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2015/04/page/5/">5</a><a class="extend next" rel="next" href="/archives/2015/04/page/5/">Next &raquo;</a>
@@ -686,7 +630,7 @@ git <span class="keyword">push</span> -u origin master
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/">scp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -695,7 +639,7 @@ git <span class="keyword">push</span> -u origin master
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 11.43px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 11.43px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 12.86px;">java</a><a href="/tags/javascript/" style="font-size: 17.14px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 18.57px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/scp/" style="font-size: 10.00px;">scp</a><a href="/tags/screen/" style="font-size: 10.00px;">screen</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 14.29px;">sql</a>
     </div>
   </div>
 
@@ -704,7 +648,7 @@ git <span class="keyword">push</span> -u origin master
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -716,23 +660,23 @@ git <span class="keyword">push</span> -u origin master
       <ul>
         
           <li>
-            <a href="/mysql/mysql-note.html">MySQL note</a>
+            <a href="/linux/screen.html">screen命令使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+            <a href="/linux/linux-scp.html">SCP命令</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/php/php-string.html">PHP 字符串</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+            <a href="/hexo-useage.html">hexo使用</a>
           </li>
         
       </ul>

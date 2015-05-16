@@ -71,6 +71,287 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-mysql/mysql-get-age-from-birthday" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mysql/mysql-get-age-from-birthday.html" class="article-date">
+  <time datetime="2015-03-07T03:39:35.000Z" itemprop="datePublished">3月 7 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/mysql/mysql-get-age-from-birthday.html">MySQL通过生日获取年龄</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>mysql中通过生日计算年龄sql：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">SELECT</span></span></div><div class="line">    emp_no,</div><div class="line">    birth_date,</div><div class="line">    <span class="keyword">CURDATE</span>(),</div><div class="line">    (</div><div class="line">        <span class="keyword">YEAR</span> (<span class="keyword">CURDATE</span>()) - <span class="keyword">YEAR</span> (birth_date)</div><div class="line">    ) - (</div><div class="line">        <span class="keyword">RIGHT</span> (<span class="keyword">CURDATE</span>(), <span class="number">5</span>) &lt; <span class="keyword">RIGHT</span> (birth_date, <span class="number">5</span>)</div><div class="line">    ) <span class="keyword">AS</span> age</div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`employees`</span></div><div class="line"><span class="keyword">HAVING</span></div><div class="line">    age &gt; <span class="number">50</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">4</span>;</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/mysql/mysql-get-age-from-birthday.html" data-id="20s86wov1cogy992" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/mysql/mysql-get-age-from-birthday.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php/php-sort" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/php/php-sort.html" class="article-date">
+  <time datetime="2015-03-04T06:10:02.000Z" itemprop="datePublished">3月 4 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/php/php-sort.html">PHP排序问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="普通PHP排序">普通PHP排序</h2>
+<h2 id="自定义排序">自定义排序</h2>
+<h3 id="1-_二维数组排序">1. 二维数组排序</h3>
+<p>如下，需要对二维数组$array_multi_1中的”money”项排序：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$array_multi_1</span> = <span class="keyword">array</span>(</div><div class="line">    <span class="number">0</span> =&gt; <span class="keyword">array</span>(<span class="string">'id'</span>=&gt; <span class="number">1</span>, <span class="string">'money'</span> =&gt; <span class="string">'1234'</span>, <span class="string">'mark'</span> =&gt; <span class="string">'AE08'</span>, <span class="string">'name'</span> =&gt; <span class="string">'国际银行'</span>, <span class="string">'time'</span>=&gt; <span class="string">'2015-02-01 12:12:12'</span>),</div><div class="line">    <span class="number">1</span> =&gt; <span class="keyword">array</span>(<span class="string">'id'</span>=&gt; <span class="number">2</span>, <span class="string">'money'</span> =&gt; <span class="string">'8234'</span>, <span class="string">'mark'</span> =&gt; <span class="string">'CE92'</span>, <span class="string">'name'</span> =&gt; <span class="string">'天河银行'</span>, <span class="string">'time'</span>=&gt; <span class="string">'2015-01-01 12:12:12'</span>),</div><div class="line">    <span class="number">2</span> =&gt; <span class="keyword">array</span>(<span class="string">'id'</span>=&gt; <span class="number">3</span>, <span class="string">'money'</span> =&gt; <span class="string">'34'</span>, <span class="string">'mark'</span> =&gt; <span class="string">'AE56'</span>, <span class="string">'name'</span> =&gt; <span class="string">'爱民银行'</span>, <span class="string">'time'</span>=&gt; <span class="string">'2015-03-01 18:12:12'</span>),</div><div class="line">    <span class="number">3</span> =&gt; <span class="keyword">array</span>(<span class="string">'id'</span>=&gt; <span class="number">4</span>, <span class="string">'money'</span> =&gt; <span class="string">'0004'</span>, <span class="string">'mark'</span> =&gt; <span class="string">'QEFF'</span>, <span class="string">'name'</span> =&gt; <span class="string">'宇宙银行'</span>, <span class="string">'time'</span>=&gt; <span class="string">'2015-04-01 12:12:12'</span>),</div><div class="line">    <span class="number">4</span> =&gt; <span class="keyword">array</span>(<span class="string">'id'</span>=&gt; <span class="number">5</span>, <span class="string">'money'</span> =&gt; <span class="string">'9234'</span>, <span class="string">'mark'</span> =&gt; <span class="string">'AEE0'</span>, <span class="string">'name'</span> =&gt; <span class="string">'银河银行'</span>, <span class="string">'time'</span>=&gt; <span class="string">'2015-01-01 12:12:12'</span>),</div><div class="line">);</div></pre></td></tr></table></figure>
+
+<p>处理方法如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 二维数组排序函数</div><div class="line"> *</div><div class="line"> *<span class="phpdoc"> @author</span> boxcore</div><div class="line"> *<span class="phpdoc"> @date</span>   2015-03-04</div><div class="line"> *<span class="phpdoc"> @param</span>  array     $multi_array 二维数组，格式如 array(array('age'=&gt;11),array('age'=&gt;14))</div><div class="line"> *<span class="phpdoc"> @param</span>  string    $sort_key    需要排序的key|字段</div><div class="line"> *<span class="phpdoc"> @param</span>  constants $sort        排序的方式，参考array_multisort的排序参数</div><div class="line"> *                                常用的有： SORT_ASC|SORT_DESC|SORT_STRING|SORT_NUMERIC</div><div class="line"> *<span class="phpdoc"> @return</span> array</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">multi_array_sort</span><span class="params">(<span class="variable">$multi_array</span>,<span class="variable">$sort_key</span>,<span class="variable">$sort</span>=SORT_ASC)</span></span>{</div><div class="line">    <span class="keyword">if</span>(is_array(<span class="variable">$multi_array</span>)){</div><div class="line">        <span class="keyword">foreach</span> (<span class="variable">$multi_array</span> <span class="keyword">as</span> <span class="variable">$row_array</span>){</div><div class="line">            <span class="keyword">if</span>(is_array(<span class="variable">$row_array</span>)){</div><div class="line">                <span class="variable">$key_array</span>[] = <span class="variable">$row_array</span>[<span class="variable">$sort_key</span>];</div><div class="line">            }<span class="keyword">else</span>{</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    array_multisort(<span class="variable">$key_array</span>,<span class="variable">$sort</span>,<span class="variable">$multi_array</span>);</div><div class="line">    <span class="keyword">return</span> <span class="variable">$multi_array</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//处理</span></div><div class="line">print_r(multi_array_sort(<span class="variable">$array_multi_1</span>,<span class="string">'name'</span>, SORT_REGULAR  ));<span class="keyword">exit</span>;</div></pre></td></tr></table></figure>
+
+<h2 id="常见问题">常见问题</h2>
+<ol>
+<li>多维数组回调<br>现在有这样的一群数据需要处理：</li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="http://php.net/manual/zh/function.array-multisort.php" target="_blank" rel="external">PHP官方手册：array_multisort </a></li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/php/php-sort.html" data-id="bg42fghjwgbk1b4q" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/php/php-sort.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort/">sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript/demo-multiple-select" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript/demo-multiple-select.html" class="article-date">
+  <time datetime="2015-03-02T07:12:25.000Z" itemprop="datePublished">3月 2 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/javascript/demo-multiple-select.html">多选select特效</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天接到select表单多选的需求，具体样式如：<br><img src="/img/multiple-select-demo.jpg" alt="multiple-select-demo"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/javascript/demo-multiple-select.html" data-id="98zzmf86cbnpjy8g" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/javascript/demo-multiple-select.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/demo/">demo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/select/">select</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-journal/hadoop-plan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/journal/hadoop-plan.html" class="article-date">
+  <time datetime="2015-02-26T10:38:44.000Z" itemprop="datePublished">2月 26 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Journal/">Journal</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/journal/hadoop-plan.html">Hadoop学习计划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2015年的规划是大数据处理方向，学习大数据主要是Hadoop，而Hadoop处理业务主要是通过java实现。但目前只会PHP，技能方面还是非常欠缺的。所以，我还需要有一个详尽的计划去学习Java，然后处理Hadoop数据。</p>
+<p>主要任务是学习Hadoop的业务处理方面知识，在前期，java方面的学习并不需要非常精通，首先要会用java来写hadoop算法，以后在工作和学习中再深化java方面知识。<br>
+        
+          <p class="article-more-link">
+            <a href="/journal/hadoop-plan.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/journal/hadoop-plan.html" data-id="pv2m1zqbdf0om8ec" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/journal/hadoop-plan.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/journal/">journal</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java/first-met-java" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/java/first-met-java.html" class="article-date">
+  <time datetime="2015-02-22T03:23:47.000Z" itemprop="datePublished">2月 22 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/java/first-met-java.html">初识Java</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="java的版本">java的版本</h3>
+<p>. Java SE java标准版<br>. Java EE java企业版<br>. Java ME java微型版，用于嵌入式系统开发</p>
+<h3 id="Java语言特性">Java语言特性</h3>
+<ol>
+<li>简单</li>
+<li>面向对象</li>
+<li>分布式</li>
+<li>可移植性</li>
+<li>安全性</li>
+<li>健壮性</li>
+<li>多线程</li>
+<li>高性能</li>
+<li>动态</li>
+</ol>
+<h3 id="java环境搭建">java环境搭建</h3>
+<p>相关版本名词:<br>. JDK: java的JDK又称Java SE（以前称J2SE），本笔记以JDK 7版进行学习。<br>安装JDK后需要配置环境变量，</p>
+<p><code>JAVA_HOME -&gt; C:\Program Files (x86)\Java\jdk1.7.0_51</code><br><code>Path .-&gt; ;%JAVA_HOME%\bin;</code></p>
+<h3 id="Hello_java">Hello java</h3>
+<p>文件HelloJava.java的源码如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {</div><div class="line">        System.out.println(<span class="string">"hello java"</span>);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>需要执行以下命令才能编译java文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">javac HelloJava.java</div><div class="line">java HelloJava</div></pre></td></tr></table></figure>
+
+<p>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/java/first-met-java.html" data-id="7t4jpq8fheuth3bj" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/java/first-met-java.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java/index" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/java/index.html" class="article-date">
@@ -124,9 +405,9 @@
 
 
   
-    <article id="post-linux/linux-wget" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux/wget" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/linux-wget.html" class="article-date">
+    <a href="/linux/wget.html" class="article-date">
   <time datetime="2015-02-14T01:30:15.000Z" itemprop="datePublished">2月 14 2015</time>
 </a>
     
@@ -138,7 +419,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-wget.html">Linux wget命令</a>
+      <a class="article-title" href="/linux/wget.html">Linux wget命令</a>
     </h1>
   
 
@@ -163,11 +444,11 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/linux/linux-wget.html" data-id="6skvuzwj58jkn7wp" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/linux/wget.html" data-id="txq3e1c4ftft0tvt" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/linux/linux-wget.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/linux/wget.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
@@ -433,354 +714,9 @@ net <span class="keyword">use</span> \\{servername} /<span class="keyword">user<
 
 
   
-    <article id="post-javascript/index" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/javascript/index.html" class="article-date">
-  <time datetime="2015-02-05T14:15:21.000Z" itemprop="datePublished">2月 5 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/javascript/index.html">JAVASCIPT　Note</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript_简介">JavaScript 简介</h2>
-<p>略</p>
-<h2 id="JavaScript_简单实例">JavaScript 简单实例</h2>
-<p>略</p>
-<h2 id="JavaScript_基本语法">JavaScript 基本语法</h2>
-<p>JavaScript 语言是区分大小写的，不管是命名变量还是使用关键字的时候。</p>
-<p>大多数情况下，JavaScript 忽略空白或者 JavaScript 语句之间的空格（也包括 Tab 键产生的空白缩进）。</p>
-<p>js变量的声明:  </p>
-<blockquote>
-<p> var 变量名;</p>
-</blockquote>
-<p>js中可以同时赋值多个变量:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">2</span> , b =<span class="number">12</span>;</div><div class="line">alert(a);</div></pre></td></tr></table></figure>
-
-<h2 id="JavaScript_数据类型">JavaScript 数据类型</h2>
-<p>JavaScript 主要有如下 6 种数据类型：</p>
-<ol>
-<li>字符串（String）类型: 字符串类型使用双引号 “ 或单引号 ‘ 括起来</li>
-<li>数值（Number）类型: 数值（Number）类型包括整数和浮点数（包含小数点的数或科学记数法的数）</li>
-<li>布尔（Boolean）类型</li>
-<li>空值（Null）: 空值类型表示该变量或内容无任何值</li>
-<li>未定义（Undefined）类型: 变量被创建后，未给该变量赋值，该变量即为未定义类型</li>
-<li>对象（Object）类型</li>
-</ol>
-<blockquote>
-<p>JavaScript 是一门松散的语言，甚至可以说是混合语言，因此导致其数据类型以及类型之间的关系比较复杂。另外也有一些人把 function（函数） 列为数据类型之一，对于这些有一定争议的说法</p>
-</blockquote>
-<h2 id="JavaScript_运算符">JavaScript 运算符</h2>
-<p>JavaScript 运算符主要包括：</p>
-<ol>
-<li>算术运算符 : + - * / % ++ —</li>
-<li>赋值运算符</li>
-<li>比较运算符</li>
-<li>三元运算符</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">2</span>;</div><div class="line">y = (x == <span class="number">2</span>) ? x : <span class="number">1</span>;</div><div class="line">alert(y);   <span class="comment">//输出：2</span></div></pre></td></tr></table></figure>
-
-<ol>
-<li>逻辑运算符: &amp;&amp; || !</li>
-<li>字符串连接运算符: 连接运算符 + 主要用于连接两个字符串或字符串变量。因此，在对字符串或字符串变量使用该运算符时，并不是对它们做加法计算。</li>
-</ol>
-<h2 id="JavaScript_循环控制">JavaScript 循环控制</h2>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) {</div><div class="line">    <span class="built_in">document</span>.write(i + <span class="string">"&lt;br /&gt;"</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="JavaScript_流程控制">JavaScript 流程控制</h2>
-<p>JavaScript for 循环用于反复执行一段代码，其语法如下：</p>
-<pre><code><span class="keyword">for</span> (expr1; expr2; expr3){
-    statement
-}
-</code></pre><p>for 循环语法解读<br>. expr1 在循环开始前无条件求值一次<br>. expr2 在每次循环开始前求值，如果值为 TRUE，则继续循环，执行嵌套的循环语句；如果值为 FALSE，则终止循环。<br>. expr3 在每次循环之后被求值（执行）<br>. 每个表达式都可以为空。如果expr2 为空意则将无限循环下去，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) {</div><div class="line">    <span class="built_in">document</span>.write(i + <span class="string">"&lt;br /&gt;"</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="JavaScript_消息提示框">JavaScript 消息提示框</h2>
-<p>alert(): </p>
-<p>confirm(): 创建一个消息确认框</p>
-<p>prompt(): 创建一个消息提示框</p>
-<h2 id="JavaScript_函数">JavaScript 函数</h2>
-<p>函数是 JavaScript 语言的核心之一，其基本语法如下：</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">functionName</span><span class="params">(arg0, arg1, <span class="rest_arg">...) {
-    statements</span>
-}</span></span>
-</code></pre><p><strong>JavaScript 函数参数错误</strong></p>
-<p>JavaScript 函数参数并没有严格要求哪些参数是必选参数，哪些参数是可选参数，因此传入的参数个数是允许不等于定义函数时参数的个数的。<br>如果在函数中使用了未定义的参数，则会提示语法错误（参数未定义），JavaScript 代码不会正常运行。<br>如果参数已经定义，但未正确的传入参数时，相关参数值会以 undefined 替换，JavaScript 代码仍正常运行，如下例所示：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">(name,age)</span></span>{</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"我叫"</span> + name + <span class="string">"，今年"</span> + age + <span class="string">"岁！"</span>);</div><div class="line">}</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"hello('小明')"</span> <span class="attribute">value</span>=<span class="value">"确定"</span> /&gt;</span></div></pre></td></tr></table></figure>
-
-<blockquote>
-<p>输出：我叫小明，今年undefined岁！</p>
-</blockquote>
-<p><strong>JavaScript arguments 对象</strong></p>
-<p>在 JavaScript 函数中，有个特殊的 arguments 对象，它以类似数组的形式保存了当前函数调用的参数。因此，开发者无需定义具体的参数名，就可以方便的访问函数参数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span></span>{</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">"我叫"</span> + <span class="built_in">arguments</span>[<span class="number">0</span>] + <span class="string">"，今年"</span> + <span class="built_in">arguments</span>[<span class="number">1</span>] + <span class="string">"岁！"</span>);</div><div class="line">}</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"hello('小明',18)"</span> <span class="attribute">value</span>=<span class="value">"确定"</span> /&gt;</span></div></pre></td></tr></table></figure>
-
-<blockquote>
-<p>输出：我叫小明，今年18岁！</p>
-</blockquote>
-<p>通常在函数定义中，为便于代码的可读性，一般不会使用 arguments 对象。在处理不定数目的参数，或者模拟函数重载时，可方便的使用 arguments 对象来处理。</p>
-<p>arguments.length 可以很方便的检测函数的参数个数。  </p>
-<blockquote>
-<p>document.write(arguments.length);</p>
-</blockquote>
-<h2 id="JavaScript_事件">JavaScript 事件</h2>
-<h2 id="JavaScript_面向对象">JavaScript 面向对象</h2>
-<h2 id="JavaScript_字符串处理(String对象)">JavaScript 字符串处理(String对象)</h2>
-<h2 id="JavaScript_数组">JavaScript 数组</h2>
-<h2 id="JavaScript_时间日期(Date_对象)">JavaScript 时间日期(Date 对象)</h2>
-<h2 id="JavaScript_数学计算(Math对象)">JavaScript 数学计算(Math对象)</h2>
-<h2 id="JavaScript_Boolean_对象">JavaScript Boolean 对象</h2>
-<h2 id="JavaScript_History_对象">JavaScript History 对象</h2>
-<h2 id="JavaScript_Location_对象">JavaScript Location 对象</h2>
-<h2 id="JavaScript_Navigator_对象">JavaScript Navigator 对象</h2>
-<h2 id="JavaScript_Screen_对象">JavaScript Screen 对象</h2>
-<h2 id="JavaScript_Document_对象">JavaScript Document 对象</h2>
-<h2 id="JavaScript_Window_对象">JavaScript Window 对象</h2>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/javascript/index.html" data-id="rr619tde4f24c3gy" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/javascript/index.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-javascript/ajax-json-and-jsonp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/javascript/ajax-json-and-jsonp.html" class="article-date">
-  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/javascript/ajax-json-and-jsonp.html">AJAX中的JSON和JSONP区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JSON和JSONP的区别">JSON和JSONP的区别</h2>
-<ul>
-<li><a href="http://www.cnblogs.com/dolphinX/p/3391136.html" target="_blank" rel="external">http://www.cnblogs.com/dolphinX/p/3391136.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/javascript/ajax-json-and-jsonp.html" data-id="12jnjyyv2ux3pr1b" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/javascript/ajax-json-and-jsonp.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/git-clean-history-files" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/git-clean-history-files.html" class="article-date">
-  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/git-clean-history-files.html">Git如何永久删除文件(包括历史记录)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="步骤一:_从你的资料库中清除文件">步骤一: 从你的资料库中清除文件</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.gz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.tgz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.zip'</span> --prune-empty --tag-name-filter cat -- --all</div></pre></td></tr></table></figure>
-
-<h2 id="步骤二:_推送我们修改后的repo">步骤二: 推送我们修改后的repo</h2>
-<p>以强制覆盖的方式推送你的repo, 命令如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master --force</div></pre></td></tr></table></figure>
-
-<h2 id="步骤三:_清理和回收空间">步骤三: 清理和回收空间</h2>
-<p> 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间.</p>
-<p>命令如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rm -rf .git/refs/original/</div><div class="line">git reflog expire --expire=now --all</div><div class="line">git gc --prune=now</div><div class="line">git gc --aggressive --prune=now</div></pre></td></tr></table></figure>
-
-<p>设置完成之后, 你可以使用命令<code>du -s .git</code>查看仓库地址空间大小是否有明显减少了. </p>
-<hr>
-<p><strong>参考:</strong></p>
-<ul>
-<li><a href="https://help.github.com/articles/remove-sensitive-data" target="_blank" rel="external">https://help.github.com/articles/remove-sensitive-data</a></li>
-<li><a href="http://www.cnblogs.com/shines77/p/3460274.html" target="_blank" rel="external">http://www.cnblogs.com/shines77/p/3460274.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/git-clean-history-files.html" data-id="iw2m7tgr7xhpy44p" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/git-clean-history-files.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tools/Chrome修改UserAgent" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tools/Chrome修改UserAgent.html" class="article-date">
-  <time datetime="2015-02-05T14:10:43.000Z" itemprop="datePublished">2月 5 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/Chrome修改UserAgent.html">Chrome修改UserAgent</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>C:\Users\boxcore\AppData\Local\Google\Chrome\Application\chrome.exe —user-agent=”iPad” —profile-directory=”Profile 1” </p>
-<p>—user-agent=”iPhone”</p>
-<p>Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/tools/Chrome修改UserAgent.html" data-id="aazx5pxtbvcdhmm0" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/tools/Chrome修改UserAgent.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UserAgent/">UserAgent</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-api/api-standards" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/api/api-standards.html" class="article-date">
-  <time datetime="2015-02-05T13:44:52.000Z" itemprop="datePublished">2月 5 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/api/api-standards.html">API标准</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工作中会遇到许多API的工作，目前最流行的方案是使用<code>RESTful API</code>。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/api/api-standards.html#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/api/api-standards.html" data-id="p7v6zba90pb4zaat" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/api/api-standards.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2015/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/4/">4</a><a class="page-number" href="/archives/2015/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/2015/page/7/">7</a><a class="extend next" rel="next" href="/archives/2015/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/archives/2015/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/4/">4</a><a class="page-number" href="/archives/2015/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/2015/page/7/">7</a><a class="page-number" href="/archives/2015/page/8/">8</a><a class="extend next" rel="next" href="/archives/2015/page/7/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -800,7 +736,7 @@ net <span class="keyword">use</span> \\{servername} /<span class="keyword">user<
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/">scp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -809,7 +745,7 @@ net <span class="keyword">use</span> \\{servername} /<span class="keyword">user<
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 11.43px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 11.43px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 12.86px;">java</a><a href="/tags/javascript/" style="font-size: 17.14px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 18.57px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/scp/" style="font-size: 10.00px;">scp</a><a href="/tags/screen/" style="font-size: 10.00px;">screen</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 14.29px;">sql</a>
     </div>
   </div>
 
@@ -818,7 +754,7 @@ net <span class="keyword">use</span> \\{servername} /<span class="keyword">user<
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -830,23 +766,23 @@ net <span class="keyword">use</span> \\{servername} /<span class="keyword">user<
       <ul>
         
           <li>
-            <a href="/mysql/mysql-note.html">MySQL note</a>
+            <a href="/linux/screen.html">screen命令使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+            <a href="/linux/linux-scp.html">SCP命令</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/php/php-string.html">PHP 字符串</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+            <a href="/hexo-useage.html">hexo使用</a>
           </li>
         
       </ul>

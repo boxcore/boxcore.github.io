@@ -71,9 +71,103 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-linux/linux-cmake" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux/screen" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/linux-cmake.html" class="article-date">
+    <a href="/linux/screen.html" class="article-date">
+  <time datetime="2015-04-13T02:40:06.000Z" itemprop="datePublished">4月 13 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/screen.html">screen命令使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/screen.html" data-id="todpy56fahjzq6o6" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/screen.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/screen/">screen</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-scp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-scp.html" class="article-date">
+  <time datetime="2015-04-12T05:51:47.000Z" itemprop="datePublished">4月 12 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-scp.html">SCP命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>scp是linux下服务器间文件拷贝命令, 其使用方法如下:</p>
+<p><code>scp -p 22 root@127.0.0.1:/root/test /home/test</code></p>
+<h3 id="将本地目录上传到服务器上:">将本地目录上传到服务器上:</h3>
+<p>scp -P 2222 -r /home/dirname/ root@192.168.5.5:/root/dirname/</p>
+<h3 id="scp限制速度">scp限制速度</h3>
+<p>语法: <code>scp -l 10000 -r [文件] [目标地址]</code>, 10000表示1M</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-scp.html" data-id="way3qm2hojfk4bmd" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-scp.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scp/">scp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/crontab" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/crontab.html" class="article-date">
   <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
@@ -85,7 +179,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-cmake.html">cmake安装</a>
+      <a class="article-title" href="/linux/crontab.html">Linux Crontab定时任务</a>
     </h1>
   
 
@@ -93,27 +187,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>centos6默认安装的cmake版本是2.6的, 这个版本有bug而且很多新软件都需要cmake2.8以上才能运行</p>
-<p>卸载cmake:<br>yum remove cmake # 卸载cmake</p>
-<p>安装  wget <a href="http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz" target="_blank" rel="external">http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz</a><br> tar xvf cmake-2.8.12.2-Linux-i386.tar.gz</p>
-<p>建立连接<br>ln -s /usr/cmake-2.8.12.2-Linux-i386/bin/* /usr/bin/ </p>
-<h2 id="again">again</h2>
-<p>yum install -y libarchive<br>rpm -ivh cmake-2.8.8-4.el6.i686.rpm</p>
-<p>卸载: rpm -e cmake-2.8.8-4.el6.i686</p>
+        <h2 id="安装crontab">安装crontab</h2>
+<p><code>yum install crontabs</code></p>
+<p>说明:</p>
+<pre><code><span class="regexp">/sbin/</span>service crond start <span class="comment">//启动服务</span>
+<span class="regexp">/sbin/</span>service crond stop <span class="comment">//关闭服务</span>
+<span class="regexp">/sbin/</span>service crond restart <span class="comment">//重启服务</span>
+<span class="regexp">/sbin/</span>service crond reload <span class="comment">//重新载入配置</span>
+</code></pre><p>crontab 格式：</p>
+<p>基本格式 :</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">分钟   小时   日   月   星期   命令</div><div class="line"></div><div class="line"><span class="keyword">*</span>        <span class="keyword">*</span>      <span class="keyword">*</span>    <span class="keyword">*</span>     <span class="keyword">*</span>       <span class="keyword">*</span></div><div class="line"></div><div class="line">第1列表示分钟1～59 每分钟用<span class="keyword">*</span>或者 <span class="keyword">*</span>/1表示</div><div class="line">第2列表示小时1～23（0表示0点）</div><div class="line">第3列表示日期1～31</div><div class="line">第4列 表示月份1～12</div><div class="line">第5列标识号星期0～6（0表示星期天）</div><div class="line">第6列要运行的命令</div><div class="line"></div><div class="line">记住几个特殊符号的含义: </div><div class="line">“<span class="keyword">*</span>”代表取值范围内的数字, </div><div class="line">“/”代表”每”, </div><div class="line">“-”代表从某个数字到某个数字, </div><div class="line">“,”分开几个离散的数字 </div><div class="line"></div><div class="line"><span class="comment"># Use the hash sign to prefix a comment</span></div><div class="line"><span class="comment"># +—————- minute (0 – 59)</span></div><div class="line"><span class="comment"># | +————- hour (0 – 23)</span></div><div class="line"><span class="comment"># | | +———- day of month (1 – 31)</span></div><div class="line"><span class="comment"># | | | +——- month (1 – 12)</span></div><div class="line"><span class="comment"># | | | | +—- day of week (0 – 7) (Sunday=0 or 7)</span></div><div class="line"><span class="comment"># | | | | |</span></div><div class="line"><span class="comment"># * * * * * command to be executed</span></div></pre></td></tr></table></figure>
+
+<h2 id="添加crontab任务">添加crontab任务</h2>
+<p><code>crontab -e</code>然后输入如:</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/linux/linux-cmake.html" data-id="qk2jm7bfcuri63j4" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/linux/crontab.html" data-id="jz00sihnt901gezm" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/linux/linux-cmake.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/linux/crontab.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmake/">cmake</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -179,138 +279,6 @@
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/files/">files</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux/linux-free-mem" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/linux/linux-free-mem.html" class="article-date">
-  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-free-mem.html">Linux释放内存</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">free -m //查看内存</div><div class="line">sync // 把内存数据同步到硬盘</div><div class="line"><span class="built_in">echo</span> <span class="number">3</span> &gt; /proc/sys/vm/drop_caches //删除内存缓存</div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/linux/linux-free-mem.html" data-id="9p2mc129i2h7xpk0" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/linux/linux-free-mem.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux/linux-iptable" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/linux/linux-iptable.html" class="article-date">
-  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-iptable.html">Linux iptable 防火墙设置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>配置防火墙规则文件: <code>/etc/sysconfig/iptables</code></p>
-<p>启动和关闭防火墙: <code>service iptables restart|start|stop</code></p>
-<p>在防火墙中，来往的数据流被称为IP压缩（本文下面也称数据流为IP压缩）。防火墙有三条缺省规则链来过滤IP压缩，分别为：</p>
-<pre><code>INPUT：所有以主机为目的地的<span class="literal">IP</span>压缩
-OUTPUT：所有以主机为源的<span class="literal">IP</span>压缩
-FORWARD：所有经过主机，但是既不是以主机为源，也不是以主机为目的地的压缩
-</code></pre><p>而我们最关注的是INPUT规则，这样可以屏蔽一些黑客行为，或者局域网共享。下面以centOS 6.5的默认规则为例子，讲解下各条规则大概的意思：</p>
-<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> ESTABLISHED,RELATED -j ACCEPT
-</code></pre><p>-m 选项: 装入一个模块（state）。state 模块能够查看一个压缩并判断它的状态是  NEW、ESTABLISHED 还是 RELATED。<br>NEW 指內进的压缩属于不是由主机主导的新增连接。<br>ESTABLISHED 及 RELATED 指內进的压缩隶属于一条现存的连接，或者与现存的连接有关系。  </p>
-<p>这条规则的意思是：以本主机为目的地的IP压缩，如果隶属于现有的连接，则接受（accept）</p>
-<pre><code><span class="deletion">-A INPUT -p icmp -j ACCEPT</span>
-</code></pre><p>表示接受icmp协议的IP压缩，icmp协议主要是ping，很多同学在局域网能ping通一台机器，但是无法通过web访问，就是因为开启了icmp协议，但是http等协议没有开，后面会讲解如何解决这个问题</p>
-<pre><code>-A INPUT -<span class="built_in">i</span> lo -<span class="built_in">j</span> ACCEPT
-</code></pre><p>这条规则表示接受那些来自本机（localhost或者127.0.0.1的IP压缩）</p>
-<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> NEW -<span class="keyword">m</span> tcp  -p tcp –dport <span class="number">22</span> -j ACCEPT
-</code></pre><p>表示表示接受不是由本机引导的新增的，基于端口号22的连接（句子有点长，仔细体会哈）。22端口是ssh连接用的，所以如果你想远程操作机器，需要开启端口22</p>
-<pre><code>-A INPUT -j <span class="keyword">REJECT</span> –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
-</code></pre><p>表示拒绝来自已经被禁止的主机的icmp的IP压缩</p>
-<pre><code>-A FORWARD -j REJECTED –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
-</code></pre><p>表示拒绝经过本机且源自那些已经被禁止的主机的icmp的IP压缩</p>
-<p>下面再详细说说各个参数的意思：</p>
-<p>-A：表示添加一条规则(add)</p>
-<p>相应的还有：-P（设置规则的缺省值，比如-P INPUT ACCEPT表示没有以本机为目的地的IP压缩默认是接受的）</p>
-<p>-F（清楚所有存在的规则，好添加新的规则）</p>
-<p>-j：表示满足规则执行的相应的操作，意为jump，比如 ……-j ACCEPT就表示满足相应的规则就接受</p>
-<p>-i：界面的意思（interface），lo是本机的意思（localhost）</p>
-<p>注意，编辑完iptables文件之后，使用service iptables restart重启防火墙，可以使用命令：iptables -L查看规则是否生效</p>
-<p>或者使用命令行</p>
-<p>（1）重启后永久性生效：</p>
-<pre><code>开启：chkconfig iptables <span class="literal">on</span>
-关闭：chkconfig iptables <span class="literal">off</span>
-</code></pre><p>（2）即时生效，重启后失效：</p>
-<pre><code>开启：service iptables <span class="operator"><span class="keyword">start</span>
-关闭：service iptables <span class="keyword">stop</span></span>
-</code></pre><p>比如局域网中搭建了一台centOS作为服务器，并且建立了LAMP或者LNMP环境，想让局域网中的其他人都能通过web访问该机器，那么先得固定机器的IP地址，将BOOTPROTO改成static，然后将IPADDR设置一个固定的IP（比如192.168.1.22），在设置子网掩码NETMASK（比如255.255.255.0），NETWORK和GATAWAY和DNS等也设置好，然后就是信任来自本局域网的访问了，添加下面的规则到iptables中，再重启防火墙即可。具体如何配置网络看这里：CentOS网络配置详解</p>
-<pre><code>-A INPUT -i eth0 -j ACCEPT                                       <span class="comment">#eth0是你的网卡号，用ifconfig -a命令查看你自己的网卡号</span>
-</code></pre><p>或者你想信任来自一系列IP的访问，可以用斜线记法规定IP的范围，比如：</p>
-<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.0</span>/<span class="number">24</span> -j ACCEPT                <span class="comment">#即接受来自192.168.1.0-192.168.1.255的ip区段的IP压缩</span>
-</code></pre><p>或者为每一个IP添加一条规则，但是当IP比较多时会很麻烦，比如</p>
-<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.22</span> -j ACCEPT
-</code></pre><p>打开80端口的规则</p>
-<pre><code><span class="deletion">-A INPUT -p tcp –dport 80 -j ACCEPT</span>
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/linux/linux-iptable.html" data-id="109m07p211rvr1m2" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/linux/linux-iptable.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iptable/">iptable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -426,9 +394,9 @@ traceroute 路由跟踪
 
 
   
-    <article id="post-linux/linux-crontab" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux/linux-iptable" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/linux/linux-crontab.html" class="article-date">
+    <a href="/linux/linux-iptable.html" class="article-date">
   <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
 </a>
     
@@ -440,7 +408,7 @@ traceroute 路由跟踪
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-crontab.html">Linux Crontab定时任务</a>
+      <a class="article-title" href="/linux/linux-iptable.html">Linux iptable 防火墙设置</a>
     </h1>
   
 
@@ -448,33 +416,159 @@ traceroute 路由跟踪
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="安装crontab">安装crontab</h2>
-<p><code>yum install crontabs</code></p>
-<p>说明:</p>
-<pre><code><span class="regexp">/sbin/</span>service crond start <span class="comment">//启动服务</span>
-<span class="regexp">/sbin/</span>service crond stop <span class="comment">//关闭服务</span>
-<span class="regexp">/sbin/</span>service crond restart <span class="comment">//重启服务</span>
-<span class="regexp">/sbin/</span>service crond reload <span class="comment">//重新载入配置</span>
-</code></pre><p>crontab 格式：</p>
-<p>基本格式 :</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">分钟   小时   日   月   星期   命令</div><div class="line"></div><div class="line"><span class="keyword">*</span>        <span class="keyword">*</span>      <span class="keyword">*</span>    <span class="keyword">*</span>     <span class="keyword">*</span>       <span class="keyword">*</span></div><div class="line"></div><div class="line">第1列表示分钟1～59 每分钟用<span class="keyword">*</span>或者 <span class="keyword">*</span>/1表示</div><div class="line">第2列表示小时1～23（0表示0点）</div><div class="line">第3列表示日期1～31</div><div class="line">第4列 表示月份1～12</div><div class="line">第5列标识号星期0～6（0表示星期天）</div><div class="line">第6列要运行的命令</div><div class="line"></div><div class="line">记住几个特殊符号的含义: </div><div class="line">“<span class="keyword">*</span>”代表取值范围内的数字, </div><div class="line">“/”代表”每”, </div><div class="line">“-”代表从某个数字到某个数字, </div><div class="line">“,”分开几个离散的数字 </div><div class="line"></div><div class="line"><span class="comment"># Use the hash sign to prefix a comment</span></div><div class="line"><span class="comment"># +—————- minute (0 – 59)</span></div><div class="line"><span class="comment"># | +————- hour (0 – 23)</span></div><div class="line"><span class="comment"># | | +———- day of month (1 – 31)</span></div><div class="line"><span class="comment"># | | | +——- month (1 – 12)</span></div><div class="line"><span class="comment"># | | | | +—- day of week (0 – 7) (Sunday=0 or 7)</span></div><div class="line"><span class="comment"># | | | | |</span></div><div class="line"><span class="comment"># * * * * * command to be executed</span></div></pre></td></tr></table></figure>
+        <p>配置防火墙规则文件: <code>/etc/sysconfig/iptables</code></p>
+<p>启动和关闭防火墙: <code>service iptables restart|start|stop</code></p>
+<p>在防火墙中，来往的数据流被称为IP压缩（本文下面也称数据流为IP压缩）。防火墙有三条缺省规则链来过滤IP压缩，分别为：</p>
+<pre><code>INPUT：所有以主机为目的地的<span class="literal">IP</span>压缩
+OUTPUT：所有以主机为源的<span class="literal">IP</span>压缩
+FORWARD：所有经过主机，但是既不是以主机为源，也不是以主机为目的地的压缩
+</code></pre><p>而我们最关注的是INPUT规则，这样可以屏蔽一些黑客行为，或者局域网共享。下面以centOS 6.5的默认规则为例子，讲解下各条规则大概的意思：</p>
+<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> ESTABLISHED,RELATED -j ACCEPT
+</code></pre><p>-m 选项: 装入一个模块（state）。state 模块能够查看一个压缩并判断它的状态是  NEW、ESTABLISHED 还是 RELATED。<br>NEW 指內进的压缩属于不是由主机主导的新增连接。<br>ESTABLISHED 及 RELATED 指內进的压缩隶属于一条现存的连接，或者与现存的连接有关系。  </p>
+<p>这条规则的意思是：以本主机为目的地的IP压缩，如果隶属于现有的连接，则接受（accept）</p>
+<pre><code><span class="deletion">-A INPUT -p icmp -j ACCEPT</span>
+</code></pre><p>表示接受icmp协议的IP压缩，icmp协议主要是ping，很多同学在局域网能ping通一台机器，但是无法通过web访问，就是因为开启了icmp协议，但是http等协议没有开，后面会讲解如何解决这个问题</p>
+<pre><code>-A INPUT -<span class="built_in">i</span> lo -<span class="built_in">j</span> ACCEPT
+</code></pre><p>这条规则表示接受那些来自本机（localhost或者127.0.0.1的IP压缩）</p>
+<pre><code>-A INPUT -<span class="keyword">m</span> <span class="keyword">state</span> –<span class="keyword">state</span> NEW -<span class="keyword">m</span> tcp  -p tcp –dport <span class="number">22</span> -j ACCEPT
+</code></pre><p>表示表示接受不是由本机引导的新增的，基于端口号22的连接（句子有点长，仔细体会哈）。22端口是ssh连接用的，所以如果你想远程操作机器，需要开启端口22</p>
+<pre><code>-A INPUT -j <span class="keyword">REJECT</span> –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝来自已经被禁止的主机的icmp的IP压缩</p>
+<pre><code>-A FORWARD -j REJECTED –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝经过本机且源自那些已经被禁止的主机的icmp的IP压缩</p>
+<p>下面再详细说说各个参数的意思：</p>
+<p>-A：表示添加一条规则(add)</p>
+<p>相应的还有：-P（设置规则的缺省值，比如-P INPUT ACCEPT表示没有以本机为目的地的IP压缩默认是接受的）</p>
+<p>-F（清楚所有存在的规则，好添加新的规则）</p>
+<p>-j：表示满足规则执行的相应的操作，意为jump，比如 ……-j ACCEPT就表示满足相应的规则就接受</p>
+<p>-i：界面的意思（interface），lo是本机的意思（localhost）</p>
+<p>注意，编辑完iptables文件之后，使用service iptables restart重启防火墙，可以使用命令：iptables -L查看规则是否生效</p>
+<p>或者使用命令行</p>
+<p>（1）重启后永久性生效：</p>
+<pre><code>开启：chkconfig iptables <span class="literal">on</span>
+关闭：chkconfig iptables <span class="literal">off</span>
+</code></pre><p>（2）即时生效，重启后失效：</p>
+<pre><code>开启：service iptables <span class="operator"><span class="keyword">start</span>
+关闭：service iptables <span class="keyword">stop</span></span>
+</code></pre><p>比如局域网中搭建了一台centOS作为服务器，并且建立了LAMP或者LNMP环境，想让局域网中的其他人都能通过web访问该机器，那么先得固定机器的IP地址，将BOOTPROTO改成static，然后将IPADDR设置一个固定的IP（比如192.168.1.22），在设置子网掩码NETMASK（比如255.255.255.0），NETWORK和GATAWAY和DNS等也设置好，然后就是信任来自本局域网的访问了，添加下面的规则到iptables中，再重启防火墙即可。具体如何配置网络看这里：CentOS网络配置详解</p>
+<pre><code>-A INPUT -i eth0 -j ACCEPT                                       <span class="comment">#eth0是你的网卡号，用ifconfig -a命令查看你自己的网卡号</span>
+</code></pre><p>或者你想信任来自一系列IP的访问，可以用斜线记法规定IP的范围，比如：</p>
+<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.0</span>/<span class="number">24</span> -j ACCEPT                <span class="comment">#即接受来自192.168.1.0-192.168.1.255的ip区段的IP压缩</span>
+</code></pre><p>或者为每一个IP添加一条规则，但是当IP比较多时会很麻烦，比如</p>
+<pre><code>-A INPUT <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">1.22</span> -j ACCEPT
+</code></pre><p>打开80端口的规则</p>
+<pre><code><span class="deletion">-A INPUT -p tcp –dport 80 -j ACCEPT</span>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-iptable.html" data-id="109m07p211rvr1m2" class="article-share-link" data-share="baidu">Share</a>
+      
 
-<h2 id="添加crontab任务">添加crontab任务</h2>
-<p><code>crontab -e</code>然后输入如:</p>
+      
+        <a href="http://boxcore.org/linux/linux-iptable.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iptable/">iptable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/cmake" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/cmake.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/cmake.html">cmake安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>centos6默认安装的cmake版本是2.6的, 这个版本有bug而且很多新软件都需要cmake2.8以上才能运行</p>
+<p>卸载cmake:<br>yum remove cmake # 卸载cmake</p>
+<p>安装  wget <a href="http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz" target="_blank" rel="external">http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Linux-i386.tar.gz</a><br> tar xvf cmake-2.8.12.2-Linux-i386.tar.gz</p>
+<p>建立连接<br>ln -s /usr/cmake-2.8.12.2-Linux-i386/bin/* /usr/bin/ </p>
+<h2 id="again">again</h2>
+<p>yum install -y libarchive<br>rpm -ivh cmake-2.8.8-4.el6.i686.rpm</p>
+<p>卸载: rpm -e cmake-2.8.8-4.el6.i686</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://boxcore.org/linux/linux-crontab.html" data-id="xhvnjivkjrmv0j1x" class="article-share-link" data-share="baidu">Share</a>
+        <a data-url="http://boxcore.org/linux/cmake.html" data-id="xsailvgsj8qep1vq" class="article-share-link" data-share="baidu">Share</a>
       
 
       
-        <a href="http://boxcore.org/linux/linux-crontab.html#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://boxcore.org/linux/cmake.html#ds-thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmake/">cmake</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux/linux-free-mem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/linux/linux-free-mem.html" class="article-date">
+  <time datetime="2015-04-06T15:29:01.000Z" itemprop="datePublished">4月 6 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/linux/linux-free-mem.html">Linux释放内存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">free -m //查看内存</div><div class="line">sync // 把内存数据同步到硬盘</div><div class="line"><span class="built_in">echo</span> <span class="number">3</span> &gt; /proc/sys/vm/drop_caches //删除内存缓存</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://boxcore.org/linux/linux-free-mem.html" data-id="9p2mc129i2h7xpk0" class="article-share-link" data-share="baidu">Share</a>
+      
+
+      
+        <a href="http://boxcore.org/linux/linux-free-mem.html#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -582,115 +676,6 @@ traceroute 路由跟踪
 
 
   
-    <article id="post-linux/ubuntu/shadowsocks-linux-gui-install" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/linux/ubuntu/shadowsocks-linux-gui-install.html" class="article-date">
-  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/linux/ubuntu/shadowsocks-linux-gui-install.html">ShadowSocks  For Linux GUI Install</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Install_for_Ubuntu">Install for Ubuntu</h2>
-<p>run <code>./nw app.nw</code> to install shadowsock, but it would show errer like this<br>“./nw: error while loading shared libraries: libudev.so.0: cannot open shared object file: No such file or directory”</p>
-<p>then you can run <code>locate udev.so</code> to see the locate of  ‘libudev.so’, and  then execute<br><code>sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0</code></p>
-<p>发现系统里面的文件名跟node-webkit加载的名称并不相同，我们创建一个新的软链接到这个库。</p>
-<hr>
-<ul>
-<li><a href="http://my.oschina.net/FengJ/blog/156334" target="_blank" rel="external">http://my.oschina.net/FengJ/blog/156334</a></li>
-<li></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/linux/ubuntu/shadowsocks-linux-gui-install.html" data-id="qjk2h3oyuqldbxc0" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/linux/ubuntu/shadowsocks-linux-gui-install.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux/linux-ssh" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/linux/linux-ssh.html" class="article-date">
-  <time datetime="2015-04-06T15:27:39.000Z" itemprop="datePublished">4月 6 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/linux/linux-ssh.html">Linux ssh</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux修改SSH默认端口">Linux修改SSH默认端口</h2>
-<p><code>vim /etc/ssh/sshd_config</code><br>找到#Port 22一段，这里是标识默认使用22端口，修改为如下：<br>Port 22<br>Port 50000<br>然后保存退出</p>
-<p>如果添加了iptables规则, 则需要做相应的修改</p>
-<p><code>vim /etc/sysconfig/iptables</code></p>
-<h2 id="SSH添加登陆后邮件提醒">SSH添加登陆后邮件提醒</h2>
-<p>**安装sendmail</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install sendmail   <span class="comment">#ubuntu安装</span></div><div class="line"><span class="built_in">sudo</span> yum install sendmail       <span class="comment">#rehat安装</span></div></pre></td></tr></table></figure>
-
-<p>**设置发邮件内容</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh  </span></div><div class="line"></div><div class="line">sendmail -t &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span> &lt;&lt;EOF  </div><div class="line">to:receive@exmaple.com  </div><div class="line">from:sender@example.com</div><div class="line">subject:<span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span> </div><div class="line"></div><div class="line"><span class="variable">$USER</span>@`hostname` login from <span class="variable">${SSH_CLIENT%% *}</span></div><div class="line">EOF</div></pre></td></tr></table></figure>
-
-<p>上面的内容放到用户文件<code>~/.bashrc</code>中,下次登陆就有邮件提醒了!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://boxcore.org/linux/linux-ssh.html" data-id="ndjrdfjnnythjgsd" class="article-share-link" data-share="baidu">Share</a>
-      
-
-      
-        <a href="http://boxcore.org/linux/linux-ssh.html#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/tags/linux/page/2/">2</a><a class="extend next" rel="next" href="/tags/linux/page/2/">Next &raquo;</a>
@@ -713,7 +698,7 @@ traceroute 路由跟踪
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sendmail/">Sendmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UserAgent/">UserAgent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axel/">axel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmake/">cmake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/demo/">demo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directadmin/">directadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/files/">files</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptable/">iptable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/journal/">journal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mem/">mem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/photoshop/">photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpm/">rpm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/samba/">samba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/">scp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/select/">select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/system/">system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webbench/">webbench</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/">wget</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面板/">面板</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -722,7 +707,7 @@ traceroute 路由跟踪
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 12.00px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 12.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 14.00px;">java</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 18.00px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 16.00px;">sql</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/sublime/" style="font-size: 10.00px;">sublime</a>
+      <a href="/tags/Chrome/" style="font-size: 10.00px;">Chrome</a><a href="/tags/Sendmail/" style="font-size: 10.00px;">Sendmail</a><a href="/tags/UserAgent/" style="font-size: 10.00px;">UserAgent</a><a href="/tags/api/" style="font-size: 10.00px;">api</a><a href="/tags/array/" style="font-size: 10.00px;">array</a><a href="/tags/axel/" style="font-size: 10.00px;">axel</a><a href="/tags/cmake/" style="font-size: 10.00px;">cmake</a><a href="/tags/cmd/" style="font-size: 11.43px;">cmd</a><a href="/tags/crontab/" style="font-size: 10.00px;">crontab</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/demo/" style="font-size: 10.00px;">demo</a><a href="/tags/directadmin/" style="font-size: 10.00px;">directadmin</a><a href="/tags/files/" style="font-size: 10.00px;">files</a><a href="/tags/git/" style="font-size: 11.43px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hack/" style="font-size: 10.00px;">hack</a><a href="/tags/hadoop/" style="font-size: 10.00px;">hadoop</a><a href="/tags/hello/" style="font-size: 10.00px;">hello</a><a href="/tags/iptable/" style="font-size: 10.00px;">iptable</a><a href="/tags/java/" style="font-size: 12.86px;">java</a><a href="/tags/javascript/" style="font-size: 17.14px;">javascript</a><a href="/tags/journal/" style="font-size: 10.00px;">journal</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mem/" style="font-size: 10.00px;">mem</a><a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/photoshop/" style="font-size: 10.00px;">photoshop</a><a href="/tags/php/" style="font-size: 18.57px;">php</a><a href="/tags/phpstorm/" style="font-size: 10.00px;">phpstorm</a><a href="/tags/plan/" style="font-size: 10.00px;">plan</a><a href="/tags/python/" style="font-size: 10.00px;">python</a><a href="/tags/rpm/" style="font-size: 10.00px;">rpm</a><a href="/tags/samba/" style="font-size: 10.00px;">samba</a><a href="/tags/scp/" style="font-size: 10.00px;">scp</a><a href="/tags/screen/" style="font-size: 10.00px;">screen</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/sort/" style="font-size: 10.00px;">sort</a><a href="/tags/sql/" style="font-size: 14.29px;">sql</a>
     </div>
   </div>
 
@@ -731,7 +716,7 @@ traceroute 路由跟踪
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -743,23 +728,23 @@ traceroute 路由跟踪
       <ul>
         
           <li>
-            <a href="/mysql/mysql-note.html">MySQL note</a>
+            <a href="/linux/screen.html">screen命令使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysqldump.html">mysqldump命令</a>
+            <a href="/linux/linux-scp.html">SCP命令</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-hight-level.html">MySQL REGEXP 正则</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/php/php-string.html">PHP 字符串</a>
+            <a href="/hexo使用.html">hexo使用</a>
           </li>
         
           <li>
-            <a href="/mysql/mysql-statement.html">MySQL编写规范</a>
+            <a href="/hexo-useage.html">hexo使用</a>
           </li>
         
       </ul>
