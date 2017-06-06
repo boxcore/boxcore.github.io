@@ -1,0 +1,798 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Bash 风格指南来源
+本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 this wiki，特别是这个页面：
+http://mywiki.wooledge.org/BashGuide/Practices
+如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。
+美学使用制表符还是空格制表符
+分号你无需在命令行中使用分号（我希望是这样），同样也不要在脚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash风格指南">
+<meta property="og:url" content="http://boxcore.github.io/2017/05/26/Bash-code-style.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="Bash 风格指南来源
+本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 this wiki，特别是这个页面：
+http://mywiki.wooledge.org/BashGuide/Practices
+如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。
+美学使用制表符还是空格制表符
+分号你无需在命令行中使用分号（我希望是这样），同样也不要在脚">
+<meta property="og:updated_time" content="2017-05-26T07:45:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bash风格指南">
+<meta name="twitter:description" content="Bash 风格指南来源
+本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 this wiki，特别是这个页面：
+http://mywiki.wooledge.org/BashGuide/Practices
+如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。
+美学使用制表符还是空格制表符
+分号你无需在命令行中使用分号（我希望是这样），同样也不要在脚">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 10739498,
+      author: 'boxcore'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2017/05/26/Bash-code-style.html"/>
+
+  <title> Bash风格指南 | BoxCore </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BoxCore</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Start</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Bash风格指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-26T15:44:01+08:00" content="2017-05-26">
+              2017-05-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/26/Bash-code-style.html" class="leancloud_visitors" data-flag-title="Bash风格指南">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Bash 风格指南来源</p>
+<p>本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 <a href="http://mywiki.wooledge.org" target="_blank" rel="external">this wiki</a>，特别是这个页面：</p>
+<p><a href="http://mywiki.wooledge.org/BashGuide/Practices" target="_blank" rel="external">http://mywiki.wooledge.org/BashGuide/Practices</a></p>
+<p>如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。</p>
+<h2 id="美学">美学</h2><h3 id="使用制表符还是空格">使用制表符还是空格</h3><p>制表符</p>
+<h3 id="分号">分号</h3><p>你无需在命令行中使用分号（我希望是这样），同样也不要在脚本中使用它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line">name=<span class="string">'dave'</span>;</div><div class="line"><span class="built_in">echo</span> <span class="string">"hello <span class="variable">$name</span>"</span>;</div><div class="line"></div><div class="line"><span class="comment">#right</span></div><div class="line">name=<span class="string">'dave'</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"hello <span class="variable">$name</span>"</span></div></pre></td></tr></table></figure>
+<h3 id="函数">函数</h3><p>不要使用关键字 <code>function</code> 创建函数。所有函数中创建的变量都应该声明为局部变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="keyword">function</span> foo &#123;</div><div class="line">    i=foo <span class="comment"># this is now global, wrong</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">    <span class="built_in">local</span> i=foo <span class="comment"># this is local, preferred</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码块声明">代码块声明</h3><p><code>then</code> 应与 <code>if</code> 放在同一行，<code>do</code> 应与 <code>while</code> 放在同一行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="keyword">if</span> <span class="literal">true</span></div><div class="line"><span class="keyword">then</span></div><div class="line">    ...</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># also wrong, though admittedly looks kinda cool</span></div><div class="line"><span class="literal">true</span> &amp;&amp; &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="keyword">if</span> <span class="literal">true</span>; <span class="keyword">then</span></div><div class="line">    ...</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h3 id="间距">间距</h3><p>不要超过两个连续的换行符（即不超过一行空行）。</p>
+<h3 id="注释">注释</h3><p>注释没有明确的代码风格。除非你重写或者更新注释内容，否则不要因为美观的因素去改动它。</p>
+<h2 id="Bash_主义">Bash 主义</h2><p>本风格指南用于 bash。这意味着，如果可以选择，使用 bash 的内建命令或关键字，总是好于外部命令或<code>sh(1)</code>的语法。</p>
+<h3 id="test(1)"><code>test(1)</code></h3><p>使用 <code>[[ ... ]]</code> 进行条件测试, 而不是 <code>[ .. ]</code> 或 <code>test ...</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="built_in">test</span> <span class="_">-d</span> /etc</div><div class="line"></div><div class="line"><span class="comment"># also wrong</span></div><div class="line">[ <span class="_">-d</span> /etc ]</div><div class="line"></div><div class="line"><span class="comment"># correct</span></div><div class="line">[[ <span class="_">-d</span> /etc ]]</div></pre></td></tr></table></figure>
+<p>查看 <a href="http://mywiki.wooledge.org/BashFAQ/031" target="_blank" rel="external">http://mywiki.wooledge.org/BashFAQ/031</a> 了解更多信息。</p>
+<h3 id="队列">队列</h3><p>使用 bash 的内部命令生成队列。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">n=10</div><div class="line"></div><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> $(seq 1 5); <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> $(seq 1 <span class="string">"<span class="variable">$n</span>"</span>); <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> &#123;1..5&#125;; <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="keyword">for</span> ((i = 0; i &lt; n; i++)); <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h3 id="命令替换">命令替换</h3><p>使用 <code>$(...)</code> 进行命令替换.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">foo=`date`  <span class="comment"># wrong</span></div><div class="line">foo=$(date) <span class="comment"># right</span></div></pre></td></tr></table></figure>
+<h3 id="数学_/_整数操作">数学 / 整数操作</h3><p>使用 <code>((...))</code> 和 <code>$((...))</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">a=5</div><div class="line">b=4</div><div class="line"></div><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="keyword">if</span> [[ <span class="variable">$a</span> <span class="_">-gt</span> <span class="variable">$b</span> ]]; <span class="keyword">then</span></div><div class="line">    ...</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="keyword">if</span> ((a &gt; b)); <span class="keyword">then</span></div><div class="line">    ...</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p><strong>不要</strong>使用 <code>let</code> 命令。</p>
+<h3 id="参数扩展">参数扩展</h3><p>使用<a href="http://mywiki.wooledge.org/BashGuide/Parameters#Parameter_Expansion" target="_blank" rel="external">参数扩展</a>要好于使用外部命令，例如 <code>echo</code>, <code>sed</code>, <code>awk</code> 等等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">'bahamas10'</span></div><div class="line"></div><div class="line"><span class="comment"># wrong</span></div><div class="line">prog=$(basename <span class="string">"<span class="variable">$0</span>"</span>)</div><div class="line">nonumbers=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$name</span>"</span> | sed <span class="_">-e</span> <span class="string">'s/[0-9]//g'</span>)</div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line">prog=<span class="variable">$&#123;0##*/&#125;</span></div><div class="line">nonumbers=<span class="variable">$&#123;name//[0-9]/&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="列出文件">列出文件</h3><p>不要使用 <a href="http://mywiki.wooledge.org/ParsingLs" target="_blank" rel="external">解析 ls(1)</a>，而使用 bash 内置函数来循环文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># very wrong, potentially unsafe</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> $(ls); <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> *; <span class="keyword">do</span></div><div class="line">    ...</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h3 id="查明可执行文件路径">查明可执行文件路径</h3><p>简单声明一点，你肯定不知道，如果你视图找出可执行程序的完整路径，你应该反思你的软件设计了。</p>
+<p>查看 <a href="http://mywiki.wooledge.org/BashFAQ/028" target="_blank" rel="external">http://mywiki.wooledge.org/BashFAQ/028</a> 获取更多信息。</p>
+<h3 id="数组和列表">数组和列表</h3><p>只要有可能，尽量使用 bash 数组来代替使用空格（或是换行符、制表符等）分隔的字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line">modules=<span class="string">'json httpserver jshint'</span></div><div class="line"><span class="keyword">for</span> module <span class="keyword">in</span> <span class="variable">$modules</span>; <span class="keyword">do</span></div><div class="line">    npm install -g <span class="string">"<span class="variable">$module</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line">modules=(json httpserver jshint)</div><div class="line"><span class="keyword">for</span> module <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;modules[@]&#125;</span>"</span>; <span class="keyword">do</span></div><div class="line">    npm install -g <span class="string">"<span class="variable">$module</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h3 id="内置读取">内置读取</h3><p>只要有可能，使用 bash 内置的 <code>read</code> 避免调用外部命令。</p>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fqdn=<span class="string">'computer1.daveeddy.com'</span></div><div class="line"></div><div class="line">IFS=. <span class="built_in">read</span> hostname domain tld &lt;&lt;&lt; <span class="string">"<span class="variable">$fqdn</span>"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$hostname</span> is in <span class="variable">$domain</span>.<span class="variable">$tld</span>"</span></div><div class="line"><span class="comment"># =&gt; "computer1 is in daveeddy.com"</span></div></pre></td></tr></table></figure>
+<h2 id="外部命令">外部命令</h2><h3 id="GNU_用户工具">GNU 用户工具</h3><p>全世界不会都运行在 GNU 或 Linux 上；当调用外部命令时，例如 <code>awk</code>, <code>sed</code>, <code>grep</code>，避免 GNU 特定的选项，使其尽量易于移植。</p>
+<p>当你编写 bash ，并且使用给你的所有强大工具和 bash 的内建命令时，你会发现甚至很少有机会需要调用外部命令。</p>
+<h3 id="UUOC"><a href="http://www.smallo.ruhr.de/award.html" target="_blank" rel="external">UUOC</a></h3><p>不要在你不需要的时候使用 <code>cat(1)</code>。如果程序支持从标准输入读取，使用 bash 重定向传递数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line">cat file | grep foo</div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line">grep foo &lt; file</div><div class="line"></div><div class="line"><span class="comment"># also right</span></div><div class="line">grep foo file</div></pre></td></tr></table></figure>
+<p>如果我们能够推断，当程序说它可以通过名称读取文件，并且这样做能获得更好的性能时，我们可以使用这个内置读取文件方法的命令行工具，而不是标准输入。    </p>
+<h2 id="风格">风格</h2><h3 id="引号">引号</h3><p>当字符串需要变量扩展或命令替换插值的时候使用双引号，其它时候使用单引号。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># right</span></div><div class="line">foo=<span class="string">'Hello World'</span></div><div class="line">bar=<span class="string">"You are <span class="variable">$USER</span>"</span></div><div class="line"></div><div class="line"><span class="comment"># wrong</span></div><div class="line">foo=<span class="string">"hello world"</span></div><div class="line"></div><div class="line"><span class="comment"># possibly wrong, depending on intent</span></div><div class="line">bar=<span class="string">'You are $USER'</span></div></pre></td></tr></table></figure>
+<p>所有将要经历分词的变量都 <em>必须</em> 被引用 (1)。如果分词不会发生，变量可以不加引号。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">foo=<span class="string">'hello world'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [[ -n <span class="variable">$foo</span> ]]; <span class="keyword">then</span>   <span class="comment"># 不需要引号 - [[ ... ]] 不会把变量分词</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$foo</span>"</span>          <span class="comment"># 需要印号</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">bar=<span class="variable">$foo</span>  <span class="comment"># 不需要引号 - 变量不会分词</span></div></pre></td></tr></table></figure>
+<ol>
+<li>唯一的例外是，如果代码或 bash 控制着这个变量的整个生命周期。这种情况 <a href="https://github.com/bahamas10/basher" target="_blank" rel="external">basher</a> 有类似的代码：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">printf_date_supported=<span class="literal">false</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">printf</span> <span class="string">'%()T'</span> &amp;&gt;/dev/null; <span class="keyword">then</span></div><div class="line">    printf_date_supported=<span class="literal">true</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="variable">$printf_date_supported</span>; <span class="keyword">then</span></div><div class="line">    ...</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，虽然在 <code>if</code> 声明中的 <code>$printf_date_supported</code> 将经历分词，但仍然不需要引号，因为这个变量的内容被明确地控制着，并不会从用户或其它命令里取值。</p>
+<p>同样的，例如 <code>$$</code>, <code>$?</code>, <code>$#</code>这些变量，也不需要引号，因为他们绝不会包含空格、制表符或换行符。</p>
+<p>然而，如果仍怀有疑问，可以查看<a href="http://mywiki.wooledge.org/Quotes" target="_blank" rel="external">引用所有的扩展</a>。</p>
+<h3 id="变量声明">变量声明</h3><p>避免大写的变量名，除非有一个很好的理由使用他们。不要使用 <code>let</code> 或 <code>readonly</code> 创建变量。<code>declare</code> 应该<em>只用于</em>关联数组。在函数中，应<em>始终</em>使用 <code>local</code> 声明变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="built_in">declare</span> -i foo=5</div><div class="line"><span class="built_in">let</span> foo++</div><div class="line"><span class="built_in">readonly</span> bar=<span class="string">'something'</span></div><div class="line">FOOBAR=baz</div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line">i=5</div><div class="line">((i++))</div><div class="line">bar=<span class="string">'something'</span></div><div class="line">foobar=baz</div></pre></td></tr></table></figure>
+<h3 id="shebang">shebang</h3><p>Bash 不总是位于 <code>/bin/bash</code>，因此尽量这样来写这一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div></pre></td></tr></table></figure>
+<h3 id="错误检查">错误检查</h3><p>举个例子，<code>cd</code> 不总是工作。请务必检查 <code>cd</code>（或类似的命令）任何可能的错误，如果错误存在就退出或将错误抛出。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wrong</span></div><div class="line"><span class="built_in">cd</span> /some/path <span class="comment"># 可能会失败</span></div><div class="line">rm file       <span class="comment"># 如果 cd 失败我在哪？我删除了什么？</span></div><div class="line"></div><div class="line"><span class="comment"># right</span></div><div class="line"><span class="built_in">cd</span> /some/path || <span class="built_in">exit</span></div><div class="line">rm file</div></pre></td></tr></table></figure>
+<h3 id="set_-e"><code>set -e</code></h3><p>不要设置 <code>errexit</code>。如同在 C 语言中，有时你想要得到一个错误，或是你期望什么执行失败，并不意味着你想要退出程序。</p>
+<p><a href="http://mywiki.wooledge.org/BashFAQ/105" target="_blank" rel="external">http://mywiki.wooledge.org/BashFAQ/105</a></p>
+<h3 id="eval"><code>eval</code></h3><p>永远不要使用.</p>
+<hr>
+<p>没有人会在代码库中接受下面这个链接列出的东西。</p>
+<p><a href="http://mywiki.wooledge.org/BashPitfalls" target="_blank" rel="external">http://mywiki.wooledge.org/BashPitfalls</a></p>
+<p>这里也例举了一些如何修复这些问题的例子。</p>
+<h2 id="License">License</h2><p>MIT License</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/22/MySQL-setting-and-optimzation.html" rel="next" title="MySQL配置和优化">
+                <i class="fa fa-chevron-left"></i> MySQL配置和优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/31/php-errors-setting.html" rel="prev" title="php报错配置">
+                php报错配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+          <p class="site-description motion-element" itemprop="description">Go</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#美学"><span class="nav-number">1.</span> <span class="nav-text">美学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用制表符还是空格"><span class="nav-number">1.1.</span> <span class="nav-text">使用制表符还是空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分号"><span class="nav-number">1.2.</span> <span class="nav-text">分号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码块声明"><span class="nav-number">1.4.</span> <span class="nav-text">代码块声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间距"><span class="nav-number">1.5.</span> <span class="nav-text">间距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.6.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash_主义"><span class="nav-number">2.</span> <span class="nav-text">Bash 主义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test(1)"><span class="nav-number">2.1.</span> <span class="nav-text">test(1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">2.2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令替换"><span class="nav-number">2.3.</span> <span class="nav-text">命令替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学_/_整数操作"><span class="nav-number">2.4.</span> <span class="nav-text">数学 / 整数操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数扩展"><span class="nav-number">2.5.</span> <span class="nav-text">参数扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出文件"><span class="nav-number">2.6.</span> <span class="nav-text">列出文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查明可执行文件路径"><span class="nav-number">2.7.</span> <span class="nav-text">查明可执行文件路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和列表"><span class="nav-number">2.8.</span> <span class="nav-text">数组和列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置读取"><span class="nav-number">2.9.</span> <span class="nav-text">内置读取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部命令"><span class="nav-number">3.</span> <span class="nav-text">外部命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GNU_用户工具"><span class="nav-number">3.1.</span> <span class="nav-text">GNU 用户工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UUOC"><span class="nav-number">3.2.</span> <span class="nav-text">UUOC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#风格"><span class="nav-number">4.</span> <span class="nav-text">风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引号"><span class="nav-number">4.1.</span> <span class="nav-text">引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量声明"><span class="nav-number">4.2.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shebang"><span class="nav-number">4.3.</span> <span class="nav-text">shebang</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误检查"><span class="nav-number">4.4.</span> <span class="nav-text">错误检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set_-e"><span class="nav-number">4.5.</span> <span class="nav-text">set -e</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval"><span class="nav-number">4.6.</span> <span class="nav-text">eval</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">5.</span> <span class="nav-text">License</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    
+  
+
+ 
+
+ 
+ 
+  <!-- UY BEGIN -->
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+  <!-- UY END -->
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

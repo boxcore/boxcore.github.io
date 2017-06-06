@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！
+前言：shell基础说明shell的使用shell脚本规范：12#!/bin/bash# do something
+一个shell脚本的执行方法：
+123sh scri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Shell脚本攻略">
+<meta property="og:url" content="http://boxcore.github.io/2017/04/16/linux/linux-shell.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！
+前言：shell基础说明shell的使用shell脚本规范：12#!/bin/bash# do something
+一个shell脚本的执行方法：
+123sh scri">
+<meta property="og:updated_time" content="2017-04-17T15:05:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Shell脚本攻略">
+<meta name="twitter:description" content="这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！
+前言：shell基础说明shell的使用shell脚本规范：12#!/bin/bash# do something
+一个shell脚本的执行方法：
+123sh scri">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 10739498,
+      author: 'boxcore'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2017/04/16/linux/linux-shell.html"/>
+
+  <title> Linux Shell脚本攻略 | BoxCore </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BoxCore</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Start</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux Shell脚本攻略
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-16T19:14:21+08:00" content="2017-04-16">
+              2017-04-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/16/linux/linux-shell.html" class="leancloud_visitors" data-flag-title="Linux Shell脚本攻略">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！</p>
+<h2 id="前言：shell基础说明">前言：shell基础说明</h2><h3 id="shell的使用">shell的使用</h3><p>shell脚本规范：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># do something</span></div></pre></td></tr></table></figure></p>
+<p>一个shell脚本的执行方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sh script.sh        <span class="comment"># 执行方式1</span></div><div class="line">chmod a+x script.sh <span class="comment"># 执行方式2</span></div><div class="line">./script.sh         <span class="comment"># 会读取首行的解释器, 执行</span></div></pre></td></tr></table></figure>
+<h2 id="一、shell系统基础">一、shell系统基础</h2><h3 id="1-1_环境变量和变量">1.1 环境变量和变量</h3><p>bash中，每个变量的值都是字符串，无论你给变量赋值时是否使用引号，值都会以字符串的形式存储</p>
+<h4 id="环境变量">环境变量</h4><p>查看所有与此终端进程相关的环境变量: <code>env</code></p>
+<p>查看某个进程的环境变量: <code>cat /proc/$PID/environ</code></p>
+<p>变量赋值:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var=value</div><div class="line">var=<span class="string">'the value'</span></div><div class="line">var=<span class="string">"the <span class="variable">$PARAM</span>"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$var</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div><div class="line"></div><div class="line">var = value非变量赋值是相等操作</div></pre></td></tr></table></figure>
+<h4 id="环境变量-1">环境变量</h4><p>未在当前进程中定义，而是从父进程中继承而来的变量, export 设置环境变量之后,从当前shell 执行的任何程序都会继承这个变量, 如：</p>
+<p><code>export PYTHONPATH=$PYTHONPATH:/home/ken/workspace</code></p>
+<p>我们linux中常用的环境变量如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">PATH 查找可执行文件路径, 通常定义在/etc/environment or /ect/profile or ~/.bashrc</div><div class="line">修改:        <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/new/path/</div><div class="line">HOME</div><div class="line">PWD</div><div class="line">USER</div><div class="line">UID</div><div class="line">SHELL</div></pre></td></tr></table></figure>
+<p>识别当前shell版本:</p>
+<ul>
+<li><code>echo $SHELL</code></li>
+<li><code>echo $0</code></li>
+</ul>
+<h3 id="1-2_命令状态">1.2 命令状态</h3><p>当命令成功完成, 返回0</p>
+<p>发生错误并退回, 返回非0</p>
+<p>可以从$?中获取 cmd; echo $?</p>
+<h3 id="文件描述符和重定向">文件描述符和重定向</h3><p>文件描述符: 与文件输入/输出相关联的整数, 用来跟踪已打开的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">0 stdin  标准输入</div><div class="line">1 stdout 标准输出</div><div class="line">2 stderr 标准错误</div></pre></td></tr></table></figure>
+<p>重定向到文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">清空文件写入新内容</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt; temp.txt</div><div class="line">追加</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt;&gt; temp.txt</div><div class="line"></div><div class="line">&gt;等价于1&gt;</div><div class="line">&gt;&gt;等价于 1&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>输出分离或合并:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">分离</div><div class="line">cmd 2&gt;stderr.txt  1&gt;stdout.txt</div><div class="line"></div><div class="line">合并</div><div class="line">cmd &gt; output.txt 2&gt;&amp;1</div><div class="line">or</div><div class="line">cmd &amp;&gt; output.txt</div></pre></td></tr></table></figure></p>
+<p>扔到垃圾桶:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/dev/null 特殊设备文件, 接收到的任何数据都会被丢弃(位桶/黑洞)</div><div class="line"></div><div class="line">只有标准错误</div><div class="line">cmd 2 &gt; /dev/null</div><div class="line"></div><div class="line">标准输出和标准错误</div><div class="line">cmd &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p>
+<p>同时输出到终端和文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cmd | tee file1</div><div class="line"></div><div class="line">tee默认覆盖，可以<span class="_">-a</span>选项追加</div><div class="line">cmd | tee <span class="_">-a</span> file1</div></pre></td></tr></table></figure></p>
+<p>将stdin作为命令参数: <code>cmd1 | cmd2 | cmd3 -</code><br>将文件重定向到命令: <code>cmd &lt; file</code></p>
+<p>自定义文件描述符:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">使用文件描述符3打开并读取文件</div><div class="line"><span class="built_in">exec</span> 3&lt;input.txt</div><div class="line">cat &lt;&amp;3</div><div class="line"></div><div class="line">使用文件描述符4进行写入</div><div class="line"><span class="built_in">exec</span> 4&gt;output.txt</div><div class="line"><span class="built_in">echo</span> newline &gt;&amp;4</div></pre></td></tr></table></figure></p>
+<h2 id="二、字符串处理">二、字符串处理</h2><h3 id="2-1_sed简明教程">2.1 sed简明教程</h3><h3 id="2-2_awk简明教程">2.2 awk简明教程</h3><h3 id="2-3_输出和打印（echo_&amp;_printf）">2.3 输出和打印（echo &amp; printf）</h3><h4 id="echo">echo</h4><p>基于标准输出打印一段文本</p>
+<ul>
+<li>忽略结尾换行符: <code>echo -n &#39;test\n&#39;</code></li>
+<li>对字符串进行转义: <code>echo -e &#39;1\t2\t3&#39;</code></li>
+<li>打印彩色输出:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">文字颜色码</div><div class="line">    重置0</div><div class="line">    黑色30</div><div class="line">    红色31</div><div class="line">    绿色32</div><div class="line">    黄色33</div><div class="line">    蓝色34</div><div class="line">    洋红35</div><div class="line">    青色36</div><div class="line">    白色37</div><div class="line"></div><div class="line">echo -e &quot;\e[1;31m This is red test \e[0m&quot;</div><div class="line"></div><div class="line">背景颜色码</div><div class="line">    重置0</div><div class="line">    黑色40</div><div class="line">    红色41</div><div class="line">    绿色42</div><div class="line">    黄色43</div><div class="line">    蓝色44</div><div class="line">    洋红45</div><div class="line">    青色46</div><div class="line">    白色47</div><div class="line"></div><div class="line">echo -e &quot;\e[1;42m Green Background \e[0m&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="printf">printf</h4><p>可以格式化字符串, 使用参数同c中printf一样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">"%-5s %-10s %-4.2f\n"</span> 3 Jeff 77.564</div><div class="line">$ 3    Jeff      77.56</div></pre></td></tr></table></figure>
+<h2 id="三、_进程管理">三、 进程管理</h2><h3 id="3-1_pgrep">3.1 pgrep</h3><p>获取某个进程名对应进程id 使用命令<code>pgrep</code>, 例如:<code>pgrep php</code></p>
+<h2 id="四、_运算">四、 运算</h2><h3 id="4-1_shell数学运算">4.1 shell数学运算</h3><h4 id="let">let</h4><h4 id="expr">expr</h4><ul>
+<li><code>echo \</code>expr 1 + 7``</li>
+<li><code>result=$(expr $no1 + 5)</code></li>
+</ul>
+<h4 id="其他运算">其他运算</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">result=$[ no1 + no2 ]</div><div class="line">result=$[ <span class="variable">$no</span> + 5 ]</div><div class="line"></div><div class="line">result=$(( no1 + 5 ))</div></pre></td></tr></table></figure>
+<h4 id="浮点数:_bc">浮点数: bc</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">设定精度</div><div class="line"><span class="built_in">echo</span> <span class="string">"scale=2;3/8"</span> | bc</div><div class="line">进制转换</div><div class="line"><span class="built_in">echo</span> <span class="string">"obase=2;100"</span> | bc</div><div class="line">平方</div><div class="line"><span class="built_in">echo</span> <span class="string">"10^10"</span> | bc</div><div class="line">平方根</div><div class="line"><span class="built_in">echo</span> <span class="string">"sqrt(100)"</span> | bc</div></pre></td></tr></table></figure>
+<h2 id="五、数组：数组和关联数组">五、数组：数组和关联数组</h2><ul>
+<li>普通数组，整数作为数组索引, 借助索引将多个独立的数据存储为一个集合(list)</li>
+<li>关联数组，可以使用字符串作为索引(map)</li>
+</ul>
+<p>注意，在mac中的shell不能使用索引该笔记的<code>关联数组</code>。</p>
+<h3 id="5-1_普通数组">5.1 普通数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">array_var=(1 2 3 4 5)  <span class="comment"># 定义数组 方式1</span></div><div class="line"></div><div class="line">array_var[0]=<span class="string">"test1"</span> <span class="comment"># 定义数组 方式2</span></div><div class="line">array_var[3]=<span class="string">"test3"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[0]&#125;</span> <span class="comment"># 读取数组</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[*]&#125;</span> <span class="comment"># 以清单形式打印</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[@]&#125;</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#array_var[*]&#125;</span> <span class="comment"># 打印数组长度</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!array_var[*]&#125;</span> <span class="comment"># 获取索引列表</span></div></pre></td></tr></table></figure>
+<h3 id="5-2_关联数组">5.2 关联数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">declare</span> -A ass_array <span class="comment"># 先定义一个多维数组</span></div><div class="line">ass_array=([index1]=value1 [index2]=value2) <span class="comment"># 赋值：内嵌索引-值</span></div><div class="line">ass_array[index3]=value3 <span class="comment"># 独立赋值</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ass_array[index1]&#125;</span> <span class="comment"># 打印对应值</span></div></pre></td></tr></table></figure>
+<h2 id="工具参考">工具参考</h2><h3 id="crontab">crontab</h3><p>crontab文件的含义：<br>用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：</p>
+<p><code>minute   hour   day   month   week   command</code></p>
+<p>其中：</p>
+<ul>
+<li>minute： 表示分钟，可以是从0到59之间的任何整数。</li>
+<li>hour：表示小时，可以是从0到23之间的任何整数。</li>
+<li>day：表示日期，可以是从1到31之间的任何整数。</li>
+<li>month：表示月份，可以是从1到12之间的任何整数。</li>
+<li>week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</li>
+<li>command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。</li>
+</ul>
+<p>在以上各个字段中，还可以使用以下特殊字符：</p>
+<ul>
+<li>星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</li>
+<li>逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”</li>
+<li>中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”</li>
+<li>正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</li>
+</ul>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/base/index.html" target="_blank" rel="external">Linux基础</a></li>
+<li><a href="http://www.wklken.me/posts/2013/07/04/note-of-linux-shell-scripting-cookbook.html" target="_blank" rel="external">LINUX SHELL脚本攻略笔记[速查]</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/08/php/php-memory-get-usage.html" rel="next" title="PHP内存优化">
+                <i class="fa fa-chevron-left"></i> PHP内存优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/17/linux/nginx-note.html" rel="prev" title="Nginx笔记">
+                Nginx笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+          <p class="site-description motion-element" itemprop="description">Go</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言：shell基础说明"><span class="nav-number">1.</span> <span class="nav-text">前言：shell基础说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell的使用"><span class="nav-number">1.1.</span> <span class="nav-text">shell的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、shell系统基础"><span class="nav-number">2.</span> <span class="nav-text">一、shell系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_环境变量和变量"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 环境变量和变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量"><span class="nav-number">2.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2_命令状态"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 命令状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件描述符和重定向"><span class="nav-number">2.3.</span> <span class="nav-text">文件描述符和重定向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、字符串处理"><span class="nav-number">3.</span> <span class="nav-text">二、字符串处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_sed简明教程"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 sed简明教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_awk简明教程"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 awk简明教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3_输出和打印（echo_&_printf）"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 输出和打印（echo & printf）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#echo"><span class="nav-number">3.3.1.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#printf"><span class="nav-number">3.3.2.</span> <span class="nav-text">printf</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、_进程管理"><span class="nav-number">4.</span> <span class="nav-text">三、 进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_pgrep"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 pgrep</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、_运算"><span class="nav-number">5.</span> <span class="nav-text">四、 运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1_shell数学运算"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 shell数学运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number">5.1.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expr"><span class="nav-number">5.1.2.</span> <span class="nav-text">expr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他运算"><span class="nav-number">5.1.3.</span> <span class="nav-text">其他运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点数:_bc"><span class="nav-number">5.1.4.</span> <span class="nav-text">浮点数: bc</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数组：数组和关联数组"><span class="nav-number">6.</span> <span class="nav-text">五、数组：数组和关联数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1_普通数组"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 普通数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2_关联数组"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 关联数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具参考"><span class="nav-number">7.</span> <span class="nav-text">工具参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#crontab"><span class="nav-number">7.1.</span> <span class="nav-text">crontab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    
+  
+
+ 
+
+ 
+ 
+  <!-- UY BEGIN -->
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+  <!-- UY END -->
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

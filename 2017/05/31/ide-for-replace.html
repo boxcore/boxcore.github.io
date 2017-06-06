@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="sublime批量替换
+批量替换空行：^\n =&amp;gt; (留空)
+删除全部空格将代码压缩：(?ms)\s* =&amp;gt; (留空)-
+
+当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
+下面是我自己的一些配置：
+file: Packages/User/reg_replace_rules.sublime-settings :
+1234567891011121314151617181">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑器宏和批量替换（sublime & notepad++）">
+<meta property="og:url" content="http://boxcore.github.io/2017/05/31/ide-for-replace.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="sublime批量替换
+批量替换空行：^\n =&amp;gt; (留空)
+删除全部空格将代码压缩：(?ms)\s* =&amp;gt; (留空)-
+
+当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
+下面是我自己的一些配置：
+file: Packages/User/reg_replace_rules.sublime-settings :
+1234567891011121314151617181">
+<meta property="og:updated_time" content="2017-05-31T12:30:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑器宏和批量替换（sublime & notepad++）">
+<meta name="twitter:description" content="sublime批量替换
+批量替换空行：^\n =&amp;gt; (留空)
+删除全部空格将代码压缩：(?ms)\s* =&amp;gt; (留空)-
+
+当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
+下面是我自己的一些配置：
+file: Packages/User/reg_replace_rules.sublime-settings :
+1234567891011121314151617181">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 10739498,
+      author: 'boxcore'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2017/05/31/ide-for-replace.html"/>
+
+  <title> 编辑器宏和批量替换（sublime & notepad++） | BoxCore </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BoxCore</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Start</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                编辑器宏和批量替换（sublime & notepad++）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-31T10:41:21+08:00" content="2017-05-31">
+              2017-05-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/31/ide-for-replace.html" class="leancloud_visitors" data-flag-title="编辑器宏和批量替换（sublime & notepad++）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="sublime批量替换">sublime批量替换</h2><ul>
+<li>批量替换空行：<code>^\n</code> =&gt; <code>(留空)</code></li>
+<li>删除全部空格将代码压缩：<code>(?ms)\s*</code> =&gt; <code>(留空)</code><br>-</li>
+</ul>
+<p>当然，如果想把这些绑定到快捷键中，使用插件<a href="https://github.com/facelessuser/RegReplace/tree/st3-3.3.0" target="_blank" rel="external">RegReplace</a>吧！</p>
+<p>下面是我自己的一些配置：</p>
+<p>file: <code>Packages/User/reg_replace_rules.sublime-settings</code> :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"format"</span>: <span class="string">"3.0"</span>,</div><div class="line">    <span class="attr">"replacements"</span>: &#123;</div><div class="line">        <span class="attr">"php_ini_comma_replace"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^;.+!?\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"add_slash_for_str"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^(.+)$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">"\"\\1\""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        <span class="attr">"wrap_to_comma"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">", "</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_comment"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"(\\s+|^|;)(//.*)$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_space_for_gzip"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"(?ms)\\s*"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_space_and_tab_at_end"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"[ \t]*$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_empty_line"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用户快捷键绑定:<br>Packages/User/Default (OSX).sublime-keymap:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">	// ....</div><div class="line">   // php注释清除</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+p"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"php_ini_comma_replace"</span>, <span class="string">"remove_empty_line"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // js css 代码压缩</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+z"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_comment"</span>, <span class="string">"remove_space_for_gzip"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // 清理末行空格 和 tab</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+d"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_space_and_tab_at_end"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // 逗号分隔每个字符</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+m"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_empty_line"</span>, <span class="string">"add_slash_for_str"</span>, <span class="string">"wrap_to_comma"</span>]&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>补充，正则中如果要排除某个字符串要这么写：<code>^(?!912).*$</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/31/php-errors-setting.html" rel="next" title="php报错配置">
+                <i class="fa fa-chevron-left"></i> php报错配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/05/JavaScirpt-Note-the-basic-javascript.html" rel="prev" title="JavaScirpt Note: JavaScript基础篇">
+                JavaScirpt Note: JavaScript基础篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+          <p class="site-description motion-element" itemprop="description">Go</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sublime批量替换"><span class="nav-number">1.</span> <span class="nav-text">sublime批量替换</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    
+  
+
+ 
+
+ 
+ 
+  <!-- UY BEGIN -->
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+  <!-- UY END -->
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

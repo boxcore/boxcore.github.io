@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、redis说明redis基础二、redis类型redis的数据类型有strings, hashes, lists, sets 和sorted sets 五种。
+2.1 string类型及操作
+set KEY VALUE
+setnx KEY VALUE
+setex KEY TIME(s) VALUE
+setrange KEY POI STRING: 设置指定 key 的 value 值的子字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis学习笔记">
+<meta property="og:url" content="http://boxcore.github.io/2017/01/23/redis.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="一、redis说明redis基础二、redis类型redis的数据类型有strings, hashes, lists, sets 和sorted sets 五种。
+2.1 string类型及操作
+set KEY VALUE
+setnx KEY VALUE
+setex KEY TIME(s) VALUE
+setrange KEY POI STRING: 设置指定 key 的 value 值的子字符串">
+<meta property="og:updated_time" content="2017-01-24T06:21:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis学习笔记">
+<meta name="twitter:description" content="一、redis说明redis基础二、redis类型redis的数据类型有strings, hashes, lists, sets 和sorted sets 五种。
+2.1 string类型及操作
+set KEY VALUE
+setnx KEY VALUE
+setex KEY TIME(s) VALUE
+setrange KEY POI STRING: 设置指定 key 的 value 值的子字符串">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 10739498,
+      author: 'boxcore'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2017/01/23/redis.html"/>
+
+  <title> Redis学习笔记 | BoxCore </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BoxCore</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Start</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Redis学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-23T22:26:36+08:00" content="2017-01-23">
+              2017-01-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/23/redis.html" class="leancloud_visitors" data-flag-title="Redis学习笔记">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、redis说明">一、redis说明</h2><h3 id="redis基础">redis基础</h3><h2 id="二、redis类型">二、redis类型</h2><p>redis的数据类型有strings, hashes, lists, sets 和sorted sets 五种。</p>
+<h3 id="2-1_string类型及操作">2.1 string类型及操作</h3><ul>
+<li><code>set</code> KEY VALUE</li>
+<li><code>setnx</code> KEY VALUE</li>
+<li><code>setex</code> KEY TIME(s) VALUE</li>
+<li><code>setrange</code> KEY POI STRING: 设置指定 key 的 value 值的子字符串</li>
+<li><code>mset</code> KEY1 VALUE1 KEY2 VALUE2 …: 一次设置多个 key 的值,成功返回 ok 表示所有的值都设置了,失败返回 0 表示没有任何值 被设置。</li>
+<li><code>msetnx</code> KEY1 VALUE1 KEY2 VALUE2 …: 一次设置多个 key 的值,成功返回 ok 表示所有的值都设置了,失败返回 0 表示没有任何值 被设置,但是不会覆盖已经存在的 key。</li>
+<li><code>get</code> KEY: 获取key对应的string值,如果key不存在返回nil。</li>
+<li><code>getset</code> KEY: 设置key的值,并返回key的旧值. 如果key不存在,那么将返回nil</li>
+<li><code>getrange</code> KEY POT_START POT_END: 获取指定 key 的 value 值的子字符串。</li>
+<li><code>mget</code> KEY1 KEY2 …: 一次获取多个 key 的值,如果对应 key 不存在,则对应返回 nil。</li>
+<li><code>incr</code> KEY: 对 key 的值做加加操作,并返回新的值。注意 incr 一个不是 int 的 value 会返回错误,incr 一 个不存在的 key,则设置 key 为 1</li>
+<li><code>incrby</code> KEY NUM: 同 incr 类似,加指定值 ,key 不存在时候会设置 key,并认为原来的 value 是 0</li>
+<li><code>decr</code>: 对 key 的值做的是减减操作,decr 一个不存在 key,则设置 key 为-1</li>
+<li><code>decrby</code>: 同 decr,减指定值。</li>
+<li><code>append</code>: 给指定 key 的字符串值追加 value,返回新字符串值的长度。</li>
+<li><code>strlen</code> : 取指定 key 的 value 值的长度。</li>
+</ul>
+<h3 id="2-2_hashes类型及操作">2.2 hashes类型及操作</h3><p>Redis hash是一个string类型的field和value的映射表.它的添加、删除操作都是O(1()平均)。 hash 特别适合用于存储对象。相较于将对象的每个字段存成单个 string 类型。将一个对象存 储在 hash 类型中会占用更少的内存,并且可以更方便的存取整个对象。省内存的原因是新 建一个 hash 对象时开始是用 zipmap(又称为 small hash)来存储的。这个 zipmap 其实并不 是 hash table,但是 zipmap 相比正常的 hash 实现可以节省不少 hash 本身需要的一些元数据 存储开销。尽管 zipmap 的添加,删除,查找都是 O(n),但是由于一般对象的 field 数量都不 太多。所以使用 zipmap 也是很快的,也就是说添加删除平均还是 O(1)。如果 field 或者 value 的大小超出一定限制后,Redis 会在内部自动将 zipmap 替换成正常的 hash 实现. 这个限制可 以在配置文件中指定。</p>
+<blockquote>
+<p>hash-max-zipmap-entries 64 #配置字段最多 64 个</p>
+<p>hash-max-zipmap-value 512  #配置 value 最大为 512 字节</p>
+</blockquote>
+<ul>
+<li><code>hset</code> KEY FIELD VALUE : 设置 hash field 为指定值,如果 key 不存在,则先创建。</li>
+<li><code>hsetnx</code> KEY FIELD VALUE: 设置 hash field 为指定值,如果 key 不存在,则先创建。如果 field 已经存在,返回 0,nx 是 not exist 的意思。</li>
+<li><code>hmset</code> KEY FIELD1 VALUE1 FIELD2 VALUE2 …: 同时设置 hash 的多个 field.</li>
+<li><code>hget</code> KEY FIELD : 获取指定的 hash field。</li>
+<li><code>hmget</code> KEY FIELD1 FIELD2 … : 获取全部指定的 hash filed。</li>
+<li><code>hincr</code> KEY FIELD NUM: 指定的 hash filed 加上给定值。</li>
+<li><code>hexists</code> KEY FIELD: 测试指定 field 是否存在。</li>
+<li><code>hlen</code> KEY: 返回指定 hash 的 field 数量。</li>
+<li><code>hdel</code> KEY FIELD1 FIELD2 …: 删除指定 hash 的 field, 并返回删除field的数量。</li>
+<li><code>hkeys</code> KEY： 返回 hash 的所有 field。</li>
+<li><code>hvals</code> KEY: 返回 hash 的所有 value。</li>
+<li><code>hgetall</code> KEY: 获取某个 hash 中全部的 filed 及 value。</li>
+</ul>
+<h3 id="2-3_lists_类型及操作">2.3 lists 类型及操作</h3><p>list 是一个<code>链表结构</code>,主要功能是 <code>push</code>、<code>pop</code>、获取一个范围的所有值等等,操作中 key 理 解为链表的名字。</p>
+<p>Redis 的 list 类型其实就是一个<strong>每个子元素都是 string 类型的双向链表</strong>。链表的最大长度是(2 的 32 次方)。我们可以通过 push,pop 操作从链表的头部或者尾部添加删除元素。<strong>这使得 list 既可以用作栈,也可以用作队列</strong>。</p>
+<p>有意思的是 list 的 pop 操作还有阻塞版本的,当我们[lr]pop 一个 list 对象时,如果 list 是空, 或者不存在,会立即返回 nil。但是阻塞版本的 b[lr]pop 可以则可以阻塞,当然可以加超时时 间,超时后也会返回 nil。为什么要阻塞版本的 pop 呢,主要是为了<strong>避免轮询</strong>。举个简单的 例子如果我们用 list 来实现一个工作队列。执行任务的 thread 可以调用阻塞版本的 pop 去获 取任务这样就可以避免轮询去检查是否有任务存在。当任务来时候工作线程可以立即返回, 也可以避免轮询带来的延迟。</p>
+<ul>
+<li>lpush KEY VALUE : 在 key 对应 list 的头部添加字符串元素</li>
+<li>rpush KEY VALUE : 在 key 对应 list 的尾部添加字符串元素</li>
+<li>linsert KEY before VALUE ADD_VALUE: 在 key 对应 list 的特定位置之前或之后添加字符串元素</li>
+<li>lset KEY MAP VALUE : 设置 list 中指定下标的元素值(下标从 0 开始)</li>
+<li>lrem KEY COUNT VALUE ： 从 key 对应 list 中删除 count 个和 value 相同的元素。count&gt;0 时,按从头到尾的顺序删除,count&lt;0 时,按从尾到头的顺序删除,count=0 时,删除全部.</li>
+<li><p>ltrim KEY COUNT_START COUNT_END : 保留指定 key 的值范围内的数据</p>
+</li>
+<li><p>lpop KEY : 从 list 的头部删除元素,并返回删除元素</p>
+</li>
+<li>rpop KEY : 从 list 的尾部删除元素,并返回删除元素</li>
+<li>rpoplpush KEY1 KEY2: 从第一个 list 的尾部移除元素并添加到第二个 list 的头部,最后返回被移除的元素值,整个操 作是原子的.如果第一个 list 是空或者不存在返回 nil</li>
+<li>lindex KEY MAP: 返回名称为 key 的 list 中 index 位置的元素</li>
+<li>llen KEY : 返回 key 对应 list 的长度</li>
+</ul>
+<h3 id="2-4_sets_类型及操作">2.4 sets 类型及操作</h3><p>set 是集合,和我们数学中的集合概念相似,对集合的操作有添加删除元素,有对多个集合<br>求交并差等操作,操作中 key 理解为集合的名字。</p>
+<p>Redis 的 set 是 string 类型的无序集合。set 元素最大可以包含(2 的 32 次方)个元素。</p>
+<p>set 的是通过 hash table 实现的,所以添加、删除和查找的复杂度都是 O(1)。hash table 会随 着添加或者删除自动的调整大小。需要注意的是调整 hash table 大小时候需要同步(获取写 锁)会阻塞其他读写操作,可能不久后就会改用跳表(skip list)来实现,跳表已经在 sorted set 中使用了。关于 set 集合类型除了基本的添加删除操作,其他有用的操作还包含集合的 取并集(union),交集(intersection),差集(difference)。通过这些操作可以很容易的实现 sns 中的好友推荐和 blog 的 tag 功能。</p>
+<ul>
+<li>smembers KEY : 查看集合元素</li>
+<li>sadd KEY VALUE :<br>向名称为 key 的 set 中添加元素</li>
+<li>srem KEY VALUE : 删除名称为 key 的 set 中的元素 member</li>
+<li>spop KEY : 随机返回并删除名称为 key 的 set 中一个元素</li>
+<li>sdiff KEY1 KEY2 : 返回所有给定 key 与第一个 key 的差集</li>
+<li>sdiffstore KEY KEY1 KEY2 … : 返回所有给定 key 与第一个 key 的差集,并将结果存为另一个 key。注意是通过key1比对后面keyx得出的差值保存到KEY</li>
+<li>sinter KEY1 KEY2 : 返回所有给定 key 的交集</li>
+<li>sinterstore KEY KEY1 KEY2 … : 返回所有给定 key 的交集,并将结果存为另一个 key</li>
+<li>sunion KEY1 KEY2 : 返回所有给定 key 的并集</li>
+<li>sunionstore KEY KEY1 KEY2… : 返回所有给定 key 的并集,并将结果存为另一个 key</li>
+<li>smove KEY1 KEY2 VALUE : 从第一个 key 对应的 set 中移除 member 并添加到第二个对应 set 中</li>
+<li>scard KEY : 返回名称为 key 的 set 的元素个数</li>
+<li>sismember KEY VALUE : 测试 member 是否是名称为 key 的 set 的元素</li>
+<li>srandmember KEY : 随机返回名称为 key 的 set 的一个元素,但是不删除元素</li>
+</ul>
+<h3 id="2-5_sorted_sets_类型及操作">2.5 sorted sets 类型及操作</h3><p>sorted set 是 set 的一个升级版本,它在 set 的基础上增加了一个顺序属性,这一属性在添加 修改元素的时候可以指定,每次指定后,zset 会自动重新按新的值调整顺序。可以理解为有 两列的 mysql 表,一列存 value,一列存顺序。操作中 key 理解为 zset 的名字。</p>
+<p>和 set 一样 sorted set 也是 string 类型元素的集合,不同的是每个元素都会关联一个 double 类型的 score。sorted set 的实现是 skip list 和 hash table 的混合体。</p>
+<p>当元素被添加到集合中时,一个元素到 score 的映射被添加到 hash table 中,所以给定一个 元素获取 score 的开销是 O(1),另一个 score 到元素的映射被添加到 skip list,并按照 score 排 序,所以就可以有序的获取集合中的元素。添加,删除操作开销都是 O(log(N))和 skip list 的 开销一致,redis 的 skip list 实现用的是双向链表,这样就可以逆序从尾部取元素。sorted set 最 经常的使用方式应该是作为索引来使用.我们可以把要排序的字段作为 score 存储,对象的 id 当元素存储。下面是 sorted set 相关命令<br>。</p>
+<ul>
+<li>zadd KEY SCORE VALUE : 向名称为 key 的 zset 中添加元素 member,score 用于排序。如果该元素已经存在,则根据 score 更新该元素的顺序</li>
+<li>zrange KEY SCORE_START SCORE_END [withscores] : 显示zset中指定的元素，当带上<code>withscores</code>参数时传排序值</li>
+<li>zrem KEY VALUE : 删除名称为 key 的 zset 中的元素 member</li>
+<li>zincrby KEY SCORE VALUE : 如果在名称为 key 的 zset 中已经存在元素 member,则该元素的 score 增加 increment;否则 向集合中添加该元素,其 score 的值为 increment</li>
+<li>zrank KEY VALUE : 返回名称为 key 的 zset 中 member 元素的排名(按 score 从小到大排序)即下标。</li>
+<li>zrevrank KEY VALUE : 返回名称为 key 的 zset 中 member 元素的排名(按 score 从大到小排序)即下标</li>
+<li>zrevrange KEY START END [withscores] : 返回名称为 key 的 zset(按 score 从大到小排序)中的 index 从 start 到 end 的所有元素</li>
+<li>? zrangebyscore KEY START END [withscores] : 返回集合中 score 在给定区间的元素 ?</li>
+<li>zcount KEY START END : 返回集合中 score 在给定区间的数量。测试不能为负数。</li>
+<li>zcard KEY : 返回集合中元素个数</li>
+<li>zscore KEY VALUE : 返回给定元素对应的 score</li>
+<li>zremrangebyrank KEY START END : 删除集合中排名在给定区间的元素</li>
+<li>zremrangebyscore KEY START END ： 删除集合中 score 在给定区间的元素</li>
+</ul>
+<h2 id="三、_redis常用命令">三、 redis常用命令</h2><h3 id="3-1_键值相关命令">3.1 键值相关命令</h3><ul>
+<li>keys : 返回满足给定 pattern 的所有 key</li>
+<li>exists KEY : 确认一个 key 是否存在</li>
+<li>del KEY : 删除一个 key </li>
+<li>expire KEY TIME: 设置KEY的过期时间</li>
+<li>move : 将当前数据库中的 key 转移到其它数据库中 ?</li>
+<li>persist KEY : 移除给定 key 的过期时间</li>
+<li>randomkey : 随机返回 key 空间的一个 key</li>
+<li>rename KEY NEW_KEY : 重命名 key</li>
+<li>type KEY : 返回值的类型</li>
+</ul>
+<h3 id="3-2_服务器相关命令">3.2 服务器相关命令</h3><ul>
+<li>ping : 测试连接是否存活</li>
+<li>echo VALUE : 在命令行打印一些内容</li>
+<li>select ID : 选择数据库。Redis 数据库编号从 0~15,我们可以选择任意一个数据库来进行数据的存取。</li>
+<li>quit : 退出连接。</li>
+<li>dbsize : 返回当前数据库中 key 的数目。</li>
+<li>info : 获取服务器的信息和统计。</li>
+<li>monitor : 实时转储收到的请求。</li>
+<li>config get VALUE : 获取服务器配置信息, 如 config get dir 获取redis的目录。</li>
+<li>flushdb : 删除当前选择数据库中的所有 key。</li>
+<li>flushadd : 删除所有数据库中的所有 key。</li>
+</ul>
+<h2 id="四、Redis高级使用特性">四、Redis高级使用特性</h2><h2 id="五、PHP中使用redis类">五、PHP中使用redis类</h2><p>php安装redis扩展后即可使用，针对不同的php版本编译的扩展也是不一样的。</p>
+<h3 id="5-1_安装redis_php_扩展">5.1 安装redis php 扩展</h3><h3 id="5-2_php常用redis方法">5.2 php常用redis方法</h3><p>参考：<a href="https://github.com/ukko/phpredis-phpdoc" target="_blank" rel="external">https://github.com/ukko/phpredis-phpdoc</a></p>
+<h2 id="六、一些Redis相关工具">六、一些Redis相关工具</h2><ul>
+<li><a href="https://github.com/erikdubbelboer/phpRedisAdmin" target="_blank" rel="external">phpRedisAdmin</a> : 跟phpmyadmin类似的redis php管理页面</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/mysql-binlog-export.html" rel="next" title="MySQL binlog 日志内容导出规则处理">
+                <i class="fa fa-chevron-left"></i> MySQL binlog 日志内容导出规则处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/24/restful-api-design.html" rel="prev" title="PHP RESTful API接口设计之道">
+                PHP RESTful API接口设计之道 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+          <p class="site-description motion-element" itemprop="description">Go</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、redis说明"><span class="nav-number">1.</span> <span class="nav-text">一、redis说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis基础"><span class="nav-number">1.1.</span> <span class="nav-text">redis基础</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、redis类型"><span class="nav-number">2.</span> <span class="nav-text">二、redis类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_string类型及操作"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 string类型及操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_hashes类型及操作"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 hashes类型及操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3_lists_类型及操作"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 lists 类型及操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4_sets_类型及操作"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 sets 类型及操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5_sorted_sets_类型及操作"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 sorted sets 类型及操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、_redis常用命令"><span class="nav-number">3.</span> <span class="nav-text">三、 redis常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_键值相关命令"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 键值相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2_服务器相关命令"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 服务器相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Redis高级使用特性"><span class="nav-number">4.</span> <span class="nav-text">四、Redis高级使用特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、PHP中使用redis类"><span class="nav-number">5.</span> <span class="nav-text">五、PHP中使用redis类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1_安装redis_php_扩展"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 安装redis php 扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2_php常用redis方法"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 php常用redis方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、一些Redis相关工具"><span class="nav-number">6.</span> <span class="nav-text">六、一些Redis相关工具</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    
+  
+
+ 
+
+ 
+ 
+  <!-- UY BEGIN -->
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+  <!-- UY END -->
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
