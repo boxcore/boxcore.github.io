@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="php报错的配置php.ini默认开发环境设置如：
 1234567891011error_reporting = E_ALL&amp;amp;~E_NOTICEdisplay_errors = Ondisplay_startup_errors = Onlog_errors = Onlog_errors_max_len = 1024ignore_repeated_errors = Offignore_rep">
-<meta property="og:updated_time" content="2017-05-31T02:50:45.000Z">
+<meta property="og:updated_time" content="2017-06-06T03:01:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php报错配置">
 <meta name="twitter:description" content="php报错的配置php.ini默认开发环境设置如：
@@ -298,6 +298,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">error_reporting = E_ALL&amp;~E_NOTICE</div><div class="line">display_errors = On</div><div class="line">display_startup_errors = On</div><div class="line">log_errors = On</div><div class="line">log_errors_max_len = <span class="number">1024</span></div><div class="line">ignore_repeated_errors = Off</div><div class="line">ignore_repeated_source = Off</div><div class="line">report_memleaks = On</div><div class="line">track_errors = On</div><div class="line">html_errors = On</div><div class="line">error_log = /usr/<span class="keyword">local</span>/var/log/php-<span class="built_in">error</span><span class="number">-56.</span>log</div></pre></td></tr></table></figure>
 <p>注意配置<code>display_errors</code>和<br><code>display_startup_errors</code>,如果是在线上环境切记要设置为<code>Off</code>。这样就可以不显示报错信息，但会记录在错误的日志文件中。</p>
 <p>如果配置了error_log = syslog, 则是指定产生的错误报告写入操作系统的日志里。</p>
+<a id="more"></a>
 <h2 id="框架报错日志调试">框架报错日志调试</h2><h3 id="thinkphp">thinkphp</h3><p>设置默认报错地址：</p>
 <p>Thinkphp\Conf\debug.php里面加入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'LOG_PATH'</span>              =&gt; realpath(LOG_PATH).<span class="string">'/'</span>,</div></pre></td></tr></table></figure></p>
 <p>这个配置在tp中是默认开启的，默认生成在 run_time/Logs/xxx下面</p>
@@ -457,6 +458,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/My-Booklist/" title="我的书单" target="_blank">我的书单</a>
                 </li>
               
             </ul>

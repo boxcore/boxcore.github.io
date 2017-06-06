@@ -90,8 +90,7 @@
 
 当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
 下面是我自己的一些配置：
-file: Packages/User/reg_replace_rules.sublime-settings :
-1234567891011121314151617181">
+file: Packages/User/reg_replace_rules.sublime-settings :">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编辑器宏和批量替换（sublime & notepad++）">
 <meta property="og:url" content="http://boxcore.github.io/2017/05/31/ide-for-replace.html">
@@ -102,9 +101,8 @@ file: Packages/User/reg_replace_rules.sublime-settings :
 
 当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
 下面是我自己的一些配置：
-file: Packages/User/reg_replace_rules.sublime-settings :
-1234567891011121314151617181">
-<meta property="og:updated_time" content="2017-05-31T12:30:09.000Z">
+file: Packages/User/reg_replace_rules.sublime-settings :">
+<meta property="og:updated_time" content="2017-06-06T03:00:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编辑器宏和批量替换（sublime & notepad++）">
 <meta name="twitter:description" content="sublime批量替换
@@ -113,8 +111,7 @@ file: Packages/User/reg_replace_rules.sublime-settings :
 
 当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！
 下面是我自己的一些配置：
-file: Packages/User/reg_replace_rules.sublime-settings :
-1234567891011121314151617181">
+file: Packages/User/reg_replace_rules.sublime-settings :">
 
 
 
@@ -319,6 +316,7 @@ file: Packages/User/reg_replace_rules.sublime-settings :
 <p>当然，如果想把这些绑定到快捷键中，使用插件<a href="https://github.com/facelessuser/RegReplace/tree/st3-3.3.0" target="_blank" rel="external">RegReplace</a>吧！</p>
 <p>下面是我自己的一些配置：</p>
 <p>file: <code>Packages/User/reg_replace_rules.sublime-settings</code> :</p>
+<a id="more"></a>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"format"</span>: <span class="string">"3.0"</span>,</div><div class="line">    <span class="attr">"replacements"</span>: &#123;</div><div class="line">        <span class="attr">"php_ini_comma_replace"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^;.+!?\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"add_slash_for_str"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^(.+)$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">"\"\\1\""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        <span class="attr">"wrap_to_comma"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">", "</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_comment"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"(\\s+|^|;)(//.*)$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_space_for_gzip"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"(?ms)\\s*"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_space_and_tab_at_end"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"[ \t]*$"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">"remove_empty_line"</span>: &#123;</div><div class="line">            <span class="attr">"find"</span>: <span class="string">"^\\n"</span>,</div><div class="line">            <span class="attr">"replace"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"greedy"</span>: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>用户快捷键绑定:<br>Packages/User/Default (OSX).sublime-keymap:</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">	// ....</div><div class="line">   // php注释清除</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+p"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"php_ini_comma_replace"</span>, <span class="string">"remove_empty_line"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // js css 代码压缩</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+z"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_comment"</span>, <span class="string">"remove_space_for_gzip"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // 清理末行空格 和 tab</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+d"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_space_and_tab_at_end"</span>]&#125;</div><div class="line">    &#125;,</div><div class="line">    // 逗号分隔每个字符</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"keys"</span>: [<span class="string">"super+ctrl+shift+m"</span>],</div><div class="line">        <span class="attr">"command"</span>: <span class="string">"reg_replace"</span>,</div><div class="line">        <span class="attr">"args"</span>: &#123;<span class="attr">"replacements"</span>: [<span class="string">"remove_empty_line"</span>, <span class="string">"add_slash_for_str"</span>, <span class="string">"wrap_to_comma"</span>]&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
@@ -473,6 +471,10 @@ file: Packages/User/reg_replace_rules.sublime-settings :
               
                 <li class="links-of-blogroll-item">
                   <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/My-Booklist/" title="我的书单" target="_blank">我的书单</a>
                 </li>
               
             </ul>
