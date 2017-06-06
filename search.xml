@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[JavaScirpt Note: JavaScript基础篇]]></title>
+    <url>%2F2017%2F06%2F05%2FJavaScirpt-Note-the-basic-javascript.html</url>
+    <content type="text"><![CDATA[前言. javascript基本信息javascript是所学最难的编程语言,这里先给大家简单说下js的一些基层知识,在本月会持续更新到js高级部分. enjoy it! js与java的关系： 雷锋与雷锋塔的关系 js能做什么：游戏|后台应用程序|前台特效 00.javascript学习大纲: 基础语法 内置对象 浏览器对象 文档对象 节点对象 ajax无刷新技术 jquery框架 一. 语法特性1.1 基础语法页面嵌套js123456789方法1：&lt;script&gt; //js代码&lt;/script&gt;方法2：&lt;script type="text/javascript" src="//cdn.trackjs.com/releases/current/tracker.js"&gt;&lt;/script&gt; 在页面上加入script标签的地方只有两个地方:head中，body体中 加载外部的js文件，在head中加 写页面特效，js放到body后面 js是面向对象的语言，严格的说是基于对象的语言 document js类实例化出来window js类实例化出来 注释12// 注释方法1/* 注释方法2 */ 认识js基础对象 window //窗口对象 document //文档对象 document.documentElement //html对象 document.body //body对象 //主要战场 document.head //head对象 写js代码的时候可以不用写window对象，直接写window属性和方法就可, ex: alert(); //window的方法 window.document.write(“aaa”); //write方法是属性于document的//document.write()在页面所有元素加载完毕以后，不要再随便使用document.write,否则会关闭当前文档流，重新打开一个新的文档流，然后输出到这个文档流中. demo. 创建元素: 1.2 基础语法1.2.1 变量变量的定义 定义变量：var str=&quot;hello world&quot;; js一定要用var修饰变量,否则会报”不遵守标准” 输出变量 123alert(str);document.write(str);console.log(str); 变量定义和调用前面不用加$ 变量类型 字符串 整型 num=10; 浮点 num=10.3; 布尔 str=false; 数组 js只有索引数组，而且遍历没有foreach，只有for 对象 12345obj=new Object();obj.name="user1";obj.say=function()&#123; alert("aaaaaaaaaaaaaa");&#125; json对象 {“name”:”user1”,”age”:”30”} NaN not a number 不是一个数字，非数字 null 空,对象类型 undefined 未定义 检查变量类型 typeof() //global对象的其中一个方法，typeof() 对象.constructor; //查看当前对象的构造函数是谁123if(arr.constructor==Array)&#123; alert("数组"); //数组推荐用这种方法，因为typeof得到是object&#125; 变量类型转换 字符串 .toString() //返回字符串 1234array.toString();bool.toString(); date.toString();number.toString(); 整型 从字符串转成整型 123parseInt("3abc"); //"3","3abc"parseFloat(); //"3.3"abc3 最后会被转成NaN 还可以用new Number(“3”); 只能转”3” “3.2”，不能转”3abc” 布尔类型 1)!!各种数据类型 2)new Boolean(各种数据类型); 为false的情况: false、0、null、 NaN，或者空字符串 json字符串转json对象12str="&#123;'name':'user'&#125;";obj=eval("("+str+")"); eval(字符串表达式); 把一个字符串表达式做一个表达式去执行 变量运算符 + 字符串连接符 new 创建对象用的 this 本对象 in 检查某一个属性是否是这个对象里面的 void //可以不用去记,作用产生任何返回值 instanceof // 检查某个对象是否是由某个构造函数产生的, demo: delete //不能删除用var定义的变量，删除数组的某一个值，或者对象的某个属性. 1.2.2 控制语句 with 12345with(document)&#123; write("111111"); write("111111"); write("111111");&#125; if 12345if()&#123;&#125;else&#123;&#125; while 123while()&#123;&#125; for 1234567for(var i=0,l=arr.length;i&lt;l;i++)&#123; document.write(i,"&lt;br&gt;");&#125;for(var i in obj)&#123; document.write(i,"=&gt;",obj[i],"&lt;br&gt;"); &#125; switch case 1.2.3 消息框 alert(); //警告 confirm(); //确认 prompt(); //提示 1.2.4 函数 有名的函数 function show(){} 匿名函数(无名的函数)12obj.say=function()&#123;&#125;obj.say(); 变量作用域 var 不用var修饰 只有在函数内定义的var str=20，它是局部变量，其余的地方全面全局变量. 1.2.5 对象对象遍历 遍历body: 12345678910111213141516171819202122232425&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="div1"&gt; &lt;h1 id="obj1" onclick="alert(111)"&gt;111&lt;/h1&gt; &lt;h1 id="obj2"&gt;222&lt;/h1&gt; &lt;h1 id="obj3"&gt;333&lt;/h1&gt; &lt;button id="btobj" onclick="show()"&gt;source&lt;/button&gt; &lt;/div&gt;&lt;/body&gt; &lt;script&gt; var obj=document.body; for(var i in obj)&#123; if(i!="innerHTML" &amp;&amp; i!="outerHTML")&#123; document.write(i," =&gt; ",obj[i],"&lt;br&gt;"); &#125; &#125; &lt;/script&gt;&lt;/html&gt; 顶级全局方法12345678910111213parseInt();parseFloat();typeof();eval();isNaN();String();Number();Array();Object();Bool();encodeURIComponent();decodeURIComponent(); 内置对象 数学 属性: Math.pi 方法:123456Math.ceil();Math.floor();Math.round();Math.random();Math.max();Math.min(); 日期12var tt=new Date();var time=tt.getFullYear()+"-"+(tt.getMonth()+1)+"-"+tt.getDate()+" "+tt.getHours()+":"+tt.getMinutes()+":"+tt.getSeconds(); 定时器12s1=setInterval(函数,3);clearInterval(s1); 超时器 12s2=setTimeout();clearTimeout(s2); 字符串 属性:length方法: 12345678indexOf()lastIndexOf();substr(0,5);slice(start,end);split(reg);search(reg); //匹配到返回的是首次出现的位置，匹配不到是-1match(reg); //匹配到返回的是匹配的字符串数组，匹配不到是nullreplace(reg,"str"); //返回的是替换后的新字符串,没有替换，则返回原字符串 数组 属性:length方法: 12345678910111213141516join("/");pop() //返回弹出的值，并且改变原数组push() //从后面压入一个值，并且返回数组长度shift() //返回弹出的值，并且改变原数组unshift() //从前面压入一个值，并且返回数组长度reverse() //把数组元素进行反转，反转原数组concat() //连接多个数组slice(start,end) //返回的是数组sort(show)//show(a,b)&#123; return a-b; //正序 //return b-a; //倒序&#125;splice()//2,0,"abc" 从第三个开始，删除0个，并且插入abc//2,3,"abc" 从第三个开始, 删除3个，并且插入abc demo: 遍历数组 常用js对象: 1.window对象2.document对象3.document.head对象4.document.body对象5.document.title对象6.document.documentElement对象 12345678910windowdocumenthtml head title /title /head body /body/html 浏览器默认行为 1234&lt;a href="index.php" target="_blank"&gt;&lt;/a&gt;&lt;form action="index.php" target="_blank"&gt;&lt;/form&gt;&lt;input type=submit name=sub value="提交"&gt;&lt;input type=reset name=set value="重置"&gt; 事件绑定 &lt;button id=bid onclick=&quot;js&quot;&gt;&lt;/button&gt; 在js中给元素标签绑事件 1234567&lt;button id=bid&gt;&lt;/button&gt;&lt;script&gt;bid=document.getElementById("bid");bid.onclick=function()&#123; alert(111);&#125;&lt;/script&gt; 事件类型 12345678910111213141516171819201.onclick2.ondblclick3.onmouseover4.onmouseout5.onmousedown6.onmouseup7.onmousemove8.onkeydown9.onkeyup10.onkeypress11.onfocus12.onblur13.onchange14.onselect15.onsubmit16.onreset17.onload18.onerror19.onresize20.onscroll 方法:12341.select()2.blur()3.focus()4.click() 表单事件: demo 点击事件: demo 范例合集:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[编辑器宏和批量替换（sublime & notepad++）]]></title>
+    <url>%2F2017%2F05%2F31%2Fide-for-replace.html</url>
+    <content type="text"><![CDATA[sublime批量替换 批量替换空行：^\n =&gt; (留空) 删除全部空格将代码压缩：(?ms)\s* =&gt; (留空)- 当然，如果想把这些绑定到快捷键中，使用插件RegReplace吧！ 下面是我自己的一些配置： file: Packages/User/reg_replace_rules.sublime-settings : 12345678910111213141516171819202122232425262728293031323334353637383940414243&#123; "format": "3.0", "replacements": &#123; "php_ini_comma_replace": &#123; "find": "^;.+!?\\n", "replace": "", "greedy": true &#125;, "add_slash_for_str": &#123; "find": "^(.+)$", "replace": "\"\\1\"", "greedy": true &#125;, "wrap_to_comma": &#123; "find": "\\n", "replace": ", ", "greedy": true &#125;, "remove_comment": &#123; "find": "(\\s+|^|;)(//.*)$", "replace": "", "greedy": true &#125;, "remove_space_for_gzip": &#123; "find": "(?ms)\\s*", "replace": "", "greedy": true &#125;, "remove_space_and_tab_at_end": &#123; "find": "[ \t]*$", "replace": "", "greedy": true &#125;, "remove_empty_line": &#123; "find": "^\\n", "replace": "", "greedy": true &#125; &#125;&#125; 用户快捷键绑定:Packages/User/Default (OSX).sublime-keymap: 1234567891011121314151617181920212223242526[ // .... // php注释清除 &#123; "keys": ["super+ctrl+shift+p"], "command": "reg_replace", "args": &#123;"replacements": ["php_ini_comma_replace", "remove_empty_line"]&#125; &#125;, // js css 代码压缩 &#123; "keys": ["super+ctrl+shift+z"], "command": "reg_replace", "args": &#123;"replacements": ["remove_comment", "remove_space_for_gzip"]&#125; &#125;, // 清理末行空格 和 tab &#123; "keys": ["super+ctrl+shift+d"], "command": "reg_replace", "args": &#123;"replacements": ["remove_space_and_tab_at_end"]&#125; &#125;, // 逗号分隔每个字符 &#123; "keys": ["super+ctrl+shift+m"], "command": "reg_replace", "args": &#123;"replacements": ["remove_empty_line", "add_slash_for_str", "wrap_to_comma"]&#125; &#125; 补充，正则中如果要排除某个字符串要这么写：^(?!912).*$]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[php报错配置]]></title>
+    <url>%2F2017%2F05%2F31%2Fphp-errors-setting.html</url>
+    <content type="text"><![CDATA[php报错的配置php.ini默认开发环境设置如： 1234567891011error_reporting = E_ALL&amp;~E_NOTICEdisplay_errors = Ondisplay_startup_errors = Onlog_errors = Onlog_errors_max_len = 1024ignore_repeated_errors = Offignore_repeated_source = Offreport_memleaks = Ontrack_errors = Onhtml_errors = Onerror_log = /usr/local/var/log/php-error-56.log 注意配置display_errors和display_startup_errors,如果是在线上环境切记要设置为Off。这样就可以不显示报错信息，但会记录在错误的日志文件中。 如果配置了error_log = syslog, 则是指定产生的错误报告写入操作系统的日志里。 框架报错日志调试thinkphp设置默认报错地址： Thinkphp\Conf\debug.php里面加入1'LOG_PATH' =&gt; realpath(LOG_PATH).'/', 这个配置在tp中是默认开启的，默认生成在 run_time/Logs/xxx下面 开启trace功能： 需要在配置中启用如下代码：1'SHOW_PAGE_TRACE' =&gt;true, 相关参考： 跟老杨学ThinkPHP3 laravel]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Bash风格指南]]></title>
+    <url>%2F2017%2F05%2F26%2FBash-code-style.html</url>
+    <content type="text"><![CDATA[Bash 风格指南来源 本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 this wiki，特别是这个页面： http://mywiki.wooledge.org/BashGuide/Practices 如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。 美学使用制表符还是空格制表符 分号你无需在命令行中使用分号（我希望是这样），同样也不要在脚本中使用它。 1234567# wrongname='dave';echo "hello $name";#rightname='dave'echo "hello $name" 函数不要使用关键字 function 创建函数。所有函数中创建的变量都应该声明为局部变量。 123456789# wrongfunction foo &#123; i=foo # this is now global, wrong&#125;# rightfoo() &#123; local i=foo # this is local, preferred&#125; 代码块声明then 应与 if 放在同一行，do 应与 while 放在同一行。 123456789101112131415# wrongif truethen ...fi# also wrong, though admittedly looks kinda cooltrue &amp;&amp; &#123; ...&#125;# rightif true; then ...fi 间距不要超过两个连续的换行符（即不超过一行空行）。 注释注释没有明确的代码风格。除非你重写或者更新注释内容，否则不要因为美观的因素去改动它。 Bash 主义本风格指南用于 bash。这意味着，如果可以选择，使用 bash 的内建命令或关键字，总是好于外部命令或sh(1)的语法。 test(1)使用 [[ ... ]] 进行条件测试, 而不是 [ .. ] 或 test ... 12345678# wrongtest -d /etc# also wrong[ -d /etc ]# correct[[ -d /etc ]] 查看 http://mywiki.wooledge.org/BashFAQ/031 了解更多信息。 队列使用 bash 的内部命令生成队列。 123456789101112131415161718192021n=10# wrongfor f in $(seq 1 5); do ...done# wrongfor f in $(seq 1 "$n"); do ...done# rightfor f in &#123;1..5&#125;; do ...done# rightfor ((i = 0; i &lt; n; i++)); do ...done 命令替换使用 $(...) 进行命令替换. 12foo=`date` # wrongfoo=$(date) # right 数学 / 整数操作使用 ((...)) 和 $((...))。 123456789101112a=5b=4# wrongif [[ $a -gt $b ]]; then ...fi# rightif ((a &gt; b)); then ...fi 不要使用 let 命令。 参数扩展使用参数扩展要好于使用外部命令，例如 echo, sed, awk 等等。 123456789name='bahamas10'# wrongprog=$(basename "$0")nonumbers=$(echo "$name" | sed -e 's/[0-9]//g')# rightprog=$&#123;0##*/&#125;nonumbers=$&#123;name//[0-9]/&#125; 列出文件不要使用 解析 ls(1)，而使用 bash 内置函数来循环文件。 123456789# very wrong, potentially unsafefor f in $(ls); do ...done# rightfor f in *; do ...done 查明可执行文件路径简单声明一点，你肯定不知道，如果你视图找出可执行程序的完整路径，你应该反思你的软件设计了。 查看 http://mywiki.wooledge.org/BashFAQ/028 获取更多信息。 数组和列表只要有可能，尽量使用 bash 数组来代替使用空格（或是换行符、制表符等）分隔的字符串。 1234567891011# wrongmodules='json httpserver jshint'for module in $modules; do npm install -g "$module"done# rightmodules=(json httpserver jshint)for module in "$&#123;modules[@]&#125;"; do npm install -g "$module"done 内置读取只要有可能，使用 bash 内置的 read 避免调用外部命令。 例子： 12345fqdn='computer1.daveeddy.com'IFS=. read hostname domain tld &lt;&lt;&lt; "$fqdn"echo "$hostname is in $domain.$tld"# =&gt; "computer1 is in daveeddy.com" 外部命令GNU 用户工具全世界不会都运行在 GNU 或 Linux 上；当调用外部命令时，例如 awk, sed, grep，避免 GNU 特定的选项，使其尽量易于移植。 当你编写 bash ，并且使用给你的所有强大工具和 bash 的内建命令时，你会发现甚至很少有机会需要调用外部命令。 UUOC不要在你不需要的时候使用 cat(1)。如果程序支持从标准输入读取，使用 bash 重定向传递数据。 12345678# wrongcat file | grep foo# rightgrep foo &lt; file# also rightgrep foo file 如果我们能够推断，当程序说它可以通过名称读取文件，并且这样做能获得更好的性能时，我们可以使用这个内置读取文件方法的命令行工具，而不是标准输入。 风格引号当字符串需要变量扩展或命令替换插值的时候使用双引号，其它时候使用单引号。 123456789# rightfoo='Hello World'bar="You are $USER"# wrongfoo="hello world"# possibly wrong, depending on intentbar='You are $USER' 所有将要经历分词的变量都 必须 被引用 (1)。如果分词不会发生，变量可以不加引号。 1234567foo='hello world'if [[ -n $foo ]]; then # 不需要引号 - [[ ... ]] 不会把变量分词 echo "$foo" # 需要印号fibar=$foo # 不需要引号 - 变量不会分词 唯一的例外是，如果代码或 bash 控制着这个变量的整个生命周期。这种情况 basher 有类似的代码： 12345678printf_date_supported=falseif printf '%()T' &amp;&gt;/dev/null; then printf_date_supported=truefiif $printf_date_supported; then ...fi 在这个例子中，虽然在 if 声明中的 $printf_date_supported 将经历分词，但仍然不需要引号，因为这个变量的内容被明确地控制着，并不会从用户或其它命令里取值。 同样的，例如 $$, $?, $#这些变量，也不需要引号，因为他们绝不会包含空格、制表符或换行符。 然而，如果仍怀有疑问，可以查看引用所有的扩展。 变量声明避免大写的变量名，除非有一个很好的理由使用他们。不要使用 let 或 readonly 创建变量。declare 应该只用于关联数组。在函数中，应始终使用 local 声明变量。 1234567891011# wrongdeclare -i foo=5let foo++readonly bar='something'FOOBAR=baz# righti=5((i++))bar='something'foobar=baz shebangBash 不总是位于 /bin/bash，因此尽量这样来写这一行： 1#!/usr/bin/env bash 错误检查举个例子，cd 不总是工作。请务必检查 cd（或类似的命令）任何可能的错误，如果错误存在就退出或将错误抛出。 1234567# wrongcd /some/path # 可能会失败rm file # 如果 cd 失败我在哪？我删除了什么？# rightcd /some/path || exitrm file set -e不要设置 errexit。如同在 C 语言中，有时你想要得到一个错误，或是你期望什么执行失败，并不意味着你想要退出程序。 http://mywiki.wooledge.org/BashFAQ/105 eval永远不要使用. 没有人会在代码库中接受下面这个链接列出的东西。 http://mywiki.wooledge.org/BashPitfalls 这里也例举了一些如何修复这些问题的例子。 LicenseMIT License]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL配置和优化]]></title>
+    <url>%2F2017%2F05%2F22%2FMySQL-setting-and-optimzation.html</url>
+    <content type="text"><![CDATA[一、查看配置查看binlogshow variables like &#39;log_%&#39;;: 查看sql_mode的语法 12select @@GLOBAL.sql_mode;select @@SESSION.sql_mode; 修改sql_mode的语法 12SET GLOBAL sql_mode = 'modes';SET SESSION sql_mode = 'modes'; 二、优化三、常见报错3.1 mysql 5.7版本报错问题mysql5.7默认启用了严格模式，使用5.7会发生很多旧版本sql报错问题，具体可以参阅MySQL 5.7版本新特性连载. 1) datetime等时间不能插入切忌不要插入 ‘0000-00-00’ 类似这样0开头的时间格式，5.7下是写不进入的，要优化改成null 或者其他正常的时间； 2) 聚合错误SELECT list is not in GROUP BY clause and contains nonaggregated在5.7中执行语句：1SELECT * FROM `m_job_op` group by stu_no 如果一定要使用，可以这么修改： 12-- 临时修改SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')); 12]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac优化实例]]></title>
+    <url>%2F2017%2F05%2F17%2FMac-optimization.html</url>
+    <content type="text"><![CDATA[常用系统工具time machine管理12cd /Volumes/&#123;your_disk&#125;/Backups.backupdb/&#123;your_machine-name&#125;/sudo tmutil delete &#123;your_bak_vertion&#125; # 删除一个历史的版本 参考：https://gxnotes.com/article/9755.html]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu使用]]></title>
+    <url>%2F2017%2F05%2F17%2FUbuntu-Note.html</url>
+    <content type="text"><![CDATA[弄了台备用笔记本电脑，发现装win10有各种问题，遂转投linux阵营。当然，首选ubuntu啦！ 在这里mark下新ubuntu系统的一些使用。 [TOC] 一、基础配置和更新1.1 包管理工具123sudo dpkg -i DEB_PACKAGE # 命令行安装deb软件包sudo dpkg -r PACKAGE_NAME # 卸载包sudo dpkg-reconfigure PACKAGE_NAME # 配置包 二、常用软件安装2.1 通用软件1234sudo apt-get install git vim axel svn lrzszsudo apt-get install terminator # ubuntu下类iterm2工具sudo apt-get install filezilla # filezilla FTP管理工具 2.2 navicat安装和配置1234567wget http://download3.navicat.com/download/navicat112_premium_cs_x64.tar.gztar -zxvf navicat112_premium_cs_x64.tar.gz /opt/Navicat112cd /opt/Navicat112/./start_navicattouch # 配置快捷方式 三、其他常用的命令3.1 远程服务a.开启桌面vnc远程12 b.开启ssh登录1234567891011121314151617181920sudo apt-get install openssh-server sudo apt-get install openssh-clientps -e |grep ssh # 如果只有ssh-agent那ssh-server还没有启动，如果看到sshd那说明ssh-server已经启动了sudo vim /etc/shh/sshd_config # 编辑配置ssh设置#---------------------#禁用密码验证PasswordAuthentication no#启用密钥验证RSAAuthentication yesPubkeyAuthentication yes#指定公钥数据库文件AuthorsizedKeysFile .ssh/authorized_keys#---------------------chmod 600 ~/.ssh/authorized_keysecho 'ssh-rsa XXXX' &gt;&gt; ~/.ssh/authorized_keyscat ~/.ssh/authorized_keys # 复查sudo /etc/init.d/ssh restart]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Laravel Note]]></title>
+    <url>%2F2017%2F05%2F08%2FLaravel-Note.html</url>
+    <content type="text"><![CDATA[最近需要用到laravel进行开发项目，这里整理一些笔记方便回忆。 laravel相关资源 laravel 5.4 中文手册]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS 7 安装和配置]]></title>
+    <url>%2F2017%2F04%2F26%2Flinux-centos7-setting.html</url>
+    <content type="text"><![CDATA[123$ #设置nat 和 host-only2种网卡，并开启开机自启$ # minimal版常用工具安装yum install vim wget gcc gcc-c++ unzip net-tools telnet]]></content>
+      <categories>
+        <category>CentOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL学习]]></title>
+    <url>%2F2017%2F04%2F26%2Fmysql-learn.html</url>
+    <content type="text"><![CDATA[MySQL优化MySQL缓存配置文件/etc/my.cnf 123456[mysqld]... query_cache_size = 268435456query_cache_type = 1query_cache_limit = 1048576... 重启mysql后就会启动mysql的缓存机制Query Cache。在使用中，查询缓存会存储一个SELECT查询的文本与被传送到客户端的相应结果。如果之后接收到一个同样的查询，服务器将从查询缓存中检索结果，而不是再次分析和执行这个同样的查询。 注意：查询缓存绝不返回过期数据。当数据被修改后，在查询缓存中的任何相关词条均被转储清除。适用于更改不是太频繁的表且有大量相同查询的情况 执行计划explainmysql的执行计划explain语句，显示了mysql如何使用索引来处理select语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句。 explain是mysql常用性能分析语句，使用方法是在select语句前加上explain就可以了，例如： explain select surname,first_name form. a,b where a.id=b.id EXPLAIN结果返回解释: id：是一组数字，表示查询中执行select子句或操作表的顺序。如果id相同，则执行顺序从上至下。如果是子查询，id的序号会递增，id越大则优先级越高，越先会被执行。id如果相同，则可以认为是一组，从上往下顺序执行，所有组中，id越高，优先级越高，越容易执行。 selecttype：有simple，primary，subquery，derived(衍生)，union，unionresult。 simple：表示查询中不包含子查询或者union。 primary： 当查询中包含任何复杂的子部分，最外层的查询被标记成primary subquery：在select或where列表中包含了子查询，则子查询被标记成subquery derived：在from的列表中包含的子查询被标记成derived。 union：若第二个select出现在union后，则被标记成union，若union在from子句的子查询中，外层的select被标记成derived。 union result：从union表获取结果的select被标记成union result。 table：显示这一行的数据是关于哪张表的 type：type叫访问类型，表示在表中找到所需行的方式（显示连接使用了何种类型）。从最好到最差的连接类型为const、eq_reg、ref、range、indexhe和ALL ALL，即full table scan，mysql将遍历全表来找到所需要的行。 index为full index scan，只遍历索引树。 range表示索引范围扫描 ，对索引的扫描开始于一点，返回匹配的值域的行，常见于between，&lt;，&gt;的查询。 ref为非唯一性索引扫描，返回匹配某个单独值的所有行，常见于非唯一索引即唯一索引的非唯一前缀进行的查找。 eq_ref表示唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配，常见于主键或者唯一索引扫描。 const，system表示当对查询部分进行优化，并转化成一个常量时，使用这些类型访问。比如将主键置于where列表中，mysql就能把该查询置成一个常量。system是const的一个特例，当查询表中只有一行的情况下使用的是system。 NULL表示在执行语句中，不用查表或索引。 possible_keys：显示可能应用在这张表中的索引。如果为空，没有可能的索引。可以为相关的域从WHERE语句中选择一个合适的语句 key： 实际使用的索引。如果为NULL，则没有使用索引。很少的情况下，MYSQL会选择优化不足的索引。这种情况下，可以在SELECT语句中使用USE INDEX（indexname）来强制使用一个索引或者用IGNORE INDEX（indexname）来强制MYSQL忽略索引 key_len：使用的索引的长度。在不损失精确性的情况下，长度越短越好 ref：显示索引的哪一列被使用了，如果可能的话，是一个常数 rows：表示根据mysql表统计信息及索引选用情况，估算找到所需记录要读取的行数 Extra：关于MYSQL如何解析查询的额外信息，表示不在其他列并且也很重要的额外信息。将在表4.3中讨论，但这里可以看到的坏的例子是Using temporary和Using filesort，意思MYSQL根本不能使用索引，结果是检索会很慢。extra 列返回的描述的意义 ： Distinct: 一旦MYSQL找到了与行相联合匹配的行，就不再搜索了 Not exists: MYSQL优化了LEFT JOIN，一旦它找到了匹配LEFT JOIN标准的行，就不再搜索了 Range checked for each Record（index map:#）:没有找到理想的索引，因此对于从前面表中来的每一个行组合，MYSQL检查使用哪个索引，并用它来从表中返回行。这是使用索引的最慢的连接之一 Using filesort: 看到这个的时候，查询就需要优化了。MYSQL需要进行额外的步骤来发现如何对返回的行排序。它根据连接类型以及存储排序键值和匹配条件的全部行的行指针来排序全部行 Using index: 列数据是从仅仅使用了索引中的信息而没有读取实际的行动的表返回的，这发生在对表的全部的请求列都是同一个索引的部分的时候 Using temporary 看到这个的时候，查询需要优化了。这里，MYSQL需要创建一个临时表来存储结果，这通常发生在对不同的列集进行ORDER BY上，而不是GROUP BY上 Where used 使用了WHERE从句来限制哪些行将与下一张表匹配或者是返回给用户。如果不想返回表中的全部行，并且连接类型ALL或index，这就会发生，或者是查询有问题不同连接类型的解释（按照效率高低的顺序排序） system 表只有一行：system表。这是const连接类型的特殊情况 const:表中的一个记录的最大值能够匹配这个查询（索引可以是主键或惟一索引）。因为只有一行，这个值实际就是常数，因为MYSQL先读这个值然后把它当做常数来对待 eq_ref:在连接中，MYSQL在查询时，从前面的表中，对每一个记录的联合都从表中读取一个记录，它在查询使用了索引为主键或惟一键的全部时使用 ref:这个连接类型只有在查询使用了不是惟一或主键的键或者是这些类型的部分（比如，利用最左边前缀）时发生。对于之前的表的每一个行联合，全部记录都将从表中读出。这个类型严重依赖于根据索引匹配的记录多少—越少越好 range:这个连接类型使用索引返回一个范围中的行，比如使用&gt;或&lt;查找东西时发生的情况 index: 这个连接类型对前面的表中的每一个记录联合进行完全扫描（比ALL更好，因为索引一般小于表数据） ALL:这个连接类型对于前面的每 mysq的执行计划有一定局限性,如下： EXPLAIN不会告诉你关于触发器、存储过程的信息或用户自定义函数对查询的影响情况 EXPLAIN不考虑各种Cache EXPLAIN不能显示MySQL在执行查询时所作的优化工作 部分统计信息是估算的，并非精确值 EXPALIN只能解释SELECT操作，其他操作要重写为SELECT后查看执行计划 MySQL索引说明覆盖索引 MySQL可以利用索引返回select列表中的字段，而不必根据索引再次读取数据文件 包含所有满足查询需要的数据的索引称为 覆盖索引（Covering Index） 如果要使用覆盖索引，一定要注意select列表中只取出需要的列，不可select *，因为如果将所有字段一起做索引会导致索引文件过大，查询性能下降 参考 怎么去看懂mysql的执行计划]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Nginx笔记]]></title>
+    <url>%2F2017%2F04%2F17%2Flinux%2Fnginx-note.html</url>
+    <content type="text"><![CDATA[sever设置autoindex: 打开目录浏览功能nginx中可以在server或location 段里添加上autoindex on；来列出整个目录, 比如在server段添加： 1234567891011121314location / &#123; autoindex on; autoindex_localtime on; #之类的参数写这里&#125;location /down/ &#123; # 直接二级目录开启目录流量 autoindex on;&#125;location /down/ &#123; alias /home/wwwroot/lnmp/test/; # 虚拟目录开启目录流量 autoindex on;&#125; 相关属性 autoindex_exact_sizeautoindex_exact_size off;默认为on，显示出文件的确切大小，单位是bytes。改为off后，显示出文件的大概大小，单位是kB或者MB或者GB autoindex_localtime默认为off，显示的文件时间为GMT时间。改为on后，显示的文件时间为文件的服务器时间]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux Shell脚本攻略]]></title>
+    <url>%2F2017%2F04%2F16%2Flinux%2Flinux-shell.html</url>
+    <content type="text"><![CDATA[这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！ 前言：shell基础说明shell的使用shell脚本规范：12#!/bin/bash# do something 一个shell脚本的执行方法： 123sh script.sh # 执行方式1chmod a+x script.sh # 执行方式2./script.sh # 会读取首行的解释器, 执行 一、shell系统基础1.1 环境变量和变量bash中，每个变量的值都是字符串，无论你给变量赋值时是否使用引号，值都会以字符串的形式存储 环境变量查看所有与此终端进程相关的环境变量: env 查看某个进程的环境变量: cat /proc/$PID/environ 变量赋值: 12345678var=valuevar='the value'var="the $PARAM"echo $varecho $&#123;var&#125;var = value非变量赋值是相等操作 环境变量未在当前进程中定义，而是从父进程中继承而来的变量, export 设置环境变量之后,从当前shell 执行的任何程序都会继承这个变量, 如： export PYTHONPATH=$PYTHONPATH:/home/ken/workspace 我们linux中常用的环境变量如： 1234567PATH 查找可执行文件路径, 通常定义在/etc/environment or /ect/profile or ~/.bashrc修改: export PATH=$PATH:/new/path/HOMEPWDUSERUIDSHELL 识别当前shell版本: echo $SHELL echo $0 1.2 命令状态当命令成功完成, 返回0 发生错误并退回, 返回非0 可以从$?中获取 cmd; echo $? 文件描述符和重定向文件描述符: 与文件输入/输出相关联的整数, 用来跟踪已打开的文件 1230 stdin 标准输入1 stdout 标准输出2 stderr 标准错误 重定向到文件：1234567清空文件写入新内容echo "test" &gt; temp.txt追加echo "test" &gt;&gt; temp.txt&gt;等价于1&gt;&gt;&gt;等价于 1&gt;&gt; 输出分离或合并:1234567分离cmd 2&gt;stderr.txt 1&gt;stdout.txt合并cmd &gt; output.txt 2&gt;&amp;1orcmd &amp;&gt; output.txt 扔到垃圾桶:1234567/dev/null 特殊设备文件, 接收到的任何数据都会被丢弃(位桶/黑洞)只有标准错误cmd 2 &gt; /dev/null标准输出和标准错误cmd &gt;/dev/null 2&gt;&amp;1 同时输出到终端和文件:1234cmd | tee file1tee默认覆盖，可以-a选项追加cmd | tee -a file1 将stdin作为命令参数: cmd1 | cmd2 | cmd3 -将文件重定向到命令: cmd &lt; file 自定义文件描述符:1234567使用文件描述符3打开并读取文件exec 3&lt;input.txtcat &lt;&amp;3使用文件描述符4进行写入exec 4&gt;output.txtecho newline &gt;&amp;4 二、字符串处理2.1 sed简明教程2.2 awk简明教程2.3 输出和打印（echo &amp; printf）echo基于标准输出打印一段文本 忽略结尾换行符: echo -n &#39;test\n&#39; 对字符串进行转义: echo -e &#39;1\t2\t3&#39; 打印彩色输出:12345678910111213141516171819202122232425文字颜色码 重置0 黑色30 红色31 绿色32 黄色33 蓝色34 洋红35 青色36 白色37echo -e &quot;\e[1;31m This is red test \e[0m&quot;背景颜色码 重置0 黑色40 红色41 绿色42 黄色43 蓝色44 洋红45 青色46 白色47echo -e &quot;\e[1;42m Green Background \e[0m&quot; printf可以格式化字符串, 使用参数同c中printf一样 12printf "%-5s %-10s %-4.2f\n" 3 Jeff 77.564$ 3 Jeff 77.56 三、 进程管理3.1 pgrep获取某个进程名对应进程id 使用命令pgrep, 例如:pgrep php 四、 运算4.1 shell数学运算letexpr echo \expr 1 + 7`` result=$(expr $no1 + 5) 其他运算1234result=$[ no1 + no2 ]result=$[ $no + 5 ]result=$(( no1 + 5 )) 浮点数: bc12345678设定精度echo "scale=2;3/8" | bc进制转换echo "obase=2;100" | bc平方echo "10^10" | bc平方根echo "sqrt(100)" | bc 五、数组：数组和关联数组 普通数组，整数作为数组索引, 借助索引将多个独立的数据存储为一个集合(list) 关联数组，可以使用字符串作为索引(map) 注意，在mac中的shell不能使用索引该笔记的关联数组。 5.1 普通数组12345678910111213array_var=(1 2 3 4 5) # 定义数组 方式1array_var[0]="test1" # 定义数组 方式2array_var[3]="test3"echo $&#123;array_var[0]&#125; # 读取数组echo $&#123;array_var[*]&#125; # 以清单形式打印echo $&#123;array_var[@]&#125;echo $&#123;#array_var[*]&#125; # 打印数组长度echo $&#123;!array_var[*]&#125; # 获取索引列表 5.2 关联数组1234declare -A ass_array # 先定义一个多维数组ass_array=([index1]=value1 [index2]=value2) # 赋值：内嵌索引-值ass_array[index3]=value3 # 独立赋值echo $&#123;ass_array[index1]&#125; # 打印对应值 工具参考crontabcrontab文件的含义：用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下： minute hour day month week command 其中： minute： 表示分钟，可以是从0到59之间的任何整数。 hour：表示小时，可以是从0到23之间的任何整数。 day：表示日期，可以是从1到31之间的任何整数。 month：表示月份，可以是从1到12之间的任何整数。 week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。 command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。 在以上各个字段中，还可以使用以下特殊字符： 星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。 逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9” 中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6” 正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。 参考 Linux基础 LINUX SHELL脚本攻略笔记[速查]]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP内存优化]]></title>
+    <url>%2F2017%2F04%2F08%2Fphp%2Fphp-memory-get-usage.html</url>
+    <content type="text"><![CDATA[在php中，我们最常用 memory_get_usage()来返回php内存的使用情况，它默认单位是Bytes, 一、内存溢出问题内存溢出解决方案这里，不难看出，一方面，我们要增加PHP可用内存大小，另一方面，只要我们想办法对数组进行分批处理，分而治之，将用过的变量及时销毁(unset)，一般是不会出现溢出问题的。 另外，为了节省PHP程序内存损耗，我们应当尽可能减少静态变量的使用，在需要数据重用时，可以考虑使用引用(&amp;)。再一点就是：数据库操作完成后，要马上关闭连接；一个对象使用完，要及时调用析构函数（__destruct()）。 结论 php5.3及以上可以使用函数gc_collect_cycles()进行垃圾回收 使用完变量需要用unset()销毁 参考的一些文章： http://zhengdl126.iteye.com/blog/1112231 http://www.laruence.com/2011/03/04/1894.html]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Java笔记1]]></title>
+    <url>%2F2017%2F03%2F11%2Fjava%2Fjava-note-zk.html</url>
+    <content type="text"><![CDATA[这个笔记是基于《Java语言程序设计（一）》 主要内容有： Java语言基础 运算和语句 面向对象编程基础 数组和字符串 图形界面设计 图形、图像与多媒体 多线程 输入和输出流 伟林与数据库编程基础 一、Java语言基础1.1]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[2016-12-19 本周新书：MySQL技术内幕 - SQL编程]]></title>
+    <url>%2F2017%2F03%2F06%2Fbooks%2Fmysql-technology-insider-sql-programming.html</url>
+    <content type="text"><![CDATA[本周读书任务：《MySQL技术内幕 - SQL编程》 限定阅读时间：2016-12-19~2016-12-25]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP设计模式（1） - 开始]]></title>
+    <url>%2F2017%2F03%2F06%2Fphp%2Fphp-design-patterns-start.html</url>
+    <content type="text"><![CDATA[一、基础环境准备 IDE选择： PHPstorm 字体选择：等宽的字体 二、一些必备的php基础2.1 命名空间 php 5.3+ 2.2 类自动载入 __autoload() spl_autoload_register(方法) 2.3 PSR-0,PSR-4规范]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[symfony框架学习]]></title>
+    <url>%2F2017%2F02%2F27%2Fphp%2Fphp-framework-symfony.html</url>
+    <content type="text"><![CDATA[要学习一些现代php必须用symfony或者laraval, 这些默认都要php5.5+以上版本. 此系统使用homebrew安装的php5.6环境进行开发, 下面是学习Symfony 3.2.4的一些笔记. 一, 安装1234567wget https://symfony.com/installermv installer /usr/local/bin/symfonychmod +x /usr/local/bin/symfonycd /www/learnsymfony new my_symfonyphp bin/console server:startphp bin/console server:stop 二, 框架结构]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>symfony</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP代码标准和测试(未完待续)]]></title>
+    <url>%2F2017%2F02%2F15%2Fphp%2Fphp-standard-code-tools.html</url>
+    <content type="text"><![CDATA[用于检测php代码标准的套件有: phpcs phpmd phpcbf php-cs-fixer 下面将简单介绍这些工具的安装和使用方法 一, 安装使用composer安装(推荐)然后，确保~/.composer/vendor/bin目录在你的PATH中。export PATH=”$PATH:$HOME/.composer/vendor/bin” 123composer global require "squizlabs/php_codesniffer=*"composer global require phpmd/phpmdcomposer global require fabpot/php-cs-fixer 检查是否都成功安装:1234$ which phpcs$ which phpmd$ which php-cs-fixer$ which phpcbf 二, 使用2.1 phpcs 查看帮助：phpcs –help 添加标准：phpcs –config-set installed_paths PATH_TO_SEARCH_STANDARDS 注意：假设标准为 Weibo, 目录为:/Users/overtrue/code_standards/Weibo其中Weibo 里才是 ruleset.xml，那么对应上面的 PATH_TO_SEARCH_STANDARDS 应该为：phpcs –config-set installed_paths /Users/overtrue/code_standards 开发中我们经常使用wordpress的标准来, 设置如下: 12git clone git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcsphpcs --config-set installed_paths /www/default_path_to/wpcs 查看已经安装的标准：phpcs -i 查看配置：phpcs –config-show 检查代码规范： phpcs ./codes/Example.php// orphpcs ./codes/ 指定标准：phpcs ./codes/Example.php –standard=PSR2 报告格式：phpcs –report=summary /path/to/code 可用的格式有（默认为: full）： full, xml, checkstyle, csv json, emacs, source, summary, diff svnblame, gitblame, hgblame or notifysend 修复代码 第一种：使用 diff 形式打补丁： phpcs –report-diff=/path/to/changes.diff /path/to/codepatch -p0 -ui /path/to/changes.diff patching file /path/to/code/file.php 第二种：使用 PHP Code Beautifier 和 Fixer： phpcbf /path/to/code以上命令会自动修复原文件，如果不想直接覆盖原文件，可以使用 –suffix 指定修复后的代码后缀：phpcs /path/to/code –suffix=.fixed 更多 PHPCS 的使用请参考：https://github.com/squizlabs/PHP_CodeSniffer/wiki 2.2 phpmd使用使用phpmd检查代码质量操作如： 12345678# phpmd 代码路径 报告格式phpmd /path/to/source text# phpmd 代码路径 报告格式 规则列表phpmd /path/to/source text codesize,unusedcode,naming# phpmd 代码路径 报告格式 规则xml文件phpmd /path/to/source text /phpmd_ruleset.xml 报告格式有： xml, 以 XML 格式输出； text, 简单的文本格式； html, 输出到单个的html； 这里有一个phpmd规则可参考：https://github.com/overtrue/phpmd-rulesets 更多关于 PHPMD 的使用请参考：http://phpmd.org/documentation/index.html 2.3 php-cs-fixer 参考 php-cs-fixer的使用 http://wulijun.github.io/php-the-right-way/ http://overtrue.me/articles/2015/05/install-phpcs-and-phpmd.html]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记]]></title>
+    <url>%2F2017%2F01%2F27%2Fsql%2Fmongodb.html</url>
+    <content type="text"><![CDATA[一. 安装本着快速掌握mongodb的目的, 直接在mac上使用homebrew安装了mongodb, 命令如下: brew install mongodb 二. Mongodb基础mongodb的类型有2种, 集合和文档. 2.1 基础语法 show dbs : 查看数据库 show tables : 查看表 use DB_NAME : 切换数据库, 如果没有则创建, 当写入第一条数据时创建 dropDatabase() : 删除数据库 2.1.2 集合相关方法 db.createCollection(name, options) 创建集合 参考文档: 极客学院 - MongoDB教程 MongoDB手册]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[数据库]]></title>
+    <url>%2F2017%2F01%2F27%2Fsql%2Fsql.html</url>
+    <content type="text"><![CDATA[数据库]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux笔记]]></title>
+    <url>%2F2017%2F01%2F25%2Flinux%2Flinux-note.html</url>
+    <content type="text"><![CDATA[这里整理了一些学习linux过程的笔记…]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux内存管理]]></title>
+    <url>%2F2017%2F01%2F25%2Flinux%2Flinux-ram-manage.html</url>
+    <content type="text"><![CDATA[我们在使用linux中经常遇到使用内存过大的困扰，但实际上服务器并没有使用这么多,那么我们该如何优化呢? 拿个案例来说吧, 当我们执行free -m命令时,内存的使用如: 1234 total used free shared buffers cachedMem: 992 964 27 0 207 416-/+ buffers/cache: 340 651Swap: 991 2 989 使用内存用了90%多,但实际上他真的使用了这么多内存吗? 这里,我们先说下里面的一些概念, 其中涉及的内容有： total: 内存总数 used: 已经使用的内存数 free: 空闲的内存数 shared: 多个进程共享的内存总额 buffers Buffer Cache和cached Page Cache 磁盘缓存的大小 -buffers/cache (已用)的内存数:used - buffers - cached +buffers/cache(可用)的内存数:free + buffers + cached可用的memory=free memory+buffers+cached 当执行命令cp -r /etc ~/test/后, 内存都被cached吃掉了。这时候别紧张，这是为了提高文件读取效率的做法。 为了提高磁盘存取效率，Linux做了一些精心的设计，除了对dentry进行缓存（用于VFS，加速文件路径名到inode的转换），还采取了两种主要Cache方式：Buffer Cache和Page Cache。前者针对磁盘块的读写，后者针对文件inode的读写。这些Cache有效缩短了 I/O系统调用（比如read，write，getdents）的时间。 那么有人说过段时间，linux会自动释放掉所用的内存。实际上是不会的, 那么应该怎么去优化呢？比如能否手动释放掉这些内存呢？ 如何手动释放内存/proc是一个虚拟文件系统，我们可以通过对它的读写操作做为与kernel实体间进行通信的一种手段。也就是说可以通过修改/proc中的文件，来对当前kernel的行为做出调整。那么我们可以通过调整/proc/sys/vm/drop_caches来释放内存。操作如下： 12cat /proc/sys/vm/drop_caches# 0 首先，/proc/sys/vm/drop_caches的值，默认为0。 1sync 手动执行sync命令 描述：sync 命令运行 sync 子例程。如果必须停止系统，则运行sync 命令以确保文件系统的完整性。sync 命令将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件） 将/proc/sys/vm/drop_caches值设为3:123echo 3 &gt; /proc/sys/vm/drop_cachescat /proc/sys/vm/drop_caches# 3 再来运行free -m命令，会发有效的释放了buffer和cache。 有关/proc/sys/vm/drop_caches的用法在下面进行了说明 /proc/sys/vm/drop_caches (since Linux 2.6.16)Writing to this file causes the kernel to drop clean caches,dentries and inodes from memory, causing that memory to become free.To free pagecache, use echo 1 &gt; /proc/sys/vm/drop_caches;to free dentries and inodes, use echo 2 &gt; /proc/sys/vm/drop_caches;to free pagecache, dentries and inodes, use echo 3 &gt; /proc/sys/vm/drop_caches.Because this is a non-destructive operation and dirty objects are not freeable, the user should run sync first. 实例清空缓存demo:12345678910111213141516#!/bin/bash# filename: freemem.shused=`free -m | awk 'NR==2' | awk '&#123;print $3&#125;'`free=`free -m | awk 'NR==2' | awk '&#123;print $4&#125;'`echo "===========================" &gt;&gt; /var/log/mem.logdate &gt;&gt; /var/log/mem.logecho "Memory usage | [Use：$&#123;used&#125;MB][Free：$&#123;free&#125;MB]" &gt;&gt; /var/log/mem.logif [ $free -le 100 ] ; then sync &amp;&amp; echo 1 &gt; /proc/sys/vm/drop_caches sync &amp;&amp; echo 2 &gt; /proc/sys/vm/drop_caches sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches echo "OK" &gt;&gt; /var/log/mem.logelse echo "Not required" &gt;&gt; /var/log/mem.log 参考： 手动释放linux内存cache和脚本定时释放]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP RESTful API接口设计之道]]></title>
+    <url>%2F2017%2F01%2F24%2Frestful-api-design.html</url>
+    <content type="text"><![CDATA[0. before…设计前后端完全分离的应用，可以使用到RESTful API。比如， Backbone 的默认规则最适合的是一个完全 restful 风格的后端接口，如果你的后端系统没有准备好，那就直接覆盖掉吧。restful 不光是前端的事～ 是构架层面上的事情，如果想用Backbone的话，肯定是需要后端重新定义所有的接口了，但是这也是好事，毕竟 restful 逻辑更清晰，以后的更新，维护会更方便。 一、基础现在的网站没有API都给人落后的印象了，而当下设计API流行的规范便是RESTful。REST全称是Representational State Transfer，中文意思是表述（编者注：通常译为表征）性状态转移。它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是HTTP规范的主要编写者之一。 他在论文中提到：”我这篇文章的写作目的，就是想在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。REST指的是一组架构约束条件和原则。” 如果一个架构符合REST的约束条件和原则，我们就称它为RESTful架构。 它涉及到以下这些内容。 1.1 域名应尽量部署在专用域名之下，可以在前边加个二级头或者域名后添加api路径。 https://api.example.comhttps://example.com/api/ 1.2 版本API经常会变，因此要注意区分版本。一般放入URL中。 https://api.example.com/v1/ 1.3 路径路径又称”终点”（endpoint），表示API的具体网址。在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。 https://api.example.com/v1/zooshttps://api.example.com/v1/animalshttps://api.example.com/v1/employees 1.4 HTTP动词对于资源的具体操作类型，由HTTP动词表示。常用的HTTP动词有下面五个（括号里是对应的SQL命令）。 GET（SELECT）：从服务器取出资源（一项或多项） POST（CREATE）：在服务器新建一个资源 PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源） PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性） DELETE（DELETE）：从服务器删除资源 HEAD: 类似GET，但只回传HTTP header (safe &amp; idempotent) 其它还有一些较少用到的，可参Wikipedia: Hypertext Transfer Protocol 下面是一些例子。 GET /zoos：列出所有动物园 POST /zoos：新建一个动物园 GET /zoos/ID：获取某个指定动物园的信息 PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息） PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息） DELETE /zoos/ID：删除某个动物园 GET /zoos/ID/animals：列出某个指定动物园的所有动物 DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物 1.5 过滤信息如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。下面是一些常见的参数。 ?limit=10：指定返回记录的数量 ?offset=10：指定返回记录的开始位置 ?page=2&amp;per_page=100：指定第几页，以及每页的记录数 ?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序 ?animal_type_id=1：指定筛选条件 1.6 状态码服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。 200 OK – [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent） 201 CREATED – [POST/PUT/PATCH]：用户新建或修改数据成功 202 Accepted – [*]：表示一个请求已经进入后台排队（异步任务） 204 NO CONTENT – [DELETE]：用户删除数据成功 400 INVALID REQUEST – [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的 401 Unauthorized – [*]：表示用户没有权限（令牌、用户名、密码错误） 403 Forbidden – [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的 404 NOT FOUND – [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的 405 method not allowed – [*]：该http方法不被允许 406 Not Acceptable – [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式） 410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的 422 Unprocesable entity – [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误 500 INTERNAL SERVER ERROR – [*]：服务器发生错误，用户将无法判断发出的请求是否成功 1.7 错误处理如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。 1&#123;error: "invalid API key"&#125; 1.8 返回结果针对不同操作，服务器向用户返回的结果应该符合以下规范。 GET /collection：返回资源对象的列表（数组） GET /collection/resource：返回单个资源对象 POST /collection：返回新生成的资源对象 PUT /collection/resource：返回完整的资源对象 PATCH /collection/resource：返回完整的资源对象 DELETE /collection/resource：返回一个空文档 二、最佳实践2.1 Slim框架的使用推荐一个轻量版PHP RESTful框架：Slim ，有兴趣的同学可以参考其文档：http://docs.slimframework.com/ 下面以一个网上的教程给大家说明，主要是应用前端框架AngularJS 和 后端PHP框架Slim搭设的一个简易图书管理系统为例。 代码实现主要的工作是在项目根目录下的index.php文件里进行的，第一步需要引入Slim框架 12345//第一步：引用Slim框架//首先，需要在你的index.php中引入Slim框架的依赖，根据实际情况，你可能得调整下文件的路径require 'Slim/Slim.php';\Slim\Slim::registerAutoloader(); 2.x 测试 - 插件使用 Chrome 插件 Postman Chrome插件Json-viewer 和 json-handle ### 三、扩展3.1 不要默认使用大括号封装，但要在需要的时候支持json 还是回调，那是个问题： 123456&#123; "data" : &#123; "id" : 123, "name" : "John" &#125;&#125; or1234567callback_function(&#123; status_code: 200, next_page: "https://..", response: &#123; ... actual JSON response body ... &#125;&#125;) 好的做法是： http://example.com/api/xxx?type=jsonp&amp;callback=yourCallBackName http://example.com/api/xxx?type=json http://example.com/api/xxx?type=xml 就返回对应结构的数据。 3.2 如何使用 Last-Modified 和 Etags 如何帮助提高性能?开发者会把 Last-Modified 和 ETags 请求的 HTTP 报头一起使用，这样可利用客户端（例如浏览器）的缓存。因为服务器首先产生 Last-Modified/Etag 标记，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其缓存是否过期。 HTTP 协议规格说明定义 ETag 为“被请求变量的实体值”。 服务器单独负责判断记号是什么及其含义，并在 HTTP 响应头中将其传送到客户端，以下是服务器端返回的格式： ETag: “d41d8cd98f00b204e9800998ecf8427e” 客户端的查询更新格式是这样的： If-None-Match: W/“d41d8cd98f00b204e9800998ecf8427e” 如果ETag没改变，则返回状态304，内容为空，这也和Last-Modified一样。下面再扔些php的例子看看： 123456789101112 $file = 'myfile.php'; $last_modified_time = filemtime($file); $etag = md5_file($file); header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT"); header("Etag: $etag"); if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) &#123; header("HTTP/1.1 304 Not Modified"); exit; &#125; 补充：对于前端部分网上的一些做法是：Gulp对所有的静态资源进行预处理，生成一份manifest，标明了预处理前后文件之间的对应关系。DEMO, 另外腾讯前端团队的一篇关于web缓存系列文章大家也可以查阅下：直通车 总结技术的变革一般都是为了提高生产力的，restful的初衷也是。它提倡简单（理论上讲只要业务实体抽象的好就够了），纯粹（每个资源就四种操作）的 API 设计思想，需要使用者坚持信仰（坚持基本原则），适度灵活。 — 来自SF.gg Q&amp;A1. 务器返回的数据格式，应该使用JSON还是使用XML？推送使用JSON，如果提供的服务对象较多，可以设置兼容XML 2. REST能应用在什么场景？REST规范中明确规定，处理的是资源（或者实体），而不是动作。换句话说，REST处理的是books或者animals这种东西，而login之类的业务逻辑是动作，不适用REST。 restful 可以看做 orm 的 web api 形式，也就是说，资源指的是数据库里面的表（或者表的连接），或者是你nosql数据库里面的对象。当调用者需要并且有权直接操作它们，或者是以表的粒度操作数据库，才需要使用 restful。 3. 统计能使用REST吗？4. 兴趣探讨Vue.js、ReactJS、AngularJS5. 扩展：API Cookie加密6. php crud 和resetful的相似之处参考简单版： 《RESTful API 设计指南》 - 阮一峰的网络日志 restful-api-design-references REST API 使用详解 国内值得关注的官方 API 集合 高阶版： phalcon框架的REST实践 PHP-CRUD-API: 另外有一些基于商业服务提供的接口文档有： LeanCloud: REST API 使用详解 UPS： https://segmentfault.com/a/1190000004038353 https://segmentfault.com/a/1190000002690813 https://zhujun24.github.io/2014/12/10/AngularJS%E5%85%A5%E9%97%A8%E7%9A%84%E5%B0%8FDemo/ https://zhujun24.github.io/2015/03/19/%E7%94%A8Slim%E8%BD%BB%E5%9E%8BPHP%E6%A1%86%E6%9E%B6%E5%86%99RESTful%20APIs/ https://segmentfault.com/a/1190000004690182 http://www.php.cn/php-notebook-285669.html http://www.yiifans.com/yii2/guide/tool-gii.html https://tw.twincl.com/programming/*641y]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Redis学习笔记]]></title>
+    <url>%2F2017%2F01%2F23%2Fredis.html</url>
+    <content type="text"><![CDATA[一、redis说明redis基础二、redis类型redis的数据类型有strings, hashes, lists, sets 和sorted sets 五种。 2.1 string类型及操作 set KEY VALUE setnx KEY VALUE setex KEY TIME(s) VALUE setrange KEY POI STRING: 设置指定 key 的 value 值的子字符串 mset KEY1 VALUE1 KEY2 VALUE2 …: 一次设置多个 key 的值,成功返回 ok 表示所有的值都设置了,失败返回 0 表示没有任何值 被设置。 msetnx KEY1 VALUE1 KEY2 VALUE2 …: 一次设置多个 key 的值,成功返回 ok 表示所有的值都设置了,失败返回 0 表示没有任何值 被设置,但是不会覆盖已经存在的 key。 get KEY: 获取key对应的string值,如果key不存在返回nil。 getset KEY: 设置key的值,并返回key的旧值. 如果key不存在,那么将返回nil getrange KEY POT_START POT_END: 获取指定 key 的 value 值的子字符串。 mget KEY1 KEY2 …: 一次获取多个 key 的值,如果对应 key 不存在,则对应返回 nil。 incr KEY: 对 key 的值做加加操作,并返回新的值。注意 incr 一个不是 int 的 value 会返回错误,incr 一 个不存在的 key,则设置 key 为 1 incrby KEY NUM: 同 incr 类似,加指定值 ,key 不存在时候会设置 key,并认为原来的 value 是 0 decr: 对 key 的值做的是减减操作,decr 一个不存在 key,则设置 key 为-1 decrby: 同 decr,减指定值。 append: 给指定 key 的字符串值追加 value,返回新字符串值的长度。 strlen : 取指定 key 的 value 值的长度。 2.2 hashes类型及操作Redis hash是一个string类型的field和value的映射表.它的添加、删除操作都是O(1()平均)。 hash 特别适合用于存储对象。相较于将对象的每个字段存成单个 string 类型。将一个对象存 储在 hash 类型中会占用更少的内存,并且可以更方便的存取整个对象。省内存的原因是新 建一个 hash 对象时开始是用 zipmap(又称为 small hash)来存储的。这个 zipmap 其实并不 是 hash table,但是 zipmap 相比正常的 hash 实现可以节省不少 hash 本身需要的一些元数据 存储开销。尽管 zipmap 的添加,删除,查找都是 O(n),但是由于一般对象的 field 数量都不 太多。所以使用 zipmap 也是很快的,也就是说添加删除平均还是 O(1)。如果 field 或者 value 的大小超出一定限制后,Redis 会在内部自动将 zipmap 替换成正常的 hash 实现. 这个限制可 以在配置文件中指定。 hash-max-zipmap-entries 64 #配置字段最多 64 个 hash-max-zipmap-value 512 #配置 value 最大为 512 字节 hset KEY FIELD VALUE : 设置 hash field 为指定值,如果 key 不存在,则先创建。 hsetnx KEY FIELD VALUE: 设置 hash field 为指定值,如果 key 不存在,则先创建。如果 field 已经存在,返回 0,nx 是 not exist 的意思。 hmset KEY FIELD1 VALUE1 FIELD2 VALUE2 …: 同时设置 hash 的多个 field. hget KEY FIELD : 获取指定的 hash field。 hmget KEY FIELD1 FIELD2 … : 获取全部指定的 hash filed。 hincr KEY FIELD NUM: 指定的 hash filed 加上给定值。 hexists KEY FIELD: 测试指定 field 是否存在。 hlen KEY: 返回指定 hash 的 field 数量。 hdel KEY FIELD1 FIELD2 …: 删除指定 hash 的 field, 并返回删除field的数量。 hkeys KEY： 返回 hash 的所有 field。 hvals KEY: 返回 hash 的所有 value。 hgetall KEY: 获取某个 hash 中全部的 filed 及 value。 2.3 lists 类型及操作list 是一个链表结构,主要功能是 push、pop、获取一个范围的所有值等等,操作中 key 理 解为链表的名字。 Redis 的 list 类型其实就是一个每个子元素都是 string 类型的双向链表。链表的最大长度是(2 的 32 次方)。我们可以通过 push,pop 操作从链表的头部或者尾部添加删除元素。这使得 list 既可以用作栈,也可以用作队列。 有意思的是 list 的 pop 操作还有阻塞版本的,当我们[lr]pop 一个 list 对象时,如果 list 是空, 或者不存在,会立即返回 nil。但是阻塞版本的 b[lr]pop 可以则可以阻塞,当然可以加超时时 间,超时后也会返回 nil。为什么要阻塞版本的 pop 呢,主要是为了避免轮询。举个简单的 例子如果我们用 list 来实现一个工作队列。执行任务的 thread 可以调用阻塞版本的 pop 去获 取任务这样就可以避免轮询去检查是否有任务存在。当任务来时候工作线程可以立即返回, 也可以避免轮询带来的延迟。 lpush KEY VALUE : 在 key 对应 list 的头部添加字符串元素 rpush KEY VALUE : 在 key 对应 list 的尾部添加字符串元素 linsert KEY before VALUE ADD_VALUE: 在 key 对应 list 的特定位置之前或之后添加字符串元素 lset KEY MAP VALUE : 设置 list 中指定下标的元素值(下标从 0 开始) lrem KEY COUNT VALUE ： 从 key 对应 list 中删除 count 个和 value 相同的元素。count&gt;0 时,按从头到尾的顺序删除,count&lt;0 时,按从尾到头的顺序删除,count=0 时,删除全部. ltrim KEY COUNT_START COUNT_END : 保留指定 key 的值范围内的数据 lpop KEY : 从 list 的头部删除元素,并返回删除元素 rpop KEY : 从 list 的尾部删除元素,并返回删除元素 rpoplpush KEY1 KEY2: 从第一个 list 的尾部移除元素并添加到第二个 list 的头部,最后返回被移除的元素值,整个操 作是原子的.如果第一个 list 是空或者不存在返回 nil lindex KEY MAP: 返回名称为 key 的 list 中 index 位置的元素 llen KEY : 返回 key 对应 list 的长度 2.4 sets 类型及操作set 是集合,和我们数学中的集合概念相似,对集合的操作有添加删除元素,有对多个集合求交并差等操作,操作中 key 理解为集合的名字。 Redis 的 set 是 string 类型的无序集合。set 元素最大可以包含(2 的 32 次方)个元素。 set 的是通过 hash table 实现的,所以添加、删除和查找的复杂度都是 O(1)。hash table 会随 着添加或者删除自动的调整大小。需要注意的是调整 hash table 大小时候需要同步(获取写 锁)会阻塞其他读写操作,可能不久后就会改用跳表(skip list)来实现,跳表已经在 sorted set 中使用了。关于 set 集合类型除了基本的添加删除操作,其他有用的操作还包含集合的 取并集(union),交集(intersection),差集(difference)。通过这些操作可以很容易的实现 sns 中的好友推荐和 blog 的 tag 功能。 smembers KEY : 查看集合元素 sadd KEY VALUE :向名称为 key 的 set 中添加元素 srem KEY VALUE : 删除名称为 key 的 set 中的元素 member spop KEY : 随机返回并删除名称为 key 的 set 中一个元素 sdiff KEY1 KEY2 : 返回所有给定 key 与第一个 key 的差集 sdiffstore KEY KEY1 KEY2 … : 返回所有给定 key 与第一个 key 的差集,并将结果存为另一个 key。注意是通过key1比对后面keyx得出的差值保存到KEY sinter KEY1 KEY2 : 返回所有给定 key 的交集 sinterstore KEY KEY1 KEY2 … : 返回所有给定 key 的交集,并将结果存为另一个 key sunion KEY1 KEY2 : 返回所有给定 key 的并集 sunionstore KEY KEY1 KEY2… : 返回所有给定 key 的并集,并将结果存为另一个 key smove KEY1 KEY2 VALUE : 从第一个 key 对应的 set 中移除 member 并添加到第二个对应 set 中 scard KEY : 返回名称为 key 的 set 的元素个数 sismember KEY VALUE : 测试 member 是否是名称为 key 的 set 的元素 srandmember KEY : 随机返回名称为 key 的 set 的一个元素,但是不删除元素 2.5 sorted sets 类型及操作sorted set 是 set 的一个升级版本,它在 set 的基础上增加了一个顺序属性,这一属性在添加 修改元素的时候可以指定,每次指定后,zset 会自动重新按新的值调整顺序。可以理解为有 两列的 mysql 表,一列存 value,一列存顺序。操作中 key 理解为 zset 的名字。 和 set 一样 sorted set 也是 string 类型元素的集合,不同的是每个元素都会关联一个 double 类型的 score。sorted set 的实现是 skip list 和 hash table 的混合体。 当元素被添加到集合中时,一个元素到 score 的映射被添加到 hash table 中,所以给定一个 元素获取 score 的开销是 O(1),另一个 score 到元素的映射被添加到 skip list,并按照 score 排 序,所以就可以有序的获取集合中的元素。添加,删除操作开销都是 O(log(N))和 skip list 的 开销一致,redis 的 skip list 实现用的是双向链表,这样就可以逆序从尾部取元素。sorted set 最 经常的使用方式应该是作为索引来使用.我们可以把要排序的字段作为 score 存储,对象的 id 当元素存储。下面是 sorted set 相关命令。 zadd KEY SCORE VALUE : 向名称为 key 的 zset 中添加元素 member,score 用于排序。如果该元素已经存在,则根据 score 更新该元素的顺序 zrange KEY SCORE_START SCORE_END [withscores] : 显示zset中指定的元素，当带上withscores参数时传排序值 zrem KEY VALUE : 删除名称为 key 的 zset 中的元素 member zincrby KEY SCORE VALUE : 如果在名称为 key 的 zset 中已经存在元素 member,则该元素的 score 增加 increment;否则 向集合中添加该元素,其 score 的值为 increment zrank KEY VALUE : 返回名称为 key 的 zset 中 member 元素的排名(按 score 从小到大排序)即下标。 zrevrank KEY VALUE : 返回名称为 key 的 zset 中 member 元素的排名(按 score 从大到小排序)即下标 zrevrange KEY START END [withscores] : 返回名称为 key 的 zset(按 score 从大到小排序)中的 index 从 start 到 end 的所有元素 ? zrangebyscore KEY START END [withscores] : 返回集合中 score 在给定区间的元素 ? zcount KEY START END : 返回集合中 score 在给定区间的数量。测试不能为负数。 zcard KEY : 返回集合中元素个数 zscore KEY VALUE : 返回给定元素对应的 score zremrangebyrank KEY START END : 删除集合中排名在给定区间的元素 zremrangebyscore KEY START END ： 删除集合中 score 在给定区间的元素 三、 redis常用命令3.1 键值相关命令 keys : 返回满足给定 pattern 的所有 key exists KEY : 确认一个 key 是否存在 del KEY : 删除一个 key expire KEY TIME: 设置KEY的过期时间 move : 将当前数据库中的 key 转移到其它数据库中 ? persist KEY : 移除给定 key 的过期时间 randomkey : 随机返回 key 空间的一个 key rename KEY NEW_KEY : 重命名 key type KEY : 返回值的类型 3.2 服务器相关命令 ping : 测试连接是否存活 echo VALUE : 在命令行打印一些内容 select ID : 选择数据库。Redis 数据库编号从 0~15,我们可以选择任意一个数据库来进行数据的存取。 quit : 退出连接。 dbsize : 返回当前数据库中 key 的数目。 info : 获取服务器的信息和统计。 monitor : 实时转储收到的请求。 config get VALUE : 获取服务器配置信息, 如 config get dir 获取redis的目录。 flushdb : 删除当前选择数据库中的所有 key。 flushadd : 删除所有数据库中的所有 key。 四、Redis高级使用特性五、PHP中使用redis类php安装redis扩展后即可使用，针对不同的php版本编译的扩展也是不一样的。 5.1 安装redis php 扩展5.2 php常用redis方法参考：https://github.com/ukko/phpredis-phpdoc 六、一些Redis相关工具 phpRedisAdmin : 跟phpmyadmin类似的redis php管理页面]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL binlog 日志内容导出规则处理]]></title>
+    <url>%2F2016%2F11%2F03%2Fmysql-binlog-export.html</url>
+    <content type="text"><![CDATA[由于误删了mysql的数据，通过binlog导出的数据匹配写入的sql，代码如： 12345678910111213141516171819202122$str = file_get_contents('test.log');// $str = &lt;&lt;&lt;EOF// use `dswfnet_anru`/*!*/;// SET TIMESTAMP=1473609850/*!*/;// INSERT INTO `sp_active_info` (`code`,`phone`,`name`,`province`,`city`,`area`,`addr`,`ua`,`ip`,`insert_time`) VALUES ('8225','18778780399','卢秋燕','广西区','钦州市','钦南区','广西钦州市北部湾大道','Mozilla/5.0 (Linux; Android 4.3; R7007 Build/JLS36C) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile MQQBrowser/6.2 TBS/036558 Safari/537.36 MicroMessenger/6.3.23.840 NetType/cmnet Language/zh_CN','117.136.98.157','2016-09-12 00:04:10')// /*!*/;// # at 16267863// EOF;$patten = '#(INSERT INTO `sp_active_info`.+)#i';preg_match_all($patten, $str, $match);echo count($match[1]);foreach($match[1] as $v)&#123; $v = $v.';'."\n"; file_put_contents('test.sql', $v,FILE_APPEND );&#125;]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>binlog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac折腾LNMP]]></title>
+    <url>%2F2016%2F09%2F20%2Finstall-lnmp-for-mac.html</url>
+    <content type="text"><![CDATA[之前安装mysql一直都是失败，于是使用了mamp，发现很多扩展安装非常麻烦。于是，又开始动手使用homebrew安装 php7 + mysql5.7 +nginx. 一、设置homebrew12345ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"brew update brew tap homebrew/dupes brew tap homebrew/versions brew tap homebrew/homebrew-php 二、安装nginx12# 重启nginx : sudo nginx -s reload|stopsudo nginx -s stop &amp;&amp; sudo nginx 三、安装mysql1234brew edit mysqlwget xxxx-5.7.11.tar.gzmv mysql-5.7.11.el_capitan.bottle.tar.gz /Library/Caches/Homebrew/brew install mysql 四、安装php4.1 安装php5.x使用brew可以安装php的版本有 5.3、5.4、5.5、5.6 如果已经有安装php，需要unlink后再继续。比如我现在有php54，但要安装hp55，则需要这样去执行升级操作： 12brew unlink php54brew install php55 4.2 安装php7.0mac下重启php-fpm后可能使用了旧的版本，需要执行如下命令使得php和php-fpm调用的是7.0的版本：1export PATH="$(brew --prefix php70)/sbin:$PATH" 4.3 PHP常用扩展安装12345678910# swoole: https://github.com/swoole/swoole-src/releases/# redis: 下载：https://github.com/phpredis/phpredis/tree/php7# 以上安装方式都是：./configuremake &amp;&amp; make install# memcachedbrew install memcachedbrew install php70-memcached 4.4 安装php常见问题 memcached 依赖问题1PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP 7.0.2 (cli) (built: Jan 7 2016 10:40:26) ( NTS )Copyright (c) 1997-2015 The PHP GroupZend Engine v3.0.0, Copyright (c) 1998-2015 Zend Technologies with Xdebug v2.4.0RC3, Copyright (c) 2002-2015, by Derick Rethans 需要注释配置/usr/local/etc/php/7.0/conf.d/ext-memcached.ini如下内容：12;memcached.sess_lock_wait = 150000;memcached.sess_lock_max_wait = 0 参考： http://stackoverflow.com/questions/35130463/php7-memcache-deprecated-error-message]]></content>
+      <categories>
+        <category>DEV</category>
+      </categories>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vimeo 视频开发]]></title>
+    <url>%2F2016%2F09%2F17%2Fdev-vimeo.html</url>
+    <content type="text"><![CDATA[vimeo是国外支持html5的播放器，而且木有广告，是嵌入到企业站或者博客站首选的视频之一，以下为嵌入vimeo视频的代码： 1&lt;iframe src="//player.vimeo.com/video/VIDEO_ID" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt; vimeo文档地址]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo用法&wordpress迁移]]></title>
+    <url>%2F2016%2F09%2F17%2Fwordpress-to-hexo.html</url>
+    <content type="text"><![CDATA[今天把wp博客迁移到了hexo，主要原因是以后不用考虑空间问题。下面是迁移的代码： 12345678#使用npm安装插件npm install hexo-migrator-wordpress --save#（先去Wordprdss导出你的XML文件先），在博客目录执行hexo migrate wordpress wordpress.xml#导完之后，插件和xml都可以卸掉了~_~# 另外，由于mac中有报错`&#123; [Error: Cannot find module './build/Release/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' &#125;`， 需执行命令:npm install hexo --no-optional 另外，如果需要在线可视化编辑器，可以安装hexo-admin这个工具：1npm install --save hexo-admin 完成后，访问 localhost:4000/admin就是后台编辑的页面了。 enjoy it！]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[jetbrains系统注册码]]></title>
+    <url>%2F2014%2F07%2F18%2Fjetbrains-software-keygen.html</url>
+    <content type="text"><![CDATA[系列软件的用户名都是BOXCORE phpStorm注册码： ===== LICENSE BEGIN =====63272-1204201000000l7V1XdVStPUJJBsHFRDdsUbGGVbeOn!V1m62NqILGensvhsX5”r1PWSRdlBkcl2sw3SDjP8azf4jw90TVuVZB===== LICENSE END ===== &nbsp; rubymini注册码 ===== LICENSE BEGIN =====36121-12042010000026ZaA8”l8ewDF”62XGOG4oeKCMQfyjQCh4OkEdFXYoYBX”PnUChnMrLKCfF”7RgedAhh78zfNSlNEc996jZJpV===== LICENSE END ===== &nbsp; WebStorm ===== LICENSE BEGIN =====31168-1204201000000FTsQvvg2Wsc5xjT0AVDwzU4zZD87W3vfAv8hY””LXngYd1cHyAL9srjhC70dya142m5uvhirGmWPcd”p8rMMf===== LICENSE END ===== &nbsp; PyCharm ===== LICENSE BEGIN =====98736-1204201000001LIgH92VW6”X5OOrf4Vpt3t!g9yuMZhvqcdcftrxPjQQvRiMCP8YsM0K!BSir5BuHTtOvYAsh6Xt8weGoPp8it===== LICENSE END ===== &nbsp; &nbsp; &nbsp;]]></content>
+      <categories>
+        <category>App</category>
+      </categories>
+      <tags>
+        <tag>jetbrains</tag>
+        <tag>phpstorm</tag>
+        <tag>pycharm</tag>
+        <tag>rubymine</tag>
+        <tag>webstorm</tag>
+        <tag>激活码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[订阅器收集]]></title>
+    <url>%2F2014%2F06%2F26%2Frss-list.html</url>
+    <content type="text"><![CDATA[自从google reader关闭后就转投国内的鲜果用了1年多了, 不过终于在今天用了feedly. 故记录下一些用feed订阅的地址: feedly订阅: http://www.feedly.com/home#subscription/feed/%s 鲜果订阅: http://xianguo.com/subscribe?url=%s]]></content>
+      <categories>
+        <category>App</category>
+      </categories>
+      <tags>
+        <tag>RSS</tag>
+        <tag>订阅工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[人生选择]]></title>
+    <url>%2F2014%2F05%2F27%2Fnote-20140527-life-choice.html</url>
+    <content type="text"><![CDATA[小学升初中 120多的分，不关心上学初三自己真正努力，但只是勉强考到了3中高二升高三 尖子班落选高考考差了，去了一个不是自己选择学校和专业第一份工作大桥化工实习宾伦手表辞职，瞎逛，自己折腾去北京学习就I进入7808工作 许多年去了，挚友只有2个。 很好的朋友4个。 我个人性格孤僻，自以为是，自傲。 偶尔抑郁症。 喜欢英文歌和轻音乐 追美剧和A威教育。 发自我的手机]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[学编程的原因]]></title>
+    <url>%2F2014%2F04%2F30%2Fnote-reason-for-learn-coding.html</url>
+    <content type="text"><![CDATA[以前在学校的时候学习编程是因为网页好玩，我感兴趣，但那时候还没有真正规划好自己的学习路线，也没有考虑以后人生计划。我当时学的化工，那会只有一个简单的想法就是出来后我肯定不做化工，不做化工那么做什么我也没有好好想。于是，在大三实训了1年后果断的就辞职上了广州一个做二手钢琴朋友那里。在他那边的时候我帮他完成了一个二手钢琴的网站，但那时候网站基础什么的都很薄弱，当然做出的网站也是比较粗糙的，现在回去看这网站我也是无法直视的。就在他那边白住了一个月，但不能在他那边白住人家那么长时间，在11年八月低的时候恰逢我朋友国亮也上广州了急需找个住，于是我们伙着一起在新市墟找了个单间住。那是我第一次租房，环境很糟，一楼住，阴寒潮湿，墙两边绕水渠，晚上还有很多老鼠在那边叫，屋里蟑螂一堆。就在那边瞎折腾了一个月，整天在那里漫无目的的上网。。一个月后通过百姓网找到了我的第一份工作。 发自我的手机]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVA学习计划]]></title>
+    <url>%2F2014%2F04%2F26%2Fjava-learning-plans.html</url>
+    <content type="text"><![CDATA[高调在这里发布我的java学习计划正式开始了！本人的java基础为零，大计划是从最基础的javaSE学起，掌握基本语法后做个小项目巩固知识。在深思熟虑之下，考虑还是用java作为自学的第三个语言。其主要动机来源于要学习lucense项目开发搜索引擎。说干就干，下面给出近期快速突破java基础知识的计划： 4月26日：一整天卡java基础语法，并能用基础语法写简单的小试验。 &nbsp; 同时网上也有网友提出的如何自学java的问题可以参考： http://www.zhihu.com/question/19945685 &nbsp; 参考视频教程： http://edu.51cto.com/course/course_id-429.html &nbsp; 课程目录参考： http://java.itcast.cn/java/course/base.shtml &nbsp; 于2014年4月26日 凌晨]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+        <tag>计划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[无题]]></title>
+    <url>%2F2014%2F04%2F18%2Fwuti-20140418.html</url>
+    <content type="text"><![CDATA[晚上12点下大雨了，坚持看书中！]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime Text插件：DocBlockr自动补全注释]]></title>
+    <url>%2F2014%2F04%2F10%2Fsublime-text-plugin-docblockr.html</url>
+    <content type="text"><![CDATA[Github项目地址：https://github.com/spadgos/sublime-jsdocs 下载后把目录名修改为“DocBlockr ”方可使用 &nbsp; 常用配置： 用户设置： { “jsdocs_extra_tags”: [“”, “@author ${1:author name}”, “@date 1397096007000“, “@version ${1:[version]}”]}&nbsp; 完成，然后就可以使用咯，enjoy it！]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Sublime Text</tag>
+        <tag>sublime插件</tag>
+        <tag>DocBlockr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[phpmyadmin免输入密码直接登陆mysql]]></title>
+    <url>%2F2014%2F04%2F10%2Fphpmyadmin-config-setting.html</url>
+    <content type="text"><![CDATA[设置说明:config.sample.inc.php 修改为 config.inc.php 添加如下代码：。 $i++;/ Authentication type /$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;/ Server parameters /$cfg[‘Servers’][$i][‘host’] = ‘localhost’;$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;$cfg[‘Servers’][$i][‘compress’] = false;/ Select mysqli if your server has it /// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;$cfg[‘Servers’][$i][‘user’] = ‘root’;$cfg[‘Servers’][$i][‘password’] = ‘’;$cfg[‘Servers’][$i][‘AllowRoot’] = true;$cfg[‘Servers’][$i][‘AllowNoPassword’] = true; $i++;$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;$cfg[‘Servers’][$i][‘host’] = ‘192.168.15.2’;$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;$cfg[‘Servers’][$i][‘compress’] = false;// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;$cfg[‘Servers’][$i][‘user’] = ‘root’;$cfg[‘Servers’][$i][‘password’] = ‘123456’;$cfg[‘Servers’][$i][‘AllowRoot’] = true;$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;&nbsp; 注意修改用户名和密码，可以设置多个，需要在$i++后添加。 &nbsp;]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>phpmyadmin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LNMP编译：nginx的安装]]></title>
+    <url>%2F2014%2F04%2F09%2Finstall-nginx-for-lnmp.html</url>
+    <content type="text"><![CDATA[编译nginx前依赖包安装： # install pcre for nginxif [ -s pcre-8.34.tar.gz ]; then echo “pcre-8.34.tar.gz [found]”else echo “Error: pcre-8.34.tar.gz not found!!!download now……” wget -c http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gzfitar zxvf pcre-8.34.tar.gzcd pcre-8.34/./configuremake &amp;&amp; make installcd ../ldconfig&nbsp; 开始编译nginx： 下载解压： tar zxvf nginx-1.4.4.tar.gzcd nginx-1.4.4/&nbsp; configure配置项： 如果你的nginx依赖件已经用yum先安装好，可以使用下面命令： ./configure –user=$LNMP_USER –group=$LNMP_USER –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-pcre如果nginx依赖包是编译的，需要指定目录： ./configure –user=www –group=www –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-openssl=/usr/include/openssl –with-pcre&nbsp; 如果报错 error:openssl/include/openssl/ssl.h] Error 2需要确定openssl是否安装好，如果是yum安装openssl-devel后，configure时的参数去掉–with-openssl=/lib64/ –with-zlib=/usr/lib64/ –with-md5=/usr/lib64即可编译通过 &nbsp;]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>Nginx</tag>
+        <tag>编译nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime Text插件：Package Control安装包管理]]></title>
+    <url>%2F2014%2F04%2F07%2Fsublime-text-plugin-package-control.html</url>
+    <content type="text"><![CDATA[Package Control 能让你很方便地管理sublime text插件，下面讲解sublime如何安装package control包： 官方原版教材：https://sublime.wbond.net/installation 如果e文不好，就看看我的操作吧： 1. 快捷键“Ctrl+`”或菜单里“View &gt; Show Console”来调用控制器； 2. 在底部的控制器中粘贴如下代码： sublime text 3： import urllib.request,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘http://sublime.wbond.net/‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)&nbsp; sublime text 2： import urllib2,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( ‘http://sublime.wbond.net/‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), ‘wb’ ).write(by) if dh == h else None; print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h) if dh != h else ‘Please restart Sublime Text to finish installation’)&nbsp; 回车后就完成了package control的安装了！ &nbsp; 使用方法，选择菜单“Preferences &gt; Browse Packages”里面就有 快捷键：“Ctrl+Shift+P”调用]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Sublime Text</tag>
+        <tag>sublime插件</tag>
+        <tag>Package Control</tag>
+        <tag>Packges</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime Text插件：CTags安装和使用]]></title>
+    <url>%2F2014%2F04%2F06%2Fsublime-text-plugin-ctags.html</url>
+    <content type="text"><![CDATA[CTags简介：略 &nbsp; CTags安装： 跟其他插件安装一样，放到packags目录中 sublime text CTags项目地址：https://github.com/SublimeText/CTags 百度网盘下载地址：http://pan.baidu.com/s/1nt9GOpN &nbsp; 安装好ctags后并不能直接使用，还需要安装配套的ctags58才行。 ctag58安装文件： 下载一：百度网盘 http://pan.baidu.com/s/1hqfyQNE（建议安装到D:Program Filesctags58，并添加到系统变量中） 下载二：官方 http://ctags.sourceforge.net &nbsp; 解压下载好的ctags58.zip，我这里放在了D:Program files配置环境变量： 讲D:Program filesctags58 地址配置到环境变量path中在cmd 中 输入 ctags –help 出现帮助信息则表示安装配置成功ctags安装配置好之后 在sublime text 打开 Package Control 输入install 选择 install package安装扩展接下来输入ctags，找到ctags扩展包 回车安装最后在打开的项目中 在sublimetext 目录栏中 find-&gt;CTags-&gt;build Tags 后 会在项目的根目录下生成.tags文件 &nbsp; Sublime下CTags使用： ctrl+shift+鼠标左键 就可以定位到相应的函数或变量了 &nbsp; 其他参考：http://blog.csdn.net/thunderclaus/article/details/11556159]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Sublime Text</tag>
+        <tag>CTags</tag>
+        <tag>sublime插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime Text插件：Emmet]]></title>
+    <url>%2F2014%2F04%2F06%2Fsublime-text-plugin-emmet.html</url>
+    <content type="text"><![CDATA[Emmet以前叫Zen Coding，ST上面安装emmet这个插件可以节省很多编码时间，不够你信不信方正我信了哈。ST下安装Emmet是非常简单的，如果有Package Control直接输入安装命令，找emmet即可全自动安装。但本人实现的方法是直接从github项目地址下载的压缩包文件，直接用github上面压缩的文件安装会遇到下面常见的问题，下面给出我个人在用压缩包安装这个插件时候遇到的问题。 1. 首先去到Emmet的Github项目地址：https://github.com/sergeche/emmet-sublime，下载最新master版本后把文件目录拷贝到ST的安装目录中：{Sublime Text 目录}DataPackages 下。拷贝好后需要修改目录名为“Emmet”，不然st不买账。注：博主以前安装的时候就是遇到这个问题，后来在“Package Control”中选择“Emmet”的设置发现都是空的，还好哥集聪明与智慧一身，视觉敏锐的我立马发现了配置文件路径跟我安装的路径完全不一样，修改成“Emmet”后整个世界都舒畅了。。。 2. 安装好emmet后需要重启下st，重新打开后，底部会提醒正在下载PyV8引擎，等安好pyv8后测试在一个html文件中输入“!+Tab键”看他能不能扩展代码，不能的话需要看看在安装目录下PyV8是否已经自动安装好了（大部分情况是下载地址被强，需要上去拷贝到你本地）。假如PyV8已经安装好了，但还是不工作，那就要看看你的emmet目录名字是不是“Emmet”不然改改吧。 吹了这么多现在来分享下我的Emmet包和PyV8把： 2个文件直接解压到Sublime Text 的Packges目录就好了 下载地址： Emmet：http://pan.baidu.com/s/1mg7GXJE 密码：dp4z PyV8：http://pan.baidu.com/s/1jGqQewQ 密码：303v]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Sublime Text</tag>
+        <tag>sublime插件</tag>
+        <tag>Packges</tag>
+        <tag>Emmet</tag>
+        <tag>PyV8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[黑苹果折腾记：笔记本硬件信息]]></title>
+    <url>%2F2014%2F04%2F06%2Fmy-asus-notebook-hardware-information.html</url>
+    <content type="text"><![CDATA[想体验下xcode下编码工具，又不想心疼1w块新买个imac，遂决心安装黑苹果之。借此记下我的笔记本配置：电脑型号 华硕 X55VDR 笔记本电脑 操作系统 Windows 8.1 专业版 64位 ( DirectX 11 ) 处理器 英特尔 第二代酷睿 i3-2370M @ 2.40GHz 双核 主板 华硕 X55VDR (英特尔 HM76 Express 芯片组) 内存 4 GB ( DDR3 1333MHz ) 主硬盘 日立 HTS545050A7E380 ( 500 GB / 5400 转/分 ) 显卡 Nvidia GeForce 610M ( 1 GB / 华硕 ) 显示器 LG LGD02DC ( 15.3 英寸 ) 光驱 建兴 DVD A DS8A9SH DVD刻录机 声卡 威盛 VIA @ 英特尔 Panther Point High Definition Audio Controller 网卡 鈺硕 AR8161/8165 PCI-E Gigabit Ethernet Controller / 华硕&nbsp; &nbsp; 硬盘健康：硬盘已使用 共 1462 次，累计 4378 小时主板BIOS日期 华硕 2012 年 11 月 09 日显示器固件日期 LG 2010 年系统安装日期 Windows 8.1 / 2014 年 04 月 05 日 电池损耗 10.18%当前容量 42681 mWh设计容量 47520 mWh &nbsp; 处理器信息：处理器 英特尔 第二代酷睿 i3-2370M @ 2.40GHz 双核速度 2.40 GHz (100 MHz x 24.0)处理器数量 核心数: 2 / 线程数: 4核心代号 Sandy Bridge NB生产工艺 32 纳米插槽/插座 Socket G2 (PGA 988 / BGA 1023)一级数据缓存 2 x 32 KB, 8-Way, 64 byte lines一级代码缓存 2 x 32 KB, 8-Way, 64 byte lines二级缓存 2 x 256 KB, 8-Way, 64 byte lines三级缓存 3 MB, 12-Way, 64 byte lines特征 MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, HTT, EM64T, EIST &nbsp; 主板信息：主板型号 华硕 X55VDR芯片组 英特尔 HM76 Express 芯片组序列号 BSN12345678901234567板载设备 VGA / 视频设备 (启用)板载设备 GLAN / 网卡 (启用)板载设备 WLAN / 网卡 (启用)BIOS American Megatrends Inc. X55VDR.405制造日期 11/09/2012 &nbsp; 内存信息：ChannelA-DIMM0 DDR3 1333MHz 4GB序列号: 00000000 &nbsp; 硬盘信息：产品 日立 HTS545050A7E380大小 500 GB转速 5400 转/分缓存 8 MB硬盘已使用 共 1462 次，累计 4378 小时固件 GG2OA6C0接口 SATA II数据传输率 300 MB/秒特征 S.M.A.R.T, APM, 48-bit LBA, NCQ &nbsp; 显卡信息：显卡 英特尔 HD Graphics Family显存 1893 MB制造商 华硕驱动版本 9.18.13.3260驱动日期 20140202 主显卡 Nvidia GeForce 610M显存 1 GB制造商 华硕 &nbsp; 显示器信息：产品 LG LGD02DC固件日期 2010 年屏幕尺寸 15.3 英寸 (34 厘米 x 19 厘米)显示比例 宽屏 16 : 9分辨率 1366 x 768 32 位真彩色最大分辨率 1366 x 768 &nbsp; 网卡信息：网卡 鈺硕 AR8161/8165 PCI-E Gigabit Ethernet Controller制造商 华硕 无线网卡 雷凌 RT5390 802.11b/g/n WiFi Adapter制造商 富士康 &nbsp; 声卡信息：声卡 威盛 VIA @ 英特尔 Panther Point High Definition Audio Controller &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; that is my config of notepad.]]></content>
+      <categories>
+        <category>Apple</category>
+      </categories>
+      <tags>
+        <tag>黑苹果</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime Text 3 安装使用心得]]></title>
+    <url>%2F2014%2F04%2F05%2Fsublime-text-3-install-and-usage.html</url>
+    <content type="text"><![CDATA[最近又喜欢上用sublime了，最重要使我又转投sublime阵营的原因是，phpstorm用得越来越慢了，经常拖垮机器，所以不得已又转会了sublime阵营。下面给出我个人学习安装sublime text的历程(注:下面涉及到Sublime Text都简称为ST)。 晚上已经有一大堆的ST安装教程，如果e文好的话直接去ST官网看教程使用吧！为了研究ST的软件工作原理我个人采用了绿色包安装，我采用的是“Sublime Text Build 3059”的x86版本，其实本人的机器是x64的，但为了在公司的xp平台也能同步使用故直接弄x86了，同时也方便分享给其他同学使用。 &nbsp; 我的常用ST插件清单，点击可看博主的安装方法和常遇到问题的解决： Emmet IMESupport Clipboard-History Goto-CSS-Declaration CTags：https://github.com/SublimeText/CTags&nbsp; 我的常用ST配置： &nbsp;]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Sublime Text</tag>
+        <tag>编辑器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[计划：VIM使用]]></title>
+    <url>%2F2014%2F03%2F15%2Fvim-editor-plan.html</url>
+    <content type="text"><![CDATA[最近]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[0.1到0.2]]></title>
+    <url>%2F2014%2F01%2F10%2Fstatue-0-1-to-0-2.html</url>
+    <content type="text"><![CDATA[上个月更新了个人的qq签名0.1，是为了表达一个意思，我在寻找一个很重要的东西。 这周日，将临来0.2，又是一个转折点！ PS： 这2天都会去转移我的qq空间资料来这里！]]></content>
+      <categories>
+        <category>Journal</category>
+        <category>Roll</category>
+      </categories>
+      <tags>
+        <tag>roll</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何安装和使用零售密钥激活Windows 8.1 专业版]]></title>
+    <url>%2F2013%2F12%2F25%2Fhow-to-install-windows-8-1-pro.html</url>
+    <content type="text"><![CDATA[步骤一：下载windows 8.1 Pro ISO镜像步骤二：刻录ISO光盘或使用“UltraISO软碟通”等软件创建一个启动U盘进行安装步骤三：将刻录的ISO光盘或启动U盘插入电脑步骤四：引导DVD光盘/启动U盘进入WinPE进行系统的安装步骤五：安装时根据自己的系统版本输入密钥（请勿输入你自己的密钥）Windows 8.1核心版334NH-RXG76-64THK-C7CKG-D3VPTWindows 8.1专业版XHQ8N-C3MCJ-RQXB6-WCHYG-C9WKB步骤六：当系统安装完成回到桌面时你会发现系统没有激活；右键单击左下角的“开始”按钮，选择“命令提示符（管理员）”选项dsadasdgasdgasdasd步骤七：将你的WiFi/路由器/所有网络断开，然后输入slmgr.vbs -XXXXX-XXXXX-XXXXX-XXXXX-XXXXX（更换正确的秘钥）dsadasdgasdgasdasd步骤八：更换成功后，在命令提示符窗口输入 SLUI 4 按回车步骤九：点击“通过电话进行激活”步骤十：选择“英国”步骤十一：使用Skype免费拨打激活窗口上面的电话号码步骤十二：拨打成功提示你选择按键的时候按1键步骤十三：然后输入你窗口上面A-H机器码步骤十四：当被问及有多少台电脑安装的时候按1键步骤十五：然后仔细聆听并记下所报数字并输入至激活窗口步骤十六：输入完成后单击“激活”窗口步骤十七：重新启动计算机激活完成 如何添加Windows Media Center的Windows 8.1专业版 1、激活激活Windows 8.1 Pro含WMC2、进入控制面板系统和安全系统，点击获取更多的功能，添加Windows Media Center3、单击“我已经有一个产品密钥”4、输入你以前Windows 8免费获取的WMC产品密钥5、勾选接受许可条款6、Windows会包括WMC功能，将自动重新启动7、重新启动Windows后，如果你的Windows没有被激活，则需要重新输入密钥一次，然后你会看到你的Windows 8 Pro与WMC将被激活（这通常是由于你的硬件变化，你需要重新输入WMC键后重新启动Windows）8、进入控制面板系统和安全系统，点击激活[在线激活]9、联网激活后，恭喜你永久获得了Windows 8 Pro与WMC，马上享用吧 Windows 8 PRO/ENT离线激活 [MAK] 秘钥slmgr.vbs -ipk 63VNX-R64MK-28K4H-Y6K4T-YG67Cslmgr.vbs -ipk JXNBF-VG8TP-PBDBW-TB2K2-P9T7Cslmgr.vbs -ipk 3XKNP-T864P-3WDQQ-H9FF3-2WCK2slmgr.vbs -ipk N9MRJ-6JRM9-M6XJC-6D6JD-QRPK2slmgr.vbs -ipk 73KKN-DHK63-WMGY2-6MC68-JFDHCslmgr.vbs -ipk NGKGG-W2V3K-G9X9Q-M7TXB-KD4DPslmgr.vbs -ipk J68BC-XTNWY-M3XQP-8TTR4-8B2K2slmgr.vbs -ipk HX388-XXNXX-WGWTG-KYTH8-RX492slmgr.vbs -ipk NY4RW-GMCHB-D3P9F-RJDP9-YDR92slmgr.vbs -ipk 3NKP9-K2XW9-FQHWH-MDMCQ-TCKVCslmgr.vbs -ipk 6CNK2-RTVRV-TXYQK-86DBM-B4DHCslmgr.vbs -ipk F2V7V-8WN76-77BPV-MKY36-MKH3Pslmgr.vbs -ipk MR2WF-NWPQ9-WCRWV-6GVFR-HQR92slmgr.vbs -ipk BNYHR-XDRK6-HV96V-CFRJ9-H49VCslmgr.vbs -ipk MWNDT-WDBDY-TCJFF-KCK2V-4CWX2slmgr.vbs -ipk Y7NHY-DRGCX-KHWM2-P2DPY-YWMQPslmgr.vbs -ipk CYM8B-NH6WD-DJ7Q9-TYXJP-P9T7Cslmgr.vbs -ipk 82WNH-WWCBT-Y843F-F7F7X-M9492slmgr.vbs -ipk RQGQD-DQNGY-TQHDF-CB2YR-WFDHCslmgr.vbs -ipk N3BDF-YMFJ3-P4VKX-C88VY-YWMQPslmgr.vbs -ipk 2C9ND-V2GFR-RR4YD-QB4DR-JHRDPslmgr.vbs -ipk MQJNQ-G2TKM-YJP7W-CCXVY-VQR92slmgr.vbs -ipk YT4KP-4TNXX-9MKRP-BYJC9-JW8X2slmgr.vbs -ipk Q74NW-797VJ-G8QM6-MYXDP-VFPK2 Windows 8.1 &amp; Windows 8 Pro / Pro WMC 离线激活零售版秘钥:slmgr.vbs -ipk CGWVF-N3VMK-CVG7W-MBB9Y-MY2KVslmgr.vbs -ipk D46QW-N3M4H-RY93J-DPMPY-43G67slmgr.vbs -ipk D66NY-H99YQ-9MPFY-G2YF3-973G7slmgr.vbs -ipk DBTMW-N29V3-V6XJ7-4RQXD-4F9T7slmgr.vbs -ipk DJD4R-TQNCX-B6HY8-J2KDC-3YFDHslmgr.vbs -ipk FFMKY-NXGJ7-3G897-KTB4C-W2KT7slmgr.vbs -ipk FGM9N-R4G2V-XVH3M-4F6JX-HCBQHslmgr.vbs -ipk FX2FN-VVPY7-M7QG7-XG7X4-X2BQHslmgr.vbs -ipk HV8NK-MCCM2-J7CDF-B46H7-46V3Hslmgr.vbs -ipk J4N6G-WB9KM-WHC3V-Q4KX2-8W8XVslmgr.vbs -ipk JC2BC-NQXKF-W8M7G-H7DRR-3C73Hslmgr.vbs -ipk JCDXN-2Q4FQ-G44BQ-GHGBK-H49T7slmgr.vbs -ipk K42R4-7RN34-992JQ-YBQWT-GMQG7 以前的秘钥但是依然可以使用：slmgr.vbs -ipk Q8R9N-Q6H9H-TXCXB-FT4GW-DGJXVslmgr.vbs -ipk QFTCN-2MC4B-TQ97K-F449X-GJCKVslmgr.vbs -ipk R7NVT-9HY8T-7Y43F-YHQHF-JHRDHslmgr.vbs -ipk RT6NW-B7TB9-BR9HC-F3RX7-XD4DHslmgr.vbs -ipk V4PNP-K6GRJ-76942-8JCFM-RCWXVslmgr.vbs -ipk VHDVP-HNVGT-7K3CK-R28KW-D9H3Hslmgr.vbs -ipk VJ2NT-B7364-88QPB-8VKVY-88CKVslmgr.vbs -ipk VNF76-VJQ6D-MYDB3-QVQBW-29T67slmgr.vbs -ipk 4C8N3-FYTFH-BHXBR-B2DY9-KP73Hslmgr.vbs -ipk 4BRRQ-NQFXF-BPW46-R7BCH-DRPKVslmgr.vbs -ipk VQKQN-C9V6X-VPGQ6-YFW8G-J2KT7 slmgr.vbs -ipk WFRQM-BPNKV-TC3WX-XF2DQ-6273HWindows 8.1 &amp; Windows 8 RTM Pro WMC 离线激活零售秘钥[电话激活]slmgr.vbs -ipk CQ2PJ-C7MJC-T3RBP-NMWJH-2RYRQslmgr.vbs -ipk JRMHB-9F327-NDT76-4T9KR-DJXWDslmgr.vbs -ipk 4PQWW-PPNY7-XJ8RJ-V6C4T-FVRFQslmgr.vbs -ipk 9DDD3-84PXF-QNPXF-3PV8Q-G8XWDslmgr.vbs -ipk TWHQX-8CH4Y-39DN9-VD7MG-WW8Y3slmgr.vbs -ipk GY8MV-86KDB-4XGNP-X3Y76-72WY3slmgr.vbs -ipk JC9DV-2P37N-DKD3W-MKKV4-6Q4FQslmgr.vbs -ipk PGB97-GJMN2-XB3CX-T86FB-88CM3slmgr.vbs -ipk B783Q-MB34J-NG6K3-WH82J-82KWDslmgr.vbs -ipk 66HJB-X2N4J-Y42JB-T6GDB-RCWY3 &nbsp; 以前的秘钥但是依然可以使用：slmgr.vbs -ipk 2DJ24-4XRYY-XNJBK-PQHX9-RM2M3slmgr.vbs -ipk 8KGQW-XMFY7-XNJYK-WYMB3-Y4DJDslmgr.vbs -ipk BCFR8-B7VGJ-X2Y94-NT982-CJ8Y3slmgr.vbs -ipk CG6QH-J68KC-RKNQW-PJ9PH-3JXWDslmgr.vbs -ipk D7DVD-WTR9C-8T93X-NFF2D-G8XWDslmgr.vbs -ipk HYFF2-CMF47-9NMB9-TQR3G-8TV4Qslmgr.vbs -ipk JKXK4-THDKN-GB6PH-4FCBW-29T8Dslmgr.vbs -ipk JWX33-VPXC7-RHBP7-N4HH7-QPBRQslmgr.vbs -ipk KQ9CV-HBJDC-CYGMN-YQ2DB-6VGB3slmgr.vbs -ipk RFQQB-CB3N9-KGKDR-HW7JT-6FYRQslmgr.vbs -ipk V398T-PFFN7-BK4WM-XY3PR-KBQJDslmgr.vbs -ipk WDYHJ-3JKQN-XFJQ6-42RTF-4X6B3slmgr.vbs -ipk P79C8-3F4NR-WP8KM-WR8QY-PRYRQ]]></content>
+      <categories>
+        <category>Soft</category>
+      </categories>
+      <tags>
+        <tag>win8</tag>
+        <tag>windows</tag>
+        <tag>激活</tag>
+        <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XXOO MVC 开发过程中常用到函数和测试函数]]></title>
+    <url>%2F2013%2F12%2F18%2Fxxoo-mvc-usage.html</url>
+    <content type="text"><![CDATA[测试函数： 1echo ‘&lt;!–’;print_r($data[‘cat_data’]);echo ‘–&gt;’;]]></content>
+      <categories>
+        <category>Work</category>
+      </categories>
+      <tags>
+        <tag>工作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[note:2013-12-18]]></title>
+    <url>%2F2013%2F12%2F18%2Fjournal-20131218.html</url>
+    <content type="text"><![CDATA[很久没有写过生活日记了，想法很多，但坚持不下去，要弄的东西感觉很多，会忙不过来的样子。生活得没重点。 日记很久没写，也变生疏了。代码也很久没认真写了，纯码农一枚。 本来文采就不好，文化水平又不高，又好高骛远。 我是个虚伪的人，本来有骨气，渐渐的也为生活所迫低腰。 朋友关心处理不好，妞没泡到，主要还是钱的问题。 希望渐渐渺茫，boxcore博客将承当更多更大的发牢骚任务。]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql学习笔记]]></title>
+    <url>%2F2013%2F12%2F13%2Fmysql-note.html</url>
+    <content type="text"><![CDATA[PHP NOTE 9 mysql 复习@20130611 by boxcore约定：tabname：表名dbname:数据库名fieldname 或 field+n : 字段名oldTabName:旧表名newTabName:新表名——————–一、数据库概述——————–1.MySQl操作过程：MySQl 服务端,MySQl客户端；2.数据库产品分类：关系型数据库 ,非关系型数据库；3.数据表的字符集:Client,Conn,Server,DB 1 ）my.ini配置默认字符串： dafault-character-set=utf8 # client &amp; Conn charset; character-set-server=utf8 # server &amp; DB charset; 2 ）PHP语句设置客户端字符集： mysql_query(“set name utf8”); 3 ）创建表时指定字符集方法： create table tab(…)engine=MyISAM DEFAULT CHARSET=utf8; （简写） create table tabname(…)type=mysiam default character set utf8 collate utf8_generalci;4.数据表组成：表结构文件 (),表数据文件(), 表索引文件 ();5.数据库引擎：InnoDB支持事务处理，但不支持全文搜索， MyISAM支持全文搜索但不支持事务， MEMORY和MyISAM 一样，只不过它把数据保存在内存而不是磁盘中，这样速度更快。———————-二、数据库的常用操作：———————-1.数据库的连接：mysql -uroot -p123 -h192.168.2.22.退出MySQL:exit|quit|Ctrl+C3.中断数据库的操作：c4.MySQl服务器的关闭和退出：net stop mysql || net start mysql5.MySQl中用户的修改：set password=password(“密码 “)； 创建用户： CREATE USER ‘test1’@’localhost’ IDENTIFIED BY ‘**’;6.MySQl中用户授权：grant all on .* to user1@192.168.190.20 identified by “密码”; GRANT ALL PRIVILEGES ON `test1%` . TO ‘test1’@’localhost’;7.刷新权限如：flush privileges; 在客户端修改用户权限后需要刷新数据库缓存8.查看用户授权 use mysql select user,password,host from user;10.删除用户 方法一： drop user user1@”%”; 方法二： use mysql delete from user where user=” 用户名”;—————–三、数据库的操作—————–1.创建数据库 create database dbname ；2.查看数据库 show databases;3.删除数据库 drop database dbname ；4.切换数据库 use dbname ；———–四、表操作———–1.查看表：show tables ；2.创建表：create table tabname (field1 ，field2， fieldn);3.删除表：dorp table [if exists] tabname ；4.修改表名：rename table oldTabName to newTabName ；5.查询表结构：desc tabname；——————–五、表内容管理——————–1.增加数据：insertinsert into user(name) values(“user4”);2.删除数据：delete//必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据delete from user where id&gt;=3 and id&lt;=5;delete from user where id between 3 and 5;3.修改数据：updateupdate user set name=’user5’,age=20 where id=5;//在mysql 中没有==，只有 =，即包含赋值，又包含比较4.查询数据：select———————–六、数据字段类型———————–1.数值 // 显示和大小int|float|tinyint ·tinyint数值类型的无符号取值范围： 0-255 ·int数值类型的无符号取值范围： 0-42亿2.字符串 // 显示和个数char|varchar|enum|set ·char(3)的意思是什么： 0-255 ·varchar(3)的意思是什么： 0-655353.日期和时间( 数值)date|time|datetime|year|timestamp 在php中把时间加工成时间戳，放到 mysql中的int 列——————-七、数据字段属性——————-1.unsigned2.zerofill3.auto_increment4.null5.not null # 如表中性别例子 ,如果有一列你设计成not null,那么给 default默认值6.default—————–八**.**数据表的类型—————–1.myisam // 默认就是 myisam2.innodb // 事务 创建表时指定表类型： create table t1(id int) engine=innodb; 修改表引擎类型： alter table tablename engine=innodb; 查看表类型： show create table tabname;——————-九**.**数据表索引设置——————-1.主键索引 primary key 一个表中只能有一个主键索引添加索引 :1).建表时就加上去2).用alter 命令 alter table t2 add primary key(id); // 加主键 alter table t2 modify id int unsigned auto_increment; // 加无符号和自增属性删除索引 : alter table t2 modify id int; // 加无符号和自增属性 alter table t2 drop primary key;2.唯一索引 unique index // 每一列都可以是唯一索引，本列值不能重复值3.普通索引 index 添加索引 :alter table user add index in_name(name); 删除索引 :alter table user drop index in_name;//每一列都可以是普通索引4.全文索引 fulltext————————八**.**修改数据表结构 -alter————————1.修改字段1)change·alter table user change age sex int;#把age 的字段重命名为 sex并设置字段属性为int；【更改字段名，修改字段名】//修改字段名的时候建议带上他原有的 int或者varchar 属性，如果不写属性会报错；2)modify·alter table user modify age tinyint;2.添加字段 ·alter table user add age int; //默认加到最后 ·alter table user add age int first; //加到最前面去 ·alter table user add age int after id; //加到id 后面3.删除字段 ·alter table user drop age;4.添加索引 ·alter table tab62 add primary key(id); ·alter table tab62 modify id int unsigned auto_incrment; ·alter table tab62 add unique un_name(name); ·alter table tab62 add index in_pass(pass);5.删除索引 ·alter table tab62 modify id int; ·alter table tab62 drop primary key; ·alter table tab62 drop index in_pass; ·alter table tab62 drop unique un_name;6.更改表名称 1)rename table tab62 to tab26; 修改表名，非字段 2)alter table user rename to user1;7.更改auto_increment 属性的初始值alter table user autoincrement=1;//truncate user; 效率快，自增列表自动从 1开始（清空表中所有数据）8.更改表名称：alter table 旧表名 rename as 新表名9.删除表：dorp table [if exists] 表名；———————————–结构化查询语言 sql**包含四个部分**:———————————–1.DDL // 数据定义语言 ,create,drop,alter2.DML // 数据操作语言 ,insert,update,delete3.DQL // 数据查询语言 ,select4.DCL // 数据控制语言 ,grant,commit,rollback—————————-操作数据表中的数据记录 (DML)—————————-1.inserteg:insert into user(name) values(“user4”);2.updateupdate user set name=”user4” where id=4;//在mysql 中没有==，只有 =，即包含赋值，又包含比较update user set name=’user5’,age=20 where id=5;3.delete//必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据delete from user where id&gt;=3 and id&lt;=5; 等同于 delete from user where id between 3 and 5;———————————数据查询语言（ DQL**）**–select 使用———————————1.选择特定的字段select id,name from user;//select from user;2.给字段取别名-asselect id,name from user;select id maoxian,name from user;select id as maoxian,name from user;3.distinct关键字的使用//取出唯一值select distinct age from user;4.使用where 条件进行查询select from user where id&gt;=3 and id&lt;=5;5.查询空值nullselect from user where age is null;select from user where age is not null;6.between and的使用方法select from user where id between 3 and 5;7.in的使用方法select from user where id=1 or id=2 or id=10;select * from user where id in(1,2,10); 建议使用这个8.like的使用方法//模糊查询,text 类型不能加索引% 匹配所有 匹配一个字符select from user where name like “%mysql%”; //% 在前，name这一列的索引会失效9.使用order by 对查询结果排序//排序，asc 和desc，一个是升序，一个降序select from user order by id asc; // 默认就是升序 ,数字从小到大select from user order by id desc; // 默认就是升序 ,数字从大到小10.使用limit 限定输出个数 (分页实现)select from user order by id limit 0,2;select from user order by id limit 5; //limit 0,5 前五个11.concat() 连接函数select concat(id,age) from user; # 输出的值为每一行中指点的列字符串相加。select concat(“aaa”,”bbb”,”cccc”); # 输出连接的字符串： aaabbbccc,如果没有双引号则误认为是字段，报错。12.rand() 随机数eg: select from user order by rand() limit 3;13.使用统计函数：count() 统计个数sum() 求和avg() 平均值max() 最大值min() 最小值eg:select count(id),sum(age),avg(age),max(id),min(id) from user;14.group by分组聚合的 使用-select结合合计函数，根据一个或多个列对结果集进行分组//分组 聚合//只分组没有意义，必须用函数去聚合 .eg: select banji,sum(score),count(id) from user group by banji; // 从班级表中统计每个班的总分数和总人数eg2:查找每个客户的总金额（总订单） :————————————O_Id OrderDate OrderPrice Customer1 2008/12/29 1000 Bush2 2008/11/23 1600 Carter3 2008/10/05 700 Bush4 2008/09/28 300 Bush5 2008/08/06 2000 Adams6 2008/07/21 100 Carter————————————执行语句： SELECT Customer,SUM(OrderPrice) FROM Orders GROUP BY Customer;结果集类似这样：————————-Customer SUM(OrderPrice)Bush 2000Carter 1700Adams 2000————————–—————————————数据查询语言（ DQL**）**2–select 的多表查询—————————————假如下面三种方法都能实现一种表，优先选择普通多表查询。1.普通多表查询1）两表查询mysql&gt; select user.id,user.name,user.score,user.banji,tel.num from user,tel where user.id=tel.uid;2）三表查询mysql&gt; select user.name,tel.num,qq.qq from user,tel,qq where user.id=tel.uid and user.id=qq.uid;2.嵌套查询| 子查询-inselect from user where id in(select uid from tel);3.左链接查询-left join onselect user.id,user.name,tel.num from user left join tel on user.id=tel.uid;//左链接以左边的表为主导，先输出左边表的所有数据，按条件输出右边表的内容，没有相对应的内容就为 null普通多表查询的三种方法，分别有什么区别：普通多表查询，查多个表，并且可以输出多个表的内容嵌套查询，查多个表，但只能输出一个表的内容左链接查询，查多个表，先把左边的表全部输出，右边的表按条件输出，否者输出 null==========================================复习 –**最常用的语法：*———————————–1.DDL 数据定义语言,create,drop,alter1)create database {database}2)create table {table}();2.DML 数据操作语言,insert,update,delete1）insert into 表名 [(字段 1,字段2, 字段n)] values (‘值 1’,’值2’,’ 值n’);2）update 表名 set 字段名 =表达式[, 字段n=表达式 n] [where 条件] [order by 字段] [limit 行数 ];3）delete from 表名 [where 条件 ] [order by 字段] [limit 行数];3.DQL 数据查询语言,selectselect [all|distinct] {|table.*|[table.]field[as alias1][,[table.]field2[as alias2][,…]]} from tableexpression[,…][in externaldatabase] [where…] [group by…] [having…] [order by…] [limit count];4.DCL 数据控制语言,grant,commit,rollback1）grant 权限 on 数据库 .数据表 to 用户@登录主机 indentified by “密码”]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[30天学习JS计划]]></title>
+    <url>%2F2013%2F12%2F12%2Fjs-plan-for-30-days.html</url>
+    <content type="text"><![CDATA[主要涉及学习内容: javascript原生API 1. 通读js原生态DOM，BOM，事件 2. 使用原生态JS写类库，弹窗类、级联类、slide轮播类 3. 原生js写ajax通信 jQuery框架使用 1. 通读jquery手册 2. 使用jquery UI 3. 使用jquery slide 4. 使用jq dialog 5. 更细的计划 计划可以有很多，在保证工作任务在按时按质量的情况下完成下，这一个月的主要空余时间就是用来温习和巩固js相关的知识。 test]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP对象类总结]]></title>
+    <url>%2F2013%2F12%2F11%2Fphp-object-class-summary.html</url>
+    <content type="text"><![CDATA[使用类的过程中遇到的N多总结下如下： 1、Fatal error: Cannot redeclare class的解决办法 从字面来看也很好理解，说明是重复定义了类，找了一下自己的代码，是因为存在同名的类导致的，修改了类名就好了。 判断代码： if (!class_exists(‘pageModule’)){ require_once(PATH_site.'fileadmin/scripts/class.page.php'); }]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Learn131210 Ajax小练习]]></title>
+    <url>%2F2013%2F12%2F10%2Flearn131210-ajax-little-practice.html</url>
+    <content type="text"><![CDATA[首先，在PHP端必须得知道的是需要用到的json_decode和json_encode. &nbsp;]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>jQuery</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[解决ECshop下jQuery冲突问题及其可能出现的问题]]></title>
+    <url>%2F2013%2F12%2F08%2Ffixed-ecshop-jquery-compatibility-problems.html</url>
+    <content type="text"><![CDATA[终于，今天把ecshop下的jquery问题彻底解决了。下面附上方法，建议都新建一群文件名为 *_jq.js的文件，如transpor.js我都改成transpor_jq.js,用来识别这是用js的json写的！ 1. 在transpor.js中去掉ec中重写json的方法： 约在450 到 735行间，看到注释有 “json.js 2007-03-06” 的地方就干掉他，如果发现有 *.prototype.toJSONString 类似的函数，总之在这段代码区间，发现prototype重写方法就干掉！ 2. 引入jquery文件： {insert_scripts files=’jquery.js,jquery.json-1.3.js’} 必须保证这段代码是在其他js前调用的！ 3. 替换ecshop原来用到转json数据的代码： 替换 .toJSONString() 为 $.toJSON()替换 .parseJSON() 为 $.evalJSON() 解决范例：a.在商品浏览页，用户评论这里：Ajax.call(‘comment.php’, ‘cmt=’ + cmt.toJSONString(), commentResponse, ‘POST’, ‘JSON’);替换为Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’); b.index.js 里var res = result.parseJSON();替换为var res = $.evalJSON(result); &nbsp; 可能遇到的问题： 1. 如果遇到 transport.js/run() undified 弹窗报错，那么你需要在页面中加入这个代码： &lt;script type=”text/javascript”&gt; var process_request = “{$lang.process_request}”;&lt;/script&gt;&nbsp; 附件下载]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>jquery冲突</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Dev131208 百度API开发 - 多自定义坐标调用]]></title>
+    <url>%2F2013%2F12%2F08%2Fdev-think-baidu-api-for-map.html</url>
+    <content type="text"><![CDATA[任务背景：开发一个线下商城地图，由于客户没有在百度标记过商家地图，故添加标记的同时必须有自定义信息的标记。同时，一个城市列表中需要展现多个坐标。 任务分析： 1. 选择省份、城市会出现多个标记的点 2. 标记的点可以展现自定义信息。 &nbsp; 思路： &nbsp;]]></content>
+      <categories>
+        <category>Journal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Ecshop数据导入时遇到问题 USING BTREE 错误解决办法]]></title>
+    <url>%2F2013%2F12%2F08%2Fecshop-mysql-using-btree-error.html</url>
+    <content type="text"><![CDATA[如果你优化过Mysql的数据结构或者版本不一致，那么极有可能遇到此类问题。 报USING BTREE 错误： You have an error in your SQL syntax; check themanual that corresponds to your MySQL server version for the right syntax to usenear ‘USING BTREE,UNIQUE KEY user_name (suppliers_name) USING BTREE ,&nbsp; 其实解决这个问题很简单。 打开要导入的文件在里面搜索 BTREE 找到如下内容 UNIQUE KEY user_name (suppliers_name) USING BTREE ，修改为 UNIQUE KEY user_name USING BTREE (suppliers_name) ， 即把USING BTREE 放到索引字段前面即可. 再次导入顺利通过了 &nbsp; 查找 USING BTREE mysql，你会看到很多这样的例子，mysql 5.14版本之前不认识 USING BTREE。解决办法有两个： 1、直接删除 USING BTREE 2、导出脚本时开启兼容性 mysqldump –compatible=mysql40 &nbsp; 批量找出USING BTREE，然后修改吧少年。。。 &nbsp; 以下几个关于USING BTREE 的链接： USING BTREE mysql http://stackoverflow.com/questions/3767753/mysql-error-using-btree 关于USING BTREE Bug http://bugs.mysql.com/bug.php?id=25162]]></content>
+      <categories>
+        <category>ECshop</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>USING BTREE</tag>
+        <tag>数据库错误</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[研究开源系统]]></title>
+    <url>%2F2013%2F12%2F05%2Fshare-open-code.html</url>
+    <content type="text"><![CDATA[1. 调查问卷系统LimeSurvey 2. 博客 3. crm 4. cms 5. todo]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>php源码</tag>
+        <tag>开源系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常用Ecshop全局调用函数]]></title>
+    <url>%2F2013%2F12%2F05%2Fecshop-global-function.html</url>
+    <content type="text"><![CDATA[Ecshop的全局调用函数一般在后台商品设置中修改，另外如果需要添加自己定义的全局函数，就需要在后台的shop_configs表中添加新的内容，后台相对应的设置就会出现，下面暂只讨论ecshop系统默认的一些全局函数。 1.商店设置 {$shop_name} //店铺名字2012-08-17 13:11{$copyright} //版权信息{$shop_address} //商铺地址{$shop_postcode} //邮编{$service_phone} //电话{$service_email} //邮件 {foreach from=$qq item=im}{$im} {/foreach} //qq客服{foreach from=$ww item=im} {$im} {/foreach}//阿里旺旺客服{foreach from=$msn item=im}{$im} {/foreach} //MSN{$TemplatePath} //模版的路径 ：在lib库文件下才作用{$icp_number} //备案号{$stats_code} // 统计代码&nbsp; &nbsp; 产品或分类: {$goods.cat_name} //产品分类名字{$goods.goods_style_name} //产品属性{$goods.goods_brand} //产品品牌{$goods.goods_sn} //产品货号{$goods.shop_price_formated} //产品零售价{}dfd]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>常用全局函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ecshop商品列表多种排序]]></title>
+    <url>%2F2013%2F12%2F02%2Fecshop-goods-list-sort.html</url>
+    <content type="text"><![CDATA[ecshop商品列表页面的按上架时间、价格、更新时间是默认的，现在需要添加的是按销量排行，但是在商品表里面没有销量的字段,最模板搜集整理提供如下办法：1：在表“ecs_goods”添加字段：salesnum2：打开根目录下文件：flow.php找到下面的代码： / 插入订单商品 /$sql = “INSERT INTO “ . $ecs-&gt;table(‘order_goods’) . “( “ .“order_id, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, “.“goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id) “.“ SELECT ‘$new_order_id’, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, “.“goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id”.“ FROM “ .$ecs-&gt;table(‘cart’) .“ WHERE session_id = ‘“.SESS_ID.”‘ AND rec_type = ‘$flow_type’”;$db-&gt;query($sql);在这段代码的下面，添加如下代码： / 插入商品表的salesnum 字段，统计销量排行 /$sql = “update “ .$GLOBALS[‘ecs’]-&gt;table(‘goods’) . “ AS a, “.$GLOBALS[‘ecs’]-&gt;table(‘cart’) . “ AS b “.“ set a.salesnum= a.salesnum + b.goods_number”.“ WHERE a.goods_id=b.goods_id AND b.session_id = ‘“.SESS_ID.”‘ AND b.rec_type = ‘$flow_type’”;$db-&gt;query($sql);打开文件：defaultlibrarygoods_list.lbi，找到下面的代码： &lt;a href=”category.php?category={$category}&amp;display={$pager.display}&amp;brand={$brand_id}&amp;price_min={$price_min}&amp;price_max={$price_max}&amp;filter_attr={$filter_attr}&amp;page={$pager.page}&amp;sort=last_update&amp;order=&lt;!– {if $pager.sort == ‘last_update’ &amp;&amp; $pager.order == ‘DESC’} –&gt;ASC&lt;!– {else} –&gt;DESC&lt;!– {/if} –&gt;#goods_list”&gt;&lt;img src=”images/lastupdate&lt;!– {if $pager.sort == ‘last_update’} –&gt;{$pager.order}&lt;!– {else} –&gt;default&lt;!– {/if} –&gt;.gif” alt=”{$lang.sort.last_update}”&gt;&lt;/a&gt;&nbsp; 下面添加 &lt;a href=”category.php?category={$category}&amp;display={$pager.display}&amp;brand={$brand_id}&amp;price_min={$price_min}&amp;price_max={$price_max}&amp;filter_attr={$filter_attr}&amp;page={$pager.page}&amp;sort=salesnum&amp;order=&lt;!– {if $pager.sort == ’salesnum’ &amp;&amp; $pager.order == ‘DESC’} –&gt;ASC&lt;!– {else} –&gt;DESC&lt;!– {/if} –&gt;#goodslist”&gt;&lt;img src=”images/sales&lt;!– {if $pager.sort == ’salesnum’} –&gt;{$pager.order}&lt;!– {else} –&gt;default&lt;!– {/if} –&gt;.gif” alt=”按销量排行”&gt;&lt;/a&gt;打开文件：category.php，找到如下代码： $sort = (isset($_REQUEST[‘sort’]) &amp;&amp; in_array(trim(strtolower($_REQUEST[‘sort’])), array(’goods_id’, ’shop_price’, ‘last_update’)))&nbsp; 修改为： $sort = (isset($_REQUEST[‘sort’]) &amp;&amp; in_array(trim(strtolower($_REQUEST[‘sort’])), array(’goods_id’, ’shop_price’, ‘last_update’,’salesnum’)))&nbsp; &nbsp; 参考网站: http://www.siqiji.com/show-39.html http://blog.csdn.net/huangqiaoling/article/details/8076453 http://www.yoozhan.com/ecshop/ecshop-66.html http://www.soucms.com/CMSjiaocheng/Ecshop/102.html]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>商品排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[技术牛人资料]]></title>
+    <url>%2F2013%2F11%2F29%2Fnote-awesome-gay.html</url>
+    <content type="text"><![CDATA[链接: http://www.csto.com/u/qq1057789374/profile 简介：2009 /2–2013：爱丽国际科技(北京)有限公司（500-1000人）所属行业： 互联网/电子商务技术总监 (CTO)1.女性门户网站系统架构，平台核心代码的研发，PHP代码优化,Oracle、MYSQL数据库DBA结构优化,SQL语句执行效率优化，Linux系统调优，安全策略，高并发调优,数据库集群及调优,Nginx负载均衡及调优，其有关运维一系列应用软件的架设与调优。2.架设爱丽女性网运维监控体系，做到几十台机器的系统监控、平衡负载、调优、安全策略、文件同步、附件共享存储、图片缓存、数据库集群等稳定。负责爱丽女性网计算机IDC的规划与建设工作，研发团队的管理以及日常工作；3.团队建设及管理，下属的绩效制定与考核，设计与规划整个爱丽女性网平台的性能评估与性能测试整体工作，通过整体对于业务系统的模拟，操作系统层，数据库层，代码层的监控，高效的保证爱丽女性网平台各项业务发布的稳定与成功。汇报上级：总经理(CEO)直接下属：25-30人项目经验：爱丽女性网 http://www.aili.com本站访问量日PV两千万,日IP一百五十万,世界综合排名1386位。网站研发有CMS管理系统，高清图库系统，采集系统，投稿系统，论坛系统，过滤系统，问答系统，化妆品系统,商城系统，团购系统，会员通行证系统，流量统计系统等。2006 /11–2008 /12：康盛创想（北京）科技有限公司（500-1000人） [ 2年1个月]所属行业： 互联网/电子商务项目部 项目主管1.项目系统架构，PHP核心代码开发，PHP代码优化，Oracle、Mysql数据库DBA优化,项目调试环境配置,SVN版本控制管理,运维架设配置及调优。2.带领项目团队共同完成云南信息港的开发与运维架构,红孩子商城的开发与运维架构。3.团队建设与管理,下属绩效制定与考核，项目性能评估与性能测试整体工作，客户与团队协调与沟通，项目功能开发需求档撰写。汇报上级：项目部经理直接下属：8人离职原因：换个空间环境.项目经验：云南信息港 http://www.yninfo.com本站访问量日PV一千四百万,日IP一百一十万,世界综合排名1979位。网站研发有CMS管理系统，博客系统，空间系统，相册系统，旅游系统，娱乐系统，寻医问药系统，商城系统，团购系统，黄页系统，汽车系统，房产系统，求职招聘系统，邮件系统,货币交易系统，会员通行证系统，流量统计系统。2004 /9–2006 /9：联搜国际广告(北京)有限公司（150-500人） [ 2年]所属行业： 互联网/电子商务技术部 PHP研发工程师1.会员系统，资讯发布系统，广告发布系统的研发及升级维护。2.公司局域网管理与监控。汇报上级：技术部经理离职原因：换个发展空间项目经验：就要创业门户 http://www.91cy.cn本站访问量日PV五百万，日IP三十万,世界综合排名3789位。网站研发有广告发布系统，资讯发布系统，留言管理系统，模板系统，评论系统，会员系统统，流量统计系统。教育经历 2000 /9–2004 /7 鄂州大学 计算机科学与技术 本科毕业设计:开发一套图书管理系统其他信息 自我评价：1.计算机本科毕业，专业知识扎实，技术扎实2.在专业LAMP开发及管理八年，对团队建设与管理有一定的能力3.精通LAMP/LNMP系统架构，熟悉Erlang程序开发4.Linux系统管理、调优、安全策略、集群及一系列服务的优化及管理5.精通LAMP/LNMP高并发优化、Mysql结构及SQL语句优化、PHP代码优化、Apache优化、Nginx优化,Memcached，Redis分布式内存缓存技术，MongoDB分布式文件存储的数据库。6.精通各种集群均衡负载LVS、Haproxy、Nginx，各类图片代理缓存squid,varnish，各类服务器监控Cacti,Nagios架构及调优。 不谦虚的说一句： 在LAMP/LNMP PHP研发与架构等领域，是一名完全合格的资深系统架构师。]]></content>
+      <categories>
+        <category>hello</category>
+      </categories>
+      <tags>
+        <tag>人脉</tag>
+        <tag>技术圈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[知乎问答：和不太熟悉的女生吃饭时（有追求她的意愿），女方提出AA制，该不该接受？]]></title>
+    <url>%2F2013%2F11%2F29%2Fshare-zhihu-collect.html</url>
+    <content type="text"><![CDATA[【和不太熟悉的女生吃饭时（有追求她的意愿），女方提出AA制，该不该接受？】吴伟：兄弟啊，追姑娘是个集智力、情商、逻辑判断、观察能力、经济能力、体力和表达能力与一体综合性运动，针对于你的问题，我假设你经济没问题的基础上进行回… http://zhi.hu/IGq0 （分享自知乎网）]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+      <tags>
+        <tag>约会</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux常用修改]]></title>
+    <url>%2F2013%2F11%2F28%2Flinux-setting.html</url>
+    <content type="text"><![CDATA[1. CentOS修改语言: 方法一: /etc/sysconfig/i18n 里面的LANG=”zh_CN.UTF-8” 修改为 LANG=”en_US.UTF-8” 方法二: 把/etc/sysconfig/i18n复制到要更改用户的主目录下 如: $ cp /etc/sysconfig/i18n ~home/.i18n, 再修改 方法三: 终端临时更改 export LANG=”zh_CN.GBK” //中文显示export LANG=”en_US.UTF-8” //英文显示&nbsp; &nbsp; &nbsp; &nbsp;]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[杂志网站相关研究]]></title>
+    <url>%2F2013%2F11%2F27%2Fshare-magzine-website.html</url>
+    <content type="text"><![CDATA[1.http://weecai.com/journal.htm]]></content>
+      <categories>
+        <category>Research</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[协作开发用的应用]]></title>
+    <url>%2F2013%2F11%2F27%2Fshare-teamwork-software.html</url>
+    <content type="text"><![CDATA[一. 代码管理软件 http://www.sourcetreeapp.com/ &nbsp; &nbsp; 二. 网页协作管理工具 国内: https://tower.im/ &nbsp; 国外: https://trello.com/]]></content>
+      <categories>
+        <category>App</category>
+      </categories>
+      <tags>
+        <tag>协同开发</tag>
+        <tag>应用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL删除重复记录]]></title>
+    <url>%2F2013%2F11%2F26%2Fmysql-delete-duplicate-records.html</url>
+    <content type="text"><![CDATA[网上查了很多关于删mysql中重复记录的方法,很多都是copy且没有经过大脑思考的文章,太浪费时间了,故经过自己测试,给出下面一些语句 DELETE books AS a FROM books AS a,(SELECT *FROM booksGROUP BY book_nameHAVING count(1) &gt;1order by null) AS bWHERE a.book_name = b.book_name AND a.id &gt; b.id;&nbsp; 参考文档 http://stackoverflow.com/questions/16035495/you-cant-specify-target-table-for-update-in-from-clause http://www.cnblogs.com/sunss/archive/2011/01/29/1947469.html http://www.cnblogs.com/lorgine/archive/2011/01/14/1935447.html]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>删除重复语句</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS lnmp环境搭建SVN服务]]></title>
+    <url>%2F2013%2F11%2F24%2Flinux-centos-svn.html</url>
+    <content type="text"><![CDATA[安装svn相关基础环境说明：环境：CentOS 6.3原有服务环境：lnmpa 1.0 full 安装svn的版本： subversion 1.8.3由于lnmpa编译的时候没有安上–enable-dav 故svn使用不了httpd的服务，我们只用svn协议来访问同步好后再执行钩子程序同步到虚拟空间下做网站服务。 安装步骤： 各个安装包说明：1.self 1.2.1 推荐版本，1.3.0后面会出现报错。Subversion 1.8中http客户端基于neon已经被移除如果要支持http方式需要在安装svn前安装serf，安装serf推荐用serf-1.2.12.apr、apr-unit安装apr、apr-unit # cd /root/lamp/source wget http://archive.apache.org/dist/apr/apr-1.4.8.tar.gz #LAMP中已经下载wget http://archive.apache.org/dist/apr/apr-util-1.5.2.tar.gztar xzf apr-1.4.8.tar.gzcd apr-1.4.8./configure –prefix=/usr/local/apachemake &amp;&amp; make installcd ../tar xzf apr-util-1.5.2.tar.gzcd apr-util-1.5.2./configure –prefix=/usr/local/apachemake &amp;&amp; make installcd ../2.安装serf-1.2.1 （需要httpd服务才安装，下面只是参考，将不进行安装） # yum -y install expat-devel wget http://serf.googlecode.com/files/serf-1.2.1.tar.bz2 #serf-1.2.1.zip是win版有问题tar xjf serf-1.2.1.tar.bz2cd serf-1.2.1./configure –prefix=/usr/local/serf –with-apr=/usr/local/apache –with-apr-util=/usr/local/apachemake &amp;&amp; make installcd ..&nbsp; 3.安装svn # wget http://mirror.bit.edu.cn/apache/subversion/subversion-1.8.3.tar.gz tar xzf subversion-1.8.3.tar.gzcd subversion-1.8.1./get-deps.sh //此步骤会等比较久，是配置svn服务库的脚步，完成后会出现如下提醒 If you require mod_dav_svn, the recommended version of httpd is:http://archive.apache.org/dist/httpd/httpd-2.4.6.tar.bz2 If you require apr-iconv, its recommended version is:http://archive.apache.org/dist/apr/apr-iconv-1.2.1.tar.bz2 ./configure –prefix=/usr/local/subversion –with-apxs=/usr/local/apache/bin/apxs –with-apr=/usr/local/apache –with-apr-util=/usr/local/apache –with-zlib –with-openssl –enable-maintainer-mode –with-serf=/usr/local/serf –enable-mod-activationmake &amp;&amp; make installcd ..&nbsp; 4. 检测svn是否安装成功 # vim /usr/local/apache/conf/httpd.conf LoadModule dav_svn_module /usr/local/subversion/libexec/mod_dav_svn.soLoadModule authz_svn_module /usr/local/subversion/libexec/mod_authz_svn.so&nbsp; 5.把svn相关的命令添加到环境变量中 / 方法一 / ln -s /usr/local/subversion/bin/svn /usr/local/bin//这样在ssh中直接输入 svn –version就可以看到svn的版本等信息了/ 方法二 (未测试) / echo “export PATH=$PATH:/usr/local/subversion/bin/“ &gt;&gt; /etc/profilesource /etc/profile* svn项目配置 建立仓库 # mkdir -p /opt/svn/ mkdir -p /opt/svn/svntest/svnadmin create /opt/svn/svntest/或 /usr/local/subversion/bin/svnadmin create /opt/svn/mall/ /修改配置文件/ cd /opt/svn/svntest/conf/vi svnserve.conf [general]anon-access = noneauth-access = writepassword-db = passwd authz-db = authzvim authz //给svntest仓库添加一个用户，权限为可写。 [svntest:/] testuser = rwvi passwd//由于是测试，密码设置为123456testuser = 123456//设置好后启用svn服务 svnserve -d -r /opt/svn/或 /usr/local/subversion/bin/svnserve -d -r /opt/svn///添加到开机启动 vim /etc/rc.d/rc.local然后写入上面的代码 //查看是否启用了 netstat -tunlp | grep svnps -aux|grep svn//杀死进程 kill -9 node* SVN钩子程序设置 说明：首先要在网站目录下检出文件 svn checkout svn://42.51.133.35/zoy/ /home/wwwroot/zoy.ch.boxcore.org/svn update /home/wwwroot/zoy.ch.boxcore.org/vim /opt/svn/zoy/hooks/post-commit #!/bin/shSVN=/usr/local/subversion/bin/svnWEB=/home/wwwroot/zoy.ch.boxcore.org$SVN update $WEB –username 用户名 –password 密码 chown -R www:www $WEBchmod 777 /opt/svn/zoy/hooks/post-commit&nbsp; 参考文档:http://blog.csdn.net/xiaodanpeng/article/details/8898794http://lookdfw.blog.163.com/blog/static/58249742201010652235834/http://chenxiao18.blog.51cto.com/1144683/1196264 《对apache做./configure 增加参数支持svnhttp://freeloda.blog.51cto.com/2033581/1189145 《SVN 安装与配置 http://www.open.collab.net/scdocs/ddUsingSVN_command-line.html.zh-cn 《linux下svn命令]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Nginx下重写规则]]></title>
+    <url>%2F2013%2F11%2F22%2Fnginx-rewrite-rule.html</url>
+    <content type="text"><![CDATA[推荐使用自动转换工具: http://www.anilcetin.com/convert-apache-htaccess-to-nginx/ http://winginx.com/htaccess &nbsp; Nginx Rewrite规则相关指令Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下： rewrite ^/b/(.*).html /play.php?video=$1 break; 如果加上if语句，示例如下： if (!-f $request_filename) rewrite ^/img/(.*)$ /site/$host/images/$1 last; Nginx与Apache的Rewrite规则实例对比 简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如： Apache Rewrite 规则： RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L] RewriteRule ^/ceshi/$ /zl/ceshi.php [L] RewriteRule ^/(mianshi)([a-zA-Z]+)/$ /zl/index.php?name=$1$2 [L] RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L] Nginx Rewrite 规则： rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last; rewrite ^/ceshi/$ /zl/ceshi.php last; rewrite ^/(mianshi)([a-zA-Z]+)/$ /zl/index.php?name=$1$2 last; rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last; 由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。 如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误： rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last; 加上引号就正确了：rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last; Apache与Nginx的Rewrite规则在URL跳转时有细微的区别： Apache Rewrite 规则：RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L] Nginx Rewrite 规则：rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ http://$host/$1/ permanent; 以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“http://$host”，这是在Nginx中要求的。 另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如： Apache Rewrite 规则：RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=http://%{HTTP_HOST} [L] Nginx Rewrite 规则：rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=http://$host last; Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系： Apache的RewriteCond指令对应Nginx的if指令；Apache的RewriteRule指令对应Nginx的rewrite指令；Apache的[R]标记对应Nginx的redirect标记；Apache的[P]标记对应Nginx的last标记；Apache的[R,L]标记对应Nginx的redirect标记；Apache的[P,L]标记对应Nginx的last标记；Apache的[PT,L]标记对应Nginx的last标记； 允许指定的域名访问本站，其他域名一律跳转到http://www.aaa.com Apache Rewrite 规则：RewriteCond %{HTTP_HOST} ^(.*?).domain.com$RewriteCond %{HTTP_HOST} !^qita.domain.com$RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -fRewriteRule ^/wu/$ /market/%1/index.htm [L] Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例： Nginx Rewrite 规则：if ($host ~ ^(.?).domain.com$) set $var_wupin_city $1;set $var_wupin ‘1′; if ($host ~* ^qita.domain.com$) set $var_wupin ‘0′; if (!-f $document_root/market/$var_wupin_city/index.htm) set $var_wupin ‘0′; if ($var_wupin ~ ‘1′) rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;} &nbsp; rewrite 的语法 &nbsp; 语法: rewrite regex replacement flag 默认: none 作用域: server, location, if This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file. 这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。 Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so: 注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。 rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 *https=1就可以了。 nginx的rewrite规则参考： ~ 为区分大小写匹配~ 为不区分大小写匹配!~和!~分别为区分大小写不匹配及不区分大小写不匹-f和!-f用来判断是否存在文件-d和!-d用来判断是否存在目录-e和!-e用来判断是否存在文件或目录-x和!-x用来判断文件是否可执行last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的break 终止匹配, 不再匹配后面的规则redirect 返回302临时重定向 地址栏会显示跳转后的地址permanent 返回301永久重定向 地址栏会显示跳转后的地址$args$content_length$content_type$document_root$document_uri$host$http_user_agent$http_cookie$limit_rate$request_body_file$request_method$remote_addr$remote_port$remote_user$request_filename$request_uri$query_string$scheme$server_protocol$server_addr$server_name$server_port$uri结合QeePHP的例子 if (!-d $request_filename) {rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;break;多目录转成参数abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2 if ($host ~ (.).domain.com) {set $sub_name $1;rewrite ^/sort/(d+)/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;}目录对换/123456/xxxx -&gt; /xxxx?id=123456 rewrite ^/(d+)/(.+)/ /$2?id=$1 last;例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下： if ($http_user_agent ~ MSIE) {rewrite ^(.*)$ /nginx-ie/$1 break;}目录自动加“/” if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}禁止htaccess location ~/.ht {deny all;}禁止多个目录 location ~ ^/(cron|templates)/ {deny all;break;}禁止以/data开头的文件可以禁止/data/下多级目录下.log.txt等请求; location ~ ^/data {deny all;}禁止单个目录不能禁止.log.txt能请求 location /searchword/cron/ {deny all;}禁止单个文件 location ~ /data/sql/data.sql {deny all;}给favicon.ico和robots.txt设置过期时间;这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志 location ~(favicon.ico) {log_not_found off;expires 99d;break;} location ~(robots.txt) {log_not_found off;expires 7d;break;}设定某个文件的过期时间;这里为600秒，并不记录访问日志 location ^~ /html/scripts/loadhead_1.js {access_log off;root /opt/lampp/htdocs/web;expires 600;break;}文件反盗链并设置过期时间这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求“rewrite ^/ http://leech.divmy.com/leech.gif;”显示一张防盗链图片“access_log off;”不记录访问日志，减轻压力“expires 3d”所有文件3天的浏览器缓存 location ~ ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {valid_referers none blocked .c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;if ($invalid_referer) {rewrite ^/ http://leech.divmy.com/leech.gif;return 412;break;}access_log off;root /opt/lampp/htdocs/web;expires 3d;break;}只充许固定ip访问网站，并加上密码 root /opt/htdocs/www;allow 208.97.167.194;allow 222.33.1.2;allow 231.152.49.4;deny all;auth_basic “C1G_ADMIN”;auth_basic_user_file htpasswd;将多级目录下的文件转成一个文件，增强seo效果/job-123-456-789.html 指向/job/123/456/789.html rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;将根目录下某个文件夹指向2级目录如/shanghaijob/ 指向 /area/shanghai/如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/ rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;上面例子有个问题是访问/shanghai 时将不会匹配 rewrite ^/([0-9a-z]+)job$ /area/$1/ last;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;这样/shanghai 也可以访问了，但页面中的相对链接无法使用，如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。 那我加上自动跳转也是不行咯(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果 if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}知道原因后就好办了，让我手动跳转吧 rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;文件和目录不存在的时候重定向： if (!-e $request_filename) {proxy_pass http://127.0.0.1;}域名跳转 server{listen 80;server_name jump.88dgw.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/ http://www.88dgw.com/;access_log off;}多域名转向 server_name www.7oom.com/ www.divmy.com/;index index.html index.htm index.php;root /opt/lampp/htdocs;if ($host ~ “c1gstudio.net”) {rewrite ^(.*) http://www.7oom.com$1/ permanent;}三级域名跳转 if ($http_host ~ “^(.).i.c1gstudio.com$”) {rewrite ^(.*) http://top.88dgw.com$1/;break;}域名镜向 server{listen 80;server_name mirror.c1gstudio.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/(.*) http://www.divmy.com/$1 last;access_log off;}某个子目录作镜向 location ^~ /zhaopinhui {rewrite ^.+ http://zph.divmy.com/ last;break;}discuz ucenter home (uchome) rewrite rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;rewrite ^/(space|network).html$ /$1.php last;rewrite ^/([0-9]+)$ /space.php?uid=$1 last;discuz 7 rewrite rewrite ^(.)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;rewrite ^(.)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;rewrite ^(.)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page%3D$4&amp;page=$3 last;rewrite ^(.)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;rewrite ^(.)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;rewrite ^(.)/tag-(.+).html$ $1/tag.php?name=$2 last;给discuz某版块单独配置域名 server_name bbs.c1gstudio.com news.c1gstudio.com; location = / {if ($http_host ~ news.divmy.com$) {rewrite ^.+ http://news.divmy.com/forum-831-1.html last;break;}}discuz ucenter 头像 rewrite 优化 location ^~ /ucenter {location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location /ucenter/data/avatar {log_not_found off;access_log off;location ~ /(.)_big.jpg$ {error_page 404 /ucenter/images/noavatar_big.gif;}location ~ /(.)_middle.jpg$ {error_page 404 /ucenter/images/noavatar_middle.gif;}location ~ /(.*)_small.jpg$ {error_page 404 /ucenter/images/noavatar_small.gif;}expires 300;break;}}jspace rewrite location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location ~ ^/index.php/{rewrite ^/index.php/(.) /index.php?$1 break;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;}另外这里还有一个工具可以直接把apache规则转化为nginx规则 http://www.anilcetin.com/convert-apache-htaccess-to-nginx/ 参考： http://wiki.nginx.org/NginxChsHttpRewriteModule http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx http://www.divmy.com/]]></content>
+      <categories>
+        <category>RexExp</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>rewrite</tag>
+        <tag>重写</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ecshop模板smarty foreach详解]]></title>
+    <url>%2F2013%2F11%2F22%2Fecshop-smarty-foreach-usage.html</url>
+    <content type="text"><![CDATA[&nbsp; &nbsp; Smarty目录:/libs Smarty的功能类目录/tempalates 模板文件目录/templates_c 模板缓存文件目录/configs 配置文件目录/cache 缓存文件目录载入Smarty功能类：require(’路径/Smarty.class.php’);$smarty = new Smarty;自定义Smarty工作目录:$smarty-&gt;template_dir = ‘路径/templates/’;$smarty-&gt;compile_dir = ‘路径/templates_c/’;$smarty-&gt;config_dir = ‘路径/configs/’;$smarty-&gt;cache_dir = ‘路径/cache/’;常用语法:$smarty-&gt;assign(’模板中的变量名’, 值); //给模板中的变量赋值(可以是数组或对象)$smarty-&gt;display(’模板文件名’); //输出模板常用标签语法：所有的smarty模板标签都被加上了定界符, 默认情况下是 { 和 }注释：{ 注释内容 }函数：{函数名称[ 参数名1=值1[ 参数名2=值2]]}变量: {$变量名}数组: {$数组名.元素名} 或 {$数组名.[元素索引]}对象：{$对象名-&gt;属性名}从配置文件引用的变量:配置文件名为: .conf在模板中引入：{config_load file=”配置文件名.conf”}在模板中的变理标签：变量调节器:{$变量名|调节器名} //用于变量{”字符串”|调节器名} //用于字符串{函数名|调节器名 函数的参数名=值} //用于函数{$变量名|调节器名1[|调节器名2|…]} //使用多个调节器‘{’字符: {ldelim}‘}’字符: {rdelim}原文输出：{literal}{/literal} 里面的文本内容将不会被模板引擎解析,原样输出在模板中直接写PHP语句: {php}php语句;{/php}条件:为了简单，条件表达式与PHP中相同即可.{if 条件表达式1}内容1[{elseif 条件表达式2}内容2{else}内容3]{/if}循环:{foreach from=$数组名 item=当前处理元素的变量名称[ key=当前处理元素的键名][ name=用于嵌套中的名称必须唯一]}循环体…{$当前处理元素的变量名称} { //遍历数组时元素的引用 *}{/foreach}缓存:$smarty = new Smarty;$smarty-&gt;caching = 2; //缓存设置,值为: 0,关闭缓存(默认) 1,开启缓存(缓存默认时间为3600秒) 2,指定缓存的时间$smarty-&gt;cache_lifetime = 3600; //设置缓存时间,单位秒。$smarty-&gt;display(’index.tpl’); ecshop模板smarty foreach详解{foreach},{foreachelse}{foreach} 用于像循环访问一个数字索引数组一样循环访问一个关联数组，与仅能访问数字索引数组的{section}不同，{foreach}的语法比 {section}的语法简单得多，但是作为一个折衷方案也仅能用于单个数组。每个{foreach}标记必须与关闭标记{/foreach}成对出现。属性1、from 类型：array数组 必要性：Yes必要 默认值：n/a 描述：循环访问的数组2、item 类型：string字符串 必要性：Yes必要 默认值：n/a 描述：当前元素的变量名3、key 类型：string字符串 必要性：No可选 默认值：n/a 描述：当前键名的变量名4、name 类型：string字符串 必要性：No可选 默认值：n/a 描述：用于访问foreach属性的foreach循环的名称from和item是必要属性{foreach}循环的name可以是任何字母，数组，下划线的组合，参考PHP变量。{foreach}循环可以嵌套，嵌套的{foreach}的名称应当互不相同。from属性通常是值数组，被用于判断{foreach}的循环次数。在from变量中没有值时，将执行{foreachelse}。{foreach}循环也有自身属性的变量，可以通过{$smarty.foreach.name.property}访问，其中”name”是name属性。注意：name属性仅在需要访问{foreach}属性时有效，与{section}不同。访问未定义name的{foreach}属性不会抛出一个错误，但将导致不可预知的结果。{foreach}属性有index, iteration, first, last, show, total.示例：例一. item属性&lt;?php$arr = array(1000, 1001, 1002);$smarty-&gt;assign(‘myArray’, $arr);?&gt;用模板以无序列表输出$myArray&lt;ul&gt;{foreach from=$myArray item=foo}&lt;li&gt;{$foo}&lt;/li&gt;{/foreach}&lt;/ul&gt;上例将输出：&lt;ul&gt;&lt;li&gt;1000&lt;/li&gt;&lt;li&gt;1001&lt;/li&gt;&lt;li&gt;1002&lt;/li&gt;&lt;/ul&gt;例二. 演示item和key属性&lt;?php$arr = array(9 =&gt; ‘Tennis’, 3 =&gt; ‘Swimming’, 8 =&gt; ‘Coding’);$smarty-&gt;assign(‘myArray’, $arr);?&gt;用模板按键名/键值对的形式输出$myArray, 类似于PHP的foreach。&lt;ul&gt;{foreach from=$myArray key=k item=v}&lt;li&gt;{$k}: {$v}&lt;/li&gt;{/foreach}&lt;/ul&gt;上例将输出：&lt;ul&gt;&lt;li&gt;9: Tennis&lt;/li&gt;&lt;li&gt;3: Swimming&lt;/li&gt;&lt;li&gt;8: Coding&lt;/li&gt;&lt;/ul&gt;例三. {foreach}的item属性是关联数组&lt;?php$items_list = array(23 =&gt; array(‘no’ =&gt; 2456, ‘label’ =&gt; ‘Salad’),96 =&gt; array(‘no’ =&gt; 4889, ‘label’ =&gt; ‘Cream’));$smarty-&gt;assign(‘items’, $items_list);?&gt;模板中，url通过$myId输出$items&lt;ul&gt;{foreach from=$items key=myId item=i}&lt;li&gt;&lt;a href=”item.php?id={$myId}”&gt;{$i.no}: {$i.label}&lt;/li&gt;{/foreach}&lt;/ul&gt;上例将输出：&lt;ul&gt;&lt;li&gt;&lt;a href=”item.php?id=23”&gt;2456: Salad&lt;/li&gt;&lt;li&gt;&lt;a href=”item.php?id=96”&gt;4889: Cream&lt;/li&gt;&lt;/ul&gt;例四. {foreach}使用嵌套的item和key向Smarty设置一个数组，对于每个键名对应的每个循环值都包括键。&lt;?php$smarty-&gt;assign(‘contacts’, array(array(‘phone’ =&gt; ‘1’,‘fax’ =&gt; ‘2’,‘cell’ =&gt; ‘3’),array(‘phone’ =&gt; ‘555-4444’,‘fax’ =&gt; ‘555-3333’,‘cell’ =&gt; ‘760-1234’)));?&gt;用于输出$contact的模板。{foreach name=outer item=contact from=$contacts}&lt;hr /&gt;{foreach key=key item=item from=$contact}{$key}: {$item}&lt;br /&gt;{/foreach}{/foreach}上例将输出：&lt;hr /&gt;phone: 1&lt;br /&gt;fax: 2&lt;br /&gt;cell: 3&lt;br /&gt;&lt;hr /&gt;phone: 555-4444&lt;br /&gt;fax: 555-3333&lt;br /&gt;cell: 760-1234&lt;br /&gt;例五. 使用{foreachelse}的数据库示例一个数据库（例如PEAR或ADODB）的搜索脚本示例，&lt;?php$search_condition = “where name like ‘$foo%’ “;$sql = ‘select contact_id, name, nick from contacts ‘.$search_condition.’ order by name’;$smarty-&gt;assign(‘results’, $db-&gt;getAssoc($sql) );?&gt;借助{foreachelse}标记在没有结果时模板输出”None found”字样。{foreach key=cid item=con from=$results}&lt;a href=”contact.php?contact_id={$cid}”&gt;{$con.name} - {$con.nick}&lt;/a&gt;&lt;br /&gt;{foreachelse}No items were found in the search{/foreach}.index包含当前数组索引，从零开始。例六. index示例{ 每五行输出一次头部区块 }&lt;table&gt;{foreach from=$items key=myId item=i name=foo}{if $smarty.foreach.foo.index % 5 == 0}&lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;/tr&gt;{/if}&lt;tr&gt;&lt;td&gt;{$i.label}&lt;/td&gt;&lt;/tr&gt;{/foreach}&lt;/table&gt;iteration包含当前循环次数，与index不同，从1开始，每次循环增长1。例七. iteration和index示例{ this will output 0|1, 1|2, 2|3, … etc }{ 该例将输出0|1, 1|2, 2|3, … 等等 }{foreach from=$myArray item=i name=foo}{$smarty.foreach.foo.index}|{$smarty.foreach.foo.iteration},{/foreach}first在当前{foreach}循环处于初始位置时值为TRUE。例八. first属性示例{ 对于第一个条目显示LATEST而不是id }&lt;table&gt;{foreach from=$items key=myId item=i name=foo}&lt;tr&gt;&lt;td&gt;{if $smarty.foreach.foo.first}LATEST{else}{$myId}{/if}&lt;/td&gt;&lt;td&gt;{$i.label}&lt;/td&gt;&lt;/tr&gt;{/foreach}&lt;/table&gt;last在当前{foreach}循环处于最终位置是值为TRUE。例九. last属性示例{ 在列表结束时增加一个水平标记 }){foreach from=$items key=part_id item=prod name=products}&lt;a href=”#{$part_id}”&gt;{$prod}&lt;/a&gt;{if $smarty.foreach.products.last}&lt;hr&gt;{else},{/if}{foreachelse}… content …{/foreach}show是{foreach}的参数. show是一个布尔值。如果值为FALSE，{foreach}将不被显示。如果有对应的{foreachelse}，将被显示。total包括{foreach}将循环的次数，既可以在{foreach}中使用，也可以在之后使用。例十. total属性示例{ 在结束位置显示行数 }{foreach from=$items key=part_id item=prod name=foo}{$prod.name&gt;&lt;hr/&gt;{if $smarty.foreach.foo.last}&lt;div id=”total”&gt;{$smarty.foreach.foo.total} items&lt;/div&gt;{/if}{foreachelse}… something else ecshop模板smarty foreach详解{/foreach}问题{foreach from=$custid item=curr_id key=num}{if num is odd}干啥{else}干其他的{/if}{/foreach}与以下的代码的区别，odd和enen的意义？{foreach from=$custid item=curr_id key=num}{if num%2==0}干啥{else}干其他的{/if}{/foreach} 使用ecshop比较核心的其实就是变量的使用，因为这些就是数据的根本，想从数据库里获取数据并显示在界面就必须使用smarty来展示，下面是关于smarty的介绍和使用。Smarty是一个php模板引擎,它分开了逻辑程序和外在的内容,提供了一种易于管理的方法.Smarty要求web服务器运行php4.0.6和以上版本.smarty安装需要smarty库文件。可以去官方网站http://smarty.php.net下载。网上讲了很多安装的教程，但是我都没有成功，所以直接把整个目录名改为smarty直接复制到了网站所在的目录下，然后打开http://网站路径/smarty/demo/index.php，显示正常，应该算是安装成功了。基本语法所有的smarty标签都被加上了定界符.在smarty里,所有定界符以外的内容都是静态的,当smarty遇到了模板标签,将尝试解释他们,然后再以恰当的方式输出.默认情况下是 {和},但它们是可定制的.定制方法是：$smarty-&gt;left_delimiter = ‘&lt;!–{‘;$smarty-&gt;right_delimiter = ‘}–&gt;’;1.注释模板注释被号包围,例如 { this is a comment *}smarty注释将不被输出.它是模板内在的注释.2.变量模板变量以$开头，可以包含数字，字母和下划线。config_file变量是例外要用#变量名#的方法引用3.函数smarty标签输出一个变量或者调用某种函数.在定界符内函数和其属性将被处理和输出.例如:{funcname attr1=”val” attr2=”val”}.funcname为函数的名称比如：include等，attr1，attr2为属性名，val为属性相应的值。在模板里无论是内建函数还是自定义函数都有相同的语法.内建函数将在smarty内部工作,例如 {if}, {section} 和{strip}.他们不能被修改.自定义函数通过插件机制起作用,它们是附加函数,可以随意修改，自行添加.例如 {html_options} and {html_select_date}4.属性静态数值不需要加引号,布尔值(真或假)也不需要引号,可以是true,on,yes或者false,off,no. 但是字符串例外.变量同样被用到了,它们也不能加引号.5.在字符串中插入变量只能识别数字，字母，下划线和[]的组合，如果为复杂的形式需要用`将变量隔起来。比如{func var=&quot;test $foo.bar test&quot;} 中只能识别变量$foo,要识别$foo.bar,需要写成{func var=&quot;test$foo.bartest&quot;}的格式。 6.一些保留字的显示方法 在模板中如果要将smarty的一些保留字作为语言的内容显示出来，比如显示分隔符，默认为{}的方法是： {ldelim},{rdelim} 或者{$smarty.ldelim},{$smarty.rdelim} 或者可以把{}放在{literal} .. {/literal} 中间输出。 smarty的保留变量 {$smarty}保留变量可以被用于访问一些特殊的模板变量. 以下是全部. 页面请求变量 以下是访问页面请求变量诸如get,post,cookies,server,enviroment和session变量的例子. 例如{$smarty.server.SERVER_NAME}取得服务器变量，{$smarty.env.PATH}取得系统环境变量path, {$smarty.request.username}取得get/post/cookies/server/env的复合变量。 {$smarty.now}变量用于访问当前时间戳. 可以用 date_format调节器格式化输出. 例如{$smarty.now|date_format:&quot;%Y-%m-%d %H:%M:%S&quot;} {$smarty.const} 你可以直接访问PHP常量. 例如{$smarty.const._MY_CONST_VAL} {$smarty.capture} 可以通过 {capture}..{/capture}结构 截取的输出可以使用{$smarty} 变量访问. {$smarty.config} {$smarty}变量 可以访问已经加载的config变量. 例如 {$smarty.config.foo}就可以表示 . {$smarty.section}, {$smarty.foreach} {$smarty} 变量可以访问&#39;section&#39;和&#39;foreach&#39;循环的属性. {$smarty.template} 显示当前被处理的模板的名字. {$smarty.version} 显示smarty模板的版本 {$smarty.ldelim} 显示左分隔符 {$smarty.rdelim} 显示右分隔符 变量调节器 变量调节器用于变量,自定义函数和字符串. 可以使用&#39;|&#39;符号和调节器名称应用调节器. 变量调节器由赋予的参数值决定其行为. 参数由&#39;:&#39;符号分开. 如果你用变量调节器调节数组变量,结果是数组的每个值都被调节.如果你想要调节器调节整个数组,你必须在调节器名字前加上@符号. 例如: {$articleTitle|@count}(这将会在输出 $articleTitle 数组里的数目) capitalize 将变量里的所有单词首字大写. 参数值boolean型决定带数字的词是否首字大写。默认不大写 count_characters 计算变量值里的字符数.参数值boolean型决定是否计算空格数。默认不计算空格 cat 将cat里的参数值连接到给定的变量后面.默认为空。 count_paragraphs 计算变量里的段落数量 count_sentences 计算变量里句子的数量 count_words 计算变量里的词数 date_format 日期格式 第一个参数控制日期格式. 如果传给date_format的数据是空的,将使用第二个参数作为默认时间 %a - 星期几的简写 %A - 星期几的全写 %b - 月份的简写 %B - 月份的全写 %c - 日期时间06/12/05 11:15:10 %C - 世纪时间 %d - 一个月的第几号(从 01 到 31) %D - 同 %m/%d/%y %e - 一个月的第几号，号为单数则前面加一空格 (从 1 到 31) %g - 世纪 %G - 世纪 [0000,9999] %h - 同%b %H - 24小时形式的小时(从00到23) %I - 12小时形式的小时(从01到 12) %j - 一年中的第几天(从 001 到 366) %k - 24小时形式的小时，单数字前面加空格. (从 0 到 23) %l - 12小时形式的小时，单数字前面加空格.(range 1 to 12) %m - 月份 (range 01 to 12) %M - 分 %n - 换行符 %p - 显示早上还是下午am’ 或 `pm’%r - a.m. 或 p.m.形式的时间%R - 24小时形式的时间%S - 秒%t - tab符号%T - 同%H:%M:%S%u - 用 [1,7],表示星期几%U - 计算是该年的第几个星期，从该年的第一个星期天开始计算%V - 计算是该年的第几个星期, 从 01 到 53, 第一个星期必须至少有4天在这一年, 星期天作为这个星期的第一天 &nbsp; 参考网站: http://www.zxlive.net/detailed-template-smarty-foreach-ecshop.html http://hi.baidu.com/wupinghou/item/3a6e4ff955f4c41984d2788b http://blog.csdn.net/21aspnet/article/details/7590422]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ecshop 后台添加图片上传]]></title>
+    <url>%2F2013%2F11%2F22%2Fecshop-upload-images.html</url>
+    <content type="text"><![CDATA[1.后台模版文件添加: &lt;tr&gt; &lt;td class=”label”&gt;文章图标1&lt;/td&gt; &lt;td&gt; &lt;input type=”file” name=”article_icon_1” size=”35” /&gt; {if $article.article_icon_1} &lt;a href=”article.php?act=show_image&amp;img_url={$article.article_icon_1}” target=”_blank”&gt;&lt;img src=”images/yes.gif” border=”0” /&gt;&lt;/a&gt; {else} &lt;img src=”images/no.gif” /&gt; {/if} &lt;/td&gt;&lt;/tr&gt;&nbsp; 2.后台程序修改: insert区域: / 文章图标处理 begin / $article_icon_1 = ‘’; $article_icon_2 = ‘’; $save_path = ‘icon/‘.date(‘Ym’,time()); if ( ($_FILES[‘article_icon_1’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_1’][‘tmp_name’] != ‘none’) ){ $original_article_icon_1 = $image-&gt;upload_image($_FILES[‘article_icon_1’], $save_path); // 原始图片 if ($original_article_icon_1 === false) { sys_msg($image-&gt;error_msg(), 1, array(), false); } $article_icon_1 = $original_article_icon_1; // 商品图片 } if ( ($_FILES[‘article_icon_2’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_2’][‘tmp_name’] != ‘none’) ){ $original_article_icon_2 = $image-&gt;upload_image($_FILES[‘article_icon_2’], $save_path); // 原始图片 if ($original_article_icon_2 === false) { sys_msg($image-&gt;error_msg(), 1, array(), false); } $article_icon_2 = $original_article_icon_2; // 商品图片 }&nbsp; &nbsp; update区域: &nbsp; delete区域: &nbsp; &nbsp;]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>图片上传</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[最新解决Ecshop2.73与Jquery的冲突]]></title>
+    <url>%2F2013%2F11%2F21%2Fecshop-conflict-for-jquery.html</url>
+    <content type="text"><![CDATA[早些年就有人在ecshop论坛反映，为何ecshop不兼容jquery？可是ecshop官网却一直未解决这个问题。由插件联盟网亲自测试并验证过的解决jquery冲突的方法如下：1.复制一份 transport.js 改名为 transport.org.js 提供给后台使用 2.注释掉js/transport.js里的toJSON功能 行数为497-737行之间。其中将 legalParams = “JSON=” + $.toJSON(params); 替换为result = $.evalJSON(result); 3.修改js/index.js里的第44行，将其改为：var res = $.evalJSON(result); 4.修改js/改common.js,将第34行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);然后将850行改为:Ajax.call(‘flow.php?step=add_package_to_cart’, ‘package_info=’ + $.toJSON(package_info), addPackageToCartResponse, ‘POST’, ‘JSON’);最后将1056行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’); 5.修改compare.js文件第49行改为:this.data = $.evalJSON(cookieValue);第67行改为:var obj = $.evalJSON(cookieValue);第133行改为:document.setCookie(“compareItems”, $.toJSON(this.data)); 6.修改js/global.js文件,其中将第16行改函数名 :function $e()。然后第114和126行都改为: var element = $e(element); 7.修改后台头部引入transport.js路径 admin/templates/pageheader.htm 第9行改为: {insert_scripts files=”../js/transport.org.js,common.js”} 8.修改themes/default/library/page_header.lbi文件在{insert_scripts files=’transport.js,utils.js’}上面加上如下代码{insert_scripts files=’jquery.js,jquery.json.js’} 9.修改你的模板下的library/comment_list.lbi。将第188行 替换为：Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’); 10.修改模板compare.dwt。将第20行 改为：var obj = $.evalJSON(document.getCookie(“compareItems”));然后第24行 替换为：document.setCookie(“compareItems”, $.toJSON(obj)); 11.修改模板flow.dwt，将第138行 替换为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), collect_to_flow_response, ‘POST’, ‘JSON’);然后将第199行 改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), fittings_to_flow_response, ‘POST’, ‘JSON’); 12.over]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>jquery</tag>
+        <tag>jquery冲突</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ECshop插件功能汇总]]></title>
+    <url>%2F2013%2F11%2F21%2Fecshop-plugin-website.html</url>
+    <content type="text"><![CDATA[1. ecshop功能 2. 3. 参考网站http://www.topchajian.com]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ecshop原生态js实现登录和注册弹窗]]></title>
+    <url>%2F2013%2F11%2F21%2Fecshop-js-for-login-and-register.html</url>
+    <content type="text"><![CDATA[&nbsp; 详细教程如下：1.打开你的模版下library/member_info.lbi 文件，在里面添加如下的代码。 &lt;script type=”text/javascript”&gt; function login_module(){//点击登录时，调用的函数 var mengban=document.getElementById(“mengban”); mengban.className=”mengban”; var divs=document.getElementById(“login_module”); divs.style.display=”block”; } function close_login(){//关闭弹窗时，调用的函数 var mengban=document.getElementById(“mengban”); mengban.className=” “; document.getElementById(“login_module”).style.display = “none”; document.getElementById(“register_module”).style.display = “none”; } function register_module(){//注册时，调用的函数 var mengban=document.getElementById(“mengban”); mengban.className=”mengban”; var divs=document.getElementById(“register_module”); divs.style.display=”block”; }&lt;/script&gt;大家看注释都明白，上面的函数分别定义了，点击登录，注册等链接时，所调用的函数。 &nbsp; 2.打开你的模版下library/page_header.lbi 文件，在里面添一个div层，如下： &lt;div class=”” id=”mengban”&gt;&lt;/div&gt;&nbsp; 3.打开你的模版下style.css，在最后面添加这样一行： .mengban {position:absolute; top:0; background-color: rgba(227,227,227,.9); background: #E3E3E3; *background-color: #E3E3E3; filter: alpha(opacity=70); opacity:0.7; left:0; width:100%; height:9000px; z-index:10000;}&nbsp; 该行定义了div 层mengban的样式，即弹窗弹出后的背景色样式。4.接下来定义一个div，用来展示弹出窗的内容，例如：用户登录信息。将该div放在page_footer.lbi的最下面。该div内容如下：（这里只贴出ecshop用户登录信息，注册的与之类似）。 &lt;div id=”login_module” style=”display:none;height:300px;width:430px;margin:0 auto;border:7px solid #808080;position:absolute;left:30%;top:130px;z-index:100001;background-color:#ffffff”&gt;&lt;div style=”text-align:right;margin:4px”&gt;&lt;a href=”javascript:void(0);” onclick=”close_login()”&gt;&lt;img src=”images/closelabel.gif”/&gt;&lt;/a&gt;&lt;/div&gt;&lt;div style=”margin-top:20px;margin-left:80px;height:30px; background:url(images/ur_bg.gif) no-repeat 0px 0px;”&gt;&lt;/div&gt;&lt;form name=”formLogin” action=”user.php” method=”post” **ubmit=”return userLogin()”&gt;&lt;table width=”100%” border=”0” align=”center”&gt; &lt;tr&gt; &lt;td width=”30%” align=”right”&gt;email：&lt;/td&gt; &lt;td width=”70%”&gt;&lt;input name=”username” type=”text” size=”30” id=”username” /&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td align=”right”&gt;assword：&lt;/td&gt; &lt;td&gt;&lt;input name=”password” type=”password” size=”30” id=”password” /&gt;&lt;/td&gt; &lt;/tr&gt; &lt;!– {if $enabled_captcha} 判断是否启用验证码 –&gt; &lt;tr&gt; &lt;th align=”right”&gt;{$lang.comment_captcha}：&lt;/th&gt; &lt;td&gt; &lt;input type=”text” size=”8” name=”captcha” /&gt; &lt;img src=”captcha.php?is_login=1&amp;{$rand}” onClick=”this.src=’captcha.php?is_login=1&amp;’+Math.random()” alt=”captcha” style=”cursor:pointer;” /&gt; &lt;/td&gt; &lt;/tr&gt; &lt;!– {/if} –&gt; &lt;tr&gt; &lt;td colspan=”2” align=”center”&gt; &lt;input type=”submit” name=”login” value=”Enter” /&gt; &lt;input type=”button” name=”register” value=”Submit” onclick=”window.location.href=’user.php?act=register’”/&gt; &lt;input type=”hidden” name=”act” value=”act_login” /&gt; &lt;input type=”hidden” name=”back_act” value=”{$back_act}” /&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan=”2” align=”center”&gt; &lt;a href=”user.php?act=get_password”&gt;{$lang.get_password_by_mail}&lt;/a&gt;&lt;/td&gt; &lt;/tr&gt;&lt;/table&gt;&lt;/form&gt;&lt;center&gt; &lt;a href=”javascript:void(0);” onclick=”fbLogin()”&gt;&lt;img src=””/&gt;&lt;/a&gt;&lt;/center&gt;&lt;/div&gt;&nbsp;总结下，上面代码整个流程如下：用户点击ecshop登录，接着调用login_module()函数，该函数立即弹窗一个弹窗，弹窗div的ID即为login_module，而弹窗的背景色即为我们所定义的mengban div 层。当点击弹窗关闭之后，立即调用close_login()函数，该函数作用：把登录弹窗隐藏掉，背景色恢复。 &nbsp; &nbsp; 参考网站: ecshop纯js实现会员注册与登录弹窗 http://www.topchajian.com/?p=420 &nbsp;]]></content>
+      <categories>
+        <category>ECshop</category>
+      </categories>
+      <tags>
+        <tag>ecshop</tag>
+        <tag>弹窗</tag>
+        <tag>登陆注册</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jquery插件研究列表]]></title>
+    <url>%2F2013%2F11%2F21%2Fjquery-plugin-research.html</url>
+    <content type="text"><![CDATA[1. Fancybox官网: http://fancybox.net 测试时间: 现实中的例子: 一个简单的实现: 参考万网会员对商品评论的登陆区域. &nbsp; 2. cloudzoom 图片相册放大插件 http://www.starplugins.com/cloudzoom http://www.professorcloud.com/mainsite/index.htm]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jquery</tag>
+        <tag>fancybox</tag>
+      </tags>
+  </entry>
+</search>

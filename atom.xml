@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>BoxCore</title>
+  <subtitle>Start</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://boxcore.github.io/"/>
+  <updated>2017-06-06T02:59:01.000Z</updated>
+  <id>http://boxcore.github.io/</id>
+  
+  <author>
+    <name>Zack Hwang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScirpt Note: JavaScript基础篇</title>
+    <link href="http://boxcore.github.io/2017/06/05/JavaScirpt-Note-the-basic-javascript.html"/>
+    <id>http://boxcore.github.io/2017/06/05/JavaScirpt-Note-the-basic-javascript.html</id>
+    <published>2017-06-05T04:01:00.000Z</published>
+    <updated>2017-06-06T02:59:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言-_javascript基本信息&quot;&gt;前言. javascript基本信息&lt;/h2&gt;&lt;p&gt;javascript是所学最难的编程语言,这里先给大家简单说下js的一些基层知识,在本月会持续更新到js高级部分.&lt;/p&gt;
+&lt;p&gt;enjoy it!&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;js与java的关系： 雷锋与雷锋塔的关系&lt;/li&gt;
+&lt;li&gt;js能做什么：游戏|后台应用程序|前台特效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;00-javascript学习大纲:&quot;&gt;00.javascript学习大纲:&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;基础语法&lt;/li&gt;
+&lt;li&gt;内置对象&lt;/li&gt;
+&lt;li&gt;浏览器对象&lt;/li&gt;
+&lt;li&gt;文档对象&lt;/li&gt;
+&lt;li&gt;节点对象&lt;/li&gt;
+&lt;li&gt;ajax无刷新技术&lt;/li&gt;
+&lt;li&gt;jquery框架&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>编辑器宏和批量替换（sublime &amp; notepad++）</title>
+    <link href="http://boxcore.github.io/2017/05/31/ide-for-replace.html"/>
+    <id>http://boxcore.github.io/2017/05/31/ide-for-replace.html</id>
+    <published>2017-05-31T02:41:21.000Z</published>
+    <updated>2017-06-06T03:00:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;sublime批量替换&quot;&gt;sublime批量替换&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;批量替换空行：&lt;code&gt;^\n&lt;/code&gt; =&amp;gt; &lt;code&gt;(留空)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;删除全部空格将代码压缩：&lt;code&gt;(?ms)\s*&lt;/code&gt; =&amp;gt; &lt;code&gt;(留空)&lt;/code&gt;&lt;br&gt;-&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然，如果想把这些绑定到快捷键中，使用插件&lt;a href=&quot;https://github.com/facelessuser/RegReplace/tree/st3-3.3.0&quot;&gt;RegReplace&lt;/a&gt;吧！&lt;/p&gt;
+&lt;p&gt;下面是我自己的一些配置：&lt;/p&gt;
+&lt;p&gt;file: &lt;code&gt;Packages/User/reg_replace_rules.sublime-settings&lt;/code&gt; :&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>php报错配置</title>
+    <link href="http://boxcore.github.io/2017/05/31/php-errors-setting.html"/>
+    <id>http://boxcore.github.io/2017/05/31/php-errors-setting.html</id>
+    <published>2017-05-31T02:22:25.000Z</published>
+    <updated>2017-06-06T03:01:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;php报错的配置&quot;&gt;php报错的配置&lt;/h2&gt;&lt;p&gt;php.ini默认开发环境设置如：&lt;/p&gt;
+&lt;figure class=&quot;highlight lua&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;error_reporting = E_ALL&amp;amp;~E_NOTICE&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;display_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;display_startup_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;log_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;log_errors_max_len = &lt;span class=&quot;number&quot;&gt;1024&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ignore_repeated_errors = Off&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ignore_repeated_source = Off&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;report_memleaks = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;track_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;html_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;error_log = /usr/&lt;span class=&quot;keyword&quot;&gt;local&lt;/span&gt;/var/log/php-&lt;span class=&quot;built_in&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;number&quot;&gt;-56.&lt;/span&gt;log&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意配置&lt;code&gt;display_errors&lt;/code&gt;和&lt;br&gt;&lt;code&gt;display_startup_errors&lt;/code&gt;,如果是在线上环境切记要设置为&lt;code&gt;Off&lt;/code&gt;。这样就可以不显示报错信息，但会记录在错误的日志文件中。&lt;/p&gt;
+&lt;p&gt;如果配置了error_log = syslog, 则是指定产生的错误报告写入操作系统的日志里。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Bash风格指南</title>
+    <link href="http://boxcore.github.io/2017/05/26/Bash-code-style.html"/>
+    <id>http://boxcore.github.io/2017/05/26/Bash-code-style.html</id>
+    <published>2017-05-26T07:44:01.000Z</published>
+    <updated>2017-06-06T03:01:11.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Bash 风格指南来源&lt;/p&gt;
+&lt;p&gt;本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 &lt;a href=&quot;http://mywiki.wooledge.org&quot;&gt;this wiki&lt;/a&gt;，特别是这个页面：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mywiki.wooledge.org/BashGuide/Practices&quot;&gt;http://mywiki.wooledge.org/BashGuide/Practices&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL配置和优化</title>
+    <link href="http://boxcore.github.io/2017/05/22/MySQL-setting-and-optimzation.html"/>
+    <id>http://boxcore.github.io/2017/05/22/MySQL-setting-and-optimzation.html</id>
+    <published>2017-05-22T03:27:33.000Z</published>
+    <updated>2017-05-31T02:57:31.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、查看配置&quot;&gt;一、查看配置&lt;/h2&gt;&lt;p&gt;查看binlog&lt;code&gt;show variables like &amp;#39;log_%&amp;#39;;&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;查看sql_mode的语法&lt;/p&gt;
+&lt;figure class=&quot;hi
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mac优化实例</title>
+    <link href="http://boxcore.github.io/2017/05/17/Mac-optimization.html"/>
+    <id>http://boxcore.github.io/2017/05/17/Mac-optimization.html</id>
+    <published>2017-05-17T09:36:10.000Z</published>
+    <updated>2017-05-17T09:39:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常用系统工具&quot;&gt;常用系统工具&lt;/h2&gt;&lt;h3 id=&quot;time_machine管理&quot;&gt;time machine管理&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu使用</title>
+    <link href="http://boxcore.github.io/2017/05/17/Ubuntu-Note.html"/>
+    <id>http://boxcore.github.io/2017/05/17/Ubuntu-Note.html</id>
+    <published>2017-05-17T02:23:20.000Z</published>
+    <updated>2017-05-17T06:49:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;弄了台备用笔记本电脑，发现装win10有各种问题，遂转投linux阵营。当然，首选ubuntu啦！&lt;/p&gt;
+&lt;p&gt;在这里mark下新ubuntu系统的一些使用。&lt;/p&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;一、基础配置和更新&quot;&gt;一、基础配置和更新&lt;/h2&gt;&lt;h3 id
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Laravel Note</title>
+    <link href="http://boxcore.github.io/2017/05/08/Laravel-Note.html"/>
+    <id>http://boxcore.github.io/2017/05/08/Laravel-Note.html</id>
+    <published>2017-05-08T08:27:30.000Z</published>
+    <updated>2017-05-08T17:35:28.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近需要用到laravel进行开发项目，这里整理一些笔记方便回忆。&lt;/p&gt;
+&lt;h2 id=&quot;laravel相关资源&quot;&gt;laravel相关资源&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.golaravel.com/docs/5.4/containe
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 7 安装和配置</title>
+    <link href="http://boxcore.github.io/2017/04/26/linux-centos7-setting.html"/>
+    <id>http://boxcore.github.io/2017/04/26/linux-centos7-setting.html</id>
+    <published>2017-04-26T08:11:58.000Z</published>
+    <updated>2017-04-26T09:22:48.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+      <category term="CentOS" scheme="http://boxcore.github.io/categories/CentOS/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL学习</title>
+    <link href="http://boxcore.github.io/2017/04/26/mysql-learn.html"/>
+    <id>http://boxcore.github.io/2017/04/26/mysql-learn.html</id>
+    <published>2017-04-26T07:12:43.000Z</published>
+    <updated>2017-04-26T09:32:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;MySQL优化&quot;&gt;MySQL优化&lt;/h2&gt;&lt;h3 id=&quot;MySQL缓存&quot;&gt;MySQL缓存&lt;/h3&gt;&lt;p&gt;配置文件&lt;code&gt;/etc/my.cnf&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight lua&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
+    
+    </summary>
+    
+      <category term="MySQL" scheme="http://boxcore.github.io/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx笔记</title>
+    <link href="http://boxcore.github.io/2017/04/17/linux/nginx-note.html"/>
+    <id>http://boxcore.github.io/2017/04/17/linux/nginx-note.html</id>
+    <published>2017-04-17T02:02:34.000Z</published>
+    <updated>2017-04-17T02:09:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;sever设置&quot;&gt;sever设置&lt;/h2&gt;&lt;h3 id=&quot;autoindex:_打开目录浏览功能&quot;&gt;autoindex: 打开目录浏览功能&lt;/h3&gt;&lt;p&gt;nginx中可以在server或location 段里添加上autoindex on；来列出整个目录, 比如在
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Shell脚本攻略</title>
+    <link href="http://boxcore.github.io/2017/04/16/linux/linux-shell.html"/>
+    <id>http://boxcore.github.io/2017/04/16/linux/linux-shell.html</id>
+    <published>2017-04-16T11:14:21.000Z</published>
+    <updated>2017-04-17T15:05:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！&lt;/p&gt;
+&lt;h2 id=&quot;前言：shell基
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP内存优化</title>
+    <link href="http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html"/>
+    <id>http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html</id>
+    <published>2017-04-08T10:35:01.000Z</published>
+    <updated>2017-04-08T10:39:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在php中，我们最常用 &lt;code&gt;memory_get_usage()&lt;/code&gt;来返回php内存的使用情况，它默认单位是Bytes,&lt;/p&gt;
+&lt;h2 id=&quot;一、内存溢出问题&quot;&gt;一、内存溢出问题&lt;/h2&gt;&lt;h3 id=&quot;内存溢出解决方案&quot;&gt;内存溢出解决方案&lt;/h3&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java笔记1</title>
+    <link href="http://boxcore.github.io/2017/03/11/java/java-note-zk.html"/>
+    <id>http://boxcore.github.io/2017/03/11/java/java-note-zk.html</id>
+    <published>2017-03-11T15:57:19.000Z</published>
+    <updated>2017-03-11T16:04:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这个笔记是基于《Java语言程序设计（一）》&lt;/p&gt;
+&lt;p&gt;主要内容有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Java语言基础&lt;/li&gt;
+&lt;li&gt;运算和语句&lt;/li&gt;
+&lt;li&gt;面向对象编程基础&lt;/li&gt;
+&lt;li&gt;数组和字符串&lt;/li&gt;
+&lt;li&gt;图形界面设计&lt;/li&gt;
+&lt;li&gt;图形、图
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2016-12-19 本周新书：MySQL技术内幕 - SQL编程</title>
+    <link href="http://boxcore.github.io/2017/03/06/books/mysql-technology-insider-sql-programming.html"/>
+    <id>http://boxcore.github.io/2017/03/06/books/mysql-technology-insider-sql-programming.html</id>
+    <published>2017-03-05T16:33:10.000Z</published>
+    <updated>2017-03-05T16:33:10.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本周读书任务：&lt;code&gt;《MySQL技术内幕 - SQL编程》&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;限定阅读时间：2016-12-19~2016-12-25&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP设计模式（1） - 开始</title>
+    <link href="http://boxcore.github.io/2017/03/06/php/php-design-patterns-start.html"/>
+    <id>http://boxcore.github.io/2017/03/06/php/php-design-patterns-start.html</id>
+    <published>2017-03-05T16:29:42.000Z</published>
+    <updated>2017-03-05T16:58:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、基础环境准备&quot;&gt;一、基础环境准备&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;IDE选择： PHPstorm&lt;/li&gt;
+&lt;li&gt;字体选择：等宽的字体&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;二、一些必备的php基础&quot;&gt;二、一些必备的php基础&lt;/h2&gt;&lt;h3 id=&quot;2-1_命名
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
+    
+      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>symfony框架学习</title>
+    <link href="http://boxcore.github.io/2017/02/27/php/php-framework-symfony.html"/>
+    <id>http://boxcore.github.io/2017/02/27/php/php-framework-symfony.html</id>
+    <published>2017-02-27T01:30:29.000Z</published>
+    <updated>2017-02-27T02:51:14.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;要学习一些现代php必须用symfony或者laraval, 这些默认都要php5.5+以上版本. 此系统使用homebrew安装的php5.6环境进行开发, 下面是学习Symfony 3.2.4的一些笔记.&lt;/p&gt;
+&lt;h2 id=&quot;一,_安装&quot;&gt;一, 安装&lt;/h2&gt;&lt;fi
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
+    
+      <category term="symfony" scheme="http://boxcore.github.io/tags/symfony/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP代码标准和测试(未完待续)</title>
+    <link href="http://boxcore.github.io/2017/02/15/php/php-standard-code-tools.html"/>
+    <id>http://boxcore.github.io/2017/02/15/php/php-standard-code-tools.html</id>
+    <published>2017-02-15T04:21:10.000Z</published>
+    <updated>2017-02-15T06:35:31.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用于检测php代码标准的套件有:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;phpcs&lt;/li&gt;
+&lt;li&gt;phpmd&lt;/li&gt;
+&lt;li&gt;phpcbf&lt;/li&gt;
+&lt;li&gt;php-cs-fixer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面将简单介绍这些工具的安装和使用方法&lt;/p&gt;
+&lt;h3 id=&quot;一,
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB学习笔记</title>
+    <link href="http://boxcore.github.io/2017/01/27/sql/mongodb.html"/>
+    <id>http://boxcore.github.io/2017/01/27/sql/mongodb.html</id>
+    <published>2017-01-27T03:02:31.000Z</published>
+    <updated>2017-02-02T06:20:28.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-_安装&quot;&gt;一. 安装&lt;/h2&gt;&lt;p&gt;本着快速掌握mongodb的目的, 直接在mac上使用homebrew安装了mongodb, 命令如下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brew install mongodb&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://boxcore.github.io/categories/SQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库</title>
+    <link href="http://boxcore.github.io/2017/01/27/sql/sql.html"/>
+    <id>http://boxcore.github.io/2017/01/27/sql/sql.html</id>
+    <published>2017-01-27T02:02:31.000Z</published>
+    <updated>2017-01-27T03:03:07.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据库&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://boxcore.github.io/categories/SQL/"/>
+    
+    
+  </entry>
+  
+</feed>
