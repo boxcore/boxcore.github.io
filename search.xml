@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[100 way to setting proxy]]></title>
+    <url>%2F2017%2F06%2F19%2F100-way-to-setting-proxy.html</url>
+    <content type="text"><![CDATA[$ terminal setting proxy: export http_proxy=socks5://127.0.0.1:5566export https_proxy=$http_proxyunset http_proxy https_proxy $ see other proxy setting 12345678910111213141516171819$ add some alias alias goproxy='export http_proxy=socks5://127.0.0.1:5566 https_proxy=socks5://127.0.0.1:5566'alias disproxy='unset http_proxy https_proxy'$ setting homebrew :export ALL_PROXY=socks5://127.0.0.1:5566 ALL_PROXY=socks5://127.0.0.1:9001 brew upgrade$ see what ip you in!curl ip.cnadd sss /usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev.json &gt; /dev/null 2&gt;&amp;1 &amp;/usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev-cn.json &gt; /dev/null 2&gt;&amp;1 &amp;/usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev-jp.json &gt; /dev/null 2&gt;&amp;1 &amp; 也可以使用Mac的launchctl来启动|停止12345launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.xxxxx.plistlaunchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist # 新增定时任务ln -sfv /usr/local/opt/xxx/*.plist ~/Library/LaunchAgents # 设置开机启动launchctl load ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[我的Mac开发工具集]]></title>
     <url>%2F2017%2F06%2F19%2Fmy-mac-dev-tools.html</url>
     <content type="text"><![CDATA[1. zsh插件命令行自动提醒：zsh-autosuggestions 2. tig一个不错的git 下cli管理工具安装： brew install tig 3. ccat高亮显示源码安装： brew install ccat 4. item配色工具https://github.com/mbadolato/iTerm2-Color-Schemes 5. git自动部署http://overtrue.me/articles/2015/01/how-to-deploy-project-with-git-hook.html https://m.aoh.cc/149.html 6. php类库php shell wrapper 7. phpstom使用的一些技能laravel help： 解决类库无法找到的问题 phpstorm live template 功能。模板参考如： 12345&lt;!--- $VALUE$ Field ---&gt;&lt;div class="form-group"&gt; &#123;!! Form::label('$NAME$', '$VALUE$:') !!&#125; &#123;!! Form::text('$NAME$', null, ['class' =&gt; 'form-control']) !!&#125;&lt;/div&gt; 更详细的文档可以参考：Laravel Live Templates for PhpStorm 验证码geetest 滑动验证 http://blog.csdn.net/paololiu/article/details/52514504 ping++ 聚合付费sdkSentry服务集中处理Sentry.io 是一个超级棒的错误处理工具，它可以捕捉应用在生产环境中出现的 exception 和 errors，直接将其定位到具体的某一行，对于应用的运维和修复 bug 都是一件非常好的事]]></content>
@@ -18,7 +23,7 @@
   <entry>
     <title><![CDATA[composer note]]></title>
     <url>%2F2017%2F06%2F13%2Fcomposer-note.html</url>
-    <content type="text"><![CDATA[简介 安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 基本配置镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 使用1234567$ 一些帮助命令composer helpcomposer listcomposer help require$ 引入composercomposer require monolog/monolog 使用composer安装laravel： 1composer create-project laravel/laravel learnlaravel5 5.2.31 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
+    <content type="text"><![CDATA[composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。 安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 基本配置镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 使用123456789101112$ 一些帮助命令composer helpcomposer listcomposer help require$ composer 安装composer init$ 引入composercomposer require monolog/monolog 使用composer安装laravel： 1composer create-project laravel/laravel learnlaravel5 5.2.31 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
   </entry>
   <entry>
     <title><![CDATA[JavaScirpt Note: JavaScript基础篇]]></title>
@@ -314,8 +319,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>lnmp</tag>
         <tag>linux</tag>
+        <tag>lnmp</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -329,9 +334,9 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>sublime插件</tag>
         <tag>Package Control</tag>
         <tag>Packges</tag>
+        <tag>sublime插件</tag>
       </tags>
   </entry>
   <entry>
@@ -343,8 +348,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>CTags</tag>
         <tag>sublime插件</tag>
+        <tag>CTags</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +361,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>sublime插件</tag>
         <tag>Packges</tag>
+        <tag>sublime插件</tag>
         <tag>Emmet</tag>
         <tag>PyV8</tag>
       </tags>

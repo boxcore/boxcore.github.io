@@ -95,22 +95,19 @@
 
 
 
-<meta name="description" content="简介
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe
-基">
+<meta name="description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
+安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="composer note">
 <meta property="og:url" content="http://boxcore.github.io/2017/06/13/composer-note.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="简介
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe
-基">
-<meta property="og:updated_time" content="2017-06-15T03:59:55.000Z">
+<meta property="og:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
+安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
+<meta property="og:updated_time" content="2017-06-19T06:08:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="composer note">
-<meta name="twitter:description" content="简介
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe
-基">
+<meta name="twitter:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
+安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
 
 
 
@@ -420,7 +417,7 @@
       
 
       
-        <p>简介</p>
+        <p>composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在<a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a>找到。</p>
 <h2 id="安装">安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ mac</div><div class="line">brew install composer</div><div class="line"></div><div class="line">$ linux</div><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div><div class="line"></div><div class="line">$ windows</div><div class="line">$ 下载安装 https://getcomposer.org/Composer-Setup.exe</div></pre></td></tr></table></figure>
 <h2 id="基本配置">基本配置</h2><h3 id="镜像的配置">镜像的配置</h3><p>由于国内网络的问题composer源可以替换回国内, 操作方法如下</p>
 <ul>
@@ -435,7 +432,7 @@
 </ul>
 <p>上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"repositories": &#123;</div><div class="line">    "packagist": &#123;</div><div class="line">        "type": "composer",</div><div class="line">        "url": "https://packagist.phpcomposer.com"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用">使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ 一些帮助命令</div><div class="line">composer <span class="built_in">help</span></div><div class="line">composer list</div><div class="line">composer <span class="built_in">help</span> require</div><div class="line"></div><div class="line">$ 引入composer</div><div class="line">composer require monolog/monolog</div></pre></td></tr></table></figure>
+<h2 id="使用">使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ 一些帮助命令</div><div class="line">composer <span class="built_in">help</span></div><div class="line">composer list</div><div class="line">composer <span class="built_in">help</span> require</div><div class="line"></div><div class="line"></div><div class="line">$ composer 安装</div><div class="line">composer init</div><div class="line"></div><div class="line"></div><div class="line">$ 引入composer</div><div class="line">composer require monolog/monolog</div></pre></td></tr></table></figure>
 <p>使用composer安装laravel：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel learnlaravel5 5.2.31</div></pre></td></tr></table></figure>
 <h3 id="升级composer">升级composer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">composer selfupdate</div><div class="line"></div><div class="line">Use composer self-update --rollback to <span class="built_in">return</span> to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd</div></pre></td></tr></table></figure>
@@ -593,7 +590,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -329,6 +329,179 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/20/install-lnmp-for-mac.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/20/install-lnmp-for-mac.html" itemprop="url">Mac折腾LNMP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-20T10:26:52+08:00">
+                2016-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DEV/" itemprop="url" rel="index">
+                    <span itemprop="name">DEV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/20/install-lnmp-for-mac.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/20/install-lnmp-for-mac.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/20/install-lnmp-for-mac.html" class="leancloud_visitors" data-flag-title="Mac折腾LNMP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前安装mysql一直都是失败，于是使用了mamp，发现很多扩展安装非常麻烦。于是，又开始动手使用homebrew安装 php7 + mysql5.7 +nginx.</p>
+<h2 id="一、设置homebrew">一、设置homebrew</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ruby <span class="_">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)</span>"</span></div><div class="line">brew update</div><div class="line"> brew tap homebrew/dupes </div><div class="line"> brew tap homebrew/versions </div><div class="line"> brew tap homebrew/homebrew-php</div></pre></td></tr></table></figure>
+<h2 id="二、安装nginx">二、安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重启nginx : sudo nginx -s reload|stop</span></div><div class="line">sudo nginx <span class="_">-s</span> stop &amp;&amp; sudo nginx</div></pre></td></tr></table></figure>
+<h2 id="三、安装mysql">三、安装mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew edit mysql</div><div class="line">wget xxxx-5.7.11.tar.gz</div><div class="line">mv mysql-5.7.11.el_capitan.bottle.tar.gz /Library/Caches/Homebrew/</div><div class="line">brew install mysql</div></pre></td></tr></table></figure>
+<h2 id="四、安装php">四、安装php</h2><h3 id="4-1_安装php5-x">4.1 安装php5.x</h3><p>使用brew可以安装php的版本有 5.3、5.4、5.5、5.6</p>
+<p>如果已经有安装php，需要unlink后再继续。比如我现在有php54，但要安装hp55，则需要这样去执行升级操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew unlink php54</div><div class="line">brew install php55</div></pre></td></tr></table></figure>
+<h3 id="4-2_安装php7-0">4.2 安装php7.0</h3><p>mac下重启php-fpm后可能使用了旧的版本，需要执行如下命令使得php和php-fpm调用的是7.0的版本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$(brew --prefix php70)</span>/sbin:<span class="variable">$PATH</span>"</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-3_PHP常用扩展安装">4.3 PHP常用扩展安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># swoole: https://github.com/swoole/swoole-src/releases/</span></div><div class="line"><span class="comment"># redis:  下载：https://github.com/phpredis/phpredis/tree/php7</span></div><div class="line"></div><div class="line"><span class="comment"># 以上安装方式都是：</span></div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div><div class="line"></div><div class="line"><span class="comment"># memcached</span></div><div class="line">brew install memcached</div><div class="line">brew install php70-memcached</div></pre></td></tr></table></figure>
+<h3 id="4-4_安装php常见问题">4.4 安装php常见问题</h3><ol>
+<li>memcached 依赖问题<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP 7.0.2 (cli) (built: Jan 7 2016 10:40:26) ( NTS )Copyright (c) 1997-2015 The PHP GroupZend Engine v3.0.0, Copyright (c) 1998-2015 Zend Technologies with Xdebug v2.4.0RC3, Copyright (c) 2002-2015, by Derick Rethans</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注释配置<code>/usr/local/etc/php/7.0/conf.d/ext-memcached.ini</code>如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">;memcached.sess_lock_wait = 150000</div><div class="line">;memcached.sess_lock_max_wait = 0</div></pre></td></tr></table></figure></p>
+<p>  <strong>参考</strong>：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/35130463/php7-memcache-deprecated-error-message" target="_blank" rel="external">http://stackoverflow.com/questions/35130463/php7-memcache-deprecated-error-message</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/dev-vimeo.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1752,167 +1925,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/10/phpmyadmin-config-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/10/phpmyadmin-config-setting.html" itemprop="url">phpmyadmin免输入密码直接登陆mysql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-10T08:45:40+08:00">
-                2014-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/10/phpmyadmin-config-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/10/phpmyadmin-config-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/10/phpmyadmin-config-setting.html" class="leancloud_visitors" data-flag-title="phpmyadmin免输入密码直接登陆mysql">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>设置说明:<br>config.sample.inc.php 修改为 config.inc.php</p>
-<p>添加如下代码：。</p>
-<p><pre class="brush:php">$i++;<br>/<em> Authentication type </em>/<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>/<em> Server parameters </em>/<br>$cfg[‘Servers’][$i][‘host’] = ‘localhost’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>/<em> Select mysqli if your server has it </em>/<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;</pre></p>
-<p>$i++;<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>$cfg[‘Servers’][$i][‘host’] = ‘192.168.15.2’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘123456’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;<br>&nbsp;</p>
-<p>注意修改用户名和密码，可以设置多个，需要在$i++后添加。</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1962,7 +1974,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
