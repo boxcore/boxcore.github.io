@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-06-06T02:59:01.000Z</updated>
+  <updated>2017-06-18T18:03:42.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的Mac开发工具集</title>
+    <link href="http://boxcore.github.io/2017/06/19/my-mac-dev-tools.html"/>
+    <id>http://boxcore.github.io/2017/06/19/my-mac-dev-tools.html</id>
+    <published>2017-06-18T17:11:44.000Z</published>
+    <updated>2017-06-18T18:03:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-_zsh插件&quot;&gt;1. zsh插件&lt;/h4&gt;&lt;p&gt;命令行自动提醒：&lt;a href=&quot;https://github.com/zsh-users/zsh-autosuggestions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;zsh-auto
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScirpt-Note-jquery and ajax</title>
+    <link href="http://boxcore.github.io/2017/06/15/JavaScirpt-Note-jquery-and-ajax.html"/>
+    <id>http://boxcore.github.io/2017/06/15/JavaScirpt-Note-jquery-and-ajax.html</id>
+    <published>2017-06-15T03:02:55.000Z</published>
+    <updated>2017-06-15T03:03:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本章节主要说 jquery基础使用和jquery ajax处理&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux命令 : awk</title>
+    <link href="http://boxcore.github.io/2017/06/14/Linux-Commond-awk.html"/>
+    <id>http://boxcore.github.io/2017/06/14/Linux-Commond-awk.html</id>
+    <published>2017-06-14T07:51:40.000Z</published>
+    <updated>2017-06-14T07:56:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考文章&lt;/p&gt;
+&lt;p&gt;计划&lt;/p&gt;
+&lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;&lt;h5 id=&quot;Linux统计日志文件中的IP数&quot;&gt;Linux统计日志文件中的IP数&lt;/h5&gt;&lt;p&gt;linux下用awk统计日志中各个ip访问页面的次数，日志格式如下：&lt;/p&gt;
+&lt;blockquot
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>composer note</title>
+    <link href="http://boxcore.github.io/2017/06/13/composer-note.html"/>
+    <id>http://boxcore.github.io/2017/06/13/composer-note.html</id>
+    <published>2017-06-13T03:24:00.000Z</published>
+    <updated>2017-06-15T03:59:55.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简介&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaScirpt Note: JavaScript基础篇</title>
@@ -329,98 +398,6 @@
       <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
     
       <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>symfony框架学习</title>
-    <link href="http://boxcore.github.io/2017/02/27/php/php-framework-symfony.html"/>
-    <id>http://boxcore.github.io/2017/02/27/php/php-framework-symfony.html</id>
-    <published>2017-02-27T01:30:29.000Z</published>
-    <updated>2017-02-27T02:51:14.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;要学习一些现代php必须用symfony或者laraval, 这些默认都要php5.5+以上版本. 此系统使用homebrew安装的php5.6环境进行开发, 下面是学习Symfony 3.2.4的一些笔记.&lt;/p&gt;
-&lt;h2 id=&quot;一,_安装&quot;&gt;一, 安装&lt;/h2&gt;&lt;fi
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="symfony" scheme="http://boxcore.github.io/tags/symfony/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP代码标准和测试(未完待续)</title>
-    <link href="http://boxcore.github.io/2017/02/15/php/php-standard-code-tools.html"/>
-    <id>http://boxcore.github.io/2017/02/15/php/php-standard-code-tools.html</id>
-    <published>2017-02-15T04:21:10.000Z</published>
-    <updated>2017-02-15T06:35:31.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用于检测php代码标准的套件有:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;phpcs&lt;/li&gt;
-&lt;li&gt;phpmd&lt;/li&gt;
-&lt;li&gt;phpcbf&lt;/li&gt;
-&lt;li&gt;php-cs-fixer&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;下面将简单介绍这些工具的安装和使用方法&lt;/p&gt;
-&lt;h3 id=&quot;一,
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MongoDB学习笔记</title>
-    <link href="http://boxcore.github.io/2017/01/27/sql/mongodb.html"/>
-    <id>http://boxcore.github.io/2017/01/27/sql/mongodb.html</id>
-    <published>2017-01-27T03:02:31.000Z</published>
-    <updated>2017-02-02T06:20:28.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一-_安装&quot;&gt;一. 安装&lt;/h2&gt;&lt;p&gt;本着快速掌握mongodb的目的, 直接在mac上使用homebrew安装了mongodb, 命令如下:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;brew install mongodb&lt;/p&gt;
-&lt;/blockquote&gt;
-
-    
-    </summary>
-    
-      <category term="SQL" scheme="http://boxcore.github.io/categories/SQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据库</title>
-    <link href="http://boxcore.github.io/2017/01/27/sql/sql.html"/>
-    <id>http://boxcore.github.io/2017/01/27/sql/sql.html</id>
-    <published>2017-01-27T02:02:31.000Z</published>
-    <updated>2017-01-27T03:03:07.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;数据库&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="SQL" scheme="http://boxcore.github.io/categories/SQL/"/>
-    
     
   </entry>
   
