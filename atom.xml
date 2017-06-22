@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-06-19T07:23:57.000Z</updated>
+  <updated>2017-06-22T11:52:08.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hadoop note</title>
+    <link href="http://boxcore.github.io/2017/06/22/hadoop-note.html"/>
+    <id>http://boxcore.github.io/2017/06/22/hadoop-note.html</id>
+    <published>2017-06-22T11:50:00.000Z</published>
+    <updated>2017-06-22T11:52:08.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Learn about phpunit</title>
+    <link href="http://boxcore.github.io/2017/06/22/learn-about-phpunit.html"/>
+    <id>http://boxcore.github.io/2017/06/22/learn-about-phpunit.html</id>
+    <published>2017-06-22T06:03:05.000Z</published>
+    <updated>2017-06-22T11:51:34.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;phpunit测试&quot;&gt;phpunit测试&lt;/h1&gt;&lt;p&gt;Laravel Dusk&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>php的各种超时设置</title>
+    <link href="http://boxcore.github.io/2017/06/22/php-time-out.html"/>
+    <id>http://boxcore.github.io/2017/06/22/php-time-out.html</id>
+    <published>2017-06-22T06:02:35.000Z</published>
+    <updated>2017-06-22T06:02:38.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ini_set(‘mysql.connect_timeout’, 1800);&lt;br&gt;ini_set(‘default_socket_timeout’, 1800);&lt;br&gt;ini_set(‘max_execution_time’, 1800);&lt;/p&gt;
+&lt;p&gt;set_ti
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>100 way to setting proxy</title>
@@ -326,65 +376,6 @@
     
       &lt;p&gt;这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！&lt;/p&gt;
 &lt;h2 id=&quot;前言：shell基
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP内存优化</title>
-    <link href="http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html"/>
-    <id>http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html</id>
-    <published>2017-04-08T10:35:01.000Z</published>
-    <updated>2017-04-08T10:39:40.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在php中，我们最常用 &lt;code&gt;memory_get_usage()&lt;/code&gt;来返回php内存的使用情况，它默认单位是Bytes,&lt;/p&gt;
-&lt;h2 id=&quot;一、内存溢出问题&quot;&gt;一、内存溢出问题&lt;/h2&gt;&lt;h3 id=&quot;内存溢出解决方案&quot;&gt;内存溢出解决方案&lt;/h3&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java笔记1</title>
-    <link href="http://boxcore.github.io/2017/03/11/java/java-note-zk.html"/>
-    <id>http://boxcore.github.io/2017/03/11/java/java-note-zk.html</id>
-    <published>2017-03-11T15:57:19.000Z</published>
-    <updated>2017-03-11T16:04:50.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这个笔记是基于《Java语言程序设计（一）》&lt;/p&gt;
-&lt;p&gt;主要内容有：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Java语言基础&lt;/li&gt;
-&lt;li&gt;运算和语句&lt;/li&gt;
-&lt;li&gt;面向对象编程基础&lt;/li&gt;
-&lt;li&gt;数组和字符串&lt;/li&gt;
-&lt;li&gt;图形界面设计&lt;/li&gt;
-&lt;li&gt;图形、图
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2016-12-19 本周新书：MySQL技术内幕 - SQL编程</title>
-    <link href="http://boxcore.github.io/2017/03/06/books/mysql-technology-insider-sql-programming.html"/>
-    <id>http://boxcore.github.io/2017/03/06/books/mysql-technology-insider-sql-programming.html</id>
-    <published>2017-03-05T16:33:10.000Z</published>
-    <updated>2017-03-05T16:33:10.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本周读书任务：&lt;code&gt;《MySQL技术内幕 - SQL编程》&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;限定阅读时间：2016-12-19~2016-12-25&lt;/p&gt;
-
     
     </summary>
     

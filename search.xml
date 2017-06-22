@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hadoop note]]></title>
+    <url>%2F2017%2F06%2F22%2Fhadoop-note.html</url>
+    <content type="text"><![CDATA[12$ 查看文件列表清单hadoop fs -du -h /user/hive/warehouse/&#123;database_name&#125;.db/&#123;table_name&#125;;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Learn about phpunit]]></title>
+    <url>%2F2017%2F06%2F22%2Flearn-about-phpunit.html</url>
+    <content type="text"><![CDATA[phpunit测试Laravel Dusk 12$ install laravel framework for test phpunitcomposer create-project laravel/laravel --prefer-dist laravel-testing phpunit 指定类测试 phpunit –filter=类名 or 方法名 断点判断相等:(断言) $this-&gt;assertEquals(‘值’, $xxx-&gt;function()); $this-&gt;assertCount($value, $xxx-&gt;method()); 其他： 安装phpstrom插件 CamelCase, 可以切换驼峰或者匈牙利密码法的名称，快捷键 shift + alt + U 可测试的设计原则 单元测试中， 代码在一个隔离的环境中运行（周围没有它熟悉的框架 和配置）， 所以尽量低的耦合和明确的依赖关系是可测试代码的最主要的要求。 实现低耦合的代码， 重点是按照单一职责原则，对系统进行功能划分， 达到高内聚（一个单元能完成一个具体的功能），低耦合（模块之间 的接口最简单）。 明确的依赖关系需要通过依赖注入的方式来实现，不能对代码的运行 环境有任何隐含的假设， 这样仅通过接口的声明， 而不需要了解实现， 就可以知道让这个模块跑起来所需要的资源。 不可测试的代码 超全局变量（Superglobals） $_ 写在构造函数中的业务逻辑 静态方法（static class method） Class:: 单例（Singleton） &amp;get_instance() PHP的动态魔术 超长的函数和类 总结 可测试的代码， 一定是遵照依赖倒置原则DIP写出的代码 代码模块之前的依赖关系， 是按照单一职责SRP的划分产生的 单一职责决定了接口设计需要小而专一，即接口隔离ISP 单一职责原则要求把系统中变化的和不变的部分分离，以达到对扩展 开放， 对修改封闭OCP 继承和多态是实现可扩展架构的主要工具，里氏替换原则LSP明确了对继承的要求：子类需要能胜任父类工作的所有岗位， 才算个合格的子类。 可测试的代码 == SOLID Single Responsibility Principle : 单一职责原则(SRP) Open-Close Principle: 开闭原则(OCP) Liskov Substitution Principle : 里氏替换原则(LSP) Interface Segregation Principle : 接口隔离原则(ISP) Dependency Inversion Principle: 依赖倒置原则(DIP) 持续集成 持续集成并不属于自动化测试， 但它是保证自动化测试能顺利实施的 必要条件。 持续集成会在代码每次提交时执行代码构建， 自动化测试，代码检查， 自动部署等工作，给开发人员及时的反馈， 来保证小问题不会积累。 单元测试时需要同代码一起变化的， 只有一直在运行的测试代码才不 会被遗忘， 才能被不断维护。 解决开发与测试之间“在我机器上没问题”的问题 CI工具箱 Jenkins PHPUnit CodeCeption Behat PHPSpec PHP Mess Detector PHP Code Sniffer 测试驱动开发会带来的改变 一开始的进度变慢了 写代码前需要更多的思考， 分解问题， 设计接口 学习测试工具， 准备测试代码 可测试的代码 测试驱动会促使你写出可测试的代码， 不然写测试用例没法下手 有了自动测试的保护， 可以随时重构看着不顺眼的代码 信心 对于已经完成的代码正确性有十足的信心 面对新功能和需求变更，可以对开发时间有准确的估计 遇到bug可以快速的定位和修复问题]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[php的各种超时设置]]></title>
+    <url>%2F2017%2F06%2F22%2Fphp-time-out.html</url>
+    <content type="text"><![CDATA[ini_set(‘mysql.connect_timeout’, 1800);ini_set(‘default_socket_timeout’, 1800);ini_set(‘max_execution_time’, 1800); set_time_limit(1800); request_terminate_timeout]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[100 way to setting proxy]]></title>
     <url>%2F2017%2F06%2F19%2F100-way-to-setting-proxy.html</url>
     <content type="text"><![CDATA[$ terminal setting proxy: export http_proxy=socks5://127.0.0.1:5566export https_proxy=$http_proxyunset http_proxy https_proxy $ see other proxy setting 12345678910111213141516171819$ add some alias alias goproxy='export http_proxy=socks5://127.0.0.1:5566 https_proxy=socks5://127.0.0.1:5566'alias disproxy='unset http_proxy https_proxy'$ setting homebrew :export ALL_PROXY=socks5://127.0.0.1:5566 ALL_PROXY=socks5://127.0.0.1:9001 brew upgrade$ see what ip you in!curl ip.cnadd sss /usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev.json &gt; /dev/null 2&gt;&amp;1 &amp;/usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev-cn.json &gt; /dev/null 2&gt;&amp;1 &amp;/usr/local/opt/shadowsocks-libev/bin/ss-local -c /usr/local/etc/shadowsocks-libev-jp.json &gt; /dev/null 2&gt;&amp;1 &amp; 也可以使用Mac的launchctl来启动|停止12345launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.xxxxx.plistlaunchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist # 新增定时任务ln -sfv /usr/local/opt/xxx/*.plist ~/Library/LaunchAgents # 设置开机启动launchctl load ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist]]></content>
@@ -296,8 +311,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>sublime插件</tag>
         <tag>DocBlockr</tag>
+        <tag>sublime插件</tag>
       </tags>
   </entry>
   <entry>
@@ -319,8 +334,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>lnmp</tag>
+        <tag>linux</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -334,9 +349,9 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>Package Control</tag>
-        <tag>Packges</tag>
         <tag>sublime插件</tag>
+        <tag>Packges</tag>
+        <tag>Package Control</tag>
       </tags>
   </entry>
   <entry>
@@ -361,9 +376,9 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>Packges</tag>
         <tag>sublime插件</tag>
         <tag>Emmet</tag>
+        <tag>Packges</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>
