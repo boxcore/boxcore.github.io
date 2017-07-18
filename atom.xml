@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-06-22T11:52:08.000Z</updated>
+  <updated>2017-07-18T09:48:39.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL硬盘实例测试之裤子搭建</title>
+    <link href="http://boxcore.github.io/2017/07/18/action/kuzi-act.html"/>
+    <id>http://boxcore.github.io/2017/07/18/action/kuzi-act.html</id>
+    <published>2017-07-18T09:46:00.000Z</published>
+    <updated>2017-07-18T09:48:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;裤子搭建过程（未完成）：&lt;/p&gt;
+&lt;h2 id=&quot;一,_安装新实例&quot;&gt;一, 安装新实例&lt;/h2&gt;&lt;p&gt;/usr/local/mysql/bin/mysqld –defaults-file=/data/mysql/3306/my.cnf –basedir=/usr/local
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>实战项目</title>
+    <link href="http://boxcore.github.io/2017/07/18/action/index.html"/>
+    <id>http://boxcore.github.io/2017/07/18/action/index.html</id>
+    <published>2017-07-18T09:43:00.000Z</published>
+    <updated>2017-07-18T09:44:28.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里罗列一些实战的项目。&lt;/p&gt;
+&lt;p&gt;举个栗子，我弄了个裤子，you know it!&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>hadoop note</title>
@@ -139,11 +174,11 @@
     <link href="http://boxcore.github.io/2017/06/13/composer-note.html"/>
     <id>http://boxcore.github.io/2017/06/13/composer-note.html</id>
     <published>2017-06-13T03:24:00.000Z</published>
-    <updated>2017-06-19T06:08:38.000Z</updated>
+    <updated>2017-06-23T02:24:11.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在&lt;a href=&quot;https://packagist.org/explore/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;packagist&lt;/a&gt;找到。&lt;/
+      &lt;p&gt;composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在&lt;a href=&quot;https://packagist.org/explore/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;packagist&lt;/a&gt;找到。下面
     
     </summary>
     
@@ -345,39 +380,6 @@
     </summary>
     
       <category term="MySQL" scheme="http://boxcore.github.io/categories/MySQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx笔记</title>
-    <link href="http://boxcore.github.io/2017/04/17/linux/nginx-note.html"/>
-    <id>http://boxcore.github.io/2017/04/17/linux/nginx-note.html</id>
-    <published>2017-04-17T02:02:34.000Z</published>
-    <updated>2017-04-17T02:09:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;sever设置&quot;&gt;sever设置&lt;/h2&gt;&lt;h3 id=&quot;autoindex:_打开目录浏览功能&quot;&gt;autoindex: 打开目录浏览功能&lt;/h3&gt;&lt;p&gt;nginx中可以在server或location 段里添加上autoindex on；来列出整个目录, 比如在
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux Shell脚本攻略</title>
-    <link href="http://boxcore.github.io/2017/04/16/linux/linux-shell.html"/>
-    <id>http://boxcore.github.io/2017/04/16/linux/linux-shell.html</id>
-    <published>2017-04-16T11:14:21.000Z</published>
-    <updated>2017-04-17T15:05:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！&lt;/p&gt;
-&lt;h2 id=&quot;前言：shell基
-    
-    </summary>
     
     
   </entry>

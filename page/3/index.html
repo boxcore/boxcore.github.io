@@ -329,6 +329,351 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/17/linux/nginx-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/17/linux/nginx-note.html" itemprop="url">Nginx笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:02:34+08:00">
+                2017-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/17/linux/nginx-note.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/17/linux/nginx-note.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/17/linux/nginx-note.html" class="leancloud_visitors" data-flag-title="Nginx笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="sever设置">sever设置</h2><h3 id="autoindex:_打开目录浏览功能">autoindex: 打开目录浏览功能</h3><p>nginx中可以在server或location 段里添加上autoindex on；来列出整个目录, 比如在server段添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    autoindex on;</div><div class="line">    autoindex_localtime on; <span class="comment">#之类的参数写这里</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">location /down/ &#123; <span class="comment"># 直接二级目录开启目录流量</span></div><div class="line">    autoindex on;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /down/ &#123;</div><div class="line">    <span class="built_in">alias</span> /home/wwwroot/lnmp/<span class="built_in">test</span>/; <span class="comment"># 虚拟目录开启目录流量</span></div><div class="line">    autoindex on;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>相关属性</p>
+<h4 id="autoindex_exact_size"><code>autoindex_exact_size</code></h4><p><code>autoindex_exact_size off</code>;<br>默认为on，显示出文件的确切大小，单位是bytes。<br>改为off后，显示出文件的大概大小，单位是kB或者MB或者GB</p>
+<h4 id="autoindex_localtime">autoindex_localtime</h4><p>默认为off，显示的文件时间为GMT时间。<br>改为on后，显示的文件时间为文件的服务器时间</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/16/linux/linux-shell.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/16/linux/linux-shell.html" itemprop="url">Linux Shell脚本攻略</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T19:14:21+08:00">
+                2017-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/16/linux/linux-shell.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/16/linux/linux-shell.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/16/linux/linux-shell.html" class="leancloud_visitors" data-flag-title="Linux Shell脚本攻略">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！</p>
+<h2 id="前言：shell基础说明">前言：shell基础说明</h2><h3 id="shell的使用">shell的使用</h3><p>shell脚本规范：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># do something</span></div></pre></td></tr></table></figure></p>
+<p>一个shell脚本的执行方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sh script.sh        <span class="comment"># 执行方式1</span></div><div class="line">chmod a+x script.sh <span class="comment"># 执行方式2</span></div><div class="line">./script.sh         <span class="comment"># 会读取首行的解释器, 执行</span></div></pre></td></tr></table></figure>
+<h2 id="一、shell系统基础">一、shell系统基础</h2><h3 id="1-1_环境变量和变量">1.1 环境变量和变量</h3><p>bash中，每个变量的值都是字符串，无论你给变量赋值时是否使用引号，值都会以字符串的形式存储</p>
+<h4 id="环境变量">环境变量</h4><p>查看所有与此终端进程相关的环境变量: <code>env</code></p>
+<p>查看某个进程的环境变量: <code>cat /proc/$PID/environ</code></p>
+<p>变量赋值:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var=value</div><div class="line">var=<span class="string">'the value'</span></div><div class="line">var=<span class="string">"the <span class="variable">$PARAM</span>"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$var</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div><div class="line"></div><div class="line">var = value非变量赋值是相等操作</div></pre></td></tr></table></figure>
+<h4 id="环境变量-1">环境变量</h4><p>未在当前进程中定义，而是从父进程中继承而来的变量, export 设置环境变量之后,从当前shell 执行的任何程序都会继承这个变量, 如：</p>
+<p><code>export PYTHONPATH=$PYTHONPATH:/home/ken/workspace</code></p>
+<p>我们linux中常用的环境变量如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">PATH 查找可执行文件路径, 通常定义在/etc/environment or /ect/profile or ~/.bashrc</div><div class="line">修改:        <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/new/path/</div><div class="line">HOME</div><div class="line">PWD</div><div class="line">USER</div><div class="line">UID</div><div class="line">SHELL</div></pre></td></tr></table></figure>
+<p>识别当前shell版本:</p>
+<ul>
+<li><code>echo $SHELL</code></li>
+<li><code>echo $0</code></li>
+</ul>
+<h3 id="1-2_命令状态">1.2 命令状态</h3><p>当命令成功完成, 返回0</p>
+<p>发生错误并退回, 返回非0</p>
+<p>可以从$?中获取 cmd; echo $?</p>
+<h3 id="文件描述符和重定向">文件描述符和重定向</h3><p>文件描述符: 与文件输入/输出相关联的整数, 用来跟踪已打开的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">0 stdin  标准输入</div><div class="line">1 stdout 标准输出</div><div class="line">2 stderr 标准错误</div></pre></td></tr></table></figure>
+<p>重定向到文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">清空文件写入新内容</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt; temp.txt</div><div class="line">追加</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt;&gt; temp.txt</div><div class="line"></div><div class="line">&gt;等价于1&gt;</div><div class="line">&gt;&gt;等价于 1&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>输出分离或合并:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">分离</div><div class="line">cmd 2&gt;stderr.txt  1&gt;stdout.txt</div><div class="line"></div><div class="line">合并</div><div class="line">cmd &gt; output.txt 2&gt;&amp;1</div><div class="line">or</div><div class="line">cmd &amp;&gt; output.txt</div></pre></td></tr></table></figure></p>
+<p>扔到垃圾桶:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/dev/null 特殊设备文件, 接收到的任何数据都会被丢弃(位桶/黑洞)</div><div class="line"></div><div class="line">只有标准错误</div><div class="line">cmd 2 &gt; /dev/null</div><div class="line"></div><div class="line">标准输出和标准错误</div><div class="line">cmd &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p>
+<p>同时输出到终端和文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cmd | tee file1</div><div class="line"></div><div class="line">tee默认覆盖，可以<span class="_">-a</span>选项追加</div><div class="line">cmd | tee <span class="_">-a</span> file1</div></pre></td></tr></table></figure></p>
+<p>将stdin作为命令参数: <code>cmd1 | cmd2 | cmd3 -</code><br>将文件重定向到命令: <code>cmd &lt; file</code></p>
+<p>自定义文件描述符:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">使用文件描述符3打开并读取文件</div><div class="line"><span class="built_in">exec</span> 3&lt;input.txt</div><div class="line">cat &lt;&amp;3</div><div class="line"></div><div class="line">使用文件描述符4进行写入</div><div class="line"><span class="built_in">exec</span> 4&gt;output.txt</div><div class="line"><span class="built_in">echo</span> newline &gt;&amp;4</div></pre></td></tr></table></figure></p>
+<h2 id="二、字符串处理">二、字符串处理</h2><h3 id="2-1_sed简明教程">2.1 sed简明教程</h3><h3 id="2-2_awk简明教程">2.2 awk简明教程</h3><h3 id="2-3_输出和打印（echo_&amp;_printf）">2.3 输出和打印（echo &amp; printf）</h3><h4 id="echo">echo</h4><p>基于标准输出打印一段文本</p>
+<ul>
+<li>忽略结尾换行符: <code>echo -n &#39;test\n&#39;</code></li>
+<li>对字符串进行转义: <code>echo -e &#39;1\t2\t3&#39;</code></li>
+<li>打印彩色输出:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">文字颜色码</div><div class="line">    重置0</div><div class="line">    黑色30</div><div class="line">    红色31</div><div class="line">    绿色32</div><div class="line">    黄色33</div><div class="line">    蓝色34</div><div class="line">    洋红35</div><div class="line">    青色36</div><div class="line">    白色37</div><div class="line"></div><div class="line">echo -e &quot;\e[1;31m This is red test \e[0m&quot;</div><div class="line"></div><div class="line">背景颜色码</div><div class="line">    重置0</div><div class="line">    黑色40</div><div class="line">    红色41</div><div class="line">    绿色42</div><div class="line">    黄色43</div><div class="line">    蓝色44</div><div class="line">    洋红45</div><div class="line">    青色46</div><div class="line">    白色47</div><div class="line"></div><div class="line">echo -e &quot;\e[1;42m Green Background \e[0m&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="printf">printf</h4><p>可以格式化字符串, 使用参数同c中printf一样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">"%-5s %-10s %-4.2f\n"</span> 3 Jeff 77.564</div><div class="line">$ 3    Jeff      77.56</div></pre></td></tr></table></figure>
+<h2 id="三、_进程管理">三、 进程管理</h2><h3 id="3-1_pgrep">3.1 pgrep</h3><p>获取某个进程名对应进程id 使用命令<code>pgrep</code>, 例如:<code>pgrep php</code></p>
+<h2 id="四、_运算">四、 运算</h2><h3 id="4-1_shell数学运算">4.1 shell数学运算</h3><h4 id="let">let</h4><h4 id="expr">expr</h4><ul>
+<li><code>echo \</code>expr 1 + 7``</li>
+<li><code>result=$(expr $no1 + 5)</code></li>
+</ul>
+<h4 id="其他运算">其他运算</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">result=$[ no1 + no2 ]</div><div class="line">result=$[ <span class="variable">$no</span> + 5 ]</div><div class="line"></div><div class="line">result=$(( no1 + 5 ))</div></pre></td></tr></table></figure>
+<h4 id="浮点数:_bc">浮点数: bc</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">设定精度</div><div class="line"><span class="built_in">echo</span> <span class="string">"scale=2;3/8"</span> | bc</div><div class="line">进制转换</div><div class="line"><span class="built_in">echo</span> <span class="string">"obase=2;100"</span> | bc</div><div class="line">平方</div><div class="line"><span class="built_in">echo</span> <span class="string">"10^10"</span> | bc</div><div class="line">平方根</div><div class="line"><span class="built_in">echo</span> <span class="string">"sqrt(100)"</span> | bc</div></pre></td></tr></table></figure>
+<h2 id="五、数组：数组和关联数组">五、数组：数组和关联数组</h2><ul>
+<li>普通数组，整数作为数组索引, 借助索引将多个独立的数据存储为一个集合(list)</li>
+<li>关联数组，可以使用字符串作为索引(map)</li>
+</ul>
+<p>注意，在mac中的shell不能使用索引该笔记的<code>关联数组</code>。</p>
+<h3 id="5-1_普通数组">5.1 普通数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">array_var=(1 2 3 4 5)  <span class="comment"># 定义数组 方式1</span></div><div class="line"></div><div class="line">array_var[0]=<span class="string">"test1"</span> <span class="comment"># 定义数组 方式2</span></div><div class="line">array_var[3]=<span class="string">"test3"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[0]&#125;</span> <span class="comment"># 读取数组</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[*]&#125;</span> <span class="comment"># 以清单形式打印</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[@]&#125;</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#array_var[*]&#125;</span> <span class="comment"># 打印数组长度</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!array_var[*]&#125;</span> <span class="comment"># 获取索引列表</span></div></pre></td></tr></table></figure>
+<h3 id="5-2_关联数组">5.2 关联数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">declare</span> -A ass_array <span class="comment"># 先定义一个多维数组</span></div><div class="line">ass_array=([index1]=value1 [index2]=value2) <span class="comment"># 赋值：内嵌索引-值</span></div><div class="line">ass_array[index3]=value3 <span class="comment"># 独立赋值</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ass_array[index1]&#125;</span> <span class="comment"># 打印对应值</span></div></pre></td></tr></table></figure>
+<h2 id="工具参考">工具参考</h2><h3 id="crontab">crontab</h3><p>crontab文件的含义：<br>用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：</p>
+<p><code>minute   hour   day   month   week   command</code></p>
+<p>其中：</p>
+<ul>
+<li>minute： 表示分钟，可以是从0到59之间的任何整数。</li>
+<li>hour：表示小时，可以是从0到23之间的任何整数。</li>
+<li>day：表示日期，可以是从1到31之间的任何整数。</li>
+<li>month：表示月份，可以是从1到12之间的任何整数。</li>
+<li>week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</li>
+<li>command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。</li>
+</ul>
+<p>在以上各个字段中，还可以使用以下特殊字符：</p>
+<ul>
+<li>星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</li>
+<li>逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”</li>
+<li>中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”</li>
+<li>正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</li>
+</ul>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/base/index.html" target="_blank" rel="external">Linux基础</a></li>
+<li><a href="http://www.wklken.me/posts/2013/07/04/note-of-linux-shell-scripting-cookbook.html" target="_blank" rel="external">LINUX SHELL脚本攻略笔记[速查]</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1624,283 +1969,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/01/25/linux/linux-note.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/25/linux/linux-note.html" itemprop="url">Linux笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T11:05:42+08:00">
-                2017-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/25/linux/linux-note.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/25/linux/linux-note.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/25/linux/linux-note.html" class="leancloud_visitors" data-flag-title="Linux笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这里整理了一些学习linux过程的笔记…</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/01/25/linux/linux-ram-manage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/25/linux/linux-ram-manage.html" itemprop="url">Linux内存管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T10:48:15+08:00">
-                2017-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/25/linux/linux-ram-manage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/25/linux/linux-ram-manage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/25/linux/linux-ram-manage.html" class="leancloud_visitors" data-flag-title="Linux内存管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>我们在使用linux中经常遇到使用内存过大的困扰，但实际上服务器并没有使用这么多,那么我们该如何优化呢? 拿个案例来说吧, 当我们执行<code>free -m</code>命令时,内存的使用如:</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/25/linux/linux-ram-manage.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1945,7 +2018,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

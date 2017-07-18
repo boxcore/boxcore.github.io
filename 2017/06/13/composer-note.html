@@ -95,19 +95,28 @@
 
 
 
-<meta name="description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
+<meta name="description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅
+
+packagist
+
+一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="composer note">
 <meta property="og:url" content="http://boxcore.github.io/2017/06/13/composer-note.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
-<meta property="og:updated_time" content="2017-06-19T06:08:38.000Z">
+<meta property="og:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅
+
+packagist
+
+一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer">
+<meta property="og:updated_time" content="2017-06-23T02:24:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="composer note">
-<meta name="twitter:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。
-安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ w">
+<meta name="twitter:description" content="composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅
+
+packagist
+
+一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer">
 
 
 
@@ -417,9 +426,12 @@
       
 
       
-        <p>composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在<a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a>找到。</p>
-<h2 id="安装">安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ mac</div><div class="line">brew install composer</div><div class="line"></div><div class="line">$ linux</div><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div><div class="line"></div><div class="line">$ windows</div><div class="line">$ 下载安装 https://getcomposer.org/Composer-Setup.exe</div></pre></td></tr></table></figure>
-<h2 id="基本配置">基本配置</h2><h3 id="镜像的配置">镜像的配置</h3><p>由于国内网络的问题composer源可以替换回国内, 操作方法如下</p>
+        <p>composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在<a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a>找到。下面是composer常用到的资源库，mark在笔记最前方便查阅</p>
+<ul>
+<li><a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a></li>
+</ul>
+<h2 id="一、安装composer">一、安装composer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ mac</div><div class="line">brew install composer</div><div class="line"></div><div class="line">$ linux</div><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div><div class="line"></div><div class="line">$ windows</div><div class="line">$ 下载安装 https://getcomposer.org/Composer-Setup.exe</div></pre></td></tr></table></figure>
+<h2 id="二、composer配置">二、composer配置</h2><h3 id="2-1_镜像的配置">2.1 镜像的配置</h3><p>由于国内网络的问题composer源可以替换回国内, 操作方法如下</p>
 <ul>
 <li>设置为全局</li>
 </ul>
@@ -432,9 +444,11 @@
 </ul>
 <p>上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"repositories": &#123;</div><div class="line">    "packagist": &#123;</div><div class="line">        "type": "composer",</div><div class="line">        "url": "https://packagist.phpcomposer.com"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用">使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ 一些帮助命令</div><div class="line">composer <span class="built_in">help</span></div><div class="line">composer list</div><div class="line">composer <span class="built_in">help</span> require</div><div class="line"></div><div class="line"></div><div class="line">$ composer 安装</div><div class="line">composer init</div><div class="line"></div><div class="line"></div><div class="line">$ 引入composer</div><div class="line">composer require monolog/monolog</div></pre></td></tr></table></figure>
+<h3 id="2-2_配置语法">2.2 配置语法</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="三、composer使用">三、composer使用</h2><h3 id="3-1_composer基础命令使用">3.1 composer基础命令使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ 一些帮助命令</div><div class="line">composer <span class="built_in">help</span></div><div class="line">composer list</div><div class="line">composer <span class="built_in">help</span> require</div><div class="line"></div><div class="line"></div><div class="line">$ composer 安装</div><div class="line">composer init</div><div class="line"></div><div class="line"></div><div class="line">$ 引入composer</div><div class="line">composer require monolog/monolog</div><div class="line"></div><div class="line"></div><div class="line">$ 创建项目语法：composer create-project 名称 目录 版本</div><div class="line">composer create-project slim/slim slim-2.6.2 2.6.2</div><div class="line"></div><div class="line">composer install --no-dev <span class="comment"># 非开发环境，不执行require-dev的包安装</span></div></pre></td></tr></table></figure>
 <p>使用composer安装laravel：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel learnlaravel5 5.2.31</div></pre></td></tr></table></figure>
+<h3 id="3-2_php使用composer">3.2 php使用composer</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> vendor/autoload.php</div></pre></td></tr></table></figure>
 <h3 id="升级composer">升级composer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">composer selfupdate</div><div class="line"></div><div class="line">Use composer self-update --rollback to <span class="built_in">return</span> to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd</div></pre></td></tr></table></figure>
 <h2 id="参考">参考</h2><ul>
 <li><a href="https://www.kancloud.cn/thinkphp/composer/35668" target="_blank" rel="external">https://www.kancloud.cn/thinkphp/composer/35668</a></li>
@@ -590,7 +604,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -672,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-number">2.</span> <span class="nav-text">基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像的配置"><span class="nav-number">2.1.</span> <span class="nav-text">镜像的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级composer"><span class="nav-number">3.1.</span> <span class="nav-text">升级composer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装composer"><span class="nav-number">1.</span> <span class="nav-text">一、安装composer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、composer配置"><span class="nav-number">2.</span> <span class="nav-text">二、composer配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_镜像的配置"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 镜像的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_配置语法"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 配置语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、composer使用"><span class="nav-number">3.</span> <span class="nav-text">三、composer使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_composer基础命令使用"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 composer基础命令使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2_php使用composer"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 php使用composer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级composer"><span class="nav-number">3.3.</span> <span class="nav-text">升级composer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL硬盘实例测试之裤子搭建]]></title>
+    <url>%2F2017%2F07%2F18%2Faction%2Fkuzi-act.html</url>
+    <content type="text"><![CDATA[裤子搭建过程（未完成）： 一, 安装新实例/usr/local/mysql/bin/mysqld –defaults-file=/data/mysql/3306/my.cnf –basedir=/usr/local/mysql –datadir=/data/mysql/3306/data –plugin-dir=/usr/local/mysql/lib/plugin –user=mysql –log-error=/data/mysql/3306/mysql_run.err –open-files-limit=65536 –pid-file=/data/mysql/3306/pid_mysql.pid –socket=/data/mysql/3306/mysqltmp/mysql.sock –port=3306 mysqld –initialize –user=mysql –console 1mysqld --defaults-file=/opt/data/mysql/var/my.cnf --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/opt/data/mysql/data --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --user=mysql --log-error=/opt/data/mysql/var/mysql_run.err --open-files-limit=2048 --pid-file=/opt/data/mysql/var/pid_mysql.pid --socket=/opt/data/mysql/var//mysql.sock --port=3307 --initialize --user=mysql --console 注意尾部有: mysqld --initialize --user=mysql --console错误: 2017-02-13T06:47:11.067815Z 0 [Warning] Could not increase number of max_open_files to more than 7168 (request: 65536) 生成后, 通过日志文件找到新实例的密码为:2017-02-13T06:50:20.157831Z 1 [Note] A temporary password is generated for root@localhost: Gbovl1rilt;Q 执行启动应用:mysqld –defaults-file=/opt/data/mysql/var/my.cnf –basedir=/usr/local/Cellar/mysql/5.7.11 –datadir=/opt/data/mysql/data –plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin –user=mysql –log-error=/opt/data/mysql/var/mysql_run.err –open-files-limit=2048 –pid-file=/opt/data/mysql/var/pid_mysql.pid –socket=/opt/data/mysql/var//mysql.sock –port=3307 进入mysql-cli后修改密码 : set password = password(‘root’); 二, 社工库操作2.1 数据导入的方法合集mysql-cli中导入: source xxx.sql;LOAD DATA INFILE ‘~/Downloads/2345.csv’ INTO TABLE tmp FIELDS TERMINATED BY ‘,’ ENCLOSED BY ‘“‘ LINES TERMINATED BY ‘\n’ IGNORE 1 ROWS; /Volumes/BoxHD/db/SGK/163 12345678910111213141516171819202122LOAD DATA INFILE '/Volumes/BoxHD/db/SGK/163/1.txt' \INTO TABLE account \FIELDS TERMINATED BY ',' \ ENCLOSED BY '"' \LINES TERMINATED BY '\n' \-- IGNORE 1 LINES \(name, password);LOAD DATA INFILE '/Volumes/BoxHD/db/SGK/163/2.txt' \INTO TABLE account \FIELDS TERMINATED BY ' ' \ ENCLOSED BY '"' \LINES TERMINATED BY '\n' \(name, password);LOAD DATA INFILE '/Volumes/BoxHD/db/SGK/163/3.txt' \INTO TABLE account \FIELDS TERMINATED BY '\t' \ ENCLOSED BY '"' \LINES TERMINATED BY '\n' \(name, password);]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[实战项目]]></title>
+    <url>%2F2017%2F07%2F18%2Faction%2Findex.html</url>
+    <content type="text"><![CDATA[这里罗列一些实战的项目。 举个栗子，我弄了个裤子，you know it!]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[hadoop note]]></title>
     <url>%2F2017%2F06%2F22%2Fhadoop-note.html</url>
     <content type="text"><![CDATA[12$ 查看文件列表清单hadoop fs -du -h /user/hive/warehouse/&#123;database_name&#125;.db/&#123;table_name&#125;;]]></content>
@@ -38,7 +48,7 @@
   <entry>
     <title><![CDATA[composer note]]></title>
     <url>%2F2017%2F06%2F13%2Fcomposer-note.html</url>
-    <content type="text"><![CDATA[composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。 安装123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 基本配置镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 使用123456789101112$ 一些帮助命令composer helpcomposer listcomposer help require$ composer 安装composer init$ 引入composercomposer require monolog/monolog 使用composer安装laravel： 1composer create-project laravel/laravel learnlaravel5 5.2.31 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
+    <content type="text"><![CDATA[composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅 packagist 一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 二、composer配置2.1 镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 2.2 配置语法12 三、composer使用3.1 composer基础命令使用123456789101112131415161718$ 一些帮助命令composer helpcomposer listcomposer help require$ composer 安装composer init$ 引入composercomposer require monolog/monolog$ 创建项目语法：composer create-project 名称 目录 版本composer create-project slim/slim slim-2.6.2 2.6.2composer install --no-dev # 非开发环境，不执行require-dev的包安装 使用composer安装laravel： 1composer create-project laravel/laravel learnlaravel5 5.2.31 3.2 php使用composer1require vendor/autoload.php 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
   </entry>
   <entry>
     <title><![CDATA[JavaScirpt Note: JavaScript基础篇]]></title>
@@ -310,8 +320,8 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Sublime Text</tag>
         <tag>DocBlockr</tag>
+        <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
       </tags>
   </entry>
