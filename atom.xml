@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-07-18T09:48:39.000Z</updated>
+  <updated>2017-07-19T03:47:21.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VS Code最佳方式</title>
+    <link href="http://boxcore.github.io/2017/07/19/vscode-best-way.html"/>
+    <id>http://boxcore.github.io/2017/07/19/vscode-best-way.html</id>
+    <published>2017-07-19T14:34:49.000Z</published>
+    <updated>2017-07-19T03:47:21.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装和使用&quot;&gt;一、安装和使用&lt;/h2&gt;&lt;h2 id=&quot;二、快捷键&quot;&gt;二、快捷键&lt;/h2&gt;&lt;p&gt;按键说明:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;⌘&lt;/code&gt;: command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;⌃&lt;/code&gt;: control&lt;/li&gt;
+&lt;l
+    
+    </summary>
+    
+      <category term="IDE" scheme="http://boxcore.github.io/categories/IDE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHPUNIT测试</title>
+    <link href="http://boxcore.github.io/2017/07/19/phpunit-right-way.html"/>
+    <id>http://boxcore.github.io/2017/07/19/phpunit-right-way.html</id>
+    <published>2017-07-19T06:22:10.000Z</published>
+    <updated>2017-07-19T06:24:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-_PHPUNIT是什么&quot;&gt;1. PHPUNIT是什么&lt;/h2&gt;&lt;p&gt;PHPUnit是一个用PHP编程语言开发的开源软件，是一个单元测试框架。&lt;/p&gt;
+&lt;h3 id=&quot;1-1_为什么要用PHPUNIT&quot;&gt;1.1 为什么要用PHPUNIT&lt;/h3&gt;&lt;ol&gt;
+&lt;li
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+      <category term="api" scheme="http://boxcore.github.io/categories/php/api/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP接口设计之道</title>
+    <link href="http://boxcore.github.io/2017/07/19/php-api-right-way.html"/>
+    <id>http://boxcore.github.io/2017/07/19/php-api-right-way.html</id>
+    <published>2017-07-19T06:19:30.000Z</published>
+    <updated>2017-07-19T06:21:41.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计前后端完全分离的应用，可以使用到RESTful API。比如， Backbone 的默认规则最适合的是一个完全 restful 风格的后端接口，如果你的后端系统没有准备好，那就直接覆盖掉吧。restful 不光是前端的事～ 是构架层面上的事情，如果想用Backbone的
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+      <category term="api" scheme="http://boxcore.github.io/categories/php/api/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>感冒最全用药攻略</title>
+    <link href="http://boxcore.github.io/2017/07/18/cold-rehabilitation.html"/>
+    <id>http://boxcore.github.io/2017/07/18/cold-rehabilitation.html</id>
+    <published>2017-07-18T10:03:00.000Z</published>
+    <updated>2017-07-18T12:03:41.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-_what&quot;&gt;一. what&lt;/h2&gt;&lt;p&gt;“出门多穿点别着凉”、“捂好脑袋别见风”，每到冬天，我们耳边总少不了这些叮嘱。似乎只要别着凉、别见风、别出门的地方，就能够防着感冒这个大魔王了。&lt;/p&gt;
+&lt;p&gt;但感冒真是由风和寒冷引起的？防感冒最好是待屋里别出去？我
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>MySQL硬盘实例测试之裤子搭建</title>
@@ -306,80 +387,6 @@
       &lt;h2 id=&quot;常用系统工具&quot;&gt;常用系统工具&lt;/h2&gt;&lt;h3 id=&quot;time_machine管理&quot;&gt;time machine管理&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu使用</title>
-    <link href="http://boxcore.github.io/2017/05/17/Ubuntu-Note.html"/>
-    <id>http://boxcore.github.io/2017/05/17/Ubuntu-Note.html</id>
-    <published>2017-05-17T02:23:20.000Z</published>
-    <updated>2017-05-17T06:49:56.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;弄了台备用笔记本电脑，发现装win10有各种问题，遂转投linux阵营。当然，首选ubuntu啦！&lt;/p&gt;
-&lt;p&gt;在这里mark下新ubuntu系统的一些使用。&lt;/p&gt;
-&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;一、基础配置和更新&quot;&gt;一、基础配置和更新&lt;/h2&gt;&lt;h3 id
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Laravel Note</title>
-    <link href="http://boxcore.github.io/2017/05/08/Laravel-Note.html"/>
-    <id>http://boxcore.github.io/2017/05/08/Laravel-Note.html</id>
-    <published>2017-05-08T08:27:30.000Z</published>
-    <updated>2017-05-08T17:35:28.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近需要用到laravel进行开发项目，这里整理一些笔记方便回忆。&lt;/p&gt;
-&lt;h2 id=&quot;laravel相关资源&quot;&gt;laravel相关资源&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.golaravel.com/docs/5.4/containe
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS 7 安装和配置</title>
-    <link href="http://boxcore.github.io/2017/04/26/linux-centos7-setting.html"/>
-    <id>http://boxcore.github.io/2017/04/26/linux-centos7-setting.html</id>
-    <published>2017-04-26T08:11:58.000Z</published>
-    <updated>2017-04-26T09:22:48.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
-    
-    </summary>
-    
-      <category term="CentOS" scheme="http://boxcore.github.io/categories/CentOS/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL学习</title>
-    <link href="http://boxcore.github.io/2017/04/26/mysql-learn.html"/>
-    <id>http://boxcore.github.io/2017/04/26/mysql-learn.html</id>
-    <published>2017-04-26T07:12:43.000Z</published>
-    <updated>2017-04-26T09:32:22.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;MySQL优化&quot;&gt;MySQL优化&lt;/h2&gt;&lt;h3 id=&quot;MySQL缓存&quot;&gt;MySQL缓存&lt;/h3&gt;&lt;p&gt;配置文件&lt;code&gt;/etc/my.cnf&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight lua&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
-    
-    </summary>
-    
-      <category term="MySQL" scheme="http://boxcore.github.io/categories/MySQL/"/>
     
     
   </entry>

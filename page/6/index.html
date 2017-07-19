@@ -329,6 +329,679 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/09/install-nginx-for-lnmp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/09/install-nginx-for-lnmp.html" itemprop="url">LNMP编译：nginx的安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-09T11:09:17+08:00">
+                2014-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/09/install-nginx-for-lnmp.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/09/install-nginx-for-lnmp.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/09/install-nginx-for-lnmp.html" class="leancloud_visitors" data-flag-title="LNMP编译：nginx的安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译nginx前依赖包安装：</p>
+<p><pre class="brush:bash"># install pcre for nginx<br>if [ -s pcre-8.34.tar.gz ]; then<br>  echo “pcre-8.34.tar.gz [found]”<br>else<br>  echo “Error: pcre-8.34.tar.gz not found!!!download now……”<br>  wget -c <a href="http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz" target="_blank" rel="external">http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz</a><br>fi<br>tar zxvf pcre-8.34.tar.gz<br>cd pcre-8.34/<br>./configure<br>make &amp;&amp; make install<br>cd ../<br>ldconfig</pre><br>&nbsp;</p>
+<p>开始编译nginx：</p>
+<p>下载解压：</p>
+<p><pre class="brush:bash">tar zxvf nginx-1.4.4.tar.gz<br>cd nginx-1.4.4/</pre><br>&nbsp;</p>
+<p>configure配置项：</p>
+<p>如果你的nginx依赖件已经用yum先安装好，可以使用下面命令：</p>
+<p><pre class="brush:bash">./configure –user=$LNMP_USER –group=$LNMP_USER –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-pcre</pre><br>如果nginx依赖包是编译的，需要指定目录：</p>
+<p><pre class="brush:bash">./configure –user=www –group=www –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-openssl=/usr/include/openssl –with-pcre</pre><br>&nbsp;</p>
+<p>如果报错</p>
+<p><pre class="brush:bash">error:openssl/include/openssl/ssl.h] Error 2</pre><br>需要确定openssl是否安装好，如果是yum安装openssl-devel后，configure时的参数去掉–with-openssl=/lib64/ –with-zlib=/usr/lib64/ –with-md5=/usr/lib64即可编译通过</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/07/sublime-text-plugin-package-control.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/07/sublime-text-plugin-package-control.html" itemprop="url">Sublime Text插件：Package Control安装包管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-07T14:15:17+08:00">
+                2014-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/07/sublime-text-plugin-package-control.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/07/sublime-text-plugin-package-control.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/07/sublime-text-plugin-package-control.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：Package Control安装包管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Package Control 能让你很方便地管理sublime text插件，下面讲解sublime如何安装package control包：</p>
+<p>官方原版教材：<a href="https://sublime.wbond.net/installation" target="_blank" rel="external">https://sublime.wbond.net/installation</a></p>
+<p>如果e文不好，就看看我的操作吧：</p>
+<p>1. 快捷键“Ctrl+`”或菜单里“View &gt; Show Console”来调用控制器；</p>
+<p>2. 在底部的控制器中粘贴如下代码：</p>
+<p>sublime text 3：</p>
+<p><pre class="brush:python">import urllib.request,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)</pre><br>&nbsp;</p>
+<p>sublime text 2：</p>
+<p><pre class="brush:python">import urllib2,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), ‘wb’ ).write(by) if dh == h else None; print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h) if dh != h else ‘Please restart Sublime Text to finish installation’)</pre><br>&nbsp;</p>
+<p>回车后就完成了package control的安装了！</p>
+<p>&nbsp;</p>
+<p>使用方法，选择菜单“Preferences &gt; Browse Packages”里面就有</p>
+<p>快捷键：“Ctrl+Shift+P”调用</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/sublime-text-plugin-ctags.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/06/sublime-text-plugin-ctags.html" itemprop="url">Sublime Text插件：CTags安装和使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-06T20:09:40+08:00">
+                2014-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/06/sublime-text-plugin-ctags.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/06/sublime-text-plugin-ctags.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/06/sublime-text-plugin-ctags.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：CTags安装和使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>CTags简介：略</p>
+<p>&nbsp;</p>
+<p>CTags安装：</p>
+<p>跟其他插件安装一样，放到packags目录中</p>
+<p>sublime text CTags项目地址：<a href="https://github.com/SublimeText/CTags" target="_blank" rel="external">https://github.com/SublimeText/CTags</a></p>
+<p>百度网盘下载地址：<a href="http://pan.baidu.com/s/1nt9GOpN" target="_blank" rel="external">http://pan.baidu.com/s/1nt9GOpN</a></p>
+<p>&nbsp;</p>
+<p>安装好ctags后并不能直接使用，还需要安装配套的ctags58才行。</p>
+<p>ctag58安装文件：</p>
+<p>下载一：百度网盘  <a href="http://pan.baidu.com/s/1hqfyQNE（建议安装到D:Program" target="_blank" rel="external">http://pan.baidu.com/s/1hqfyQNE（建议安装到D:Program</a> Filesctags58，并添加到系统变量中）</p>
+<p>下载二：官方 <a href="http://ctags.sourceforge.net" target="_blank" rel="external">http://ctags.sourceforge.net</a></p>
+<p>&nbsp;</p>
+<p>解压下载好的ctags58.zip，我这里放在了D:Program files<br>配置环境变量： 讲D:Program filesctags58 地址配置到环境变量path中<br>在cmd 中 输入 ctags –help 出现帮助信息则表示安装配置成功<br>ctags安装配置好之后 在sublime text 打开 Package Control 输入install 选择 install package安装扩展<br>接下来输入ctags，找到ctags扩展包 回车安装<br>最后在打开的项目中 在sublimetext 目录栏中 find-&gt;CTags-&gt;build Tags 后 会在项目的根目录下生成.tags文件</p>
+<p>&nbsp;</p>
+<p>Sublime下CTags使用：</p>
+<p>ctrl+shift+鼠标左键 就可以定位到相应的函数或变量了</p>
+<p>&nbsp;</p>
+<p>其他参考：<a href="http://blog.csdn.net/thunderclaus/article/details/11556159" target="_blank" rel="external">http://blog.csdn.net/thunderclaus/article/details/11556159</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/sublime-text-plugin-emmet.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/06/sublime-text-plugin-emmet.html" itemprop="url">Sublime Text插件：Emmet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-06T19:47:09+08:00">
+                2014-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/06/sublime-text-plugin-emmet.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/06/sublime-text-plugin-emmet.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/06/sublime-text-plugin-emmet.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：Emmet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Emmet以前叫Zen Coding，ST上面安装emmet这个插件可以节省很多编码时间，不够你信不信方正我信了哈。ST下安装Emmet是非常简单的，如果有Package Control直接输入安装命令，找emmet即可全自动安装。但本人实现的方法是直接从github项目地址下载的压缩包文件，直接用github上面压缩的文件安装会遇到下面常见的问题，下面给出我个人在用压缩包安装这个插件时候遇到的问题。</p>
+<p>1. 首先去到Emmet的Github项目地址：<a href="https://github.com/sergeche/emmet-sublime，下载最新master版本后把文件目录拷贝到ST的安装目录中：{Sublime" target="_blank" rel="external">https://github.com/sergeche/emmet-sublime，下载最新master版本后把文件目录拷贝到ST的安装目录中：{Sublime</a> Text 目录}DataPackages  下。拷贝好后需要修改目录名为“Emmet”，不然st不买账。<br>注：博主以前安装的时候就是遇到这个问题，后来在“Package Control”中选择“Emmet”的设置发现都是空的，还好哥集聪明与智慧一身，视觉敏锐的我立马发现了配置文件路径跟我安装的路径完全不一样，修改成“Emmet”后整个世界都舒畅了。。。</p>
+<p>2. 安装好emmet后需要重启下st，重新打开后，底部会提醒正在下载PyV8引擎，等安好pyv8后测试在一个html文件中输入“!+Tab键”看他能不能扩展代码，不能的话需要看看在安装目录下PyV8是否已经自动安装好了（大部分情况是下载地址被强，需要上去拷贝到你本地）。假如PyV8已经安装好了，但还是不工作，那就要看看你的emmet目录名字是不是“Emmet”不然改改吧。</p>
+<p>吹了这么多现在来分享下我的Emmet包和PyV8把：</p>
+<p><strong>2个文件直接解压到Sublime Text 的Packges目录就好了</strong></p>
+<p>下载地址：</p>
+<ul>
+<li><a href="http://pan.baidu.com/s/1mg7GXJE" title="Emmet下载" target="_blank" rel="external">Emmet</a>：<a href="http://pan.baidu.com/s/1mg7GXJE" target="_blank" rel="external">http://pan.baidu.com/s/1mg7GXJE</a> 密码：dp4z</li>
+<li><a href="http://pan.baidu.com/s/1jGqQewQ" title="PyV8下载" target="_blank" rel="external">PyV8</a>：<a href="http://pan.baidu.com/s/1jGqQewQ" target="_blank" rel="external">http://pan.baidu.com/s/1jGqQewQ</a> 密码：303v</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/my-asus-notebook-hardware-information.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1330,664 +2003,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/18/journal-20131218.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/18/journal-20131218.html" itemprop="url">note:2013-12-18</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-18T00:44:26+08:00">
-                2013-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/18/journal-20131218.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/18/journal-20131218.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/18/journal-20131218.html" class="leancloud_visitors" data-flag-title="note:2013-12-18">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>很久没有写过生活日记了，想法很多，但坚持不下去，要弄的东西感觉很多，会忙不过来的样子。生活得没重点。</p>
-<p>日记很久没写，也变生疏了。代码也很久没认真写了，纯码农一枚。</p>
-<p>本来文采就不好，文化水平又不高，又好高骛远。</p>
-<p>我是个虚伪的人，本来有骨气，渐渐的也为生活所迫低腰。</p>
-<p>朋友关心处理不好，妞没泡到，主要还是钱的问题。</p>
-<p>希望渐渐渺茫，boxcore博客将承当更多更大的发牢骚任务。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/13/mysql-note.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/13/mysql-note.html" itemprop="url">Mysql学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-13T10:15:24+08:00">
-                2013-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/13/mysql-note.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/13/mysql-note.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/13/mysql-note.html" class="leancloud_visitors" data-flag-title="Mysql学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div>PHP NOTE 9 mysql 复习</div><br><div>@20130611 by boxcore</div><br><div></div><br><div>约定：</div><br><div>tabname：表名</div><br><div>dbname:数据库名</div><br><div>fieldname 或 field+n : 字段名</div><br><div>oldTabName:旧表名</div><br><div>newTabName:新表名</div><br><div></div><br><div>——————–</div><br><div><strong>一、数据库概述</strong></div><br><div>——————–</div><br><div></div><br><div>1.MySQl操作过程：MySQl 服务端,MySQl客户端；</div><br><div>2.数据库产品分类：关系型数据库 ,非关系型数据库；</div><br><div></div><br><div>3.数据表的字符集:Client,Conn,Server,DB</div><br><div></div><br><div>     1 ）my.ini配置默认字符串：</div><br><div>          dafault-character-set=utf8     # client &amp; Conn charset;</div><br><div>          character-set-server=utf8       # server &amp; DB charset;</div><br><div>     2 ）PHP语句设置客户端字符集： mysql_query(“set name utf8”);</div><br><div></div><br><div>     3 ）创建表时指定字符集方法：</div><br><div>          create table tab(…)engine=MyISAM DEFAULT CHARSET=utf8; （简写）</div><br><div>          create table tabname(…)type=mysiam default character set utf8 collate utf8_general<em>ci;</em></div><br><div></div><br><div>4.数据表组成：表结构文件 (),表数据文件(), 表索引文件 ();</div><br><div></div><br><div>5.数据库引擎：InnoDB支持事务处理，但不支持全文搜索， MyISAM支持全文搜索但不支持事务， MEMORY和MyISAM 一样，只不过它把数据保存在内存而不是磁盘中，这样速度更快。</div><br><div></div><br><div>———————-</div><br><div><strong>二、数据库的常用操作：</strong></div><br><div>———————-</div><br><div></div><br><div>1.数据库的连接：mysql -uroot -p123 -h192.168.2.2</div><br><div>2.退出MySQL:exit|quit|Ctrl+C</div><br><div>3.中断数据库的操作：c</div><br><div>4.MySQl服务器的关闭和退出：net stop mysql || net start mysql</div><br><div></div><br><div>5.MySQl中用户的修改：set password=password(“密码 “)；</div><br><div>     创建用户： CREATE USER ‘test1’@’localhost’ IDENTIFIED BY  ‘<em>**’;</em></div><br><div>6.MySQl中用户授权：grant all on .* to user1@192.168.190.20 identified by “密码”;</div><br><div>     GRANT ALL PRIVILEGES ON  `test1%` . <em> TO  ‘test1’@’localhost’;</em></div><br><div>7.刷新权限如：flush privileges;</div><br><div>      在客户端修改用户权限后需要刷新数据库缓存</div><br><div>8.查看用户授权</div><br><div>     use mysql</div><br><div>     select user,password,host from user;</div><br><div>10.删除用户</div><br><div>     方法一： drop user user1@”%”;</div><br><div>     方法二：</div><br><div>          use mysql</div><br><div>          delete from user where user=” 用户名”;</div><br><div></div><br><div>—————–</div><br><div><strong>三、数据库的操作</strong></div><br><div>—————–</div><br><div>1.创建数据库     create database dbname ；</div><br><div>2.查看数据库     show databases;</div><br><div>3.删除数据库     drop database dbname ；</div><br><div>4.切换数据库     use dbname ；</div><br><div></div><br><div></div><br><div>———–</div><br><div><strong>四、表操作</strong></div><br><div>———–</div><br><div>1.查看表：show tables ；</div><br><div>2.创建表：create table tabname (field1 ，field2， fieldn);</div><br><div>3.删除表：dorp table [if exists] tabname ；</div><br><div>4.修改表名：rename table oldTabName to newTabName ；</div><br><div>5.查询表结构：desc tabname；</div><br><div></div><br><div></div><br><div>——————–</div><br><div><strong>五、表内容管理</strong></div><br><div>——————–</div><br><div></div><br><div>1.增加数据：insert</div><br><div>insert into user(name) values(“user4”);</div><br><div></div><br><div>2.删除数据：delete</div><br><div>//必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据</div><br><div>delete from user where id&gt;=3 and id&lt;=5;</div><br><div>delete from user where id between 3 and 5;</div><br><div></div><br><div>3.修改数据：update</div><br><div>update user set name=’user5’,age=20 where id=5;</div><br><div>//在mysql 中没有==，只有 =，即包含赋值，又包含比较</div><br><div></div><br><div>4.查询数据：select</div><br><div></div><br><div></div><br><div></div><br><div>———————–</div><br><div><strong>六、数据字段类型</strong></div><br><div>———————–</div><br><div></div><br><div>1.数值     // 显示和大小</div><br><div>int|float|tinyint</div><br><div>     ·tinyint数值类型的无符号取值范围： 0-255</div><br><div>     ·int数值类型的无符号取值范围： 0-42亿</div><br><div></div><br><div>2.字符串 // 显示和个数</div><br><div>char|varchar|enum|set</div><br><div>     ·char(3)的意思是什么： 0-255</div><br><div>     ·varchar(3)的意思是什么： 0-65535</div><br><div></div><br><div>3.日期和时间( 数值)</div><br><div>date|time|datetime|year|timestamp</div><br><div>     在php中把时间加工成时间戳，放到 mysql中的int 列</div><br><div></div><br><div></div><br><div></div><br><div>——————-</div><br><div><strong>七、数据字段属性</strong></div><br><div>——————-</div><br><div>1.unsigned</div><br><div>2.zerofill</div><br><div>3.auto_increment</div><br><div>4.null</div><br><div>5.not null     # 如表中性别例子 ,如果有一列你设计成not null,那么给 default默认值</div><br><div>6.default</div><br><div></div><br><div></div><br><div>—————–</div><br><div><strong>八**</strong>.<strong>**数据表的类型</strong></div><br><div>—————–</div><br><div>1.myisam     // 默认就是 myisam</div><br><div>2.innodb     // 事务</div><br><div></div><br><div>     创建表时指定表类型： create table t1(id int) engine=innodb;</div><br><div>     修改表引擎类型： alter table tablename engine=innodb;</div><br><div>     查看表类型： show create table tabname;</div><br><div></div><br><div></div><br><div>——————-</div><br><div><strong>九**</strong>.<strong>**数据表索引设置</strong></div><br><div>——————-</div><br><div></div><br><div>1.主键索引 primary key 一个表中只能有一个主键索引</div><br><div></div><br><div>添加索引 :</div><br><div>1).建表时就加上去</div><br><div>2).用alter 命令</div><br><div>     alter table t2 add primary key(id);  // 加主键</div><br><div>     alter table t2 modify id int unsigned auto_increment; // 加无符号和自增属性</div><br><div></div><br><div>删除索引 :</div><br><div>     alter table t2 modify id int; // 加无符号和自增属性</div><br><div>     alter table t2 drop primary key;</div><br><div></div><br><div>2.唯一索引     unique index</div><br><div>     // 每一列都可以是唯一索引，本列值不能重复值</div><br><div></div><br><div>3.普通索引     index</div><br><div></div><br><div>     添加索引 :alter table user add index in_name(name);</div><br><div>     删除索引 :alter table user drop index in_name;</div><br><div></div><br><div>//每一列都可以是普通索引</div><br><div></div><br><div>4.全文索引     fulltext</div><br><div></div><br><div></div><br><div>————————</div><br><div><strong>八**</strong>.<strong>**修改数据表结构</strong> <strong>-alter</strong></div><br><div>————————</div><br><div></div><br><div>1.修改字段</div><br><div>1)change</div><br><div>·alter table user change age sex int;</div><br><div>#把age 的字段重命名为 sex并设置字段属性为int；【更改字段名，修改字段名】</div><br><div>//修改字段名的时候建议带上他原有的 int或者varchar 属性，如果不写属性会报错；</div><br><div>2)modify</div><br><div>·alter table user modify age tinyint;</div><br><div></div><br><div>2.添加字段</div><br><div>     ·alter table user add age int;  //默认加到最后</div><br><div>     ·alter table user add age int first;  //加到最前面去</div><br><div>     ·alter table user add age int after id;  //加到id 后面</div><br><div></div><br><div>3.删除字段</div><br><div>     ·alter table user drop age;</div><br><div></div><br><div>4.添加索引</div><br><div>     ·alter table tab62 add primary key(id);</div><br><div>     ·alter table tab62 modify id int unsigned auto_incrment;</div><br><div>     ·alter table tab62 add unique un_name(name);</div><br><div>     ·alter table tab62 add index in_pass(pass);</div><br><div></div><br><div>5.删除索引</div><br><div>     ·alter table tab62 modify id int;</div><br><div>     ·alter table tab62 drop primary key;</div><br><div>     ·alter table tab62 drop index in_pass;</div><br><div>     ·alter table tab62 drop unique un_name;</div><br><div></div><br><div>6.更改表名称</div><br><div>     1)rename table tab62 to tab26; 修改表名，非字段</div><br><div>     2)alter table user rename to user1;</div><br><div></div><br><div>7.更改auto_increment 属性的初始值</div><br><div>alter table user auto<em>increment=1;</em></div><br><div>//truncate user;  效率快，自增列表自动从 1开始（清空表中所有数据）</div><br><div></div><br><div></div><br><div>8.更改表名称：alter table 旧表名 rename as 新表名</div><br><div></div><br><div>9.删除表：dorp table [if exists] 表名；</div><br><div></div><br><div></div><br><div>———————————–</div><br><div><strong>结构化查询语言</strong> <strong>sql**</strong>包含四个部分<strong>**:</strong></div><br><div>———————————–</div><br><div>1.DDL   // 数据定义语言 ,create,drop,alter</div><br><div>2.DML   // 数据操作语言 ,insert,update,delete</div><br><div>3.DQL   // 数据查询语言 ,select</div><br><div>4.DCL   // 数据控制语言 ,grant,commit,rollback</div><br><div></div><br><div></div><br><div>—————————-</div><br><div><strong>操作数据表中的数据记录</strong> <strong>(DML)</strong></div><br><div>—————————-</div><br><div>1.insert</div><br><div>eg:insert into user(name) values(“user4”);</div><br><div></div><br><div>2.update</div><br><div>update user set name=”user4” where id=4;</div><br><div>//在mysql 中没有==，只有 =，即包含赋值，又包含比较</div><br><div>update user set name=’user5’,age=20 where id=5;</div><br><div></div><br><div>3.delete</div><br><div>//必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据</div><br><div>delete from user where id&gt;=3 and id&lt;=5; 等同于 delete from user where id between 3 and 5;</div><br><div></div><br><div>———————————</div><br><div><strong>数据查询语言（</strong> <strong>DQL**</strong>）<strong>**–select</strong> <strong>使用</strong></div><br><div>———————————</div><br><div></div><br><div>1.选择特定的字段</div><br><div>select id,name from user;</div><br><div>//select <em> from user;</em></div><br><div></div><br><div></div><br><div>2.给字段取别名-as</div><br><div>select id,name from user;</div><br><div>select id maoxian,name from user;</div><br><div>select id as maoxian,name from user;</div><br><div></div><br><div></div><br><div>3.distinct关键字的使用</div><br><div>//取出唯一值</div><br><div>select distinct age from user;</div><br><div></div><br><div></div><br><div>4.使用where 条件进行查询</div><br><div>select  from user where id&gt;=3 and id&lt;=5;</div><br><div></div><br><div></div><br><div>5.查询空值null</div><br><div>select <em> from user where age is null;</em></div><br><div>select  from user where age is not null;</div><br><div></div><br><div></div><br><div>6.between and的使用方法</div><br><div>select <em> from user where id between 3 and 5;</em></div><br><div></div><br><div></div><br><div>7.in的使用方法</div><br><div>select  from user where id=1 or id=2 or id=10;</div><br><div>select * from user where id in(1,2,10);   建议使用这个</div><br><div></div><br><div></div><br><div>8.like的使用方法</div><br><div>//模糊查询,text 类型不能加索引</div><br><div>% 匹配所有</div><br><div> 匹配一个字符</div><br><div>select <em> from user where  name like “%mysql%”;  //% 在前，name这一列的索引会失效</em></div><br><div></div><br><div></div><br><div>9.使用order by 对查询结果排序</div><br><div>//排序，asc 和desc，一个是升序，一个降序</div><br><div>select  from user order by id asc;  // 默认就是升序 ,数字从小到大</div><br><div>select <em> from user order by id desc;  // 默认就是升序 ,数字从大到小</em></div><br><div></div><br><div></div><br><div>10.使用limit 限定输出个数 (分页实现)</div><br><div>select  from user order by id limit 0,2;</div><br><div>select <em> from user order by id limit 5; //limit 0,5  前五个</em></div><br><div></div><br><div></div><br><div>11.concat() 连接函数</div><br><div>select concat(id,age) from user;     # 输出的值为每一行中指点的列字符串相加。</div><br><div>select concat(“aaa”,”bbb”,”cccc”);  # 输出连接的字符串： aaabbbccc,如果没有双引号则误认为是字段，报错。</div><br><div></div><br><div></div><br><div>12.rand() 随机数</div><br><div>eg: select  from user order by rand() limit 3;</div><br><div></div><br><div></div><br><div>13.使用统计函数：</div><br><div>count() 统计个数</div><br><div>sum() 求和</div><br><div>avg() 平均值</div><br><div>max() 最大值</div><br><div>min() 最小值</div><br><div>eg:</div><br><div>select count(id),sum(age),avg(age),max(id),min(id) from user;</div><br><div></div><br><div></div><br><div>14.group by分组聚合的 使用-select</div><br><div>结合合计函数，根据一个或多个列对结果集进行分组</div><br><div>//分组  聚合</div><br><div>//只分组没有意义，必须用函数去聚合 .</div><br><div>eg: select banji,sum(score),count(id) from user group by banji; // 从班级表中统计每个班的总分数和总人数</div><br><div>eg2:查找每个客户的总金额（总订单） :</div><br><div>————————————</div><br><div>O_Id OrderDate      OrderPrice Customer</div><br><div>1      2008/12/29      1000     Bush</div><br><div>2      2008/11/23      1600     Carter</div><br><div>3      2008/10/05      700      Bush</div><br><div>4      2008/09/28      300      Bush</div><br><div>5      2008/08/06      2000     Adams</div><br><div>6      2008/07/21      100      Carter</div><br><div>————————————</div><br><div>执行语句： SELECT Customer,SUM(OrderPrice) FROM Orders GROUP BY Customer;</div><br><div></div><br><div>结果集类似这样：</div><br><div>————————-</div><br><div>Customer SUM(OrderPrice)</div><br><div>Bush           2000</div><br><div>Carter           1700</div><br><div>Adams           2000</div><br><div>————————–</div><br><div></div><br><div></div><br><div>—————————————</div><br><div><strong>数据查询语言（</strong> <strong>DQL**</strong>）<strong>**2–select</strong> <strong>的多表查询</strong></div><br><div>—————————————</div><br><div>假如下面三种方法都能实现一种表，优先选择普通多表查询。</div><br><div></div><br><div>1.普通多表查询</div><br><div>1）两表查询</div><br><div>mysql&gt; select user.id,user.name,user.score,user.banji,tel.num from user,tel where user.id=tel.uid;</div><br><div>2）三表查询</div><br><div>mysql&gt; select user.name,tel.num,qq.qq from user,tel,qq where user.id=tel.uid and user.id=qq.uid;</div><br><div></div><br><div></div><br><div>2.嵌套查询| 子查询-in</div><br><div>select <em> from user where id in(select uid from tel);</em></div><br><div></div><br><div>3.左链接查询-left join on</div><br><div>select user.id,user.name,tel.num from user left join tel on user.id=tel.uid;</div><br><div>//左链接以左边的表为主导，先输出左边表的所有数据，按条件输出右边表的内容，没有相对应的内容就为 null</div><br><div></div><br><div></div><br><div>普通多表查询的三种方法，分别有什么区别：</div><br><div>普通多表查询，查多个表，并且可以输出多个表的内容</div><br><div>嵌套查询，查多个表，但只能输出一个表的内容</div><br><div>左链接查询，查多个表，先把左边的表全部输出，右边的表按条件输出，否者输出 null</div><br><div></div><br><div></div><br><div>==========================================</div><br><div><strong>复习</strong> <strong>–**</strong>最常用的语法：<em>*</em></div><br><div>———————————–</div><br><div>1.DDL 数据定义语言,create,drop,alter</div><br><div>1)create database {database}</div><br><div>2)create table {table}();</div><br><div></div><br><div></div><br><div>2.DML 数据操作语言,insert,update,delete</div><br><div>1）insert into 表名 [(字段 1,字段2, 字段n)] values (‘值 1’,’值2’,’ 值n’);</div><br><div>2）update 表名 set 字段名 =表达式[, 字段n=表达式 n] [where 条件] [order by 字段] [limit 行数 ];</div><br><div>3）delete from 表名 [where 条件 ] [order by 字段] [limit 行数];</div><br><div></div><br><div></div><br><div>3.DQL 数据查询语言,select</div><br><div>select [all|distinct] {|table.*|[table.]field[as alias1][,[table.]field2[as alias2][,…]]} from tableexpression[,…][in externaldatabase] [where…] [group by…] [having…] [order by…] [limit count];</div><br><div></div><br><div>4.DCL 数据控制语言,grant,commit,rollback</div><br><div>1）grant 权限 on 数据库 .数据表 to 用户@登录主机 indentified by “密码”</div>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/12/js-plan-for-30-days.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/12/js-plan-for-30-days.html" itemprop="url">30天学习JS计划</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-12T17:33:11+08:00">
-                2013-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/12/js-plan-for-30-days.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/12/js-plan-for-30-days.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/12/js-plan-for-30-days.html" class="leancloud_visitors" data-flag-title="30天学习JS计划">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>主要涉及学习内容:</p>
-<ol>
-<li><div>javascript原生API<br></div>
-
-<pre><code><span class="number">1.</span>  通读js原生态DOM，BOM，事件
-
-<span class="number">2.</span>  使用原生态JS写类库，弹窗类、级联类、slide轮播类
-
-<span class="number">3.</span>  原生js写ajax通信
-</code></pre></li>
-<li><div>jQuery框架使用<br></div>
-
-<pre><code><span class="number">1.</span>  通读jquery手册
-
-<span class="number">2.</span>  使用jquery UI
-
-<span class="number">3.</span>  使用jquery slide
-
-<span class="number">4.</span>  使用jq dialog
-
-<span class="number">5.</span>  更细的计划
-</code></pre></li>
-</ol>
-<p>计划可以有很多，在保证工作任务在按时按质量的情况下完成下，这一个月的主要空余时间就是用来温习和巩固js相关的知识。</p>
-<p>test</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/11/php-object-class-summary.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/11/php-object-class-summary.html" itemprop="url">PHP对象类总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-11T17:20:16+08:00">
-                2013-12-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/11/php-object-class-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/11/php-object-class-summary.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/11/php-object-class-summary.html" class="leancloud_visitors" data-flag-title="PHP对象类总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用类的过程中遇到的N多总结下如下：</p>
-<p>1、Fatal error: Cannot redeclare class的解决办法</p>
-<p>从字面来看也很好理解，说明是重复定义了类，找了一下自己的代码，是因为存在同名的类导致的，修改了类名就好了。</p>
-<p>判断代码：</p>
-<p>if (!class_exists(‘pageModule’)){</p>
-<pre><code>require_once<span class="list">(<span class="keyword">PATH_site</span>.<span class="quoted">'fileadmin/scripts/class</span>.page.php')</span><span class="comment">;</span>
-</code></pre><p>}</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2037,7 +2052,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2048,7 +2063,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
