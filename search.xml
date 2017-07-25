@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用Let's Encrypt加密网站]]></title>
+    <url>%2F2017%2F07%2F25%2Flet-us-encrypt-ssl.html</url>
+    <content type="text"><![CDATA[Let’s Encrypt是一家开源的ssl签名验证工具，除了万恶的ie6，几户支持其他所有的浏览器，关键是还免费。关于其自动签名工具网站有很多，我这边就简单举例说下主要工具的应用场景。 certbot验证域名官方提供的自动签名脚本，项目地址在：https://github.com/certbot/certbot。很可惜没有配置成功过，看网上代码配置还是非常简单的 acme-tiny验证域名 项目地址：https://github.com/diafygi/acme-tiny 使用简单，需要配置nginx在自己的域名下，我比较喜欢用他的一点是所验证的域名，如果非在该域名下也可以访问，不过会提示ssl不安全，这是比le-dns验证好的一点。 le-dns验证域名 项目地址：https://github.com/boxcore/shell/tree/master/tools/le-dns 最简单的验证方式，你必须要有域名的所有权限，目前支持的有dnspod和cloudxns，使用前你需要申请下key。个人比较喜欢用dns，好处的脚本自动写好续签了，很人性化，不过子域名没有签名的话，不能共用ssl证书。]]></content>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[VS Code最佳方式]]></title>
     <url>%2F2017%2F07%2F19%2Fvscode-best-way.html</url>
-    <content type="text"><![CDATA[一、安装和使用二、快捷键按键说明: ⌘: command ⌃: control ⇧: shift ⌥: alt(option) 2.1 vscode常用快捷键 ⌃ + R: 项目切换]]></content>
+    <content type="text"><![CDATA[一、安装和使用二、快捷键按键说明: ⌘: command ⌃: control ⇧: shift ⌥: alt(option) 2.1 vscode常用快捷键 ⌃ + R: 项目切换 三、插件及使用3.1 markdown-table-formattermarkdown-table-formatter插件地址 快捷键: alt+shift+f 四、个人配置4.1 个人快捷键配置使用⌘+k s打开配置12345678910111213141516171819202122232425262728293031// 将键绑定放入此文件中以覆盖默认值[ // insert date keymap from sublime &#123; "command": "insertDateString.insertDateTime", "key": "alt+f5", "when": "editorTextFocus" &#125;, &#123; "command": "insertDateString.insertDate", "key": "f5", "when": "editorTextFocus" &#125;, &#123; "key": "ctrl+f5", "command": "insertDateString.insertTimestamp" &#125;, &#123; "key": "cmd+ctrl+p", "command": "workbench.action.openRecent" &#125;, &#123; "key": "cmd+y", "command": "redo", "when": "editorTextFocus &amp;&amp; !editorReadonly" &#125;]]]></content>
       <categories>
         <category>IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Vue.js学习笔记]]></title>
+    <url>%2F2017%2F07%2F19%2Flearn-vuejs.html</url>
+    <content type="text"><![CDATA[vue.js包含内容 template script css]]></content>
+      <categories>
+        <category>js</category>
       </categories>
   </entry>
   <entry>
@@ -375,8 +391,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>lnmp</tag>
+        <tag>linux</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>

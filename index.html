@@ -329,6 +329,149 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/25/let-us-encrypt-ssl.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/25/let-us-encrypt-ssl.html" itemprop="url">使用Let's Encrypt加密网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T10:00:15+08:00">
+                2017-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/25/let-us-encrypt-ssl.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/25/let-us-encrypt-ssl.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/25/let-us-encrypt-ssl.html" class="leancloud_visitors" data-flag-title="使用Let's Encrypt加密网站">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Let’s Encrypt是一家开源的ssl签名验证工具，除了万恶的ie6，几户支持其他所有的浏览器，关键是还免费。关于其自动签名工具网站有很多，我这边就简单举例说下主要工具的应用场景。</p>
+<h2 id="certbot验证域名">certbot验证域名</h2><p>官方提供的自动签名脚本，项目地址在：<a href="https://github.com/certbot/certbot" target="_blank" rel="external">https://github.com/certbot/certbot</a>。很可惜没有配置成功过，看网上代码配置还是非常简单的</p>
+<h2 id="acme-tiny验证域名">acme-tiny验证域名</h2><ul>
+<li>项目地址：<a href="https://github.com/diafygi/acme-tiny" target="_blank" rel="external">https://github.com/diafygi/acme-tiny</a></li>
+</ul>
+<p>使用简单，需要配置nginx在自己的域名下，我比较喜欢用他的一点是所验证的域名，如果非在该域名下也可以访问，不过会提示ssl不安全，这是比le-dns验证好的一点。</p>
+<h2 id="le-dns验证域名">le-dns验证域名</h2><ul>
+<li>项目地址：<a href="https://github.com/boxcore/shell/tree/master/tools/le-dns" target="_blank" rel="external">https://github.com/boxcore/shell/tree/master/tools/le-dns</a></li>
+</ul>
+<p>最简单的验证方式，你必须要有域名的所有权限，目前支持的有dnspod和cloudxns，使用前你需要申请下key。个人比较喜欢用dns，好处的脚本自动写好续签了，很人性化，不过子域名没有签名的话，不能共用ssl证书。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/19/vscode-best-way.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -450,6 +593,172 @@
 </ul>
 <h3 id="2-1_vscode常用快捷键">2.1 vscode常用快捷键</h3><ul>
 <li><code>⌃ + R</code>: 项目切换</li>
+</ul>
+<h2 id="三、插件及使用">三、插件及使用</h2><h3 id="3-1_markdown-table-formatter">3.1 markdown-table-formatter</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=josa.markdown-table-formatter" target="_blank" rel="external">markdown-table-formatter插件地址</a><br><img src="https://rawgithub.com/josa42/vscode-markdown-table-formatter/master/docs/assets/screenshot.gif" alt="markdown-table-formatter"></p>
+<blockquote>
+<p>快捷键: alt+shift+f</p>
+</blockquote>
+<h2 id="四、个人配置">四、个人配置</h2><h3 id="4-1_个人快捷键配置">4.1 个人快捷键配置</h3><p>使用<code>⌘+k s</code>打开配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// 将键绑定放入此文件中以覆盖默认值</div><div class="line">[</div><div class="line"></div><div class="line">    // insert date keymap from sublime</div><div class="line">    &#123;</div><div class="line">        "command": "insertDateString.insertDateTime",</div><div class="line">        "key": "alt+f5",</div><div class="line">        "when": "editorTextFocus"</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        "command": "insertDateString.insertDate",</div><div class="line">        "key": "f5",</div><div class="line">        "when": "editorTextFocus"</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        "key": "ctrl+f5",</div><div class="line">        "command": "insertDateString.insertTimestamp"</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    </div><div class="line">    &#123; </div><div class="line">        "key": "cmd+ctrl+p",                </div><div class="line">        "command": "workbench.action.openRecent" </div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    &#123; </div><div class="line">        "key": "cmd+y",           </div><div class="line">        "command": "redo",</div><div class="line">        "when": "editorTextFocus &amp;&amp; !editorReadonly" </div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/19/learn-vuejs.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/19/learn-vuejs.html" itemprop="url">Vue.js学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T20:02:40+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/19/learn-vuejs.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/19/learn-vuejs.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/19/learn-vuejs.html" class="leancloud_visitors" data-flag-title="Vue.js学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>vue.js包含内容</p>
+<ul>
+<li>template</li>
+<li>script</li>
+<li>css</li>
 </ul>
 
           
@@ -1807,280 +2116,6 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/06/22/php-time-out.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/22/php-time-out.html" itemprop="url">php的各种超时设置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T14:02:35+08:00">
-                2017-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/22/php-time-out.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/22/php-time-out.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/22/php-time-out.html" class="leancloud_visitors" data-flag-title="php的各种超时设置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>ini_set(‘mysql.connect_timeout’, 1800);<br>ini_set(‘default_socket_timeout’, 1800);<br>ini_set(‘max_execution_time’, 1800);</p>
-<p>set_time_limit(1800);</p>
-<p>request_terminate_timeout</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/06/19/100-way-to-setting-proxy.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/19/100-way-to-setting-proxy.html" itemprop="url">100 way to setting proxy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T15:22:11+08:00">
-                2017-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/19/100-way-to-setting-proxy.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/19/100-way-to-setting-proxy.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/19/100-way-to-setting-proxy.html" class="leancloud_visitors" data-flag-title="100 way to setting proxy">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>$ terminal setting proxy:</p>
-<p>export http_proxy=socks5://127.0.0.1:5566<br>export https_proxy=$http_proxy<br>unset http_proxy https_proxy</p>
-<p>$ see other proxy setting</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ add some <span class="built_in">alias</span> </div><div class="line"><span class="built_in">alias</span> goproxy=<span class="string">'export http_proxy=socks5://127.0.0.1:5566 https_proxy=socks5://127.0.0.1:5566'</span></div><div class="line"><span class="built_in">alias</span> disproxy=<span class="string">'unset http_proxy https_proxy'</span></div><div class="line"></div><div class="line"></div><div class="line">$ setting homebrew :</div><div class="line"><span class="built_in">export</span> ALL_PROXY=socks5://127.0.0.1:5566 </div><div class="line">ALL_PROXY=socks5://127.0.0.1:9001 brew upgrade</div><div class="line"></div><div class="line">$ see what ip you <span class="keyword">in</span>!</div><div class="line">curl ip.cn</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">add sss</div><div class="line"> </div><div class="line">/usr/<span class="built_in">local</span>/opt/shadowsocks-libev/bin/ss-local -c /usr/<span class="built_in">local</span>/etc/shadowsocks-libev.json &gt; /dev/null 2&gt;&amp;1 &amp;</div><div class="line">/usr/<span class="built_in">local</span>/opt/shadowsocks-libev/bin/ss-local -c /usr/<span class="built_in">local</span>/etc/shadowsocks-libev-cn.json &gt; /dev/null 2&gt;&amp;1 &amp;</div><div class="line">/usr/<span class="built_in">local</span>/opt/shadowsocks-libev/bin/ss-local -c /usr/<span class="built_in">local</span>/etc/shadowsocks-libev-jp.json &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-<h3 id="也可以使用Mac的launchctl来启动|停止">也可以使用Mac的launchctl来启动|停止</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.xxxxx.plist</div><div class="line">launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist <span class="comment"># 新增定时任务</span></div><div class="line"></div><div class="line">ln -sfv /usr/<span class="built_in">local</span>/opt/xxx/*.plist ~/Library/LaunchAgents <span class="comment"># 设置开机启动</span></div><div class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.xxxx.plist</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2130,7 +2165,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">87</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2141,7 +2176,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -2152,7 +2187,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

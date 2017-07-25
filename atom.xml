@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-07-19T03:47:21.000Z</updated>
+  <updated>2017-07-25T02:11:22.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -16,11 +16,30 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用Let&#39;s Encrypt加密网站</title>
+    <link href="http://boxcore.github.io/2017/07/25/let-us-encrypt-ssl.html"/>
+    <id>http://boxcore.github.io/2017/07/25/let-us-encrypt-ssl.html</id>
+    <published>2017-07-25T02:00:15.000Z</published>
+    <updated>2017-07-25T02:11:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Let’s Encrypt是一家开源的ssl签名验证工具，除了万恶的ie6，几户支持其他所有的浏览器，关键是还免费。关于其自动签名工具网站有很多，我这边就简单举例说下主要工具的应用场景。&lt;/p&gt;
+&lt;h2 id=&quot;certbot验证域名&quot;&gt;certbot验证域名&lt;/h2&gt;&lt;p
+    
+    </summary>
+    
+    
+      <category term="https" scheme="http://boxcore.github.io/tags/https/"/>
+    
+  </entry>
+  
+  <entry>
     <title>VS Code最佳方式</title>
     <link href="http://boxcore.github.io/2017/07/19/vscode-best-way.html"/>
     <id>http://boxcore.github.io/2017/07/19/vscode-best-way.html</id>
     <published>2017-07-19T14:34:49.000Z</published>
-    <updated>2017-07-19T03:47:21.000Z</updated>
+    <updated>2017-07-19T11:54:31.000Z</updated>
     
     <summary type="html">
     
@@ -33,6 +52,30 @@
     </summary>
     
       <category term="IDE" scheme="http://boxcore.github.io/categories/IDE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue.js学习笔记</title>
+    <link href="http://boxcore.github.io/2017/07/19/learn-vuejs.html"/>
+    <id>http://boxcore.github.io/2017/07/19/learn-vuejs.html</id>
+    <published>2017-07-19T12:02:40.000Z</published>
+    <updated>2017-07-19T12:15:29.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;vue.js包含内容&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;template&lt;/li&gt;
+&lt;li&gt;script&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="js" scheme="http://boxcore.github.io/categories/js/"/>
     
     
   </entry>
@@ -350,41 +393,6 @@
 &lt;p&gt;本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 &lt;a href=&quot;http://mywiki.wooledge.org&quot;&gt;this wiki&lt;/a&gt;，特别是这个页面：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://mywiki.wooledge.org/BashGuide/Practices&quot;&gt;http://mywiki.wooledge.org/BashGuide/Practices&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL配置和优化</title>
-    <link href="http://boxcore.github.io/2017/05/22/MySQL-setting-and-optimzation.html"/>
-    <id>http://boxcore.github.io/2017/05/22/MySQL-setting-and-optimzation.html</id>
-    <published>2017-05-22T03:27:33.000Z</published>
-    <updated>2017-05-31T02:57:31.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、查看配置&quot;&gt;一、查看配置&lt;/h2&gt;&lt;p&gt;查看binlog&lt;code&gt;show variables like &amp;#39;log_%&amp;#39;;&lt;/code&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;查看sql_mode的语法&lt;/p&gt;
-&lt;figure class=&quot;hi
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Mac优化实例</title>
-    <link href="http://boxcore.github.io/2017/05/17/Mac-optimization.html"/>
-    <id>http://boxcore.github.io/2017/05/17/Mac-optimization.html</id>
-    <published>2017-05-17T09:36:10.000Z</published>
-    <updated>2017-05-17T09:39:06.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;常用系统工具&quot;&gt;常用系统工具&lt;/h2&gt;&lt;h3 id=&quot;time_machine管理&quot;&gt;time machine管理&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
     
     </summary>
     
