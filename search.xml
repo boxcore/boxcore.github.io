@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在iTerm2中使用Zmodem实现快速传输文件(lrzsz)]]></title>
+    <url>%2F2017%2F08%2F01%2Ftools%2Fiterm-tools-zmodem.html</url>
+    <content type="text"><![CDATA[一直苦恼于mac下使用rzsz传文件的问题，今天恰好在运维之美看到了就摘出来分享下。 步骤大体的步骤有3个， 客户端安装lrzsz 服务端安装 在iTerm2中配置Zmodem 以下是相关脚本1234567apt-get install lrzsz # Ubuntu 服务器安装yum install lrzsz # CentOS服务器安装brew install lrzsz # 客户端安装git clone https://github.com/mmastrac/iterm2-zmodem.gitcd iterm2-zmodemcp iterm2-recv-zmodem.sh iterm2-send-zmodem.sh /usr/local/bin/ 在客户端添加配置：打开 iTerm2 ，点击 Preferences → Profiles 选择指定的 Profile，这里选 Default。然后继续选择 Advanced → Triggers，并点击 Edit 添加两个触发器。 按如下内容添加两个触发器，首先增加 sz 指令的触发器： Regular expression: rz waiting to receive.\*\*B0100 Action: Run Silent Coprocess Parameters: /usr/local/bin/iterm2-send-zmodem.sh Instant: checked 其次增加 rz 指令的触发器： Regular expression: \*\*B00000000000000 Action: Run Silent Coprocess Parameters: /usr/local/bin/iterm2-recv-zmodem.sh Instant: checked 完后大工告成，你就可以在iTerm2中使用rz/sz 命令进行远程传输文件了。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[常见公共dns分享]]></title>
+    <url>%2F2017%2F07%2F26%2Ftools%2Fdns-public.html</url>
+    <content type="text"><![CDATA[由于最近google的dns很不稳定，这里记录一些常用的公共dns解析地址供大家参考： 123456119.29.29.29 # dnspod,介绍地址：https://support.dnspod.cn/Kb/showarticle/tsid/241114.114.114.114 # 1148.8.4.4 # google 8.8.8.8 # google223.5.5.5 # 阿里1223.6.6.6 # 阿里2]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Supervisord使用]]></title>
+    <url>%2F2017%2F07%2F26%2Ftools%2Fsupervisord-usage.html</url>
+    <content type="text"><![CDATA[今天的一个小时学习编程工具是基于python开发的任务管理工具Supervisord，项目官方地址为。下面主要是说明Supervisord的基本用发以及在mac和centos中应用。 一、Supervisord基本用法1.1 安装Supervisordsupervisor安装方法如下： 12apt-get install supervisor # ubuntupip install supervisor # 使用python pip 安装 1.2 配置修改supervisor默认找配置的路径如：/usr/local/etc/supervisord.conf, /usr/local/supervisord.conf, supervisord.conf, etc/supervisord.conf, /etc/supervisord.conf, /etc/supervisor/supervisord.conf 把所有的配置文件都放在 supervisord.conf 并不是个好主意，一旦管理的进程过多，就很麻烦。所以一般都会 新建一个目录来专门放置进程的配置文件，然后通过 include 的方式来获取这些配置信息12[include]files = /etc/supervisor/conf.d/*.conf 1.3 Supervisord基础命令命令详解 supervisord: 初始启动Supervisord，启动、管理配置中设置的进程; supervisorctl stop(start, restart) xxx，停止（启动，重启）某一个进程(xxx); supervisorctl reread: 只载入最新的配置文件, 并不重启任何进程; supervisorctl reload: 载入最新的配置文件，停止原来的所有进程并按新的配置启动管理所有进程; supervisorctl update: 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启; a. 管理进程例子supervisord是通过 supervisorctl进行进程管理，由于目前没有添加任何需要管理的进程，所以 status 没有输出人和结果，接下来我们添加一个需要管理的进程 (以启动一个 celery 的 worker 为例)。1234567[program:celeryd]command=celery worker --app=task -l info ; 启动命令stdout_logfile=/var/log/supervisor/celeryd_out.log ; stdout 日志输出位置stderr_logfile=/var/log/supervisor/celeryd_err.log ; stderr 日志输出位置autostart=true ; 在 supervisord 启动的时候自动启动autorestart=true ; 程序异常退出后自动重启startsecs=10 ; 启动 10 秒后没有异常退出，就当作已经正常启动 然后运行以下命令更新配置并启动进程： supervisorctl reread: 只更新配置文件 supervisorctl update: 只启动有改动的进程 supervisorctl status: 查看状态 我们看到 celery worker 已经被成功启动了。你可以使用不同的命令来控制进程的启动和关闭： 123supervisorctl stop celeryd # 停止supervisorctl start celerydsupervisorctl restart celeryd 切记，每次修改或增删了配置文件, 都需要执行: supervisorctl update。执行supervisord可以进入 supervisorctl 的 shell 界面，123$ supervisorctlsupervisor&gt; status # 查看状态supervisor&gt; 二、Supervisord在Mac osx中的应用在mac中启用supervisor需要借助launchctl， 启用后就可以借助supervisor启用其他相关的进程了。这里说下我的配置，supervisord进程和配置内容如下： conf: /usr/local/etc/supervisord.conf bin: /usr/local/bin/supervisord 配置文件/usr/local/etc/supervisord.conf内容： 1234567891011121314151617181920212223242526272829303132; conf:/usr/local/etc/supervisord.conf; bin:/usr/local/bin/supervisord[unix_http_server]file=/tmp/supervisor.sock ; path to your socket file[supervisord]logfile=/usr/local/var/log/supervisord/supervisord.log ; supervisord log filelogfile_maxbytes=50MB ; maximum size of logfile before rotationlogfile_backups=10 ; number of backed up logfilesloglevel=error ; info, debug, warn, tracepidfile=/usr/local/var/run/supervisord.pid ; pidfile locationnodaemon=false ; run supervisord as a daemonminfds=1024 ; number of startup file descriptorsminprocs=200 ; number of process descriptorsuser=root ; default userchildlogdir=/usr/local/var/log/supervisord/ ; where child log files will live[rpcinterface:supervisor]supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface[supervisorctl]serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL for a unix socket[include]; files = /usr/local/etc/supervisor/conf.d/*.conffiles = /usr/local/etc/supervisor.d/*.conf[program:mongod]command=/usr/local/bin/mongod[program:redis-server]command=/usr/local/bin/redis-server vim ~/Library/LaunchAgents/supervisord.plist 12345678910111213141516171819202122&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt;&lt;dict&gt; &lt;key&gt;KeepAlive&lt;/key&gt; &lt;dict&gt; &lt;key&gt;SuccessfulExit&lt;/key&gt; &lt;false/&gt; &lt;/dict&gt; &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;supervisord&lt;/string&gt; &lt;key&gt;ProgramArguments&lt;/key&gt; &lt;array&gt; &lt;string&gt;/usr/local/bin/supervisord&lt;/string&gt; &lt;string&gt;-n&lt;/string&gt; &lt;string&gt;-c&lt;/string&gt; &lt;string&gt;/usr/local/etc/supervisord.conf&lt;/string&gt; &lt;/array&gt; &lt;key&gt;RunAtLoad&lt;/key&gt; &lt;true/&gt;&lt;/dict&gt;&lt;/plist&gt; 配置好后执行如下命令运行： launchctl load ~/Library/LaunchAgents/supervisord.plist 三、扩展 以上内容，感谢如下博主分享： 在 Mac OS X 上使用 supservisor 来管理后台进程 link]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Chrome高阶使用方法]]></title>
+    <url>%2F2017%2F07%2F25%2Ftools%2Fgoogle-chrome-advanced-usage.html</url>
+    <content type="text"><![CDATA[设置https自动跳转开启和关闭都在 chrome://net-internals/#hsts 开启 开启后，每次访问google.com 都会自动跳转到https 关闭 关闭后，你可以手动输入http 或者 https进行访问 设置]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[微信第三方登陆对接]]></title>
+    <url>%2F2017%2F07%2F25%2Faction%2Fauth-open-weixin.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>实战</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[使用Let's Encrypt加密网站]]></title>
     <url>%2F2017%2F07%2F25%2Flet-us-encrypt-ssl.html</url>
     <content type="text"><![CDATA[Let’s Encrypt是一家开源的ssl签名验证工具，除了万恶的ie6，几户支持其他所有的浏览器，关键是还免费。关于其自动签名工具网站有很多，我这边就简单举例说下主要工具的应用场景。 certbot验证域名官方提供的自动签名脚本，项目地址在：https://github.com/certbot/certbot。很可惜没有配置成功过，看网上代码配置还是非常简单的 acme-tiny验证域名 项目地址：https://github.com/diafygi/acme-tiny 使用简单，需要配置nginx在自己的域名下，我比较喜欢用他的一点是所验证的域名，如果非在该域名下也可以访问，不过会提示ssl不安全，这是比le-dns验证好的一点。 le-dns验证域名 项目地址：https://github.com/boxcore/shell/tree/master/tools/le-dns 最简单的验证方式，你必须要有域名的所有权限，目前支持的有dnspod和cloudxns，使用前你需要申请下key。个人比较喜欢用dns，好处的脚本自动写好续签了，很人性化，不过子域名没有签名的话，不能共用ssl证书。]]></content>
@@ -95,7 +126,11 @@
   <entry>
     <title><![CDATA[composer note]]></title>
     <url>%2F2017%2F06%2F13%2Fcomposer-note.html</url>
-    <content type="text"><![CDATA[composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅 packagist 一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 二、composer配置2.1 镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 2.2 配置语法12 三、composer使用3.1 composer基础命令使用123456789101112131415161718$ 一些帮助命令composer helpcomposer listcomposer help require$ composer 安装composer init$ 引入composercomposer require monolog/monolog$ 创建项目语法：composer create-project 名称 目录 版本composer create-project slim/slim slim-2.6.2 2.6.2composer install --no-dev # 非开发环境，不执行require-dev的包安装 使用composer安装laravel： 1composer create-project laravel/laravel learnlaravel5 5.2.31 3.2 php使用composer1require vendor/autoload.php 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
+    <content type="text"><![CDATA[composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在packagist找到。下面是composer常用到的资源库，mark在笔记最前方便查阅 packagist 一、安装composer123456789$ macbrew install composer$ linuxcurl -sS https://getcomposer.org/installer | phpsudo mv composer.phar /usr/local/bin/composer$ windows$ 下载安装 https://getcomposer.org/Composer-Setup.exe 二、composer配置2.1 镜像的配置由于国内网络的问题composer源可以替换回国内, 操作方法如下 设置为全局 composer config repo.packagist composer https://packagist.phpcomposer.com composer 全量中国镜像：http://pkg.phpcomposer.com/ 应用内设置 上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）： 123456"repositories": &#123; "packagist": &#123; "type": "composer", "url": "https://packagist.phpcomposer.com" &#125;&#125; 2.2 配置语法12 三、composer使用3.1 composer基础命令使用123456789101112131415161718192021$ 一些帮助命令composer helpcomposer listcomposer help require$ composer 安装composer init$ 引入composercomposer require monolog/monolog$ 创建项目语法：composer create-project 名称 目录 版本 参数composer create-project slim/slim slim-2.6.2 2.6.2composer create-project laravel/laravel learnlaravel5 5.2.31 --prefer-dist # 使用composer安装laravel# 说明--prefer-dist：强制使用压缩包，而不是克隆源代码composer install --no-dev # 非开发环境，不执行require-dev的包安装 3.2 php使用composer1require vendor/autoload.php 升级composer123composer selfupdateUse composer self-update --rollback to return to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd 四、composer实战4.1 使用composer配置laravel123# 安装指定版本的laravelcomposer create-project laravel/laravel=5.1.* myProject 参考 https://www.kancloud.cn/thinkphp/composer/35668 https://my.oschina.net/zhuyajie/blog/506025]]></content>
+      <tags>
+        <tag>composer</tag>
+        <tag>php</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[JavaScirpt Note: JavaScript基础篇]]></title>
@@ -391,8 +426,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>lnmp</tag>
         <tag>linux</tag>
+        <tag>lnmp</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -407,8 +442,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Package Control</tag>
+        <tag>Packges</tag>
       </tags>
   </entry>
   <entry>
@@ -419,8 +454,8 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Sublime Text</tag>
         <tag>CTags</tag>
+        <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
       </tags>
   </entry>
@@ -434,8 +469,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Emmet</tag>
         <tag>Packges</tag>
+        <tag>Emmet</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>

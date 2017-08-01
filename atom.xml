@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-07-25T02:11:22.000Z</updated>
+  <updated>2017-08-01T02:02:18.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在iTerm2中使用Zmodem实现快速传输文件(lrzsz)</title>
+    <link href="http://boxcore.github.io/2017/08/01/tools/iterm-tools-zmodem.html"/>
+    <id>http://boxcore.github.io/2017/08/01/tools/iterm-tools-zmodem.html</id>
+    <published>2017-08-01T01:56:06.000Z</published>
+    <updated>2017-08-01T02:02:18.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直苦恼于mac下使用rzsz传文件的问题，今天恰好在&lt;a href=&quot;http://mp.weixin.qq.com/s/HNtHovVs2vZHaAcxZKcULA&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;运维之美&lt;/a&gt;看到了就摘出来分享下。&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>常见公共dns分享</title>
+    <link href="http://boxcore.github.io/2017/07/26/tools/dns-public.html"/>
+    <id>http://boxcore.github.io/2017/07/26/tools/dns-public.html</id>
+    <published>2017-07-26T08:12:25.000Z</published>
+    <updated>2017-07-26T08:15:05.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于最近google的dns很不稳定，这里记录一些常用的公共dns解析地址供大家参考：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/di
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Supervisord使用</title>
+    <link href="http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html"/>
+    <id>http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html</id>
+    <published>2017-07-26T03:59:06.000Z</published>
+    <updated>2017-07-26T07:03:52.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天的一个小时学习编程工具是基于python开发的任务管理工具Supervisord，项目官方地址为。下面主要是说明Supervisord的基本用发以及在mac和centos中应用。&lt;/p&gt;
+&lt;h2 id=&quot;一、Supervisord基本用法&quot;&gt;一、Supervisord基
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chrome高阶使用方法</title>
+    <link href="http://boxcore.github.io/2017/07/25/tools/google-chrome-advanced-usage.html"/>
+    <id>http://boxcore.github.io/2017/07/25/tools/google-chrome-advanced-usage.html</id>
+    <published>2017-07-25T03:00:48.000Z</published>
+    <updated>2017-07-25T03:06:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;设置https自动跳转&quot;&gt;设置https自动跳转&lt;/h2&gt;&lt;p&gt;开启和关闭都在 &lt;a href=&quot;chrome://net-internals/#hsts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;chrome://net-internals
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微信第三方登陆对接</title>
+    <link href="http://boxcore.github.io/2017/07/25/action/auth-open-weixin.html"/>
+    <id>http://boxcore.github.io/2017/07/25/action/auth-open-weixin.html</id>
+    <published>2017-07-25T02:16:28.000Z</published>
+    <updated>2017-07-26T03:58:16.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="实战" scheme="http://boxcore.github.io/categories/%E5%AE%9E%E6%88%98/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>使用Let&#39;s Encrypt加密网站</title>
@@ -144,7 +228,7 @@
     <link href="http://boxcore.github.io/2017/07/18/action/kuzi-act.html"/>
     <id>http://boxcore.github.io/2017/07/18/action/kuzi-act.html</id>
     <published>2017-07-18T09:46:00.000Z</published>
-    <updated>2017-07-18T09:48:39.000Z</updated>
+    <updated>2017-07-21T10:18:51.000Z</updated>
     
     <summary type="html">
     
@@ -287,112 +371,6 @@
 &lt;p&gt;计划&lt;/p&gt;
 &lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;&lt;h5 id=&quot;Linux统计日志文件中的IP数&quot;&gt;Linux统计日志文件中的IP数&lt;/h5&gt;&lt;p&gt;linux下用awk统计日志中各个ip访问页面的次数，日志格式如下：&lt;/p&gt;
 &lt;blockquot
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>composer note</title>
-    <link href="http://boxcore.github.io/2017/06/13/composer-note.html"/>
-    <id>http://boxcore.github.io/2017/06/13/composer-note.html</id>
-    <published>2017-06-13T03:24:00.000Z</published>
-    <updated>2017-06-23T02:24:11.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;composer是php下的包管理器， 类似于node.js的npm，相关收录的php包可以在&lt;a href=&quot;https://packagist.org/explore/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;packagist&lt;/a&gt;找到。下面
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScirpt Note: JavaScript基础篇</title>
-    <link href="http://boxcore.github.io/2017/06/05/JavaScirpt-Note-the-basic-javascript.html"/>
-    <id>http://boxcore.github.io/2017/06/05/JavaScirpt-Note-the-basic-javascript.html</id>
-    <published>2017-06-05T04:01:00.000Z</published>
-    <updated>2017-06-06T02:59:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言-_javascript基本信息&quot;&gt;前言. javascript基本信息&lt;/h2&gt;&lt;p&gt;javascript是所学最难的编程语言,这里先给大家简单说下js的一些基层知识,在本月会持续更新到js高级部分.&lt;/p&gt;
-&lt;p&gt;enjoy it!&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;js与java的关系： 雷锋与雷锋塔的关系&lt;/li&gt;
-&lt;li&gt;js能做什么：游戏|后台应用程序|前台特效&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;00-javascript学习大纲:&quot;&gt;00.javascript学习大纲:&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;基础语法&lt;/li&gt;
-&lt;li&gt;内置对象&lt;/li&gt;
-&lt;li&gt;浏览器对象&lt;/li&gt;
-&lt;li&gt;文档对象&lt;/li&gt;
-&lt;li&gt;节点对象&lt;/li&gt;
-&lt;li&gt;ajax无刷新技术&lt;/li&gt;
-&lt;li&gt;jquery框架&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>编辑器宏和批量替换（sublime &amp; notepad++）</title>
-    <link href="http://boxcore.github.io/2017/05/31/ide-for-replace.html"/>
-    <id>http://boxcore.github.io/2017/05/31/ide-for-replace.html</id>
-    <published>2017-05-31T02:41:21.000Z</published>
-    <updated>2017-06-06T03:00:50.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;sublime批量替换&quot;&gt;sublime批量替换&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;批量替换空行：&lt;code&gt;^\n&lt;/code&gt; =&amp;gt; &lt;code&gt;(留空)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;删除全部空格将代码压缩：&lt;code&gt;(?ms)\s*&lt;/code&gt; =&amp;gt; &lt;code&gt;(留空)&lt;/code&gt;&lt;br&gt;-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;当然，如果想把这些绑定到快捷键中，使用插件&lt;a href=&quot;https://github.com/facelessuser/RegReplace/tree/st3-3.3.0&quot;&gt;RegReplace&lt;/a&gt;吧！&lt;/p&gt;
-&lt;p&gt;下面是我自己的一些配置：&lt;/p&gt;
-&lt;p&gt;file: &lt;code&gt;Packages/User/reg_replace_rules.sublime-settings&lt;/code&gt; :&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>php报错配置</title>
-    <link href="http://boxcore.github.io/2017/05/31/php-errors-setting.html"/>
-    <id>http://boxcore.github.io/2017/05/31/php-errors-setting.html</id>
-    <published>2017-05-31T02:22:25.000Z</published>
-    <updated>2017-06-06T03:01:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;php报错的配置&quot;&gt;php报错的配置&lt;/h2&gt;&lt;p&gt;php.ini默认开发环境设置如：&lt;/p&gt;
-&lt;figure class=&quot;highlight lua&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;error_reporting = E_ALL&amp;amp;~E_NOTICE&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;display_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;display_startup_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;log_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;log_errors_max_len = &lt;span class=&quot;number&quot;&gt;1024&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ignore_repeated_errors = Off&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ignore_repeated_source = Off&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;report_memleaks = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;track_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;html_errors = On&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;error_log = /usr/&lt;span class=&quot;keyword&quot;&gt;local&lt;/span&gt;/var/log/php-&lt;span class=&quot;built_in&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;number&quot;&gt;-56.&lt;/span&gt;log&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;注意配置&lt;code&gt;display_errors&lt;/code&gt;和&lt;br&gt;&lt;code&gt;display_startup_errors&lt;/code&gt;,如果是在线上环境切记要设置为&lt;code&gt;Off&lt;/code&gt;。这样就可以不显示报错信息，但会记录在错误的日志文件中。&lt;/p&gt;
-&lt;p&gt;如果配置了error_log = syslog, 则是指定产生的错误报告写入操作系统的日志里。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Bash风格指南</title>
-    <link href="http://boxcore.github.io/2017/05/26/Bash-code-style.html"/>
-    <id>http://boxcore.github.io/2017/05/26/Bash-code-style.html</id>
-    <published>2017-05-26T07:44:01.000Z</published>
-    <updated>2017-06-06T03:01:11.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Bash 风格指南来源&lt;/p&gt;
-&lt;p&gt;本风格指南旨在描述如何编写 bash 脚本，并使其安全和可预测。本指南基于 &lt;a href=&quot;http://mywiki.wooledge.org&quot;&gt;this wiki&lt;/a&gt;，特别是这个页面：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://mywiki.wooledge.org/BashGuide/Practices&quot;&gt;http://mywiki.wooledge.org/BashGuide/Practices&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;如本指南中有任何东西并未明确提出，则默认遵循这个 wiki 中所描述的观点。&lt;/p&gt;
     
     </summary>
     
