@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-04T03:27:42.000Z</updated>
+  <updated>2017-08-04T10:18:06.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>成长慢，因为你AV看太多</title>
+    <link href="http://boxcore.github.io/2017/08/04/think/%E6%88%90%E9%95%BF%E6%85%A2-%E5%9B%A0%E4%B8%BA%E4%BD%A0AV%E7%9C%8B%E5%A4%AA%E5%A4%9A.html"/>
+    <id>http://boxcore.github.io/2017/08/04/think/成长慢-因为你AV看太多.html</id>
+    <published>2017-08-04T04:32:13.000Z</published>
+    <updated>2017-08-04T10:18:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/006tKfTcgy1fi7jtez17xj30hs063my1.jpg&quot; alt=&quot;enter image description here&quot;&gt;&lt;/p&gt;
+&lt;blockq
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Github·Gist使用攻略</title>
@@ -352,23 +370,6 @@
     
       &lt;h1 id=&quot;phpunit测试&quot;&gt;phpunit测试&lt;/h1&gt;&lt;p&gt;Laravel Dusk&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>php的各种超时设置</title>
-    <link href="http://boxcore.github.io/2017/06/22/php-time-out.html"/>
-    <id>http://boxcore.github.io/2017/06/22/php-time-out.html</id>
-    <published>2017-06-22T06:02:35.000Z</published>
-    <updated>2017-06-22T06:02:38.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ini_set(‘mysql.connect_timeout’, 1800);&lt;br&gt;ini_set(‘default_socket_timeout’, 1800);&lt;br&gt;ini_set(‘max_execution_time’, 1800);&lt;/p&gt;
-&lt;p&gt;set_ti
     
     </summary>
     
