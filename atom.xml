@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-01T02:02:18.000Z</updated>
+  <updated>2017-08-04T03:27:42.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Github·Gist使用攻略</title>
+    <link href="http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html</id>
+    <published>2017-08-04T03:17:05.000Z</published>
+    <updated>2017-08-04T03:27:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Gist 是 Github 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 Gist 页面提供访问的 JavaScript 片段用于嵌入其他网站，如：个人博客等。下面说说gist的一些正确打开姿势
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我的PHP手册</title>
+    <link href="http://boxcore.github.io/2017/08/04/php/php-manual.html"/>
+    <id>http://boxcore.github.io/2017/08/04/php/php-manual.html</id>
+    <published>2017-08-04T03:08:25.000Z</published>
+    <updated>2017-08-04T03:15:10.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件参数&quot;&gt;文件参数&lt;/h2&gt;&lt;p&gt;parse_str:&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://gist.github.com/boxcore/32ac12a9dda2c5bb46893395e90f
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OpenSSL使用及域名签名</title>
+    <link href="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/02/linux/openssl-usage.html</id>
+    <published>2017-08-02T01:58:18.000Z</published>
+    <updated>2017-08-02T07:54:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;OpenSSL使用及域名签名&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>随想</title>
+    <link href="http://boxcore.github.io/2017/08/01/think/index.html"/>
+    <id>http://boxcore.github.io/2017/08/01/think/index.html</id>
+    <published>2017-08-01T06:06:37.000Z</published>
+    <updated>2017-08-04T03:27:57.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;生活的分享&lt;br&gt;工作的思考&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>在iTerm2中使用Zmodem实现快速传输文件(lrzsz)</title>
@@ -302,75 +369,6 @@
     
       &lt;p&gt;ini_set(‘mysql.connect_timeout’, 1800);&lt;br&gt;ini_set(‘default_socket_timeout’, 1800);&lt;br&gt;ini_set(‘max_execution_time’, 1800);&lt;/p&gt;
 &lt;p&gt;set_ti
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>100 way to setting proxy</title>
-    <link href="http://boxcore.github.io/2017/06/19/100-way-to-setting-proxy.html"/>
-    <id>http://boxcore.github.io/2017/06/19/100-way-to-setting-proxy.html</id>
-    <published>2017-06-19T07:22:11.000Z</published>
-    <updated>2017-06-19T07:23:57.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;$ terminal setting proxy:&lt;/p&gt;
-&lt;p&gt;export http_proxy=socks5://127.0.0.1:5566&lt;br&gt;export https_proxy=$http_proxy&lt;br&gt;unset http_proxy https_pr
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>我的Mac开发工具集</title>
-    <link href="http://boxcore.github.io/2017/06/19/my-mac-dev-tools.html"/>
-    <id>http://boxcore.github.io/2017/06/19/my-mac-dev-tools.html</id>
-    <published>2017-06-18T17:11:44.000Z</published>
-    <updated>2017-06-18T18:03:42.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-_zsh插件&quot;&gt;1. zsh插件&lt;/h4&gt;&lt;p&gt;命令行自动提醒：&lt;a href=&quot;https://github.com/zsh-users/zsh-autosuggestions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;zsh-auto
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScirpt-Note-jquery and ajax</title>
-    <link href="http://boxcore.github.io/2017/06/15/JavaScirpt-Note-jquery-and-ajax.html"/>
-    <id>http://boxcore.github.io/2017/06/15/JavaScirpt-Note-jquery-and-ajax.html</id>
-    <published>2017-06-15T03:02:55.000Z</published>
-    <updated>2017-06-15T03:03:39.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本章节主要说 jquery基础使用和jquery ajax处理&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux命令 : awk</title>
-    <link href="http://boxcore.github.io/2017/06/14/Linux-Commond-awk.html"/>
-    <id>http://boxcore.github.io/2017/06/14/Linux-Commond-awk.html</id>
-    <published>2017-06-14T07:51:40.000Z</published>
-    <updated>2017-06-14T07:56:45.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考文章&lt;/p&gt;
-&lt;p&gt;计划&lt;/p&gt;
-&lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;&lt;h5 id=&quot;Linux统计日志文件中的IP数&quot;&gt;Linux统计日志文件中的IP数&lt;/h5&gt;&lt;p&gt;linux下用awk统计日志中各个ip访问页面的次数，日志格式如下：&lt;/p&gt;
-&lt;blockquot
     
     </summary>
     

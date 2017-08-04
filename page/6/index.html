@@ -329,6 +329,647 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/20/install-lnmp-for-mac.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/20/install-lnmp-for-mac.html" itemprop="url">Mac折腾LNMP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-20T10:26:52+08:00">
+                2016-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DEV/" itemprop="url" rel="index">
+                    <span itemprop="name">DEV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/20/install-lnmp-for-mac.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/20/install-lnmp-for-mac.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/20/install-lnmp-for-mac.html" class="leancloud_visitors" data-flag-title="Mac折腾LNMP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前安装mysql一直都是失败，于是使用了mamp，发现很多扩展安装非常麻烦。于是，又开始动手使用homebrew安装 php7 + mysql5.7 +nginx.</p>
+<h2 id="一、设置homebrew">一、设置homebrew</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ruby <span class="_">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)</span>"</span></div><div class="line">brew update</div><div class="line"> brew tap homebrew/dupes </div><div class="line"> brew tap homebrew/versions </div><div class="line"> brew tap homebrew/homebrew-php</div></pre></td></tr></table></figure>
+<h2 id="二、安装nginx">二、安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重启nginx : sudo nginx -s reload|stop</span></div><div class="line">sudo nginx <span class="_">-s</span> stop &amp;&amp; sudo nginx</div></pre></td></tr></table></figure>
+<h2 id="三、安装mysql">三、安装mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew edit mysql</div><div class="line">wget xxxx-5.7.11.tar.gz</div><div class="line">mv mysql-5.7.11.el_capitan.bottle.tar.gz /Library/Caches/Homebrew/</div><div class="line">brew install mysql</div></pre></td></tr></table></figure>
+<h2 id="四、安装php">四、安装php</h2><h3 id="4-1_安装php5-x">4.1 安装php5.x</h3><p>使用brew可以安装php的版本有 5.3、5.4、5.5、5.6</p>
+<p>如果已经有安装php，需要unlink后再继续。比如我现在有php54，但要安装hp55，则需要这样去执行升级操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew unlink php54</div><div class="line">brew install php55</div></pre></td></tr></table></figure>
+<h3 id="4-2_安装php7-0">4.2 安装php7.0</h3><p>mac下重启php-fpm后可能使用了旧的版本，需要执行如下命令使得php和php-fpm调用的是7.0的版本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$(brew --prefix php70)</span>/sbin:<span class="variable">$PATH</span>"</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-3_PHP常用扩展安装">4.3 PHP常用扩展安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># swoole: https://github.com/swoole/swoole-src/releases/</span></div><div class="line"><span class="comment"># redis:  下载：https://github.com/phpredis/phpredis/tree/php7</span></div><div class="line"></div><div class="line"><span class="comment"># 以上安装方式都是：</span></div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div><div class="line"></div><div class="line"><span class="comment"># memcached</span></div><div class="line">brew install memcached</div><div class="line">brew install php70-memcached</div></pre></td></tr></table></figure>
+<h3 id="4-4_安装php常见问题">4.4 安装php常见问题</h3><ol>
+<li>memcached 依赖问题<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0Deprecated: PHP Startup: memcached.sess_lock_wait and memcached.sess_lock_max_wait are deprecated. Please update your configuration to use memcached.sess_lock_wait_min, memcached.sess_lock_wait_max and memcached.sess_lock_retries in Unknown on line 0PHP 7.0.2 (cli) (built: Jan 7 2016 10:40:26) ( NTS )Copyright (c) 1997-2015 The PHP GroupZend Engine v3.0.0, Copyright (c) 1998-2015 Zend Technologies with Xdebug v2.4.0RC3, Copyright (c) 2002-2015, by Derick Rethans</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注释配置<code>/usr/local/etc/php/7.0/conf.d/ext-memcached.ini</code>如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">;memcached.sess_lock_wait = 150000</div><div class="line">;memcached.sess_lock_max_wait = 0</div></pre></td></tr></table></figure></p>
+<p>  <strong>参考</strong>：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/35130463/php7-memcache-deprecated-error-message" target="_blank" rel="external">http://stackoverflow.com/questions/35130463/php7-memcache-deprecated-error-message</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/dev-vimeo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/17/dev-vimeo.html" itemprop="url">Vimeo 视频开发</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T12:00:56+08:00">
+                2016-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/17/dev-vimeo.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/17/dev-vimeo.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/17/dev-vimeo.html" class="leancloud_visitors" data-flag-title="Vimeo 视频开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>vimeo是国外支持html5的播放器，而且木有广告，是嵌入到企业站或者博客站首选的视频之一，以下为嵌入vimeo视频的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"//player.vimeo.com/video/VIDEO_ID"</span> <span class="attr">width</span>=<span class="string">"WIDTH"</span> <span class="attr">height</span>=<span class="string">"HEIGHT"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">webkitallowfullscreen</span> <span class="attr">mozallowfullscreen</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://developer.vimeo.com/player/embedding" target="_blank" rel="external">vimeo文档地址</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/wordpress-to-hexo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/17/wordpress-to-hexo.html" itemprop="url">Hexo用法&wordpress迁移</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T00:37:00+08:00">
+                2016-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/17/wordpress-to-hexo.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/17/wordpress-to-hexo.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/17/wordpress-to-hexo.html" class="leancloud_visitors" data-flag-title="Hexo用法&wordpress迁移">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天把wp博客迁移到了hexo，主要原因是以后不用考虑空间问题。下面是迁移的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用npm安装插件</span></div><div class="line">npm install hexo-migrator-wordpress --save</div><div class="line"><span class="comment">#（先去Wordprdss导出你的XML文件先），在博客目录执行</span></div><div class="line">hexo migrate wordpress wordpress.xml</div><div class="line"><span class="comment">#导完之后，插件和xml都可以卸掉了~_~</span></div><div class="line"></div><div class="line"><span class="comment"># 另外，由于mac中有报错`&#123; [Error: Cannot find module './build/Release/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' &#125;`， 需执行命令:</span></div><div class="line">npm install hexo --no-optional</div></pre></td></tr></table></figure>
+<p>另外，如果需要在线可视化编辑器，可以安装hexo-admin这个工具：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save hexo-admin</div></pre></td></tr></table></figure></p>
+<p>完成后，访问 <code>localhost:4000/admin</code>就是后台编辑的页面了。</p>
+<p>enjoy it！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/07/18/jetbrains-software-keygen.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/07/18/jetbrains-software-keygen.html" itemprop="url">jetbrains系统注册码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-18T13:29:56+08:00">
+                2014-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/07/18/jetbrains-software-keygen.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/07/18/jetbrains-software-keygen.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/07/18/jetbrains-software-keygen.html" class="leancloud_visitors" data-flag-title="jetbrains系统注册码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>系列软件的用户名都是<code>BOXCORE</code></p>
+<p>phpStorm注册码：</p>
+<p>===== LICENSE BEGIN =====<br>63272-12042010<br>00000l7V1XdVStPUJJBsHFRDdsUbGG<br>VbeOn!V1m62NqILGensvhsX5”r1PWS<br>RdlBkcl2sw3SDjP8azf4jw90TVuVZB<br>===== LICENSE END =====</p>
+<p>&nbsp;</p>
+<p>rubymini注册码</p>
+<p>===== LICENSE BEGIN =====<br>36121-12042010<br>000026ZaA8”l8ewDF”62XGOG4oeKCM<br>QfyjQCh4OkEdFXYoYBX”PnUChnMrLK<br>CfF”7RgedAhh78zfNSlNEc996jZJpV<br>===== LICENSE END =====</p>
+<p>&nbsp;</p>
+<p>WebStorm</p>
+<p>===== LICENSE BEGIN =====<br>31168-12042010<br>00000FTsQvvg2Wsc5xjT0AVDwzU4zZ<br>D87W3vfAv8hY””LXngYd1cHyAL9srj<br>hC70dya142m5uvhirGmWPcd”p8rMMf<br>===== LICENSE END =====</p>
+<p>&nbsp;</p>
+<p>PyCharm</p>
+<p>===== LICENSE BEGIN =====<br>98736-12042010<br>00001LIgH92VW6”X5OOrf4Vpt3t!g9<br>yuMZhvqcdcftrxPjQQvRiMCP8YsM0K<br>!BSir5BuHTtOvYAsh6Xt8weGoPp8it<br>===== LICENSE END =====</p>
+<p><pre class="brush:other"></pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/06/26/rss-list.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1284,675 +1925,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/10/phpmyadmin-config-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/10/phpmyadmin-config-setting.html" itemprop="url">phpmyadmin免输入密码直接登陆mysql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-10T08:45:40+08:00">
-                2014-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/10/phpmyadmin-config-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/10/phpmyadmin-config-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/10/phpmyadmin-config-setting.html" class="leancloud_visitors" data-flag-title="phpmyadmin免输入密码直接登陆mysql">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>设置说明:<br>config.sample.inc.php 修改为 config.inc.php</p>
-<p>添加如下代码：。</p>
-<p><pre class="brush:php">$i++;<br>/<em> Authentication type </em>/<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>/<em> Server parameters </em>/<br>$cfg[‘Servers’][$i][‘host’] = ‘localhost’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>/<em> Select mysqli if your server has it </em>/<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;</pre></p>
-<p>$i++;<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>$cfg[‘Servers’][$i][‘host’] = ‘192.168.15.2’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘123456’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;<br>&nbsp;</p>
-<p>注意修改用户名和密码，可以设置多个，需要在$i++后添加。</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/09/install-nginx-for-lnmp.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/09/install-nginx-for-lnmp.html" itemprop="url">LNMP编译：nginx的安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-09T11:09:17+08:00">
-                2014-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/09/install-nginx-for-lnmp.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/09/install-nginx-for-lnmp.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/09/install-nginx-for-lnmp.html" class="leancloud_visitors" data-flag-title="LNMP编译：nginx的安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>编译nginx前依赖包安装：</p>
-<p><pre class="brush:bash"># install pcre for nginx<br>if [ -s pcre-8.34.tar.gz ]; then<br>  echo “pcre-8.34.tar.gz [found]”<br>else<br>  echo “Error: pcre-8.34.tar.gz not found!!!download now……”<br>  wget -c <a href="http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz" target="_blank" rel="external">http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz</a><br>fi<br>tar zxvf pcre-8.34.tar.gz<br>cd pcre-8.34/<br>./configure<br>make &amp;&amp; make install<br>cd ../<br>ldconfig</pre><br>&nbsp;</p>
-<p>开始编译nginx：</p>
-<p>下载解压：</p>
-<p><pre class="brush:bash">tar zxvf nginx-1.4.4.tar.gz<br>cd nginx-1.4.4/</pre><br>&nbsp;</p>
-<p>configure配置项：</p>
-<p>如果你的nginx依赖件已经用yum先安装好，可以使用下面命令：</p>
-<p><pre class="brush:bash">./configure –user=$LNMP_USER –group=$LNMP_USER –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-pcre</pre><br>如果nginx依赖包是编译的，需要指定目录：</p>
-<p><pre class="brush:bash">./configure –user=www –group=www –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-openssl=/usr/include/openssl –with-pcre</pre><br>&nbsp;</p>
-<p>如果报错</p>
-<p><pre class="brush:bash">error:openssl/include/openssl/ssl.h] Error 2</pre><br>需要确定openssl是否安装好，如果是yum安装openssl-devel后，configure时的参数去掉–with-openssl=/lib64/ –with-zlib=/usr/lib64/ –with-md5=/usr/lib64即可编译通过</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/07/sublime-text-plugin-package-control.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/07/sublime-text-plugin-package-control.html" itemprop="url">Sublime Text插件：Package Control安装包管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-07T14:15:17+08:00">
-                2014-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/07/sublime-text-plugin-package-control.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/07/sublime-text-plugin-package-control.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/07/sublime-text-plugin-package-control.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：Package Control安装包管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Package Control 能让你很方便地管理sublime text插件，下面讲解sublime如何安装package control包：</p>
-<p>官方原版教材：<a href="https://sublime.wbond.net/installation" target="_blank" rel="external">https://sublime.wbond.net/installation</a></p>
-<p>如果e文不好，就看看我的操作吧：</p>
-<p>1. 快捷键“Ctrl+`”或菜单里“View &gt; Show Console”来调用控制器；</p>
-<p>2. 在底部的控制器中粘贴如下代码：</p>
-<p>sublime text 3：</p>
-<p><pre class="brush:python">import urllib.request,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)</pre><br>&nbsp;</p>
-<p>sublime text 2：</p>
-<p><pre class="brush:python">import urllib2,os,hashlib; h = ‘7183a2d3e96f11eeadd761d777e62404’ + ‘e330c659d4bb41d3bdf022e94cab3cd0’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), ‘wb’ ).write(by) if dh == h else None; print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h) if dh != h else ‘Please restart Sublime Text to finish installation’)</pre><br>&nbsp;</p>
-<p>回车后就完成了package control的安装了！</p>
-<p>&nbsp;</p>
-<p>使用方法，选择菜单“Preferences &gt; Browse Packages”里面就有</p>
-<p>快捷键：“Ctrl+Shift+P”调用</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/sublime-text-plugin-ctags.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/06/sublime-text-plugin-ctags.html" itemprop="url">Sublime Text插件：CTags安装和使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-06T20:09:40+08:00">
-                2014-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/06/sublime-text-plugin-ctags.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/06/sublime-text-plugin-ctags.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/06/sublime-text-plugin-ctags.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：CTags安装和使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>CTags简介：略</p>
-<p>&nbsp;</p>
-<p>CTags安装：</p>
-<p>跟其他插件安装一样，放到packags目录中</p>
-<p>sublime text CTags项目地址：<a href="https://github.com/SublimeText/CTags" target="_blank" rel="external">https://github.com/SublimeText/CTags</a></p>
-<p>百度网盘下载地址：<a href="http://pan.baidu.com/s/1nt9GOpN" target="_blank" rel="external">http://pan.baidu.com/s/1nt9GOpN</a></p>
-<p>&nbsp;</p>
-<p>安装好ctags后并不能直接使用，还需要安装配套的ctags58才行。</p>
-<p>ctag58安装文件：</p>
-<p>下载一：百度网盘  <a href="http://pan.baidu.com/s/1hqfyQNE（建议安装到D:Program" target="_blank" rel="external">http://pan.baidu.com/s/1hqfyQNE（建议安装到D:Program</a> Filesctags58，并添加到系统变量中）</p>
-<p>下载二：官方 <a href="http://ctags.sourceforge.net" target="_blank" rel="external">http://ctags.sourceforge.net</a></p>
-<p>&nbsp;</p>
-<p>解压下载好的ctags58.zip，我这里放在了D:Program files<br>配置环境变量： 讲D:Program filesctags58 地址配置到环境变量path中<br>在cmd 中 输入 ctags –help 出现帮助信息则表示安装配置成功<br>ctags安装配置好之后 在sublime text 打开 Package Control 输入install 选择 install package安装扩展<br>接下来输入ctags，找到ctags扩展包 回车安装<br>最后在打开的项目中 在sublimetext 目录栏中 find-&gt;CTags-&gt;build Tags 后 会在项目的根目录下生成.tags文件</p>
-<p>&nbsp;</p>
-<p>Sublime下CTags使用：</p>
-<p>ctrl+shift+鼠标左键 就可以定位到相应的函数或变量了</p>
-<p>&nbsp;</p>
-<p>其他参考：<a href="http://blog.csdn.net/thunderclaus/article/details/11556159" target="_blank" rel="external">http://blog.csdn.net/thunderclaus/article/details/11556159</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2002,7 +1974,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

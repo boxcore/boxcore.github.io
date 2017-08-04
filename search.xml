@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Github·Gist使用攻略]]></title>
+    <url>%2F2017%2F08%2F04%2Ftools%2Fgithub-gist-usage.html</url>
+    <content type="text"><![CDATA[Gist 是 Github 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 Gist 页面提供访问的 JavaScript 片段用于嵌入其他网站，如：个人博客等。下面说说gist的一些正确打开姿势。 一、使用、管理Gist1.1 使用 Github Gistgithub官网默认功能，这里不多说了 1.2 gistboxappgistboxapp是一个gist集成管理工具，GistBox 是可以直接用 Github 账户登录的，实时同步你的 Gist 到 Github，很方便。GitBox 从体验上来说更加方便，界面元素丰富，功能也比较全。如果不想用 Sublime Text, 又觉着 Github 自己的 Gist 管理太简单，GistBox是一种不错的方式。官网是 https://app.gistboxapp.com/，功能功能截图如下： 1.3 使用 Sublime Text + Gist插件安装插件：Gist 配置token: 插件下的user setting下配置， 添加 Github Token:12345&#123; // Your GitHub API token // see: https://github.com/condemil/Gist#generating-access-token "token": "a28b686c3a74······c300f42414c7", // 从命令行得到的 token&#125; 分享Gist代码这里直接粘贴部分代码片段： 12345&lt;!-- 使用iframe加载 --&gt;&lt;iframe width="100%" height="300" src="https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.pibb" allowfullscreen="allowfullscreen" frameborder="0"&gt;&lt;/iframe&gt;&lt;!-- 使用js加载 --&gt;&lt;script src="https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.js"&gt;&lt;/script&gt; 或者添加通用的处理规则在function中： 1234567891011// wordpress usage/** * WordPress 使用 iframe 嵌入Github Gist代码 * https://www.wpdaxue.com/wp-iframe-handler-gist.html */function wp_iframe_handler_gist( $matches, $attr, $url, $rawattr ) &#123; $iframe = '&lt;iframe width="100%" height="300" src="https://gist.github.com/'. esc_attr($matches[1]) .'/'. esc_attr($matches[2]) . '.pibb" frameborder=0 &gt;&lt;/iframe&gt;'; return apply_filters( 'iframe_gist', $iframe, $matches, $attr, $url, $rawattr );&#125;wp_embed_register_handler( 'gist_iframe', '#https://gist.github.com/(.*?)/([\d]+)#i', 'wp_iframe_handler_gist' );]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[我的PHP手册]]></title>
+    <url>%2F2017%2F08%2F04%2Fphp%2Fphp-manual.html</url>
+    <content type="text"><![CDATA[文件参数parse_str:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[OpenSSL使用及域名签名]]></title>
+    <url>%2F2017%2F08%2F02%2Flinux%2Fopenssl-usage.html</url>
+    <content type="text"><![CDATA[OpenSSL使用及域名签名 1openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[随想]]></title>
+    <url>%2F2017%2F08%2F01%2Fthink%2Findex.html</url>
+    <content type="text"><![CDATA[生活的分享工作的思考]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[在iTerm2中使用Zmodem实现快速传输文件(lrzsz)]]></title>
     <url>%2F2017%2F08%2F01%2Ftools%2Fiterm-tools-zmodem.html</url>
     <content type="text"><![CDATA[一直苦恼于mac下使用rzsz传文件的问题，今天恰好在运维之美看到了就摘出来分享下。 步骤大体的步骤有3个， 客户端安装lrzsz 服务端安装 在iTerm2中配置Zmodem 以下是相关脚本1234567apt-get install lrzsz # Ubuntu 服务器安装yum install lrzsz # CentOS服务器安装brew install lrzsz # 客户端安装git clone https://github.com/mmastrac/iterm2-zmodem.gitcd iterm2-zmodemcp iterm2-recv-zmodem.sh iterm2-send-zmodem.sh /usr/local/bin/ 在客户端添加配置：打开 iTerm2 ，点击 Preferences → Profiles 选择指定的 Profile，这里选 Default。然后继续选择 Advanced → Triggers，并点击 Edit 添加两个触发器。 按如下内容添加两个触发器，首先增加 sz 指令的触发器： Regular expression: rz waiting to receive.\*\*B0100 Action: Run Silent Coprocess Parameters: /usr/local/bin/iterm2-send-zmodem.sh Instant: checked 其次增加 rz 指令的触发器： Regular expression: \*\*B00000000000000 Action: Run Silent Coprocess Parameters: /usr/local/bin/iterm2-recv-zmodem.sh Instant: checked 完后大工告成，你就可以在iTerm2中使用rz/sz 命令进行远程传输文件了。]]></content>
@@ -442,8 +462,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Package Control</tag>
         <tag>Packges</tag>
+        <tag>Package Control</tag>
       </tags>
   </entry>
   <entry>
@@ -469,8 +489,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Emmet</tag>
+        <tag>Packges</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>
