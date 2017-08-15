@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-04T10:18:06.000Z</updated>
+  <updated>2017-08-14T03:52:03.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OCR开发之找轮子</title>
+    <link href="http://boxcore.github.io/2017/08/14/tools/ocr-begin.html"/>
+    <id>http://boxcore.github.io/2017/08/14/tools/ocr-begin.html</id>
+    <published>2017-08-14T03:21:46.000Z</published>
+    <updated>2017-08-14T03:52:03.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有从图书中拍照ocr部分段落的需求，这里是收集的部分入门 及 目前商用的接口方案。&lt;/p&gt;
+&lt;p&gt;以下关于OCR介绍来自搜索：&lt;/p&gt;
+&lt;p&gt;OCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微信第三方网站对接</title>
+    <link href="http://boxcore.github.io/2017/08/11/action/auth-open-weixin.html"/>
+    <id>http://boxcore.github.io/2017/08/11/action/auth-open-weixin.html</id>
+    <published>2017-08-11T09:47:43.000Z</published>
+    <updated>2017-08-11T09:52:55.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、开发之前&quot;&gt;一、开发之前&lt;/h2&gt;&lt;h3 id=&quot;1-1_开发工具&quot;&gt;1.1 开发工具&lt;/h3&gt;&lt;p&gt;在着手开发之前，首选要了解微信开发相关文档和调试工具：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://bbs.mb.qq.com/thread-1
+    
+    </summary>
+    
+      <category term="实战" scheme="http://boxcore.github.io/categories/%E5%AE%9E%E6%88%98/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>成长慢，因为你AV看太多</title>
@@ -164,22 +202,6 @@
     </summary>
     
       <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>微信第三方登陆对接</title>
-    <link href="http://boxcore.github.io/2017/07/25/action/auth-open-weixin.html"/>
-    <id>http://boxcore.github.io/2017/07/25/action/auth-open-weixin.html</id>
-    <published>2017-07-25T02:16:28.000Z</published>
-    <updated>2017-07-26T03:58:16.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="实战" scheme="http://boxcore.github.io/categories/%E5%AE%9E%E6%88%98/"/>
     
     
   </entry>
@@ -353,23 +375,6 @@
     <summary type="html">
     
       &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Learn about phpunit</title>
-    <link href="http://boxcore.github.io/2017/06/22/learn-about-phpunit.html"/>
-    <id>http://boxcore.github.io/2017/06/22/learn-about-phpunit.html</id>
-    <published>2017-06-22T06:03:05.000Z</published>
-    <updated>2017-06-22T11:51:34.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;phpunit测试&quot;&gt;phpunit测试&lt;/h1&gt;&lt;p&gt;Laravel Dusk&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
     
     </summary>
     
