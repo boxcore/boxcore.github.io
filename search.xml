@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2017-08-17 正则浅析]]></title>
+    <url>%2F2017%2F08%2F17%2Ftalk-about-regular.html</url>
+    <content type="text"><![CDATA[本文只探讨正则在php中的一些使用，小白用户还是先了解下正则相关的基础概念：正则表达式30分钟入门教程 一、正则基础函数1234567891011121314151617181920212223242526/** * 函数参数说明 * $pattern = 正则表达式 * $subject = 匹配的目标数据 * */// 只将第一个匹配到的结果赋值给$matches，$matches为一维数组。preg_match返回值为匹配到的次数，0或1.preg_match($pattern, $subject); // 将所有匹配到的结果赋值给$matches,$matches为二维数组。preg_match_all返回值为匹配到的次数。preg_match_all($pattern, $subject, $matches);// preg_filter()和preg_replace()区别：在对数组方面替换的时候，preg_replace()会返回所有结果，preg_filter()只会返回替换到的结果。preg_replace($pattern, $replacement, $subject);preg_filter($pattern, $replacement, $subject);// 只匹配，不替换，返回匹配到的数组值preg_grep($pattern, array $input);// 区别explode(…)preg_split($pattern, $subject);// 它会将正则表达式中的特殊字符进行转义。// regex的运算符： . \ + * ? [ ^ ] $ ( ) &#123; &#125; = ! &lt; &gt; | : -// 转义符号 \preg_quote($str) 二、正则表达式基本语法正则表达式基本语法归类： 界定符： 表示一个正则表达式的开始和结束；EG：/[0-9]/; eg: $pattern = ‘/[0-9]/‘ 或者 #[0-9]# ｛[0-9]｝(不推荐使用大括号)； 原子: 原装可以分为可见原子和不可见原子，都能用正则表达式进行原子匹配。 可见原子：Unicode编码表中用键盘输出后肉眼可见的字符, 比如 标点 _ ;,?等等 英文字母和数字 汉字/日文等其他语言文字 求和等数理化公式符号 其他可见字符 特殊原子：\ 因为本身还是转义字符，所以要用\才能匹配到一个\符号 不可见原子：Unicode编码表中用键盘输出后肉眼不可见的字符 换行符 \n 回车符 \r 制表符 \t 空格 其他不可见符号 元字符： [] -&gt; 匹配出现在[]中的任意一个原子 | -&gt; 或运算，匹配|符号左右两边的任意一个 [^ ] -&gt;首先这里^必须和[紧挨着，才表示匹配除了[]里面任意原子的字符 [ ^ ]-&gt;如果不挨着，就只表示匹配^这种字符了 原子的集合： . 匹配除换行符之外的任意字符。等价于[^\n]。 \d 匹配任意一个十进制数字，即[0-9]。 \D 匹配任意一个非十进制数字，即[^0-9]。 \s 匹配一个不可见原子，即[\f\n\r\t\v]。 \S 匹配一个可见原子，即[^\f\n\r\t\v]。 \w 匹配任意一个数字，字母或下划线，即[0-9a-zA-Z_]。 \W 匹配任意一个非数字，字母或是下划线，即[^0-9a-zA-Z_]。 量词 {n} 表示其前面的原子恰好出现n次。 {n,} 表示其前面的原子最少出现n次。 {n,m} 表示其前面的原子最少出现n次，最多出现m次。 !? 匹配0次，1次，或者多次其之前的原子，即{0,}。 ? ??????? + 匹配1次，或者多次其之前的原子，即{1,}。 ? 匹配0次，1次，或者1次其之前的原子，即{0,1}。 备注:量词不仅支持原子，同样支持原子的集合，同样支持元字符的写法。例如：\w{4} 边界控制 ^ 匹配字符串开始的位置 $ 匹配字符串结尾的位置 模式单元 （）匹配其中的整体为一个原子, 例如：（H|h)ello则匹配Hello和hello的结果。 修正模式 贪婪匹配: 匹配结果存在歧义时取其长 懒惰匹配: 匹配结果存在歧义时取其短 常见的修正模式： U 懒惰匹配 i 忽略英文字母大小写 x 忽略空白(空格，制表符等空白符） s 让元字符’.’匹配包括换行符在内的所有字符 e 后面单独写下~ 惰模式的标识为大写的U例如：$pattern = ‘/hello.+12/‘;$subject = ‘hello1231321233123131’;在贪婪模式下匹配的结果为：hello1231321233123131而修改为懒惰匹配 $pattern = ‘/hello.+12/U’;$subject = ‘hello1231321233123131’;那么结果就会变为：hello12 三、常见正则表达式练习 非空：/.+/ 浮点数匹配： /\d+.\d{2}$/ ，实现保留两位的浮点数，$符号是上文中的边界控制哦~ 手机号匹配：/1[34578]\d{9}/，匹配到的为1开头，第二位为3，4，5，7，或8的11位手机号 email地址匹配： /^\w+(.\w+)*@\w+(.\w+)+$/ (\w 字母,数字,下划线) URL匹配：http是否出现，是http还是https。即 ^(https?://)?。是否是二级域名? 即：(\w+.)+。顶级域名。即：[a-zA-Z]+。故：正则表达式：^(https?://)?(\w+.)+[a-zA-Z]+$ 3.1 正则工具类的设计实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778&lt;?phpclass RegexTool &#123; //常用的regex表达式数组 private $validata = array( 'require' =&gt; '/.+/', 'email' =&gt; '/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', 'url' =&gt; '/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]&#123;2,4&#125;(?:[\/\?#][\/=\?%\-&amp;~`@[\]\':+!\.#\w]*)?$/', 'currency' =&gt; '/^\d+(\.\d+)?$/', 'number' =&gt; '/^\d+$/', 'zip' =&gt; '/^\d&#123;6&#125;$/', 'integer' =&gt; '/^[-\+]?\d+$/', 'double' =&gt; '/^[-\+]?\d+(\.\d+)?$/', 'english' =&gt; '/^[A-Za-z]+$/', 'qq' =&gt; '/^\d&#123;5,11&#125;$/', 'mobile' =&gt; '/^1(3|4|5|7|8)\d&#123;9&#125;$/', ); //返回数组还是返回真假的boolean变量 private $returnMatechResult = false; //修正模式 private $fixmode = null; //匹配结果数组 private $matches = array(); //是否匹配成功 private $isMatch = false; //类的构造函数 public function __construct($returnMatchResult = false, $fixMode = null) &#123; $this-&gt;returnMatchResult = $returnMatchResult; $this-&gt;fixMode = $fixMode; &#125; //核心匹配方法 public function regex($pattern ,$subject)&#123; //array_key_exists判断键值是否存在 if (array_key_exists(strtolower($pattern), $this-&gt;validata)) &#123; $pattern = $this-&gt;validata[$pattern].$this-&gt;fixmode; &#125; $this-&gt;returnMatchResult? preg_match_all($pattern, $subject, $this-&gt;matches):$this-&gt;isMatch = preg_match($pattern, $subject)===1; return $this-&gt;getRegexResult(); &#125; //获取返回值类型的方法 private function getRegexResult()&#123; if ($this-&gt;returnMatchResult) &#123; return $this-&gt;matches; &#125;else&#123; return $this-&gt;isMatch; &#125; &#125; //切换返回值类型 public function togoReturnType($boolean = null)&#123; if (empty($boolean)) &#123; $this-&gt;returnMatchResult = !$this-&gt;returnMatchResult; &#125;else&#123; $this-&gt;returnMatchResult = is_bool($boolean)?$boolean:(bool)$boolean; &#125; &#125; //设定修正模式 public function setFixMode($fixMode) &#123; $this-&gt;fixMode = $fixMode; &#125; //一些数据验证方法 //是否为空 public function noEmpty($str)&#123; return $this-&gt;regex('require',$str); &#125; //验证email public function isEmail($email)&#123; return $this-&gt;regex('email',$email); &#125; //....其他的类似，省略了，小伙伴自己可以自定义添加哦~ //用户自定义正则表达式 public function check($pattern, $subject) &#123; return $this-&gt;regex($pattern, $subject); &#125;&#125;?&gt; 一些学习工具 regexpal工具: 正则表达式书写辅助工具 regexpal 是Google Code上的一个开源项目，可以实时匹配正则表达式，方便调试，使用HTML和JS开发，推荐给大家使用。 鬼斧神工的正则表达式（PHP语言）]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[OCR开发之找轮子]]></title>
     <url>%2F2017%2F08%2F14%2Ftools%2Focr-begin.html</url>
     <content type="text"><![CDATA[最近有从图书中拍照ocr部分段落的需求，这里是收集的部分入门 及 目前商用的接口方案。 以下关于OCR介绍来自搜索： OCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，针对印刷体字符，采用光学的方式将纸质文档中的文字转换成为黑白点阵的图像文件，并通过识别软件将图像中的文字转换成文本格式，供文字处理软件进一步编辑加工的技术。如何除错或利用辅助信息提高识别正确率，是OCR最重要的课题，ICR（Intelligent Character Recognition）的名词也因此而产生。衡量一个OCR系统性能好坏的主要指标有：拒识率、误识率、识别速度、用户界面的友好性，产品的稳定性，易用性及可行性等。 简单地说吧，就是识别印刷品上面的文字，大概用得比较多的情况是：用设备的摄像头拍一张照片，照片中有文字，然后通过OCR技术将照片中的字符识别出来，转化为字符。顺便说一下，如果想“干坏事”的话，也可以用OCR技术来识别一些简单的图片验证码，呵呵，不过，现在很多网站的验证码都比较“狡猾”，要准确识别出来不那么容易。 LEADTOOLS: 英文识别文档SDK，支持c#、html5、ios和安卓等平台 腾讯云 - 万象优图2.0]]></content>
@@ -433,8 +438,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>DocBlockr</tag>
         <tag>sublime插件</tag>
+        <tag>DocBlockr</tag>
       </tags>
   </entry>
   <entry>
@@ -456,8 +461,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>lnmp</tag>
         <tag>linux</tag>
+        <tag>lnmp</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -472,8 +477,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Package Control</tag>
         <tag>Packges</tag>
+        <tag>Package Control</tag>
       </tags>
   </entry>
   <entry>
@@ -485,8 +490,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>sublime插件</tag>
         <tag>CTags</tag>
+        <tag>sublime插件</tag>
       </tags>
   </entry>
   <entry>
@@ -499,8 +504,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Emmet</tag>
+        <tag>Packges</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>

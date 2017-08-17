@@ -329,6 +329,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/08/php/php-memory-get-usage.html" itemprop="url">PHP内存优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T18:35:01+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/08/php/php-memory-get-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/08/php/php-memory-get-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/08/php/php-memory-get-usage.html" class="leancloud_visitors" data-flag-title="PHP内存优化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在php中，我们最常用 <code>memory_get_usage()</code>来返回php内存的使用情况，它默认单位是Bytes,</p>
+<h2 id="一、内存溢出问题">一、内存溢出问题</h2><h3 id="内存溢出解决方案">内存溢出解决方案</h3><p>这里，不难看出，一方面，我们要增加PHP可用内存大小，另一方面，只要我们想办法对数组进行分批处理，分而治之，将用过的变量及时销毁(unset)，一般是不会出现溢出问题的。</p>
+<p>另外，为了节省PHP程序内存损耗，我们应当尽可能减少静态变量的使用，在需要数据重用时，可以考虑使用引用(&amp;)。再一点就是：数据库操作完成后，要马上关闭连接；一个对象使用完，要及时调用析构函数（__destruct()）。</p>
+<h3 id="结论">结论</h3><ul>
+<li>php5.3及以上可以使用函数<code>gc_collect_cycles()</code>进行垃圾回收</li>
+<li>使用完变量需要用<code>unset()</code>销毁</li>
+<li></li>
+</ul>
+<p>参考的一些文章：</p>
+<ul>
+<li><a href="http://zhengdl126.iteye.com/blog/1112231" target="_blank" rel="external">http://zhengdl126.iteye.com/blog/1112231</a></li>
+<li><a href="http://www.laruence.com/2011/03/04/1894.html" target="_blank" rel="external">http://www.laruence.com/2011/03/04/1894.html</a></li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/03/11/java/java-note-zk.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1749,281 +1896,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/01/24/restful-api-design.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/24/restful-api-design.html" itemprop="url">PHP RESTful API接口设计之道</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T14:24:54+08:00">
-                2017-01-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/24/restful-api-design.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/24/restful-api-design.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/24/restful-api-design.html" class="leancloud_visitors" data-flag-title="PHP RESTful API接口设计之道">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="0-_before…">0. before…</h2><p>设计前后端完全分离的应用，可以使用到RESTful API。比如， Backbone 的默认规则最适合的是一个完全 restful 风格的后端接口，如果你的后端系统没有准备好，那就直接覆盖掉吧。restful 不光是前端的事～ 是构架层面上的事情，如果想用Backbone的话，肯定是需要后端重新定义所有的接口了，但是这也是好事，毕竟 restful 逻辑更清晰，以后的更新，维护会更方便。</p>
-<h2 id="一、基础">一、基础</h2><p>现在的网站没有API都给人落后的印象了，而当下设计API流行的规范便是RESTful。REST全称是Representational State Transfer，中文意思是表述（编者注：通常译为表征）性状态转移。它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是HTTP规范的主要编写者之一。 他在论文中提到：”我这篇文章的写作目的，就是想在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。REST指的是一组架构约束条件和原则。” 如果一个架构符合REST的约束条件和原则，我们就称它为RESTful架构。</p>
-<p>它涉及到以下这些内容。</p>
-<h3 id="1-1_域名">1.1 域名</h3><p>应尽量部署在专用域名之下，可以在前边加个二级头或者域名后添加api路径。</p>
-<blockquote>
-<p><a href="https://api.example.com" target="_blank" rel="external">https://api.example.com</a><br><a href="https://example.com/api/" target="_blank" rel="external">https://example.com/api/</a></p>
-</blockquote>
-<h3 id="1-2_版本">1.2 版本</h3><p>API经常会变，因此要注意区分版本。一般放入URL中。</p>
-<blockquote>
-<p><a href="https://api.example.com/v1/" target="_blank" rel="external">https://api.example.com/v1/</a></p>
-</blockquote>
-<h3 id="1-3_路径">1.3 路径</h3><p>路径又称”终点”（endpoint），表示API的具体网址。<br>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。<br>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
-<blockquote>
-<p><a href="https://api.example.com/v1/zoos" target="_blank" rel="external">https://api.example.com/v1/zoos</a><br><a href="https://api.example.com/v1/animals" target="_blank" rel="external">https://api.example.com/v1/animals</a><br><a href="https://api.example.com/v1/employees" target="_blank" rel="external">https://api.example.com/v1/employees</a></p>
-</blockquote>
-<h3 id="1-4_HTTP动词">1.4 HTTP动词</h3><p>对于资源的具体操作类型，由HTTP动词表示。<br>常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p>
-<ul>
-<li>GET（SELECT）：从服务器取出资源（一项或多项）</li>
-<li>POST（CREATE）：在服务器新建一个资源</li>
-<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</li>
-<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）</li>
-<li>DELETE（DELETE）：从服务器删除资源</li>
-<li>HEAD: 类似GET，但只回传HTTP header (safe &amp; idempotent)</li>
-</ul>
-<p>其它还有一些较少用到的，可参Wikipedia: <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods" target="_blank" rel="external">Hypertext Transfer Protocol</a></p>
-<p>下面是一些例子。</p>
-<ul>
-<li>GET /zoos：列出所有动物园</li>
-<li>POST /zoos：新建一个动物园</li>
-<li>GET /zoos/ID：获取某个指定动物园的信息</li>
-<li>PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</li>
-<li>PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</li>
-<li>DELETE /zoos/ID：删除某个动物园</li>
-<li>GET /zoos/ID/animals：列出某个指定动物园的所有动物</li>
-<li>DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物</li>
-</ul>
-<h3 id="1-5_过滤信息">1.5 过滤信息</h3><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。<br>下面是一些常见的参数。</p>
-<ul>
-<li>?limit=10：指定返回记录的数量</li>
-<li>?offset=10：指定返回记录的开始位置</li>
-<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数</li>
-<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序</li>
-<li>?animal_type_id=1：指定筛选条件</li>
-</ul>
-<h3 id="1-6_状态码">1.6 状态码</h3><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
-<ul>
-<li>200 OK – [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）</li>
-<li>201 CREATED – [POST/PUT/PATCH]：用户新建或修改数据成功</li>
-<li>202 Accepted – [*]：表示一个请求已经进入后台排队（异步任务）</li>
-<li>204 NO CONTENT – [DELETE]：用户删除数据成功</li>
-<li>400 INVALID REQUEST – [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的</li>
-<li>401 Unauthorized – [*]：表示用户没有权限（令牌、用户名、密码错误）</li>
-<li>403 Forbidden – [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的</li>
-<li>404 NOT FOUND – [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的</li>
-<li>405  method not allowed – [*]：该http方法不被允许</li>
-<li>406 Not Acceptable – [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）</li>
-<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的</li>
-<li>422 Unprocesable entity – [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误</li>
-<li>500 INTERNAL SERVER ERROR – [*]：服务器发生错误，用户将无法判断发出的请求是否成功</li>
-</ul>
-<h3 id="1-7_错误处理">1.7 错误处理</h3><p>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;error: "invalid API key"&#125;</div></pre></td></tr></table></figure>
-<h3 id="1-8_返回结果">1.8 返回结果</h3><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
-<ul>
-<li>GET /collection：返回资源对象的列表（数组）</li>
-<li>GET /collection/resource：返回单个资源对象</li>
-<li>POST /collection：返回新生成的资源对象</li>
-<li>PUT /collection/resource：返回完整的资源对象</li>
-<li>PATCH /collection/resource：返回完整的资源对象</li>
-<li>DELETE /collection/resource：返回一个空文档</li>
-</ul>
-<h2 id="二、最佳实践">二、最佳实践</h2><h3 id="2-1_Slim框架的使用">2.1 Slim框架的使用</h3><p>推荐一个轻量版PHP RESTful框架：<a href="https://www.slimframework.com/" target="_blank" rel="external">Slim</a> ，有兴趣的同学可以参考其文档：<a href="http://docs.slimframework.com/" target="_blank" rel="external">http://docs.slimframework.com/</a></p>
-<p>下面以一个网上的教程给大家说明，主要是应用前端框架AngularJS 和 后端PHP框架Slim搭设的一个简易图书管理系统为例。</p>
-<h4 id="代码实现">代码实现</h4><p>主要的工作是在项目根目录下的index.php文件里进行的，第一步需要引入Slim框架</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//第一步：引用Slim框架</span></div><div class="line"><span class="comment">//首先，需要在你的index.php中引入Slim框架的依赖，根据实际情况，你可能得调整下文件的路径</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'Slim/Slim.php'</span>;</div><div class="line">\Slim\Slim::registerAutoloader();</div></pre></td></tr></table></figure>
-<h3 id="2-x_测试_-_插件使用">2.x 测试 - 插件使用</h3><ol>
-<li><p>Chrome 插件 Postman</p>
-</li>
-<li><p>Chrome插件Json-viewer 和 json-handle</p>
-</li>
-</ol>
-<p>### </p>
-<h2 id="三、扩展">三、扩展</h2><h3 id="3-1_不要默认使用大括号封装，但要在需要的时候支持">3.1 不要默认使用大括号封装，但要在需要的时候支持</h3><p>json 还是回调，那是个问题：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"data"</span> : &#123;</div><div class="line">    <span class="attr">"id"</span> : <span class="number">123</span>,</div><div class="line">    <span class="attr">"name"</span> : <span class="string">"John"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>or<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">callback_function(&#123;</div><div class="line">  status_code: <span class="number">200</span>,</div><div class="line">  next_page: <span class="string">"https://.."</span>,</div><div class="line">  response: &#123;</div><div class="line">    ... actual <span class="built_in">JSON</span> response body ... </div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>好的做法是：</p>
-<ul>
-<li><a href="http://example.com/api/xxx?type=jsonp&amp;callback=yourCallBackName" target="_blank" rel="external">http://example.com/api/xxx?type=jsonp&amp;callback=yourCallBackName</a></li>
-<li><a href="http://example.com/api/xxx?type=json" target="_blank" rel="external">http://example.com/api/xxx?type=json</a></li>
-<li><a href="http://example.com/api/xxx?type=xml" target="_blank" rel="external">http://example.com/api/xxx?type=xml</a></li>
-</ul>
-<p>就返回对应结构的数据。</p>
-<h3 id="3-2_如何使用_Last-Modified_和_Etags_如何帮助提高性能?">3.2 如何使用 Last-Modified 和 Etags 如何帮助提高性能?</h3><p>开发者会把 Last-Modified 和 ETags 请求的 HTTP 报头一起使用，这样可利用客户端（例如浏览器）的缓存。因为服务器首先产生 Last-Modified/Etag 标记，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其缓存是否过期。</p>
-<p>HTTP 协议规格说明定义 <code>ETag</code> 为“被请求变量的实体值”。 服务器单独负责判断记号是什么及其含义，并在 HTTP 响应头中将其传送到客户端，以下是服务器端返回的格式：</p>
-<blockquote>
-<p>ETag: “d41d8cd98f00b204e9800998ecf8427e”</p>
-</blockquote>
-<p>客户端的查询更新格式是这样的：</p>
-<blockquote>
-<p>If-None-Match: W/“d41d8cd98f00b204e9800998ecf8427e”</p>
-</blockquote>
-<p>如果ETag没改变，则返回状态304，内容为空，这也和Last-Modified一样。下面再扔些php的例子看看：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    $file = <span class="string">'myfile.php'</span>;</div><div class="line">    $last_modified_time = filemtime($file); </div><div class="line">    $etag = md5_file($file); </div><div class="line"></div><div class="line">    header(<span class="string">"Last-Modified: "</span>.gmdate(<span class="string">"D, d M Y H:i:s"</span>, $last_modified_time).<span class="string">" GMT"</span>); </div><div class="line">    header(<span class="string">"Etag: $etag"</span>); </div><div class="line"></div><div class="line">    <span class="keyword">if</span> (@strtotime($_SERVER[<span class="string">'HTTP_IF_MODIFIED_SINCE'</span>]) == $last_modified_time || </div><div class="line">        trim($_SERVER[<span class="string">'HTTP_IF_NONE_MATCH'</span>]) == $etag) &#123; </div><div class="line">        header(<span class="string">"HTTP/1.1 304 Not Modified"</span>); </div><div class="line">    <span class="keyword">exit</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>补充：对于前端部分网上的一些做法是：Gulp对所有的静态资源进行预处理，生成一份manifest，标明了预处理前后文件之间的对应关系。<a href="https://github.com/Natumsol/web-demo/tree/master/cache_control?f=web.jobbole.com/82838/" target="_blank" rel="external">DEMO</a>, 另外腾讯前端团队的一篇关于web缓存系列文章大家也可以查阅下：<a href="http://www.alloyteam.com/2012/03/web-cache-2-browser-cache/" target="_blank" rel="external">直通车</a></p>
-</blockquote>
-<h2 id="总结">总结</h2><p>技术的变革一般都是为了提高生产力的，restful的初衷也是。它提倡简单（理论上讲只要业务实体抽象的好就够了），纯粹（每个资源就四种操作）的 API 设计思想，需要使用者坚持信仰（坚持基本原则），适度灵活。 </p>
-<p>— 来自SF.gg</p>
-<h2 id="Q&amp;A">Q&amp;A</h2><h5 id="1-_务器返回的数据格式，应该使用JSON还是使用XML？">1. 务器返回的数据格式，应该使用JSON还是使用XML？</h5><p>推送使用JSON，如果提供的服务对象较多，可以设置兼容XML</p>
-<h5 id="2-_REST能应用在什么场景？">2. REST能应用在什么场景？</h5><p>REST规范中明确规定，处理的是资源（或者实体），而不是动作。换句话说，REST处理的是books或者animals这种东西，而login之类的业务逻辑是动作，不适用REST。</p>
-<p>restful 可以看做 orm 的 web api 形式，也就是说，资源指的是数据库里面的表（或者表的连接），或者是你nosql数据库里面的对象。当调用者需要并且有权直接操作它们，或者是以表的粒度操作数据库，才需要使用 restful。</p>
-<h5 id="3-_统计能使用REST吗？">3. 统计能使用REST吗？</h5><h5 id="4-_兴趣探讨Vue-js、ReactJS、AngularJS">4. 兴趣探讨Vue.js、ReactJS、AngularJS</h5><h5 id="5-_扩展：API_Cookie加密">5. 扩展：API Cookie加密</h5><h5 id="6-_php_crud_和resetful的相似之处">6. php crud 和resetful的相似之处</h5><h2 id="参考">参考</h2><p><strong>简单版：</strong></p>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="external">《RESTful API 设计指南》 - 阮一峰的网络日志</a></li>
-<li><a href="https://segmentfault.com/a/1190000004353103" target="_blank" rel="external">restful-api-design-references</a></li>
-<li><a href="https://leancloud.cn/docs/rest_api.html" target="_blank" rel="external">REST API 使用详解</a></li>
-<li><a href="https://gold.xitu.io/entry/587c6633128fe10057fa31c4" target="_blank" rel="external">国内值得关注的官方 API 集合</a></li>
-</ul>
-<p><strong>高阶版：</strong></p>
-<ul>
-<li><a href="https://docs.phalconphp.com/zh/latest/reference/tutorial-rest.html" target="_blank" rel="external">phalcon框架的REST实践</a></li>
-<li><a href="https://github.com/mevdschee/php-crud-api" target="_blank" rel="external">PHP-CRUD-API: </a></li>
-</ul>
-<p>另外有一些基于商业服务提供的接口文档有：</p>
-<ul>
-<li><a href="https://leancloud.cn/docs/rest_api.html#API_版本" target="_blank" rel="external">LeanCloud: REST API 使用详解</a></li>
-</ul>
-<hr>
-<p>UPS：</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000004038353" target="_blank" rel="external">https://segmentfault.com/a/1190000004038353</a></li>
-<li><a href="https://segmentfault.com/a/1190000002690813" target="_blank" rel="external">https://segmentfault.com/a/1190000002690813</a></li>
-<li><a href="https://zhujun24.github.io/2014/12/10/AngularJS%E5%85%A5%E9%97%A8%E7%9A%84%E5%B0%8FDemo/" target="_blank" rel="external">https://zhujun24.github.io/2014/12/10/AngularJS%E5%85%A5%E9%97%A8%E7%9A%84%E5%B0%8FDemo/</a></li>
-<li><a href="https://zhujun24.github.io/2015/03/19/%E7%94%A8Slim%E8%BD%BB%E5%9E%8BPHP%E6%A1%86%E6%9E%B6%E5%86%99RESTful%20APIs/" target="_blank" rel="external">https://zhujun24.github.io/2015/03/19/%E7%94%A8Slim%E8%BD%BB%E5%9E%8BPHP%E6%A1%86%E6%9E%B6%E5%86%99RESTful%20APIs/</a></li>
-<li><a href="https://segmentfault.com/a/1190000004690182" target="_blank" rel="external">https://segmentfault.com/a/1190000004690182</a></li>
-</ul>
-<hr>
-<ul>
-<li><a href="http://www.php.cn/php-notebook-285669.html" target="_blank" rel="external">http://www.php.cn/php-notebook-285669.html</a></li>
-<li><a href="http://www.yiifans.com/yii2/guide/tool-gii.html" target="_blank" rel="external">http://www.yiifans.com/yii2/guide/tool-gii.html</a></li>
-<li><a href="https://tw.twincl.com/programming/*641y" target="_blank" rel="external">https://tw.twincl.com/programming/*641y</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2073,7 +1945,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

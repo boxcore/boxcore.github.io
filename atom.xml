@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-14T03:52:03.000Z</updated>
+  <updated>2017-08-17T04:11:33.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2017-08-17 正则浅析</title>
+    <link href="http://boxcore.github.io/2017/08/17/talk-about-regular.html"/>
+    <id>http://boxcore.github.io/2017/08/17/talk-about-regular.html</id>
+    <published>2017-08-17T03:41:17.000Z</published>
+    <updated>2017-08-17T04:11:33.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文只探讨正则在php中的一些使用，小白用户还是先了解下正则相关的基础概念：&lt;a href=&quot;https://deerchao.net/tutorials/regex/regex.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;正则表达式30分钟入门
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>OCR开发之找轮子</title>
@@ -359,22 +375,6 @@
       &lt;p&gt;这里罗列一些实战的项目。&lt;/p&gt;
 &lt;p&gt;举个栗子，我弄了个裤子，you know it!&lt;/p&gt;
 
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hadoop note</title>
-    <link href="http://boxcore.github.io/2017/06/22/hadoop-note.html"/>
-    <id>http://boxcore.github.io/2017/06/22/hadoop-note.html</id>
-    <published>2017-06-22T11:50:00.000Z</published>
-    <updated>2017-06-22T11:52:08.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
     
     </summary>
     

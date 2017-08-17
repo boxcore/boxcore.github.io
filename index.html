@@ -329,6 +329,226 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/17/talk-about-regular.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/talk-about-regular.html" itemprop="url">2017-08-17 正则浅析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T11:41:17+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/17/talk-about-regular.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/17/talk-about-regular.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/17/talk-about-regular.html" class="leancloud_visitors" data-flag-title="2017-08-17 正则浅析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文只探讨正则在php中的一些使用，小白用户还是先了解下正则相关的基础概念：<a href="https://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external">正则表达式30分钟入门教程</a></p>
+<h2 id="一、正则基础函数">一、正则基础函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 函数参数说明</div><div class="line"> * $pattern = 正则表达式</div><div class="line"> * $subject = 匹配的目标数据</div><div class="line"> * </div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">// 只将第一个匹配到的结果赋值给$matches，$matches为一维数组。preg_match返回值为匹配到的次数，0或1.</span></div><div class="line">preg_match($pattern, $subject); </div><div class="line"><span class="comment">// 将所有匹配到的结果赋值给$matches,$matches为二维数组。preg_match_all返回值为匹配到的次数。</span></div><div class="line">preg_match_all($pattern, $subject, $matches);</div><div class="line"></div><div class="line"><span class="comment">// preg_filter()和preg_replace()区别：在对数组方面替换的时候，preg_replace()会返回所有结果，preg_filter()只会返回替换到的结果。</span></div><div class="line">preg_replace($pattern, $replacement, $subject);</div><div class="line">preg_filter($pattern, $replacement, $subject);</div><div class="line"></div><div class="line"><span class="comment">// 只匹配，不替换，返回匹配到的数组值</span></div><div class="line">preg_grep($pattern, <span class="keyword">array</span> $input);</div><div class="line"></div><div class="line"><span class="comment">// 区别explode(…)</span></div><div class="line">preg_split($pattern, $subject);</div><div class="line"></div><div class="line"><span class="comment">// 它会将正则表达式中的特殊字符进行转义。</span></div><div class="line"><span class="comment">// regex的运算符： . \ + * ? [ ^ ] $ ( ) &#123; &#125; = ! &lt; &gt; | : -</span></div><div class="line"><span class="comment">// 转义符号 \</span></div><div class="line">preg_quote($str)</div></pre></td></tr></table></figure>
+<h2 id="二、正则表达式基本语法">二、正则表达式基本语法</h2><p>正则表达式基本语法归类：</p>
+<ul>
+<li>界定符： 表示一个正则表达式的开始和结束；EG：/[0-9]/; eg: $pattern = ‘/[0-9]/‘ 或者 #[0-9]# ｛[0-9]｝(不推荐使用大括号)；</li>
+<li>原子: 原装可以分为可见原子和不可见原子，都能用正则表达式进行原子匹配。<ul>
+<li>可见原子：Unicode编码表中用键盘输出后肉眼可见的字符, 比如<ul>
+<li>标点 _ ;,?等等</li>
+<li>英文字母和数字</li>
+<li>汉字/日文等其他语言文字</li>
+<li>求和等数理化公式符号</li>
+<li>其他可见字符</li>
+<li>特殊原子：\ 因为本身还是转义字符，所以要用\才能匹配到一个\符号</li>
+</ul>
+</li>
+<li>不可见原子：Unicode编码表中用键盘输出后肉眼不可见的字符<ul>
+<li>换行符 \n</li>
+<li>回车符 \r</li>
+<li>制表符 \t</li>
+<li>空格</li>
+<li>其他不可见符号</li>
+</ul>
+</li>
+<li>元字符：<br>  [] -&gt; 匹配出现在[]中的任意一个原子<br>  | -&gt; 或运算，匹配|符号左右两边的任意一个<br>  [^ ] -&gt;首先这里^必须和[紧挨着，才表示匹配除了[]里面任意原子的字符<br>  [ ^ ]-&gt;如果不挨着，就只表示匹配^这种字符了</li>
+<li>原子的集合：<ul>
+<li><code>.</code>  匹配除换行符之外的任意字符。等价于[^\n]。</li>
+<li><code>\d</code> 匹配任意一个十进制数字，即[0-9]。</li>
+<li><code>\D</code> 匹配任意一个非十进制数字，即[^0-9]。</li>
+<li><code>\s</code> 匹配一个不可见原子，即[\f\n\r\t\v]。</li>
+<li><code>\S</code> 匹配一个可见原子，即[^\f\n\r\t\v]。</li>
+<li><code>\w</code> 匹配任意一个数字，字母或下划线，即[0-9a-zA-Z_]。</li>
+<li><code>\W</code> 匹配任意一个非数字，字母或是下划线，即[^0-9a-zA-Z_]。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>量词<ul>
+<li><code>{n}</code> 表示其前面的原子恰好出现n次。</li>
+<li><code>{n,}</code> 表示其前面的原子最少出现n次。</li>
+<li><code>{n,m}</code> 表示其前面的原子最少出现n次，最多出现m次。</li>
+<li><code>!?</code> 匹配0次，1次，或者多次其之前的原子，即{0,}。 ?      ???????</li>
+<li><code>+</code> 匹配1次，或者多次其之前的原子，即{1,}。</li>
+<li><code>?</code> 匹配0次，1次，或者1次其之前的原子，即{0,1}。<blockquote>
+<p>备注:量词不仅支持原子，同样支持原子的集合，同样支持元字符的写法。例如：\w{4}</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>边界控制<ol>
+<li><code>^</code> 匹配字符串开始的位置</li>
+<li><code>$</code> 匹配字符串结尾的位置</li>
+</ol>
+</li>
+<li>模式单元<ul>
+<li><code>（）</code>匹配其中的整体为一个原子, 例如：（H|h)ello则匹配Hello和hello的结果。</li>
+</ul>
+</li>
+<li>修正模式<ul>
+<li>贪婪匹配: 匹配结果存在歧义时取其长</li>
+<li>懒惰匹配: 匹配结果存在歧义时取其短</li>
+<li>常见的修正模式：<ul>
+<li><code>U</code> 懒惰匹配</li>
+<li><code>i</code> 忽略英文字母大小写</li>
+<li><code>x</code> 忽略空白(空格，制表符等空白符）</li>
+<li><code>s</code> 让元字符’.’匹配包括换行符在内的所有字符</li>
+<li><code>e</code> 后面单独写下~<blockquote>
+<p>惰模式的标识为大写的U<br>例如：<br>$pattern = ‘/hello.+12/‘;<br>$subject = ‘hello<strong>1231321233123131’;<br>在贪婪模式下匹配的结果为：hello</strong>1231321233123131<br>而修改为懒惰匹配</p>
+<p>$pattern = ‘/hello.+12/U’;<br>$subject = ‘hello<strong>1231321233123131’;<br>那么结果就会变为：hello</strong>12</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、常见正则表达式练习">三、常见正则表达式练习</h2><ul>
+<li>非空：<code>/.+/</code></li>
+<li>浮点数匹配： <code>/\d+.\d{2}$/</code> ，实现保留两位的浮点数，$符号是上文中的边界控制哦~</li>
+<li>手机号匹配：<code>/1[34578]\d{9}/</code>，匹配到的为1开头，第二位为3，4，5，7，或8的11位手机号</li>
+<li>email地址匹配： <code>/^\w+(.\w+)*@\w+(.\w+)+$/</code> (\w 字母,数字,下划线)</li>
+<li>URL匹配：http是否出现，是http还是https。即 <code>^(https?://)?</code>。是否是二级域名? 即：<code>(\w+.)+</code>。顶级域名。即：<code>[a-zA-Z]+</code>。故：正则表达式：<code>^(https?://)?(\w+.)+[a-zA-Z]+$</code></li>
+</ul>
+<h3 id="3-1_正则工具类的设计实现">3.1 正则工具类的设计实现</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegexTool</span> </span>&#123;</div><div class="line">    <span class="comment">//常用的regex表达式数组</span></div><div class="line">    <span class="keyword">private</span> $validata = <span class="keyword">array</span>(</div><div class="line">        <span class="string">'require'</span>   =&gt;  <span class="string">'/.+/'</span>,</div><div class="line">            <span class="string">'email'</span>     =&gt;  <span class="string">'/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/'</span>,</div><div class="line">            <span class="string">'url'</span>       =&gt;  <span class="string">'/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]&#123;2,4&#125;(?:[\/\?#][\/=\?%\-&amp;~`@[\]\':+!\.#\w]*)?$/'</span>,</div><div class="line">            <span class="string">'currency'</span>  =&gt;  <span class="string">'/^\d+(\.\d+)?$/'</span>,</div><div class="line">            <span class="string">'number'</span>    =&gt;  <span class="string">'/^\d+$/'</span>,</div><div class="line">            <span class="string">'zip'</span>       =&gt;  <span class="string">'/^\d&#123;6&#125;$/'</span>,</div><div class="line">            <span class="string">'integer'</span>   =&gt;  <span class="string">'/^[-\+]?\d+$/'</span>,</div><div class="line">            <span class="string">'double'</span>    =&gt;  <span class="string">'/^[-\+]?\d+(\.\d+)?$/'</span>,</div><div class="line">            <span class="string">'english'</span>   =&gt;  <span class="string">'/^[A-Za-z]+$/'</span>,</div><div class="line">            <span class="string">'qq'</span>        =&gt;    <span class="string">'/^\d&#123;5,11&#125;$/'</span>,</div><div class="line">            <span class="string">'mobile'</span>    =&gt;    <span class="string">'/^1(3|4|5|7|8)\d&#123;9&#125;$/'</span>,</div><div class="line">        );</div><div class="line">    <span class="comment">//返回数组还是返回真假的boolean变量</span></div><div class="line">    <span class="keyword">private</span> $returnMatechResult = <span class="keyword">false</span>;</div><div class="line">    <span class="comment">//修正模式</span></div><div class="line">    <span class="keyword">private</span> $fixmode = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">//匹配结果数组</span></div><div class="line">    <span class="keyword">private</span> $matches = <span class="keyword">array</span>();</div><div class="line">    <span class="comment">//是否匹配成功</span></div><div class="line">    <span class="keyword">private</span> $isMatch = <span class="keyword">false</span>;</div><div class="line">    <span class="comment">//类的构造函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($returnMatchResult = false, $fixMode = null)</span> </span>&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;returnMatchResult = $returnMatchResult;</div><div class="line">    <span class="keyword">$this</span>-&gt;fixMode = $fixMode;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//核心匹配方法</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">regex</span><span class="params">($pattern ,$subject)</span></span>&#123;</div><div class="line">       <span class="comment">//array_key_exists判断键值是否存在</span></div><div class="line">        <span class="keyword">if</span> (array_key_exists(strtolower($pattern), <span class="keyword">$this</span>-&gt;validata)) &#123;</div><div class="line">            $pattern = <span class="keyword">$this</span>-&gt;validata[$pattern].<span class="keyword">$this</span>-&gt;fixmode;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">$this</span>-&gt;returnMatchResult?</div><div class="line">        preg_match_all($pattern, $subject, <span class="keyword">$this</span>-&gt;matches):<span class="keyword">$this</span>-&gt;isMatch = preg_match($pattern, $subject)===<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;getRegexResult();</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//获取返回值类型的方法</span></div><div class="line">   <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">getRegexResult</span><span class="params">()</span></span>&#123;</div><div class="line">           <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;returnMatchResult) &#123;</div><div class="line">               <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;matches;</div><div class="line">           &#125;<span class="keyword">else</span>&#123;</div><div class="line">               <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;isMatch;</div><div class="line">           &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//切换返回值类型</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">togoReturnType</span><span class="params">($boolean = null)</span></span>&#123;</div><div class="line"></div><div class="line">           <span class="keyword">if</span> (<span class="keyword">empty</span>($boolean)) &#123;</div><div class="line">               <span class="keyword">$this</span>-&gt;returnMatchResult = !<span class="keyword">$this</span>-&gt;returnMatchResult;</div><div class="line">           &#125;<span class="keyword">else</span>&#123;</div><div class="line">               <span class="keyword">$this</span>-&gt;returnMatchResult = is_bool($boolean)?$boolean:(bool)$boolean;</div><div class="line">           &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//设定修正模式</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setFixMode</span><span class="params">($fixMode)</span> </span>&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;fixMode = $fixMode;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//一些数据验证方法</span></div><div class="line"></div><div class="line">   <span class="comment">//是否为空</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">noEmpty</span><span class="params">($str)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex(<span class="string">'require'</span>,$str);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//验证email</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isEmail</span><span class="params">($email)</span></span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex(<span class="string">'email'</span>,$email);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//....其他的类似，省略了，小伙伴自己可以自定义添加哦~</span></div><div class="line"></div><div class="line">   <span class="comment">//用户自定义正则表达式</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($pattern, $subject)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex($pattern, $subject);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="一些学习工具">一些学习工具</h2><ul>
+<li><a href="http://http//regexpal.com/" target="_blank" rel="external">regexpal工具</a>: 正则表达式书写辅助工具 regexpal 是Google Code上的一个开源项目，可以实时匹配正则表达式，方便调试，使用HTML和JS开发，推荐给大家使用。</li>
+<li><a href="http://eastrock.github.io/2015/09/20/php_study_zhengze/" target="_blank" rel="external">鬼斧神工的正则表达式（PHP语言）</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/14/tools/ocr-begin.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1717,183 +1937,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/26/tools/supervisord-usage.html" itemprop="url">Supervisord使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T11:59:06+08:00">
-                2017-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/26/tools/supervisord-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/26/tools/supervisord-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/07/26/tools/supervisord-usage.html" class="leancloud_visitors" data-flag-title="Supervisord使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天的一个小时学习编程工具是基于python开发的任务管理工具Supervisord，项目官方地址为。下面主要是说明Supervisord的基本用发以及在mac和centos中应用。</p>
-<h2 id="一、Supervisord基本用法">一、Supervisord基本用法</h2><h3 id="1-1_安装Supervisord">1.1 安装Supervisord</h3><p>supervisor安装方法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get install supervisor <span class="comment"># ubuntu</span></div><div class="line">pip install supervisor <span class="comment"># 使用python pip 安装</span></div></pre></td></tr></table></figure>
-<h3 id="1-2_配置修改">1.2 配置修改</h3><p>supervisor默认找配置的路径如：<code>/usr/local/etc/supervisord.conf, /usr/local/supervisord.conf, supervisord.conf, etc/supervisord.conf, /etc/supervisord.conf, /etc/supervisor/supervisord.conf</code></p>
-<p>把所有的配置文件都放在 supervisord.conf 并不是个好主意，一旦管理的进程过多，就很麻烦。所以一般都会 新建一个目录来专门放置进程的配置文件，然后通过 include 的方式来获取这些配置信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[include]</div><div class="line">files = /etc/supervisor/conf.d/*.conf</div></pre></td></tr></table></figure></p>
-<h3 id="1-3_Supervisord基础命令">1.3 Supervisord基础命令</h3><p>命令详解</p>
-<ul>
-<li>supervisord: 初始启动Supervisord，启动、管理配置中设置的进程;</li>
-<li>supervisorctl stop(start, restart) xxx，停止（启动，重启）某一个进程(xxx);</li>
-<li>supervisorctl reread: 只载入最新的配置文件, 并不重启任何进程;</li>
-<li>supervisorctl reload: 载入最新的配置文件，停止原来的所有进程并按新的配置启动管理所有进程;</li>
-<li>supervisorctl update: 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启;</li>
-</ul>
-<h4 id="a-_管理进程例子">a. 管理进程例子</h4><p>supervisord是通过 supervisorctl进行进程管理，由于目前没有添加任何需要管理的进程，所以 status 没有输出人和结果，接下来我们添加一个需要管理的进程 (以启动一个 celery 的 worker 为例)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[program:celeryd]</div><div class="line">command=celery worker --app=task -l info ; 启动命令</div><div class="line">stdout_logfile=/var/log/supervisor/celeryd_out.log ; stdout 日志输出位置</div><div class="line">stderr_logfile=/var/log/supervisor/celeryd_err.log ; stderr 日志输出位置</div><div class="line">autostart=true ; 在 supervisord 启动的时候自动启动</div><div class="line">autorestart=true ; 程序异常退出后自动重启</div><div class="line">startsecs=10 ; 启动 10 秒后没有异常退出，就当作已经正常启动</div></pre></td></tr></table></figure></p>
-<p>然后运行以下命令更新配置并启动进程：</p>
-<ul>
-<li><code>supervisorctl reread</code>: 只更新配置文件</li>
-<li><code>supervisorctl update</code>: 只启动有改动的进程</li>
-<li><code>supervisorctl status</code>: 查看状态</li>
-</ul>
-<p>我们看到 celery worker 已经被成功启动了。你可以使用不同的命令来控制进程的启动和关闭：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">supervisorctl stop celeryd <span class="comment"># 停止</span></div><div class="line">supervisorctl start celeryd</div><div class="line">supervisorctl restart celeryd</div></pre></td></tr></table></figure>
-<p>切记，每次修改或增删了配置文件, 都需要执行: <code>supervisorctl update</code>。执行supervisord可以进入 supervisorctl 的 shell 界面，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ supervisorctl</div><div class="line">supervisor&gt; status <span class="comment"># 查看状态</span></div><div class="line">supervisor&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="二、Supervisord在Mac_osx中的应用">二、Supervisord在Mac osx中的应用</h2><p>在mac中启用supervisor需要借助launchctl， 启用后就可以借助supervisor启用其他相关的进程了。这里说下我的配置，supervisord进程和配置内容如下：</p>
-<ul>
-<li>conf: /usr/local/etc/supervisord.conf</li>
-<li>bin:  /usr/local/bin/supervisord</li>
-</ul>
-<p>配置文件<code>/usr/local/etc/supervisord.conf</code>内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">; conf:/usr/local/etc/supervisord.conf</div><div class="line">; bin:/usr/local/bin/supervisord</div><div class="line">[unix_http_server]</div><div class="line">file=/tmp/supervisor.sock                       ; path to your socket file</div><div class="line"></div><div class="line">[supervisord]</div><div class="line">logfile=/usr/local/var/log/supervisord/supervisord.log    ; supervisord log file</div><div class="line">logfile_maxbytes=50MB                           ; maximum size of logfile before rotation</div><div class="line">logfile_backups=10                              ; number of backed up logfiles</div><div class="line">loglevel=error                                  ; info, debug, warn, trace</div><div class="line">pidfile=/usr/local/var/run/supervisord.pid                ; pidfile location</div><div class="line">nodaemon=false                                  ; run supervisord as a daemon</div><div class="line">minfds=1024                                     ; number of startup file descriptors</div><div class="line">minprocs=200                                    ; number of process descriptors</div><div class="line">user=root                                       ; default user</div><div class="line">childlogdir=/usr/local/var/log/supervisord/               ; where child log files will live</div><div class="line"></div><div class="line">[rpcinterface:supervisor]</div><div class="line">supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface</div><div class="line"></div><div class="line">[supervisorctl]</div><div class="line">serverurl=unix:///tmp/supervisor.sock         ; use a unix:// URL  for a unix socket</div><div class="line"></div><div class="line">[include]</div><div class="line">; files = /usr/local/etc/supervisor/conf.d/*.conf</div><div class="line">files = /usr/local/etc/supervisor.d/*.conf</div><div class="line"></div><div class="line">[program:mongod]</div><div class="line">command=/usr/local/bin/mongod</div><div class="line"></div><div class="line">[program:redis-server]</div><div class="line">command=/usr/local/bin/redis-server</div></pre></td></tr></table></figure>
-<blockquote>
-<p>vim ~/Library/LaunchAgents/supervisord.plist</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>SuccessfulExit<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">false</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>supervisord<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/bin/supervisord<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>-n<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/etc/supervisord.conf<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>配置好后执行如下命令运行：</p>
-<blockquote>
-<p>launchctl load ~/Library/LaunchAgents/supervisord.plist</p>
-</blockquote>
-<h2 id="三、扩展">三、扩展</h2><hr>
-<p>以上内容，感谢如下博主分享：</p>
-<ul>
-<li><a href="http://guoqiao.me/post/2015/0103-use-supervisor-on-mac-os-x" target="_blank" rel="external">在 Mac OS X 上使用 supservisor 来管理后台进程</a></li>
-<li>link</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1943,7 +1986,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

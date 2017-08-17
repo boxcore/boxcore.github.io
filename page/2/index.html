@@ -329,6 +329,183 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/26/tools/supervisord-usage.html" itemprop="url">Supervisord使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T11:59:06+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/26/tools/supervisord-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/26/tools/supervisord-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/26/tools/supervisord-usage.html" class="leancloud_visitors" data-flag-title="Supervisord使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天的一个小时学习编程工具是基于python开发的任务管理工具Supervisord，项目官方地址为。下面主要是说明Supervisord的基本用发以及在mac和centos中应用。</p>
+<h2 id="一、Supervisord基本用法">一、Supervisord基本用法</h2><h3 id="1-1_安装Supervisord">1.1 安装Supervisord</h3><p>supervisor安装方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get install supervisor <span class="comment"># ubuntu</span></div><div class="line">pip install supervisor <span class="comment"># 使用python pip 安装</span></div></pre></td></tr></table></figure>
+<h3 id="1-2_配置修改">1.2 配置修改</h3><p>supervisor默认找配置的路径如：<code>/usr/local/etc/supervisord.conf, /usr/local/supervisord.conf, supervisord.conf, etc/supervisord.conf, /etc/supervisord.conf, /etc/supervisor/supervisord.conf</code></p>
+<p>把所有的配置文件都放在 supervisord.conf 并不是个好主意，一旦管理的进程过多，就很麻烦。所以一般都会 新建一个目录来专门放置进程的配置文件，然后通过 include 的方式来获取这些配置信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[include]</div><div class="line">files = /etc/supervisor/conf.d/*.conf</div></pre></td></tr></table></figure></p>
+<h3 id="1-3_Supervisord基础命令">1.3 Supervisord基础命令</h3><p>命令详解</p>
+<ul>
+<li>supervisord: 初始启动Supervisord，启动、管理配置中设置的进程;</li>
+<li>supervisorctl stop(start, restart) xxx，停止（启动，重启）某一个进程(xxx);</li>
+<li>supervisorctl reread: 只载入最新的配置文件, 并不重启任何进程;</li>
+<li>supervisorctl reload: 载入最新的配置文件，停止原来的所有进程并按新的配置启动管理所有进程;</li>
+<li>supervisorctl update: 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启;</li>
+</ul>
+<h4 id="a-_管理进程例子">a. 管理进程例子</h4><p>supervisord是通过 supervisorctl进行进程管理，由于目前没有添加任何需要管理的进程，所以 status 没有输出人和结果，接下来我们添加一个需要管理的进程 (以启动一个 celery 的 worker 为例)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[program:celeryd]</div><div class="line">command=celery worker --app=task -l info ; 启动命令</div><div class="line">stdout_logfile=/var/log/supervisor/celeryd_out.log ; stdout 日志输出位置</div><div class="line">stderr_logfile=/var/log/supervisor/celeryd_err.log ; stderr 日志输出位置</div><div class="line">autostart=true ; 在 supervisord 启动的时候自动启动</div><div class="line">autorestart=true ; 程序异常退出后自动重启</div><div class="line">startsecs=10 ; 启动 10 秒后没有异常退出，就当作已经正常启动</div></pre></td></tr></table></figure></p>
+<p>然后运行以下命令更新配置并启动进程：</p>
+<ul>
+<li><code>supervisorctl reread</code>: 只更新配置文件</li>
+<li><code>supervisorctl update</code>: 只启动有改动的进程</li>
+<li><code>supervisorctl status</code>: 查看状态</li>
+</ul>
+<p>我们看到 celery worker 已经被成功启动了。你可以使用不同的命令来控制进程的启动和关闭：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">supervisorctl stop celeryd <span class="comment"># 停止</span></div><div class="line">supervisorctl start celeryd</div><div class="line">supervisorctl restart celeryd</div></pre></td></tr></table></figure>
+<p>切记，每次修改或增删了配置文件, 都需要执行: <code>supervisorctl update</code>。执行supervisord可以进入 supervisorctl 的 shell 界面，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ supervisorctl</div><div class="line">supervisor&gt; status <span class="comment"># 查看状态</span></div><div class="line">supervisor&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="二、Supervisord在Mac_osx中的应用">二、Supervisord在Mac osx中的应用</h2><p>在mac中启用supervisor需要借助launchctl， 启用后就可以借助supervisor启用其他相关的进程了。这里说下我的配置，supervisord进程和配置内容如下：</p>
+<ul>
+<li>conf: /usr/local/etc/supervisord.conf</li>
+<li>bin:  /usr/local/bin/supervisord</li>
+</ul>
+<p>配置文件<code>/usr/local/etc/supervisord.conf</code>内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">; conf:/usr/local/etc/supervisord.conf</div><div class="line">; bin:/usr/local/bin/supervisord</div><div class="line">[unix_http_server]</div><div class="line">file=/tmp/supervisor.sock                       ; path to your socket file</div><div class="line"></div><div class="line">[supervisord]</div><div class="line">logfile=/usr/local/var/log/supervisord/supervisord.log    ; supervisord log file</div><div class="line">logfile_maxbytes=50MB                           ; maximum size of logfile before rotation</div><div class="line">logfile_backups=10                              ; number of backed up logfiles</div><div class="line">loglevel=error                                  ; info, debug, warn, trace</div><div class="line">pidfile=/usr/local/var/run/supervisord.pid                ; pidfile location</div><div class="line">nodaemon=false                                  ; run supervisord as a daemon</div><div class="line">minfds=1024                                     ; number of startup file descriptors</div><div class="line">minprocs=200                                    ; number of process descriptors</div><div class="line">user=root                                       ; default user</div><div class="line">childlogdir=/usr/local/var/log/supervisord/               ; where child log files will live</div><div class="line"></div><div class="line">[rpcinterface:supervisor]</div><div class="line">supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface</div><div class="line"></div><div class="line">[supervisorctl]</div><div class="line">serverurl=unix:///tmp/supervisor.sock         ; use a unix:// URL  for a unix socket</div><div class="line"></div><div class="line">[include]</div><div class="line">; files = /usr/local/etc/supervisor/conf.d/*.conf</div><div class="line">files = /usr/local/etc/supervisor.d/*.conf</div><div class="line"></div><div class="line">[program:mongod]</div><div class="line">command=/usr/local/bin/mongod</div><div class="line"></div><div class="line">[program:redis-server]</div><div class="line">command=/usr/local/bin/redis-server</div></pre></td></tr></table></figure>
+<blockquote>
+<p>vim ~/Library/LaunchAgents/supervisord.plist</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>SuccessfulExit<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">false</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>supervisord<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/bin/supervisord<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>-n<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/etc/supervisord.conf<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>配置好后执行如下命令运行：</p>
+<blockquote>
+<p>launchctl load ~/Library/LaunchAgents/supervisord.plist</p>
+</blockquote>
+<h2 id="三、扩展">三、扩展</h2><hr>
+<p>以上内容，感谢如下博主分享：</p>
+<ul>
+<li><a href="http://guoqiao.me/post/2015/0103-use-supervisor-on-mac-os-x" target="_blank" rel="external">在 Mac OS X 上使用 supservisor 来管理后台进程</a></li>
+<li>link</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/25/tools/google-chrome-advanced-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1942,139 +2119,6 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/06/22/hadoop-note.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/22/hadoop-note.html" itemprop="url">hadoop note</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T19:50:00+08:00">
-                2017-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/22/hadoop-note.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/22/hadoop-note.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/22/hadoop-note.html" class="leancloud_visitors" data-flag-title="hadoop note">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ 查看文件列表清单</div><div class="line">hadoop  fs -du -h /user/hive/warehouse/&#123;database_name&#125;.db/&#123;table_name&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2124,7 +2168,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
