@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-17T04:11:33.000Z</updated>
+  <updated>2017-08-22T06:50:45.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -16,11 +16,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Google Chrome使用</title>
+    <link href="http://boxcore.github.io/2017/08/22/chrome-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/22/chrome-usage.html</id>
+    <published>2017-08-22T06:49:27.000Z</published>
+    <updated>2017-08-22T06:50:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;使用场景&quot;&gt;使用场景&lt;/h2&gt;&lt;h3 id=&quot;1-_Chrome修改UserAgent&quot;&gt;1. Chrome修改UserAgent&lt;/h3&gt;&lt;p&gt;Chrome修改UserAgent&lt;br&gt;&lt;figure class=&quot;highlight cmd&quot;&gt;&lt;table&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vagrant配置笔记</title>
+    <link href="http://boxcore.github.io/2017/08/22/vagrant-note.html"/>
+    <id>http://boxcore.github.io/2017/08/22/vagrant-note.html</id>
+    <published>2017-08-22T01:49:08.000Z</published>
+    <updated>2017-08-22T06:29:38.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、vagrant入门&quot;&gt;一、vagrant入门&lt;/h2&gt;&lt;h3 id=&quot;1-1_安装&quot;&gt;1.1 安装&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP环境配置</title>
+    <link href="http://boxcore.github.io/2017/08/21/php-env.html"/>
+    <id>http://boxcore.github.io/2017/08/21/php-env.html</id>
+    <published>2017-08-21T07:57:13.000Z</published>
+    <updated>2017-08-21T08:09:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、更新&quot;&gt;一、更新&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;2017-08-21：mac 配置php 7.1 作为系统默认php，配置nginx 多php版本支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里主要是说明自己机器php环境配置相关问题，涵盖了windows、unix和mac
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>2017-08-17 正则浅析</title>
     <link href="http://boxcore.github.io/2017/08/17/talk-about-regular.html"/>
     <id>http://boxcore.github.io/2017/08/17/talk-about-regular.html</id>
     <published>2017-08-17T03:41:17.000Z</published>
-    <updated>2017-08-17T04:11:33.000Z</updated>
+    <updated>2017-08-18T07:08:01.000Z</updated>
     
     <summary type="html">
     
@@ -125,12 +176,11 @@
     <link href="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html"/>
     <id>http://boxcore.github.io/2017/08/02/linux/openssl-usage.html</id>
     <published>2017-08-02T01:58:18.000Z</published>
-    <updated>2017-08-02T07:54:22.000Z</updated>
+    <updated>2017-08-18T18:52:53.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;OpenSSL使用及域名签名&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;
+      &lt;h2 id=&quot;一、OpenSSL使用&quot;&gt;一、OpenSSL使用&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;
     
     </summary>
     
@@ -246,15 +296,15 @@
     <link href="http://boxcore.github.io/2017/07/19/vscode-best-way.html"/>
     <id>http://boxcore.github.io/2017/07/19/vscode-best-way.html</id>
     <published>2017-07-19T14:34:49.000Z</published>
-    <updated>2017-07-19T11:54:31.000Z</updated>
+    <updated>2017-08-18T18:28:14.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;一、安装和使用&quot;&gt;一、安装和使用&lt;/h2&gt;&lt;h2 id=&quot;二、快捷键&quot;&gt;二、快捷键&lt;/h2&gt;&lt;p&gt;按键说明:&lt;/p&gt;
+      &lt;h2 id=&quot;一、安装和使用&quot;&gt;一、安装和使用&lt;/h2&gt;&lt;p&gt;去官网下载即可&lt;/p&gt;
+&lt;h2 id=&quot;二、快捷键&quot;&gt;二、快捷键&lt;/h2&gt;&lt;p&gt;按键说明:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;⌘&lt;/code&gt;: command&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;⌃&lt;/code&gt;: control&lt;/li&gt;
-&lt;l
+&lt;li&gt;&lt;code&gt;⌃&lt;/code&gt;: 
     
     </summary>
     
@@ -325,58 +375,6 @@
       <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
     
       <category term="api" scheme="http://boxcore.github.io/categories/php/api/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>感冒最全用药攻略</title>
-    <link href="http://boxcore.github.io/2017/07/18/cold-rehabilitation.html"/>
-    <id>http://boxcore.github.io/2017/07/18/cold-rehabilitation.html</id>
-    <published>2017-07-18T10:03:00.000Z</published>
-    <updated>2017-07-18T12:03:41.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一-_what&quot;&gt;一. what&lt;/h2&gt;&lt;p&gt;“出门多穿点别着凉”、“捂好脑袋别见风”，每到冬天，我们耳边总少不了这些叮嘱。似乎只要别着凉、别见风、别出门的地方，就能够防着感冒这个大魔王了。&lt;/p&gt;
-&lt;p&gt;但感冒真是由风和寒冷引起的？防感冒最好是待屋里别出去？我
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL硬盘实例测试之裤子搭建</title>
-    <link href="http://boxcore.github.io/2017/07/18/action/kuzi-act.html"/>
-    <id>http://boxcore.github.io/2017/07/18/action/kuzi-act.html</id>
-    <published>2017-07-18T09:46:00.000Z</published>
-    <updated>2017-07-21T10:18:51.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;裤子搭建过程（未完成）：&lt;/p&gt;
-&lt;h2 id=&quot;一,_安装新实例&quot;&gt;一, 安装新实例&lt;/h2&gt;&lt;p&gt;/usr/local/mysql/bin/mysqld –defaults-file=/data/mysql/3306/my.cnf –basedir=/usr/local
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>实战项目</title>
-    <link href="http://boxcore.github.io/2017/07/18/action/index.html"/>
-    <id>http://boxcore.github.io/2017/07/18/action/index.html</id>
-    <published>2017-07-18T09:43:00.000Z</published>
-    <updated>2017-07-18T09:44:28.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这里罗列一些实战的项目。&lt;/p&gt;
-&lt;p&gt;举个栗子，我弄了个裤子，you know it!&lt;/p&gt;
-
-    
-    </summary>
     
     
   </entry>

@@ -95,19 +95,18 @@
 
 
 
-<meta name="description" content="OpenSSL使用及域名签名
-1openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn">
+<meta name="description" content="一、OpenSSL使用1234567openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cnopenssl req -new -newkey rsa:2048 -sha256 -nodes -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenSSL使用及域名签名">
 <meta property="og:url" content="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="OpenSSL使用及域名签名
-1openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn">
-<meta property="og:updated_time" content="2017-08-02T07:54:22.000Z">
+<meta property="og:description" content="一、OpenSSL使用1234567openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cnopenssl req -new -newkey rsa:2048 -sha256 -nodes -">
+<meta property="og:image" content="http://bxfile.qiniudn.com/imgs/2017-08-18-175916.jpg">
+<meta property="og:updated_time" content="2017-08-18T18:52:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenSSL使用及域名签名">
-<meta name="twitter:description" content="OpenSSL使用及域名签名
-1openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn">
+<meta name="twitter:description" content="一、OpenSSL使用1234567openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cnopenssl req -new -newkey rsa:2048 -sha256 -nodes -">
+<meta name="twitter:image" content="http://bxfile.qiniudn.com/imgs/2017-08-18-175916.jpg">
 
 
 
@@ -417,8 +416,33 @@
       
 
       
-        <p>OpenSSL使用及域名签名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl req -in server.csr -noout -subject <span class="comment"># 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn</span></div></pre></td></tr></table></figure>
+        <h2 id="一、OpenSSL使用">一、OpenSSL使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl req -in server.csr -noout -subject <span class="comment"># 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn</span></div><div class="line"></div><div class="line">openssl req -new -newkey rsa:2048 -sha256 -nodes -out domain.cc.csr -keyout domain.cc.key -subj <span class="string">"/C=CN/ST=GuangZhou/L=GuangZhou/O=domain Inc./OU=Web Security/CN=domain.cc/CN=*.domain.cc"</span></div><div class="line"></div><div class="line">openssl req -new -sha256 -key domain.key -subj <span class="string">"/"</span> \</div><div class="line">  -reqexts SAN -config &lt;(cat /etc/ssl/openssl.cnf \</div><div class="line">  &lt;(<span class="built_in">printf</span> <span class="string">"[SAN]\nsubjectAltName=DNS:foo.com,DNS:www.foo.com"</span>))</div></pre></td></tr></table></figure>
+<h3 id="openssl配置">openssl配置</h3><p>各系统openssl默认配置地址：</p>
+<ul>
+<li>Debian: /etc/ssl/openssl.cnf</li>
+<li>RHEL and CentOS: /etc/pki/tls/openssl.cnf</li>
+<li>Mac OSX: /System/Library/OpenSSL/openssl.cnf</li>
+</ul>
+<h2 id="二、SSL证书说明">二、SSL证书说明</h2><h3 id="2-1_SSL证书概念和分类">2.1 SSL证书概念和分类</h3><p>CA，Catificate Authority，它的作用就是提供证书（即服务器证书，由域名、公司信息、序列号和签名信息组成）加强服务端和客户端之间信息交互的安全性，以及证书运维相关服务。任何个体/组织都可以扮演 CA 的角色，只不过难以得到客户端的信任，能够受浏览器默认信任的 CA 大厂商有很多，其中 TOP5 是 Symantec、Comodo、Godaddy、GolbalSign 和 Digicert。</p>
+<h4 id="SSL证书用途">SSL证书用途</h4><ol>
+<li>保证服务器和客户端的真实性，杜绝中间人攻击和钓鱼网站</li>
+<li>保护用户数据，通常是客户端的数据到服务器的传输是经过加密传输的，第三方无法监听。</li>
+</ol>
+<h4 id="SSL证书认证类别">SSL证书认证类别</h4><p><img src="http://bxfile.qiniudn.com/imgs/2017-08-18-175916.jpg" alt="alt"></p>
+<ul>
+<li>DV（Domain Validation），面向个体用户，安全体系相对较弱，验证方式就是向 whois 信息中的邮箱发送邮件，按照邮件内容进行验证即可通过；</li>
+<li>OV（Organization Validation），面向企业用户，证书在 DV 证书验证的基础上，还需要公司的授权，CA 通过拨打信息库中公司的电话来确认；</li>
+<li>EV（Extended Validation），打开 Github 的网页，你会看到 URL 地址栏展示了注册公司的信息，这会让用户产生更大的信任，这类证书的申请除了以上两个确认外，还需要公司提供金融机构的开户许可证，要求十分严格。</li>
+</ul>
+<h4 id="SSL提供商">SSL提供商</h4><p>国内免费SSL证书CA提供商：Wosign.com（已经废弃）<br>国外免费SSL证书CA提供商：StartSSL.com , letsencrypt.org（免费3个月，18年开始支持泛域名） , Cloudflare.com</p>
+<h4 id="在线CSR生产工具">在线CSR生产工具</h4><p><a href="https://csr.chinassl.net/generator-csr.html" target="_blank" rel="external">https://csr.chinassl.net/generator-csr.html</a></p>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://www.barretlee.com/blog/2016/04/24/detail-about-ca-and-certs/" target="_blank" rel="external">细说 CA 和证书</a></li>
+<li><a href="https://lixingcong.github.io/2016/12/20/cloudflare-self-sign/" target="_blank" rel="external">Cloudflare自签名SSL证书</a></li>
+<li><a href="http://fengwan.blog.51cto.com/508652/1869743" target="_blank" rel="external">OpenSSL生成自签名的sha256泛域名证书</a></li>
+<li><a href="https://www.ecyy.net/46.html#more-46" target="_blank" rel="external">申请Comodo PositiveSSL免费SSL证书教程</a></li>
+</ul>
+
       
     </div>
 
@@ -543,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
@@ -559,7 +592,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">99</span>
+                <span class="site-state-item-count">109</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -631,6 +664,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、OpenSSL使用"><span class="nav-number">1.</span> <span class="nav-text">一、OpenSSL使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#openssl配置"><span class="nav-number">1.1.</span> <span class="nav-text">openssl配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、SSL证书说明"><span class="nav-number">2.</span> <span class="nav-text">二、SSL证书说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_SSL证书概念和分类"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 SSL证书概念和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书用途"><span class="nav-number">2.1.1.</span> <span class="nav-text">SSL证书用途</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书认证类别"><span class="nav-number">2.1.2.</span> <span class="nav-text">SSL证书认证类别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL提供商"><span class="nav-number">2.1.3.</span> <span class="nav-text">SSL提供商</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线CSR生产工具"><span class="nav-number">2.1.4.</span> <span class="nav-text">在线CSR生产工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
