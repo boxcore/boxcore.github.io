@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-08-22T06:50:45.000Z</updated>
+  <updated>2017-10-10T09:59:32.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,289 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux文件操作命令之文件属性chattr</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-chattr.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-chattr.html</id>
+    <published>2017-10-10T09:53:13.000Z</published>
+    <updated>2017-10-10T09:59:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux chattr命令用于改变文件属性。通过chattr命令修改属性能够提高系统的安全性，但是它并不适合所有的目录。chattr命令不能保护/、/dev、/tmp、/var目录。lsattr命令是显示chattr命令设置的文件属性。&lt;/p&gt;
+&lt;p&gt;这项指令可改变存放在
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux网络命令之防火墙控制iptables</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-iptables.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-iptables.html</id>
+    <published>2017-10-10T09:51:33.000Z</published>
+    <updated>2017-10-10T09:51:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.awaimai.com/1650.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.awaimai.com/1650.html&lt;/a&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux查看服务器基础信息</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-basic.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-basic.html</id>
+    <published>2017-10-10T09:27:51.000Z</published>
+    <updated>2017-10-10T09:50:15.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;who: 查看服务器当前登陆的用户&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;who /var/log/wtmp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;arp: 查看服务器mac信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat  /var/log/secure&lt;/code&gt; : 查看最
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux流程控制语句之if</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-if.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-if.html</id>
+    <published>2017-10-10T09:07:45.000Z</published>
+    <updated>2017-10-10T09:26:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;语法：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;if ….; then&lt;br&gt;　 ….&lt;br&gt;elif ….; then&lt;br&gt;　 ….&lt;br&gt;else&lt;br&gt;　 ….&lt;br&gt;fi&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;[ -f “somefile” ] ：判断是否是一
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux网络命令之ssh</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-ssh.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-ssh.html</id>
+    <published>2017-10-10T08:59:40.000Z</published>
+    <updated>2017-10-10T09:38:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、基础&quot;&gt;一、基础&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux网络命令之端口扫描nmap</title>
+    <link href="http://boxcore.github.io/2017/10/10/linux/linux-nmap.html"/>
+    <id>http://boxcore.github.io/2017/10/10/linux/linux-nmap.html</id>
+    <published>2017-10-10T04:00:08.000Z</published>
+    <updated>2017-10-10T04:02:53.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Nmap是一款用于网络发现和安全审计的安全工具，常用于端口扫描。&lt;/p&gt;
+&lt;h2 id=&quot;一、Nmap介绍&quot;&gt;一、Nmap介绍&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;扫描类型&lt;/p&gt;
+&lt;p&gt; -sT　　TCP 连接扫描，会在目标主机中记录大量的链接请求和错误信息&lt;br&gt; -sS　
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux之文件和目录操作</title>
+    <link href="http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html"/>
+    <id>http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html</id>
+    <published>2017-10-09T12:44:33.000Z</published>
+    <updated>2017-10-09T14:02:13.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dirname $0，取得当前执行的脚本文件的父目录&lt;/p&gt;
+&lt;p&gt;cd &lt;code&gt;dirname $0&lt;/code&gt;，进入这个目录(切换当前工作目录)&lt;/p&gt;
+&lt;p&gt;pwd，显示当前工作目录(cd执行后的)&lt;/p&gt;
+&lt;p&gt;由此，我们获得了当前正在执行的脚本的存放路径。&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux网络命令之netstat</title>
+    <link href="http://boxcore.github.io/2017/10/09/linux/linux-netstat.html"/>
+    <id>http://boxcore.github.io/2017/10/09/linux/linux-netstat.html</id>
+    <published>2017-10-09T10:30:11.000Z</published>
+    <updated>2017-10-09T12:29:25.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。&lt;/p&gt;
+&lt;h2 id=&quot;一、命令帮助&quot;&gt;一、命令帮助&lt;/h2&gt;&lt;h2 id=&quot;二、常见案例&quot;&gt;二、常见案例&lt;/h2&gt;&lt;h3 id=&quot;2-1_查看端口是否被占用&quot;&gt;2.1
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL时间处理</title>
+    <link href="http://boxcore.github.io/2017/09/21/sql/mysql-date-function.html"/>
+    <id>http://boxcore.github.io/2017/09/21/sql/mysql-date-function.html</id>
+    <published>2017-09-21T09:07:44.000Z</published>
+    <updated>2017-09-21T09:31:29.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mysql关于时间的函数有&lt;code&gt;date_format&lt;/code&gt;,&lt;code&gt;datediff&lt;/code&gt;等，这里整理一波。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DATE_FORMAT()&lt;/li&gt;
+&lt;li&gt;DATEDIFF()&lt;/li&gt;
+&lt;li&gt;TIMESTAMPDIF
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>GIT使用手册</title>
+    <link href="http://boxcore.github.io/2017/09/08/tools/git-usage.html"/>
+    <id>http://boxcore.github.io/2017/09/08/tools/git-usage.html</id>
+    <published>2017-09-08T10:22:09.000Z</published>
+    <updated>2017-09-11T03:39:29.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、基本命令&quot;&gt;一、基本命令&lt;/h2&gt;&lt;h3 id=&quot;1-1_版本回退&quot;&gt;1.1 版本回退&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mpv播放器安装和使用</title>
+    <link href="http://boxcore.github.io/2017/09/04/tools/mpv-usage.html"/>
+    <id>http://boxcore.github.io/2017/09/04/tools/mpv-usage.html</id>
+    <published>2017-09-04T01:15:45.000Z</published>
+    <updated>2017-09-04T01:23:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mpv是一个跨平台开源播放器。&lt;/p&gt;
+&lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h2 id=&quot;二、使用&quot;&gt;二、使用&lt;/h2&gt;&lt;h2 id=&quot;三、配置&quot;&gt;三、配置&lt;/h2&gt;&lt;h3 id=&quot;3-1_默认快捷方式&quot;&gt;3.1 默认快捷方式&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;cod
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>aria2远程下载利器</title>
+    <link href="http://boxcore.github.io/2017/08/31/tools/aria2-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/31/tools/aria2-usage.html</id>
+    <published>2017-08-31T11:47:36.000Z</published>
+    <updated>2017-08-31T15:10:33.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！&lt;/p&gt;
+&lt;h2 id=&quot;aria2安装&quot;&gt;aria2安装&lt;/h2&gt;&lt;figure class=&quot;highlight b
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP设计模式</title>
+    <link href="http://boxcore.github.io/2017/08/27/php/php-design-patterns.html"/>
+    <id>http://boxcore.github.io/2017/08/27/php/php-design-patterns.html</id>
+    <published>2017-08-27T15:58:41.000Z</published>
+    <updated>2017-08-27T16:49:09.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;笔记内容来自慕课 &lt;a href=&quot;http://www.imooc.com/video/4846&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;大话PHP设计模式&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;一、面向对象的高级特性&quot;&gt;一、面向对象的高级特性&lt;/h2
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下载工具curl使用</title>
+    <link href="http://boxcore.github.io/2017/08/23/linux/curl-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/23/linux/curl-usage.html</id>
+    <published>2017-08-23T02:10:35.000Z</published>
+    <updated>2017-08-23T02:56:49.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://boxblog.b0.upaiyun.com/images/2017-08-23-024018.jpg&quot; alt=&quot;alt&quot;&gt;&lt;/p&gt;
+&lt;p&gt;curl是一个开源的用于数据传输的命令行工具与库，它使用URL语法格式，支持众多传输协议，包括：H
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下载工具wget使用</title>
+    <link href="http://boxcore.github.io/2017/08/23/linux/wget-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/23/linux/wget-usage.html</id>
+    <published>2017-08-23T02:09:33.000Z</published>
+    <updated>2017-08-23T02:09:55.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、wget&quot;&gt;一、wget&lt;/h2&gt;&lt;h3 id=&quot;应用场景&quot;&gt;应用场景&lt;/h3&gt;&lt;p&gt;批量下载或递归下载网页中的所有文件： &lt;code&gt;wget -r http://site.com/content_dir&lt;/code&gt;&lt;br&gt;指定下载编码后再重命名: &lt;co
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下载工具axel使用</title>
+    <link href="http://boxcore.github.io/2017/08/23/linux/axel-usage.html"/>
+    <id>http://boxcore.github.io/2017/08/23/linux/axel-usage.html</id>
+    <published>2017-08-23T02:09:00.000Z</published>
+    <updated>2017-08-23T02:09:14.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;二、axel&quot;&gt;二、axel&lt;/h2&gt;&lt;p&gt;axel tools是多线程下载工具&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Google Chrome使用</title>
@@ -78,303 +361,6 @@
       &lt;p&gt;本文只探讨正则在php中的一些使用，小白用户还是先了解下正则相关的基础概念：&lt;a href=&quot;https://deerchao.net/tutorials/regex/regex.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;正则表达式30分钟入门
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OCR开发之找轮子</title>
-    <link href="http://boxcore.github.io/2017/08/14/tools/ocr-begin.html"/>
-    <id>http://boxcore.github.io/2017/08/14/tools/ocr-begin.html</id>
-    <published>2017-08-14T03:21:46.000Z</published>
-    <updated>2017-08-14T03:52:03.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有从图书中拍照ocr部分段落的需求，这里是收集的部分入门 及 目前商用的接口方案。&lt;/p&gt;
-&lt;p&gt;以下关于OCR介绍来自搜索：&lt;/p&gt;
-&lt;p&gt;OCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>微信第三方网站对接</title>
-    <link href="http://boxcore.github.io/2017/08/11/action/auth-open-weixin.html"/>
-    <id>http://boxcore.github.io/2017/08/11/action/auth-open-weixin.html</id>
-    <published>2017-08-11T09:47:43.000Z</published>
-    <updated>2017-08-11T09:52:55.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、开发之前&quot;&gt;一、开发之前&lt;/h2&gt;&lt;h3 id=&quot;1-1_开发工具&quot;&gt;1.1 开发工具&lt;/h3&gt;&lt;p&gt;在着手开发之前，首选要了解微信开发相关文档和调试工具：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://bbs.mb.qq.com/thread-1
-    
-    </summary>
-    
-      <category term="实战" scheme="http://boxcore.github.io/categories/%E5%AE%9E%E6%88%98/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>成长慢，因为你AV看太多</title>
-    <link href="http://boxcore.github.io/2017/08/04/think/%E6%88%90%E9%95%BF%E6%85%A2-%E5%9B%A0%E4%B8%BA%E4%BD%A0AV%E7%9C%8B%E5%A4%AA%E5%A4%9A.html"/>
-    <id>http://boxcore.github.io/2017/08/04/think/成长慢-因为你AV看太多.html</id>
-    <published>2017-08-04T04:32:13.000Z</published>
-    <updated>2017-08-04T10:18:06.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/006tKfTcgy1fi7jtez17xj30hs063my1.jpg&quot; alt=&quot;enter image description here&quot;&gt;&lt;/p&gt;
-&lt;blockq
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Github·Gist使用攻略</title>
-    <link href="http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html"/>
-    <id>http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html</id>
-    <published>2017-08-04T03:17:05.000Z</published>
-    <updated>2017-08-04T03:27:42.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Gist 是 Github 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 Gist 页面提供访问的 JavaScript 片段用于嵌入其他网站，如：个人博客等。下面说说gist的一些正确打开姿势
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>我的PHP手册</title>
-    <link href="http://boxcore.github.io/2017/08/04/php/php-manual.html"/>
-    <id>http://boxcore.github.io/2017/08/04/php/php-manual.html</id>
-    <published>2017-08-04T03:08:25.000Z</published>
-    <updated>2017-08-04T03:15:10.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;文件参数&quot;&gt;文件参数&lt;/h2&gt;&lt;p&gt;parse_str:&lt;/p&gt;
-&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://gist.github.com/boxcore/32ac12a9dda2c5bb46893395e90f
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OpenSSL使用及域名签名</title>
-    <link href="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html"/>
-    <id>http://boxcore.github.io/2017/08/02/linux/openssl-usage.html</id>
-    <published>2017-08-02T01:58:18.000Z</published>
-    <updated>2017-08-18T18:52:53.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、OpenSSL使用&quot;&gt;一、OpenSSL使用&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>随想</title>
-    <link href="http://boxcore.github.io/2017/08/01/think/index.html"/>
-    <id>http://boxcore.github.io/2017/08/01/think/index.html</id>
-    <published>2017-08-01T06:06:37.000Z</published>
-    <updated>2017-08-04T03:27:57.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;生活的分享&lt;br&gt;工作的思考&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在iTerm2中使用Zmodem实现快速传输文件(lrzsz)</title>
-    <link href="http://boxcore.github.io/2017/08/01/tools/iterm-tools-zmodem.html"/>
-    <id>http://boxcore.github.io/2017/08/01/tools/iterm-tools-zmodem.html</id>
-    <published>2017-08-01T01:56:06.000Z</published>
-    <updated>2017-08-01T02:02:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一直苦恼于mac下使用rzsz传文件的问题，今天恰好在&lt;a href=&quot;http://mp.weixin.qq.com/s/HNtHovVs2vZHaAcxZKcULA&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;运维之美&lt;/a&gt;看到了就摘出来分享下。&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>常见公共dns分享</title>
-    <link href="http://boxcore.github.io/2017/07/26/tools/dns-public.html"/>
-    <id>http://boxcore.github.io/2017/07/26/tools/dns-public.html</id>
-    <published>2017-07-26T08:12:25.000Z</published>
-    <updated>2017-07-26T08:15:05.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于最近google的dns很不稳定，这里记录一些常用的公共dns解析地址供大家参考：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/di
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Supervisord使用</title>
-    <link href="http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html"/>
-    <id>http://boxcore.github.io/2017/07/26/tools/supervisord-usage.html</id>
-    <published>2017-07-26T03:59:06.000Z</published>
-    <updated>2017-07-26T07:03:52.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天的一个小时学习编程工具是基于python开发的任务管理工具Supervisord，项目官方地址为。下面主要是说明Supervisord的基本用发以及在mac和centos中应用。&lt;/p&gt;
-&lt;h2 id=&quot;一、Supervisord基本用法&quot;&gt;一、Supervisord基
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome高阶使用方法</title>
-    <link href="http://boxcore.github.io/2017/07/25/tools/google-chrome-advanced-usage.html"/>
-    <id>http://boxcore.github.io/2017/07/25/tools/google-chrome-advanced-usage.html</id>
-    <published>2017-07-25T03:00:48.000Z</published>
-    <updated>2017-07-25T03:06:23.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;设置https自动跳转&quot;&gt;设置https自动跳转&lt;/h2&gt;&lt;p&gt;开启和关闭都在 &lt;a href=&quot;chrome://net-internals/#hsts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;chrome://net-internals
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用Let&#39;s Encrypt加密网站</title>
-    <link href="http://boxcore.github.io/2017/07/25/let-us-encrypt-ssl.html"/>
-    <id>http://boxcore.github.io/2017/07/25/let-us-encrypt-ssl.html</id>
-    <published>2017-07-25T02:00:15.000Z</published>
-    <updated>2017-07-25T02:11:22.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Let’s Encrypt是一家开源的ssl签名验证工具，除了万恶的ie6，几户支持其他所有的浏览器，关键是还免费。关于其自动签名工具网站有很多，我这边就简单举例说下主要工具的应用场景。&lt;/p&gt;
-&lt;h2 id=&quot;certbot验证域名&quot;&gt;certbot验证域名&lt;/h2&gt;&lt;p
-    
-    </summary>
-    
-    
-      <category term="https" scheme="http://boxcore.github.io/tags/https/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VS Code最佳方式</title>
-    <link href="http://boxcore.github.io/2017/07/19/vscode-best-way.html"/>
-    <id>http://boxcore.github.io/2017/07/19/vscode-best-way.html</id>
-    <published>2017-07-19T14:34:49.000Z</published>
-    <updated>2017-08-18T18:28:14.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、安装和使用&quot;&gt;一、安装和使用&lt;/h2&gt;&lt;p&gt;去官网下载即可&lt;/p&gt;
-&lt;h2 id=&quot;二、快捷键&quot;&gt;二、快捷键&lt;/h2&gt;&lt;p&gt;按键说明:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;⌘&lt;/code&gt;: command&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;⌃&lt;/code&gt;: 
-    
-    </summary>
-    
-      <category term="IDE" scheme="http://boxcore.github.io/categories/IDE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Vue.js学习笔记</title>
-    <link href="http://boxcore.github.io/2017/07/19/learn-vuejs.html"/>
-    <id>http://boxcore.github.io/2017/07/19/learn-vuejs.html</id>
-    <published>2017-07-19T12:02:40.000Z</published>
-    <updated>2017-07-19T12:15:29.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;vue.js包含内容&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;template&lt;/li&gt;
-&lt;li&gt;script&lt;/li&gt;
-&lt;li&gt;css&lt;/li&gt;
-&lt;/ul&gt;
-
-    
-    </summary>
-    
-      <category term="js" scheme="http://boxcore.github.io/categories/js/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHPUNIT测试</title>
-    <link href="http://boxcore.github.io/2017/07/19/phpunit-right-way.html"/>
-    <id>http://boxcore.github.io/2017/07/19/phpunit-right-way.html</id>
-    <published>2017-07-19T06:22:10.000Z</published>
-    <updated>2017-07-19T06:24:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1-_PHPUNIT是什么&quot;&gt;1. PHPUNIT是什么&lt;/h2&gt;&lt;p&gt;PHPUnit是一个用PHP编程语言开发的开源软件，是一个单元测试框架。&lt;/p&gt;
-&lt;h3 id=&quot;1-1_为什么要用PHPUNIT&quot;&gt;1.1 为什么要用PHPUNIT&lt;/h3&gt;&lt;ol&gt;
-&lt;li
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-      <category term="api" scheme="http://boxcore.github.io/categories/php/api/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP接口设计之道</title>
-    <link href="http://boxcore.github.io/2017/07/19/php-api-right-way.html"/>
-    <id>http://boxcore.github.io/2017/07/19/php-api-right-way.html</id>
-    <published>2017-07-19T06:19:30.000Z</published>
-    <updated>2017-07-19T06:21:41.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;设计前后端完全分离的应用，可以使用到RESTful API。比如， Backbone 的默认规则最适合的是一个完全 restful 风格的后端接口，如果你的后端系统没有准备好，那就直接覆盖掉吧。restful 不光是前端的事～ 是构架层面上的事情，如果想用Backbone的
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-      <category term="api" scheme="http://boxcore.github.io/categories/php/api/"/>
     
     
   </entry>

@@ -1,0 +1,1347 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="BoxCore" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="语法：
+
+if ….; then　 ….elif ….; then　 ….else　 ….fi
+
+[ -f “somefile” ] ：判断是否是一个文件[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限[ -n “$var” ] ：判断$var变量是否有值[ “$a” = “$b” ] ：判断$a和$b是否相等    -r file　　　　　用户可读为真　　-w fil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux流程控制语句之if">
+<meta property="og:url" content="http://boxcore.github.io/2017/10/10/linux/linux-if.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="语法：
+
+if ….; then　 ….elif ….; then　 ….else　 ….fi
+
+[ -f “somefile” ] ：判断是否是一个文件[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限[ -n “$var” ] ：判断$var变量是否有值[ “$a” = “$b” ] ：判断$a和$b是否相等    -r file　　　　　用户可读为真　　-w fil">
+<meta property="og:updated_time" content="2017-10-10T09:26:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux流程控制语句之if">
+<meta name="twitter:description" content="语法：
+
+if ….; then　 ….elif ….; then　 ….else　 ….fi
+
+[ -f “somefile” ] ：判断是否是一个文件[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限[ -n “$var” ] ：判断$var变量是否有值[ “$a” = “$b” ] ：判断$a和$b是否相等    -r file　　　　　用户可读为真　　-w fil">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '10739498',
+      author: 'boxcore'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2017/10/10/linux/linux-if.html"/>
+
+
+
+
+
+  <title>Linux流程控制语句之if | BoxCore</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BoxCore</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Start</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-if.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux流程控制语句之if</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T17:07:45+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/10/linux/linux-if.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/10/linux/linux-if.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/10/linux/linux-if.html" class="leancloud_visitors" data-flag-title="Linux流程控制语句之if">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>语法：</p>
+<blockquote>
+<p>if ….; then<br>　 ….<br>elif ….; then<br>　 ….<br>else<br>　 ….<br>fi</p>
+</blockquote>
+<p>[ -f “somefile” ] ：判断是否是一个文件<br>[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限<br>[ -n “$var” ] ：判断$var变量是否有值<br>[ “$a” = “$b” ] ：判断$a和$b是否相等<br>    -r file　　　　　用户可读为真<br>　　-w file　　　　　用户可写为真<br>　　-x file　　　　　用户可执行为真<br>　　-f file　　　　　文件为正规文件为真<br>　　-d file　　　　　文件为目录为真<br>　　-c file　　　　　文件为字符特殊文件为真<br>　　-b file　　　　　文件为块特殊文件为真<br>　　-s file　　　　　文件大小非0时为真<br>　　-t file　　　　　当文件描述符(默认为1)指定的设备为终端时为真  </p>
+<p>含条件选择的shell脚本          对于不含变量的任务简单shell脚本一般能胜任。但在执行一些决策任务时，就需要包含if/then的条件判断了。shell脚本编程支持此类运算，包括比较运算、判断文件是否存在等。基本的if条件命令选项有： - eq —比较两个参数是否相等（例如，if [ 2 –eq 5 ]）<br>-ne —比较两个参数是否不相等<br>-lt —参数1是否小于参数2<br>-le —参数1是否小于等于参数2<br>-gt —参数1是否大于参数2<br>-ge —参数1是否大于等于参数2<br>-f — 检查某文件是否存在（例如，if [ -f “filename” ]）<br>-d — 检查目录是否存在<br>几乎所有的判断都可以用这些比较运算符实现。脚本中常用-f命令选项在执行某一文件之前检查它是否存在。 ##################################################################<br>判断文件是否存在 </p>
+<p>#!/bin/sh<br>YACCESS=<code>date -d yesterday +%Y%m%d</code><br>FILE=”access_$YACCESS.log.tgz”<br>cd /data/nginx/logs<br>if [ -f “$FILE” ];then<br>echo “OK”<br>else<br>echo “error $FILE” &gt; error.log<br>mail -s “$FILE backup fail” xxxx@yyyy.com &lt;error.log<br>fi</p>
+<p>###############</p>
+<p>#!/bin/sh</p>
+<p>#<br>DIR=/data/img_cache<br>DAY=<code>date +&quot;%Y-%m-%d %H:%M&quot;</code><br>NUM=<code>ls $DIR |wc -l</code><br>DIRNAME=<code>ls $DIR| grep leveldb | head -n 1 | awk &#39;{print $NF}&#39;</code><br>if [[ $NUM -gt 3 ]];then<br>    rm -rf $DIR/$DIRNAME<br>    echo “———$DAY—-($DIR)———————–” &gt;&gt; /tmp/img_cache.log<br>    echo “$DIRNAME Deleted successful” &gt;&gt; /tmp/img_cache.log<br>fi<br>补充：文件测试操作：<br>返回true，如果：<br>-e                          文件存在<br>-a                          文件存在（已被弃用）<br>-f                           被测文件是一个regular文件（正常文件，非目录或设备）<br>-s                          文件长度不为0<br>-d                          被测对象是目录<br>-b                          被测对象是块设备<br>-c                          被测对象是字符设备<br>-p                          被测对象是管道<br>-h                          被测文件是符号连接<br>-L                          被测文件是符号连接<br>-S(大写)                 被测文件是一个socket<br>-t                          关联到一个终端设备的文件描述符。用来检测脚本的stdin[-t0]或[-t1]是一个终端<br>-r                          文件具有读权限，针对运行脚本的用户<br>-w                         文件具有写权限，针对运行脚本的用户<br>-x                          文件具有执行权限，针对运行脚本的用户<br>-u                          set-user-id(suid)标志到文件，即普通用户可以使用的root权限文件，通过chmod +s file实现<br>-k                          设置粘贴位<br>-O                         运行脚本的用户是文件的所有者<br>-G                         文件的group-id和运行脚本的用户相同<br>-N                         从文件最后被阅读到现在，是否被修改<br>f1 -nt f2                文件f1是否比f2新<br>f1 -ot f2                文件f1是否比f2旧<br>f1 -ef f2                文件f1和f2是否硬连接到同一个文件<br>二元比较操作符，比较变量或比较数字<br>整数比较：<br>-eq                       等于            if [ “$a” -eq “$b” ]<br>-ne                       不等于         if [ “$a” -ne “$b” ]<br>-gt                        大于            if [ “$a” -gt “$b” ]<br>-ge                       大于等于      if [ “$a” -ge “$b” ]<br>-lt                         小于            if [ “$a” -lt “$b” ]<br>-le                        小于等于      if [ “$a” -le “$b” ]<br>&lt;                          小于（需要双括号）       (( “$a” &lt; “$b” ))<br>&lt;=                        小于等于(…)                (( “$a” &lt;= “$b” ))</p>
+<blockquote>
+<pre><code>大于(...)                      (( <span class="string">"<span class="variable">$a</span>"</span> &gt; <span class="string">"<span class="variable">$b</span>"</span> ))
+</code></pre><p>=                        大于等于(…)                (( “$a” &gt;= “$b” ))<br>字符串比较：<br>=                          等于           if [ “$a” = “$b” ]<br>==                        与=等价<br>!=                         不等于        if [ “$a” = “$b” ]<br>&lt;                          小于，在ASCII字母中的顺序：<br>                            if [[ “$a” &lt; “$b” ]]<br>                            if [ “$a” \&lt; “$b” ]         #需要对&lt;进行转义<br>                         大于<br>-z                         字符串为null，即长度为0<br>-n                         字符串不为null，即长度不为0</p>
+</blockquote>
+<h2 id="二、语法">二、语法</h2><p>在“判断条件”这个字段里可以直接写入bash下的命令、也可以写成条件测试<br>在判断条件中要进行条件测试：</p>
+<h3 id="条件测试方式：">条件测试方式：</h3><pre><code>“[ expression ]”一个中括弧里写表达式，
+“<span class="string">[[ expression ]]</span>”两个中括弧里写上表达式
+“test expression”
+“bash命令”
+</code></pre><h3 id="条件测试的类型：">条件测试的类型：</h3><p>整数测试</p>
+<pre><code>expression:[ 数值<span class="number">1</span> 比较符 数值<span class="number">2</span> ]
+比较符一般有以下几种：
+大于：-<span class="function"><span class="title">gt</span><span class="params">(greater than)</span></span>，大于等于：-<span class="function"><span class="title">ge</span><span class="params">(greater equal)</span></span>，小于：-<span class="function"><span class="title">lt</span><span class="params">(less than)</span></span>，小于等于：<span class="function"><span class="title">le</span><span class="params">(less equal)</span></span>，不等于：-<span class="function"><span class="title">ne</span><span class="params">(not equal)</span></span>
+</code></pre><p>字符测试</p>
+<pre><code><span class="string">"\&gt;"</span>：大于
+<span class="string">"\&lt;"</span>：小于
+<span class="string">"=="</span>或者<span class="string">"="</span>：等于
+<span class="string">"=~"</span>：判断左边的字符串能否被右边的模式所匹配，通常用于<span class="string">[[ expression ]]</span>
+</code></pre><p>单目测试：</p>
+<pre><code>-<span class="ruby">z：格式为<span class="string">"[ -z $STRING ]"</span>，表示为空值时则为真，不为空值时则为假
+</span>-<span class="ruby">n：格式为<span class="string">"[ -n $STRING ]"</span>，表示为空值时则为假，不为空值时则为真</span>
+</code></pre><p>文件、目录测试</p>
+<pre><code>-<span class="ruby">d：测试目录是否存在
+</span>-<span class="ruby">f：测试档案是否存在</span>
+</code></pre><h3 id="组合条件测试：">组合条件测试：</h3><p>当有多个测试条件时，我们可以把这些测试条件组合起来使用：</p>
+<pre><code>-<span class="ruby">a：逻辑与
+</span>-<span class="ruby">o：逻辑或
+</span>！：逻辑非，这是单目操作
+</code></pre><p>当是bash命令之间组合测试时，则：<br>    &amp;&amp;：逻辑与<br>    ||：逻辑或<br>    ！：逻辑非</p>
+<h2 id="三、例子">三、例子</h2><p>1、写一个脚本来测试一个用户是不是管理员，如果是管理员则显示“用户名 is admin”,如果是系统用户刚显示“用户名 is system user”,否则显示“用户名 is common user”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Uid=`id -u <span class="variable">$1</span> &amp;&gt; /dev/null`</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Uid</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"No such user <span class="variable">$1</span>;"</span></div><div class="line">        <span class="built_in">exit</span> 8</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Uid</span> <span class="_">-eq</span> <span class="string">'0'</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is admin."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Uid</span> <span class="_">-gt</span> <span class="string">'0'</span> <span class="_">-a</span> <span class="variable">$Uid</span> <span class="_">-lt</span> <span class="string">'500'</span> ];<span class="keyword">then</span> //这里用到了逻辑与运算</div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is system user."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Uid</span> -ge <span class="string">'500'</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is common user."</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>2、写一个脚本测试一个用户的shell是不是/bin/bash，如果是那输出“用户名 is bash user.”,否则输出“用户名 is no bash user.”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Bash=`grep <span class="string">"^<span class="variable">$1</span>\&gt;"</span> /etc/passwd | cut <span class="_">-d</span>: <span class="_">-f</span>7`</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Bash</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"No such user <span class="variable">$1</span>."</span></div><div class="line">        <span class="built_in">exit</span> 9</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Bash</span> == <span class="string">"/bin/bash"</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is bash user."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is not bash user."</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>3、写一个备份脚本，传递参数“gzip,bzip2,xz”给脚本，让脚本调用相应的压缩工具对备份文件进行压缩，当用户没有给定参数时，则调用gzip进行压缩。把/etc目录下的所有文件归档压缩后备份到/backup目录下，备份的文件名为”etc-日期-时间”的形式，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Com=<span class="variable">$1</span></div><div class="line">[ -z /backup ] || mkdir /backup &amp;&gt; /dev/null //当无/backup时则建立</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Com</span> ];<span class="keyword">then</span></div><div class="line">        Com=gzip</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Com</span> == <span class="string">'gzip'</span> ];<span class="keyword">then</span></div><div class="line">        tar zcf /backup/etc-`date +%F-%H:%M:%S.tar.gz` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(gzip)."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Com</span> == <span class="string">'bzip2'</span> ];<span class="keyword">then</span></div><div class="line">        tar jcf /backup/etc-`date +%F-%H:%M:%S.tar.bz2` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(bz2)."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Com</span> == <span class="string">'xz'</span> ];<span class="keyword">then</span></div><div class="line">        tar Jcf /backup/etc-`date +%F-%H:%M:%S.tar.xz` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(xz)."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Usage:`basename <span class="variable">$0</span>` &#123;[gzip|bzip2|xz]&#125;"</span></div><div class="line">        <span class="built_in">exit</span>=7</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>此脚本在centos5.8上不tar不能调用xz压缩工具进行工作，man tar发现选项里没有“J”选项，但在centos 6.2上能正常工作，应该是tar版本问题。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/linux/linux-ssh.html" rel="next" title="Linux网络命令之ssh">
+                <i class="fa fa-chevron-left"></i> Linux网络命令之ssh
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/linux/linux-basic.html" rel="prev" title="Linux查看服务器基础信息">
+                Linux查看服务器基础信息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Go</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">125</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/My-Booklist/" title="我的书单" target="_blank">我的书单</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二、语法"><span class="nav-number">1.</span> <span class="nav-text">二、语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条件测试方式："><span class="nav-number">1.1.</span> <span class="nav-text">条件测试方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件测试的类型："><span class="nav-number">1.2.</span> <span class="nav-text">条件测试的类型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合条件测试："><span class="nav-number">1.3.</span> <span class="nav-text">组合条件测试：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、例子"><span class="nav-number">2.</span> <span class="nav-text">三、例子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+<div class="theme-info" style="text-decoration: none;">
+<a href="https://www.upyun.com/league?utm_source=boxcore&amp;utm_medium=referral" target="_blank" rel="noreferrer noopener">
+<img alt="又拍云" style="height:40px;width:auto;display:inline;"  class="b-lazy b-loaded" src="/statics/images/yp-logo.png">
+</a>
+</div>
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://boxcore.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://boxcore.github.io/2017/10/10/linux/linux-if.html';
+          this.page.identifier = '2017/10/10/linux/linux-if.html';
+          this.page.title = 'Linux流程控制语句之if';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://boxcore.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
