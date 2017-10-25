@@ -111,7 +111,7 @@ netstat -apn | grep 8080
 netstat -apn | grep 8080
 
 一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID #">
-<meta property="og:updated_time" content="2017-10-09T12:29:25.000Z">
+<meta property="og:updated_time" content="2017-10-20T09:17:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux网络命令之netstat">
 <meta name="twitter:description" content="netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。
@@ -437,6 +437,18 @@ netstat -apn | grep 8080
 <p>一般找到端口使用的PID后可以执行如下进行关闭：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep PID <span class="comment"># 查看详细信息</span></div><div class="line"><span class="built_in">kill</span> -9 PID <span class="comment"># 终止该进程</span></div></pre></td></tr></table></figure></p>
 <p>附录window下使用：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、查询端口占用情况</div><div class="line">cmd &gt; netstat -ano</div><div class="line"><span class="number">2</span>、查询<span class="number">8080</span>端口是否被占用</div><div class="line">cmd &gt; netstat -ano|findstr <span class="number">8080</span></div><div class="line"><span class="number">3</span>、查询哪个程序占用了端口</div><div class="line">cmd &gt; tasklist|findstr PID</div><div class="line">进程号通过<span class="number">2</span>查询可以得到</div><div class="line"><span class="number">4</span>、终止该占用进程</div><div class="line">cmd &gt; ntsd -c q -p PID</div></pre></td></tr></table></figure>
+<h3 id="2-2_mac下网络查看">2.2 mac下网络查看</h3><ul>
+<li>netstat -an | grep 3306</li>
+</ul>
+<p>通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。</p>
+<blockquote>
+<p>lsof -i:80</p>
+</blockquote>
+<p>-i参数表示网络链接，:80指明端口号，该命令会同时列出PID，方便kill</p>
+<p>查看所有进程监听的端口</p>
+<blockquote>
+<p> sudo lsof -i -P | grep -i “listen”</p>
+</blockquote>
 
       
     </div>
@@ -587,7 +599,7 @@ netstat -apn | grep 8080
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">125</span>
+                <span class="site-state-item-count">132</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -598,7 +610,7 @@ netstat -apn | grep 8080
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -609,7 +621,7 @@ netstat -apn | grep 8080
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -669,7 +681,7 @@ netstat -apn | grep 8080
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、命令帮助"><span class="nav-number">1.</span> <span class="nav-text">一、命令帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常见案例"><span class="nav-number">2.</span> <span class="nav-text">二、常见案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_查看端口是否被占用"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 查看端口是否被占用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、命令帮助"><span class="nav-number">1.</span> <span class="nav-text">一、命令帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常见案例"><span class="nav-number">2.</span> <span class="nav-text">二、常见案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_查看端口是否被占用"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 查看端口是否被占用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_mac下网络查看"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 mac下网络查看</span></a></li></ol></li></ol></div>
             
 
           </div>

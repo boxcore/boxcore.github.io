@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Google Drive 服务器应用指南]]></title>
+    <url>%2F2017%2F10%2F25%2Flinux-dev%2Fgoogle-drive-usage-for-linux.html</url>
+    <content type="text"><![CDATA[一、gdrive cli命令安装这个是比较通用的命令，centos7以下的推荐使用。 12345#下载命令工具wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTAchmod 755 /usr/sbin/gdrive#验证终端gdrive about 参考项目：https://github.com/prasmussen/gdrive#downloads 1.1 怎么使用gdrive123456#gdrive 上传 tar 包到目录 0B2_oloQ2sUujdzFiYkNtOGhNMkU(用gdrive list查询google drive对应的目录地址)，成功后删除 tar 包/usr/sbin/gdrive upload -p 0B2_oloQ2sUujdzFiYkNtOGhNMkU --delete "/tmp/seonoco.com.tar.gz"#上传目录gdrive upload -p 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs --recursive "/home/wwwroot/tmp"gdrive download --recursive 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs 另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[LNMP1.4脚本分析]]></title>
+    <url>%2F2017%2F10%2F25%2Flinux-dev%2Flnmp1.4-analisys.html</url>
+    <content type="text"><![CDATA[/bin/lnmp 分析12#获取vhost列表：ls /usr/local/nginx/conf/vhost/ | grep ".conf$" | sed 's/.conf//g']]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVA基础]]></title>
+    <url>%2F2017%2F10%2F15%2Fjava%2Fjava-basic.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[编程语言学习]]></title>
+    <url>%2F2017%2F10%2F15%2Flearn-language.html</url>
+    <content type="text"><![CDATA[今天心血来潮想复习java了，毕竟好久忘记了，这里有个编译语言的分类，用来记录复习的每一章java吧。 也给自己一个期限，2017年前完成（20171015 ~ 20171231）]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux网络命令之ssh安全控制fail2ban]]></title>
+    <url>%2F2017%2F10%2F12%2Flinux%2Flinux-fail2ban.html</url>
+    <content type="text"><![CDATA[一、安装12sudo yum install fail2ban # CentOS/RHEL/Fedora上安装fail2bansudo apt-get install fail2ban # ubuntu，Debian 或 Linux Mint 二、配置新建文件/etc/fail2ban/jail.local 用来配置其安全规则 sudo vi /etc/fail2ban/jail.local 123456789101112131415161718192021222324252627[DEFAULT]# 以空格分隔的列表，可以是 IP 地址、CIDR 前缀或者 DNS 主机名# 用于指定哪些地址可以忽略 fail2ban 防御ignoreip = 127.0.0.1 172.31.0.0/24 10.10.0.0/24 192.168.0.0/24 # 客户端主机被禁止的时长（秒）bantime = 86400 # 客户端主机被禁止前允许失败的次数 maxretry = 5 # 查找失败次数的时长（秒）findtime = 600 mta = sendmail [ssh-iptables]enabled = truefilter = sshdaction = iptables[name=SSH, port=ssh, protocol=tcp]sendmail-whois[name=SSH, dest=your@email.com, sender=fail2ban@email.com]# Debian 系的发行版 logpath = /var/log/auth.log# Red Hat 系的发行版logpath = /var/log/secure# ssh 服务的最大尝试次数 maxretry = 3 三、常用命令123456789101112sudo service fail2ban restart # Debian, Ubuntu 或 CentOS/RHEL 6 sudo systemctl restart fail2ban # 在 Fedora 或 CentOS/RHEL 7:sudo fail2ban-client status # 检验fail2ban状态sudo fail2ban-client status ssh-iptables # 检验一个特定监狱的状态,会显示出被禁止IP地址列表sudo fail2ban-client ping # 验证fail2ban成功运行,你可以看到“pong（嘭）”作为响应sudo tail -f /var/log/fail2ban.log # 该文件记录在fail2ban中发生的任何敏感事件sudo iptables --list -n # 检测当前iptables来验证禁止规则sudo iptables -D fail2ban-SSH -s 192.168.1.8 -j DROP # 从fail2ban中解锁某个IP地址 注意，如果你停止了Fail2ban 服务，那么所有的IP地址都会被解锁。当你重启 Fail2ban，它会从/etc/log/secure(或 /var/log/auth.log)中找到异常的IP地址列表，如果这些异常地址的发生时间仍然在禁止时间内，那么Fail2ban会重新将这些IP地址禁止。 3.1 设置 Fail2ban 自动启动12sudo chkconfig fail2ban onsudo systemctl enable fail2ban]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[压缩命令之rar、unrar]]></title>
+    <url>%2F2017%2F10%2F12%2Flinux%2Frar-and-unrar-usage.html</url>
+    <content type="text"><![CDATA[rar是一个商业软件，但有时候我们需要在linux 下做批量操作，这时候就需要用到命令，下面我们来说说rar、unrar在命令行下的一些操作，希望对你们有所帮助！ 一、安装winrarwinrar从v5开始，只提供window和linux版的，而linux版只提供二进制文件，这样我们就可以直接在命令行进行操作。比如在terminal下压缩文件a.xls到文件 a.xls.rar中，语法如下： rar a ‘a.xls.rar’ ‘a.xls’ # 使用起来非常简单，类似linux下的tar 参考： http://blog.csdn.net/randomlife/article/details/113102 二、配置2.1 key配置WinRAR, RAR for Unix and OS X now use the same registration key format, so you can use the same key with current WinRAR and RAR versions for all mentioned platforms.so Yes, it is possible. Further, it also states where to copy the key: If you use RAR/Unix and RAR for OS X, you should copy rarreg.key to your home directory or to one of the following directories: /etc, /usr/lib, /usr/local/lib, /usr/local/etc. You may rename it to .rarreg.key or .rarregkey, if you wish, but rarreg.key is also valid. 参考：https://superuser.com/questions/1089501/how-to-transfer-winrar-key-to-linux 分享我的rarreg.key: 1234567891011RAR registration dataAdminUnlimited Company LicenseUID=1d7426b0b166c91c21ab641221225021abd0925f7c70456ecd71f724a7f5a00b0a0f7d19ee45c5e20951dae2857c2960fce6cb5ffde62890079861be576387177131ced835ed65cc743d9777f2ea71a8e32c7e593cf66794343565b41bcf56929486b8bcdac33d50ecf773996076c281ccab247f6153ed97a3e4a4cb9bffbf35ed364a5cc6908fd2cdc84e9f53a33cf4639d85cd75291397987399f5159745c84654dfd11e471ec7a360b22abbaf66105e62e8afa2d5d154b0c164b1f5377d2975460025531542 然后复制或添加软链接到配置目录，你可能要执行这样的命令：1ln -sfv /workspace/bin/winrar/rarreg.key /usr/local/etc/rarreg.key # mac]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[homebrew的安装与使用]]></title>
+    <url>%2F2017%2F10%2F12%2Fmac-dev%2Fhomebrew-usage.html</url>
+    <content type="text"><![CDATA[homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。 一、安装homebrew二、配置homebrew2.1 修改homebrew镜像默认的，homebrew是使用github作为代码源，同步的时候会比较慢，所以就有了备选方案 - 使用USTC提供的homebrew镜像。具体操作可以看这篇文章《替换及重置Homebrew默认源》 12345678910111213141516替换brew.git:cd "$(brew --repo)"git remote set-url origin https://mirrors.ustc.edu.cn/brew.git替换homebrew-core.git:cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git重置brew.git:cd "$(brew --repo)"git remote set-url origin https://github.com/Homebrew/brew.git重置homebrew-core.git:cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"git remote set-url origin https://github.com/Homebrew/homebrew-core.git]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Linux文件操作命令之文件属性chattr]]></title>
     <url>%2F2017%2F10%2F10%2Flinux%2Flinux-chattr.html</url>
     <content type="text"><![CDATA[Linux chattr命令用于改变文件属性。通过chattr命令修改属性能够提高系统的安全性，但是它并不适合所有的目录。chattr命令不能保护/、/dev、/tmp、/var目录。lsattr命令是显示chattr命令设置的文件属性。 这项指令可改变存放在ext2文件系统上的文件或目录属性，这些属性共有以下8种模式： a：让文件或目录仅供附加用途。 b：不更新文件或目录的最后存取时间。 c：将文件或目录压缩后存放。 d：将文件或目录排除在倾倒操作之外。 i：不得任意更动文件或目录。 s：保密性删除文件或目录。 S：即时更新文件或目录。 u：预防以外删除。 语法 chattr [-RV][-v&lt;版本编号&gt;][+/-/=&lt;属性&gt;][文件或目录…] 参数 -R 递归处理，将指定目录下的所有文件及子目录一并处理。 -v&lt;版本编号&gt; 设置文件或目录版本。 -V 显示指令执行过程。 +&lt;属性&gt; 开启文件或目录的该项属性。 -&lt;属性&gt; 关闭文件或目录的该项属性。 =&lt;属性&gt; 指定文件或目录的该项属性。 实例 用chattr命令防止系统中某个关键文件被修改：chattr +i /etc/resolv.conflsattr /etc/resolv.conf会显示如下属性—-i——– /etc/resolv.conf 让某个文件只能往里面追加数据，但不能删除，适用于各种日志文件：chattr +a /var/log/messages 参考 （总结）Linux的chattr与lsattr命令详解]]></content>
@@ -38,7 +73,7 @@
   <entry>
     <title><![CDATA[Linux网络命令之netstat]]></title>
     <url>%2F2017%2F10%2F09%2Flinux%2Flinux-netstat.html</url>
-    <content type="text"><![CDATA[netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。 一、命令帮助二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名 netstat -apn | grep 8080 一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID # 终止该进程 附录window下使用： 1234567891、查询端口占用情况cmd &gt; netstat -ano2、查询8080端口是否被占用cmd &gt; netstat -ano|findstr 80803、查询哪个程序占用了端口cmd &gt; tasklist|findstr PID进程号通过2查询可以得到4、终止该占用进程cmd &gt; ntsd -c q -p PID]]></content>
+    <content type="text"><![CDATA[netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。 一、命令帮助二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名 netstat -apn | grep 8080 一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID # 终止该进程 附录window下使用： 1234567891、查询端口占用情况cmd &gt; netstat -ano2、查询8080端口是否被占用cmd &gt; netstat -ano|findstr 80803、查询哪个程序占用了端口cmd &gt; tasklist|findstr PID进程号通过2查询可以得到4、终止该占用进程cmd &gt; ntsd -c q -p PID 2.2 mac下网络查看 netstat -an | grep 3306 通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。 lsof -i:80 -i参数表示网络链接，:80指明端口号，该命令会同时列出PID，方便kill 查看所有进程监听的端口 sudo lsof -i -P | grep -i “listen”]]></content>
   </entry>
   <entry>
     <title><![CDATA[MySQL时间处理]]></title>
@@ -58,7 +93,14 @@
   <entry>
     <title><![CDATA[aria2远程下载利器]]></title>
     <url>%2F2017%2F08%2F31%2Ftools%2Faria2-usage.html</url>
-    <content type="text"><![CDATA[安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！ aria2安装12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#!/bin/bash# install aria2 for centos 6.8# author: boxcore# aria2 docs：https://github.com/aria2/aria2# more gnu project for download : http://ftp.gnu.org/gnu/ ; ftp://gcc.gnu.org/pub/gcc/infrastructure/# # aria2 gui tools:# for mac: https://github.com/yangshun1029/aria2gui/releases# yum install bison libssh2-devel expat-devel gmp-devel nettle-devel libuv-devel libssh2-devel zlib-devel c-ares-devel cppunit-devel gnutls-devel libgcrypt-devel libxml2-devel sqlite-devel gettext lzma-devel xz-devel gperftools gperftools-devel gperftools-libs jemalloc-devel## install gcc 4.8##wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repoyum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ln -s /opt/rh/devtoolset-2/root/usr/bin/* /usr/local/bin/hash -rg++ --version## install libuv, see https://github.com/libuv/libuvwget https://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gztar vxf libuv-v1.9.1.tar.gzcd libuv-v1.9.1sh autogen.sh./configuremakemake checkmake install## install jemalloc, see: http://jemalloc.net/wget https://github.com/jemalloc/jemalloc/releases/download/5.0.1/jemalloc-5.0.1.tar.bz2tar vxf jemalloc-5.0.1.tar.bz2cd jemalloc-5.0.1./configuremakemake checkmake installcd /optwget https://github.com/aria2/aria2/releases/download/release-1.27.1/aria2-1.27.1.tar.gztar xzf aria2-1.27.1.tar.gzcd aria2-1.27.1./configure --enable-static=yes --enable-shared=no --with-libuv --with-jemalloc --with-ca-bundle='/etc/pki/tls/certs/ca-bundle.crt' ARIA2_STATIC=yesmake &amp;&amp; make check &amp;&amp; make install 然后，你就可以使用aria2c命令试一下咯。。。 aria2 远程管理利器 https://github.com/mayswind/AriaNg, https://doub.io/wlzy-30/ https://doub.io/wlzy-30/ https://github.com/ziahamza/webui-aria2 https://github.com/binux/yaaw https://dy.ghostry.cn/ 参考 http://skypegnu1.blog.51cto.com/8991766/1637168 http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/]]></content>
+    <content type="text"><![CDATA[安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！ 一、aria2安装12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#!/bin/bash# install aria2 for centos 6.8# author: boxcore# aria2 docs：https://github.com/aria2/aria2# more gnu project for download : http://ftp.gnu.org/gnu/ ; ftp://gcc.gnu.org/pub/gcc/infrastructure/# # aria2 gui tools:# for mac: https://github.com/yangshun1029/aria2gui/releases# yum install bison libssh2-devel expat-devel gmp-devel nettle-devel libuv-devel libssh2-devel zlib-devel c-ares-devel cppunit-devel gnutls-devel libgcrypt-devel libxml2-devel sqlite-devel gettext lzma-devel xz-devel gperftools gperftools-devel gperftools-libs jemalloc-devel## install gcc 4.8##wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repoyum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ln -s /opt/rh/devtoolset-2/root/usr/bin/* /usr/local/bin/hash -rg++ --version## install libuv, see https://github.com/libuv/libuvwget https://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gztar vxf libuv-v1.9.1.tar.gzcd libuv-v1.9.1sh autogen.sh./configuremakemake checkmake install## install jemalloc, see: http://jemalloc.net/wget https://github.com/jemalloc/jemalloc/releases/download/5.0.1/jemalloc-5.0.1.tar.bz2tar vxf jemalloc-5.0.1.tar.bz2cd jemalloc-5.0.1./configuremakemake checkmake installcd /optwget https://github.com/aria2/aria2/releases/download/release-1.27.1/aria2-1.27.1.tar.gztar xzf aria2-1.27.1.tar.gzcd aria2-1.27.1./configure --enable-static=yes --enable-shared=no --with-libuv --with-jemalloc --with-ca-bundle='/etc/pki/tls/certs/ca-bundle.crt' ARIA2_STATIC=yesmake &amp;&amp; make check &amp;&amp; make install 然后，你就可以使用aria2c命令试一下咯。。。 二、aria2使用2.1 基本说明-c: 断点续传 -s: 使用线程数 当源地址存在诸如 &amp;, * 等 shell 的特殊字符，请使用单引号或双引号把 URI 包含起来。 2.2 常见命令123456aria2c -c -s 5 http://example.org/mylinux.isoaria2c http://a/f.iso ftp://b/f.iso # Download from 2 sourcesaria2c -x2 http://a/f.iso # Download using 2 connections per hostaria2c 'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C' # BitTorrent Magnet URI 三、aria2相关工具 https://github.com/mayswind/AriaNg, https://doub.io/wlzy-30/ https://doub.io/wlzy-30/ https://github.com/ziahamza/webui-aria2 https://github.com/binux/yaaw https://dy.ghostry.cn/ 参考 http://skypegnu1.blog.51cto.com/8991766/1637168 http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>下载</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[PHP设计模式]]></title>
@@ -586,8 +628,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>lnmp</tag>
+        <tag>linux</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -614,8 +656,8 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Sublime Text</tag>
         <tag>CTags</tag>
+        <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
       </tags>
   </entry>
