@@ -329,6 +329,492 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/02/ecshop-goods-list-sort.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/02/ecshop-goods-list-sort.html" itemprop="url">ecshop商品列表多种排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-02T23:10:24+08:00">
+                2013-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/02/ecshop-goods-list-sort.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/02/ecshop-goods-list-sort.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/02/ecshop-goods-list-sort.html" class="leancloud_visitors" data-flag-title="ecshop商品列表多种排序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ecshop商品列表页面的按上架时间、价格、更新时间是默认的，现在需要添加的是按销量排行，但是在商品表里面没有销量的字段,最模板搜集整理提供如下办法：<br>1：在表“ecs_goods”添加字段：salesnum<br>2：打开根目录下文件：flow.php<br>找到下面的代码：</p>
+<p><pre class="brush:php">/<em> 插入订单商品 </em>/<br>$sql = “INSERT INTO “ . $ecs-&gt;table(‘order_goods’) . “( “ .<br>“order_id, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, “.<br>“goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id) “.<br>“ SELECT ‘$new_order_id’, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, “.<br>“goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id”.<br>“ FROM “ .$ecs-&gt;table(‘cart’) .<br>“ WHERE session_id = ‘“.SESS_ID.”‘ AND rec_type = ‘$flow_type’”;<br>$db-&gt;query($sql);</pre><br>在这段代码的下面，添加如下代码：</p>
+<p><pre class="brush:php">/<em> 插入商品表的salesnum 字段，统计销量排行 </em>/<br>$sql = “update “ .$GLOBALS[‘ecs’]-&gt;table(‘goods’) . “ AS a, “.$GLOBALS[‘ecs’]-&gt;table(‘cart’) . “ AS b “.<br>“ set a.salesnum= a.salesnum + b.goods_number”.<br>“ WHERE a.goods_id=b.goods_id AND b.session_id = ‘“.SESS_ID.”‘ AND b.rec_type = ‘$flow_type’”;<br>$db-&gt;query($sql);</pre><br>打开文件：defaultlibrarygoods_list.lbi，找到下面的代码：</p>
+<p><pre class="brush:php">&lt;a href=”category.php?category={$category}&amp;display={$pager.display}&amp;brand={$brand_id}&amp;price_min={$price_min}&amp;price_max={$price_max}&amp;filter_attr={$filter_attr}&amp;page={$pager.page}&amp;sort=last_update&amp;order=&lt;!– {if $pager.sort == ‘last_update’ &amp;&amp; $pager.order == ‘DESC’} –&gt;ASC&lt;!– {else} –&gt;DESC&lt;!– {/if} –&gt;#goods_list”&gt;&lt;img src=”images/last<em>update</em>&lt;!– {if $pager.sort == ‘last_update’} –&gt;{$pager.order}&lt;!– {else} –&gt;default&lt;!– {/if} –&gt;.gif” alt=”{$lang.sort.last_update}”&gt;&lt;/a&gt;</pre><br>&nbsp;</p>
+<p>下面添加</p>
+<p><pre class="brush:php">&lt;a href=”category.php?category={$category}&amp;display={$pager.display}&amp;brand={$brand_id}&amp;price_min={$price_min}&amp;price_max={$price_max}&amp;filter_attr={$filter_attr}&amp;page={$pager.page}&amp;sort=salesnum&amp;order=&lt;!– {if $pager.sort == ’salesnum’ &amp;&amp; $pager.order == ‘DESC’} –&gt;ASC&lt;!– {else} –&gt;DESC&lt;!– {/if} –&gt;#goods<em>list”&gt;&lt;img src=”images/sales</em>&lt;!– {if $pager.sort == ’salesnum’} –&gt;{$pager.order}&lt;!– {else} –&gt;default&lt;!– {/if} –&gt;.gif” alt=”按销量排行”&gt;&lt;/a&gt;</pre><br>打开文件：category.php，找到如下代码：</p>
+<p><pre class="brush:php">$sort = (isset($_REQUEST[‘sort’]) &amp;&amp; in_array(trim(strtolower($_REQUEST[‘sort’])), array(’goods_id’, ’shop_price’, ‘last_update’)))</pre><br>&nbsp;</p>
+<p>修改为：</p>
+<p><pre class="brush:php">$sort = (isset($_REQUEST[‘sort’]) &amp;&amp; in_array(trim(strtolower($_REQUEST[‘sort’])), array(’goods_id’, ’shop_price’, ‘last_update’,’salesnum’)))</pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>参考网站:</p>
+<p><a href="http://www.siqiji.com/show-39.html" target="_blank" rel="external">http://www.siqiji.com/show-39.html</a></p>
+<p><a href="http://blog.csdn.net/huangqiaoling/article/details/8076453" target="_blank" rel="external">http://blog.csdn.net/huangqiaoling/article/details/8076453</a></p>
+<p><a href="http://www.yoozhan.com/ecshop/ecshop-66.html" target="_blank" rel="external">http://www.yoozhan.com/ecshop/ecshop-66.html</a></p>
+<p><a href="http://www.soucms.com/CMSjiaocheng/Ecshop/102.html" target="_blank" rel="external">http://www.soucms.com/CMSjiaocheng/Ecshop/102.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/29/note-awesome-gay.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/29/note-awesome-gay.html" itemprop="url">技术牛人资料</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-29T12:48:00+08:00">
+                2013-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hello/" itemprop="url" rel="index">
+                    <span itemprop="name">hello</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/11/29/note-awesome-gay.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/11/29/note-awesome-gay.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/11/29/note-awesome-gay.html" class="leancloud_visitors" data-flag-title="技术牛人资料">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>链接: <a href="http://www.csto.com/u/qq1057789374/profile" target="_blank" rel="external">http://www.csto.com/u/qq1057789374/profile</a></p>
+<p>简介：<br>2009 /2–2013：爱丽国际科技(北京)有限公司（500-1000人）<br>所属行业： 互联网/电子商务<br>技术总监 (CTO)<br>1.女性门户网站系统架构，平台核心代码的研发，PHP代码优化,Oracle、MYSQL数据库DBA结构优化,SQL语句执行效率优化，Linux系统调优，安全策略，高并发调优,数据库集群及调优,Nginx负载均衡及调优，其有关运维一系列应用软件的架设与调优。<br>2.架设爱丽女性网运维监控体系，做到几十台机器的系统监控、平衡负载、调优、安全策略、文件同步、附件共享存储、图片缓存、数据库集群等稳定。负责爱丽女性网计算机IDC的规划与建设工作，研发团队的管理以及日常工作；<br>3.团队建设及管理，下属的绩效制定与考核，设计与规划整个爱丽女性网平台的性能评估与性能测试整体工作，通过整体对于业务系统的模拟，操作系统层，数据库层，代码层的监控，高效的保证爱丽女性网平台各项业务发布的稳定与成功。<br>汇报上级：总经理(CEO)<br>直接下属：25-30人<br>项目经验：<br>爱丽女性网 <a href="http://www.aili.com" target="_blank" rel="external">http://www.aili.com</a><br>本站访问量日PV两千万,日IP一百五十万,世界综合排名1386位。<br>网站研发有CMS管理系统，高清图库系统，采集系统，投稿系统，论坛系统，过滤系统，问答系统，化妆品系统,商城系统，团购系统，会员通行证系统，流量统计系统等。<br>2006 /11–2008 /12：康盛创想（北京）科技有限公司（500-1000人） [ 2年1个月]<br>所属行业： 互联网/电子商务<br>项目部 项目主管<br>1.项目系统架构，PHP核心代码开发，PHP代码优化，Oracle、Mysql数据库DBA优化,项目调试环境配置,SVN版本控制管理,运维架设配置及调优。<br>2.带领项目团队共同完成云南信息港的开发与运维架构,红孩子商城的开发与运维架构。<br>3.团队建设与管理,下属绩效制定与考核，项目性能评估与性能测试整体工作，客户与团队协调与沟通，项目功能开发需求档撰写。<br>汇报上级：项目部经理<br>直接下属：8人<br>离职原因：换个空间环境.<br>项目经验：<br>云南信息港 <a href="http://www.yninfo.com" target="_blank" rel="external">http://www.yninfo.com</a><br>本站访问量日PV一千四百万,日IP一百一十万,世界综合排名1979位。<br>网站研发有CMS管理系统，博客系统，空间系统，相册系统，旅游系统，娱乐系统，寻医问药系统，商城系统，团购系统，黄页系统，汽车系统，房产系统，求职招聘系统，邮件系统,货币交易系统，会员通行证系统，流量统计系统。<br>2004 /9–2006 /9：联搜国际广告(北京)有限公司（150-500人） [ 2年]<br>所属行业： 互联网/电子商务<br>技术部 PHP研发工程师<br>1.会员系统，资讯发布系统，广告发布系统的研发及升级维护。<br>2.公司局域网管理与监控。<br>汇报上级：技术部经理<br>离职原因：换个发展空间<br>项目经验：<br>就要创业门户 <a href="http://www.91cy.cn" target="_blank" rel="external">http://www.91cy.cn</a><br>本站访问量日PV五百万，日IP三十万,世界综合排名3789位。<br>网站研发有广告发布系统，资讯发布系统，留言管理系统，模板系统，评论系统，会员系统统，流量统计系统。<br>教育经历</p>
+<p>2000 /9–2004 /7 鄂州大学 计算机科学与技术 本科<br>毕业设计:开发一套图书管理系统<br>其他信息</p>
+<p>自我评价：<br>1.计算机本科毕业，专业知识扎实，技术扎实<br>2.在专业LAMP开发及管理八年，对团队建设与管理有一定的能力<br>3.精通LAMP/LNMP系统架构，熟悉Erlang程序开发<br>4.Linux系统管理、调优、安全策略、集群及一系列服务的优化及管理<br>5.精通LAMP/LNMP高并发优化、Mysql结构及SQL语句优化、PHP代码优化、Apache优化、Nginx优化,Memcached，Redis分布式内存缓存技术，MongoDB分布式文件存储的数据库。<br>6.精通各种集群均衡负载LVS、Haproxy、Nginx，各类图片代理缓存squid,varnish，各类服务器监控Cacti,Nagios架构及调优。</p>
+<p>不谦虚的说一句： 在LAMP/LNMP PHP研发与架构等领域，是一名完全合格的资深系统架构师。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/29/share-zhihu-collect.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/29/share-zhihu-collect.html" itemprop="url">知乎问答：和不太熟悉的女生吃饭时（有追求她的意愿），女方提出AA制，该不该接受？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-29T00:24:16+08:00">
+                2013-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/11/29/share-zhihu-collect.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/11/29/share-zhihu-collect.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/11/29/share-zhihu-collect.html" class="leancloud_visitors" data-flag-title="知乎问答：和不太熟悉的女生吃饭时（有追求她的意愿），女方提出AA制，该不该接受？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>【和不太熟悉的女生吃饭时（有追求她的意愿），女方提出AA制，该不该接受？】吴伟：兄弟啊，追姑娘是个集智力、情商、逻辑判断、观察能力、经济能力、体力和表达能力与一体综合性运动，针对于你的问题，我假设你经济没问题的基础上进行回… <a href="http://zhi.hu/IGq0" target="_blank" rel="external">http://zhi.hu/IGq0</a> （分享自知乎网）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/28/linux-setting.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1651,497 +2137,6 @@ date_format
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/22/ecshop-upload-images.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/22/ecshop-upload-images.html" itemprop="url">Ecshop 后台添加图片上传</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-22T00:01:41+08:00">
-                2013-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ECshop/" itemprop="url" rel="index">
-                    <span itemprop="name">ECshop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/22/ecshop-upload-images.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/22/ecshop-upload-images.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/22/ecshop-upload-images.html" class="leancloud_visitors" data-flag-title="Ecshop 后台添加图片上传">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.后台模版文件添加:</p>
-<p><pre class="brush:php">&lt;tr&gt;<br>    &lt;td class=”label”&gt;文章图标1&lt;/td&gt;<br>    &lt;td&gt;<br>        &lt;input type=”file” name=”article_icon_1” size=”35” /&gt;<br>        {if $article.article_icon_1}<br>        &lt;a href=”article.php?act=show_image&amp;img_url={$article.article_icon_1}” target=”_blank”&gt;&lt;img src=”images/yes.gif” border=”0” /&gt;&lt;/a&gt;<br>        {else}<br>        &lt;img src=”images/no.gif” /&gt;<br>        {/if}<br>    &lt;/td&gt;<br>&lt;/tr&gt;</pre><br>&nbsp;</p>
-<p>2.后台程序修改:</p>
-<p>insert区域:</p>
-<p><pre class="brush:php">/<em> 文章图标处理 begin </em>/<br>    $article_icon_1 = ‘’;<br>    $article_icon_2     = ‘’;<br>    $save_path =  ‘icon/‘.date(‘Ym’,time());<br>    if ( ($_FILES[‘article_icon_1’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_1’][‘tmp_name’] != ‘none’) ){<br>        $original_article_icon_1   = $image-&gt;upload_image($_FILES[‘article_icon_1’], $save_path); // 原始图片<br>        if ($original_article_icon_1 === false)<br>        {<br>            sys_msg($image-&gt;error_msg(), 1, array(), false);<br>        }<br>        $article_icon_1      = $original_article_icon_1;   // 商品图片<br>    }<br>    if ( ($_FILES[‘article_icon_2’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_2’][‘tmp_name’] != ‘none’) ){<br>        $original_article_icon_2   = $image-&gt;upload_image($_FILES[‘article_icon_2’], $save_path); // 原始图片<br>        if ($original_article_icon_2 === false)<br>        {<br>            sys_msg($image-&gt;error_msg(), 1, array(), false);<br>        }<br>        $article_icon_2      = $original_article_icon_2;   // 商品图片<br>    }</pre><br>&nbsp;</p>
-<p>&nbsp;</p>
-<p>update区域:</p>
-<p>&nbsp;</p>
-<p>delete区域:</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/21/ecshop-conflict-for-jquery.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/21/ecshop-conflict-for-jquery.html" itemprop="url">最新解决Ecshop2.73与Jquery的冲突</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-21T10:32:50+08:00">
-                2013-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ECshop/" itemprop="url" rel="index">
-                    <span itemprop="name">ECshop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/21/ecshop-conflict-for-jquery.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/21/ecshop-conflict-for-jquery.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/21/ecshop-conflict-for-jquery.html" class="leancloud_visitors" data-flag-title="最新解决Ecshop2.73与Jquery的冲突">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>早些年就有人在ecshop论坛反映，为何ecshop不兼容jquery？可是ecshop官网却一直未解决这个问题。由插件联盟网亲自测试并验证过的解决jquery冲突的方法如下：<br>1.复制一份 transport.js 改名为 transport.org.js 提供给后台使用</p>
-<p>2.注释掉js/transport.js里的toJSON功能 行数为497-737行之间。其中将 legalParams = “JSON=” + $.toJSON(params); 替换为result = $.evalJSON(result);</p>
-<p>3.修改js/index.js里的第44行，将其改为：var res = $.evalJSON(result);</p>
-<p>4.修改js/改common.js,将第34行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);然后将850行改为:Ajax.call(‘flow.php?step=add_package_to_cart’, ‘package_info=’ + $.toJSON(package_info), addPackageToCartResponse, ‘POST’, ‘JSON’);最后将1056行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);</p>
-<p>5.修改compare.js文件<br>第49行改为:this.data = $.evalJSON(cookieValue);第67行改为:var obj = $.evalJSON(cookieValue);第133行改为:document.setCookie(“compareItems”, $.toJSON(this.data));</p>
-<p>6.修改js/global.js文件,其中将第16行改函数名 :function $e()。然后第114和126行都改为: var element = $e(element);</p>
-<p>7.修改后台头部引入transport.js路径 admin/templates/pageheader.htm 第9行改为: {insert_scripts files=”../js/transport.org.js,common.js”}</p>
-<p>8.修改themes/default/library/page_header.lbi文件在{insert_scripts files=’transport.js,utils.js’}上面加上如下代码<br>{insert_scripts files=’jquery.js,jquery.json.js’}</p>
-<p>9.修改你的模板下的library/comment_list.lbi。将第188行 替换为：Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’);</p>
-<p>10.修改模板compare.dwt。将第20行 改为：var obj = $.evalJSON(document.getCookie(“compareItems”));然后第24行 替换为：document.setCookie(“compareItems”, $.toJSON(obj));</p>
-<p>11.修改模板flow.dwt，将第138行 替换为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), collect_to_flow_response, ‘POST’, ‘JSON’);然后将第199行 改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), fittings_to_flow_response, ‘POST’, ‘JSON’);</p>
-<p>12.over</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/21/ecshop-plugin-website.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/21/ecshop-plugin-website.html" itemprop="url">ECshop插件功能汇总</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-21T10:29:36+08:00">
-                2013-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ECshop/" itemprop="url" rel="index">
-                    <span itemprop="name">ECshop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/21/ecshop-plugin-website.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/21/ecshop-plugin-website.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/21/ecshop-plugin-website.html" class="leancloud_visitors" data-flag-title="ECshop插件功能汇总">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1. ecshop功能</p>
-<p>2.</p>
-<p>3. 参考网站<br><a href="http://www.topchajian.com" target="_blank" rel="external">http://www.topchajian.com</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2191,7 +2186,7 @@ date_format
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">132</span>
+                <span class="site-state-item-count">135</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

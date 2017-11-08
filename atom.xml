@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-10-25T08:15:18.000Z</updated>
+  <updated>2017-11-08T03:16:39.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vultr主机推荐</title>
+    <link href="http://boxcore.github.io/2017/11/08/affiliate/vultr-vps-affiliate.html"/>
+    <id>http://boxcore.github.io/2017/11/08/affiliate/vultr-vps-affiliate.html</id>
+    <published>2017-11-08T03:16:25.000Z</published>
+    <updated>2017-11-08T03:16:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.vultr.com/?ref=7229300&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.vultr.com/?ref=7229300&lt;/a&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>RESILIO SYNC激活和激活失效修复</title>
+    <link href="http://boxcore.github.io/2017/11/08/tools/resilio-sync-license-crack.html"/>
+    <id>http://boxcore.github.io/2017/11/08/tools/resilio-sync-license-crack.html</id>
+    <published>2017-11-08T02:52:56.000Z</published>
+    <updated>2017-11-08T08:20:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。&lt;br&gt;目前对所有版本有效，测试到最高版本 2.5.9 版本。&lt;/p&gt;
+&lt;h2 id=&quot;一、安装_Resilio_Sync&quot;&gt;一、安装 Resilio S
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL多开</title>
+    <link href="http://boxcore.github.io/2017/11/03/sql/multiple-mysql-instances.html"/>
+    <id>http://boxcore.github.io/2017/11/03/sql/multiple-mysql-instances.html</id>
+    <published>2017-11-03T05:08:12.000Z</published>
+    <updated>2017-11-03T06:10:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在服务器中开启mysql服务一般是用 &lt;code&gt;service mysql start&lt;/code&gt;, 但在系统里面他都执行了那些命令吗，通过&lt;code&gt;ps -ef|grep mysql&lt;/code&gt; 我们可以看到目标的任务有如：&lt;/p&gt;
+&lt;figure class=&quot;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Google Drive 服务器应用指南</title>
@@ -305,64 +356,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;一、基本命令&quot;&gt;一、基本命令&lt;/h2&gt;&lt;h3 id=&quot;1-1_版本回退&quot;&gt;1.1 版本回退&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mpv播放器安装和使用</title>
-    <link href="http://boxcore.github.io/2017/09/04/tools/mpv-usage.html"/>
-    <id>http://boxcore.github.io/2017/09/04/tools/mpv-usage.html</id>
-    <published>2017-09-04T01:15:45.000Z</published>
-    <updated>2017-09-04T01:23:23.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;mpv是一个跨平台开源播放器。&lt;/p&gt;
-&lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h2 id=&quot;二、使用&quot;&gt;二、使用&lt;/h2&gt;&lt;h2 id=&quot;三、配置&quot;&gt;三、配置&lt;/h2&gt;&lt;h3 id=&quot;3-1_默认快捷方式&quot;&gt;3.1 默认快捷方式&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;cod
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>aria2远程下载利器</title>
-    <link href="http://boxcore.github.io/2017/08/31/tools/aria2-usage.html"/>
-    <id>http://boxcore.github.io/2017/08/31/tools/aria2-usage.html</id>
-    <published>2017-08-31T11:47:36.000Z</published>
-    <updated>2017-10-16T01:46:13.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！&lt;/p&gt;
-&lt;h2 id=&quot;一、aria2安装&quot;&gt;一、aria2安装&lt;/h2&gt;&lt;figure class=&quot;highlig
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http://boxcore.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="技术" scheme="http://boxcore.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="下载" scheme="http://boxcore.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP设计模式</title>
-    <link href="http://boxcore.github.io/2017/08/27/php/php-design-patterns.html"/>
-    <id>http://boxcore.github.io/2017/08/27/php/php-design-patterns.html</id>
-    <published>2017-08-27T15:58:41.000Z</published>
-    <updated>2017-08-27T16:49:09.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;笔记内容来自慕课 &lt;a href=&quot;http://www.imooc.com/video/4846&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;大话PHP设计模式&lt;/a&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;一、面向对象的高级特性&quot;&gt;一、面向对象的高级特性&lt;/h2
     
     </summary>
     

@@ -329,6 +329,497 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/22/ecshop-upload-images.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/22/ecshop-upload-images.html" itemprop="url">Ecshop 后台添加图片上传</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-22T00:01:41+08:00">
+                2013-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/11/22/ecshop-upload-images.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/11/22/ecshop-upload-images.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/11/22/ecshop-upload-images.html" class="leancloud_visitors" data-flag-title="Ecshop 后台添加图片上传">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.后台模版文件添加:</p>
+<p><pre class="brush:php">&lt;tr&gt;<br>    &lt;td class=”label”&gt;文章图标1&lt;/td&gt;<br>    &lt;td&gt;<br>        &lt;input type=”file” name=”article_icon_1” size=”35” /&gt;<br>        {if $article.article_icon_1}<br>        &lt;a href=”article.php?act=show_image&amp;img_url={$article.article_icon_1}” target=”_blank”&gt;&lt;img src=”images/yes.gif” border=”0” /&gt;&lt;/a&gt;<br>        {else}<br>        &lt;img src=”images/no.gif” /&gt;<br>        {/if}<br>    &lt;/td&gt;<br>&lt;/tr&gt;</pre><br>&nbsp;</p>
+<p>2.后台程序修改:</p>
+<p>insert区域:</p>
+<p><pre class="brush:php">/<em> 文章图标处理 begin </em>/<br>    $article_icon_1 = ‘’;<br>    $article_icon_2     = ‘’;<br>    $save_path =  ‘icon/‘.date(‘Ym’,time());<br>    if ( ($_FILES[‘article_icon_1’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_1’][‘tmp_name’] != ‘none’) ){<br>        $original_article_icon_1   = $image-&gt;upload_image($_FILES[‘article_icon_1’], $save_path); // 原始图片<br>        if ($original_article_icon_1 === false)<br>        {<br>            sys_msg($image-&gt;error_msg(), 1, array(), false);<br>        }<br>        $article_icon_1      = $original_article_icon_1;   // 商品图片<br>    }<br>    if ( ($_FILES[‘article_icon_2’][‘tmp_name’] != ‘’ &amp;&amp; $_FILES[‘article_icon_2’][‘tmp_name’] != ‘none’) ){<br>        $original_article_icon_2   = $image-&gt;upload_image($_FILES[‘article_icon_2’], $save_path); // 原始图片<br>        if ($original_article_icon_2 === false)<br>        {<br>            sys_msg($image-&gt;error_msg(), 1, array(), false);<br>        }<br>        $article_icon_2      = $original_article_icon_2;   // 商品图片<br>    }</pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>update区域:</p>
+<p>&nbsp;</p>
+<p>delete区域:</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/21/ecshop-conflict-for-jquery.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/21/ecshop-conflict-for-jquery.html" itemprop="url">最新解决Ecshop2.73与Jquery的冲突</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-21T10:32:50+08:00">
+                2013-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/11/21/ecshop-conflict-for-jquery.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/11/21/ecshop-conflict-for-jquery.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/11/21/ecshop-conflict-for-jquery.html" class="leancloud_visitors" data-flag-title="最新解决Ecshop2.73与Jquery的冲突">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>早些年就有人在ecshop论坛反映，为何ecshop不兼容jquery？可是ecshop官网却一直未解决这个问题。由插件联盟网亲自测试并验证过的解决jquery冲突的方法如下：<br>1.复制一份 transport.js 改名为 transport.org.js 提供给后台使用</p>
+<p>2.注释掉js/transport.js里的toJSON功能 行数为497-737行之间。其中将 legalParams = “JSON=” + $.toJSON(params); 替换为result = $.evalJSON(result);</p>
+<p>3.修改js/index.js里的第44行，将其改为：var res = $.evalJSON(result);</p>
+<p>4.修改js/改common.js,将第34行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);然后将850行改为:Ajax.call(‘flow.php?step=add_package_to_cart’, ‘package_info=’ + $.toJSON(package_info), addPackageToCartResponse, ‘POST’, ‘JSON’);最后将1056行改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), addToCartResponse, ‘POST’, ‘JSON’);</p>
+<p>5.修改compare.js文件<br>第49行改为:this.data = $.evalJSON(cookieValue);第67行改为:var obj = $.evalJSON(cookieValue);第133行改为:document.setCookie(“compareItems”, $.toJSON(this.data));</p>
+<p>6.修改js/global.js文件,其中将第16行改函数名 :function $e()。然后第114和126行都改为: var element = $e(element);</p>
+<p>7.修改后台头部引入transport.js路径 admin/templates/pageheader.htm 第9行改为: {insert_scripts files=”../js/transport.org.js,common.js”}</p>
+<p>8.修改themes/default/library/page_header.lbi文件在{insert_scripts files=’transport.js,utils.js’}上面加上如下代码<br>{insert_scripts files=’jquery.js,jquery.json.js’}</p>
+<p>9.修改你的模板下的library/comment_list.lbi。将第188行 替换为：Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’);</p>
+<p>10.修改模板compare.dwt。将第20行 改为：var obj = $.evalJSON(document.getCookie(“compareItems”));然后第24行 替换为：document.setCookie(“compareItems”, $.toJSON(obj));</p>
+<p>11.修改模板flow.dwt，将第138行 替换为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), collect_to_flow_response, ‘POST’, ‘JSON’);然后将第199行 改为：Ajax.call(‘flow.php?step=add_to_cart’, ‘goods=’ + $.toJSON(goods), fittings_to_flow_response, ‘POST’, ‘JSON’);</p>
+<p>12.over</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/21/ecshop-plugin-website.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/21/ecshop-plugin-website.html" itemprop="url">ECshop插件功能汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-21T10:29:36+08:00">
+                2013-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/11/21/ecshop-plugin-website.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/11/21/ecshop-plugin-website.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/11/21/ecshop-plugin-website.html" class="leancloud_visitors" data-flag-title="ECshop插件功能汇总">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1. ecshop功能</p>
+<p>2.</p>
+<p>3. 参考网站<br><a href="http://www.topchajian.com" target="_blank" rel="external">http://www.topchajian.com</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/21/ecshop-js-for-login-and-register.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -703,7 +1194,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">132</span>
+                <span class="site-state-item-count">135</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[vultr主机推荐]]></title>
+    <url>%2F2017%2F11%2F08%2Faffiliate%2Fvultr-vps-affiliate.html</url>
+    <content type="text"><![CDATA[https://www.vultr.com/?ref=7229300]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RESILIO SYNC激活和激活失效修复]]></title>
+    <url>%2F2017%2F11%2F08%2Ftools%2Fresilio-sync-license-crack.html</url>
+    <content type="text"><![CDATA[分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。目前对所有版本有效，测试到最高版本 2.5.9 版本。 一、安装 Resilio Sync去官网下载，不过官网可能被ban，需要自行百度一下 二、授权新安装的resilio sync授权步骤： 打开resilio sync 双击安装授权文件Resilio_Sync_Personal.btskey，如果授权成功接着执行下一步，授权失败则需要删除用户配置文件 配置hosts，添加记录 127.0.0.1 license.resilio.com 配置授权文件目录不可写入，具体方法参考下面的2.1 和2.2 2.1 windows下配置授权找到安装目录 可以删除 License 目录和.SyncUserxxxxxx 目录 禁止写入权限 2.2 mac下配置授权打开terminal工具 1234cd ~/Library/Application\ Support/Resilio\ Syncls -a # 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录chmod -R -w .SyncUser1510108713chmod -R -w License]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL多开]]></title>
+    <url>%2F2017%2F11%2F03%2Fsql%2Fmultiple-mysql-instances.html</url>
+    <content type="text"><![CDATA[在服务器中开启mysql服务一般是用 service mysql start, 但在系统里面他都执行了那些命令吗，通过ps -ef|grep mysql 我们可以看到目标的任务有如： 12345/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/usr/local/var/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error.log --pid-file=/usr/local/var/mysql/mysql.pid或者可能是： /usr/local/mysql/bin/mysqld --defaults-file=/data/mysql/3306/my.cnf --basedir=/usr/local/mysql --datadir=/data/mysql/3306/data --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/data/mysql/3306/mysql_run.err --open-files-limit=65536 --pid-file=/data/mysql/3306/pid_mysql.pid --socket=/data/mysql/3306/mysqltmp/mysql.sock --port=3306 如果我们需要多开，只需要按照这种格式允许下不就好了？ 这是个经过优化，在后台多开一个mysql实例的demo： 1234567891011121314mysql_install_db --datadir=/Volumes/Edu/DB/mysql # mysql 5.7 前使用mysqld --initialize --datadir=/Volumes/Edu/DB/mysql # mysql 5.7后使用这个初始化mysqld --user=mysql --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --initial --initialize-insecure --defaults-file=/usr/local/etc/my-3307.cnf --socket=/data/mysql/3306/mysqltmp/mysql.sock --port=3307--plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql-3307.pid#需要先确保 datadir 目标目录下是空的，避免误操作破坏已有数据。#另外，在初始化时如果加上 –initial-insecure，则会创建空密码的 root@localhost 账号，否则会创建带密码的 root@localhost 账号，密码直接写在 log-error 日志文件中（在5.6版本中是放在 ~/.mysql_secret 文件里，更加隐蔽，不熟悉的话可能会无所适从）/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql.pid --port=3307 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql-3307.plist]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Google Drive 服务器应用指南]]></title>
     <url>%2F2017%2F10%2F25%2Flinux-dev%2Fgoogle-drive-usage-for-linux.html</url>
     <content type="text"><![CDATA[一、gdrive cli命令安装这个是比较通用的命令，centos7以下的推荐使用。 12345#下载命令工具wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTAchmod 755 /usr/sbin/gdrive#验证终端gdrive about 参考项目：https://github.com/prasmussen/gdrive#downloads 1.1 怎么使用gdrive123456#gdrive 上传 tar 包到目录 0B2_oloQ2sUujdzFiYkNtOGhNMkU(用gdrive list查询google drive对应的目录地址)，成功后删除 tar 包/usr/sbin/gdrive upload -p 0B2_oloQ2sUujdzFiYkNtOGhNMkU --delete "/tmp/seonoco.com.tar.gz"#上传目录gdrive upload -p 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs --recursive "/home/wwwroot/tmp"gdrive download --recursive 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs 另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法]]></content>
@@ -214,7 +229,7 @@
   <entry>
     <title><![CDATA[VS Code最佳方式]]></title>
     <url>%2F2017%2F07%2F19%2Fvscode-best-way.html</url>
-    <content type="text"><![CDATA[一、安装和使用去官网下载即可 二、快捷键按键说明: ⌘: command ⌃: control ⇧: shift ⌥: alt(option) 2.1 vscode常用快捷键 ⌃ + R: 项目切换 三、插件及使用3.1 markdown-table-formattermarkdown-table-formatter插件地址 快捷键: alt+shift+f 四、个人配置4.1 个人快捷键配置使用⌘+k s打开配置12345678910111213141516171819202122232425262728293031// 将键绑定放入此文件中以覆盖默认值[ // insert date keymap from sublime &#123; "command": "insertDateString.insertDateTime", "key": "alt+f5", "when": "editorTextFocus" &#125;, &#123; "command": "insertDateString.insertDate", "key": "f5", "when": "editorTextFocus" &#125;, &#123; "key": "ctrl+f5", "command": "insertDateString.insertTimestamp" &#125;, &#123; "key": "cmd+ctrl+p", "command": "workbench.action.openRecent" &#125;, &#123; "key": "cmd+y", "command": "redo", "when": "editorTextFocus &amp;&amp; !editorReadonly" &#125;] 4.2 设置在命令行中打开VSC配置 .bash_profile 或者 .zshrc 文件： 1234alias vsc='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code';VSC_BIN='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin';PATH=$VSC_BIN:$PATH;export PATH; 然后让配置生效，在控制台执行：123456# 如果没有安装 zsh，可能是 ~/.bash_profilesource ~/.zshrc# 这个时候就可以在全局打开了：# -a 的意思是不要新开窗口，在当前已经打开的 vsc 中打开文件vsc path/to/file.ext -a]]></content>
+    <content type="text"><![CDATA[一、安装和使用去官网下载即可 二、快捷键按键说明: ⌘: command ⌃: control ⇧: shift ⌥: alt(option) 2.1 vscode常用快捷键 ⌃ + R: 项目切换 markdown preview 功能 ⇧⌘V：新窗口预览markdown文件 ⌘K V: markdown preview side-by-side 三、插件及使用3.1 markdown-table-formattermarkdown-table-formatter插件地址 快捷键: alt+shift+f 四、个人配置4.1 个人快捷键配置使用⌘+k s打开配置12345678910111213141516171819202122232425262728293031// 将键绑定放入此文件中以覆盖默认值[ // insert date keymap from sublime &#123; "command": "insertDateString.insertDateTime", "key": "alt+f5", "when": "editorTextFocus" &#125;, &#123; "command": "insertDateString.insertDate", "key": "f5", "when": "editorTextFocus" &#125;, &#123; "key": "ctrl+f5", "command": "insertDateString.insertTimestamp" &#125;, &#123; "key": "cmd+ctrl+p", "command": "workbench.action.openRecent" &#125;, &#123; "key": "cmd+y", "command": "redo", "when": "editorTextFocus &amp;&amp; !editorReadonly" &#125;] 4.2 设置在命令行中打开VSC配置 .bash_profile 或者 .zshrc 文件： 1234alias vsc='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code';VSC_BIN='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin';PATH=$VSC_BIN:$PATH;export PATH; 然后让配置生效，在控制台执行：123456# 如果没有安装 zsh，可能是 ~/.bash_profilesource ~/.zshrc# 这个时候就可以在全局打开了：# -a 的意思是不要新开窗口，在当前已经打开的 vsc 中打开文件vsc path/to/file.ext -a]]></content>
       <categories>
         <category>IDE</category>
       </categories>
@@ -605,8 +620,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>sublime插件</tag>
         <tag>DocBlockr</tag>
+        <tag>sublime插件</tag>
       </tags>
   </entry>
   <entry>
@@ -656,9 +671,9 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>CTags</tag>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
+        <tag>CTags</tag>
       </tags>
   </entry>
   <entry>
