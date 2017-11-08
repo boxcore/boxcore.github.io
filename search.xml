@@ -620,8 +620,8 @@
       </categories>
       <tags>
         <tag>Sublime Text</tag>
-        <tag>DocBlockr</tag>
         <tag>sublime插件</tag>
+        <tag>DocBlockr</tag>
       </tags>
   </entry>
   <entry>
@@ -671,9 +671,9 @@
         <category>Tools</category>
       </categories>
       <tags>
+        <tag>CTags</tag>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>CTags</tag>
       </tags>
   </entry>
   <entry>
