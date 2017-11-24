@@ -329,6 +329,1293 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/06/26/linux/linux-download-tools.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/26/linux/linux-download-tools.html" itemprop="url">Linux下载工具(axel、wget、curl)使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-26T14:31:02+08:00">
+                2014-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/06/26/linux/linux-download-tools.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/06/26/linux/linux-download-tools.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/06/26/linux/linux-download-tools.html" class="leancloud_visitors" data-flag-title="Linux下载工具(axel、wget、curl)使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>linux下常用的下载工具是wget，其他常用的有axel和curl</p>
+<h2 id="一、wget">一、wget</h2><h3 id="应用场景">应用场景</h3><p>批量下载或递归下载网页中的所有文件： <code>wget -r http://site.com/content_dir</code><br>指定下载编码后再重命名: <code>wget --restrict-file-names=ascii -m www.xxx.com/</code></p>
+<blockquote>
+<p>下载为ascii的文件名, 可以使用软件RenamePro8.0在“高级文件名变”更里面有一个“文件名编码与解码”，“ANSI编码URL字符串转换为文字”</p>
+</blockquote>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://moper.me/wget-download-the-file-name-garbled.html" target="_blank" rel="external">http://moper.me/wget-download-the-file-name-garbled.html</a></li>
+<li><a href="http://rubyer.me/blog/111/" target="_blank" rel="external">http://rubyer.me/blog/111/</a></li>
+</ul>
+<h2 id="二、axel">二、axel</h2><p>axel tools是多线程下载工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ 编译安装</div><div class="line">wget http://mirrors.boxcore.org/lnmp/axel-1.0b.tar.gz</div><div class="line">tar zxvf axel-1.0b.tar.gz</div><div class="line"><span class="built_in">cd</span> axel-1.0b</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div><div class="line"><span class="built_in">cd</span> ../</div><div class="line"></div><div class="line">$ CentOS rpm包安装</div><div class="line">wget -c http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm <span class="comment"># 64bit:http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.x86_64.rpm</span></div><div class="line">rpm -ivh axel-2.4-1.el5.rf.i386.rpm</div><div class="line"></div><div class="line">$ ubuntu</div><div class="line">apt-get install axel</div></pre></td></tr></table></figure>
+<h3 id="Axel命令使用方法">Axel命令使用方法</h3><p>axel 参数 文件下载地址<br>可选参数：</p>
+<ul>
+<li><code>-n</code>   指定线程数</li>
+<li><code>-o</code>   指定另存为目录</li>
+<li><code>-s</code>   指定每秒的最大比特数</li>
+<li><code>-q</code>   静默模式</li>
+</ul>
+<p>如从Diahosting下载lnmp安装包指定10个线程，存到/tmp/：<code>axel -n 10 -o /tmp/ http://soft.vpser.net/lnmp/lnmp0.7-full.tar.gz</code></p>
+<p>如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/05/27/note-20140527-life-choice.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/05/27/note-20140527-life-choice.html" itemprop="url">人生选择</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-27T02:36:57+08:00">
+                2014-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/05/27/note-20140527-life-choice.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/27/note-20140527-life-choice.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/05/27/note-20140527-life-choice.html" class="leancloud_visitors" data-flag-title="人生选择">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>小学升初中 120多的分，不关心上学<br>初三自己真正努力，但只是勉强考到了3中<br>高二升高三 尖子班落选<br>高考考差了，去了一个不是自己选择学校和专业<br>第一份工作大桥化工实习<br>宾伦手表<br>辞职，瞎逛，自己折腾<br>去北京学习<br>就I进入7808工作</p>
+<p>许多年去了，挚友只有2个。</p>
+<p>很好的朋友4个。</p>
+<p>我个人性格孤僻，自以为是，自傲。</p>
+<p>偶尔抑郁症。</p>
+<p>喜欢英文歌和轻音乐</p>
+<p>追美剧和A威教育。</p>
+<p><span class="post_sig">发自我的手机</span></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/30/note-reason-for-learn-coding.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/30/note-reason-for-learn-coding.html" itemprop="url">学编程的原因</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-30T13:31:52+08:00">
+                2014-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Journal/" itemprop="url" rel="index">
+                    <span itemprop="name">Journal</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/30/note-reason-for-learn-coding.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/30/note-reason-for-learn-coding.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/30/note-reason-for-learn-coding.html" class="leancloud_visitors" data-flag-title="学编程的原因">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以前在学校的时候学习编程是因为网页好玩，我感兴趣，但那时候还没有真正规划好自己的学习路线，也没有考虑以后人生计划。<br>我当时学的化工，那会只有一个简单的想法就是出来后我肯定不做化工，不做化工那么做什么我也没有好好想。于是，在大三实训了1年后果断的就辞职上了广州一个做二手钢琴朋友那里。在他那边的时候我帮他完成了一个二手钢琴的网站，但那时候网站基础什么的都很薄弱，当然做出的网站也是比较粗糙的，现在回去看这网站我也是无法直视的。<br>就在他那边白住了一个月，但不能在他那边白住人家那么长时间，在11年八月低的时候恰逢我朋友国亮也上广州了急需找个住，于是我们伙着一起在新市墟找了个单间住。那是我第一次租房，环境很糟，一楼住，阴寒潮湿，墙两边绕水渠，晚上还有很多老鼠在那边叫，屋里蟑螂一堆。就在那边瞎折腾了一个月，整天在那里漫无目的的上网。。<br>一个月后通过百姓网找到了我的第一份工作。</p>
+<p><span class="post_sig">发自我的手机</span></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/26/java-learning-plans.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/26/java-learning-plans.html" itemprop="url">JAVA学习计划</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-26T00:31:54+08:00">
+                2014-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Journal/" itemprop="url" rel="index">
+                    <span itemprop="name">Journal</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/26/java-learning-plans.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/26/java-learning-plans.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/26/java-learning-plans.html" class="leancloud_visitors" data-flag-title="JAVA学习计划">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>高调在这里发布我的java学习计划正式开始了！本人的java基础为零，大计划是从最基础的javaSE学起，掌握基本语法后做个小项目巩固知识。在深思熟虑之下，考虑还是用java作为自学的第三个语言。其主要动机来源于要学习lucense项目开发搜索引擎。说干就干，下面给出近期快速突破java基础知识的计划：</p>
+<p>4月26日：一整天卡java基础语法，并能用基础语法写简单的小试验。</p>
+<p>&nbsp;</p>
+<p>同时网上也有网友提出的如何自学java的问题可以参考：</p>
+<p><a href="http://www.zhihu.com/question/19945685" target="_blank" rel="external">http://www.zhihu.com/question/19945685</a></p>
+<p>&nbsp;</p>
+<p>参考视频教程：</p>
+<p><a href="http://edu.51cto.com/course/course_id-429.html" target="_blank" rel="external">http://edu.51cto.com/course/course_id-429.html</a></p>
+<p>&nbsp;</p>
+<p>课程目录参考：</p>
+<p><a href="http://java.itcast.cn/java/course/base.shtml" target="_blank" rel="external">http://java.itcast.cn/java/course/base.shtml</a></p>
+<p>&nbsp;</p>
+<p><em>于2014年4月26日 凌晨</em></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/18/wuti-20140418.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/18/wuti-20140418.html" itemprop="url">无题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-18T00:21:07+08:00">
+                2014-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Journal/" itemprop="url" rel="index">
+                    <span itemprop="name">Journal</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/18/wuti-20140418.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/18/wuti-20140418.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/18/wuti-20140418.html" class="leancloud_visitors" data-flag-title="无题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>晚上12点下大雨了，坚持看书中！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/10/sublime-text-plugin-docblockr.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/10/sublime-text-plugin-docblockr.html" itemprop="url">Sublime Text插件：DocBlockr自动补全注释</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-10T10:13:27+08:00">
+                2014-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/10/sublime-text-plugin-docblockr.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/10/sublime-text-plugin-docblockr.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/10/sublime-text-plugin-docblockr.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：DocBlockr自动补全注释">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Github项目地址：<a href="https://github.com/spadgos/sublime-jsdocs" target="_blank" rel="external">https://github.com/spadgos/sublime-jsdocs</a></p>
+<p>下载后把目录名修改为“DocBlockr ”方可使用</p>
+<p>&nbsp;</p>
+<p>常用配置：</p>
+<p>用户设置：</p>
+<p><pre class="brush:xml">{<br>    “jsdocs_extra_tags”: [“”, “@author ${1:author name}”, “@date 1397096007000“, “@version ${1:[version]}”]<br>}</pre><br>&nbsp;</p>
+<p>完成，然后就可以使用咯，enjoy it！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/10/phpmyadmin-config-setting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/10/phpmyadmin-config-setting.html" itemprop="url">phpmyadmin免输入密码直接登陆mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-10T08:45:40+08:00">
+                2014-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/10/phpmyadmin-config-setting.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/10/phpmyadmin-config-setting.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/10/phpmyadmin-config-setting.html" class="leancloud_visitors" data-flag-title="phpmyadmin免输入密码直接登陆mysql">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>设置说明:<br>config.sample.inc.php 修改为 config.inc.php</p>
+<p>添加如下代码：。</p>
+<p><pre class="brush:php">$i++;<br>/<em> Authentication type </em>/<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>/<em> Server parameters </em>/<br>$cfg[‘Servers’][$i][‘host’] = ‘localhost’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>/<em> Select mysqli if your server has it </em>/<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;</pre></p>
+<p>$i++;<br>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br>$cfg[‘Servers’][$i][‘host’] = ‘192.168.15.2’;<br>$cfg[‘Servers’][$i][‘connect_type’] = ‘tcp’;<br>$cfg[‘Servers’][$i][‘compress’] = false;<br>// $cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br>$cfg[‘Servers’][$i][‘password’] = ‘123456’;<br>$cfg[‘Servers’][$i][‘AllowRoot’] = true;<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;<br>&nbsp;</p>
+<p>注意修改用户名和密码，可以设置多个，需要在$i++后添加。</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/09/install-nginx-for-lnmp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/04/09/install-nginx-for-lnmp.html" itemprop="url">LNMP编译：nginx的安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-09T11:09:17+08:00">
+                2014-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/09/install-nginx-for-lnmp.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/09/install-nginx-for-lnmp.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/04/09/install-nginx-for-lnmp.html" class="leancloud_visitors" data-flag-title="LNMP编译：nginx的安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译nginx前依赖包安装：</p>
+<p><pre class="brush:bash"># install pcre for nginx<br>if [ -s pcre-8.34.tar.gz ]; then<br>  echo “pcre-8.34.tar.gz [found]”<br>else<br>  echo “Error: pcre-8.34.tar.gz not found!!!download now……”<br>  wget -c <a href="http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz" target="_blank" rel="external">http://mirrors.boxcore.org/lnmp/pcre-8.34.tar.gz</a><br>fi<br>tar zxvf pcre-8.34.tar.gz<br>cd pcre-8.34/<br>./configure<br>make &amp;&amp; make install<br>cd ../<br>ldconfig</pre><br>&nbsp;</p>
+<p>开始编译nginx：</p>
+<p>下载解压：</p>
+<p><pre class="brush:bash">tar zxvf nginx-1.4.4.tar.gz<br>cd nginx-1.4.4/</pre><br>&nbsp;</p>
+<p>configure配置项：</p>
+<p>如果你的nginx依赖件已经用yum先安装好，可以使用下面命令：</p>
+<p><pre class="brush:bash">./configure –user=$LNMP_USER –group=$LNMP_USER –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-pcre</pre><br>如果nginx依赖包是编译的，需要指定目录：</p>
+<p><pre class="brush:bash">./configure –user=www –group=www –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module –with-http_gzip_static_module –with-ipv6 –with-openssl=/usr/include/openssl –with-pcre</pre><br>&nbsp;</p>
+<p>如果报错</p>
+<p><pre class="brush:bash">error:openssl/include/openssl/ssl.h] Error 2</pre><br>需要确定openssl是否安装好，如果是yum安装openssl-devel后，configure时的参数去掉–with-openssl=/lib64/ –with-zlib=/usr/lib64/ –with-md5=/usr/lib64即可编译通过</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/07/sublime-text-plugin-package-control.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -661,1338 +1948,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/sublime-text-plugin-emmet.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/06/sublime-text-plugin-emmet.html" itemprop="url">Sublime Text插件：Emmet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-06T19:47:09+08:00">
-                2014-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/06/sublime-text-plugin-emmet.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/06/sublime-text-plugin-emmet.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/06/sublime-text-plugin-emmet.html" class="leancloud_visitors" data-flag-title="Sublime Text插件：Emmet">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Emmet以前叫Zen Coding，ST上面安装emmet这个插件可以节省很多编码时间，不够你信不信方正我信了哈。ST下安装Emmet是非常简单的，如果有Package Control直接输入安装命令，找emmet即可全自动安装。但本人实现的方法是直接从github项目地址下载的压缩包文件，直接用github上面压缩的文件安装会遇到下面常见的问题，下面给出我个人在用压缩包安装这个插件时候遇到的问题。</p>
-<p>1. 首先去到Emmet的Github项目地址：<a href="https://github.com/sergeche/emmet-sublime，下载最新master版本后把文件目录拷贝到ST的安装目录中：{Sublime" target="_blank" rel="external">https://github.com/sergeche/emmet-sublime，下载最新master版本后把文件目录拷贝到ST的安装目录中：{Sublime</a> Text 目录}DataPackages  下。拷贝好后需要修改目录名为“Emmet”，不然st不买账。<br>注：博主以前安装的时候就是遇到这个问题，后来在“Package Control”中选择“Emmet”的设置发现都是空的，还好哥集聪明与智慧一身，视觉敏锐的我立马发现了配置文件路径跟我安装的路径完全不一样，修改成“Emmet”后整个世界都舒畅了。。。</p>
-<p>2. 安装好emmet后需要重启下st，重新打开后，底部会提醒正在下载PyV8引擎，等安好pyv8后测试在一个html文件中输入“!+Tab键”看他能不能扩展代码，不能的话需要看看在安装目录下PyV8是否已经自动安装好了（大部分情况是下载地址被强，需要上去拷贝到你本地）。假如PyV8已经安装好了，但还是不工作，那就要看看你的emmet目录名字是不是“Emmet”不然改改吧。</p>
-<p>吹了这么多现在来分享下我的Emmet包和PyV8把：</p>
-<p><strong>2个文件直接解压到Sublime Text 的Packges目录就好了</strong></p>
-<p>下载地址：</p>
-<ul>
-<li><a href="http://pan.baidu.com/s/1mg7GXJE" title="Emmet下载" target="_blank" rel="external">Emmet</a>：<a href="http://pan.baidu.com/s/1mg7GXJE" target="_blank" rel="external">http://pan.baidu.com/s/1mg7GXJE</a> 密码：dp4z</li>
-<li><a href="http://pan.baidu.com/s/1jGqQewQ" title="PyV8下载" target="_blank" rel="external">PyV8</a>：<a href="http://pan.baidu.com/s/1jGqQewQ" target="_blank" rel="external">http://pan.baidu.com/s/1jGqQewQ</a> 密码：303v</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/06/my-asus-notebook-hardware-information.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/06/my-asus-notebook-hardware-information.html" itemprop="url">黑苹果折腾记：笔记本硬件信息</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-06T13:22:22+08:00">
-                2014-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Apple/" itemprop="url" rel="index">
-                    <span itemprop="name">Apple</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/06/my-asus-notebook-hardware-information.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/06/my-asus-notebook-hardware-information.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/06/my-asus-notebook-hardware-information.html" class="leancloud_visitors" data-flag-title="黑苹果折腾记：笔记本硬件信息">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>想体验下xcode下编码工具，又不想心疼1w块新买个imac，遂决心安装黑苹果之。借此记下我的笔记本配置：<br><strong>电脑型号 华硕 X55VDR 笔记本电脑</strong></p>
-<ul>
-<li>操作系统 Windows 8.1 专业版 64位 ( DirectX 11 )</li>
-<li>处理器 英特尔 第二代酷睿 i3-2370M @ 2.40GHz 双核</li>
-<li>主板 华硕 X55VDR (英特尔 HM76 Express 芯片组)</li>
-<li>内存 4 GB ( DDR3 1333MHz )</li>
-<li>主硬盘 日立 HTS545050A7E380 ( 500 GB / 5400 转/分 )</li>
-<li>显卡 Nvidia GeForce 610M ( 1 GB / 华硕 )</li>
-<li>显示器 LG LGD02DC ( 15.3 英寸 )</li>
-<li>光驱 建兴 DVD A DS8A9SH DVD刻录机</li>
-<li>声卡 威盛 VIA @ 英特尔 Panther Point High Definition Audio Controller</li>
-<li>网卡 鈺硕 AR8161/8165 PCI-E Gigabit Ethernet Controller / 华硕<br>&nbsp;</li>
-</ul>
-<p>&nbsp;</p>
-<p>硬盘健康：<br>硬盘已使用 共 1462 次，累计 4378 小时<br>主板BIOS日期 华硕 2012 年 11 月 09 日<br>显示器固件日期 LG 2010 年<br>系统安装日期 Windows 8.1 / 2014 年 04 月 05 日</p>
-<p>电池损耗 10.18%<br>当前容量 42681 mWh<br>设计容量 47520 mWh</p>
-<p>&nbsp;</p>
-<p>处理器信息：<br>处理器 英特尔 第二代酷睿 i3-2370M @ 2.40GHz 双核<br>速度 2.40 GHz (100 MHz x 24.0)<br>处理器数量 核心数: 2 / 线程数: 4<br>核心代号 Sandy Bridge NB<br>生产工艺 32 纳米<br>插槽/插座 Socket G2 (PGA 988 / BGA 1023)<br>一级数据缓存 2 x 32 KB, 8-Way, 64 byte lines<br>一级代码缓存 2 x 32 KB, 8-Way, 64 byte lines<br>二级缓存 2 x 256 KB, 8-Way, 64 byte lines<br>三级缓存 3 MB, 12-Way, 64 byte lines<br>特征 MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, HTT, EM64T, EIST</p>
-<p>&nbsp;</p>
-<p>主板信息：<br>主板型号 华硕 X55VDR<br>芯片组 英特尔 HM76 Express 芯片组<br>序列号 BSN12345678901234567<br>板载设备 VGA / 视频设备 (启用)<br>板载设备 GLAN / 网卡 (启用)<br>板载设备 WLAN / 网卡 (启用)<br>BIOS American Megatrends Inc. X55VDR.405<br>制造日期 11/09/2012</p>
-<p>&nbsp;</p>
-<p>内存信息：<br>ChannelA-DIMM0 DDR3 1333MHz 4GB<br>序列号: 00000000</p>
-<p>&nbsp;</p>
-<p>硬盘信息：<br>产品 日立 HTS545050A7E380<br>大小 500 GB<br>转速 5400 转/分<br>缓存 8 MB<br>硬盘已使用 共 1462 次，累计 4378 小时<br>固件 GG2OA6C0<br>接口 SATA II<br>数据传输率 300 MB/秒<br>特征 S.M.A.R.T, APM, 48-bit LBA, NCQ</p>
-<p>&nbsp;</p>
-<p>显卡信息：<br>显卡 英特尔 HD Graphics Family<br>显存 1893 MB<br>制造商 华硕<br>驱动版本 9.18.13.3260<br>驱动日期 20140202</p>
-<p>主显卡 Nvidia GeForce 610M<br>显存 1 GB<br>制造商 华硕</p>
-<p>&nbsp;</p>
-<p>显示器信息：<br>产品 LG LGD02DC<br>固件日期 2010 年<br>屏幕尺寸 15.3 英寸 (34 厘米 x 19 厘米)<br>显示比例 宽屏 16 : 9<br>分辨率 1366 x 768 32 位真彩色<br>最大分辨率 1366 x 768</p>
-<p>&nbsp;</p>
-<p>网卡信息：<br>网卡 鈺硕 AR8161/8165 PCI-E Gigabit Ethernet Controller<br>制造商 华硕</p>
-<p>无线网卡 雷凌 RT5390 802.11b/g/n WiFi Adapter<br>制造商 富士康</p>
-<p>&nbsp;</p>
-<p>声卡信息：<br>声卡 威盛 VIA @ 英特尔 Panther Point High Definition Audio Controller</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>that is my config of  notepad.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/04/05/sublime-text-3-install-and-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/05/sublime-text-3-install-and-usage.html" itemprop="url">Sublime Text 3 安装使用心得</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-05T15:03:06+08:00">
-                2014-04-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/05/sublime-text-3-install-and-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/05/sublime-text-3-install-and-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/05/sublime-text-3-install-and-usage.html" class="leancloud_visitors" data-flag-title="Sublime Text 3 安装使用心得">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近又喜欢上用sublime了，最重要使我又转投sublime阵营的原因是，phpstorm用得越来越慢了，经常拖垮机器，所以不得已又转会了sublime阵营。下面给出我个人学习安装sublime text的历程(注:下面涉及到Sublime Text都简称为ST)。</p>
-<p>晚上已经有一大堆的ST安装教程，如果e文好的话直接去<a href="http://www.sublimetext.com/" target="_blank" rel="external">ST官网</a>看教程使用吧！为了研究ST的软件工作原理我个人采用了绿色包安装，我采用的是“Sublime Text Build 3059”的x86版本，其实本人的机器是x64的，但为了在公司的xp平台也能同步使用故直接弄x86了，同时也方便分享给其他同学使用。</p>
-<p>&nbsp;</p>
-<p>我的常用ST插件清单，点击可看博主的安装方法和常遇到问题的解决：</p>
-<ol>
-<li>Emmet</li>
-<li>IMESupport</li>
-<li>Clipboard-History</li>
-<li>Goto-CSS-Declaration</li>
-<li>CTags：<a href="https://github.com/SublimeText/CTags" target="_blank" rel="external">https://github.com/SublimeText/CTags</a><br>&nbsp;</li>
-</ol>
-<p>我的常用ST配置：</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/03/15/vim-editor-plan.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/03/15/vim-editor-plan.html" itemprop="url">计划：VIM使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-15T22:34:49+08:00">
-                2014-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/03/15/vim-editor-plan.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/15/vim-editor-plan.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/03/15/vim-editor-plan.html" class="leancloud_visitors" data-flag-title="计划：VIM使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/02/26/linux/webbench-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/02/26/linux/webbench-usage.html" itemprop="url">webbench模拟并发连接测试网站的负载能力</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-02-26T14:36:25+08:00">
-                2014-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/02/26/linux/webbench-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/02/26/linux/webbench-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/02/26/linux/webbench-usage.html" class="leancloud_visitors" data-flag-title="webbench模拟并发连接测试网站的负载能力">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Webbench能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。webbench的标准测试可以向我们展示服务器的两项内容：每秒钟相应请求数和每秒钟传输数据量。webbench不但能具有便准静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进 行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。<br>Webbench最多可以模拟3万个并发连接去测试网站的负载能力。个人感觉要比Apache自带的ab压力测试工具好，安装使用也特别方便。</p>
-<ul>
-<li>适用系统：Linux</li>
-<li>编译安装<h2 id="编译安装webbench">编译安装webbench</h2></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">yum -y install ctags</div><div class="line">mkdir -pv /usr/<span class="built_in">local</span>/man/man1</div><div class="line">wget -c http://mirrors.boxcore.org/webbench-1.5.tar.gz</div><div class="line">tar -zxf webbench-1.5.tar.gz</div><div class="line"><span class="built_in">cd</span> webbench-1.5</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
-<h3 id="webbench使用">webbench使用</h3><p>参数说明：-c表示并发数，-t表示时间(秒)</p>
-<blockquote>
-<p>/usr/local/bin/webbench -c 500 -t 30 <a href="http://127.0.0.1/test.jpg" target="_blank" rel="external">http://127.0.0.1/test.jpg</a></p>
-</blockquote>
-<p>结果示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Webbench - Simple Web Benchmark 1.5</div><div class="line">Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.</div><div class="line">Benchmarking: GET http://127.0.0.1/test.jpg</div><div class="line">500 clients, running 30 sec.</div><div class="line">Speed=3230 pages/min, 11614212 bytes/sec.</div><div class="line">Requests: 1615 susceed, 0 failed.</div></pre></td></tr></table></figure>
-<h3 id="错误解决">错误解决</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[root@localhost webbench-1.5]# make install</div><div class="line">install -s webbench /usr/local/bin</div><div class="line">install -m 644 webbench.1 /usr/local/man/man1</div><div class="line">install: cannot create regular file `/usr/local/man/man1&apos;: No such file or directory</div><div class="line">make: *** [install] Error 1</div><div class="line">[root@localhost webbench-1.5]# ls /usr/local/man/man1</div><div class="line">ls: /usr/local/man/man1: No such file or directory</div><div class="line">[root@localhost webbench-1.5]# mkdir /usr/local/man/man1</div><div class="line">mkdir: cannot create directory `/usr/local/man/man1&apos;: No such file or directory</div><div class="line">[root@localhost webbench-1.5]# mkdir /usr/local/man/</div><div class="line">[root@localhost webbench-1.5]# mkdir /usr/local/man/man1</div><div class="line">[root@localhost webbench-1.5]# make install</div><div class="line">install -s webbench /usr/local/bin</div><div class="line">install -m 644 webbench.1 /usr/local/man/man1</div><div class="line">install -d /usr/local/share/doc/webbench</div><div class="line">install -m 644 debian/copyright /usr/local/share/doc/webbench</div><div class="line">install -m 644 debian/changelog /usr/local/share/doc/webbench</div></pre></td></tr></table></figure>
-<h3 id="参考">参考</h3><ul>
-<li><a href="http://www.cnblogs.com/xiaocen/p/3704192.html" target="_blank" rel="external">http://www.cnblogs.com/xiaocen/p/3704192.html</a></li>
-<li><a href="http://blog.csdn.net/zzz_781111/article/details/7027472" target="_blank" rel="external">http://blog.csdn.net/zzz_781111/article/details/7027472</a></li>
-<li><a href="http://home.tiscali.cz/~cz210552/webbench.html" target="_blank" rel="external">http://home.tiscali.cz/~cz210552/webbench.html</a></li>
-<li><a href="http://www.ha97.com/4623.html" target="_blank" rel="external">http://www.ha97.com/4623.html</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/01/10/statue-0-1-to-0-2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/01/10/statue-0-1-to-0-2.html" itemprop="url">0.1到0.2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-01-10T00:06:51+08:00">
-                2014-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/Roll/" itemprop="url" rel="index">
-                    <span itemprop="name">Roll</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/01/10/statue-0-1-to-0-2.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/01/10/statue-0-1-to-0-2.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/01/10/statue-0-1-to-0-2.html" class="leancloud_visitors" data-flag-title="0.1到0.2">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>上个月更新了个人的qq签名0.1，是为了表达一个意思，我在寻找一个很重要的东西。</p>
-<p>这周日，将临来0.2，又是一个转折点！</p>
-<hr>
-<p>PS：</p>
-<p>这2天都会去转移我的qq空间资料来这里！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/25/how-to-install-windows-8-1-pro.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/25/how-to-install-windows-8-1-pro.html" itemprop="url">如何安装和使用零售密钥激活Windows 8.1 专业版</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-25T13:00:28+08:00">
-                2013-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Soft/" itemprop="url" rel="index">
-                    <span itemprop="name">Soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/25/how-to-install-windows-8-1-pro.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/25/how-to-install-windows-8-1-pro.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/25/how-to-install-windows-8-1-pro.html" class="leancloud_visitors" data-flag-title="如何安装和使用零售密钥激活Windows 8.1 专业版">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>步骤一：下载windows 8.1 Pro ISO镜像<br>步骤二：刻录ISO光盘或使用“UltraISO软碟通”等软件创建一个启动U盘进行安装<br>步骤三：将刻录的ISO光盘或启动U盘插入电脑<br>步骤四：引导DVD光盘/启动U盘进入WinPE进行系统的安装<br>步骤五：安装时根据自己的系统版本输入密钥（请勿输入你自己的密钥）<br>Windows 8.1核心版334NH-RXG76-64THK-C7CKG-D3VPT<br>Windows 8.1专业版XHQ8N-C3MCJ-RQXB6-WCHYG-C9WKB<br>步骤六：当系统安装完成回到桌面时你会发现系统没有激活；右键单击左下角的“开始”按钮，选择“命令提示符（管理员）”选项dsadasdgasdgasdasd<br>步骤七：将你的WiFi/路由器/所有网络断开，然后输入slmgr.vbs -XXXXX-XXXXX-XXXXX-XXXXX-XXXXX（更换正确的秘钥）dsadasdgasdgasdasd<br>步骤八：更换成功后，在命令提示符窗口输入 SLUI 4 按回车<br>步骤九：点击“通过电话进行激活”<br>步骤十：选择“英国”<br>步骤十一：使用Skype免费拨打激活窗口上面的电话号码<br>步骤十二：拨打成功提示你选择按键的时候按1键<br>步骤十三：然后输入你窗口上面A-H机器码<br>步骤十四：当被问及有多少台电脑安装的时候按1键<br>步骤十五：然后仔细聆听并记下所报数字并输入至激活窗口<br>步骤十六：输入完成后单击“激活”窗口<br>步骤十七：重新启动计算机激活完成</p>
-<p>如何添加Windows Media Center的Windows 8.1专业版</p>
-<p>1、激活激活Windows 8.1 Pro含WMC<br>2、进入控制面板系统和安全系统，点击获取更多的功能，添加Windows Media Center<br>3、单击“我已经有一个产品密钥”<br>4、输入你以前Windows 8免费获取的WMC产品密钥<br>5、勾选接受许可条款<br>6、Windows会包括WMC功能，将自动重新启动<br>7、重新启动Windows后，如果你的Windows没有被激活，则需要重新输入密钥一次，然后你会看到你的Windows 8 Pro与WMC将被激活（这通常是由于你的硬件变化，你需要重新输入WMC键后重新启动Windows）<br>8、进入控制面板系统和安全系统，点击激活[在线激活]<br>9、联网激活后，恭喜你永久获得了Windows 8 Pro与WMC，马上享用吧</p>
-<p>Windows 8 PRO/ENT离线激活 [MAK] 秘钥<br>slmgr.vbs -ipk 63VNX-R64MK-28K4H-Y6K4T-YG67C<br>slmgr.vbs -ipk JXNBF-VG8TP-PBDBW-TB2K2-P9T7C<br>slmgr.vbs -ipk 3XKNP-T864P-3WDQQ-H9FF3-2WCK2<br>slmgr.vbs -ipk N9MRJ-6JRM9-M6XJC-6D6JD-QRPK2<br>slmgr.vbs -ipk 73KKN-DHK63-WMGY2-6MC68-JFDHC<br>slmgr.vbs -ipk NGKGG-W2V3K-G9X9Q-M7TXB-KD4DP<br>slmgr.vbs -ipk J68BC-XTNWY-M3XQP-8TTR4-8B2K2<br>slmgr.vbs -ipk HX388-XXNXX-WGWTG-KYTH8-RX492<br>slmgr.vbs -ipk NY4RW-GMCHB-D3P9F-RJDP9-YDR92<br>slmgr.vbs -ipk 3NKP9-K2XW9-FQHWH-MDMCQ-TCKVC<br>slmgr.vbs -ipk 6CNK2-RTVRV-TXYQK-86DBM-B4DHC<br>slmgr.vbs -ipk F2V7V-8WN76-77BPV-MKY36-MKH3P<br>slmgr.vbs -ipk MR2WF-NWPQ9-WCRWV-6GVFR-HQR92<br>slmgr.vbs -ipk BNYHR-XDRK6-HV96V-CFRJ9-H49VC<br>slmgr.vbs -ipk MWNDT-WDBDY-TCJFF-KCK2V-4CWX2<br>slmgr.vbs -ipk Y7NHY-DRGCX-KHWM2-P2DPY-YWMQP<br>slmgr.vbs -ipk CYM8B-NH6WD-DJ7Q9-TYXJP-P9T7C<br>slmgr.vbs -ipk 82WNH-WWCBT-Y843F-F7F7X-M9492<br>slmgr.vbs -ipk RQGQD-DQNGY-TQHDF-CB2YR-WFDHC<br>slmgr.vbs -ipk N3BDF-YMFJ3-P4VKX-C88VY-YWMQP<br>slmgr.vbs -ipk 2C9ND-V2GFR-RR4YD-QB4DR-JHRDP<br>slmgr.vbs -ipk MQJNQ-G2TKM-YJP7W-CCXVY-VQR92<br>slmgr.vbs -ipk YT4KP-4TNXX-9MKRP-BYJC9-JW8X2<br>slmgr.vbs -ipk Q74NW-797VJ-G8QM6-MYXDP-VFPK2</p>
-<p>Windows 8.1 &amp; Windows 8 Pro / Pro WMC 离线激活零售版秘钥:<br>slmgr.vbs -ipk CGWVF-N3VMK-CVG7W-MBB9Y-MY2KV<br>slmgr.vbs -ipk D46QW-N3M4H-RY93J-DPMPY-43G67<br>slmgr.vbs -ipk D66NY-H99YQ-9MPFY-G2YF3-973G7<br>slmgr.vbs -ipk DBTMW-N29V3-V6XJ7-4RQXD-4F9T7<br>slmgr.vbs -ipk DJD4R-TQNCX-B6HY8-J2KDC-3YFDH<br>slmgr.vbs -ipk FFMKY-NXGJ7-3G897-KTB4C-W2KT7<br>slmgr.vbs -ipk FGM9N-R4G2V-XVH3M-4F6JX-HCBQH<br>slmgr.vbs -ipk FX2FN-VVPY7-M7QG7-XG7X4-X2BQH<br>slmgr.vbs -ipk HV8NK-MCCM2-J7CDF-B46H7-46V3H<br>slmgr.vbs -ipk J4N6G-WB9KM-WHC3V-Q4KX2-8W8XV<br>slmgr.vbs -ipk JC2BC-NQXKF-W8M7G-H7DRR-3C73H<br>slmgr.vbs -ipk JCDXN-2Q4FQ-G44BQ-GHGBK-H49T7<br>slmgr.vbs -ipk K42R4-7RN34-992JQ-YBQWT-GMQG7</p>
-<p>以前的秘钥但是依然可以使用：<br>slmgr.vbs -ipk Q8R9N-Q6H9H-TXCXB-FT4GW-DGJXV<br>slmgr.vbs -ipk QFTCN-2MC4B-TQ97K-F449X-GJCKV<br>slmgr.vbs -ipk R7NVT-9HY8T-7Y43F-YHQHF-JHRDH<br>slmgr.vbs -ipk RT6NW-B7TB9-BR9HC-F3RX7-XD4DH<br>slmgr.vbs -ipk V4PNP-K6GRJ-76942-8JCFM-RCWXV<br>slmgr.vbs -ipk VHDVP-HNVGT-7K3CK-R28KW-D9H3H<br>slmgr.vbs -ipk VJ2NT-B7364-88QPB-8VKVY-88CKV<br>slmgr.vbs -ipk VNF76-VJQ6D-MYDB3-QVQBW-29T67<br>slmgr.vbs -ipk 4C8N3-FYTFH-BHXBR-B2DY9-KP73H<br>slmgr.vbs -ipk 4BRRQ-NQFXF-BPW46-R7BCH-DRPKV<br>slmgr.vbs -ipk VQKQN-C9V6X-VPGQ6-YFW8G-J2KT7</p>
-<h1 id="slmgr-vbs_-ipk_WFRQM-BPNKV-TC3WX-XF2DQ-6273H">slmgr.vbs -ipk WFRQM-BPNKV-TC3WX-XF2DQ-6273H</h1><p>Windows 8.1 &amp; Windows 8 RTM Pro WMC 离线激活零售秘钥[电话激活]<br>slmgr.vbs -ipk CQ2PJ-C7MJC-T3RBP-NMWJH-2RYRQ<br>slmgr.vbs -ipk JRMHB-9F327-NDT76-4T9KR-DJXWD<br>slmgr.vbs -ipk 4PQWW-PPNY7-XJ8RJ-V6C4T-FVRFQ<br>slmgr.vbs -ipk 9DDD3-84PXF-QNPXF-3PV8Q-G8XWD<br>slmgr.vbs -ipk TWHQX-8CH4Y-39DN9-VD7MG-WW8Y3<br>slmgr.vbs -ipk GY8MV-86KDB-4XGNP-X3Y76-72WY3<br>slmgr.vbs -ipk JC9DV-2P37N-DKD3W-MKKV4-6Q4FQ<br>slmgr.vbs -ipk PGB97-GJMN2-XB3CX-T86FB-88CM3<br>slmgr.vbs -ipk B783Q-MB34J-NG6K3-WH82J-82KWD<br>slmgr.vbs -ipk 66HJB-X2N4J-Y42JB-T6GDB-RCWY3</p>
-<p>&nbsp;</p>
-<p>以前的秘钥但是依然可以使用：<br>slmgr.vbs -ipk 2DJ24-4XRYY-XNJBK-PQHX9-RM2M3<br>slmgr.vbs -ipk 8KGQW-XMFY7-XNJYK-WYMB3-Y4DJD<br>slmgr.vbs -ipk BCFR8-B7VGJ-X2Y94-NT982-CJ8Y3<br>slmgr.vbs -ipk CG6QH-J68KC-RKNQW-PJ9PH-3JXWD<br>slmgr.vbs -ipk D7DVD-WTR9C-8T93X-NFF2D-G8XWD<br>slmgr.vbs -ipk HYFF2-CMF47-9NMB9-TQR3G-8TV4Q<br>slmgr.vbs -ipk JKXK4-THDKN-GB6PH-4FCBW-29T8D<br>slmgr.vbs -ipk JWX33-VPXC7-RHBP7-N4HH7-QPBRQ<br>slmgr.vbs -ipk KQ9CV-HBJDC-CYGMN-YQ2DB-6VGB3<br>slmgr.vbs -ipk RFQQB-CB3N9-KGKDR-HW7JT-6FYRQ<br>slmgr.vbs -ipk V398T-PFFN7-BK4WM-XY3PR-KBQJD<br>slmgr.vbs -ipk WDYHJ-3JKQN-XFJQ6-42RTF-4X6B3<br>slmgr.vbs -ipk P79C8-3F4NR-WP8KM-WR8QY-PRYRQ</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/18/xxoo-mvc-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/18/xxoo-mvc-usage.html" itemprop="url">XXOO MVC 开发过程中常用到函数和测试函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-18T11:47:35+08:00">
-                2013-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Work/" itemprop="url" rel="index">
-                    <span itemprop="name">Work</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/12/18/xxoo-mvc-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/12/18/xxoo-mvc-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/12/18/xxoo-mvc-usage.html" class="leancloud_visitors" data-flag-title="XXOO MVC 开发过程中常用到函数和测试函数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>测试函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> ‘&lt;!–’;print_r($data[‘cat_data’]);<span class="keyword">echo</span> ‘–&gt;’;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2037,7 +1997,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">135</span>
+                <span class="site-state-item-count">143</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

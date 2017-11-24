@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://bxfile.qiniudn.com/imgs/2017-11-08-030317.jpg">
 <meta property="og:image" content="http://bxfile.qiniudn.com/imgs/2017-11-08-030435.jpg">
 <meta property="og:image" content="http://bxfile.qiniudn.com/imgs/2017-11-08-030556.jpg">
-<meta property="og:updated_time" content="2017-11-08T08:20:22.000Z">
+<meta property="og:updated_time" content="2017-11-08T08:43:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RESILIO SYNC激活和激活失效修复">
 <meta name="twitter:description" content="分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。目前对所有版本有效，测试到最高版本 2.5.9 版本。
@@ -456,7 +456,7 @@
 <p><img src="http://bxfile.qiniudn.com/imgs/2017-11-08-030556.jpg" alt="window禁止写入权限"></p>
 </blockquote>
 <h3 id="2-2_mac下配置授权">2.2 mac下配置授权</h3><p>打开terminal工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Library/Application\ Support/Resilio\ Sync</div><div class="line">ls <span class="_">-a</span> <span class="comment"># 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录</span></div><div class="line">chmod -R -w .SyncUser1510108713</div><div class="line">chmod -R -w License</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Library/Application\ Support/Resilio\ Sync</div><div class="line">ls <span class="_">-a</span> <span class="comment"># 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录</span></div><div class="line">chmod -R -w .SyncUser1510108713</div><div class="line">chmod -R -w License</div><div class="line"></div><div class="line">sudo rm -rf ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div><div class="line"></div><div class="line">chmod -R -w ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -607,7 +607,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">135</span>
+                <span class="site-state-item-count">143</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -329,6 +329,1190 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/24/linux/linux-lsof.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/24/linux/linux-lsof.html" itemprop="url">Linux网络命令之lsof</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T12:23:52+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/24/linux/linux-lsof.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/24/linux/linux-lsof.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/24/linux/linux-lsof.html" class="leancloud_visitors" data-flag-title="Linux网络命令之lsof">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="实例">实例</h2><p>通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。</p>
+<blockquote>
+<p>lsof -i:80</p>
+<ul>
+<li><code>-i</code> 参数表示网络链接，</li>
+<li><code>:80</code> 指明端口号，该命令会同时列出PID，方便kill</li>
+</ul>
+</blockquote>
+<p>查看所有进程监听的端口:</p>
+<blockquote>
+<p>sudo lsof -i -P | grep -i “listen”</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/23/sa/docker-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/23/sa/docker-note.html" itemprop="url">Docker Note</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T17:43:27+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/23/sa/docker-note.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/23/sa/docker-note.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/23/sa/docker-note.html" class="leancloud_visitors" data-flag-title="Docker Note">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、docker的一些基础概念">一、docker的一些基础概念</h2><h2 id="二、使用镜像">二、使用镜像</h2><p>通用命令：</p>
+<ul>
+<li>删除本地镜像:<code>docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</code>, 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 <code>docker image rm</code><ul>
+<li>删除虚悬镜像的指令: <code>docker rmi $(docker images -q -f dangling=true)</code></li>
+<li>删除所有仓库名为 redis 的镜像: <code>docker rmi $(docker images -q redis)</code></li>
+<li>删除所有在 mongo:3.2 之前的镜像：<code>docker rmi $(docker images -q -f before=mongo:3.2)</code></li>
+</ul>
+</li>
+<li></li>
+</ul>
+<p>从 Docker Registry 获取镜像的命令是 docker pull。其命令格式为：</p>
+<blockquote>
+<p>docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</p>
+</blockquote>
+<p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p>
+<p>Docker Registry 地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。<br>仓库名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。</p>
+<p>例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu:14.04 <span class="comment"># 获取ubuntu 14.04 镜像</span></div><div class="line">docker pull ubuntu:latest <span class="comment"># 获取ubuntu 最新LTS版</span></div><div class="line"></div><div class="line"></div><div class="line">docker image pull ubunut:17.10 <span class="comment"># 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。</span></div><div class="line">docker container run -it --rm \</div><div class="line">    ubuntu:17.10 \</div><div class="line">    bash</div></pre></td></tr></table></figure></p>
+<h3 id="运行镜像">运行镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm  ubuntu:14.04  bash</div><div class="line"></div><div class="line">cat /etc/os-release</div><div class="line"><span class="built_in">exit</span></div></pre></td></tr></table></figure>
+<p>docker run 就是运行容器的命令，具体格式我们会在后面的章节讲解，我们这里简要的说明一下上面用到的参数。</p>
+<ul>
+<li><code>-it</code>：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端。</li>
+<li><code>--rm</code>：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。</li>
+<li><code>ubuntu:14.04</code>：这是指用 ubuntu:14.04 镜像为基础来启动容器。</li>
+<li><code>bash</code>：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash。</li>
+</ul>
+<p>进入容器后，我们可以在 Shell 下操作，执行任何所需的命令。这里，我们执行了 cat /etc/os-release，这是 Linux 常用的查看当前系统版本的命令，从返回的结果可以看到容器内是 Ubuntu 14.04.5 LTS 系统。</p>
+<p>最后我们通过 exit 退出了这个容器。</p>
+<h3 id="列出镜像">列出镜像</h3><ul>
+<li>docker images : 查看所有的镜像</li>
+<li>docker system df ： 查看镜像的体积</li>
+</ul>
+<h4 id="查看虚悬镜像">查看虚悬镜像</h4><ul>
+<li>docker images -f dangling=true： 查看虚悬镜像<br>  由于新旧镜像同名，旧镜像名称被取消，从而出现仓库名、标签均为 <none> 的镜像。这类无标签镜像也被称为 虚悬镜像(dangling image) ，可以用<code>docker images -f dangling=true</code>命令专门显示这类镜像.<br>  一般来说，虚悬镜像已经失去了存在的价值，是可以随意删除的，可以用下面的命令删除:<br>  <code>docker rmi $(docker images -q -f dangling=true)</code><br>  在 Docker 1.13+ 版本中你可以便捷的使用以下命令来删除虚悬镜像:<br>  <code>docker image prune</code></none></li>
+</ul>
+<h4 id="中间层镜像">中间层镜像</h4><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。默认的 docker images 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
+<blockquote>
+<p>docker images -a</p>
+</blockquote>
+<p>这样会看到很多无标签的镜像，与之前的虚悬镜像不同，这些无标签的镜像很多都是中间层镜像，是其它镜像所依赖的镜像。这些无标签镜像不应该删除，否则会导致上层镜像因为依赖丢失而出错。实际上，这些镜像也没必要删除，因为之前说过，相同的层只会存一遍，而这些镜像是别的镜像的依赖，因此并不会因为它们被列出来而多存了一份，无论如何你也会需要它们。只要删除那些依赖它们的镜像后，这些依赖的中间层镜像也会被连带删除。</p>
+<p>更多列出镜像的方法请参考：<a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>
+<h4 id="docker_commit使用">docker commit使用</h4><h4 id="Dockerfile_定制镜像">Dockerfile 定制镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir mynginx</div><div class="line"><span class="built_in">cd</span> mynginx</div><div class="line">touch Dockerfile</div><div class="line">cat &gt; Dockerfile &lt;&lt;EOF</div><div class="line">FROM nginx</div><div class="line">RUN <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Hello, Docker!&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</div><div class="line">EOF</div><div class="line">docker build -t nginx:v3 .</div></pre></td></tr></table></figure>
+<p>docker build 命令进行镜像构建。其格式为：</p>
+<blockquote>
+<p>docker build [选项] &lt;上下文路径/URL/-&gt;</p>
+</blockquote>
+<p>在这里我们指定了最终镜像的名称 -t nginx:v3，构建成功后，我们可以像之前运行 nginx:v2 那样来运行这个镜像，其结果会和 nginx:v2 一样。</p>
+<p>在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。</p>
+<blockquote>
+<p>docker image build</p>
+</blockquote>
+<h2 id="三、容器使用">三、容器使用</h2><p>进入容器交互模式： <code>docker exec -it {容器名称} bash</code></p>
+<h2 id="范例">范例</h2><p><code>docker run -d -p 8081:80 --name webserver nginx</code></p>
+<pre><code>-<span class="ruby"> <span class="string">`-p`</span> 指定端口转发，将容器的<span class="number">80</span>端口转发到本机的<span class="number">8081</span>端口
+</span>-<span class="ruby"> <span class="string">`--name webserver`</span> 给容器取别名webserver</span>
+</code></pre><p><code>docker run -it --rm  ubuntu:14.04  bash</code></p>
+<pre><code>-<span class="ruby"> <span class="string">`--rm`</span> 退出后删除
+</span>-<span class="ruby"> <span class="string">`-it`</span> 交互模式
+</span>-<span class="ruby"> <span class="string">`bash`</span> 使用bash作为交互模式  </span>
+</code></pre><h3 id="laravel_docker使用">laravel docker使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">composer create-project --prefer-dist laravel/laravel blog</div><div class="line">docker pull laraedit/laraedit</div><div class="line">docker run <span class="_">-d</span> --name laravel -p 8082:80 -p 3307:3306 -v &#123;blog对应的目录&#125;:/var/www/html/app laraedit/laraedit</div><div class="line">docker <span class="built_in">exec</span> -it laravel /bin/bash</div></pre></td></tr></table></figure>
+<p>进入docker container后可以执行这个命令链接mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u homestead -h 192.168.99.100 -P 3307 -p <span class="comment"># 預設帳號為 homestead 密碼為 secret</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/22/sa/talk-about-tps-and-qps.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/22/sa/talk-about-tps-and-qps.html" itemprop="url">谈谈并发的一些基础概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T17:40:53+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/22/sa/talk-about-tps-and-qps.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/22/sa/talk-about-tps-and-qps.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/22/sa/talk-about-tps-and-qps.html" class="leancloud_visitors" data-flag-title="谈谈并发的一些基础概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>pv 是指页面被浏览的次数，比如你打开一网页，那么这个网站的pv就算加了一次；</li>
+<li>tps是每秒内的事务数，比如执行了dml操作，那么相应的tps会增加。</li>
+<li><p>qps是指每秒内查询次数，比如执行了select操作，相应的qps会增加。QPS = req/sec = 请求数/秒</p>
+</li>
+<li><p>TPS：Transactions Per Second（每秒传输的事物处理个数），即服务器每秒处理的事务数。TPS包括一条消息入和一条消息出，加上一次用户数据库访问。（业务TPS = CAPS × 每个呼叫平均TPS）<br>TPS是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。<br>一般的，评价系统性能均以每秒钟完成的技术交易的数量来衡量。系统整体处理能力取决于处理能力最低模块的TPS值。</p>
+</li>
+<li><p>QPS：每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。<br>对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。</p>
+</li>
+</ul>
+<p>其他的解释：</p>
+<p>上面李大头给出了详细的英文解释<br>pv 是指页面被浏览的次数，比如你打开一网页，那么这个网站的pv就算加了一次；<br>tps是每秒内的事务数，比如执行了dml操作，那么相应的tps会增加；<br>qps是指每秒内查询次数，比如执行了select操作，相应的qps会增加。</p>
+<p>不同的应用系统tps,qps是没有可对比性的。例如：应用A，每个select查询需要1ms, 一个connection的话，一直不停的执行，1S内 可执行1000次，也就是1000qps应用B，每个select查询需要100ms, 一个connection的话，一直不停的执行，1S内 可执行10次，也就是10qps上面不同系统的两个qps是无法对比的，不能说哪个好哪个坏。满足业务要求才是王道。</p>
+<p>术语说明：QPS = req/sec = 请求数/秒</p>
+<p>【QPS计算PV和机器的方式】<br>QPS统计方式 [一般使用 http_load 进行统计]<br>QPS = 总请求数 / ( 进程总数 *   请求时间 )<br>QPS: 单个进程每秒请求服务器的成功次数</p>
+<p>单台服务器每天PV计算<br>公式1：每天总PV = QPS <em> 3600 </em> 6<br>公式2：每天总PV = QPS <em> 3600 </em> 8</p>
+<p>服务器计算<br>服务器数量 =   ceil( 每天总PV / 单台服务器每天总PV )</p>
+<p>【峰值QPS和机器计算公式】<br>原理：每天80%的访问集中在20%的时间里，这20%时间叫做峰值时间公式：</p>
+<blockquote>
+<p>( 总PV数 <em> 80% ) / ( 每天秒数 </em> 20% ) = 峰值时间每秒请求数(QPS)<br>机器：峰值时间每秒QPS / 单台机器的QPS   = 需要的机器</p>
+</blockquote>
+<p>问：每天300w PV 的在单台机器上，这台机器需要多少QPS？<br>答：( 3000000 <em> 0.8 ) / (86400 </em> 0.2 ) = 139 (QPS)<br>问：如果一台机器的QPS是58，需要几台机器来支持？<br>答：139 / 58 = 3</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-expect.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/linux/linux-expect.html" itemprop="url">Linux流程控制语句之expect</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:45:18+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/20/linux/linux-expect.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/20/linux/linux-expect.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/20/linux/linux-expect.html" class="leancloud_visitors" data-flag-title="Linux流程控制语句之expect">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们通过Shell可以实现简单的控制流功能，如：循环、判断等。但是对于需要交互的场合则必须通过人工来干预，有时候我们可能会需要实现和交互程序如telnet服务器等进行交互的功能。而expect就使用来实现这种功能的工具。</p>
+<p>expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。expect是不断发展的，随着时间的流逝，其功能越来越强大，已经成为系统管理员的的一个强大助手。expect需要Tcl编程语言的支持，要在系统上运行expect必须首先安装Tcl。</p>
+<h2 id="安装expect">安装expect</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install expect</div></pre></td></tr></table></figure>
+<h2 id="使用">使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/expect </span></div><div class="line">　　<span class="built_in">set</span> timeout 30 </div><div class="line">　　spawn ssh <span class="_">-l</span> username 192.168.1.1 </div><div class="line">　　expect <span class="string">"password:"</span> </div><div class="line">　　send <span class="string">"ispass/r"</span> </div><div class="line">　　interact</div></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://www.cnblogs.com/meitian/p/5134797.html" target="_blank" rel="external">http://www.cnblogs.com/meitian/p/5134797.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-xargs.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/linux/linux-xargs.html" itemprop="url">Linux文件操作命令之文件处理xargs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:44:20+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/20/linux/linux-xargs.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/20/linux/linux-xargs.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/20/linux/linux-xargs.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之文件处理xargs">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://man.linuxde.net/xargs" target="_blank" rel="external">http://man.linuxde.net/xargs</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls *.tar.gz |xargs -n1 tar zxvf <span class="comment"># 遍历解压当前目录所有tar.gz压缩包</span></div></pre></td></tr></table></figure>
+<p>link</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-rsync.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/linux/linux-rsync.html" itemprop="url">Linux文件操作命令之文件同步rsync</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:42:30+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/20/linux/linux-rsync.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/20/linux/linux-rsync.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/20/linux/linux-rsync.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之文件同步rsync">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>--exclude</code> : 排除文件或者文件夹</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-echo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/linux/linux-echo.html" itemprop="url">Linux之字符串处理echo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:37:23+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/20/linux/linux-echo.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/20/linux/linux-echo.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/20/linux/linux-echo.html" class="leancloud_visitors" data-flag-title="Linux之字符串处理echo">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>echo显示带颜色，需要使用参数-e<br>格式如下:<br>echo -e “\033[字背景颜色;文字颜色m字符串\033[0m”<br>例如:<br>echo -e “\033[41;37m TonyZhang \033[0m”<br>其中41的位置代表底色, 37的位置是代表字的颜色<br> 注：<br>1、字背景颜色和文字颜色之间是英文的“”””<br>2、文字颜色后面有个m<br>3、字符串前后可以没有空格，如果有的话，输出也是同样有空格<br>下面看几个例子：<br>echo -e “\033[30m 黑色字 \033[0m”<br>echo -e “\033[31m 红色字 \033[0m”<br>echo -e “\033[32m 绿色字 \033[0m”<br>echo -e “\033[33m 黄色字 \033[0m”<br>echo -e “\033[34m 蓝色字 \033[0m”<br>echo -e “\033[35m 紫色字 \033[0m”<br>echo -e “\033[36m 天蓝字 \033[0m”<br>echo -e “\033[37m 白色字 \033[0m”</p>
+<p>echo -e “\033[40;37m 黑底白字 \033[0m”<br>echo -e “\033[41;37m 红底白字 \033[0m”<br>echo -e “\033[42;37m 绿底白字 \033[0m”<br>echo -e “\033[43;37m 黄底白字 \033[0m”<br>echo -e “\033[44;37m 蓝底白字 \033[0m”<br>echo -e “\033[45;37m 紫底白字 \033[0m”<br>echo -e “\033[46;37m 天蓝底白字 \033[0m”<br>echo -e “\033[47;30m 白底黑字 \033[0m”<br>控制选项说明 ：<br>\33[0m 关闭所有属性<br>\33[1m 设置高亮度<br>\33[4m 下划线<br>\33[5m 闪烁<br>\33[7m 反显<br>\33[8m 消隐<br>\33[30m – \33[37m 设置前景色<br>\33[40m – \33[47m 设置背景色<br>\33[nA 光标上移n行<br>\33[nB 光标下移n行<br>\33[nC 光标右移n行<br>\33[nD 光标左移n行<br>\33[y;xH设置光标位置<br>\33[2J 清屏<br>\33[K 清除从光标到行尾的内容<br>\33[s 保存光标位置<br>\33[u 恢复光标位置<br>\33[?25l 隐藏光标<br>\33[?25h 显示光标 </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/16/linux/linux-kill-pid-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/16/linux/linux-kill-pid-usage.html" itemprop="url">Linux下kill、pkill、killall使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T17:33:54+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/16/linux/linux-kill-pid-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/16/linux/linux-kill-pid-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/16/linux/linux-kill-pid-usage.html" class="leancloud_visitors" data-flag-title="Linux下kill、pkill、killall使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>终止一个进程或终止一个正在运行的程序，一般是通过 kill 、killall、pkill、xkill 等进行。比如一个程序已经死掉，但又不能退出，这时就应该考虑应用这些工具。</p>
+<ul>
+<li>kill: kill的应用是和ps 或pgrep 命令结合在一起使用的；</li>
+<li>pkill: pkill 和killall 应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill 来杀掉</li>
+<li>killall: killall 通过程序的名字，直接杀死所有进程</li>
+<li>xkill: xkill 是在桌面用的杀死图形界面的程序</li>
+</ul>
+<h2 id="用法">用法</h2><h3 id="kill_的用法">kill 的用法</h3><p>kill ［信号代码］ 进程ID（kill  -pid）<br>－s：指定发送的信号。<br>－p：模拟发送信号。<br>－l：指定信号的名称列表。<br>pid：要中止进程的ID号。<br>Signal：表示信号。<br>注：信号代码可以省略；我们常用的信号代码是-9 ，表示强制终止；对于僵尸进程，可以用kill -9 来强制终止退出；<br> killall</p>
+<h3 id="killall_通过程序的名字，直接杀死所有进程。">killall 通过程序的名字，直接杀死所有进程。</h3><p>用法：killall 正在运行的程序名<br>killall 也和ps或pgrep 结合使用，比较方便；通过ps或pgrep 来查看哪些程序在运行</p>
+<p> pkill</p>
+<h3 id="pkill_和killall_应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill_来杀掉。">pkill 和killall 应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill 来杀掉。</h3><p>用法：pkill 正在运行的程序名<br> xkill</p>
+<h3 id="xkill_是在桌面用的杀死图形界面的程序。">xkill 是在桌面用的杀死图形界面的程序。</h3><p>比如当firefox 出现崩溃不能退出时，点鼠标就能杀死firefox 。当xkill运行时出来和个人脑骨的图标，哪个图形程序崩溃一点就OK了。如果您想终止xkill ，就按右键取消；<br>xkill 调用方法：<br>[root@localhost ~]# xkill</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkill -uroot <span class="comment"># root是你要杀死的用户名</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/08/affiliate/vultr-vps-affiliate.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -576,1118 +1760,7 @@
 <p><img src="http://bxfile.qiniudn.com/imgs/2017-11-08-030556.jpg" alt="window禁止写入权限"></p>
 </blockquote>
 <h3 id="2-2_mac下配置授权">2.2 mac下配置授权</h3><p>打开terminal工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Library/Application\ Support/Resilio\ Sync</div><div class="line">ls <span class="_">-a</span> <span class="comment"># 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录</span></div><div class="line">chmod -R -w .SyncUser1510108713</div><div class="line">chmod -R -w License</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/03/sql/multiple-mysql-instances.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/03/sql/multiple-mysql-instances.html" itemprop="url">MySQL多开</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T13:08:12+08:00">
-                2017-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/03/sql/multiple-mysql-instances.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/sql/multiple-mysql-instances.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/03/sql/multiple-mysql-instances.html" class="leancloud_visitors" data-flag-title="MySQL多开">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在服务器中开启mysql服务一般是用 <code>service mysql start</code>, 但在系统里面他都执行了那些命令吗，通过<code>ps -ef|grep mysql</code> 我们可以看到目标的任务有如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/usr/local/var/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error.log --pid-file=/usr/local/var/mysql/mysql.pid</div><div class="line"></div><div class="line">或者可能是：</div><div class="line"></div><div class="line"> /usr/local/mysql/bin/mysqld --defaults-file=/data/mysql/3306/my.cnf --basedir=/usr/local/mysql --datadir=/data/mysql/3306/data --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/data/mysql/3306/mysql_run.err --open-files-limit=65536 --pid-file=/data/mysql/3306/pid_mysql.pid --socket=/data/mysql/3306/mysqltmp/mysql.sock --port=3306</div></pre></td></tr></table></figure>
-<p>如果我们需要多开，只需要按照这种格式允许下不就好了？</p>
-<p>这是个经过优化，在后台多开一个mysql实例的demo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql_install_db --datadir=/Volumes/Edu/DB/mysql  # mysql 5.7 前使用</div><div class="line">mysqld --initialize --datadir=/Volumes/Edu/DB/mysql  # mysql 5.7后使用这个初始化</div><div class="line"></div><div class="line">mysqld --user=mysql --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --initial --initialize-insecure --defaults-file=/usr/local/etc/my-3307.cnf --socket=/data/mysql/3306/mysqltmp/mysql.sock </div><div class="line">--port=3307</div><div class="line">--plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin </div><div class="line">--bind-address=127.0.0.1 </div><div class="line">--log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql-3307.pid</div><div class="line"></div><div class="line">#需要先确保 datadir 目标目录下是空的，避免误操作破坏已有数据。</div><div class="line">#另外，在初始化时如果加上 –initial-insecure，则会创建空密码的 root@localhost 账号，否则会创建带密码的 root@localhost 账号，密码直接写在 log-error 日志文件中（在5.6版本中是放在 ~/.mysql_secret 文件里，更加隐蔽，不熟悉的话可能会无所适从）</div><div class="line"></div><div class="line">/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql.pid --port=3307</div></pre></td></tr></table></figure>
-<p>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql-3307.plist</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/25/linux-dev/google-drive-usage-for-linux.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/linux-dev/google-drive-usage-for-linux.html" itemprop="url">Google Drive 服务器应用指南</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:39:40+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/25/linux-dev/google-drive-usage-for-linux.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/25/linux-dev/google-drive-usage-for-linux.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/25/linux-dev/google-drive-usage-for-linux.html" class="leancloud_visitors" data-flag-title="Google Drive 服务器应用指南">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、gdrive_cli命令安装">一、gdrive cli命令安装</h2><p>这个是比较通用的命令，centos7以下的推荐使用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#下载命令工具</span></div><div class="line">wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA</div><div class="line">chmod 755 /usr/sbin/gdrive</div><div class="line"><span class="comment">#验证终端</span></div><div class="line">gdrive about</div></pre></td></tr></table></figure>
-<ul>
-<li>参考项目：<a href="https://github.com/prasmussen/gdrive#downloads" target="_blank" rel="external">https://github.com/prasmussen/gdrive#downloads</a></li>
-</ul>
-<h3 id="1-1_怎么使用gdrive">1.1 怎么使用gdrive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#gdrive 上传 tar 包到目录 0B2_oloQ2sUujdzFiYkNtOGhNMkU(用gdrive list查询google drive对应的目录地址)，成功后删除 tar 包</span></div><div class="line">/usr/sbin/gdrive upload -p 0B2_oloQ2sUujdzFiYkNtOGhNMkU --delete <span class="string">"/tmp/seonoco.com.tar.gz"</span></div><div class="line"></div><div class="line"><span class="comment">#上传目录</span></div><div class="line">gdrive upload -p 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs --recursive <span class="string">"/home/wwwroot/tmp"</span></div><div class="line">gdrive download --recursive 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs</div></pre></td></tr></table></figure>
-<p>另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/25/linux-dev/lnmp1.4-analisys.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/linux-dev/lnmp1.4-analisys.html" itemprop="url">LNMP1.4脚本分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T14:14:38+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/25/linux-dev/lnmp1.4-analisys.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/25/linux-dev/lnmp1.4-analisys.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/25/linux-dev/lnmp1.4-analisys.html" class="leancloud_visitors" data-flag-title="LNMP1.4脚本分析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="/bin/lnmp_分析"><code>/bin/lnmp</code> 分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取vhost列表：</span></div><div class="line">ls /usr/<span class="built_in">local</span>/nginx/conf/vhost/ | grep <span class="string">".conf$"</span> | sed <span class="string">'s/.conf//g'</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/15/java/java-basic.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/15/java/java-basic.html" itemprop="url">JAVA基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T18:04:36+08:00">
-                2017-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/15/java/java-basic.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/15/java/java-basic.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/15/java/java-basic.html" class="leancloud_visitors" data-flag-title="JAVA基础">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/15/learn-language.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/15/learn-language.html" itemprop="url">编程语言学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T17:11:24+08:00">
-                2017-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/15/learn-language.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/15/learn-language.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/15/learn-language.html" class="leancloud_visitors" data-flag-title="编程语言学习">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天心血来潮想复习java了，毕竟好久忘记了，这里有个编译语言的分类，用来记录复习的每一章java吧。</p>
-<p>也给自己一个期限，2017年前完成（20171015 ~ 20171231）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/12/linux/linux-fail2ban.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/linux/linux-fail2ban.html" itemprop="url">Linux网络命令之ssh安全控制fail2ban</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T18:20:33+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/12/linux/linux-fail2ban.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/12/linux/linux-fail2ban.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/12/linux/linux-fail2ban.html" class="leancloud_visitors" data-flag-title="Linux网络命令之ssh安全控制fail2ban">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、安装">一、安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo yum install fail2ban <span class="comment"># CentOS/RHEL/Fedora上安装fail2ban</span></div><div class="line">sudo apt-get install fail2ban <span class="comment"># ubuntu，Debian 或 Linux Mint</span></div></pre></td></tr></table></figure>
-<h2 id="二、配置">二、配置</h2><p>新建文件<code>/etc/fail2ban/jail.local</code> 用来配置其安全规则</p>
-<blockquote>
-<p>sudo vi /etc/fail2ban/jail.local</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">[DEFAULT]</div><div class="line"><span class="comment"># 以空格分隔的列表，可以是 IP 地址、CIDR 前缀或者 DNS 主机名</span></div><div class="line"><span class="comment"># 用于指定哪些地址可以忽略 fail2ban 防御</span></div><div class="line">ignoreip = 127.0.0.1 172.31.0.0/24 10.10.0.0/24 192.168.0.0/24</div><div class="line"> </div><div class="line"><span class="comment"># 客户端主机被禁止的时长（秒）</span></div><div class="line">bantime = 86400</div><div class="line"> </div><div class="line"><span class="comment"># 客户端主机被禁止前允许失败的次数 </span></div><div class="line">maxretry = 5</div><div class="line"> </div><div class="line"><span class="comment"># 查找失败次数的时长（秒）</span></div><div class="line">findtime = 600</div><div class="line"> </div><div class="line">mta = sendmail</div><div class="line"> </div><div class="line">[ssh-iptables]</div><div class="line">enabled = <span class="literal">true</span></div><div class="line">filter = sshd</div><div class="line">action = iptables[name=SSH, port=ssh, protocol=tcp]</div><div class="line">sendmail-whois[name=SSH, dest=your@email.com, sender=fail2ban@email.com]</div><div class="line"><span class="comment"># Debian 系的发行版 </span></div><div class="line">logpath = /var/<span class="built_in">log</span>/auth.log</div><div class="line"><span class="comment"># Red Hat 系的发行版</span></div><div class="line">logpath = /var/<span class="built_in">log</span>/secure</div><div class="line"><span class="comment"># ssh 服务的最大尝试次数 </span></div><div class="line">maxretry = 3</div></pre></td></tr></table></figure>
-<h2 id="三、常用命令">三、常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">sudo service fail2ban restart <span class="comment">#  Debian, Ubuntu 或 CentOS/RHEL 6 </span></div><div class="line">sudo systemctl restart fail2ban <span class="comment"># 在 Fedora 或 CentOS/RHEL 7:</span></div><div class="line">sudo fail2ban-client status <span class="comment"># 检验fail2ban状态</span></div><div class="line">sudo fail2ban-client status ssh-iptables <span class="comment"># 检验一个特定监狱的状态,会显示出被禁止IP地址列表</span></div><div class="line"></div><div class="line">sudo fail2ban-client ping <span class="comment"># 验证fail2ban成功运行,你可以看到“pong（嘭）”作为响应</span></div><div class="line"></div><div class="line">sudo tail <span class="_">-f</span> /var/<span class="built_in">log</span>/fail2ban.log <span class="comment"># 该文件记录在fail2ban中发生的任何敏感事件</span></div><div class="line"></div><div class="line">sudo iptables --list -n <span class="comment"># 检测当前iptables来验证禁止规则</span></div><div class="line"></div><div class="line">sudo iptables -D fail2ban-SSH <span class="_">-s</span> 192.168.1.8 -j DROP <span class="comment"># 从fail2ban中解锁某个IP地址</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，如果你停止了Fail2ban 服务，那么所有的IP地址都会被解锁。当你重启 Fail2ban，它会从/etc/log/secure(或 /var/log/auth.log)中找到异常的IP地址列表，如果这些异常地址的发生时间仍然在禁止时间内，那么Fail2ban会重新将这些IP地址禁止。</p>
-</blockquote>
-<h3 id="3-1_设置_Fail2ban_自动启动">3.1 设置 Fail2ban 自动启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo chkconfig fail2ban on</div><div class="line">sudo systemctl <span class="built_in">enable</span> fail2ban</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/12/linux/rar-and-unrar-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/linux/rar-and-unrar-usage.html" itemprop="url">压缩命令之rar、unrar</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T16:10:19+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/12/linux/rar-and-unrar-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/12/linux/rar-and-unrar-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/12/linux/rar-and-unrar-usage.html" class="leancloud_visitors" data-flag-title="压缩命令之rar、unrar">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>rar是一个商业软件，但有时候我们需要在linux 下做批量操作，这时候就需要用到命令，下面我们来说说rar、unrar在命令行下的一些操作，希望对你们有所帮助！</p>
-<h2 id="一、安装winrar">一、安装winrar</h2><p>winrar从v5开始，只提供window和linux版的，而linux版只提供二进制文件，这样我们就可以直接在命令行进行操作。比如在terminal下压缩文件a.xls到文件 a.xls.rar中，语法如下：</p>
-<blockquote>
-<p>rar a ‘a.xls.rar’ ‘a.xls’ #</p>
-</blockquote>
-<p>使用起来非常简单，类似linux下的tar</p>
-<p>参考：</p>
-<ul>
-<li><a href="http://blog.csdn.net/randomlife/article/details/113102" target="_blank" rel="external">http://blog.csdn.net/randomlife/article/details/113102</a></li>
-</ul>
-<h2 id="二、配置">二、配置</h2><h3 id="2-1_key配置">2.1 key配置</h3><p>WinRAR, RAR for Unix and OS X now use the same registration key format, so you can use the same key with current WinRAR and RAR versions for all mentioned platforms.<br>so Yes, it is possible.</p>
-<p>Further, it also states where to copy the key:</p>
-<blockquote>
-<p>If you use RAR/Unix and RAR for OS X, you should copy rarreg.key to your home directory or to one of the following directories: /etc, /usr/lib, /usr/local/lib, /usr/local/etc. You may rename it to .rarreg.key or .rarregkey, if you wish, but rarreg.key is also valid.</p>
-</blockquote>
-<p>参考：<a href="https://superuser.com/questions/1089501/how-to-transfer-winrar-key-to-linux" target="_blank" rel="external">https://superuser.com/questions/1089501/how-to-transfer-winrar-key-to-linux</a></p>
-<p>分享我的<code>rarreg.key</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">RAR registration data</div><div class="line">Admin</div><div class="line">Unlimited Company License</div><div class="line">UID=1d7426b0b166c91c21ab</div><div class="line">641221225021abd0925f7c70456ecd71f724a7f5a00b0a0f7d19ee</div><div class="line">45c5e20951dae2857c2960fce6cb5ffde62890079861be57638717</div><div class="line">7131ced835ed65cc743d9777f2ea71a8e32c7e593cf66794343565</div><div class="line">b41bcf56929486b8bcdac33d50ecf773996076c281ccab247f6153</div><div class="line">ed97a3e4a4cb9bffbf35ed364a5cc6908fd2cdc84e9f53a33cf463</div><div class="line">9d85cd75291397987399f5159745c84654dfd11e471ec7a360b22a</div><div class="line">bbaf66105e62e8afa2d5d154b0c164b1f5377d2975460025531542</div></pre></td></tr></table></figure>
-<p>然后复制或添加软链接到配置目录，你可能要执行这样的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -sfv /workspace/bin/winrar/rarreg.key /usr/<span class="built_in">local</span>/etc/rarreg.key <span class="comment"># mac</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/12/mac-dev/homebrew-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/mac-dev/homebrew-usage.html" itemprop="url">homebrew的安装与使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T15:12:31+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/12/mac-dev/homebrew-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/12/mac-dev/homebrew-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/12/mac-dev/homebrew-usage.html" class="leancloud_visitors" data-flag-title="homebrew的安装与使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。</p>
-<h2 id="一、安装homebrew">一、安装homebrew</h2><h2 id="二、配置homebrew">二、配置homebrew</h2><h3 id="2-1_修改homebrew镜像">2.1 修改homebrew镜像</h3><p>默认的，homebrew是使用github作为代码源，同步的时候会比较慢，所以就有了备选方案  -  使用USTC提供的homebrew镜像。具体操作可以看这篇文章<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git" target="_blank" rel="external">《替换及重置Homebrew默认源》</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">替换brew.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/brew.git</div><div class="line"></div><div class="line">替换homebrew-core.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</div><div class="line"></div><div class="line"></div><div class="line">重置brew.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://github.com/Homebrew/brew.git</div><div class="line"></div><div class="line">重置homebrew-core.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://github.com/Homebrew/homebrew-core.git</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Library/Application\ Support/Resilio\ Sync</div><div class="line">ls <span class="_">-a</span> <span class="comment"># 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录</span></div><div class="line">chmod -R -w .SyncUser1510108713</div><div class="line">chmod -R -w License</div><div class="line"></div><div class="line">sudo rm -rf ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div><div class="line"></div><div class="line">chmod -R -w ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div></pre></td></tr></table></figure>
 
           
         
@@ -1726,7 +1799,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1771,7 +1844,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">135</span>
+                <span class="site-state-item-count">143</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

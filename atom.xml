@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-11-08T03:16:39.000Z</updated>
+  <updated>2017-11-24T04:24:42.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,148 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux网络命令之lsof</title>
+    <link href="http://boxcore.github.io/2017/11/24/linux/linux-lsof.html"/>
+    <id>http://boxcore.github.io/2017/11/24/linux/linux-lsof.html</id>
+    <published>2017-11-24T04:23:52.000Z</published>
+    <updated>2017-11-24T04:24:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;实例&quot;&gt;实例&lt;/h2&gt;&lt;p&gt;通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;lsof -i:80&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-i&lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Docker Note</title>
+    <link href="http://boxcore.github.io/2017/11/23/sa/docker-note.html"/>
+    <id>http://boxcore.github.io/2017/11/23/sa/docker-note.html</id>
+    <published>2017-11-23T09:43:27.000Z</published>
+    <updated>2017-11-24T04:21:12.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、docker的一些基础概念&quot;&gt;一、docker的一些基础概念&lt;/h2&gt;&lt;h2 id=&quot;二、使用镜像&quot;&gt;二、使用镜像&lt;/h2&gt;&lt;p&gt;通用命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;删除本地镜像:&lt;code&gt;docker rmi [选项] &amp;lt;镜像1&amp;gt; [&amp;lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>谈谈并发的一些基础概念</title>
+    <link href="http://boxcore.github.io/2017/11/22/sa/talk-about-tps-and-qps.html"/>
+    <id>http://boxcore.github.io/2017/11/22/sa/talk-about-tps-and-qps.html</id>
+    <published>2017-11-22T09:40:53.000Z</published>
+    <updated>2017-11-22T10:04:25.587Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;pv 是指页面被浏览的次数，比如你打开一网页，那么这个网站的pv就算加了一次；&lt;/li&gt;
+&lt;li&gt;tps是每秒内的事务数，比如执行了dml操作，那么相应的tps会增加。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;qps是指每秒内查询次数，比如执行了select操作，相应的qps会
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux流程控制语句之expect</title>
+    <link href="http://boxcore.github.io/2017/11/20/linux/linux-expect.html"/>
+    <id>http://boxcore.github.io/2017/11/20/linux/linux-expect.html</id>
+    <published>2017-11-20T09:45:18.000Z</published>
+    <updated>2017-11-20T09:49:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们通过Shell可以实现简单的控制流功能，如：循环、判断等。但是对于需要交互的场合则必须通过人工来干预，有时候我们可能会需要实现和交互程序如telnet服务器等进行交互的功能。而expect就使用来实现这种功能的工具。&lt;/p&gt;
+&lt;p&gt;expect是一个免费的编程工具语言，
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux文件操作命令之文件处理xargs</title>
+    <link href="http://boxcore.github.io/2017/11/20/linux/linux-xargs.html"/>
+    <id>http://boxcore.github.io/2017/11/20/linux/linux-xargs.html</id>
+    <published>2017-11-20T09:44:20.000Z</published>
+    <updated>2017-11-22T08:15:45.271Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://man.linuxde.net/xargs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://man.linuxde.net/xargs&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux文件操作命令之文件同步rsync</title>
+    <link href="http://boxcore.github.io/2017/11/20/linux/linux-rsync.html"/>
+    <id>http://boxcore.github.io/2017/11/20/linux/linux-rsync.html</id>
+    <published>2017-11-20T09:42:30.000Z</published>
+    <updated>2017-11-22T08:25:34.089Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;--exclude&lt;/code&gt; : 排除文件或者文件夹&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux之字符串处理echo</title>
+    <link href="http://boxcore.github.io/2017/11/20/linux/linux-echo.html"/>
+    <id>http://boxcore.github.io/2017/11/20/linux/linux-echo.html</id>
+    <published>2017-11-20T09:37:23.000Z</published>
+    <updated>2017-11-20T09:38:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;echo显示带颜色，需要使用参数-e&lt;br&gt;格式如下:&lt;br&gt;echo -e “\033[字背景颜色;文字颜色m字符串\033[0m”&lt;br&gt;例如:&lt;br&gt;echo -e “\033[41;37m TonyZhang \033[0m”&lt;br&gt;其中41的位置代表底色, 37的
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下kill、pkill、killall使用</title>
+    <link href="http://boxcore.github.io/2017/11/16/linux/linux-kill-pid-usage.html"/>
+    <id>http://boxcore.github.io/2017/11/16/linux/linux-kill-pid-usage.html</id>
+    <published>2017-11-16T09:33:54.000Z</published>
+    <updated>2017-11-16T09:37:11.751Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;终止一个进程或终止一个正在运行的程序，一般是通过 kill 、killall、pkill、xkill 等进行。比如一个程序已经死掉，但又不能退出，这时就应该考虑应用这些工具。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;kill: kill的应用是和ps 或pgrep 命令结合在一起使用的；
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>vultr主机推荐</title>
@@ -37,7 +179,7 @@
     <link href="http://boxcore.github.io/2017/11/08/tools/resilio-sync-license-crack.html"/>
     <id>http://boxcore.github.io/2017/11/08/tools/resilio-sync-license-crack.html</id>
     <published>2017-11-08T02:52:56.000Z</published>
-    <updated>2017-11-08T08:20:22.000Z</updated>
+    <updated>2017-11-08T08:43:40.000Z</updated>
     
     <summary type="html">
     
@@ -209,153 +351,6 @@
     
       &lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.awaimai.com/1650.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.awaimai.com/1650.html&lt;/a&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux查看服务器基础信息</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-basic.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-basic.html</id>
-    <published>2017-10-10T09:27:51.000Z</published>
-    <updated>2017-10-10T09:50:15.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;who: 查看服务器当前登陆的用户&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;who /var/log/wtmp&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;arp: 查看服务器mac信息&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cat  /var/log/secure&lt;/code&gt; : 查看最
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux流程控制语句之if</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-if.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-if.html</id>
-    <published>2017-10-10T09:07:45.000Z</published>
-    <updated>2017-10-10T09:26:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;语法：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;if ….; then&lt;br&gt;　 ….&lt;br&gt;elif ….; then&lt;br&gt;　 ….&lt;br&gt;else&lt;br&gt;　 ….&lt;br&gt;fi&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;[ -f “somefile” ] ：判断是否是一
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux网络命令之ssh</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-ssh.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-ssh.html</id>
-    <published>2017-10-10T08:59:40.000Z</published>
-    <updated>2017-10-10T09:38:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、基础&quot;&gt;一、基础&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux网络命令之端口扫描nmap</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-nmap.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-nmap.html</id>
-    <published>2017-10-10T04:00:08.000Z</published>
-    <updated>2017-10-10T04:02:53.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Nmap是一款用于网络发现和安全审计的安全工具，常用于端口扫描。&lt;/p&gt;
-&lt;h2 id=&quot;一、Nmap介绍&quot;&gt;一、Nmap介绍&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;扫描类型&lt;/p&gt;
-&lt;p&gt; -sT　　TCP 连接扫描，会在目标主机中记录大量的链接请求和错误信息&lt;br&gt; -sS　
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux之文件和目录操作</title>
-    <link href="http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html"/>
-    <id>http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html</id>
-    <published>2017-10-09T12:44:33.000Z</published>
-    <updated>2017-10-09T14:02:13.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;dirname $0，取得当前执行的脚本文件的父目录&lt;/p&gt;
-&lt;p&gt;cd &lt;code&gt;dirname $0&lt;/code&gt;，进入这个目录(切换当前工作目录)&lt;/p&gt;
-&lt;p&gt;pwd，显示当前工作目录(cd执行后的)&lt;/p&gt;
-&lt;p&gt;由此，我们获得了当前正在执行的脚本的存放路径。&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux网络命令之netstat</title>
-    <link href="http://boxcore.github.io/2017/10/09/linux/linux-netstat.html"/>
-    <id>http://boxcore.github.io/2017/10/09/linux/linux-netstat.html</id>
-    <published>2017-10-09T10:30:11.000Z</published>
-    <updated>2017-10-20T09:17:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。&lt;/p&gt;
-&lt;h2 id=&quot;一、命令帮助&quot;&gt;一、命令帮助&lt;/h2&gt;&lt;h2 id=&quot;二、常见案例&quot;&gt;二、常见案例&lt;/h2&gt;&lt;h3 id=&quot;2-1_查看端口是否被占用&quot;&gt;2.1
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL时间处理</title>
-    <link href="http://boxcore.github.io/2017/09/21/sql/mysql-date-function.html"/>
-    <id>http://boxcore.github.io/2017/09/21/sql/mysql-date-function.html</id>
-    <published>2017-09-21T09:07:44.000Z</published>
-    <updated>2017-09-21T09:31:29.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;mysql关于时间的函数有&lt;code&gt;date_format&lt;/code&gt;,&lt;code&gt;datediff&lt;/code&gt;等，这里整理一波。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;DATE_FORMAT()&lt;/li&gt;
-&lt;li&gt;DATEDIFF()&lt;/li&gt;
-&lt;li&gt;TIMESTAMPDIF
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>GIT使用手册</title>
-    <link href="http://boxcore.github.io/2017/09/08/tools/git-usage.html"/>
-    <id>http://boxcore.github.io/2017/09/08/tools/git-usage.html</id>
-    <published>2017-09-08T10:22:09.000Z</published>
-    <updated>2017-09-11T03:39:29.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、基本命令&quot;&gt;一、基本命令&lt;/h2&gt;&lt;h3 id=&quot;1-1_版本回退&quot;&gt;1.1 版本回退&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line
     
     </summary>
     
