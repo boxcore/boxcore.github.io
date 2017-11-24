@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2017-11-24T04:24:42.000Z</updated>
+  <updated>2017-11-24T07:05:13.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,159 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DirectAdmin面板设置</title>
+    <link href="http://boxcore.github.io/2017/11/24/tools/directadmin-usage.html"/>
+    <id>http://boxcore.github.io/2017/11/24/tools/directadmin-usage.html</id>
+    <published>2017-11-24T07:01:56.000Z</published>
+    <updated>2017-11-24T07:05:13.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h2 id=&quot;二、配置修改&quot;&gt;二、配置修改&lt;/h2&gt;&lt;h3 id=&quot;2-1_密码修改&quot;&gt;2.1 密码修改&lt;/h3&gt;&lt;p&gt;默认mysql密码，管理员密码等地址：&lt;br&gt;文件位置: /usr/local/directadmin/scri
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>网络检查常用命令杂锦</title>
+    <link href="http://boxcore.github.io/2017/11/24/tools/network-check.html"/>
+    <id>http://boxcore.github.io/2017/11/24/tools/network-check.html</id>
+    <published>2017-11-24T07:00:30.000Z</published>
+    <updated>2017-11-24T07:00:36.714Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;检测 https: telnet {IP} 443&lt;/li&gt;
+&lt;li&gt;查询dns解析ip: nslookup {domain} 8.8.8.8&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>域名查询接口</title>
+    <link href="http://boxcore.github.io/2017/11/24/api/domain-api.html"/>
+    <id>http://boxcore.github.io/2017/11/24/api/domain-api.html</id>
+    <published>2017-11-24T06:57:57.000Z</published>
+    <updated>2017-11-24T06:59:02.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2017-11-24 日检查可用接口：&lt;/p&gt;
+&lt;p&gt;【功能】：查询域名可用&lt;br&gt;【地址】： &lt;a href=&quot;http://panda.www.net.cn/cgi-bin/check.cgi?area_domain={$domian}&quot; target=&quot;_blank&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows下CMD命令</title>
+    <link href="http://boxcore.github.io/2017/11/24/windows/window-cmd-usage.html"/>
+    <id>http://boxcore.github.io/2017/11/24/windows/window-cmd-usage.html</id>
+    <published>2017-11-24T06:53:55.000Z</published>
+    <updated>2017-11-24T06:54:08.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Boxcore的CMD常用命令手册。&lt;/p&gt;
+&lt;h2 id=&quot;进入指定目录&quot;&gt;进入指定目录&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;切换盘： &amp;gt; D:\dir\dir&lt;/li&gt;
+&lt;li&gt;切目录： cd dir\dir\&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;##环境变量&lt;/p&gt;
+&lt;block
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHOTOSHOP使用</title>
+    <link href="http://boxcore.github.io/2017/11/24/tools/photoshop-usage.html"/>
+    <id>http://boxcore.github.io/2017/11/24/tools/photoshop-usage.html</id>
+    <published>2017-11-24T06:50:59.000Z</published>
+    <updated>2017-11-24T06:52:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h2 id=&quot;二、基本操作使用&quot;&gt;二、基本操作使用&lt;/h2&gt;&lt;h2 id=&quot;三、进阶操作&quot;&gt;三、进阶操作&lt;/h2&gt;&lt;h2 id=&quot;四、配置&quot;&gt;四、配置&lt;/h2&gt;&lt;h3 id=&quot;4-1_语言包配置&quot;&gt;4.1 语言包配置&lt;/h3&gt;&lt;p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Sublime编辑器使用</title>
+    <link href="http://boxcore.github.io/2017/11/24/sublime-text-usage.html"/>
+    <id>http://boxcore.github.io/2017/11/24/sublime-text-usage.html</id>
+    <published>2017-11-24T06:49:17.000Z</published>
+    <updated>2017-11-24T06:49:57.185Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h3 id=&quot;1-1_ubuntu安装sublime_text&quot;&gt;1.1 ubuntu安装sublime text&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;g
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Talk About i18n</title>
+    <link href="http://boxcore.github.io/2017/11/24/sa/talk-about-i18n.html"/>
+    <id>http://boxcore.github.io/2017/11/24/sa/talk-about-i18n.html</id>
+    <published>2017-11-24T06:44:05.000Z</published>
+    <updated>2017-11-24T06:44:22.735Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是i18n&quot;&gt;什么是i18n&lt;/h2&gt;&lt;p&gt;参考文章 &lt;a href=&quot;http://quivi.sourceforge.net/languagecodes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://quivi.s
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CSS Hack基础笔记</title>
+    <link href="http://boxcore.github.io/2017/11/24/sa/css-hack-note.html"/>
+    <id>http://boxcore.github.io/2017/11/24/sa/css-hack-note.html</id>
+    <published>2017-11-24T06:42:24.000Z</published>
+    <updated>2017-11-24T06:43:08.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常用css_hack知识&quot;&gt;常用css hack知识&lt;/h2&gt;&lt;h3 id=&quot;1-_!important浏览器兼容&quot;&gt;1. &lt;code&gt;!important&lt;/code&gt;浏览器兼容&lt;/h3&gt;&lt;p&gt;IE7以上对&lt;code&gt;!important&lt;/code&gt;是支持的,
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Node.js Note</title>
+    <link href="http://boxcore.github.io/2017/11/24/sa/nodejs-note.html"/>
+    <id>http://boxcore.github.io/2017/11/24/sa/nodejs-note.html</id>
+    <published>2017-11-24T06:37:18.000Z</published>
+    <updated>2017-11-24T06:37:20.632Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux网络命令之lsof</title>
@@ -202,155 +355,6 @@
     
       &lt;p&gt;在服务器中开启mysql服务一般是用 &lt;code&gt;service mysql start&lt;/code&gt;, 但在系统里面他都执行了那些命令吗，通过&lt;code&gt;ps -ef|grep mysql&lt;/code&gt; 我们可以看到目标的任务有如：&lt;/p&gt;
 &lt;figure class=&quot;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Google Drive 服务器应用指南</title>
-    <link href="http://boxcore.github.io/2017/10/25/linux-dev/google-drive-usage-for-linux.html"/>
-    <id>http://boxcore.github.io/2017/10/25/linux-dev/google-drive-usage-for-linux.html</id>
-    <published>2017-10-25T07:39:40.000Z</published>
-    <updated>2017-10-25T08:15:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、gdrive_cli命令安装&quot;&gt;一、gdrive cli命令安装&lt;/h2&gt;&lt;p&gt;这个是比较通用的命令，centos7以下的推荐使用。&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LNMP1.4脚本分析</title>
-    <link href="http://boxcore.github.io/2017/10/25/linux-dev/lnmp1.4-analisys.html"/>
-    <id>http://boxcore.github.io/2017/10/25/linux-dev/lnmp1.4-analisys.html</id>
-    <published>2017-10-25T06:14:38.000Z</published>
-    <updated>2017-10-25T06:15:44.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;/bin/lnmp_分析&quot;&gt;&lt;code&gt;/bin/lnmp&lt;/code&gt; 分析&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/d
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA基础</title>
-    <link href="http://boxcore.github.io/2017/10/15/java/java-basic.html"/>
-    <id>http://boxcore.github.io/2017/10/15/java/java-basic.html</id>
-    <published>2017-10-15T10:04:36.000Z</published>
-    <updated>2017-10-15T10:04:37.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>编程语言学习</title>
-    <link href="http://boxcore.github.io/2017/10/15/learn-language.html"/>
-    <id>http://boxcore.github.io/2017/10/15/learn-language.html</id>
-    <published>2017-10-15T09:11:24.000Z</published>
-    <updated>2017-10-15T10:03:19.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天心血来潮想复习java了，毕竟好久忘记了，这里有个编译语言的分类，用来记录复习的每一章java吧。&lt;/p&gt;
-&lt;p&gt;也给自己一个期限，2017年前完成（20171015 ~ 20171231）&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux网络命令之ssh安全控制fail2ban</title>
-    <link href="http://boxcore.github.io/2017/10/12/linux/linux-fail2ban.html"/>
-    <id>http://boxcore.github.io/2017/10/12/linux/linux-fail2ban.html</id>
-    <published>2017-10-12T10:20:33.000Z</published>
-    <updated>2017-10-12T10:43:52.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>压缩命令之rar、unrar</title>
-    <link href="http://boxcore.github.io/2017/10/12/linux/rar-and-unrar-usage.html"/>
-    <id>http://boxcore.github.io/2017/10/12/linux/rar-and-unrar-usage.html</id>
-    <published>2017-10-12T08:10:19.000Z</published>
-    <updated>2017-10-12T08:39:57.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;rar是一个商业软件，但有时候我们需要在linux 下做批量操作，这时候就需要用到命令，下面我们来说说rar、unrar在命令行下的一些操作，希望对你们有所帮助！&lt;/p&gt;
-&lt;h2 id=&quot;一、安装winrar&quot;&gt;一、安装winrar&lt;/h2&gt;&lt;p&gt;winrar从v5开始，只
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>homebrew的安装与使用</title>
-    <link href="http://boxcore.github.io/2017/10/12/mac-dev/homebrew-usage.html"/>
-    <id>http://boxcore.github.io/2017/10/12/mac-dev/homebrew-usage.html</id>
-    <published>2017-10-12T07:12:31.000Z</published>
-    <updated>2017-10-12T07:16:32.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。&lt;/p&gt;
-&lt;h2 id=&quot;一、安装homebrew&quot;&gt;一、安装homebrew&lt;/h2&gt;&lt;h2 id=&quot;二、配置homebrew&quot;&gt;二、配置homebrew&lt;/h2&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux文件操作命令之文件属性chattr</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-chattr.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-chattr.html</id>
-    <published>2017-10-10T09:53:13.000Z</published>
-    <updated>2017-10-10T09:59:32.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Linux chattr命令用于改变文件属性。通过chattr命令修改属性能够提高系统的安全性，但是它并不适合所有的目录。chattr命令不能保护/、/dev、/tmp、/var目录。lsattr命令是显示chattr命令设置的文件属性。&lt;/p&gt;
-&lt;p&gt;这项指令可改变存放在
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux网络命令之防火墙控制iptables</title>
-    <link href="http://boxcore.github.io/2017/10/10/linux/linux-iptables.html"/>
-    <id>http://boxcore.github.io/2017/10/10/linux/linux-iptables.html</id>
-    <published>2017-10-10T09:51:33.000Z</published>
-    <updated>2017-10-10T09:51:56.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.awaimai.com/1650.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.awaimai.com/1650.html&lt;/a&gt;
     
     </summary>
     

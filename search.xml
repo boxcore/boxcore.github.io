@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DirectAdmin面板设置]]></title>
+    <url>%2F2017%2F11%2F24%2Ftools%2Fdirectadmin-usage.html</url>
+    <content type="text"><![CDATA[一、安装二、配置修改2.1 密码修改默认mysql密码，管理员密码等地址：文件位置: /usr/local/directadmin/scripts/setup.txt 2.2 设置时区1） 修改系统时间12mv /etc/localtime /etc/localtime.movedln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime 2） 修改php时间12/usr/local/bin/php -i | grep 'Loaded Configuration File' #查看php.ini位置vim /usr/local/lib/php.ini 编辑如下内容 date.timezone = &quot;Asia/Shanghai&quot;执行重载service directadmin reload 3） 修改mysql时间使用root账号执行: SET GLOBAL time_zone = &#39;+08:00&#39;;然后执行select now()查看当前时间 三、个性优化配置使用php-cgi模式运行php为什么要用cgi模式呢，主要是方便多用户控制，这里列下修改的方式： 12345678#!/bin/sh# from http://www.zrblog.net/10237.htmlcd /usr/local/directadmin/custombuild./build update./build cleansed -i 's/php5_cli=yes/php5_cli=no/g' options.confsed -i 's/php5_cgi=no/php5_cgi=yes/g' options.conf./build php n]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[网络检查常用命令杂锦]]></title>
+    <url>%2F2017%2F11%2F24%2Ftools%2Fnetwork-check.html</url>
+    <content type="text"><![CDATA[检测 https: telnet {IP} 443 查询dns解析ip: nslookup {domain} 8.8.8.8]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[域名查询接口]]></title>
+    <url>%2F2017%2F11%2F24%2Fapi%2Fdomain-api.html</url>
+    <content type="text"><![CDATA[2017-11-24 日检查可用接口： 【功能】：查询域名可用【地址】： http://panda.www.net.cn/cgi-bin/check.cgi?area_domain={$domian}【说明】返回状态说明:200:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Windows下CMD命令]]></title>
+    <url>%2F2017%2F11%2F24%2Fwindows%2Fwindow-cmd-usage.html</url>
+    <content type="text"><![CDATA[Boxcore的CMD常用命令手册。 进入指定目录 切换盘： &gt; D:\dir\dir 切目录： cd dir\dir\ ##环境变量 set path=%path%;C:\python27说明，windows中添加环境变量后可以直接在cmd窗口中敲其快捷的命令，一般设置命令的目录为环境变量即可。 添加环境变量设置生效： set PATH=dir （需要重开cmd窗口） 查看环境变量： echo %PATH%]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PHOTOSHOP使用]]></title>
+    <url>%2F2017%2F11%2F24%2Ftools%2Fphotoshop-usage.html</url>
+    <content type="text"><![CDATA[一、安装二、基本操作使用三、进阶操作四、配置4.1 语言包配置PS设置英文：将C:\Program Files\Adobe\Adobe Photoshop CC (64 Bit)\Locales\zh_CN\Support Files\tw10428.dat文件改名即可。如果需要回复中文界面，只要将该文件改名回去就行。不需要语言包。photoshop不管什么语言版本，其内核都是英文的，多国语言版无非是增加了对应语言的资源文件，如果没有资源文件，或者系统找不到资源文件，系统就按照英文的方式显示界面。 五、常见案例]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Sublime编辑器使用]]></title>
+    <url>%2F2017%2F11%2F24%2Fsublime-text-usage.html</url>
+    <content type="text"><![CDATA[一、安装1.1 ubuntu安装sublime text1234sudo add-apt-repository ppa:webupd8team/sublime-text-2sudo apt-get updatesudo apt-get install sublime-text # or use `sudo apt-get install sublime-text-dev` for install Sublime Text 2 development build 参考地址： http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Talk About i18n]]></title>
+    <url>%2F2017%2F11%2F24%2Fsa%2Ftalk-about-i18n.html</url>
+    <content type="text"><![CDATA[什么是i18n参考文章 http://quivi.sourceforge.net/languagecodes.html 我们常用的国际编码有:zh_cn, zh_tw 和 en_gb 目标在ThinkPHP等MVC框架下实现i18n的功能。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS Hack基础笔记]]></title>
+    <url>%2F2017%2F11%2F24%2Fsa%2Fcss-hack-note.html</url>
+    <content type="text"><![CDATA[常用css hack知识1. !important浏览器兼容IE7以上对!important是支持的,但IE6对!important只支持单个的类，比如： 12.className&#123;color:#ffff00!important&#125;.className&#123;color:green;&#125; 但有多个类是不支持的: 1.className&#123;color:#ffff00; color:green&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Node.js Note]]></title>
+    <url>%2F2017%2F11%2F24%2Fsa%2Fnodejs-note.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Linux网络命令之lsof]]></title>
     <url>%2F2017%2F11%2F24%2Flinux%2Flinux-lsof.html</url>
     <content type="text"><![CDATA[实例通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。 lsof -i:80 -i 参数表示网络链接， :80 指明端口号，该命令会同时列出PID，方便kill 查看所有进程监听的端口: sudo lsof -i -P | grep -i “listen”]]></content>
@@ -659,9 +704,9 @@
         <category>Tools</category>
       </categories>
       <tags>
+        <tag>DocBlockr</tag>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>DocBlockr</tag>
       </tags>
   </entry>
   <entry>
@@ -699,8 +744,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Package Control</tag>
+        <tag>Packges</tag>
       </tags>
   </entry>
   <entry>
@@ -711,9 +756,9 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>CTags</tag>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
+        <tag>CTags</tag>
       </tags>
   </entry>
   <entry>
@@ -726,8 +771,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Emmet</tag>
         <tag>Packges</tag>
+        <tag>Emmet</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>
@@ -757,7 +802,7 @@
   <entry>
     <title><![CDATA[计划：VIM使用]]></title>
     <url>%2F2014%2F03%2F15%2Fvim-editor-plan.html</url>
-    <content type="text"><![CDATA[最近]]></content>
+    <content type="text"><![CDATA[VIM的配置VIM中空格代替tab修改文件: vi /etc/vim/vimrc 123set expandtab " 使用空格代替tab. set tabstop=4 " 空格数量是4。 set shiftwidth=4 " 自动缩进的宽度。]]></content>
       <categories>
         <category>Journal</category>
       </categories>
