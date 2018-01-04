@@ -329,7 +329,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/23/sa/docker-note.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-preg.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +348,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/23/sa/docker-note.html" itemprop="url">Docker Note</a></h1>
+                <a class="post-title-link" href="/2017/12/22/php/php-preg.html" itemprop="url">PHP正则使用</a></h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T17:43:27+08:00">
-                2017-11-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
+                2017-12-22
               </time>
             
 
@@ -371,6 +371,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -379,9 +401,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/23/sa/docker-note.html#comments" itemprop="discussionUrl">
+                <a href="/2017/12/22/php/php-preg.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/23/sa/docker-note.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/12/22/php/php-preg.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,7 +411,7 @@
 
           
           
-             <span id="/2017/11/23/sa/docker-note.html" class="leancloud_visitors" data-flag-title="Docker Note">
+             <span id="/2017/12/22/php/php-preg.html" class="leancloud_visitors" data-flag-title="PHP正则使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,1203 +441,41 @@
       
         
           
-            <h2 id="一、docker的一些基础概念">一、docker的一些基础概念</h2><h2 id="二、使用镜像">二、使用镜像</h2><p>通用命令：</p>
-<ul>
-<li>删除本地镜像:<code>docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</code>, 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 <code>docker image rm</code><ul>
-<li>删除虚悬镜像的指令: <code>docker rmi $(docker images -q -f dangling=true)</code></li>
-<li>删除所有仓库名为 redis 的镜像: <code>docker rmi $(docker images -q redis)</code></li>
-<li>删除所有在 mongo:3.2 之前的镜像：<code>docker rmi $(docker images -q -f before=mongo:3.2)</code></li>
-</ul>
-</li>
-<li></li>
-</ul>
-<p>从 Docker Registry 获取镜像的命令是 docker pull。其命令格式为：</p>
-<blockquote>
-<p>docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</p>
-</blockquote>
-<p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p>
-<p>Docker Registry 地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。<br>仓库名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。</p>
-<p>例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu:14.04 <span class="comment"># 获取ubuntu 14.04 镜像</span></div><div class="line">docker pull ubuntu:latest <span class="comment"># 获取ubuntu 最新LTS版</span></div><div class="line"></div><div class="line"></div><div class="line">docker image pull ubunut:17.10 <span class="comment"># 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。</span></div><div class="line">docker container run -it --rm \</div><div class="line">    ubuntu:17.10 \</div><div class="line">    bash</div></pre></td></tr></table></figure></p>
-<h3 id="运行镜像">运行镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm  ubuntu:14.04  bash</div><div class="line"></div><div class="line">cat /etc/os-release</div><div class="line"><span class="built_in">exit</span></div></pre></td></tr></table></figure>
-<p>docker run 就是运行容器的命令，具体格式我们会在后面的章节讲解，我们这里简要的说明一下上面用到的参数。</p>
-<ul>
-<li><code>-it</code>：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端。</li>
-<li><code>--rm</code>：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。</li>
-<li><code>ubuntu:14.04</code>：这是指用 ubuntu:14.04 镜像为基础来启动容器。</li>
-<li><code>bash</code>：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash。</li>
-</ul>
-<p>进入容器后，我们可以在 Shell 下操作，执行任何所需的命令。这里，我们执行了 cat /etc/os-release，这是 Linux 常用的查看当前系统版本的命令，从返回的结果可以看到容器内是 Ubuntu 14.04.5 LTS 系统。</p>
-<p>最后我们通过 exit 退出了这个容器。</p>
-<h3 id="列出镜像">列出镜像</h3><ul>
-<li>docker images : 查看所有的镜像</li>
-<li>docker system df ： 查看镜像的体积</li>
-</ul>
-<h4 id="查看虚悬镜像">查看虚悬镜像</h4><ul>
-<li>docker images -f dangling=true： 查看虚悬镜像<br>  由于新旧镜像同名，旧镜像名称被取消，从而出现仓库名、标签均为 <none> 的镜像。这类无标签镜像也被称为 虚悬镜像(dangling image) ，可以用<code>docker images -f dangling=true</code>命令专门显示这类镜像.<br>  一般来说，虚悬镜像已经失去了存在的价值，是可以随意删除的，可以用下面的命令删除:<br>  <code>docker rmi $(docker images -q -f dangling=true)</code><br>  在 Docker 1.13+ 版本中你可以便捷的使用以下命令来删除虚悬镜像:<br>  <code>docker image prune</code></none></li>
-</ul>
-<h4 id="中间层镜像">中间层镜像</h4><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。默认的 docker images 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
-<blockquote>
-<p>docker images -a</p>
-</blockquote>
-<p>这样会看到很多无标签的镜像，与之前的虚悬镜像不同，这些无标签的镜像很多都是中间层镜像，是其它镜像所依赖的镜像。这些无标签镜像不应该删除，否则会导致上层镜像因为依赖丢失而出错。实际上，这些镜像也没必要删除，因为之前说过，相同的层只会存一遍，而这些镜像是别的镜像的依赖，因此并不会因为它们被列出来而多存了一份，无论如何你也会需要它们。只要删除那些依赖它们的镜像后，这些依赖的中间层镜像也会被连带删除。</p>
-<p>更多列出镜像的方法请参考：<a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>
-<h4 id="docker_commit使用">docker commit使用</h4><h4 id="Dockerfile_定制镜像">Dockerfile 定制镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir mynginx</div><div class="line"><span class="built_in">cd</span> mynginx</div><div class="line">touch Dockerfile</div><div class="line">cat &gt; Dockerfile &lt;&lt;EOF</div><div class="line">FROM nginx</div><div class="line">RUN <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Hello, Docker!&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</div><div class="line">EOF</div><div class="line">docker build -t nginx:v3 .</div></pre></td></tr></table></figure>
-<p>docker build 命令进行镜像构建。其格式为：</p>
-<blockquote>
-<p>docker build [选项] &lt;上下文路径/URL/-&gt;</p>
-</blockquote>
-<p>在这里我们指定了最终镜像的名称 -t nginx:v3，构建成功后，我们可以像之前运行 nginx:v2 那样来运行这个镜像，其结果会和 nginx:v2 一样。</p>
-<p>在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。</p>
-<blockquote>
-<p>docker image build</p>
-</blockquote>
-<h2 id="三、容器使用">三、容器使用</h2><p>进入容器交互模式： <code>docker exec -it {容器名称} bash</code></p>
-<h2 id="范例">范例</h2><p><code>docker run -d -p 8081:80 --name webserver nginx</code></p>
-<pre><code>-<span class="ruby"> <span class="string">`-p`</span> 指定端口转发，将容器的<span class="number">80</span>端口转发到本机的<span class="number">8081</span>端口
-</span>-<span class="ruby"> <span class="string">`--name webserver`</span> 给容器取别名webserver</span>
-</code></pre><p><code>docker run -it --rm  ubuntu:14.04  bash</code></p>
-<pre><code>-<span class="ruby"> <span class="string">`--rm`</span> 退出后删除
-</span>-<span class="ruby"> <span class="string">`-it`</span> 交互模式
-</span>-<span class="ruby"> <span class="string">`bash`</span> 使用bash作为交互模式  </span>
-</code></pre><h3 id="laravel_docker使用">laravel docker使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">composer create-project --prefer-dist laravel/laravel blog</div><div class="line">docker pull laraedit/laraedit</div><div class="line">docker run <span class="_">-d</span> --name laravel -p 8082:80 -p 3307:3306 -v &#123;blog对应的目录&#125;:/var/www/html/app laraedit/laraedit</div><div class="line">docker <span class="built_in">exec</span> -it laravel /bin/bash</div></pre></td></tr></table></figure>
-<p>进入docker container后可以执行这个命令链接mysql</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u homestead -h 192.168.99.100 -P 3307 -p <span class="comment"># 預設帳號為 homestead 密碼為 secret</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/22/sa/talk-about-tps-and-qps.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/22/sa/talk-about-tps-and-qps.html" itemprop="url">谈谈并发的一些基础概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T17:40:53+08:00">
-                2017-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/22/sa/talk-about-tps-and-qps.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/22/sa/talk-about-tps-and-qps.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/22/sa/talk-about-tps-and-qps.html" class="leancloud_visitors" data-flag-title="谈谈并发的一些基础概念">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>pv 是指页面被浏览的次数，比如你打开一网页，那么这个网站的pv就算加了一次；</li>
-<li>tps是每秒内的事务数，比如执行了dml操作，那么相应的tps会增加。</li>
-<li><p>qps是指每秒内查询次数，比如执行了select操作，相应的qps会增加。QPS = req/sec = 请求数/秒</p>
-</li>
-<li><p>TPS：Transactions Per Second（每秒传输的事物处理个数），即服务器每秒处理的事务数。TPS包括一条消息入和一条消息出，加上一次用户数据库访问。（业务TPS = CAPS × 每个呼叫平均TPS）<br>TPS是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。<br>一般的，评价系统性能均以每秒钟完成的技术交易的数量来衡量。系统整体处理能力取决于处理能力最低模块的TPS值。</p>
-</li>
-<li><p>QPS：每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。<br>对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。</p>
-</li>
-</ul>
-<p>其他的解释：</p>
-<p>上面李大头给出了详细的英文解释<br>pv 是指页面被浏览的次数，比如你打开一网页，那么这个网站的pv就算加了一次；<br>tps是每秒内的事务数，比如执行了dml操作，那么相应的tps会增加；<br>qps是指每秒内查询次数，比如执行了select操作，相应的qps会增加。</p>
-<p>不同的应用系统tps,qps是没有可对比性的。例如：应用A，每个select查询需要1ms, 一个connection的话，一直不停的执行，1S内 可执行1000次，也就是1000qps应用B，每个select查询需要100ms, 一个connection的话，一直不停的执行，1S内 可执行10次，也就是10qps上面不同系统的两个qps是无法对比的，不能说哪个好哪个坏。满足业务要求才是王道。</p>
-<p>术语说明：QPS = req/sec = 请求数/秒</p>
-<p>【QPS计算PV和机器的方式】<br>QPS统计方式 [一般使用 http_load 进行统计]<br>QPS = 总请求数 / ( 进程总数 *   请求时间 )<br>QPS: 单个进程每秒请求服务器的成功次数</p>
-<p>单台服务器每天PV计算<br>公式1：每天总PV = QPS <em> 3600 </em> 6<br>公式2：每天总PV = QPS <em> 3600 </em> 8</p>
-<p>服务器计算<br>服务器数量 =   ceil( 每天总PV / 单台服务器每天总PV )</p>
-<p>【峰值QPS和机器计算公式】<br>原理：每天80%的访问集中在20%的时间里，这20%时间叫做峰值时间公式：</p>
-<blockquote>
-<p>( 总PV数 <em> 80% ) / ( 每天秒数 </em> 20% ) = 峰值时间每秒请求数(QPS)<br>机器：峰值时间每秒QPS / 单台机器的QPS   = 需要的机器</p>
-</blockquote>
-<p>问：每天300w PV 的在单台机器上，这台机器需要多少QPS？<br>答：( 3000000 <em> 0.8 ) / (86400 </em> 0.2 ) = 139 (QPS)<br>问：如果一台机器的QPS是58，需要几台机器来支持？<br>答：139 / 58 = 3</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-expect.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/linux/linux-expect.html" itemprop="url">Linux流程控制语句之expect</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:45:18+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/20/linux/linux-expect.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/linux/linux-expect.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/20/linux/linux-expect.html" class="leancloud_visitors" data-flag-title="Linux流程控制语句之expect">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们通过Shell可以实现简单的控制流功能，如：循环、判断等。但是对于需要交互的场合则必须通过人工来干预，有时候我们可能会需要实现和交互程序如telnet服务器等进行交互的功能。而expect就使用来实现这种功能的工具。</p>
-<p>expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。expect是不断发展的，随着时间的流逝，其功能越来越强大，已经成为系统管理员的的一个强大助手。expect需要Tcl编程语言的支持，要在系统上运行expect必须首先安装Tcl。</p>
-<h2 id="安装expect">安装expect</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install expect</div></pre></td></tr></table></figure>
-<h2 id="使用">使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/expect </span></div><div class="line">　　<span class="built_in">set</span> timeout 30 </div><div class="line">　　spawn ssh <span class="_">-l</span> username 192.168.1.1 </div><div class="line">　　expect <span class="string">"password:"</span> </div><div class="line">　　send <span class="string">"ispass/r"</span> </div><div class="line">　　interact</div></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2><ul>
-<li><a href="http://www.cnblogs.com/meitian/p/5134797.html" target="_blank" rel="external">http://www.cnblogs.com/meitian/p/5134797.html</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-xargs.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/linux/linux-xargs.html" itemprop="url">Linux文件操作命令之文件处理xargs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:44:20+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/20/linux/linux-xargs.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/linux/linux-xargs.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/20/linux/linux-xargs.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之文件处理xargs">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://man.linuxde.net/xargs" target="_blank" rel="external">http://man.linuxde.net/xargs</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls *.tar.gz |xargs -n1 tar zxvf <span class="comment"># 遍历解压当前目录所有tar.gz压缩包</span></div></pre></td></tr></table></figure>
-<p>link</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-rsync.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/linux/linux-rsync.html" itemprop="url">Linux文件操作命令之文件同步rsync</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:42:30+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/20/linux/linux-rsync.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/linux/linux-rsync.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/20/linux/linux-rsync.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之文件同步rsync">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>--exclude</code> : 排除文件或者文件夹</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/20/linux/linux-echo.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/linux/linux-echo.html" itemprop="url">Linux之字符串处理echo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:37:23+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/20/linux/linux-echo.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/linux/linux-echo.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/20/linux/linux-echo.html" class="leancloud_visitors" data-flag-title="Linux之字符串处理echo">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>echo显示带颜色，需要使用参数-e<br>格式如下:<br>echo -e “\033[字背景颜色;文字颜色m字符串\033[0m”<br>例如:<br>echo -e “\033[41;37m TonyZhang \033[0m”<br>其中41的位置代表底色, 37的位置是代表字的颜色<br> 注：<br>1、字背景颜色和文字颜色之间是英文的“”””<br>2、文字颜色后面有个m<br>3、字符串前后可以没有空格，如果有的话，输出也是同样有空格<br>下面看几个例子：<br>echo -e “\033[30m 黑色字 \033[0m”<br>echo -e “\033[31m 红色字 \033[0m”<br>echo -e “\033[32m 绿色字 \033[0m”<br>echo -e “\033[33m 黄色字 \033[0m”<br>echo -e “\033[34m 蓝色字 \033[0m”<br>echo -e “\033[35m 紫色字 \033[0m”<br>echo -e “\033[36m 天蓝字 \033[0m”<br>echo -e “\033[37m 白色字 \033[0m”</p>
-<p>echo -e “\033[40;37m 黑底白字 \033[0m”<br>echo -e “\033[41;37m 红底白字 \033[0m”<br>echo -e “\033[42;37m 绿底白字 \033[0m”<br>echo -e “\033[43;37m 黄底白字 \033[0m”<br>echo -e “\033[44;37m 蓝底白字 \033[0m”<br>echo -e “\033[45;37m 紫底白字 \033[0m”<br>echo -e “\033[46;37m 天蓝底白字 \033[0m”<br>echo -e “\033[47;30m 白底黑字 \033[0m”<br>控制选项说明 ：<br>\33[0m 关闭所有属性<br>\33[1m 设置高亮度<br>\33[4m 下划线<br>\33[5m 闪烁<br>\33[7m 反显<br>\33[8m 消隐<br>\33[30m – \33[37m 设置前景色<br>\33[40m – \33[47m 设置背景色<br>\33[nA 光标上移n行<br>\33[nB 光标下移n行<br>\33[nC 光标右移n行<br>\33[nD 光标左移n行<br>\33[y;xH设置光标位置<br>\33[2J 清屏<br>\33[K 清除从光标到行尾的内容<br>\33[s 保存光标位置<br>\33[u 恢复光标位置<br>\33[?25l 隐藏光标<br>\33[?25h 显示光标 </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/16/linux/linux-kill-pid-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/16/linux/linux-kill-pid-usage.html" itemprop="url">Linux下kill、pkill、killall使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T17:33:54+08:00">
-                2017-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/16/linux/linux-kill-pid-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/16/linux/linux-kill-pid-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/16/linux/linux-kill-pid-usage.html" class="leancloud_visitors" data-flag-title="Linux下kill、pkill、killall使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>终止一个进程或终止一个正在运行的程序，一般是通过 kill 、killall、pkill、xkill 等进行。比如一个程序已经死掉，但又不能退出，这时就应该考虑应用这些工具。</p>
-<ul>
-<li>kill: kill的应用是和ps 或pgrep 命令结合在一起使用的；</li>
-<li>pkill: pkill 和killall 应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill 来杀掉</li>
-<li>killall: killall 通过程序的名字，直接杀死所有进程</li>
-<li>xkill: xkill 是在桌面用的杀死图形界面的程序</li>
-</ul>
-<h2 id="用法">用法</h2><h3 id="kill_的用法">kill 的用法</h3><p>kill ［信号代码］ 进程ID（kill  -pid）<br>－s：指定发送的信号。<br>－p：模拟发送信号。<br>－l：指定信号的名称列表。<br>pid：要中止进程的ID号。<br>Signal：表示信号。<br>注：信号代码可以省略；我们常用的信号代码是-9 ，表示强制终止；对于僵尸进程，可以用kill -9 来强制终止退出；<br> killall</p>
-<h3 id="killall_通过程序的名字，直接杀死所有进程。">killall 通过程序的名字，直接杀死所有进程。</h3><p>用法：killall 正在运行的程序名<br>killall 也和ps或pgrep 结合使用，比较方便；通过ps或pgrep 来查看哪些程序在运行</p>
-<p> pkill</p>
-<h3 id="pkill_和killall_应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill_来杀掉。">pkill 和killall 应用方法差不多，也是直接杀死运行中的程序；如果您想杀掉单个进程，请用kill 来杀掉。</h3><p>用法：pkill 正在运行的程序名<br> xkill</p>
-<h3 id="xkill_是在桌面用的杀死图形界面的程序。">xkill 是在桌面用的杀死图形界面的程序。</h3><p>比如当firefox 出现崩溃不能退出时，点鼠标就能杀死firefox 。当xkill运行时出来和个人脑骨的图标，哪个图形程序崩溃一点就OK了。如果您想终止xkill ，就按右键取消；<br>xkill 调用方法：<br>[root@localhost ~]# xkill</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkill -uroot <span class="comment"># root是你要杀死的用户名</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/08/affiliate/vultr-vps-affiliate.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/08/affiliate/vultr-vps-affiliate.html" itemprop="url">vultr主机推荐</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T11:16:25+08:00">
-                2017-11-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/08/affiliate/vultr-vps-affiliate.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/08/affiliate/vultr-vps-affiliate.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/08/affiliate/vultr-vps-affiliate.html" class="leancloud_visitors" data-flag-title="vultr主机推荐">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.vultr.com/?ref=7229300" target="_blank" rel="external">https://www.vultr.com/?ref=7229300</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/08/tools/resilio-sync-license-crack.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/08/tools/resilio-sync-license-crack.html" itemprop="url">RESILIO SYNC激活和激活失效修复</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T10:52:56+08:00">
-                2017-11-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/08/tools/resilio-sync-license-crack.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/08/tools/resilio-sync-license-crack.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/08/tools/resilio-sync-license-crack.html" class="leancloud_visitors" data-flag-title="RESILIO SYNC激活和激活失效修复">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。<br>目前对所有版本有效，测试到最高版本 2.5.9 版本。</p>
-<h2 id="一、安装_Resilio_Sync">一、安装 Resilio Sync</h2><p>去官网下载，不过官网可能被ban，需要自行百度一下</p>
-<h2 id="二、授权">二、授权</h2><p>新安装的resilio sync授权步骤：</p>
+            <h1 id="正则中的一些概念">正则中的一些概念</h1><h2 id="元字符">元字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.   匹配除换行符意外的任意字符</div><div class="line">\w  匹配字母或数字或下划线</div><div class="line">\s  匹配任意的空白符</div><div class="line">\d  匹配数字</div><div class="line">\b  匹配单词的开始或结束</div><div class="line">^   匹配字符串的开始</div><div class="line">$   匹配字符串的结束</div><div class="line">[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符</div><div class="line">\W  \w的反义，即匹配任意非字母，数字，下划线和汉字的字符</div><div class="line">\S  \s的反义，即匹配任意非空白符的字符</div><div class="line">\D  \d的反义，即匹配任意非数字的字符</div><div class="line">\B  \b的反义，即不是单词开头或结束的位置</div><div class="line">[^x]    匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</div></pre></td></tr></table></figure>
+<h2 id="重复">重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*   重复零次或更多次</div><div class="line">+   重复 1 次或更多次</div><div class="line">?   重复零次或 1 次</div><div class="line">&#123;n&#125; 重复 n 次</div><div class="line">&#123;n,&#125;    重复 n 次或更多次</div><div class="line">&#123;n,m&#125;   重复 n 到 m 次</div></pre></td></tr></table></figure>
+<h2 id="模式修正符">模式修正符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i   模式中的字符将同时匹配大小写字母</div><div class="line">m   字符串视为多行</div><div class="line">s   将字符串视为单行，换行符作为普通字符</div><div class="line">x   将模式中的空白忽略</div><div class="line">e   preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。</div><div class="line">A   强制仅从目标字符串的开头开始匹配</div><div class="line">D   模式中的 $ 元字符仅匹配目标字符串的结尾</div><div class="line">U   匹配最近的字符串</div><div class="line">u   模式字符串被当成 UTF-8</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="PHP正则函数">PHP正则函数</h1><p>在 PHP 应用中，正则表达式主要用于：    </p>
 <ol>
-<li>打开resilio sync</li>
-<li><p>双击安装授权文件<code>Resilio_Sync_Personal.btskey</code>，如果授权成功接着执行下一步，授权失败则需要删除用户配置文件</p>
-<blockquote>
-<p><img src="http://bxfile.qiniudn.com/imgs/2017-11-08-030317.jpg" alt="安装授权"></p>
-</blockquote>
-</li>
-<li><p>配置hosts，添加记录 <code>127.0.0.1 license.resilio.com</code></p>
-</li>
-<li>配置授权文件目录不可写入，具体方法参考下面的2.1 和2.2</li>
+<li>正则匹配：根据正则表达式匹配相应的内容</li>
+<li>正则替换：根据正则表达式匹配内容并替换</li>
+<li>正则分割：根据正则表达式分割字符串</li>
 </ol>
-<h3 id="2-1_windows下配置授权">2.1 windows下配置授权</h3><p>找到安装目录 可以删除 License 目录和.SyncUserxxxxxx 目录</p>
+<h2 id="PHP_正则表达式匹配_preg_match_与_preg_match_all_函数">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</h2><h3 id="preg_match()">preg_match()</h3><p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
+<p>语法：  </p>
 <blockquote>
-<p><img src="http://bxfile.qiniudn.com/imgs/2017-11-08-030435.jpg" alt="安装目录"></p>
+<p>int preg_match( string pattern, string subject [, array matches ] )</p>
 </blockquote>
-<p>禁止写入权限</p>
+<p>参数说明：<br>    pattern 正则表达式<br>    subject 需要匹配检索的对象<br>    matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推</p>
+<h3 id="preg_match_all()">preg_match_all()</h3><p>preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
+<p>语法：</p>
 <blockquote>
-<p><img src="http://bxfile.qiniudn.com/imgs/2017-11-08-030556.jpg" alt="window禁止写入权限"></p>
+<p>int preg_match_all( string pattern, string subject, array matches [, int flags ] ) </p>
 </blockquote>
-<h3 id="2-2_mac下配置授权">2.2 mac下配置授权</h3><p>打开terminal工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Library/Application\ Support/Resilio\ Sync</div><div class="line">ls <span class="_">-a</span> <span class="comment"># 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录</span></div><div class="line">chmod -R -w .SyncUser1510108713</div><div class="line">chmod -R -w License</div><div class="line"></div><div class="line">sudo rm -rf ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div><div class="line"></div><div class="line">chmod -R -w ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense</div></pre></td></tr></table></figure>
+<p>参数说明:<br>pattern: 正则表达式<br>subject: 需要匹配检索的对象<br>matches: 存储匹配结果的数组<br>flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有：</p>
+<pre><code><span class="number">1</span>. PREG_PATTERN_ORDER：默认，对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为全部模式匹配的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推
+<span class="number">2</span>. PREG_SET_ORDER：对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为第一组匹配项的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第二组匹配项的数组，以此类推
+<span class="number">3</span>. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量  
+</code></pre><hr>
+<h1 id="部分实例">部分实例</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1，过滤所有html标签的正则表达式：</span></div><div class="line">&lt;/?[^&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//2，过滤所有html标签的属性的正则表达式：</span></div><div class="line">$html = preg_replace(<span class="string">"/&lt;([a-zA-Z]+)[^&gt;]*&gt;/"</span>,<span class="string">"&lt;\\1&gt;"</span>,$html);</div><div class="line"></div><div class="line"><span class="comment">//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：</span></div><div class="line">&lt;/?[^pP/&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：</span></div><div class="line">&lt;/?[aApPbB][^&gt;]*&gt;</div><div class="line"></div><div class="line"><span class="comment">//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：</span></div><div class="line">\s(?!alt)[a-zA-Z]+=[^\s]*</div><div class="line"></div><div class="line"><span class="comment">//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：</span></div><div class="line">(\s)alt=[^\s]*</div></pre></td></tr></table></figure>
+<p>正则表达式中排除不需要匹配的字符串或字符<br>(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串</p>
+<p>(2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报)  </p>
+<p>加上|用于或选择。上面列出的字符串都不会参与匹配  </p>
+<hr>
+<h1 id="常用正则">常用正则</h1><ol>
+<li>删除空行:    <code>\r\n\r\n =&gt; \r\n\</code></li>
+<li>删除有空格的空行:    <code>^ +$ =&gt;</code></li>
+</ol>
 
           
         
@@ -1659,7 +519,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/11/03/sql/multiple-mysql-instances.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/sql/mysql-dump-and-source.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1678,7 +538,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/03/sql/multiple-mysql-instances.html" itemprop="url">MySQL多开</a></h1>
+                <a class="post-title-link" href="/2017/12/22/sql/mysql-dump-and-source.html" itemprop="url">MySQL数据备份&导入</a></h1>
         
 
         <div class="post-meta">
@@ -1690,8 +550,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T13:08:12+08:00">
-                2017-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:27:59+08:00">
+                2017-12-22
               </time>
             
 
@@ -1701,6 +561,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1709,9 +591,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/03/sql/multiple-mysql-instances.html#comments" itemprop="discussionUrl">
+                <a href="/2017/12/22/sql/mysql-dump-and-source.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/sql/multiple-mysql-instances.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/12/22/sql/mysql-dump-and-source.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1719,7 +601,7 @@
 
           
           
-             <span id="/2017/11/03/sql/multiple-mysql-instances.html" class="leancloud_visitors" data-flag-title="MySQL多开">
+             <span id="/2017/12/22/sql/mysql-dump-and-source.html" class="leancloud_visitors" data-flag-title="MySQL数据备份&导入">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1749,12 +631,1334 @@
       
         
           
-            <p>在服务器中开启mysql服务一般是用 <code>service mysql start</code>, 但在系统里面他都执行了那些命令吗，通过<code>ps -ef|grep mysql</code> 我们可以看到目标的任务有如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/usr/local/var/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error.log --pid-file=/usr/local/var/mysql/mysql.pid</div><div class="line"></div><div class="line">或者可能是：</div><div class="line"></div><div class="line"> /usr/local/mysql/bin/mysqld --defaults-file=/data/mysql/3306/my.cnf --basedir=/usr/local/mysql --datadir=/data/mysql/3306/data --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/data/mysql/3306/mysql_run.err --open-files-limit=65536 --pid-file=/data/mysql/3306/pid_mysql.pid --socket=/data/mysql/3306/mysqltmp/mysql.sock --port=3306</div></pre></td></tr></table></figure>
-<p>如果我们需要多开，只需要按照这种格式允许下不就好了？</p>
-<p>这是个经过优化，在后台多开一个mysql实例的demo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql_install_db --datadir=/Volumes/Edu/DB/mysql  # mysql 5.7 前使用</div><div class="line">mysqld --initialize --datadir=/Volumes/Edu/DB/mysql  # mysql 5.7后使用这个初始化</div><div class="line"></div><div class="line">mysqld --user=mysql --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --initial --initialize-insecure --defaults-file=/usr/local/etc/my-3307.cnf --socket=/data/mysql/3306/mysqltmp/mysql.sock </div><div class="line">--port=3307</div><div class="line">--plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin </div><div class="line">--bind-address=127.0.0.1 </div><div class="line">--log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql-3307.pid</div><div class="line"></div><div class="line">#需要先确保 datadir 目标目录下是空的，避免误操作破坏已有数据。</div><div class="line">#另外，在初始化时如果加上 –initial-insecure，则会创建空密码的 root@localhost 账号，否则会创建带密码的 root@localhost 账号，密码直接写在 log-error 日志文件中（在5.6版本中是放在 ~/.mysql_secret 文件里，更加隐蔽，不熟悉的话可能会无所适从）</div><div class="line"></div><div class="line">/usr/local/Cellar/mysql/5.7.11/bin/mysqld --basedir=/usr/local/Cellar/mysql/5.7.11 --datadir=/Volumes/Edu/DB/mysql --plugin-dir=/usr/local/Cellar/mysql/5.7.11/lib/plugin --bind-address=127.0.0.1 --log-error=/usr/local/var/mysql/mysql-error-3307.log --pid-file=/usr/local/var/mysql/mysql.pid --port=3307</div></pre></td></tr></table></figure>
-<p>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql-3307.plist</p>
+            <p>mysqldump语法：</p>
+<p>mysqldump按条件查找：<br>mysqldump按条件查找的参数是 -where/-w，例子如：</p>
+<blockquote>
+<p>mysqldump -uroot -p123456 dbname table_name -where “id&gt;90” &gt; ~/db.sql</p>
+</blockquote>
+<h3 id="常见问题:_在win下导入sql文件乱码问题">常见问题: 在win下导入sql文件乱码问题</h3><p>中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的文件会出现乱码,故需要特别指定下编码的格式.</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在<span class="built_in">cmd</span>下导出</div><div class="line">mysqldump -uroot -p --default-character-<span class="built_in">set</span>=utf8 mo（dbname） &gt; E://xxxx.sql</div><div class="line"></div><div class="line"># 在<span class="built_in">cmd</span>下导入</div><div class="line">mysql -u root -p --default-character-<span class="built_in">set</span>=utf8 </div><div class="line">use dbname </div><div class="line">source /root/newsdata.sql</div></pre></td></tr></table></figure>
+<p>而且需要注意,在linux中要配置默认编码为:<code>default-character-set=utf8</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/linux/linux-samba.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/linux/linux-samba.html" itemprop="url">Linux文件操作命令之局域共享samba</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:27:59+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/linux/linux-samba.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/linux/linux-samba.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/linux/linux-samba.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之局域共享samba">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>samba简写smb, 是linux下局域网共享服务.</p>
+<h2 id="安装samba">安装samba</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">yum -y install samba    <span class="comment"># yum安装smb</span></div><div class="line">rpm -qa | grep samba    <span class="comment"># 查看smb是否安装</span></div><div class="line">whereis samba           <span class="comment"># 查看smb目录目录</span></div><div class="line"></div><div class="line">chkconfig smb on        <span class="comment"># 开机自启smb服务</span></div><div class="line">chkconfig --list smb　   <span class="comment"># 确认 Samba 启动标签，确认 2-5 为 on 的状态</span></div><div class="line"></div><div class="line">/etc/rc.d/init.d/smb start　<span class="comment"># 启动 Samba 服务</span></div></pre></td></tr></table></figure>
+<p>添加防火墙规则:</p>
+<pre><code>vi /etc/sysconfig/iptables
+<span class="comment"># 写入: </span>
+-A INPUT -m <span class="keyword">state</span> --state NEW -m tcp -p tcp --dport <span class="number">139</span> -j ACCEPT
+-A INPUT -m <span class="keyword">state</span> --state NEW -m tcp -p tcp --dport <span class="number">445</span> -j ACCEPT
+-A INPUT -p udp -m udp --dport <span class="number">137</span> -j ACCEPT
+-A INPUT -p udp -m udp --dport <span class="number">138</span> -j ACCEPT
+</code></pre><h2 id="samba配置">samba配置</h2><blockquote>
+<p>vi /etc/samba/smb.conf</p>
+</blockquote>
+<p>[global]<br>workgroup  =  工作组<br>server  string  =  描述<br>log  file  =    日志位置<br>max  log  size  =  日志最大大小           KB<br>security  =  user       安全等级<br>user    使用samba用户登录。注意：samba用户由系统用户转变过来。要把用户生成为samba用户，此用户必须已经是系统用户<br>share   不用密码<br>server  使用验证服务器验证<br>domain  域控制器验证</p>
+<p>·share   definitions        共享设置</p>
+<p>[共享目录名]<br>commetn  =  目录描述<br>browseable  =  yes      目录是否对没有权限的用户可见<br>writeable  =  yes       可写（要与系统目录权限相与）<br>valid  users  =  用户名    用户限制（目录是哪个用户所有）<br>path  =  /www           指定共享目录位置</p>
+<h2 id="添加samba用户">添加samba用户</h2><pre><code>smbpasswd  <span class="operator">-a</span>  username     <span class="comment"># 添加samba用户, 用户名必须存在系统用户名中</span>
+smbpasswd  -x  username     <span class="comment"># 删除samba用户</span>
+pdbedit  -L 查看samba用户
+</code></pre><p>添加用户和目录后,确认目录下用户的权限:</p>
+<pre><code><span class="keyword">mkdir</span>  /pub
+<span class="keyword">mkdir</span>  /soft
+<span class="keyword">chmod</span> <span class="number">777</span> /pub
+<span class="keyword">chmod</span> <span class="number">700</span> /soft
+<span class="keyword">chown</span> aa  /soft
+service smb  restart
+</code></pre><p><strong>注意:</strong></p>
+<ul>
+<li>samba权限和系统权限取最严格权限</li>
+<li>samba用户必须是系统用户</li>
+<li>启动的服务名是smb</li>
+</ul>
+<h2 id="客户端使用">客户端使用</h2><ol>
+<li>windows：</li>
+</ol>
+<p>文件夹地址栏: <code>\\192.168.56.220\www</code></p>
+<p>如果修改了密码或用户后,验证信息错误,可以在dos下删除缓存<br>    net  use  *  /del           删除缓存</p>
+<pre><code><span class="keyword">net</span> <span class="keyword">use</span> * /del /y 或 <span class="keyword">net</span> <span class="keyword">use</span> \\{servename} /del /<span class="literal">y</span>
+<span class="keyword">net</span> <span class="keyword">use</span> \\{servername} /user:{username} {password}
+</code></pre><ol>
+<li>linux客户端：<br> smbclient  //192.168.140.253/soft -U aa</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/linux/linux-sudo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/linux/linux-sudo.html" itemprop="url">Linux下用户管理sudo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:26:05+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/linux/linux-sudo.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/linux/linux-sudo.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/linux/linux-sudo.html" class="leancloud_visitors" data-flag-title="Linux下用户管理sudo">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="添加sudo用户">添加sudo用户</h2><pre><code><span class="keyword">chmod</span> u+w /etc/sudoers
+<span class="keyword">vim</span> /etc/sudoers # 找到 root <span class="literal">ALL</span>=(<span class="literal">ALL</span>) <span class="literal">ALL</span> 在这行下边添加 dituhui <span class="literal">ALL</span>=(<span class="literal">ALL</span>) <span class="literal">ALL</span>  (ps:dituhui代表是你要添加sudo权限的用户名)
+<span class="keyword">chmod</span> u-w /etc/sudoers
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/linux/linux-manage-ram.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/linux/linux-manage-ram.html" itemprop="url">Linux下内存管理相关命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:24:53+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/linux/linux-manage-ram.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/linux/linux-manage-ram.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/linux/linux-manage-ram.html" class="leancloud_visitors" data-flag-title="Linux下内存管理相关命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="linux下手动清理内存－缓存">linux下手动清理内存－缓存</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">free -m</div><div class="line"><span class="comment"># 释放内存</span></div><div class="line">/bin/sync </div><div class="line">/bin/<span class="built_in">echo</span> <span class="string">"1"</span>&gt;/proc/sys/vm/drop_caches</div><div class="line">free -m</div></pre></td></tr></table></figure>
+<p>使用sync命令以确保文件系统的完整性，sync 命令运行 sync 子例程，将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件。</p>
+<p>/proc是一个虚拟文件系统，我们可以通过对它的读写操作作为与kernel实体间进行通信的一种手段。也就是说可以通过修改/proc中的文件，来对当前kernel的行为做出调整。也就是说我们可以通过调整/proc/sys/vm/drop_caches来释放内存。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/linux/linux-rpm.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/linux/linux-rpm.html" itemprop="url">Linux文件操作命令之包管理rpm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:23:12+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/linux/linux-rpm.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/linux/linux-rpm.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/linux/linux-rpm.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之包管理rpm">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux RPM安装与卸载命令</p>
+<p>RPM（Red Hat Package Manager）<br>命令：rpm<br>1、查询、检查软件包<br>rpm {-q|–query} [select-options] [query-options]<br>rpm {-V|–verify} [select-options] [verify-options]<br>2、安装、升级、删除软件包<br>rpm {-i|–install} [install-options] PACKAGE_FILE …<br>rpm {-U|–upgrade} [install-options] PACKAGE_FILE …<br>rpm {-F|–freshen} [install-options] PACKAGE_FILE …<br>rpm {-e|–erase} [–allmatches] [–nodeps] [–noscripts]<br>   [–notriggers] [–repackage] [–test] PACKAGE_NAME …<br>3、其他<br>rpm {–initdb|–rebuilddb}<br>rpm {–addsign|–resign} PACKAGE_FILE …<br>rpm {–querytags|–showrc}<br>rpm {–setperms|–setugids} PACKAGE_NAME …<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>select-options<br>         [PACKAGE_NAME] [-a,–all] [-f,–file FILE]<br>         [-g,–group GROUP] {-p,–package PACKAGE_FILE]<br>         [–fileid MD5] [–hdrid SHA1] [–pkgid MD5] [–tid TID]<br>         [–querybynumber HDRNUM] [–triggeredby PACKAGE_NAME]<br>         [–whatprovides CAPABILITY] [–whatrequires CAPABILITY]<br>query-options<br>         [–changelog] [-c,–configfiles] [-d,–docfiles] [–dump]<br>         [–filesbypkg] [-i,–info] [–last] [-l,–list]<br>         [–provides] [–qf,–queryformat QUERYFMT]<br>         [-R,–requires] [–scripts] [-s,–state]<br>         [–triggers,–triggerscripts]<br>verify-options<br>         [–nodeps] [–nofiles] [–noscripts]<br>         [–nodigest] [–nosignature]<br>         [–nolinkto] [–nomd5] [–nosize] [–nouser]<br>         [–nogroup] [–nomtime] [–nomode] [–nordev]<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>install-options<br>         [–aid] [–allfiles] [–badreloc] [–excludepath OLDPATH]<br>         [–excludedocs] [–force] [-h,–hash]<br>         [–ignoresize] [–ignorearch] [–ignoreos]<br>         [–includedocs] [–justdb] [–nodeps]<br>         [–nodigest] [–nosignature] [–nosuggest]<br>         [–noorder] [–noscripts] [–notriggers]<br>         [–oldpackage] [–percent] [–prefix NEWPATH]<br>         [–relocate OLDPATH=NEWPATH]<br>         [–repackage] [–replacefiles] [–replacepkgs]<br>         [–test]</p>
+<p>【示例】<br>rpm -v    显示rpm程序的详细信息<br>rpm –version   显示rpm的版本号<br>rpm -qa    显示系统中安装的所有软件包<br>rpm -q gcc   查询指定软件包是否已安装<br>rpm -qi gcc   显示指定软件包的详细信息<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm -ql gcc    显示指定软件包所包含的文件列表<br>rpm -qf /usr/lib/bash   查看指定文件所属的软件包<br>rpm -qp /tmp/webmin.rpm   查询RPM包文件中的文件信息<br>rpm -i webmin-1.290-1.noarch.rpm   安装指定的RPM包<br>rpm -ivh webmin-1.290-1.noarch.rpm 安装并显示详信息<br>rpm -ivh –test webmin-1.290-1.noarch.rpm 对安装进行测试，并不是安装<br>rpm -ivh –replacepkgs webmin-1.290-1.noarch.rpm<br>软件包重复安装将会失败，若仍需要安装必须加–replacepkgs<br>rpm -ivh –replacefiles webmin-1.290-1.noarch.rpm<br>软件包的某个文件已在安装其他软件包时安装过，则安装将会失败，若仍需要安装必须加–replacefiles<br>rpm -ivh –nodeps webmin-1.290-1.noarch.rpm<br>软件包所依赖的软件包未安装，则安装将会失败，若仍需要安装必须加—nodeps<br>rpm -ivh –force webmin-1.290-1.noarch.rpm 强制安装指定软件包<br>     （忽略软件包依赖性和文件冲突，不建议）<br>RPM（Red Hat Package Manager）<br>命令：rpm<br>rpm –U webmin-1.29   升级指定的软件包<br>rpm –Uvh webmin-1.29   升级指定的软件包（显示详细信息）</p>
+<p>rpm -e webmin-1.29   删除指定的软件包<br>rpm -V webmin    验证软件包webmin<br>rpm -Vf /bin/vi    验证包含指定文件的软件包是否正确<br>rpm -Va     验证所有已经安装的软件包<br>rpm -Vp webmin.rpm   利用RPM文件验证软件包<br>注：如校验正确将没有任何输出（.表示验证通过）<br>5 MD5校验<br>S 文件尺寸<br>L 符号链接<br>T 文件修改日期<br>D 设备<br>U 用户<br>G 用户组<br>M 模式（包括权限和文件类型）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/tools/git-remove-history-files.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/tools/git-remove-history-files.html" itemprop="url">Git如何永久删除文件(包括历史记录)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:15:08+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/tools/git-remove-history-files.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/tools/git-remove-history-files.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/tools/git-remove-history-files.html" class="leancloud_visitors" data-flag-title="Git如何永久删除文件(包括历史记录)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="步骤一:_从你的资料库中清除文件">步骤一: 从你的资料库中清除文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.gz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.tgz'</span> --prune-empty --tag-name-filter cat -- --all</div><div class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.zip'</span> --prune-empty --tag-name-filter cat -- --all</div></pre></td></tr></table></figure>
+<p>##步骤二: 推送我们修改后的repo</p>
+<p>以强制覆盖的方式推送你的repo, 命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master --force</div></pre></td></tr></table></figure>
+<h2 id="步骤三:_清理和回收空间">步骤三: 清理和回收空间</h2><p> 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间.</p>
+<p>命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rm -rf .git/refs/original/</div><div class="line">git reflog expire --expire=now --all</div><div class="line">git gc --prune=now</div><div class="line">git gc --aggressive --prune=now</div></pre></td></tr></table></figure>
+<p>设置完成之后, 你可以使用命令<code>du -s .git</code>查看仓库地址空间大小是否有明显减少了. </p>
+<hr>
+<p><strong>参考:</strong></p>
+<ul>
+<li><a href="https://help.github.com/articles/remove-sensitive-data" target="_blank" rel="external">https://help.github.com/articles/remove-sensitive-data</a></li>
+<li><a href="http://www.cnblogs.com/shines77/p/3460274.html" target="_blank" rel="external">http://www.cnblogs.com/shines77/p/3460274.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/cpp/learn-cpp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/cpp/learn-cpp.html" itemprop="url">C++语言基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:12:19+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/cpp/learn-cpp.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/cpp/learn-cpp.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/cpp/learn-cpp.html" class="leancloud_visitors" data-flag-title="C++语言基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="C++_Note">C++ Note</h2><p>参考文档:<br><a href="http://see.xidian.edu.cn/cpp/biancheng/cpp/jichu/" target="_blank" rel="external">http://see.xidian.edu.cn/cpp/biancheng/cpp/jichu/</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/* code */</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">int</span> x,y;</div><div class="line"><span class="keyword">for</span>(x=<span class="number">1</span>,y=<span class="number">1</span>;y&lt;<span class="number">50</span>;y++)</div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(x&gt;=<span class="number">10</span>)</div><div class="line"><span class="keyword">break</span>;</div><div class="line"><span class="keyword">if</span>(x%<span class="number">3</span>==<span class="number">1</span>)</div><div class="line">&#123;</div><div class="line">x+=<span class="number">5</span>;</div><div class="line"><span class="keyword">continue</span>;</div><div class="line">&#125;</div><div class="line">x+=<span class="number">3</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"x=%d,y=%d\n"</span>,x,y);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> x,y;</div><div class="line">    <span class="keyword">for</span>(x=<span class="number">1</span>,y=<span class="number">1</span>;y&lt;<span class="number">50</span>;y++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(x&gt;=<span class="number">10</span>)</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">if</span>(x%<span class="number">3</span>==<span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            x+=<span class="number">5</span>;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        x+=<span class="number">3</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"x=%d,y=%d\n"</span>,x,y);</div><div class="line">    <span class="keyword">return</span> x,y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/c/learn-c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/c/learn-c.html" itemprop="url">C语言基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:10:30+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/c/learn-c.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/c/learn-c.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/c/learn-c.html" class="leancloud_visitors" data-flag-title="C语言基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="C语言基础">C语言基础</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hello\n"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="C程序构成">C程序构成</h2><p>一个基本的C程序是由头文件和主函数构成的, 头文件一般在程序的第一行, 通过<code>#include</code>预处理标识符来加载. 程序的主体部分则是通过main()主函数来实现.</p>
+<p><strong>头文件</strong></p>
+<p>头文件一般在程序的第一行, 通过一个包含指令#include来实现. c编译器遇到包含<code>.h</code>头文件时, 会去找指定的函数声明.</p>
+<p>2中不同的包含语句: </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span>  <span class="comment">// 从标准头文件目录中直接找math.h</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"math.h"</span>  <span class="comment">// 制定编译器先从当前目录查找math.h, 若当前目录没有找到该头文件,再从标准头文件目录中找起</span></span></div></pre></td></tr></table></figure>
+<p><strong>主函数</strong></p>
+<p>主程序是程序代码的核心部分,也是main()函数. 在c程序中, 有且只有一个名为main()的函数. </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">( <span class="keyword">void</span> )</span> <span class="comment">// 表示main()主函数没有返回值也没有参数.此时,也可以省略参数列表中的void</span></span></div><div class="line"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">void</span> )</span> <span class="comment">// main()中返回值为int类型,此时需要在程序中使用return语句返回一个整型值. 这种形式同样不接受参数, 也可以省略参数列表中的void</span></div><div class="line"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[] )</span></div></pre></td></tr></table></figure>
+<h3 id=""> </h3><h2 id="数据类型">数据类型</h2><p>常用数据类型: 整型(int), 浮点型(float), 字符型(char), 指针型(*), 无值型(void)<br>自定义数据类型:结构体(struct), 联合体(union)  </p>
+<h3 id="整型_int">整型 int</h3><p>### </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html" itemprop="url">画图工具 之 原型、流程图、思维导图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T11:43:33+08:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/12/tools/draw-tools-for-prototype-uml-mind.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html" class="leancloud_visitors" data-flag-title="画图工具 之 原型、流程图、思维导图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>跟程序打交道最经常遇到的图类型有： 原型工具、流程图 和 思维导图。</p>
+<h2 id="一、画图分类">一、画图分类</h2><ol>
+<li>原型图</li>
+<li>流程图UML</li>
+<li>思维导图</li>
+<li>甘特图</li>
+<li>鱼骨图</li>
+</ol>
+<h3 id="在线画图工具">在线画图工具</h3><ul>
+<li><a href="https://processon.com/" target="_blank" rel="external">processon</a>: 由免费走向了收费，免费用户只可创建6张图</li>
+<li><a href="https://www.draw.io/" target="_blank" rel="external">draw.io</a></li>
+</ul>
+<p>###</p>
+<ul>
+<li><a href="http://www.texample.net/tikz/" target="_blank" rel="external">TikZ and PGF 在线画图的模板</a></li>
+<li><a href="http://www.fuzihao.org/blog/2015/08/11/TikZ%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" target="_blank" rel="external">TikZ入门教程</a></li>
+<li><a href="https://www.overleaf.com/6919604mwxmpscvzmgs#/36790751/" target="_blank" rel="external">overleaf Online Draw</a></li>
+<li><a href="http://www.graphviz.org/documentation/" target="_blank" rel="external">graphviz</a></li>
+</ul>
+<h3 id="付费GUI画图">付费GUI画图</h3><ul>
+<li><a href="http://sparxsystems.com/products/ea/" target="_blank" rel="external">Enterprise Architect</a></li>
+</ul>
 
           
         
@@ -1793,7 +1997,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1838,7 +2042,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">152</span>
+                <span class="site-state-item-count">172</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1849,7 +2053,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1860,7 +2064,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -1927,7 +2131,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

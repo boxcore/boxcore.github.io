@@ -95,28 +95,22 @@
 
 
 
-<meta name="description" content="一、docker的一些基础概念二、使用镜像通用命令：
-
-删除本地镜像:docker rmi [选项] &amp;lt;镜像1&amp;gt; [&amp;lt;镜像2&amp;gt; ...], 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 docker image rm
-删除虚悬镜像的指令: docker rmi $(docker images -q -f dangling=true)
-删">
+<meta name="description" content="一、docker的一些基础概念1.1 配置Docker使用中国镜像镜像地址合集：12http://ac8437da.m.daocloud.iohttps://registry.docker-cn.com
+bash下一般执行这个语句就可以：dockerd --registry-mirror=https://registry.docker-cn.com
+如果你的是linux系统，可以通过下面这个命令一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Note">
 <meta property="og:url" content="http://boxcore.github.io/2017/11/23/sa/docker-note.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="一、docker的一些基础概念二、使用镜像通用命令：
-
-删除本地镜像:docker rmi [选项] &amp;lt;镜像1&amp;gt; [&amp;lt;镜像2&amp;gt; ...], 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 docker image rm
-删除虚悬镜像的指令: docker rmi $(docker images -q -f dangling=true)
-删">
-<meta property="og:updated_time" content="2017-11-24T04:21:12.000Z">
+<meta property="og:description" content="一、docker的一些基础概念1.1 配置Docker使用中国镜像镜像地址合集：12http://ac8437da.m.daocloud.iohttps://registry.docker-cn.com
+bash下一般执行这个语句就可以：dockerd --registry-mirror=https://registry.docker-cn.com
+如果你的是linux系统，可以通过下面这个命令一">
+<meta property="og:updated_time" content="2017-11-25T06:49:53.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Note">
-<meta name="twitter:description" content="一、docker的一些基础概念二、使用镜像通用命令：
-
-删除本地镜像:docker rmi [选项] &amp;lt;镜像1&amp;gt; [&amp;lt;镜像2&amp;gt; ...], 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 docker image rm
-删除虚悬镜像的指令: docker rmi $(docker images -q -f dangling=true)
-删">
+<meta name="twitter:description" content="一、docker的一些基础概念1.1 配置Docker使用中国镜像镜像地址合集：12http://ac8437da.m.daocloud.iohttps://registry.docker-cn.com
+bash下一般执行这个语句就可以：dockerd --registry-mirror=https://registry.docker-cn.com
+如果你的是linux系统，可以通过下面这个命令一">
 
 
 
@@ -426,7 +420,11 @@
       
 
       
-        <h2 id="一、docker的一些基础概念">一、docker的一些基础概念</h2><h2 id="二、使用镜像">二、使用镜像</h2><p>通用命令：</p>
+        <h2 id="一、docker的一些基础概念">一、docker的一些基础概念</h2><h3 id="1-1_配置Docker使用中国镜像">1.1 配置Docker使用中国镜像</h3><p>镜像地址合集：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://ac8437da.m.daocloud.io</div><div class="line">https://registry.docker-cn.com</div></pre></td></tr></table></figure></p>
+<p>bash下一般执行这个语句就可以：<code>dockerd --registry-mirror=https://registry.docker-cn.com</code></p>
+<p>如果你的是linux系统，可以通过下面这个命令一键切换docker镜像：<br><code>curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://ac8437da.m.daocloud.io</code></p>
+<p>参考:<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="external">https://www.daocloud.io/mirror#accelerator-doc</a></p>
+<h2 id="二、使用镜像">二、使用镜像</h2><p>通用命令：</p>
 <ul>
 <li>删除本地镜像:<code>docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</code>, 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像 <code>docker image rm</code><ul>
 <li>删除虚悬镜像的指令: <code>docker rmi $(docker images -q -f dangling=true)</code></li>
@@ -637,7 +635,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">152</span>
+                <span class="site-state-item-count">172</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -648,7 +646,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -659,7 +657,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -719,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、docker的一些基础概念"><span class="nav-number">1.</span> <span class="nav-text">一、docker的一些基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用镜像"><span class="nav-number">2.</span> <span class="nav-text">二、使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行镜像"><span class="nav-number">2.1.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出镜像"><span class="nav-number">2.2.</span> <span class="nav-text">列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看虚悬镜像"><span class="nav-number">2.2.1.</span> <span class="nav-text">查看虚悬镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层镜像"><span class="nav-number">2.2.2.</span> <span class="nav-text">中间层镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker_commit使用"><span class="nav-number">2.2.3.</span> <span class="nav-text">docker commit使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dockerfile_定制镜像"><span class="nav-number">2.2.4.</span> <span class="nav-text">Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、容器使用"><span class="nav-number">3.</span> <span class="nav-text">三、容器使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例"><span class="nav-number">4.</span> <span class="nav-text">范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel_docker使用"><span class="nav-number">4.1.</span> <span class="nav-text">laravel docker使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、docker的一些基础概念"><span class="nav-number">1.</span> <span class="nav-text">一、docker的一些基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_配置Docker使用中国镜像"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 配置Docker使用中国镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用镜像"><span class="nav-number">2.</span> <span class="nav-text">二、使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行镜像"><span class="nav-number">2.1.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出镜像"><span class="nav-number">2.2.</span> <span class="nav-text">列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看虚悬镜像"><span class="nav-number">2.2.1.</span> <span class="nav-text">查看虚悬镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层镜像"><span class="nav-number">2.2.2.</span> <span class="nav-text">中间层镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker_commit使用"><span class="nav-number">2.2.3.</span> <span class="nav-text">docker commit使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dockerfile_定制镜像"><span class="nav-number">2.2.4.</span> <span class="nav-text">Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、容器使用"><span class="nav-number">3.</span> <span class="nav-text">三、容器使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例"><span class="nav-number">4.</span> <span class="nav-text">范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel_docker使用"><span class="nav-number">4.1.</span> <span class="nav-text">laravel docker使用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -742,7 +740,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

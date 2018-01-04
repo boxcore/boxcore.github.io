@@ -95,22 +95,22 @@
 
 
 
-<meta name="description" content="一、安装二、配置修改2.1 密码修改默认mysql密码，管理员密码等地址：文件位置: /usr/local/directadmin/scripts/setup.txt
-2.2 设置时区1） 修改系统时间12mv /etc/localtime /etc/localtime.movedln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
-2）">
+<meta name="description" content="一、安装默认皮肤为Capri，界面为 中文，如果要修改可以修改文件：/usr/local/directadmin/data/users/admin/user.conf
+如果你安装完成后改为使用 Nginx + php-fpm 需要修改文件：/usr/local/directadmin/data/admin将 httpd=ON 改成 nginx=ON
+上面两步都需要重启DA:service dire">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DirectAdmin面板设置">
 <meta property="og:url" content="http://boxcore.github.io/2017/11/24/tools/directadmin-usage.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="一、安装二、配置修改2.1 密码修改默认mysql密码，管理员密码等地址：文件位置: /usr/local/directadmin/scripts/setup.txt
-2.2 设置时区1） 修改系统时间12mv /etc/localtime /etc/localtime.movedln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
-2）">
-<meta property="og:updated_time" content="2017-11-24T07:05:13.000Z">
+<meta property="og:description" content="一、安装默认皮肤为Capri，界面为 中文，如果要修改可以修改文件：/usr/local/directadmin/data/users/admin/user.conf
+如果你安装完成后改为使用 Nginx + php-fpm 需要修改文件：/usr/local/directadmin/data/admin将 httpd=ON 改成 nginx=ON
+上面两步都需要重启DA:service dire">
+<meta property="og:updated_time" content="2017-12-25T01:28:55.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DirectAdmin面板设置">
-<meta name="twitter:description" content="一、安装二、配置修改2.1 密码修改默认mysql密码，管理员密码等地址：文件位置: /usr/local/directadmin/scripts/setup.txt
-2.2 设置时区1） 修改系统时间12mv /etc/localtime /etc/localtime.movedln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
-2）">
+<meta name="twitter:description" content="一、安装默认皮肤为Capri，界面为 中文，如果要修改可以修改文件：/usr/local/directadmin/data/users/admin/user.conf
+如果你安装完成后改为使用 Nginx + php-fpm 需要修改文件：/usr/local/directadmin/data/admin将 httpd=ON 改成 nginx=ON
+上面两步都需要重启DA:service dire">
 
 
 
@@ -420,7 +420,10 @@
       
 
       
-        <h2 id="一、安装">一、安装</h2><h2 id="二、配置修改">二、配置修改</h2><h3 id="2-1_密码修改">2.1 密码修改</h3><p>默认mysql密码，管理员密码等地址：<br>文件位置: /usr/local/directadmin/scripts/setup.txt</p>
+        <h2 id="一、安装">一、安装</h2><p>默认皮肤为Capri，界面为 中文，如果要修改可以修改文件：<br>/usr/local/directadmin/data/users/admin/user.conf</p>
+<p>如果你安装完成后改为使用 Nginx + php-fpm 需要修改文件：<br>/usr/local/directadmin/data/admin<br>将 httpd=ON 改成 nginx=ON</p>
+<p>上面两步都需要重启DA:<br>service directadmin restart</p>
+<h2 id="二、配置修改">二、配置修改</h2><h3 id="2-1_密码修改">2.1 密码修改</h3><p>默认mysql密码，管理员密码等地址：<br>文件位置: /usr/local/directadmin/scripts/setup.txt</p>
 <h3 id="2-2_设置时区">2.2 设置时区</h3><h4 id="1）_修改系统时间">1） 修改系统时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv /etc/localtime /etc/localtime.moved</div><div class="line">ln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime</div></pre></td></tr></table></figure>
 <h4 id="2）_修改php时间">2） 修改php时间</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/php -i | grep <span class="string">'Loaded Configuration File'</span> <span class="comment">#查看php.ini位置</span></div><div class="line">vim /usr/<span class="built_in">local</span>/lib/php.ini</div></pre></td></tr></table></figure>
 <p>编辑如下内容</p>
@@ -428,6 +431,21 @@
 <h4 id="3）_修改mysql时间">3） 修改mysql时间</h4><p>使用root账号执行: <code>SET GLOBAL time_zone = &#39;+08:00&#39;</code>;<br>然后执行<code>select now()</code>查看当前时间</p>
 <h2 id="三、个性优化配置">三、个性优化配置</h2><h3 id="使用php-cgi模式运行php">使用php-cgi模式运行php</h3><p>为什么要用cgi模式呢，主要是方便多用户控制，这里列下修改的方式：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment"># from http://www.zrblog.net/10237.html</span></div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/directadmin/custombuild</div><div class="line">./build update</div><div class="line">./build clean</div><div class="line">sed -i <span class="string">'s/php5_cli=yes/php5_cli=no/g'</span> options.conf</div><div class="line">sed -i <span class="string">'s/php5_cgi=no/php5_cgi=yes/g'</span> options.conf</div><div class="line">./build php n</div></pre></td></tr></table></figure>
+<h2 id="directadmin软件包管理">directadmin软件包管理</h2><p>查看软件版本:<br>vim /usr/local/directadmin/custombuild/options.conf</p>
+<p>重新安装服务:<br>/usr/local/directadmin/custombuild/build mysql|php|软件名</p>
+<p>版本变更<br>./build set php_ver 5.2<br>/usr/local/directadmin/custombuild/build set mysql 5.6</p>
+<h2 id="升级Mysql">升级Mysql</h2><p>有时候mysql安装错误会默认安装mysql 4, 这个版本太低,很多数据不支持,<br>故有升级的需求,具体操作方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#MySQL Settings</div><div class="line">mysql=5.6</div><div class="line">mysql_inst=yes # 需要修改成yes,不然无法升级到5.6</div><div class="line">mysql_backup=yes</div><div class="line">mysql_backup_dir=/usr/local/directadmin/custombuild/mysql_backups</div><div class="line">mysql_force_compile=no</div></pre></td></tr></table></figure>
+<h2 id="默认mysql密码">默认mysql密码</h2><p>文件位置: /usr/local/directadmin/scripts/setup.txt</p>
+<h2 id="设置时区">设置时区</h2><p><strong>1. 修改系统时间</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv /etc/localtime /etc/localtime.moved</div><div class="line">ln <span class="_">-s</span> /usr/share/zoneinfo/Asia/Chongqing /etc/localtime</div></pre></td></tr></table></figure>
+<p><strong>2. 修改php时间</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/php -i | grep <span class="string">'Loaded Configuration File'</span> <span class="comment">#查看php.ini位置</span></div><div class="line">vim /usr/<span class="built_in">local</span>/lib/php.ini</div></pre></td></tr></table></figure>
+<p>编辑如下内容</p>
+<p><code>date.timezone = &quot;Asia/Shanghai&quot;</code><br>执行重载<code>service directadmin reload</code></p>
+<p><strong>3. 修改mysql时间</strong></p>
+<p>使用root账号执行: <code>SET GLOBAL time_zone = &#39;+08:00&#39;</code>;<br>然后执行<code>select now()</code>查看当前时间</p>
+<h2 id="使用phpmyadmin出错">使用phpmyadmin出错</h2><p>使用root执行： /usr/local/directadmin/scripts/phpMyAdmin.sh<br>参考：<a href="https://forum.directadmin.com/showthread.php?t=13372" target="_blank" rel="external">https://forum.directadmin.com/showthread.php?t=13372</a></p>
 
       
     </div>
@@ -473,6 +491,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/03/php/php-v8js-usage.html" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -574,7 +596,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">152</span>
+                <span class="site-state-item-count">172</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +607,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -596,7 +618,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -656,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置修改"><span class="nav-number">2.</span> <span class="nav-text">二、配置修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_密码修改"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 密码修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_设置时区"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 设置时区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）_修改系统时间"><span class="nav-number">2.2.1.</span> <span class="nav-text">1） 修改系统时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）_修改php时间"><span class="nav-number">2.2.2.</span> <span class="nav-text">2） 修改php时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）_修改mysql时间"><span class="nav-number">2.2.3.</span> <span class="nav-text">3） 修改mysql时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、个性优化配置"><span class="nav-number">3.</span> <span class="nav-text">三、个性优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用php-cgi模式运行php"><span class="nav-number">3.1.</span> <span class="nav-text">使用php-cgi模式运行php</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置修改"><span class="nav-number">2.</span> <span class="nav-text">二、配置修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_密码修改"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 密码修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_设置时区"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 设置时区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）_修改系统时间"><span class="nav-number">2.2.1.</span> <span class="nav-text">1） 修改系统时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）_修改php时间"><span class="nav-number">2.2.2.</span> <span class="nav-text">2） 修改php时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）_修改mysql时间"><span class="nav-number">2.2.3.</span> <span class="nav-text">3） 修改mysql时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、个性优化配置"><span class="nav-number">3.</span> <span class="nav-text">三、个性优化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用php-cgi模式运行php"><span class="nav-number">3.1.</span> <span class="nav-text">使用php-cgi模式运行php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directadmin软件包管理"><span class="nav-number">4.</span> <span class="nav-text">directadmin软件包管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级Mysql"><span class="nav-number">5.</span> <span class="nav-text">升级Mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认mysql密码"><span class="nav-number">6.</span> <span class="nav-text">默认mysql密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置时区"><span class="nav-number">7.</span> <span class="nav-text">设置时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用phpmyadmin出错"><span class="nav-number">8.</span> <span class="nav-text">使用phpmyadmin出错</span></a></li></ol></div>
             
 
           </div>
@@ -679,7 +701,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

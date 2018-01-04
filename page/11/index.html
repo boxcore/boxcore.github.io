@@ -329,7 +329,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/dev-vimeo.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/05/17/Ubuntu-Note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +348,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/17/dev-vimeo.html" itemprop="url">Vimeo 视频开发</a></h1>
+                <a class="post-title-link" href="/2017/05/17/Ubuntu-Note.html" itemprop="url">Ubuntu使用</a></h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T12:00:56+08:00">
-                2016-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T10:23:20+08:00">
+                2017-05-17
               </time>
             
 
@@ -379,9 +379,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/17/dev-vimeo.html#comments" itemprop="discussionUrl">
+                <a href="/2017/05/17/Ubuntu-Note.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/09/17/dev-vimeo.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/05/17/Ubuntu-Note.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,7 +389,7 @@
 
           
           
-             <span id="/2016/09/17/dev-vimeo.html" class="leancloud_visitors" data-flag-title="Vimeo 视频开发">
+             <span id="/2017/05/17/Ubuntu-Note.html" class="leancloud_visitors" data-flag-title="Ubuntu使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,12 +419,14 @@
       
         
           
-            <p>vimeo是国外支持html5的播放器，而且木有广告，是嵌入到企业站或者博客站首选的视频之一，以下为嵌入vimeo视频的代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"//player.vimeo.com/video/VIDEO_ID"</span> <span class="attr">width</span>=<span class="string">"WIDTH"</span> <span class="attr">height</span>=<span class="string">"HEIGHT"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">webkitallowfullscreen</span> <span class="attr">mozallowfullscreen</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li><a href="https://developer.vimeo.com/player/embedding" target="_blank" rel="external">vimeo文档地址</a></li>
-</ul>
-
+            <p>弄了台备用笔记本电脑，发现装win10有各种问题，遂转投linux阵营。当然，首选ubuntu啦！</p>
+<p>在这里mark下新ubuntu系统的一些使用。</p>
+<p>[TOC]</p>
+<h2 id="一、基础配置和更新">一、基础配置和更新</h2><h3 id="1-1_包管理工具">1.1 包管理工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo dpkg -i DEB_PACKAGE <span class="comment"># 命令行安装deb软件包</span></div><div class="line">sudo dpkg -r PACKAGE_NAME <span class="comment"># 卸载包</span></div><div class="line">sudo dpkg-reconfigure PACKAGE_NAME <span class="comment"># 配置包</span></div></pre></td></tr></table></figure>
+<h2 id="二、常用软件安装">二、常用软件安装</h2><h3 id="2-1_通用软件">2.1 通用软件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git vim axel svn lrzsz</div><div class="line"></div><div class="line">sudo apt-get install terminator <span class="comment"># ubuntu下类iterm2工具</span></div><div class="line">sudo apt-get install filezilla <span class="comment"># filezilla FTP管理工具</span></div></pre></td></tr></table></figure>
+<h3 id="2-2_navicat安装和配置">2.2 navicat安装和配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">wget http://download3.navicat.com/download/navicat112_premium_cs_x64.tar.gz</div><div class="line">tar -zxvf navicat112_premium_cs_x64.tar.gz /opt/Navicat112</div><div class="line"></div><div class="line"><span class="built_in">cd</span> /opt/Navicat112/</div><div class="line">./start_navicat</div><div class="line"></div><div class="line">touch  <span class="comment"># 配置快捷方式</span></div></pre></td></tr></table></figure>
+<h2 id="三、其他常用的命令">三、其他常用的命令</h2><h3 id="3-1_远程服务">3.1 远程服务</h3><h4 id="a-开启桌面vnc远程">a.开启桌面vnc远程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h4 id="b-开启ssh登录">b.开启ssh登录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server </div><div class="line">sudo apt-get install openssh-client</div><div class="line">ps <span class="_">-e</span> |grep ssh   <span class="comment"># 如果只有ssh-agent那ssh-server还没有启动，如果看到sshd那说明ssh-server已经启动了</span></div><div class="line"></div><div class="line">sudo vim /etc/shh/sshd_config <span class="comment"># 编辑配置ssh设置</span></div><div class="line"><span class="comment">#---------------------</span></div><div class="line"><span class="comment">#禁用密码验证</span></div><div class="line">PasswordAuthentication no</div><div class="line"><span class="comment">#启用密钥验证</span></div><div class="line">RSAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line"><span class="comment">#指定公钥数据库文件</span></div><div class="line">AuthorsizedKeysFile .ssh/authorized_keys</div><div class="line"><span class="comment">#---------------------</span></div><div class="line"></div><div class="line">chmod 600 ~/.ssh/authorized_keys</div><div class="line"><span class="built_in">echo</span> <span class="string">'ssh-rsa XXXX'</span> &gt;&gt; ~/.ssh/authorized_keys</div><div class="line">cat ~/.ssh/authorized_keys <span class="comment"># 复查</span></div><div class="line"></div><div class="line">sudo /etc/init.d/ssh restart</div></pre></td></tr></table></figure>
           
         
       
@@ -467,7 +469,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/wordpress-to-hexo.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/05/08/Laravel-Note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -486,7 +488,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/17/wordpress-to-hexo.html" itemprop="url">Hexo用法&wordpress迁移</a></h1>
+                <a class="post-title-link" href="/2017/05/08/Laravel-Note.html" itemprop="url">Laravel Note</a></h1>
         
 
         <div class="post-meta">
@@ -498,8 +500,155 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T00:37:00+08:00">
-                2016-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T16:27:30+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/08/Laravel-Note.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/08/Laravel-Note.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/08/Laravel-Note.html" class="leancloud_visitors" data-flag-title="Laravel Note">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近需要用到laravel进行开发项目，这里整理一些笔记方便回忆。主要参考资源如下：</p>
+<ul>
+<li><a href="https://docs.golaravel.com/docs/5.4/container/" target="_blank" rel="external">laravel 5.4 中文手册</a></li>
+<li><a href="http://d.laravel-china.org/docs/5.5" target="_blank" rel="external">Laravel 5.5 中文文档</a></li>
+</ul>
+<h2 id="一、安装Laravel">一、安装Laravel</h2><h3 id="1-1_通过_Laravel_安装器">1.1 通过 Laravel 安装器</h3><blockquote>
+<p>composer global require “laravel/installer”<br>laravel new blog</p>
+</blockquote>
+<h3 id="1-2_通过_Composer_创建项目">1.2 通过 Composer 创建项目</h3><blockquote>
+<p>composer create-project –prefer-dist laravel/laravel blog</p>
+</blockquote>
+<h3 id="1-3_运行laravel">1.3 运行laravel</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan serve</div></pre></td></tr></table></figure>
+<p>或者指向指向 public 目录。该目录下的 index.php 文件将作为所有进入应用程序的 HTTP 请求的前端控制器。</p>
+<h2 id="二、配置">二、配置</h2><h2 id="laravel工作流">laravel工作流</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel laravel-workflow </div><div class="line">composer create-project --prefer-dist laravel/laravel blog <span class="comment"># 通过composer 来创建项目</span></div></pre></td></tr></table></figure>
+<h3 id="artisan">artisan</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/26/linux-centos7-setting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/26/linux-centos7-setting.html" itemprop="url">CentOS 7 安装和配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T16:11:58+08:00">
+                2017-04-26
               </time>
             
 
@@ -521,8 +670,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
+                  <a href="/categories/CentOS/" itemprop="url" rel="index">
+                    <span itemprop="name">CentOS</span>
                   </a>
                 </span>
 
@@ -539,9 +688,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/17/wordpress-to-hexo.html#comments" itemprop="discussionUrl">
+                <a href="/2017/04/26/linux-centos7-setting.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/09/17/wordpress-to-hexo.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/26/linux-centos7-setting.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -549,7 +698,7 @@
 
           
           
-             <span id="/2016/09/17/wordpress-to-hexo.html" class="leancloud_visitors" data-flag-title="Hexo用法&wordpress迁移">
+             <span id="/2017/04/26/linux-centos7-setting.html" class="leancloud_visitors" data-flag-title="CentOS 7 安装和配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -579,11 +728,7 @@
       
         
           
-            <p>今天把wp博客迁移到了hexo，主要原因是以后不用考虑空间问题。下面是迁移的代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用npm安装插件</span></div><div class="line">npm install hexo-migrator-wordpress --save</div><div class="line"><span class="comment">#（先去Wordprdss导出你的XML文件先），在博客目录执行</span></div><div class="line">hexo migrate wordpress wordpress.xml</div><div class="line"><span class="comment">#导完之后，插件和xml都可以卸掉了~_~</span></div><div class="line"></div><div class="line"><span class="comment"># 另外，由于mac中有报错`&#123; [Error: Cannot find module './build/Release/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' &#125;`， 需执行命令:</span></div><div class="line">npm install hexo --no-optional</div></pre></td></tr></table></figure>
-<p>另外，如果需要在线可视化编辑器，可以安装hexo-admin这个工具：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save hexo-admin</div></pre></td></tr></table></figure></p>
-<p>完成后，访问 <code>localhost:4000/admin</code>就是后台编辑的页面了。</p>
-<p>enjoy it！</p>
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="comment">#设置nat 和 host-only2种网卡，并开启开机自启</span></div><div class="line">$ <span class="comment"># minimal版常用工具安装</span></div><div class="line">yum install vim wget gcc gcc-c++ unzip net-tools telnet</div></pre></td></tr></table></figure>
 
           
         
@@ -627,7 +772,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/25/api-standard.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/26/mysql-learn.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -646,7 +791,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/02/25/api-standard.html" itemprop="url">API标准</a></h1>
+                <a class="post-title-link" href="/2017/04/26/mysql-learn.html" itemprop="url">MySQL学习</a></h1>
         
 
         <div class="post-meta">
@@ -658,8 +803,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-25T14:51:37+08:00">
-                2015-02-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T15:12:43+08:00">
+                2017-04-26
               </time>
             
 
@@ -669,6 +814,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -677,9 +844,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/02/25/api-standard.html#comments" itemprop="discussionUrl">
+                <a href="/2017/04/26/mysql-learn.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/25/api-standard.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/26/mysql-learn.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -687,7 +854,7 @@
 
           
           
-             <span id="/2015/02/25/api-standard.html" class="leancloud_visitors" data-flag-title="API标准">
+             <span id="/2017/04/26/mysql-learn.html" class="leancloud_visitors" data-flag-title="MySQL学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -717,1295 +884,1017 @@
       
         
           
-            <p>工作中会遇到许多API的工作，目前最流行的方案是使用<code>RESTful API</code>。</p>
-<h2 id="附录1：code对照表参考">附录1：code对照表参考</h2><p>仅供参考，API接口开发人员可根据实际情况自定义相应结果码或节点</p>
-<ul>
-<li>200 ok - 成功状态，对应，GET,PUT,PATCH,DELETE.</li>
-<li>500 faild - 失败状态</li>
-<li>304 not modified - HTTP缓存有效。</li>
-<li>400 bad request - 请求格式错误。可以标识参数错误或参数缺失</li>
-<li>401 unauthorized - 未授权。</li>
-<li>403 forbidden - 鉴权成功，但是该用户没有权限。</li>
-<li>404 not found - 请求的资源或接口不存在</li>
-<li>405 method not allowed - 该http方法不被允许。</li>
-<li>410 gone - 这个url对应的资源现在不可用。</li>
-<li>415 unsupported media type - 请求类型错误。</li>
-<li>422 unprocessable entity - 校验错误时用。</li>
-<li>429 too many request - 请求过多。</li>
-</ul>
-<h3 id="API参考说明">API参考说明</h3><p><strong>参考文档：</strong></p>
-<ul>
-<li><a href="https://github.com/ZhangBohan/http-api-design-ZH_CN" target="_blank" rel="external">HTTP API 设计指南</a></li>
-<li><a href="https://github.com/WhiteHouse/api-standards" target="_blank" rel="external">白宫API标准</a></li>
-<li><a href="http://segmentfault.com/q/1010000000500665#a-1020000000503507" target="_blank" rel="external">php实现restful api有什么框架使用方便？</a></li>
-<li><a href="http://mlongbo.com/http-apixiang-ying-shu-ju-gui-fan-zheng-li/" target="_blank" rel="external">HTTP API响应数据规范整理</a></li>
-<li><a href="http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340" target="_blank" rel="external">A Beginner’s Guide to HTTP and REST</a></li>
-<li><a href="http://segmentfault.com/blog/cloudmario/1190000000635914" target="_blank" rel="external">RESTful实践总结</a></li>
-</ul>
-<p><strong>PHP RESTful相关项目：</strong></p>
-<ul>
-<li><a href="https://github.com/yeaha/Lysine2" target="_blank" rel="external">Lysine2</a></li>
-<li><a href="https://github.com/anandkunal/ToroPHP" target="_blank" rel="external">ToroPHP</a></li>
-<li><a href="https://github.com/evan108108/RESTFullYii" target="_blank" rel="external">RESTFullYii</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/12/phpstorm-for-window.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/12/phpstorm-for-window.html" itemprop="url">PhpStorm快捷键(windows)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-12T15:05:20+08:00">
-                2015-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/12/phpstorm-for-window.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/12/phpstorm-for-window.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/12/phpstorm-for-window.html" class="leancloud_visitors" data-flag-title="PhpStorm快捷键(windows)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><code>CTRL + D</code> 复制当前行或复制选中内容</li>
-<li><code>CTRL + Y</code> 删除当前行或选中内容所涉及的行</li>
-<li><code>CTRL + R</code> 查找替换</li>
-<li><code>ALT + W</code> 选中单词</li>
-<li><code>ALT + 上下箭头</code> 向上向下函数间切换</li>
-<li><code>CTRL + SHIFT + V</code> 显示最近粘贴板中的内容，选择后内容插入到光标位置</li>
-<li><code>CTRL + Q</code> 显示说明文档</li>
-<li><code>CTRL + B</code> 跳转到声明处</li>
-<li><code>CTRL + N</code> 类名查找</li>
-<li><code>CTRL + SHIFT + N</code> 文件名查找</li>
-<li><code>CTRL + SHIFT + ALT + N</code> 函数名查找</li>
-<li><code>ALT + SHIFT + C</code> 快速回顾最近修改的项目</li>
-<li><code>CTRL + SHIFT + I</code> 查看变量初始化的值</li>
-<li><code>CTRL + ALT + T</code> 插入环绕代码</li>
-<li><code>CTRL + ALT + F12</code> 跳转至当前文件所在磁盘上的位置</li>
-<li><code>ALT + 左右键</code> 标签切换</li>
-<li><code>CTRL + F12</code> 在当前类文件中快速查找方法</li>
-</ul>
-<h2 id="PHPstorm默认快捷键">PHPstorm默认快捷键</h2><ul>
-<li><code>CTRL + J</code> 插入活动代码提示</li>
-</ul>
-<p>ctrl+alt+t 当前位置插入环绕代码<br>alt+insert 生成代码菜单<br>Shift + Enter 新一行<br>ctrl+q 查看代码注释<br>ctrl+d 复制当前行<br>ctrl+y 删除当前行<br>shift+F6 重命名<br>ctrl+shift+u 字母大小写转换<br>ctrl+f 查找<br>ctrl+r 替换<br>ctrl+shift+I 查看变量或方法定义源<br>ctrl+g 跳转行<br>ctrl+alt+F12 跳转至当前文件在磁盘上的位置<br>alt+down 查看下一个方法<br>alt+up 查看上一个方法<br>ctrl+alt+l 重新格式化代码<br>ctrl+shift+down statement向下移动<br>ctrl+shift+up statement向上移动<br>alt+shift+down line向下移动<br>alt+shift+up line向上移动<br>ctrl+/ 行注释<br>ctrl+shift+/ 块注释</p>
-<p>Ctrl + Shift + Z：redo</p>
-<p>Ctrl + Shift + F：区域查找<br>ctrl+shift+n 打开工程中的文件<br>ctrl+b 跳到变量申明处<br>ctrl+[] 匹配 {}[]<br>ctrl+shift+]/[ 选中块代码</p>
-<p>….<br>ctrl+x 剪切行<br>ctrl+shift+v 复制多个文本<br>alt+left/right 标签切换<br>ctrl+p 显示默认参数</p>
-<p>ctrl + ‘-/+’: 可以折叠项目中的任何代码块</p>
-<p>===================================================</p>
-<p>2013-12-27 新增</p>
-<p>CTRL + SHIFT + R 快速查找该关键字在整个项目中的位置，或者替换整个项目目录中的匹配字符。</p>
-<p>这个快捷键找了好久终于发现了 ，哈哈</p>
-<p>CTRL + T 更新当前项目的svn 代码。</p>
-<p>CTRL + K 提交当前的目录下的svn 代码。</p>
-<p>其实在做项目的过程中 最常用的就是 查找文件位置，类，函数，关键字符，行号。</p>
-<p>我使用的主题 theme : Darcula</p>
-<p>代码区主题 fonts :monospaced</p>
-<p>(<em>^__^</em>) 欢迎补充……</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/06/php/php-version-diff-errors.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/06/php/php-version-diff-errors.html" itemprop="url">PHP不同版本报错差异</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-06T15:03:40+08:00">
-                2015-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/06/php/php-version-diff-errors.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/06/php/php-version-diff-errors.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/06/php/php-version-diff-errors.html" class="leancloud_visitors" data-flag-title="PHP不同版本报错差异">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发和生产环境中经常会在PHP5.2、5.3和5.4版间切换，但各个版本函数和报错情况又不一样，下面发上工作中遇到报表不同后出现的各种坑。</p>
-<h2 id="PHP5-2升级后问题汇总">PHP5.2升级后问题汇总</h2><h3 id="Deprecated:_Assigning_the_return_value_of_new_by_reference_is_deprecated_in_XXX">Deprecated: Assigning the return value of new by reference is deprecated in XXX</h3><p>出现<code>Deprecated: Assigning the return value of new by reference is deprecated in</code>报错。这是因为5.3以后，不能使用”=&amp;”符号，可以直接用”=”就可以了。 所以当出现这个问题后有两种解决方法：</p>
-<ol>
-<li>把php的版本降级到5.3以下，但后退的不是明智的选择。</li>
-<li>对程序中”=&amp;”符号全部用”=” 代替。</li>
-</ol>
-<p>示例如下：<br><code>Deprecated: Assigning the return value of new by reference is deprecated in</code></p>
-<p>定位到出错的那一行： <code>$this-&gt;_ole =&amp; new OLERead();</code></p>
-<p>我本地环境用的是PHP/5.3.8。</p>
-<p>下面这段话引用于因思而变</p>
-<p>解决办法：php5.3开始后，废除了php中的”=&amp;”符号，所以要想复制，直接用=引用即可。详细如下：</p>
-<p>1、PHP5对象复制是采用引用的方式；<br>2、如果不采用引用方式，则需要在复制对象时加关键字 clone;<br>3、如果在复制的过程中，同时要变更某些属性，则增加函数_clone();</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/05/git/delete-file-for-git.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/05/git/delete-file-for-git.html" itemprop="url">Git如何永久删除文件(包括历史记录)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-05T14:46:02+08:00">
-                2015-02-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/05/git/delete-file-for-git.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/05/git/delete-file-for-git.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/05/git/delete-file-for-git.html" class="leancloud_visitors" data-flag-title="Git如何永久删除文件(包括历史记录)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <pre><code class="bash">$ 步骤一: 从你的资料库中清除文件
-git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.gz'</span> --prune-empty --tag-name-filter cat -- --all
-git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.tgz'</span> --prune-empty --tag-name-filter cat -- --all
-git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch *.zip'</span> --prune-empty --tag-name-filter cat -- --all
-
-$ 步骤二: 推送我们修改后的repo,以强制覆盖的方式推送你的repo, 命令如下:
-git push origin master --force
-
-
-$ 步骤三: 清理和回收空间
-$ 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间.
-
-rm -rf .git/refs/original/
-git reflog expire --expire=now --all
-git gc --prune=now
-git gc --aggressive --prune=now
-</code></pre>
-<p>设置完成之后, 你可以使用命令du -s .git查看仓库地址空间大小是否有明显减少了.</p>
-<h2 id="参考:">参考:</h2><ul>
-<li><a href="https://help.github.com/articles/remove-sensitive-data" target="_blank" rel="external">https://help.github.com/articles/remove-sensitive-data</a></li>
-<li><a href="http://www.cnblogs.com/shines77/p/3460274.html" target="_blank" rel="external">http://www.cnblogs.com/shines77/p/3460274.html</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/01/sql/mysql-basic.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/01/sql/mysql-basic.html" itemprop="url">MySQL基础复习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-01T14:39:54+08:00">
-                2015-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/01/sql/mysql-basic.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/01/sql/mysql-basic.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/01/sql/mysql-basic.html" class="leancloud_visitors" data-flag-title="MySQL基础复习">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em>@20130611 by boxcore</em></p>
-<p>约定：</p>
+            <h2 id="MySQL优化">MySQL优化</h2><h3 id="MySQL缓存">MySQL缓存</h3><p>配置文件<code>/etc/my.cnf</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">... </div><div class="line">query_cache_size = <span class="number">268435456</span></div><div class="line">query_cache_type = <span class="number">1</span></div><div class="line">query_cache_limit = <span class="number">1048576</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>重启mysql后就会启动mysql的缓存机制Query Cache。<br>在使用中，查询缓存会存储一个<code>SELECT</code>查询的文本与被传送到客户端的相应结果。<br>如果之后接收到一个同样的查询，服务器将从查询缓存中检索结果，而不是再次分析和执行这个同样的查询。</p>
 <blockquote>
-<p>tabname：表名<br>dbname:数据库名<br>fieldname 或 field+n : 字段名</p>
+<p>注意：查询缓存绝不返回过期数据。当数据被修改后，在查询缓存中的任何相关词条均被转储清除。<br>适用于更改不是太频繁的表且有大量相同查询的情况</p>
 </blockquote>
-<h2 id="一、数据库概述">一、数据库概述</h2><ol>
-<li>MySQl操作过程：MySQl 服务端,MySQl客户端；</li>
-<li>数据库产品分类：关系型数据库 ,非关系型数据库；</li>
-<li>数据表的字符集:Client,Conn,Server,DB<br>3.1 my.ini配置默认字符串：<ul>
-<li><code>dafault-character-set=utf8</code> # client &amp; Conn charset;</li>
-<li><code>character-set-server=utf8</code> # server &amp; DB charset;<br>3.2 PHP语句设置客户端字符集： mysql_query(“set name utf8”);<br>3.3 创建表时指定字符集方法：</li>
+<h3 id="执行计划explain">执行计划explain</h3><p>mysql的执行计划explain语句，显示了mysql如何使用索引来处理select语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句。 explain是mysql常用性能分析语句，使用方法是在select语句前加上explain就可以了，例如：</p>
+<blockquote>
+<p>explain select surname,first_name form. a,b where a.id=b.id</p>
+</blockquote>
+<p>EXPLAIN结果返回解释:</p>
+<ul>
+<li>id：是一组数字，表示查询中执行select子句或操作表的顺序。如果id相同，则执行顺序从上至下。如果是子查询，id的序号会递增，id越大则优先级越高，越先会被执行。id如果相同，则可以认为是一组，从上往下顺序执行，所有组中，id越高，优先级越高，越容易执行。</li>
+<li>selecttype：有simple，primary，subquery，derived(衍生)，union，unionresult。<ul>
+<li>simple：表示查询中不包含子查询或者union。</li>
+<li>primary： 当查询中包含任何复杂的子部分，最外层的查询被标记成primary</li>
+<li>subquery：在select或where列表中包含了子查询，则子查询被标记成subquery</li>
+<li>derived：在from的列表中包含的子查询被标记成derived。</li>
+<li>union：若第二个select出现在union后，则被标记成union，若union在from子句的子查询中，外层的select被标记成derived。</li>
+<li>union result：从union表获取结果的select被标记成union result。</li>
 </ul>
 </li>
-</ol>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> tab(…)<span class="keyword">engine</span>=MyISAM <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span></div><br><br><div class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> tabname(…)type=mysiam <span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci;</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<ol>
-<li>数据表组成：表结构文件 (),表数据文件(), 表索引文件 ();</li>
-<li>数据库引擎：InnoDB支持事务处理，但不支持全文搜索<br>MyISAM支持全文搜索但不支持事务， MEMORY和MyISAM 一样，只不过它把数据保存在内存而不是磁盘中，这样速度更快。</li>
-</ol>
-<h2 id="二、数据库的常用操作：">二、数据库的常用操作：</h2><ol>
-<li>数据库的连接：<code>mysql -uroot -p123 -h192.168.2.2</code></li>
-<li>退出MySQL:<code>exit|quit|Ctrl+C</code></li>
-<li>中断数据库的操作：<code>\c</code></li>
-<li>MySQl服务器的关闭和退出：<code>net stop mysql</code> || <code>net start mysql</code></li>
-<li>MySQl中用户的修改：<code>set password=password(&quot;密码 &quot;)</code><br>创建用户： CREATE USER ‘test1’@’localhost’ IDENTIFIED BY ‘<em>*</em>‘;</li>
-<li>MySQl中用户授权：</li>
-</ol>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> <em>.</em> <span class="keyword">to</span> user1@<span class="number">192.168</span><span class="number">.190</span><span class="number">.20</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">“密码”</span>;</span></div><br><br><div class="line"><span class="operator"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span>  <span class="string"><code>test1\_%</code></span> . * <span class="keyword">TO</span>  <span class="string">‘test1’</span>@<span class="string">‘localhost’</span>;</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<ol>
-<li>刷新权限如：<code>flush privileges</code>;<ul>
-<li>在客户端修改用户权限后需要刷新数据库缓存</li>
+<li>table：显示这一行的数据是关于哪张表的 </li>
+<li>type：type叫访问类型，表示在表中找到所需行的方式（显示连接使用了何种类型）。从最好到最差的连接类型为const、eq_reg、ref、range、indexhe和ALL <ul>
+<li>ALL，即full table scan，mysql将遍历全表来找到所需要的行。</li>
+<li>index为full index scan，只遍历索引树。</li>
+<li>range表示索引范围扫描 ，对索引的扫描开始于一点，返回匹配的值域的行，常见于between，&lt;，&gt;的查询。</li>
+<li>ref为非唯一性索引扫描，返回匹配某个单独值的所有行，常见于非唯一索引即唯一索引的非唯一前缀进行的查找。</li>
+<li>eq_ref表示唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配，常见于主键或者唯一索引扫描。</li>
+<li>const，system表示当对查询部分进行优化，并转化成一个常量时，使用这些类型访问。比如将主键置于where列表中，mysql就能把该查询置成一个常量。system是const的一个特例，当查询表中只有一行的情况下使用的是system。</li>
+<li>NULL表示在执行语句中，不用查表或索引。</li>
 </ul>
 </li>
-<li>查看用户授权</li>
-</ol>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">use</span> mysql</span></div><br><br><div class="line"><span class="keyword">select</span> <span class="keyword">user</span>,<span class="keyword">password</span>,host <span class="keyword">from</span> <span class="keyword">user</span>;</div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<p>10.删除用户</p>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br><div class="line">3</div><br><br><div class="line">4</div><br><br><div class="line">5</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="comment">— 方法一：</span> </div><br><br><div class="line"><span class="operator"><span class="keyword">drop</span> <span class="keyword">user</span> user1@<span class="string">“%”</span>;</span></div><br><br><div class="line"><span class="comment">— 方法二：</span></div><br><br><div class="line"><span class="operator"><span class="keyword">use</span> mysql</span></div><br><br><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">“ 用户名”</span>;</div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<h2 id="三、数据库的操作">三、数据库的操作</h2><ol>
-<li>创建数据库 <code>create database dbname</code></li>
-<li>查看数据库 <code>show databases</code></li>
-<li>删除数据库 <code>drop database dbname</code></li>
-<li>切换数据库 <code>use dbname</code></li>
-</ol>
-<h2 id="四、表操作">四、表操作</h2><ol>
-<li>查看表：<code>show tables</code> ；</li>
-<li>创建表：<code>create table tabname (field1 ，field2， fieldn)</code>;</li>
-<li>删除表：<code>dorp table [if exists] tabname</code> ；</li>
-<li>修改表名：<code>rename table oldTabName to newTabName</code> ；</li>
-<li>查询表结构：<code>desc tabname</code>；</li>
-</ol>
-<h2 id="五、表内容管理">五、表内容管理</h2><ol>
-<li>增加数据：<code>insert</code>: <code>insert into user(name) values(&quot;user4&quot;)</code></li>
-</ol>
-<p>2.删除数据：<code>delete</code></p>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br><div class="line">3</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="comment">— 必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据</span></div><br><br><div class="line"><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> id&gt;=<span class="number">3</span> <span class="keyword">and</span> id&lt;=<span class="number">5</span>;</span></div><br><br><div class="line"><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> id <span class="keyword">between</span> <span class="number">3</span> <span class="keyword">and</span> <span class="number">5</span>;</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<p>3.修改数据：<code>update</code></p>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> name=<span class="string">‘user5’</span>,age=<span class="number">20</span> <span class="keyword">where</span> id=<span class="number">5</span>;</span></div><br><br><div class="line"><span class="comment">— 在mysql 中没有==，只有 =，即包含赋值，又包含比较</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<p>4.查询数据：<code>select</code></p>
-<h2 id="六、数据字段类型">六、数据字段类型</h2><ol>
-<li>数值<br>显示和大小</li>
-</ol>
-<ul>
-<li>int : int数值类型的无符号取值范围： 0-42亿</li>
-<li>float</li>
-<li>tinyint : tinyint数值类型的无符号取值范围： 0-255</li>
+<li>possible_keys：显示可能应用在这张表中的索引。如果为空，没有可能的索引。可以为相关的域从WHERE语句中选择一个合适的语句 </li>
+<li>key： 实际使用的索引。如果为NULL，则没有使用索引。很少的情况下，MYSQL会选择优化不足的索引。这种情况下，可以在SELECT语句中使用USE INDEX（indexname）来强制使用一个索引或者用IGNORE INDEX（indexname）来强制MYSQL忽略索引 </li>
+<li>key_len：使用的索引的长度。在不损失精确性的情况下，长度越短越好 </li>
+<li>ref：显示索引的哪一列被使用了，如果可能的话，是一个常数 </li>
+<li>rows：表示根据mysql表统计信息及索引选用情况，估算找到所需记录要读取的行数</li>
+<li>Extra：关于MYSQL如何解析查询的额外信息，表示不在其他列并且也很重要的额外信息。将在表4.3中讨论，但这里可以看到的坏的例子是Using temporary和Using filesort，意思MYSQL根本不能使用索引，结果是检索会很慢。extra 列返回的描述的意义 ：<ul>
+<li>Distinct: 一旦MYSQL找到了与行相联合匹配的行，就不再搜索了 </li>
+<li>Not exists: MYSQL优化了LEFT JOIN，一旦它找到了匹配LEFT JOIN标准的行，就不再搜索了 </li>
+<li>Range checked for each Record（index map:#）:没有找到理想的索引，因此对于从前面表中来的每一个行组合，MYSQL检查使用哪个索引，并用它来从表中返回行。这是使用索引的最慢的连接之一 </li>
+<li>Using filesort: 看到这个的时候，查询就需要优化了。MYSQL需要进行额外的步骤来发现如何对返回的行排序。它根据连接类型以及存储排序键值和匹配条件的全部行的行指针来排序全部行 </li>
+<li>Using index: 列数据是从仅仅使用了索引中的信息而没有读取实际的行动的表返回的，这发生在对表的全部的请求列都是同一个索引的部分的时候 </li>
+<li>Using temporary 看到这个的时候，查询需要优化了。这里，MYSQL需要创建一个临时表来存储结果，这通常发生在对不同的列集进行ORDER BY上，而不是GROUP BY上 </li>
+<li>Where used 使用了WHERE从句来限制哪些行将与下一张表匹配或者是返回给用户。如果不想返回表中的全部行，并且连接类型ALL或index，这就会发生，或者是查询有问题不同连接类型的解释（按照效率高低的顺序排序） </li>
+<li>system 表只有一行：system表。这是const连接类型的特殊情况 </li>
+<li>const:表中的一个记录的最大值能够匹配这个查询（索引可以是主键或惟一索引）。因为只有一行，这个值实际就是常数，因为MYSQL先读这个值然后把它当做常数来对待 </li>
+<li>eq_ref:在连接中，MYSQL在查询时，从前面的表中，对每一个记录的联合都从表中读取一个记录，它在查询使用了索引为主键或惟一键的全部时使用 </li>
+<li>ref:这个连接类型只有在查询使用了不是惟一或主键的键或者是这些类型的部分（比如，利用最左边前缀）时发生。对于之前的表的每一个行联合，全部记录都将从表中读出。这个类型严重依赖于根据索引匹配的记录多少—越少越好 </li>
+<li>range:这个连接类型使用索引返回一个范围中的行，比如使用&gt;或&lt;查找东西时发生的情况 </li>
+<li>index: 这个连接类型对前面的表中的每一个记录联合进行完全扫描（比ALL更好，因为索引一般小于表数据） </li>
+<li>ALL:这个连接类型对于前面的每</li>
 </ul>
-<ol>
-<li>字符串<br>显示和个数</li>
-</ol>
-<ul>
-<li>char ·char(3)的意思是什么： 0-255</li>
-<li>varchar ·varchar(3)的意思是什么： 0-65535</li>
-<li>enum</li>
-<li>set</li>
+</li>
 </ul>
-<p>3.日期和时间( 数值)</p>
+<p>mysq的执行计划有一定局限性,如下：</p>
 <ul>
-<li>date</li>
-<li>time</li>
-<li>datetime</li>
-<li>year</li>
-<li>timestamp:在php中把时间加工成时间戳，放到 mysql中的int 列</li>
+<li>EXPLAIN不会告诉你关于触发器、存储过程的信息或用户自定义函数对查询的影响情况</li>
+<li>EXPLAIN不考虑各种Cache</li>
+<li>EXPLAIN不能显示MySQL在执行查询时所作的优化工作</li>
+<li>部分统计信息是估算的，并非精确值</li>
+<li>EXPALIN只能解释SELECT操作，其他操作要重写为SELECT后查看执行计划</li>
 </ul>
-<h2 id="七、数据字段属性">七、数据字段属性</h2><ol>
-<li>unsigned</li>
-<li>zerofill</li>
-<li>auto_increment</li>
-<li>null</li>
-<li>not null # 如表中性别例子 ,如果有一列你设计成not null,那么给 default默认值</li>
-<li>default</li>
-</ol>
-<h2 id="八-数据表的类型">八.数据表的类型</h2><ol>
-<li>myisam // 默认就是 myisam</li>
-<li>innodb // 事务<br>创建表时指定表类型： <code>create table t1(id int) engine=innodb;</code><br>修改表引擎类型： <code>alter table tablename engine=innodb;</code><br>查看表类型： <code>show create table tabname;</code></li>
-</ol>
-<h2 id="九-数据表索引设置">九.数据表索引设置</h2><p>1.主键索引 primary key 一个表中只能有一个主键索引</p>
-<p>添加索引 :<br>1).建表时就加上去<br>2).用alter 命令<br>alter table t2 add primary key(id); // 加主键<br>alter table t2 modify id int unsigned auto_increment; // 加无符号和自增属性</p>
-<p>删除索引 :<br>alter table t2 modify id int; // 加无符号和自增属性<br>alter table t2 drop primary key;</p>
-<p>2.唯一索引 unique index<br>// 每一列都可以是唯一索引，本列值不能重复值</p>
-<p>3.普通索引 index</p>
-<pre><code>添加索引 :<span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> <span class="keyword">index</span> in_name(<span class="keyword">name</span>);</span>
-删除索引 :<span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">drop</span> <span class="keyword">index</span> in_name;</span>
-</code></pre><p>//每一列都可以是普通索引</p>
-<p>4.全文索引 fulltext</p>
-<hr>
-<h2 id="八-修改数据表结构_-alter">八.修改数据表结构 -alter</h2><p>1.修改字段<br>1)change<br>·alter table user change age sex int;</p>
-<h1 id="把age_的字段重命名为_sex并设置字段属性为int；【更改字段名，修改字段名】">把age 的字段重命名为 sex并设置字段属性为int；【更改字段名，修改字段名】</h1><p>//修改字段名的时候建议带上他原有的 int或者varchar 属性，如果不写属性会报错；<br>2)modify<br>·alter table user modify age tinyint;</p>
-<p>2.添加字段<br>·alter table user add age int; //默认加到最后<br>·alter table user add age int first; //加到最前面去<br>·alter table user add age int after id; //加到id 后面</p>
-<p>3.删除字段<br>·alter table user drop age;</p>
-<p>4.添加索引<br>·alter table tab62 add primary key(id);<br>·alter table tab62 modify id int unsigned auto_incrment;<br>·alter table tab62 add unique un_name(name);<br>·alter table tab62 add index in_pass(pass);</p>
-<p>5.删除索引<br>·alter table tab62 modify id int;<br>·alter table tab62 drop primary key;<br>·alter table tab62 drop index in_pass;<br>·alter table tab62 drop unique un_name;</p>
-<p>6.更改表名称<br>1)rename table tab62 to tab26; 修改表名，非字段<br>2)alter table user rename to user1;</p>
-<p>7.更改auto_increment 属性的初始值<br>alter table user auto_increment=1;<br>//truncate user; 效率快，自增列表自动从 1开始（清空表中所有数据）</p>
-<p>8.更改表名称：alter table 旧表名 rename as 新表名</p>
-<p>9.删除表：dorp table [if exists] 表名；</p>
-<hr>
-<h2 id="结构化查询语言_sql包含四个部分:">结构化查询语言 sql包含四个部分:</h2><p>1.DDL // 数据定义语言 ,create,drop,alter<br>2.DML // 数据操作语言 ,insert,update,delete<br>3.DQL // 数据查询语言 ,select<br>4.DCL // 数据控制语言 ,grant,commit,rollback</p>
-<hr>
-<h2 id="操作数据表中的数据记录_(DML)">操作数据表中的数据记录 (DML)</h2><p>1.insert<br>eg:insert into user(name) values(“user4”);</p>
-<p>2.update<br>update user set name=”user4” where id=4;<br>//在mysql 中没有==，只有 =，即包含赋值，又包含比较<br>update user set name=’user5’,age=20 where id=5;</p>
-<p>3.delete<br>//必须加where 条件，如果不加 where全部删除，这个时候应该用 truncate清空数据<br>delete from user where id&gt;=3 and id&lt;=5; 等同于 delete from user where id between 3 and 5;</p>
-<hr>
-<h2 id="数据查询语言（_DQL）—select_使用">数据查询语言（ DQL）—select 使用</h2><p>1.选择特定的字段<br>select id,name from user;<br>//select * from user;</p>
-<p>2.给字段取别名-as<br>select id,name from user;<br>select id maoxian,name from user;<br>select id as maoxian,name from user;</p>
-<p>3.distinct关键字的使用<br>//取出唯一值<br>select distinct age from user;</p>
-<p>4.使用where 条件进行查询<br>select * from user where id&gt;=3 and id&lt;=5;</p>
-<p>5.查询空值null<br>select <em>from user where age is null;<br>select</em> from user where age is not null;</p>
-<p>6.between and的使用方法<br>select * from user where id between 3 and 5;</p>
-<p>7.in的使用方法<br>select <em>from user where id=1 or id=2 or id=10;<br>select</em> from user where id in(1,2,10); 建议使用这个</p>
-<p>8.like的使用方法<br>//模糊查询,text 类型不能加索引<br>% 匹配所有<br>_ 匹配一个字符<br>select * from user where name like “%mysql%”; //% 在前，name这一列的索引会失效</p>
-<p>9.使用order by 对查询结果排序<br>//排序，asc 和desc，一个是升序，一个降序<br>select <em>from user order by id asc; // 默认就是升序 ,数字从小到大<br>select</em> from user order by id desc; // 默认就是升序 ,数字从大到小</p>
-<p>10.使用limit 限定输出个数 (分页实现)<br>select <em>from user order by id limit 0,2;<br>select</em> from user order by id limit 5; //limit 0,5 前五个</p>
-<p>11.concat() 连接函数<br>select concat(id,age) from user; # 输出的值为每一行中指点的列字符串相加。<br>select concat(“aaa”,”bbb”,”cccc”); # 输出连接的字符串： aaabbbccc,如果没有双引号则误认为是字段，报错。</p>
-<p>12.rand() 随机数<br>eg: select * from user order by rand() limit 3;</p>
-<p>13.使用统计函数：<br>count() 统计个数<br>sum() 求和<br>avg() 平均值<br>max() 最大值<br>min() 最小值<br>eg:<br>select count(id),sum(age),avg(age),max(id),min(id) from user;</p>
-<p>14.group by分组聚合的 使用-select<br>结合合计函数，根据一个或多个列对结果集进行分组<br>//分组 聚合<br>//只分组没有意义，必须用函数去聚合 .<br>eg: select banji,sum(score),count(id) from user group by banji; // 从班级表中统计每个班的总分数和总人数</p>
-<h2 id="eg2:查找每个客户的总金额（总订单）_:">eg2:查找每个客户的总金额（总订单） :</h2><p>O_Id OrderDate OrderPrice Customer<br>1 2008/12/29 1000 Bush<br>2 2008/11/23 1600 Carter<br>3 2008/10/05 700 Bush<br>4 2008/09/28 300 Bush<br>5 2008/08/06 2000 Adams</p>
-<h2 id="6_2008/07/21_100_Carter">6 2008/07/21 100 Carter</h2><p>执行语句： SELECT Customer,SUM(OrderPrice) FROM Orders GROUP BY Customer;</p>
-<h2 id="结果集类似这样：">结果集类似这样：</h2><p>Customer SUM(OrderPrice)<br>Bush 2000<br>Carter 1700</p>
-<h2 id="Adams_2000">Adams 2000</h2><hr>
-<h2 id="数据查询语言（_DQL）2—select_的多表查询">数据查询语言（ DQL）2—select 的多表查询</h2><p>假如下面三种方法都能实现一种表，优先选择普通多表查询。</p>
-<p>1.普通多表查询<br>1）两表查询<br>mysql&gt; select user.id,user.name,user.score,user.banji,tel.num from user,tel where user.id=tel.uid;<br>2）三表查询<br>mysql&gt; select user.name,tel.num,qq.qq from user,tel,qq where user.id=tel.uid and user.id=qq.uid;</p>
-<p>2.嵌套查询| 子查询-in<br>select * from user where id in(select uid from tel);</p>
-<p>3.左链接查询-left join on<br>select user.id,user.name,tel.num from user left join tel on user.id=tel.uid;<br>//左链接以左边的表为主导，先输出左边表的所有数据，按条件输出右边表的内容，没有相对应的内容就为 null</p>
-<p>*普通多表查询的三种方法，分别有什么区别：<br>普通多表查询，查多个表，并且可以输出多个表的内容<br>嵌套查询，查多个表，但只能输出一个表的内容<br>左链接查询，查多个表，先把左边的表全部输出，右边的表按条件输出，否者输出 null</p>
-<h2 id="复习_—最常用的语法：">复习 —最常用的语法：</h2><ol>
-<li>DDL 数据定义语言: <code>create</code>, <code>drop</code>, <code>alter</code></li>
-</ol>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br><div class="line">2</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> {<span class="keyword">database</span>};</span></div><br><br><div class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">table</span> {<span class="keyword">table</span>}();</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<ol>
-<li>DML 数据操作语言: <code>insert</code>, <code>update</code>, <code>delete</code></li>
-</ol>
-<ul>
-<li>insert into 表名 [(字段 1,字段2, 字段n)] values (‘值 1’,’值2’,’ 值n’);</li>
-<li>update 表名 set 字段名 =表达式[, 字段n=表达式 n] [where 条件] [order by 字段] [limit 行数 ];</li>
-<li>delete from 表名 [where 条件 ] [order by 字段] [limit 行数];</li>
-</ul>
-<ol>
-<li>DQL 数据查询语言: <code>select</code></li>
-</ol>
-<figure class="highlight sql"><br><br><table><br><br><tbody><br><br><tr><br><br><td class="gutter"><br><br><pre><br><br><div class="line">1</div><br><br></pre><br><br></td><br><br><td class="code"><br><br><pre><br><br><div class="line"><span class="operator"><span class="keyword">select</span> [<span class="keyword">all</span>|<span class="keyword">distinct</span>] {<em>|<span class="keyword">table</span>.</em>|[<span class="keyword">table</span>.]<span class="keyword">field</span>[<span class="keyword">as</span> alias1][,[<span class="keyword">table</span>.]field2[<span class="keyword">as</span> alias2][,…]]} <span class="keyword">from</span> tableexpression[,…][<span class="keyword">in</span> externaldatabase] [<span class="keyword">where</span>…] [<span class="keyword">group</span> <span class="keyword">by</span>…] [<span class="keyword">having</span>…] [<span class="keyword">order</span> <span class="keyword">by</span>…] [<span class="keyword">limit</span> <span class="keyword">count</span>];</span></div><br><br></pre><br><br></td><br><br></tr><br><br></tbody><br><br></table><br><br></figure>
-
-<ol>
-<li>DCL 数据控制语言: <code>grant</code>, <code>commit</code>, <code>rollback</code><br>1）grant 权限 on 数据库 .数据表 to 用户@登录主机 indentified by “密码”</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/07/18/jetbrains-software-keygen.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/07/18/jetbrains-software-keygen.html" itemprop="url">jetbrains系统注册码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-18T13:29:56+08:00">
-                2014-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/App/" itemprop="url" rel="index">
-                    <span itemprop="name">App</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/07/18/jetbrains-software-keygen.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/07/18/jetbrains-software-keygen.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/07/18/jetbrains-software-keygen.html" class="leancloud_visitors" data-flag-title="jetbrains系统注册码">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>系列软件的用户名都是<code>BOXCORE</code></p>
-<p>phpStorm注册码：</p>
-<p>===== LICENSE BEGIN =====<br>63272-12042010<br>00000l7V1XdVStPUJJBsHFRDdsUbGG<br>VbeOn!V1m62NqILGensvhsX5”r1PWS<br>RdlBkcl2sw3SDjP8azf4jw90TVuVZB<br>===== LICENSE END =====</p>
-<p>&nbsp;</p>
-<p>rubymini注册码</p>
-<p>===== LICENSE BEGIN =====<br>36121-12042010<br>000026ZaA8”l8ewDF”62XGOG4oeKCM<br>QfyjQCh4OkEdFXYoYBX”PnUChnMrLK<br>CfF”7RgedAhh78zfNSlNEc996jZJpV<br>===== LICENSE END =====</p>
-<p>&nbsp;</p>
-<p>WebStorm</p>
-<p>===== LICENSE BEGIN =====<br>31168-12042010<br>00000FTsQvvg2Wsc5xjT0AVDwzU4zZ<br>D87W3vfAv8hY””LXngYd1cHyAL9srj<br>hC70dya142m5uvhirGmWPcd”p8rMMf<br>===== LICENSE END =====</p>
-<p>&nbsp;</p>
-<p>PyCharm</p>
-<p>===== LICENSE BEGIN =====<br>98736-12042010<br>00001LIgH92VW6”X5OOrf4Vpt3t!g9<br>yuMZhvqcdcftrxPjQQvRiMCP8YsM0K<br>!BSir5BuHTtOvYAsh6Xt8weGoPp8it<br>===== LICENSE END =====</p>
-<p><pre class="brush:other"></pre><br>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/06/26/rss-list.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/26/rss-list.html" itemprop="url">订阅器收集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-26T17:06:45+08:00">
-                2014-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/App/" itemprop="url" rel="index">
-                    <span itemprop="name">App</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/06/26/rss-list.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/06/26/rss-list.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/06/26/rss-list.html" class="leancloud_visitors" data-flag-title="订阅器收集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>自从google reader关闭后就转投国内的鲜果用了1年多了, 不过终于在今天用了feedly. 故记录下一些用feed订阅的地址:</p>
-<p>feedly订阅: <a href="http://www.feedly.com/home#subscription/feed/%s" target="_blank" rel="external">http://www.feedly.com/home#subscription/feed/%s</a></p>
-<p>鲜果订阅: <a href="http://xianguo.com/subscribe?url=%s" target="_blank" rel="external">http://xianguo.com/subscribe?url=%s</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/06/26/linux/linux-download-tools.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/26/linux/linux-download-tools.html" itemprop="url">Linux下载工具(axel、wget、curl)使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-26T14:31:02+08:00">
-                2014-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/06/26/linux/linux-download-tools.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/06/26/linux/linux-download-tools.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/06/26/linux/linux-download-tools.html" class="leancloud_visitors" data-flag-title="Linux下载工具(axel、wget、curl)使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>linux下常用的下载工具是wget，其他常用的有axel和curl</p>
-<h2 id="一、wget">一、wget</h2><h3 id="应用场景">应用场景</h3><p>批量下载或递归下载网页中的所有文件： <code>wget -r http://site.com/content_dir</code><br>指定下载编码后再重命名: <code>wget --restrict-file-names=ascii -m www.xxx.com/</code></p>
+<h2 id="MySQL索引说明">MySQL索引说明</h2><p>覆盖索引</p>
 <blockquote>
-<p>下载为ascii的文件名, 可以使用软件RenamePro8.0在“高级文件名变”更里面有一个“文件名编码与解码”，“ANSI编码URL字符串转换为文字”</p>
+<p>MySQL可以利用索引返回select列表中的字段，而不必根据索引再次读取数据文件 包含所有满足查询需要的数据的索引称为 覆盖索引（Covering Index） 如果要使用覆盖索引，一定要注意select列表中只取出需要的列，不可select *，因为如果将所有字段一起做索引会导致索引文件过大，查询性能下降</p>
 </blockquote>
-<h3 id="参考">参考</h3><ul>
-<li><a href="http://moper.me/wget-download-the-file-name-garbled.html" target="_blank" rel="external">http://moper.me/wget-download-the-file-name-garbled.html</a></li>
-<li><a href="http://rubyer.me/blog/111/" target="_blank" rel="external">http://rubyer.me/blog/111/</a></li>
+<h2 id="参考">参考</h2><ul>
+<li><a href="https://my.oschina.net/zimingforever/blog/60233" target="_blank" rel="external">怎么去看懂mysql的执行计划</a></li>
 </ul>
-<h2 id="二、axel">二、axel</h2><p>axel tools是多线程下载工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ 编译安装</div><div class="line">wget http://mirrors.boxcore.org/lnmp/axel-1.0b.tar.gz</div><div class="line">tar zxvf axel-1.0b.tar.gz</div><div class="line"><span class="built_in">cd</span> axel-1.0b</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div><div class="line"><span class="built_in">cd</span> ../</div><div class="line"></div><div class="line">$ CentOS rpm包安装</div><div class="line">wget -c http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm <span class="comment"># 64bit:http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.x86_64.rpm</span></div><div class="line">rpm -ivh axel-2.4-1.el5.rf.i386.rpm</div><div class="line"></div><div class="line">$ ubuntu</div><div class="line">apt-get install axel</div></pre></td></tr></table></figure>
-<h3 id="Axel命令使用方法">Axel命令使用方法</h3><p>axel 参数 文件下载地址<br>可选参数：</p>
-<ul>
-<li><code>-n</code>   指定线程数</li>
-<li><code>-o</code>   指定另存为目录</li>
-<li><code>-s</code>   指定每秒的最大比特数</li>
-<li><code>-q</code>   静默模式</li>
-</ul>
-<p>如从Diahosting下载lnmp安装包指定10个线程，存到/tmp/：<code>axel -n 10 -o /tmp/ http://soft.vpser.net/lnmp/lnmp0.7-full.tar.gz</code></p>
-<p>如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。</p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/17/linux/nginx-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/17/linux/nginx-note.html" itemprop="url">Nginx笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:02:34+08:00">
+                2017-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/17/linux/nginx-note.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/17/linux/nginx-note.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/17/linux/nginx-note.html" class="leancloud_visitors" data-flag-title="Nginx笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="sever设置">sever设置</h2><h3 id="autoindex:_打开目录浏览功能">autoindex: 打开目录浏览功能</h3><p>nginx中可以在server或location 段里添加上autoindex on；来列出整个目录, 比如在server段添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    autoindex on;</div><div class="line">    autoindex_localtime on; <span class="comment">#之类的参数写这里</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">location /down/ &#123; <span class="comment"># 直接二级目录开启目录流量</span></div><div class="line">    autoindex on;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /down/ &#123;</div><div class="line">    <span class="built_in">alias</span> /home/wwwroot/lnmp/<span class="built_in">test</span>/; <span class="comment"># 虚拟目录开启目录流量</span></div><div class="line">    autoindex on;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>相关属性</p>
+<h4 id="autoindex_exact_size"><code>autoindex_exact_size</code></h4><p><code>autoindex_exact_size off</code>;<br>默认为on，显示出文件的确切大小，单位是bytes。<br>改为off后，显示出文件的大概大小，单位是kB或者MB或者GB</p>
+<h4 id="autoindex_localtime">autoindex_localtime</h4><p>默认为off，显示的文件时间为GMT时间。<br>改为on后，显示的文件时间为文件的服务器时间</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/16/linux/linux-shell.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/16/linux/linux-shell.html" itemprop="url">Linux Shell脚本攻略</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T19:14:21+08:00">
+                2017-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/16/linux/linux-shell.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/16/linux/linux-shell.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/16/linux/linux-shell.html" class="leancloud_visitors" data-flag-title="Linux Shell脚本攻略">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里是本人学习linux中整理的一些笔记归档，写的比较粗略，可做为linux常用一些目录的快速入门教程。但如果像具体点学习一个命令的所有应用，这里可能不太适合你，当然，后面又参考部分你可以进入看看详细的一些教程。enjoy it！</p>
+<h2 id="前言：shell基础说明">前言：shell基础说明</h2><h3 id="shell的使用">shell的使用</h3><p>shell脚本规范：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># do something</span></div></pre></td></tr></table></figure></p>
+<p>一个shell脚本的执行方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sh script.sh        <span class="comment"># 执行方式1</span></div><div class="line">chmod a+x script.sh <span class="comment"># 执行方式2</span></div><div class="line">./script.sh         <span class="comment"># 会读取首行的解释器, 执行</span></div></pre></td></tr></table></figure>
+<h2 id="一、shell系统基础">一、shell系统基础</h2><h3 id="1-1_环境变量和变量">1.1 环境变量和变量</h3><p>bash中，每个变量的值都是字符串，无论你给变量赋值时是否使用引号，值都会以字符串的形式存储</p>
+<h4 id="环境变量">环境变量</h4><p>查看所有与此终端进程相关的环境变量: <code>env</code></p>
+<p>查看某个进程的环境变量: <code>cat /proc/$PID/environ</code></p>
+<p>变量赋值:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var=value</div><div class="line">var=<span class="string">'the value'</span></div><div class="line">var=<span class="string">"the <span class="variable">$PARAM</span>"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$var</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div><div class="line"></div><div class="line">var = value非变量赋值是相等操作</div></pre></td></tr></table></figure>
+<h4 id="环境变量-1">环境变量</h4><p>未在当前进程中定义，而是从父进程中继承而来的变量, export 设置环境变量之后,从当前shell 执行的任何程序都会继承这个变量, 如：</p>
+<p><code>export PYTHONPATH=$PYTHONPATH:/home/ken/workspace</code></p>
+<p>我们linux中常用的环境变量如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">PATH 查找可执行文件路径, 通常定义在/etc/environment or /ect/profile or ~/.bashrc</div><div class="line">修改:        <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/new/path/</div><div class="line">HOME</div><div class="line">PWD</div><div class="line">USER</div><div class="line">UID</div><div class="line">SHELL</div></pre></td></tr></table></figure>
+<p>识别当前shell版本:</p>
+<ul>
+<li><code>echo $SHELL</code></li>
+<li><code>echo $0</code></li>
+</ul>
+<h3 id="1-2_命令状态">1.2 命令状态</h3><p>当命令成功完成, 返回0</p>
+<p>发生错误并退回, 返回非0</p>
+<p>可以从$?中获取 cmd; echo $?</p>
+<h3 id="文件描述符和重定向">文件描述符和重定向</h3><p>文件描述符: 与文件输入/输出相关联的整数, 用来跟踪已打开的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">0 stdin  标准输入</div><div class="line">1 stdout 标准输出</div><div class="line">2 stderr 标准错误</div></pre></td></tr></table></figure>
+<p>重定向到文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">清空文件写入新内容</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt; temp.txt</div><div class="line">追加</div><div class="line"><span class="built_in">echo</span> <span class="string">"test"</span> &gt;&gt; temp.txt</div><div class="line"></div><div class="line">&gt;等价于1&gt;</div><div class="line">&gt;&gt;等价于 1&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>输出分离或合并:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">分离</div><div class="line">cmd 2&gt;stderr.txt  1&gt;stdout.txt</div><div class="line"></div><div class="line">合并</div><div class="line">cmd &gt; output.txt 2&gt;&amp;1</div><div class="line">or</div><div class="line">cmd &amp;&gt; output.txt</div></pre></td></tr></table></figure></p>
+<p>扔到垃圾桶:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/dev/null 特殊设备文件, 接收到的任何数据都会被丢弃(位桶/黑洞)</div><div class="line"></div><div class="line">只有标准错误</div><div class="line">cmd 2 &gt; /dev/null</div><div class="line"></div><div class="line">标准输出和标准错误</div><div class="line">cmd &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p>
+<p>同时输出到终端和文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cmd | tee file1</div><div class="line"></div><div class="line">tee默认覆盖，可以<span class="_">-a</span>选项追加</div><div class="line">cmd | tee <span class="_">-a</span> file1</div></pre></td></tr></table></figure></p>
+<p>将stdin作为命令参数: <code>cmd1 | cmd2 | cmd3 -</code><br>将文件重定向到命令: <code>cmd &lt; file</code></p>
+<p>自定义文件描述符:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">使用文件描述符3打开并读取文件</div><div class="line"><span class="built_in">exec</span> 3&lt;input.txt</div><div class="line">cat &lt;&amp;3</div><div class="line"></div><div class="line">使用文件描述符4进行写入</div><div class="line"><span class="built_in">exec</span> 4&gt;output.txt</div><div class="line"><span class="built_in">echo</span> newline &gt;&amp;4</div></pre></td></tr></table></figure></p>
+<h2 id="二、字符串处理">二、字符串处理</h2><h3 id="2-1_sed简明教程">2.1 sed简明教程</h3><h3 id="2-2_awk简明教程">2.2 awk简明教程</h3><h3 id="2-3_输出和打印（echo_&amp;_printf）">2.3 输出和打印（echo &amp; printf）</h3><h4 id="echo">echo</h4><p>基于标准输出打印一段文本</p>
+<ul>
+<li>忽略结尾换行符: <code>echo -n &#39;test\n&#39;</code></li>
+<li>对字符串进行转义: <code>echo -e &#39;1\t2\t3&#39;</code></li>
+<li>打印彩色输出:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">文字颜色码</div><div class="line">    重置0</div><div class="line">    黑色30</div><div class="line">    红色31</div><div class="line">    绿色32</div><div class="line">    黄色33</div><div class="line">    蓝色34</div><div class="line">    洋红35</div><div class="line">    青色36</div><div class="line">    白色37</div><div class="line"></div><div class="line">echo -e &quot;\e[1;31m This is red test \e[0m&quot;</div><div class="line"></div><div class="line">背景颜色码</div><div class="line">    重置0</div><div class="line">    黑色40</div><div class="line">    红色41</div><div class="line">    绿色42</div><div class="line">    黄色43</div><div class="line">    蓝色44</div><div class="line">    洋红45</div><div class="line">    青色46</div><div class="line">    白色47</div><div class="line"></div><div class="line">echo -e &quot;\e[1;42m Green Background \e[0m&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="printf">printf</h4><p>可以格式化字符串, 使用参数同c中printf一样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">"%-5s %-10s %-4.2f\n"</span> 3 Jeff 77.564</div><div class="line">$ 3    Jeff      77.56</div></pre></td></tr></table></figure>
+<h2 id="三、_进程管理">三、 进程管理</h2><h3 id="3-1_pgrep">3.1 pgrep</h3><p>获取某个进程名对应进程id 使用命令<code>pgrep</code>, 例如:<code>pgrep php</code></p>
+<h2 id="四、_运算">四、 运算</h2><h3 id="4-1_shell数学运算">4.1 shell数学运算</h3><h4 id="let">let</h4><h4 id="expr">expr</h4><ul>
+<li><code>echo \</code>expr 1 + 7``</li>
+<li><code>result=$(expr $no1 + 5)</code></li>
+</ul>
+<h4 id="其他运算">其他运算</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">result=$[ no1 + no2 ]</div><div class="line">result=$[ <span class="variable">$no</span> + 5 ]</div><div class="line"></div><div class="line">result=$(( no1 + 5 ))</div></pre></td></tr></table></figure>
+<h4 id="浮点数:_bc">浮点数: bc</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">设定精度</div><div class="line"><span class="built_in">echo</span> <span class="string">"scale=2;3/8"</span> | bc</div><div class="line">进制转换</div><div class="line"><span class="built_in">echo</span> <span class="string">"obase=2;100"</span> | bc</div><div class="line">平方</div><div class="line"><span class="built_in">echo</span> <span class="string">"10^10"</span> | bc</div><div class="line">平方根</div><div class="line"><span class="built_in">echo</span> <span class="string">"sqrt(100)"</span> | bc</div></pre></td></tr></table></figure>
+<h2 id="五、数组：数组和关联数组">五、数组：数组和关联数组</h2><ul>
+<li>普通数组，整数作为数组索引, 借助索引将多个独立的数据存储为一个集合(list)</li>
+<li>关联数组，可以使用字符串作为索引(map)</li>
+</ul>
+<p>注意，在mac中的shell不能使用索引该笔记的<code>关联数组</code>。</p>
+<h3 id="5-1_普通数组">5.1 普通数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">array_var=(1 2 3 4 5)  <span class="comment"># 定义数组 方式1</span></div><div class="line"></div><div class="line">array_var[0]=<span class="string">"test1"</span> <span class="comment"># 定义数组 方式2</span></div><div class="line">array_var[3]=<span class="string">"test3"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[0]&#125;</span> <span class="comment"># 读取数组</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[*]&#125;</span> <span class="comment"># 以清单形式打印</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_var[@]&#125;</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#array_var[*]&#125;</span> <span class="comment"># 打印数组长度</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!array_var[*]&#125;</span> <span class="comment"># 获取索引列表</span></div></pre></td></tr></table></figure>
+<h3 id="5-2_关联数组">5.2 关联数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">declare</span> -A ass_array <span class="comment"># 先定义一个多维数组</span></div><div class="line">ass_array=([index1]=value1 [index2]=value2) <span class="comment"># 赋值：内嵌索引-值</span></div><div class="line">ass_array[index3]=value3 <span class="comment"># 独立赋值</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ass_array[index1]&#125;</span> <span class="comment"># 打印对应值</span></div></pre></td></tr></table></figure>
+<h2 id="工具参考">工具参考</h2><h3 id="crontab">crontab</h3><p>crontab文件的含义：<br>用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：</p>
+<p><code>minute   hour   day   month   week   command</code></p>
+<p>其中：</p>
+<ul>
+<li>minute： 表示分钟，可以是从0到59之间的任何整数。</li>
+<li>hour：表示小时，可以是从0到23之间的任何整数。</li>
+<li>day：表示日期，可以是从1到31之间的任何整数。</li>
+<li>month：表示月份，可以是从1到12之间的任何整数。</li>
+<li>week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</li>
+<li>command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。</li>
+</ul>
+<p>在以上各个字段中，还可以使用以下特殊字符：</p>
+<ul>
+<li>星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</li>
+<li>逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”</li>
+<li>中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”</li>
+<li>正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</li>
+</ul>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/base/index.html" target="_blank" rel="external">Linux基础</a></li>
+<li><a href="http://www.wklken.me/posts/2013/07/04/note-of-linux-shell-scripting-cookbook.html" target="_blank" rel="external">LINUX SHELL脚本攻略笔记[速查]</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/04/08/php/php-memory-get-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/08/php/php-memory-get-usage.html" itemprop="url">PHP内存优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T18:35:01+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/08/php/php-memory-get-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/08/php/php-memory-get-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/08/php/php-memory-get-usage.html" class="leancloud_visitors" data-flag-title="PHP内存优化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在php中，我们最常用 <code>memory_get_usage()</code>来返回php内存的使用情况，它默认单位是Bytes,</p>
+<h2 id="一、内存溢出问题">一、内存溢出问题</h2><h3 id="内存溢出解决方案">内存溢出解决方案</h3><p>这里，不难看出，一方面，我们要增加PHP可用内存大小，另一方面，只要我们想办法对数组进行分批处理，分而治之，将用过的变量及时销毁(unset)，一般是不会出现溢出问题的。</p>
+<p>另外，为了节省PHP程序内存损耗，我们应当尽可能减少静态变量的使用，在需要数据重用时，可以考虑使用引用(&amp;)。再一点就是：数据库操作完成后，要马上关闭连接；一个对象使用完，要及时调用析构函数（__destruct()）。</p>
+<h3 id="结论">结论</h3><ul>
+<li>php5.3及以上可以使用函数<code>gc_collect_cycles()</code>进行垃圾回收</li>
+<li>使用完变量需要用<code>unset()</code>销毁</li>
+<li></li>
+</ul>
+<p>参考的一些文章：</p>
+<ul>
+<li><a href="http://zhengdl126.iteye.com/blog/1112231" target="_blank" rel="external">http://zhengdl126.iteye.com/blog/1112231</a></li>
+<li><a href="http://www.laruence.com/2011/03/04/1894.html" target="_blank" rel="external">http://www.laruence.com/2011/03/04/1894.html</a></li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/03/11/java/java-note-zk.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/11/java/java-note-zk.html" itemprop="url">Java笔记1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T23:57:19+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/11/java/java-note-zk.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/11/java/java-note-zk.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/11/java/java-note-zk.html" class="leancloud_visitors" data-flag-title="Java笔记1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这个笔记是基于《Java语言程序设计（一）》</p>
+<p>主要内容有：</p>
+<ol>
+<li>Java语言基础</li>
+<li>运算和语句</li>
+<li>面向对象编程基础</li>
+<li>数组和字符串</li>
+<li>图形界面设计</li>
+<li>图形、图像与多媒体</li>
+<li>多线程</li>
+<li>输入和输出流</li>
+<li>伟林与数据库编程基础</li>
+</ol>
+<h2 id="一、Java语言基础">一、Java语言基础</h2><h3 id="1-1">1.1</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/03/06/books/mysql-technology-insider-sql-programming.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/06/books/mysql-technology-insider-sql-programming.html" itemprop="url">2016-12-19 本周新书：MySQL技术内幕 - SQL编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T00:33:10+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/06/books/mysql-technology-insider-sql-programming.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/06/books/mysql-technology-insider-sql-programming.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/06/books/mysql-technology-insider-sql-programming.html" class="leancloud_visitors" data-flag-title="2016-12-19 本周新书：MySQL技术内幕 - SQL编程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本周读书任务：<code>《MySQL技术内幕 - SQL编程》</code></p>
+<p>限定阅读时间：2016-12-19~2016-12-25</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/03/06/php/php-design-patterns-start.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/06/php/php-design-patterns-start.html" itemprop="url">PHP设计模式（1） - 开始</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T00:29:42+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/06/php/php-design-patterns-start.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/06/php/php-design-patterns-start.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/06/php/php-design-patterns-start.html" class="leancloud_visitors" data-flag-title="PHP设计模式（1） - 开始">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、基础环境准备">一、基础环境准备</h2><ol>
+<li>IDE选择： PHPstorm</li>
+<li>字体选择：等宽的字体</li>
+</ol>
+<h2 id="二、一些必备的php基础">二、一些必备的php基础</h2><h3 id="2-1_命名空间">2.1 命名空间</h3><ul>
+<li>php 5.3+</li>
+</ul>
+<h3 id="2-2_类自动载入">2.2 类自动载入</h3><ul>
+<li><code>__autoload()</code></li>
+<li><code>spl_autoload_register(方法)</code></li>
+</ul>
+<h3 id="2-3_PSR-0,PSR-4规范">2.3 PSR-0,PSR-4规范</h3>
           
         
       
@@ -2043,7 +1932,7 @@ git gc --aggressive --prune=now
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2088,7 +1977,7 @@ git gc --aggressive --prune=now
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">152</span>
+                <span class="site-state-item-count">172</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2099,7 +1988,7 @@ git gc --aggressive --prune=now
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -2110,7 +1999,7 @@ git gc --aggressive --prune=now
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -2177,7 +2066,7 @@ git gc --aggressive --prune=now
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
