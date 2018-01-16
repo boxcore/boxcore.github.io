@@ -98,7 +98,7 @@
 <meta name="description" content="Go">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BoxCore">
-<meta property="og:url" content="http://boxcore.github.io/categories/MySQL/index.html">
+<meta property="og:url" content="http://boxcore.github.io/categories/mysql/index.html">
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="Go">
 <meta name="twitter:card" content="summary">
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://boxcore.github.io/categories/MySQL/"/>
+  <link rel="canonical" href="http://boxcore.github.io/categories/mysql/"/>
 
 
 
 
 
-  <title>分类: MySQL | BoxCore</title>
+  <title>分类: mysql | BoxCore</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -319,7 +319,7 @@
 
   <section id="posts" class="posts-collapse">
     <div class="collection-title">
-      <h1>MySQL<small>分类</small>
+      <h1>mysql<small>分类</small>
       </h1>
     </div>
 
@@ -331,9 +331,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/04/26/mysql-learn.html" itemprop="url">
+            <a class="post-title-link" href="/2018/01/16/sql/mysql-reset-password.html" itemprop="url">
               
-                <span itemprop="name">MySQL学习</span>
+                <span itemprop="name">MySQL密码重置</span>
               
             </a>
         
@@ -341,9 +341,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-26T15:12:43+08:00"
-              content="2017-04-26" >
-          04-26
+              datetime="2018-01-16T00:03:59+08:00"
+              content="2018-01-16" >
+          01-16
         </time>
       </div>
 
@@ -359,37 +359,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2013/12/13/mysql-note.html" itemprop="url">
+            <a class="post-title-link" href="/2017/12/22/sql/mysql-dump-and-source.html" itemprop="url">
               
-                <span itemprop="name">Mysql学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2013-12-13T10:15:24+08:00"
-              content="2013-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2013/11/26/mysql-delete-duplicate-records.html" itemprop="url">
-              
-                <span itemprop="name">MySQL删除重复记录</span>
+                <span itemprop="name">MySQL数据备份&导入</span>
               
             </a>
         
@@ -397,9 +369,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2013-11-26T13:31:33+08:00"
-              content="2013-11-26" >
-          11-26
+              datetime="2017-12-22T22:27:59+08:00"
+              content="2017-12-22" >
+          12-22
         </time>
       </div>
 
@@ -1108,6 +1080,44 @@
               success: function(newcounter) {
                 var $element = $(document.getElementById(url));
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+count').text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
                 console.log('Failed to create');

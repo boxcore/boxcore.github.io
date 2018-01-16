@@ -644,6 +644,566 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-design-pattern.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/php/php-design-pattern.html" itemprop="url">PHP设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/php/php-design-pattern.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/php/php-design-pattern.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/php/php-design-pattern.html" class="leancloud_visitors" data-flag-title="PHP设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们常用的php设计模式有: </p>
+<ul>
+<li><a href="#Singleton(单例模式">单例模式</a>)</li>
+<li><a href="#Singleton(单例模式">单例模式</a>)</li>
+</ul>
+<h2 id="Interpreter(解释器模式)">Interpreter(解释器模式)</h2><h2 id="Factory(工厂模式)">Factory(工厂模式)</h2><h2 id="Facade(外观模式)">Facade(外观模式)</h2><h2 id="Decorator(装饰模式)">Decorator(装饰模式)</h2><h2 id="Builder(建造者模式)">Builder(建造者模式)</h2><h2 id="Adapter(适配器模式)">Adapter(适配器模式)</h2><h2 id="Template_(模板模式)">Template (模板模式)</h2><h2 id="Command(命令模式)">Command(命令模式)</h2><h2 id="Singleton(单例模式)">Singleton(单例模式)</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。</p>
+<p>单例模式的要点有三个：</p>
+<ol>
+<li>是某个类只能有一个实例；</li>
+<li>是它必须自行创建这个实例；</li>
+<li>是它必须自行向整个系统提供这个实例。</li>
+</ol>
+<p><strong>为什么要使用PHP单例模式？</strong></p>
+<p>多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”.   而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。</p>
+<ol>
+<li><p>php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。</p>
+</li>
+<li><p>如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。</p>
+</li>
+<li><p>在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 设计模式之单例模式</div><div class="line">* $_instance必须声明为静态的私有变量</div><div class="line">* 构造函数和析构函数必须声明为私有,防止外部程序new</div><div class="line">* 类从而失去单例模式的意义</div><div class="line">* getInstance()方法必须设置为公有的,必须调用此方法</div><div class="line">* 以返回实例的一个引用</div><div class="line">* ::操作符只能访问静态变量和静态函数</div><div class="line">* new对象都会消耗内存</div><div class="line">* 使用场景:最常用的地方是数据库连接。 </div><div class="line">* 使用单例模式生成一个对象后，</div><div class="line">* 该对象可以被其它众多对象所使用。 </div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">//保存例实例在此属性中</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> $_instance;</div><div class="line"></div><div class="line"><span class="comment">//构造函数声明为private,防止直接创建对象</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">'I am Construceted'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//单例方法</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">singleton</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="keyword">self</span>::$_instance))</div><div class="line">&#123;</div><div class="line">$c=<span class="keyword">__CLASS__</span>;</div><div class="line"><span class="keyword">self</span>::$_instance=<span class="keyword">new</span> $c;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="keyword">self</span>::$_instance;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//阻止用户复制对象实例</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">trigger_error(<span class="string">'Clone is not allow'</span> ,E_USER_ERROR);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span>(<span class="string">"test"</span>);</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这个写法会出错，因为构造方法被声明为private</span></div><div class="line">$test = <span class="keyword">new</span> Example;</div><div class="line"></div><div class="line"><span class="comment">// 下面将得到Example类的单例对象</span></div><div class="line">$test = Example::singleton();</div><div class="line">$test-&gt;test();</div><div class="line"></div><div class="line"><span class="comment">// 复制对象将导致一个E_USER_ERROR.</span></div><div class="line">$test_clone = <span class="keyword">clone</span> $test;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Observer(观察者模式)">Observer(观察者模式)</h2><h2 id="Strategy(策略模式)">Strategy(策略模式)</h2><h2 id="Visitor_(访问者模式)">Visitor (访问者模式)</h2><h2 id="Memento_(备忘录模式)">Memento (备忘录模式)</h2><h2 id="Prototype_(原型模式)">Prototype (原型模式)</h2><h2 id="Mediator_(中介者模式)">Mediator (中介者模式)</h2><h2 id="FlyWeight_(享元模式)">FlyWeight (享元模式)</h2><h2 id="Chain_Of_Responsibility_(职责链模式)">Chain Of Responsibility (职责链模式)</h2><h2 id="Bridge_(桥接模式)">Bridge (桥接模式)</h2><h2 id="Proxy_(代理模式)">Proxy (代理模式)</h2><h2 id="State_(状态模式)">State (状态模式)</h2><h2 id="Composite_(组合模式)">Composite (组合模式)</h2><h2 id="Interator_(迭代器模式)">Interator (迭代器模式)</h2><hr>
+<p><strong>解释</strong></p>
+<ul>
+<li><p><strong>参考文章</strong></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/bluefrog/archive/2011/06/28/2092634.html" target="_blank" rel="external">php设计模式 (总结)</a></p>
+</li>
+<li><a href="http://www.cnblogs.com/zox2011/archive/2011/09/20/2182119.html" target="_blank" rel="external">PHP单例模式（转载）</a></li>
+<li><a href="http://www.phppan.com/2010/06/php-design-pattern-6-singleton/" target="_blank" rel="external">PHP设计模式笔记：使用PHP实现单例模式</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-preg.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/php/php-preg.html" itemprop="url">PHP正则使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/php/php-preg.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/php/php-preg.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/php/php-preg.html" class="leancloud_visitors" data-flag-title="PHP正则使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="正则中的一些概念">正则中的一些概念</h1><h2 id="元字符">元字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.   匹配除换行符意外的任意字符</div><div class="line">\w  匹配字母或数字或下划线</div><div class="line">\s  匹配任意的空白符</div><div class="line">\d  匹配数字</div><div class="line">\b  匹配单词的开始或结束</div><div class="line">^   匹配字符串的开始</div><div class="line">$   匹配字符串的结束</div><div class="line">[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符</div><div class="line">\W  \w的反义，即匹配任意非字母，数字，下划线和汉字的字符</div><div class="line">\S  \s的反义，即匹配任意非空白符的字符</div><div class="line">\D  \d的反义，即匹配任意非数字的字符</div><div class="line">\B  \b的反义，即不是单词开头或结束的位置</div><div class="line">[^x]    匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</div></pre></td></tr></table></figure>
+<h2 id="重复">重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*   重复零次或更多次</div><div class="line">+   重复 1 次或更多次</div><div class="line">?   重复零次或 1 次</div><div class="line">&#123;n&#125; 重复 n 次</div><div class="line">&#123;n,&#125;    重复 n 次或更多次</div><div class="line">&#123;n,m&#125;   重复 n 到 m 次</div></pre></td></tr></table></figure>
+<h2 id="模式修正符">模式修正符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i   模式中的字符将同时匹配大小写字母</div><div class="line">m   字符串视为多行</div><div class="line">s   将字符串视为单行，换行符作为普通字符</div><div class="line">x   将模式中的空白忽略</div><div class="line">e   preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。</div><div class="line">A   强制仅从目标字符串的开头开始匹配</div><div class="line">D   模式中的 $ 元字符仅匹配目标字符串的结尾</div><div class="line">U   匹配最近的字符串</div><div class="line">u   模式字符串被当成 UTF-8</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="PHP正则函数">PHP正则函数</h1><p>在 PHP 应用中，正则表达式主要用于：    </p>
+<ol>
+<li>正则匹配：根据正则表达式匹配相应的内容</li>
+<li>正则替换：根据正则表达式匹配内容并替换</li>
+<li>正则分割：根据正则表达式分割字符串</li>
+</ol>
+<h2 id="PHP_正则表达式匹配_preg_match_与_preg_match_all_函数">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</h2><h3 id="preg_match()">preg_match()</h3><p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
+<p>语法：  </p>
+<blockquote>
+<p>int preg_match( string pattern, string subject [, array matches ] )</p>
+</blockquote>
+<p>参数说明：<br>    pattern 正则表达式<br>    subject 需要匹配检索的对象<br>    matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推</p>
+<h3 id="preg_match_all()">preg_match_all()</h3><p>preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
+<p>语法：</p>
+<blockquote>
+<p>int preg_match_all( string pattern, string subject, array matches [, int flags ] ) </p>
+</blockquote>
+<p>参数说明:<br>pattern: 正则表达式<br>subject: 需要匹配检索的对象<br>matches: 存储匹配结果的数组<br>flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有：</p>
+<pre><code><span class="number">1</span>. PREG_PATTERN_ORDER：默认，对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为全部模式匹配的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推
+<span class="number">2</span>. PREG_SET_ORDER：对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为第一组匹配项的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第二组匹配项的数组，以此类推
+<span class="number">3</span>. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量  
+</code></pre><hr>
+<h1 id="部分实例">部分实例</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1，过滤所有html标签的正则表达式：</span></div><div class="line">&lt;/?[^&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//2，过滤所有html标签的属性的正则表达式：</span></div><div class="line">$html = preg_replace(<span class="string">"/&lt;([a-zA-Z]+)[^&gt;]*&gt;/"</span>,<span class="string">"&lt;\\1&gt;"</span>,$html);</div><div class="line"></div><div class="line"><span class="comment">//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：</span></div><div class="line">&lt;/?[^pP/&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：</span></div><div class="line">&lt;/?[aApPbB][^&gt;]*&gt;</div><div class="line"></div><div class="line"><span class="comment">//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：</span></div><div class="line">\s(?!alt)[a-zA-Z]+=[^\s]*</div><div class="line"></div><div class="line"><span class="comment">//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：</span></div><div class="line">(\s)alt=[^\s]*</div></pre></td></tr></table></figure>
+<p>正则表达式中排除不需要匹配的字符串或字符<br>(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串</p>
+<p>(2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报)  </p>
+<p>加上|用于或选择。上面列出的字符串都不会参与匹配  </p>
+<hr>
+<h1 id="常用正则">常用正则</h1><ol>
+<li>删除空行:    <code>\r\n\r\n =&gt; \r\n\</code></li>
+<li>删除有空格的空行:    <code>^ +$ =&gt;</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-redis-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/php/php-redis-usage.html" itemprop="url">PHP使用redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/php/php-redis-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/php/php-redis-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/php/php-redis-usage.html" class="leancloud_visitors" data-flag-title="PHP使用redis">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Redis简介:</strong></p>
+<p>是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步.</p>
+<h2 id="window下安装使用redis">window下安装使用redis</h2><p><strong>需要文件:</strong></p>
+<ul>
+<li><a href="http://windows.php.net/downloads/pecl/snaps/redis/2.2.4/" target="_blank" rel="external">PHP官方Redis扩展下载</a></li>
+<li><a href="https://github.com/MSOpenTech/redis" target="_blank" rel="external">win下Redis程序(32位,在目录/bin中)</a></li>
+<li><a href="https://github.com/mythz/redis-windows" target="_blank" rel="external">Win下Redis程序(64位)</a></li>
+</ul>
+<p><strong>解压下redis,有如下文件:</strong></p>
+<ul>
+<li>redis-server.exe：服务程序 </li>
+<li>redis-check-dump.exe：本地数据库检查 </li>
+<li>redis-check-aof.exe：更新日志检查 </li>
+<li>redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具). </li>
+</ul>
+<h3 id="windows下_使用redis">windows下 使用redis</h3><p>安装好redis后可以在cmd中运行<code>{dir}\redis-server.exe</code>运行redis服务.<br>运行后redis服务端后,可以在cmd通过<code>redis-cli.exe -h 127.0.0.1 -p 6379</code>来运行客户端  </p>
+<p>简单测试:</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> mykey somevalue</div><div class="line">OK</div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; get mykey</div><div class="line">"somevalue"</div></pre></td></tr></table></figure>
+<p>如何添加值到list:</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val1</div><div class="line">(integer) <span class="number">1</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val2</div><div class="line">(integer) <span class="number">2</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val3</div><div class="line">(integer) <span class="number">3</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val4</div><div class="line">(integer) <span class="number">4</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lrange mylist <span class="number">0</span> -<span class="number">1</span>  </div><div class="line"><span class="number">1</span>&gt; val1  </div><div class="line"><span class="number">2</span>&gt; val2  </div><div class="line"><span class="number">3</span>&gt; val3 </div><div class="line"><span class="number">4</span>&gt; val4</div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; rpop mylist  </div><div class="line">"val1"</div></pre></td></tr></table></figure>
+<p>redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的 ab 工具). </p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">D:\<span class="title">wnmp</span>\<span class="title">redis</span>&gt;<span class="title">redis</span>-<span class="title">benchmark</span> -<span class="title">n</span> 100000 –<span class="title">c</span> 50</span></div></pre></td></tr></table></figure>
+<h2 id="linux下安装使用redis">linux下安装使用redis</h2><hr>
+<p><strong>参考</strong></p>
+<ul>
+<li><a href="http://my.oschina.net/lujianing/blog/204103" target="_blank" rel="external">http://my.oschina.net/lujianing/blog/204103</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1006,566 +1566,6 @@ Dictionary（字典）
 </blockquote>
 <h2 id="if流程控制-1">if流程控制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 判断一</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"></div><div class="line"><span class="comment"># 判断二</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't get printed!"</span></div><div class="line"><span class="keyword">elif</span> <span class="number">8</span> &lt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I also don't get printed!"</span></div></pre></td></tr></table></figure>
 <h2 id="while语句">while语句</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-redis-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/php/php-redis-usage.html" itemprop="url">PHP使用redis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/php/php-redis-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-redis-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/php/php-redis-usage.html" class="leancloud_visitors" data-flag-title="PHP使用redis">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>Redis简介:</strong></p>
-<p>是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步.</p>
-<h2 id="window下安装使用redis">window下安装使用redis</h2><p><strong>需要文件:</strong></p>
-<ul>
-<li><a href="http://windows.php.net/downloads/pecl/snaps/redis/2.2.4/" target="_blank" rel="external">PHP官方Redis扩展下载</a></li>
-<li><a href="https://github.com/MSOpenTech/redis" target="_blank" rel="external">win下Redis程序(32位,在目录/bin中)</a></li>
-<li><a href="https://github.com/mythz/redis-windows" target="_blank" rel="external">Win下Redis程序(64位)</a></li>
-</ul>
-<p><strong>解压下redis,有如下文件:</strong></p>
-<ul>
-<li>redis-server.exe：服务程序 </li>
-<li>redis-check-dump.exe：本地数据库检查 </li>
-<li>redis-check-aof.exe：更新日志检查 </li>
-<li>redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具). </li>
-</ul>
-<h3 id="windows下_使用redis">windows下 使用redis</h3><p>安装好redis后可以在cmd中运行<code>{dir}\redis-server.exe</code>运行redis服务.<br>运行后redis服务端后,可以在cmd通过<code>redis-cli.exe -h 127.0.0.1 -p 6379</code>来运行客户端  </p>
-<p>简单测试:</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> mykey somevalue</div><div class="line">OK</div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; get mykey</div><div class="line">"somevalue"</div></pre></td></tr></table></figure>
-<p>如何添加值到list:</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val1</div><div class="line">(integer) <span class="number">1</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val2</div><div class="line">(integer) <span class="number">2</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val3</div><div class="line">(integer) <span class="number">3</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lpush mylist val4</div><div class="line">(integer) <span class="number">4</span></div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; lrange mylist <span class="number">0</span> -<span class="number">1</span>  </div><div class="line"><span class="number">1</span>&gt; val1  </div><div class="line"><span class="number">2</span>&gt; val2  </div><div class="line"><span class="number">3</span>&gt; val3 </div><div class="line"><span class="number">4</span>&gt; val4</div><div class="line">redis <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">6379</span>&gt; rpop mylist  </div><div class="line">"val1"</div></pre></td></tr></table></figure>
-<p>redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的 ab 工具). </p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">D:\<span class="title">wnmp</span>\<span class="title">redis</span>&gt;<span class="title">redis</span>-<span class="title">benchmark</span> -<span class="title">n</span> 100000 –<span class="title">c</span> 50</span></div></pre></td></tr></table></figure>
-<h2 id="linux下安装使用redis">linux下安装使用redis</h2><hr>
-<p><strong>参考</strong></p>
-<ul>
-<li><a href="http://my.oschina.net/lujianing/blog/204103" target="_blank" rel="external">http://my.oschina.net/lujianing/blog/204103</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-design-pattern.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/php/php-design-pattern.html" itemprop="url">PHP设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/php/php-design-pattern.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-design-pattern.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/php/php-design-pattern.html" class="leancloud_visitors" data-flag-title="PHP设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们常用的php设计模式有: </p>
-<ul>
-<li><a href="#Singleton(单例模式">单例模式</a>)</li>
-<li><a href="#Singleton(单例模式">单例模式</a>)</li>
-</ul>
-<h2 id="Interpreter(解释器模式)">Interpreter(解释器模式)</h2><h2 id="Factory(工厂模式)">Factory(工厂模式)</h2><h2 id="Facade(外观模式)">Facade(外观模式)</h2><h2 id="Decorator(装饰模式)">Decorator(装饰模式)</h2><h2 id="Builder(建造者模式)">Builder(建造者模式)</h2><h2 id="Adapter(适配器模式)">Adapter(适配器模式)</h2><h2 id="Template_(模板模式)">Template (模板模式)</h2><h2 id="Command(命令模式)">Command(命令模式)</h2><h2 id="Singleton(单例模式)">Singleton(单例模式)</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。</p>
-<p>单例模式的要点有三个：</p>
-<ol>
-<li>是某个类只能有一个实例；</li>
-<li>是它必须自行创建这个实例；</li>
-<li>是它必须自行向整个系统提供这个实例。</li>
-</ol>
-<p><strong>为什么要使用PHP单例模式？</strong></p>
-<p>多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”.   而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。</p>
-<ol>
-<li><p>php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。</p>
-</li>
-<li><p>如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。</p>
-</li>
-<li><p>在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。</p>
-</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 设计模式之单例模式</div><div class="line">* $_instance必须声明为静态的私有变量</div><div class="line">* 构造函数和析构函数必须声明为私有,防止外部程序new</div><div class="line">* 类从而失去单例模式的意义</div><div class="line">* getInstance()方法必须设置为公有的,必须调用此方法</div><div class="line">* 以返回实例的一个引用</div><div class="line">* ::操作符只能访问静态变量和静态函数</div><div class="line">* new对象都会消耗内存</div><div class="line">* 使用场景:最常用的地方是数据库连接。 </div><div class="line">* 使用单例模式生成一个对象后，</div><div class="line">* 该对象可以被其它众多对象所使用。 </div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">//保存例实例在此属性中</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> $_instance;</div><div class="line"></div><div class="line"><span class="comment">//构造函数声明为private,防止直接创建对象</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">'I am Construceted'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//单例方法</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">singleton</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="keyword">self</span>::$_instance))</div><div class="line">&#123;</div><div class="line">$c=<span class="keyword">__CLASS__</span>;</div><div class="line"><span class="keyword">self</span>::$_instance=<span class="keyword">new</span> $c;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="keyword">self</span>::$_instance;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//阻止用户复制对象实例</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">trigger_error(<span class="string">'Clone is not allow'</span> ,E_USER_ERROR);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span>(<span class="string">"test"</span>);</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这个写法会出错，因为构造方法被声明为private</span></div><div class="line">$test = <span class="keyword">new</span> Example;</div><div class="line"></div><div class="line"><span class="comment">// 下面将得到Example类的单例对象</span></div><div class="line">$test = Example::singleton();</div><div class="line">$test-&gt;test();</div><div class="line"></div><div class="line"><span class="comment">// 复制对象将导致一个E_USER_ERROR.</span></div><div class="line">$test_clone = <span class="keyword">clone</span> $test;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="Observer(观察者模式)">Observer(观察者模式)</h2><h2 id="Strategy(策略模式)">Strategy(策略模式)</h2><h2 id="Visitor_(访问者模式)">Visitor (访问者模式)</h2><h2 id="Memento_(备忘录模式)">Memento (备忘录模式)</h2><h2 id="Prototype_(原型模式)">Prototype (原型模式)</h2><h2 id="Mediator_(中介者模式)">Mediator (中介者模式)</h2><h2 id="FlyWeight_(享元模式)">FlyWeight (享元模式)</h2><h2 id="Chain_Of_Responsibility_(职责链模式)">Chain Of Responsibility (职责链模式)</h2><h2 id="Bridge_(桥接模式)">Bridge (桥接模式)</h2><h2 id="Proxy_(代理模式)">Proxy (代理模式)</h2><h2 id="State_(状态模式)">State (状态模式)</h2><h2 id="Composite_(组合模式)">Composite (组合模式)</h2><h2 id="Interator_(迭代器模式)">Interator (迭代器模式)</h2><hr>
-<p><strong>解释</strong></p>
-<ul>
-<li><p><strong>参考文章</strong></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/bluefrog/archive/2011/06/28/2092634.html" target="_blank" rel="external">php设计模式 (总结)</a></p>
-</li>
-<li><a href="http://www.cnblogs.com/zox2011/archive/2011/09/20/2182119.html" target="_blank" rel="external">PHP单例模式（转载）</a></li>
-<li><a href="http://www.phppan.com/2010/06/php-design-pattern-6-singleton/" target="_blank" rel="external">PHP设计模式笔记：使用PHP实现单例模式</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-preg.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/php/php-preg.html" itemprop="url">PHP正则使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/php/php-preg.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-preg.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/php/php-preg.html" class="leancloud_visitors" data-flag-title="PHP正则使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="正则中的一些概念">正则中的一些概念</h1><h2 id="元字符">元字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.   匹配除换行符意外的任意字符</div><div class="line">\w  匹配字母或数字或下划线</div><div class="line">\s  匹配任意的空白符</div><div class="line">\d  匹配数字</div><div class="line">\b  匹配单词的开始或结束</div><div class="line">^   匹配字符串的开始</div><div class="line">$   匹配字符串的结束</div><div class="line">[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符</div><div class="line">\W  \w的反义，即匹配任意非字母，数字，下划线和汉字的字符</div><div class="line">\S  \s的反义，即匹配任意非空白符的字符</div><div class="line">\D  \d的反义，即匹配任意非数字的字符</div><div class="line">\B  \b的反义，即不是单词开头或结束的位置</div><div class="line">[^x]    匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</div></pre></td></tr></table></figure>
-<h2 id="重复">重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*   重复零次或更多次</div><div class="line">+   重复 1 次或更多次</div><div class="line">?   重复零次或 1 次</div><div class="line">&#123;n&#125; 重复 n 次</div><div class="line">&#123;n,&#125;    重复 n 次或更多次</div><div class="line">&#123;n,m&#125;   重复 n 到 m 次</div></pre></td></tr></table></figure>
-<h2 id="模式修正符">模式修正符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i   模式中的字符将同时匹配大小写字母</div><div class="line">m   字符串视为多行</div><div class="line">s   将字符串视为单行，换行符作为普通字符</div><div class="line">x   将模式中的空白忽略</div><div class="line">e   preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。</div><div class="line">A   强制仅从目标字符串的开头开始匹配</div><div class="line">D   模式中的 $ 元字符仅匹配目标字符串的结尾</div><div class="line">U   匹配最近的字符串</div><div class="line">u   模式字符串被当成 UTF-8</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="PHP正则函数">PHP正则函数</h1><p>在 PHP 应用中，正则表达式主要用于：    </p>
-<ol>
-<li>正则匹配：根据正则表达式匹配相应的内容</li>
-<li>正则替换：根据正则表达式匹配内容并替换</li>
-<li>正则分割：根据正则表达式分割字符串</li>
-</ol>
-<h2 id="PHP_正则表达式匹配_preg_match_与_preg_match_all_函数">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</h2><h3 id="preg_match()">preg_match()</h3><p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
-<p>语法：  </p>
-<blockquote>
-<p>int preg_match( string pattern, string subject [, array matches ] )</p>
-</blockquote>
-<p>参数说明：<br>    pattern 正则表达式<br>    subject 需要匹配检索的对象<br>    matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推</p>
-<h3 id="preg_match_all()">preg_match_all()</h3><p>preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
-<p>语法：</p>
-<blockquote>
-<p>int preg_match_all( string pattern, string subject, array matches [, int flags ] ) </p>
-</blockquote>
-<p>参数说明:<br>pattern: 正则表达式<br>subject: 需要匹配检索的对象<br>matches: 存储匹配结果的数组<br>flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有：</p>
-<pre><code><span class="number">1</span>. PREG_PATTERN_ORDER：默认，对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为全部模式匹配的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推
-<span class="number">2</span>. PREG_SET_ORDER：对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为第一组匹配项的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第二组匹配项的数组，以此类推
-<span class="number">3</span>. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量  
-</code></pre><hr>
-<h1 id="部分实例">部分实例</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1，过滤所有html标签的正则表达式：</span></div><div class="line">&lt;/?[^&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//2，过滤所有html标签的属性的正则表达式：</span></div><div class="line">$html = preg_replace(<span class="string">"/&lt;([a-zA-Z]+)[^&gt;]*&gt;/"</span>,<span class="string">"&lt;\\1&gt;"</span>,$html);</div><div class="line"></div><div class="line"><span class="comment">//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：</span></div><div class="line">&lt;/?[^pP/&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：</span></div><div class="line">&lt;/?[aApPbB][^&gt;]*&gt;</div><div class="line"></div><div class="line"><span class="comment">//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：</span></div><div class="line">\s(?!alt)[a-zA-Z]+=[^\s]*</div><div class="line"></div><div class="line"><span class="comment">//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：</span></div><div class="line">(\s)alt=[^\s]*</div></pre></td></tr></table></figure>
-<p>正则表达式中排除不需要匹配的字符串或字符<br>(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串</p>
-<p>(2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报)  </p>
-<p>加上|用于或选择。上面列出的字符串都不会参与匹配  </p>
-<hr>
-<h1 id="常用正则">常用正则</h1><ol>
-<li>删除空行:    <code>\r\n\r\n =&gt; \r\n\</code></li>
-<li>删除有空格的空行:    <code>^ +$ =&gt;</code></li>
-</ol>
-
           
         
       
