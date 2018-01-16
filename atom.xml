@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-01-04T06:16:57.946Z</updated>
+  <updated>2018-01-16T09:56:57.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,130 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Awesome Tools</title>
+    <link href="http://boxcore.github.io/2018/01/16/awesome-tools/index.html"/>
+    <id>http://boxcore.github.io/2018/01/16/awesome-tools/index.html</id>
+    <published>2018-01-16T09:50:09.000Z</published>
+    <updated>2018-01-16T09:56:57.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;All IN One&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;![Open-Source Software][OSS Icon] 表示 &lt;strong&gt;开源软件&lt;/strong&gt; ，点击进入 &lt;strong&gt;开源&lt;/strong&gt; 仓库；&lt;br&gt;
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL密码重置</title>
+    <link href="http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html"/>
+    <id>http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html</id>
+    <published>2018-01-15T16:03:59.000Z</published>
+    <updated>2018-01-15T16:09:43.653Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mysql忘记密码时需要用到参数&lt;code&gt;skip-grant-tables&lt;/code&gt;，可以在配置文件中，也可以在mysqld执行的时候带上该参数。&lt;/p&gt;
+&lt;p&gt;操作步骤类似：&lt;code&gt;vi /etc/my.cnf&lt;/code&gt; 在&lt;code&gt;[mysqld]&lt;/
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://boxcore.github.io/categories/mysql/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux安全日志操作</title>
+    <link href="http://boxcore.github.io/2018/01/16/linux/linux-system-logs.html"/>
+    <id>http://boxcore.github.io/2018/01/16/linux/linux-system-logs.html</id>
+    <published>2018-01-15T16:01:26.000Z</published>
+    <updated>2018-01-15T16:02:44.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;last&lt;/code&gt; : 查看登录成功的用户信息&lt;br&gt;  最新的登录记录在最前面，所以可以用 一下命令来查看。&lt;br&gt;  last | less&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;lastb&lt;/code&gt;:查看登录失败的用户信息
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux磁盘操作命令</title>
+    <link href="http://boxcore.github.io/2018/01/10/linux/linux-disk-manage.html"/>
+    <id>http://boxcore.github.io/2018/01/10/linux/linux-disk-manage.html</id>
+    <published>2018-01-10T02:35:55.000Z</published>
+    <updated>2018-01-10T02:44:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;查看硬盘分区: &lt;code&gt;fdisk -l&lt;/code&gt;&lt;br&gt;查看数据盘的文件系统类型: &lt;code&gt;df -ihT&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;磁盘格式说明：&lt;/p&gt;
+&lt;p&gt;ext4 ： centos6默认盘格式&lt;br&gt;xfs : centos7默认盘格式&lt;/p&gt;
+&lt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome Spider</title>
+    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html"/>
+    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html</id>
+    <published>2018-01-05T03:55:50.000Z</published>
+    <updated>2018-01-10T02:31:13.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于爬虫采集的一些好工具：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/luyishisi/Anti-Anti-Spider/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Anti-Anti-Spider&lt;/a&gt;&lt;/
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+      <category term="spider" scheme="http://boxcore.github.io/tags/spider/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome Mac</title>
+    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html"/>
+    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html</id>
+    <published>2018-01-05T03:55:50.000Z</published>
+    <updated>2018-01-05T03:58:33.230Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Dock相关&quot;&gt;Dock相关&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;HyperDock:  让Mac拥有 Windows 的窗口预览和管理体验。 &lt;a href=&quot;https://sspai.com/post/32855&quot; target=&quot;_blank&quot; rel=&quot;exte
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+      <category term="mac" scheme="http://boxcore.github.io/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>feed订阅配置</title>
@@ -141,6 +265,44 @@
   </entry>
   
   <entry>
+    <title>Python语言</title>
+    <link href="http://boxcore.github.io/2017/12/22/python/learn-python.html"/>
+    <id>http://boxcore.github.io/2017/12/22/python/learn-python.html</id>
+    <published>2017-12-22T14:33:05.000Z</published>
+    <updated>2017-12-25T01:29:52.154Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python笔记&lt;/p&gt;
+&lt;h1 id=&quot;变量类型&quot;&gt;变量类型&lt;/h1&gt;&lt;h2 id=&quot;数字&quot;&gt;数字&lt;/h2&gt;&lt;h2 id=&quot;字符串&quot;&gt;字符串&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
+    
+    </summary>
+    
+      <category term="python" scheme="http://boxcore.github.io/categories/python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP使用SQLite扩展</title>
+    <link href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html"/>
+    <id>http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html</id>
+    <published>2017-12-22T14:33:05.000Z</published>
+    <updated>2017-12-22T14:39:50.779Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;开启sqlite&quot;&gt;开启sqlite&lt;/h2&gt;&lt;p&gt;一. Windows下开启sqlite: &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;setting&quot;&gt;extension=&lt;span class=&quot;value&quot;&gt;php_pdo.dll&lt;/span
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>PHP设计模式</title>
     <link href="http://boxcore.github.io/2017/12/22/php/php-design-pattern.html"/>
     <id>http://boxcore.github.io/2017/12/22/php/php-design-pattern.html</id>
@@ -155,6 +317,24 @@
 &lt;li&gt;&lt;a href=&quot;#Singleton(单例模式&quot;&gt;单例模式&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Interpre
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP正则使用</title>
+    <link href="http://boxcore.github.io/2017/12/22/php/php-preg.html"/>
+    <id>http://boxcore.github.io/2017/12/22/php/php-preg.html</id>
+    <published>2017-12-22T14:33:05.000Z</published>
+    <updated>2017-12-22T14:38:18.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;正则中的一些概念&quot;&gt;正则中的一些概念&lt;/h1&gt;&lt;h2 id=&quot;元字符&quot;&gt;元字符&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
     
     </summary>
     
@@ -183,57 +363,20 @@
   </entry>
   
   <entry>
-    <title>PHP使用SQLite扩展</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:39:50.779Z</updated>
+    <title>Linux文件操作命令之局域共享samba</title>
+    <link href="http://boxcore.github.io/2017/12/22/linux/linux-samba.html"/>
+    <id>http://boxcore.github.io/2017/12/22/linux/linux-samba.html</id>
+    <published>2017-12-22T14:27:59.000Z</published>
+    <updated>2017-12-22T14:28:11.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;开启sqlite&quot;&gt;开启sqlite&lt;/h2&gt;&lt;p&gt;一. Windows下开启sqlite: &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;setting&quot;&gt;extension=&lt;span class=&quot;value&quot;&gt;php_pdo.dll&lt;/span
+      &lt;p&gt;samba简写smb, 是linux下局域网共享服务.&lt;/p&gt;
+&lt;h2 id=&quot;安装samba&quot;&gt;安装samba&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class
     
     </summary>
     
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python语言</title>
-    <link href="http://boxcore.github.io/2017/12/22/python/learn-python.html"/>
-    <id>http://boxcore.github.io/2017/12/22/python/learn-python.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-25T01:29:52.154Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python笔记&lt;/p&gt;
-&lt;h1 id=&quot;变量类型&quot;&gt;变量类型&lt;/h1&gt;&lt;h2 id=&quot;数字&quot;&gt;数字&lt;/h2&gt;&lt;h2 id=&quot;字符串&quot;&gt;字符串&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-    
-    </summary>
-    
-      <category term="python" scheme="http://boxcore.github.io/categories/python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP正则使用</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-preg.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-preg.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:38:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;正则中的一些概念&quot;&gt;正则中的一些概念&lt;/h1&gt;&lt;h2 id=&quot;元字符&quot;&gt;元字符&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
     
     
   </entry>
@@ -260,25 +403,6 @@
   </entry>
   
   <entry>
-    <title>Linux文件操作命令之局域共享samba</title>
-    <link href="http://boxcore.github.io/2017/12/22/linux/linux-samba.html"/>
-    <id>http://boxcore.github.io/2017/12/22/linux/linux-samba.html</id>
-    <published>2017-12-22T14:27:59.000Z</published>
-    <updated>2017-12-22T14:28:11.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;samba简写smb, 是linux下局域网共享服务.&lt;/p&gt;
-&lt;h2 id=&quot;安装samba&quot;&gt;安装samba&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Linux下用户管理sudo</title>
     <link href="http://boxcore.github.io/2017/12/22/linux/linux-sudo.html"/>
     <id>http://boxcore.github.io/2017/12/22/linux/linux-sudo.html</id>
@@ -293,119 +417,6 @@
     </summary>
     
       <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下内存管理相关命令</title>
-    <link href="http://boxcore.github.io/2017/12/22/linux/linux-manage-ram.html"/>
-    <id>http://boxcore.github.io/2017/12/22/linux/linux-manage-ram.html</id>
-    <published>2017-12-22T14:24:53.000Z</published>
-    <updated>2017-12-22T14:25:00.743Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;linux下手动清理内存－缓存&quot;&gt;linux下手动清理内存－缓存&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux文件操作命令之包管理rpm</title>
-    <link href="http://boxcore.github.io/2017/12/22/linux/linux-rpm.html"/>
-    <id>http://boxcore.github.io/2017/12/22/linux/linux-rpm.html</id>
-    <published>2017-12-22T14:23:12.000Z</published>
-    <updated>2017-12-22T14:23:22.701Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Linux RPM安装与卸载命令&lt;/p&gt;
-&lt;p&gt;RPM（Red Hat Package Manager）&lt;br&gt;命令：rpm&lt;br&gt;1、查询、检查软件包&lt;br&gt;rpm {-q|–query} [select-options] [query-options]&lt;br&gt;rpm {
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git如何永久删除文件(包括历史记录)</title>
-    <link href="http://boxcore.github.io/2017/12/22/tools/git-remove-history-files.html"/>
-    <id>http://boxcore.github.io/2017/12/22/tools/git-remove-history-files.html</id>
-    <published>2017-12-22T14:15:08.000Z</published>
-    <updated>2017-12-22T14:15:15.356Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;步骤一:_从你的资料库中清除文件&quot;&gt;步骤一: 从你的资料库中清除文件&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;d
-    
-    </summary>
-    
-      <category term="coding" scheme="http://boxcore.github.io/categories/coding/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++语言基础</title>
-    <link href="http://boxcore.github.io/2017/12/22/cpp/learn-cpp.html"/>
-    <id>http://boxcore.github.io/2017/12/22/cpp/learn-cpp.html</id>
-    <published>2017-12-22T14:12:19.000Z</published>
-    <updated>2017-12-22T14:13:09.883Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;C++_Note&quot;&gt;C++ Note&lt;/h2&gt;&lt;p&gt;参考文档:&lt;br&gt;&lt;a href=&quot;http://see.xidian.edu.cn/cpp/biancheng/cpp/jichu/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http:/
-    
-    </summary>
-    
-      <category term="coding" scheme="http://boxcore.github.io/categories/coding/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C语言基础</title>
-    <link href="http://boxcore.github.io/2017/12/22/c/learn-c.html"/>
-    <id>http://boxcore.github.io/2017/12/22/c/learn-c.html</id>
-    <published>2017-12-22T14:10:30.000Z</published>
-    <updated>2017-12-22T14:11:33.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;C语言基础&quot;&gt;C语言基础&lt;/h2&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;d
-    
-    </summary>
-    
-      <category term="coding" scheme="http://boxcore.github.io/categories/coding/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>画图工具 之 原型、流程图、思维导图</title>
-    <link href="http://boxcore.github.io/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html"/>
-    <id>http://boxcore.github.io/2017/12/12/tools/draw-tools-for-prototype-uml-mind.html</id>
-    <published>2017-12-12T03:43:33.000Z</published>
-    <updated>2017-12-12T07:07:32.173Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;跟程序打交道最经常遇到的图类型有： 原型工具、流程图 和 思维导图。&lt;/p&gt;
-&lt;h2 id=&quot;一、画图分类&quot;&gt;一、画图分类&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;原型图&lt;/li&gt;
-&lt;li&gt;流程图UML&lt;/li&gt;
-&lt;li&gt;思维导图&lt;/li&gt;
-&lt;li&gt;甘特图&lt;/li&gt;
-&lt;li&gt;鱼骨图&lt;/l
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
     
     
   </entry>

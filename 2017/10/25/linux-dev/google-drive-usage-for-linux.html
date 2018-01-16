@@ -107,7 +107,7 @@
 12345#下载命令工具wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTAchmod 755 /usr/sbin/gdrive#验证终端gdrive about
 
 参考项目：https://gith">
-<meta property="og:updated_time" content="2017-11-20T09:34:58.000Z">
+<meta property="og:updated_time" content="2018-01-09T07:08:41.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Drive 服务器应用指南">
 <meta name="twitter:description" content="一、gdrive cli命令安装这个是比较通用的命令，centos7以下的推荐使用。
@@ -430,7 +430,9 @@
 </ul>
 <h3 id="1-1_怎么使用gdrive">1.1 怎么使用gdrive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#gdrive 上传 tar 包到目录 0B2_oloQ2sUujdzFiYkNtOGhNMkU(用gdrive list查询google drive对应的目录地址)，成功后删除 tar 包</span></div><div class="line">/usr/sbin/gdrive upload -p 0B2_oloQ2sUujdzFiYkNtOGhNMkU --delete <span class="string">"/tmp/seonoco.com.tar.gz"</span></div><div class="line"></div><div class="line"><span class="comment">#上传目录</span></div><div class="line">gdrive upload -p 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs --recursive <span class="string">"/home/wwwroot/tmp"</span></div><div class="line">gdrive download --recursive 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs</div></pre></td></tr></table></figure>
 <p>另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法</p>
-
+<h4 id="同步上传">同步上传</h4><p>gdrive upload -p 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI –recursive “/home/wwwroot/sync/ebookplan”</p>
+<p>gdrive [global] sync upload [options] <path></path> <fileid>          Sync local directory to drive</fileid></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gdrive sync upload  <span class="string">"/home/wwwroot/sync/ebookplan"</span> 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI</div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync/kindlemate'</span> 1mtcRv-OZTD8y05LUdBMlx2MNB88NzpKo</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync'</span> 1PtAwU94atg4jJJKoV757yM9ncL0WBI4t</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -580,7 +582,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">172</span>
+                <span class="site-state-item-count">178</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -602,7 +604,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -662,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、gdrive_cli命令安装"><span class="nav-number">1.</span> <span class="nav-text">一、gdrive cli命令安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_怎么使用gdrive"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 怎么使用gdrive</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、gdrive_cli命令安装"><span class="nav-number">1.</span> <span class="nav-text">一、gdrive cli命令安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_怎么使用gdrive"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 怎么使用gdrive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步上传"><span class="nav-number">1.1.1.</span> <span class="nav-text">同步上传</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

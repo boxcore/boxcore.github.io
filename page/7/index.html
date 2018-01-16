@@ -329,6 +329,936 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/09/linux/linux-file-dir.html" itemprop="url">Linux之文件和目录操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T20:44:33+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/linux/linux-file-dir.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/09/linux/linux-file-dir.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/09/linux/linux-file-dir.html" class="leancloud_visitors" data-flag-title="Linux之文件和目录操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>dirname $0，取得当前执行的脚本文件的父目录</p>
+<p>cd <code>dirname $0</code>，进入这个目录(切换当前工作目录)</p>
+<p>pwd，显示当前工作目录(cd执行后的)</p>
+<p>由此，我们获得了当前正在执行的脚本的存放路径。</p>
+<p>bash循环读入文件的每一行并处理</p>
+<p>cat afile | while read oneline<br>do<br>    echo $oneline<br>done<br>这只是个简单例子，把文件afile的每一行读入，然后显示出来。</p>
+<p>也可以这样(如果行中有空格或者tab则无法使用此方法,不好意思啊,呵呵):<br>for i in <code>cat afile</code><br>do<br>echo $i<br>done</p>
+<h4 id="逐行处理文件内容">逐行处理文件内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ 通过<span class="built_in">read</span>命令完成</div><div class="line">cat data.dat | <span class="keyword">while</span> <span class="built_in">read</span> line</div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span> &lt; data.dat</div><div class="line"></div><div class="line"></div><div class="line">$ 使用awk命令完成</div><div class="line"></div><div class="line">cat data.dat | awk <span class="string">'&#123;print $0&#125;'</span></div><div class="line">cat data.dat | awk <span class="string">'for(i=2;i&lt;NF;i++) &#123;printf $i&#125; printf "\n"&#125;'</span></div><div class="line"></div><div class="line">$ 使用<span class="keyword">for</span> var <span class="keyword">in</span> file 命令完成</div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> $(cat data.dat)</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat data.dat`</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>补充：</p>
+<p>如果输入文本每行中没有空格，则line在输入文本中按换行符分隔符循环取值．</p>
+<p>如果输入文本中包括空格或制表符，则不是换行读取，line在输入文本中按空格分隔符或制表符或换行符特环取值．</p>
+<p>可以通过把IFS设置为换行符来达到逐行读取的功能．</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/09/linux/linux-netstat.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/09/linux/linux-netstat.html" itemprop="url">Linux网络命令之netstat</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T18:30:11+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/linux/linux-netstat.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/09/linux/linux-netstat.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/09/linux/linux-netstat.html" class="leancloud_visitors" data-flag-title="Linux网络命令之netstat">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。</p>
+<h2 id="一、命令帮助">一、命令帮助</h2><h2 id="二、常见案例">二、常见案例</h2><h3 id="2-1_查看端口是否被占用">2.1 查看端口是否被占用</h3><p>例如查询8080端口是否被占用，并可以查看pid/程序名</p>
+<blockquote>
+<p>netstat -apn | grep 8080</p>
+</blockquote>
+<p>一般找到端口使用的PID后可以执行如下进行关闭：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep PID <span class="comment"># 查看详细信息</span></div><div class="line"><span class="built_in">kill</span> -9 PID <span class="comment"># 终止该进程</span></div></pre></td></tr></table></figure></p>
+<p>附录window下使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、查询端口占用情况</div><div class="line">cmd &gt; netstat -ano</div><div class="line"><span class="number">2</span>、查询<span class="number">8080</span>端口是否被占用</div><div class="line">cmd &gt; netstat -ano|findstr <span class="number">8080</span></div><div class="line"><span class="number">3</span>、查询哪个程序占用了端口</div><div class="line">cmd &gt; tasklist|findstr PID</div><div class="line">进程号通过<span class="number">2</span>查询可以得到</div><div class="line"><span class="number">4</span>、终止该占用进程</div><div class="line">cmd &gt; ntsd -c q -p PID</div></pre></td></tr></table></figure>
+<h3 id="2-2_mac下网络查看">2.2 mac下网络查看</h3><ul>
+<li>netstat -an | grep 3306</li>
+</ul>
+<p>通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。</p>
+<blockquote>
+<p>lsof -i:80</p>
+</blockquote>
+<p>-i参数表示网络链接，:80指明端口号，该命令会同时列出PID，方便kill</p>
+<p>查看所有进程监听的端口</p>
+<blockquote>
+<p> sudo lsof -i -P | grep -i “listen”</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/09/21/sql/mysql-date-function.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/21/sql/mysql-date-function.html" itemprop="url">MySQL时间处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T17:07:44+08:00">
+                2017-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/21/sql/mysql-date-function.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/21/sql/mysql-date-function.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/21/sql/mysql-date-function.html" class="leancloud_visitors" data-flag-title="MySQL时间处理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mysql关于时间的函数有<code>date_format</code>,<code>datediff</code>等，这里整理一波。</p>
+<ul>
+<li>DATE_FORMAT()</li>
+<li>DATEDIFF()</li>
+<li>TIMESTAMPDIFF()</li>
+<li>NOW()：输出当前时间，格式 <code>Y-m-d H:i:s</code></li>
+<li>CURDATE(): 当前日期，格式 <code>Y-m-d</code></li>
+<li>date_sub(): </li>
+<li>FROM_UNIXTIME(): <code>select from_UNIXTIME(1505985895, &#39;%Y-%m-%d&#39;);</code></li>
+<li>to_days():</li>
+<li><code>period_diff()</code> : <code>period_diff(date_format(now() , &#39;%Y%m&#39;) , date_format(&#39;2017-08-01&#39;, &#39;%Y%m&#39;));</code></li>
+<li><code>str_to_date()</code>: <code>str_to_date(&quot;2010-11-23 14:39:51&quot;,&#39;%Y-%m-%d %H:%i:%s&#39;)</code></li>
+</ul>
+<p>提醒：</p>
+<ol>
+<li>to_days() 不用于阳历出现(1582)前的值，原因是当日历改变时，遗失的日期不会被考虑在内。因此对于1582 年之前的日期(或许在其它地区为下一年 ), 该函数的结果实不可靠的。</li>
+<li>MySQL”日期和时间类型”中的规则是将日期中的二位数年份值转化为四位。因此对于’1997-10-07’和’97-10-07’将被视为同样的日期</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/09/08/tools/git-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/08/tools/git-usage.html" itemprop="url">GIT使用手册</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-08T18:22:09+08:00">
+                2017-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/08/tools/git-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/08/tools/git-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/08/tools/git-usage.html" class="leancloud_visitors" data-flag-title="GIT使用手册">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、基本命令">一、基本命令</h2><h3 id="1-1_版本回退">1.1 版本回退</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git reset --hard <span class="comment"># 回退到当前版本（放弃所有修改）</span></div><div class="line">git checkout &#123;file_name&#125; <span class="comment"># 放弃某个文件的修改</span></div><div class="line">git reset  &#123;UUID&#125; <span class="comment"># 回退到某一版本但保存自该版本起的修改</span></div><div class="line">git reset --hard &#123;UUID&#125; <span class="comment"># 回退到某一版本并且放弃所有的修改</span></div><div class="line">git reset --hard origin/master <span class="comment"># 回退到和远程版本一样, origin代表你远程仓库的名字，master代表分支名</span></div></pre></td></tr></table></figure>
+<h3 id="1-2_git_submodule使用">1.2 git submodule使用</h3><p>这其实是 git 的子模块功能,作用是为了在项目中引入另一个项目的部分或全部内容，但是这两个项目是分开开发或管理的,这样直接使用 git submodule 就可以不必要将另一个项目复制一份直接引用即可。</p>
+<p>常用 git submodule命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">git submodule add repourl  <span class="comment"># 添加 git 子模块</span></div><div class="line"></div><div class="line"></div><div class="line">git submodule init <span class="comment"># 初次clone带有子模块的仓库如果想查看子模块的内容</span></div><div class="line">git submodule update <span class="comment"># 或者  git submodule update --init --recursive</span></div><div class="line"></div><div class="line">vi .gitmodules <span class="comment"># 更新子模块地址</span></div><div class="line">git submodule sync <span class="comment"># 然后提交更改即可</span></div><div class="line"></div><div class="line"></div><div class="line">git rm --cached &#123;submodule_path&#125;  <span class="comment"># submodule_path即子模块在仓库下的路径(这之前需要删除删除 .gitsubmodule中对应submodule的条目 和 删除 .Git/config 中对应submodule的条目)</span></div><div class="line">git commit -m <span class="string">'xxx'</span></div><div class="line">git push</div></pre></td></tr></table></figure>
+<p>具体的关于 git submodule 的说明以及使用，请点击<a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="external">这里</a></p>
+<h3 id="1-3_分支合并">1.3 分支合并</h3><p>分支合并分为两种情况,一种是本地分支合并,一种是远程分支合并到本地分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge 分支名称 <span class="comment"># 本地分支合并</span></div><div class="line">git pull origin master <span class="comment"># 远程分支合并到本地分支</span></div></pre></td></tr></table></figure>
+<h3 id="1-4_代码提交">1.4 代码提交</h3><h4 id="1-4-1_如何从众多提交中保留只需要的提交">1.4.1 如何从众多提交中保留只需要的提交</h4><p>如果说在众多提交中,已某个提交为基准,只保留上游众多提交中的某个或者某几个,可以使用 cherry-pick命令,具体是:</p>
+<blockquote>
+<p>git cherry-pick <commit id=""></commit></p>
+</blockquote>
+<p>如果没有冲突,则回显示如下:</p>
+<blockquote>
+<p>Finished one cherry-pick.</p>
+<h1 id="On_branch_dev">On branch dev</h1><h1 id="Your_branch_is_ahead_of_‘origin/dev’_by_3_commits-">Your branch is ahead of ‘origin/dev’ by 3 commits.</h1></blockquote>
+<p>如果存在冲突,则需要解决冲突然后继续,关于如何冲突,请查看如何处理代码冲突小节</p>
+<h4 id="1-4-2_修改最后一次提交">1.4.2 修改最后一次提交</h4><p>更多参考：<a href="http://git.mydoc.io/?t=83152" target="_blank" rel="external">http://git.mydoc.io/?t=83152</a></p>
+<h4 id="1-4-5_改写历史，去除大文件">1.4.5 改写历史，去除大文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git filter-branch --tree-filter <span class="string">'rm -f path/to/large/files'</span> --tag-name-filter cat -- --all</div><div class="line">git push origin --tags --force</div><div class="line">git push origin --all --force</div></pre></td></tr></table></figure>
+<p>并告知所有组员，push 代码前需要 pull rebase，而不是 merge，否则会从该组员的本地仓库再次引入到远程库中</p>
+<h2 id="配置">配置</h2><h3 id="http(s)方式自动记住密码">http(s)方式自动记住密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git config --global credential.helper cache <span class="comment"># 记住密码十五分钟</span></div><div class="line">git config credential.helper <span class="string">'cache --timeout=3600'</span> <span class="comment"># 这里记住的是一个小时，如需其他时间，请修改3600为你想修改的时间，单位是秒</span></div><div class="line">git config --global credential.helper store <span class="comment"># 设置长期记住密码 或者，比如http://yourname:password@git.oschina.net/name/project.git //注意，码云平台同时支持个性地址与邮箱，当使用邮箱时，请对@符号使用%40替换</span></div></pre></td></tr></table></figure>
+<p>如果你原本使用的 ssh 地址想更换成 http(s) 地址，可以执行以下命令: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin <span class="comment"># 删除原本的ssh仓库地址 origin 代表你原本ssh地址的仓库的别名 </span></div><div class="line">git remote add origin http://git.oschina.net/username/project.git <span class="comment"># 新增http地址的仓库</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/09/04/tools/mpv-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/04/tools/mpv-usage.html" itemprop="url">mpv播放器安装和使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T09:15:45+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/04/tools/mpv-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/04/tools/mpv-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/04/tools/mpv-usage.html" class="leancloud_visitors" data-flag-title="mpv播放器安装和使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mpv是一个跨平台开源播放器。</p>
+<h2 id="一、安装">一、安装</h2><h2 id="二、使用">二、使用</h2><h2 id="三、配置">三、配置</h2><h3 id="3-1_默认快捷方式">3.1 默认快捷方式</h3><ul>
+<li><code>左/右方向键</code> : 快进/后退5秒钟。shift+左右方向键可以以1秒为进度调节;</li>
+<li><code>上/下方向键</code> : 快进/后退1分钟。shift+左右方向键可以以5秒为进度调节;</li>
+<li><code>[</code> 和 <code>]</code> : 载入上一个/下一个字幕。受到一些限制，可能不会总是好使。;</li>
+<li><code>{</code> 和 <code>}</code> : 半倍/双倍速度播放;</li>
+<li><code>BACKSPACE</code> : 重制正常播放速度;</li>
+<li><code>&lt;</code> 和 <code>&gt;</code> : 播放列表后一个/前一个;</li>
+<li><code>ENTER</code> : 播放列表后一个。（Ps：播放列表只有选中播放多个视频时才有的功能，单独播放一个视频没有）</li>
+<li><code>p</code> / <code>SPACE</code> : 暂停。再按一下继续播放;</li>
+<li><code>.</code> : 按下一次会暂停，再次按下会进入到下一帧画面，视频依然是暂停状态。（考据党的最爱）;</li>
+<li><code>,</code> : 按下一次会暂停，再次按下会进入到上一帧画面，视频依然是暂停状态。;</li>
+<li><code>q</code> : 停止播放并立即退出;</li>
+<li><code>Q</code> : 也是停止播放并立即退出。但是可以记录上次视频播放位置;</li>
+<li><code>**/</code> 和 <code>* **</code> : 增大/减小音量;</li>
+<li><code>9</code> 和 <code>0</code> : 增大/减小音量;</li>
+<li><code>m</code> : 静音;</li>
+</ul>
+<p>还有其他常用的很多，码字很辛苦，这里不一一列出，具体参考下官方文档吧！</p>
+<h3 id="3-2_自定义配置">3.2 自定义配置</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/31/tools/aria2-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/31/tools/aria2-usage.html" itemprop="url">aria2远程下载利器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T19:47:36+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/31/tools/aria2-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/31/tools/aria2-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/31/tools/aria2-usage.html" class="leancloud_visitors" data-flag-title="aria2远程下载利器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！</p>
+<h2 id="一、aria2安装">一、aria2安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># install aria2 for centos 6.8</span></div><div class="line"><span class="comment"># author: boxcore</span></div><div class="line"><span class="comment"># aria2 docs：https://github.com/aria2/aria2</span></div><div class="line"><span class="comment"># more gnu project for download : http://ftp.gnu.org/gnu/ ; ftp://gcc.gnu.org/pub/gcc/infrastructure/</span></div><div class="line"><span class="comment"># </span></div><div class="line"><span class="comment"># aria2 gui tools:</span></div><div class="line"><span class="comment"># for mac: https://github.com/yangshun1029/aria2gui/releases</span></div><div class="line"><span class="comment"># </span></div><div class="line">yum install bison libssh2-devel expat-devel gmp-devel nettle-devel libuv-devel libssh2-devel zlib-devel c-ares-devel cppunit-devel gnutls-devel libgcrypt-devel libxml2-devel sqlite-devel gettext lzma-devel xz-devel gperftools gperftools-devel gperftools-libs jemalloc-devel</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">## install gcc 4.8</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line">wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo</div><div class="line">yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++</div><div class="line"></div><div class="line">ln <span class="_">-s</span> /opt/rh/devtoolset-2/root/usr/bin/* /usr/<span class="built_in">local</span>/bin/</div><div class="line"><span class="built_in">hash</span> -r</div><div class="line">g++ --version</div><div class="line"></div><div class="line"><span class="comment">## install libuv, see https://github.com/libuv/libuv</span></div><div class="line">wget https://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz</div><div class="line">tar vxf libuv-v1.9.1.tar.gz</div><div class="line"><span class="built_in">cd</span> libuv-v1.9.1</div><div class="line">sh autogen.sh</div><div class="line">./configure</div><div class="line">make</div><div class="line">make check</div><div class="line">make install</div><div class="line"></div><div class="line"><span class="comment">## install jemalloc, see: http://jemalloc.net/</span></div><div class="line">wget https://github.com/jemalloc/jemalloc/releases/download/5.0.1/jemalloc-5.0.1.tar.bz2</div><div class="line">tar vxf jemalloc-5.0.1.tar.bz2</div><div class="line"><span class="built_in">cd</span> jemalloc-5.0.1</div><div class="line">./configure</div><div class="line">make</div><div class="line">make check</div><div class="line">make install</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">cd</span> /opt</div><div class="line">wget https://github.com/aria2/aria2/releases/download/release-1.27.1/aria2-1.27.1.tar.gz</div><div class="line">tar xzf aria2-1.27.1.tar.gz</div><div class="line"><span class="built_in">cd</span> aria2-1.27.1</div><div class="line">./configure --enable-static=yes --enable-shared=no --with-libuv --with-jemalloc --with-ca-bundle=<span class="string">'/etc/pki/tls/certs/ca-bundle.crt'</span> ARIA2_STATIC=yes</div><div class="line">make &amp;&amp; make check &amp;&amp; make install</div></pre></td></tr></table></figure>
+<p>然后，你就可以使用aria2c命令试一下咯。。。</p>
+<h2 id="二、aria2使用">二、aria2使用</h2><h3 id="2-1_基本说明">2.1 基本说明</h3><pre><code>-<span class="ruby"><span class="symbol">c:</span> 断点续传
+</span>-<span class="ruby"><span class="symbol">s:</span> 使用线程数</span>
+</code></pre><blockquote>
+<p>当源地址存在诸如 &amp;, * 等 shell 的特殊字符，请使用单引号或双引号把 URI 包含起来。</p>
+</blockquote>
+<h3 id="2-2_常见命令">2.2 常见命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">aria2c -c <span class="_">-s</span> 5 http://example.org/mylinux.iso</div><div class="line"></div><div class="line">aria2c http://a/f.iso   ftp://b/f.iso  <span class="comment"># Download from 2 sources</span></div><div class="line"></div><div class="line">aria2c -x2 http://a/f.iso <span class="comment"># Download using 2 connections per host</span></div><div class="line">aria2c <span class="string">'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C'</span> <span class="comment"># BitTorrent Magnet URI</span></div></pre></td></tr></table></figure>
+<h2 id="三、aria2相关工具">三、aria2相关工具</h2><ul>
+<li><a href="https://github.com/mayswind/AriaNg" target="_blank" rel="external">https://github.com/mayswind/AriaNg</a>, <a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
+<li><a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
+<li><a href="https://github.com/ziahamza/webui-aria2" target="_blank" rel="external">https://github.com/ziahamza/webui-aria2</a></li>
+<li><a href="https://github.com/binux/yaaw" target="_blank" rel="external">https://github.com/binux/yaaw</a></li>
+<li><a href="https://dy.ghostry.cn/" target="_blank" rel="external">https://dy.ghostry.cn/</a></li>
+</ul>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://skypegnu1.blog.51cto.com/8991766/1637168" target="_blank" rel="external">http://skypegnu1.blog.51cto.com/8991766/1637168</a></li>
+<li><a href="http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/" target="_blank" rel="external">http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/27/php/php-design-patterns.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -931,1008 +1861,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/22/chrome-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/chrome-usage.html" itemprop="url">Google Chrome使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T14:49:27+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/chrome-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/22/chrome-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/22/chrome-usage.html" class="leancloud_visitors" data-flag-title="Google Chrome使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用场景">使用场景</h2><h3 id="1-_Chrome修改UserAgent">1. Chrome修改UserAgent</h3><p>Chrome修改UserAgent<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">boxcore</span>\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Google</span>\<span class="title">Chrome</span>\<span class="title">Application</span>\<span class="title">chrome.exe</span> —<span class="title">user</span>-<span class="title">agent</span>=”<span class="title">iPad</span>” —<span class="title">profile</span>-<span class="title">directory</span>=”<span class="title">Profile</span> 1”</span></div></pre></td></tr></table></figure></p>
-<p>其他的ua比如：</p>
-<p>—user-agent=”iPhone”<br>Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/22/vagrant-note.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/vagrant-note.html" itemprop="url">Vagrant配置笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T09:49:08+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/vagrant-note.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/22/vagrant-note.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/22/vagrant-note.html" class="leancloud_visitors" data-flag-title="Vagrant配置笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、vagrant入门">一、vagrant入门</h2><h3 id="1-1_安装">1.1 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mac下使用brew安装</div><div class="line">brew cask install vagrant</div><div class="line">brew cask install vagrant-manager</div></pre></td></tr></table></figure>
-<h2 id="二、实战">二、实战</h2><h2 id="三、常用配置">三、常用配置</h2><h3 id="3-1_使用vagrant配置laravel开发环境（homestead）">3.1 使用vagrant配置laravel开发环境（homestead）</h3><p>网络状况好的话执行<code>vagrant box add laravel/Homestead</code>即可完成安装，但由于国内网络种种原因，会导致断线，所以我们需要进行离线安装</p>
-<h2 id="参考">参考</h2><ul>
-<li><a href="http://d.laravel-china.org/docs/5.4/homestead" target="_blank" rel="external">Laravel 虚拟开发环境 Homestead</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/21/php-env.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/21/php-env.html" itemprop="url">PHP环境配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T15:57:13+08:00">
-                2017-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/21/php-env.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/21/php-env.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/21/php-env.html" class="leancloud_visitors" data-flag-title="PHP环境配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、更新">一、更新</h2><ul>
-<li>2017-08-21：mac 配置php 7.1 作为系统默认php，配置nginx 多php版本支持</li>
-</ul>
-<p>这里主要是说明自己机器php环境配置相关问题，涵盖了windows、unix和mac多平台。</p>
-<h2 id="二、内容">二、内容</h2><h3 id="2-1_2017-08-21更新：_mac_php_7-1_配置">2.1 2017-08-21更新： mac php 7.1 配置</h3><h4 id="安装php71">安装php71</h4><p>通过系统默认命令<code>brew install php71</code>后php提醒libpng库问题，在执行<code>php --version</code>时报错内容大致如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dyld: Library not loaded: /usr/<span class="built_in">local</span>/opt/libpng/lib/libpng16.16.dylib</div><div class="line">Referenced from: /usr/<span class="built_in">local</span>/bin/php</div><div class="line">Reason: Incompatible library version: php requires version 45.0.0 or later, but libpng16.16.dylib provides version 38.0.0</div></pre></td></tr></table></figure>
-<blockquote>
-<p>解决方法： 执行命令<code>brew reinstall -s php71</code>可以解决<br>参考：<a href="https://github.com/Homebrew/homebrew-php/issues/3961" target="_blank" rel="external">https://github.com/Homebrew/homebrew-php/issues/3961</a></p>
-</blockquote>
-<h4 id="配置多端口访问">配置多端口访问</h4><p>配置端口及对应的php服务如下</p>
-<ul>
-<li><code>php</code>（默认）: nginx端口80,php-fpm端口9007</li>
-<li><code>php54</code>: nginx端口8054,php-fpm端口9004</li>
-<li><code>php56</code>: nginx端口8065,php-fpm端口9000</li>
-<li><code>php71</code>: nginx端口8071,php-fpm端口9007</li>
-</ul>
-<p>也就是说后面一旦访问<code>域名:端口</code>即可使用对应php版本的服务。下面附上部分nginx fastcgi配置：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># # use php5<span class="number">.6</span> <span class="keyword">for</span> php</div><div class="line"># location ~ \.php$ &#123;</div><div class="line">#     try_files                   $uri = <span class="number">404</span>;</div><div class="line">#     fastcgi_pass                <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</div><div class="line">#     fastcgi_index               index.php;</div><div class="line">#     fastcgi_intercept_errors    on;</div><div class="line">#     include /usr/<span class="keyword">local</span>/etc/nginx/fastcgi.conf;</div><div class="line"># &#125;</div><div class="line"></div><div class="line"># use php7 <span class="keyword">for</span> php</div><div class="line">location ~ \.php$ &#123;</div><div class="line">    try_files                   $uri = <span class="number">404</span>;</div><div class="line">    fastcgi_pass                <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9007</span>;</div><div class="line">    # fastcgi_pass                unix:/tmp/php-fpm.sock;</div><div class="line">    fastcgi_index               index.php;</div><div class="line">    fastcgi_intercept_errors    on;</div><div class="line">    include /usr/<span class="keyword">local</span>/etc/nginx/fastcgi.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>修改配置后需要执行以下命令重新加载相关服务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew services restart homebrew/php/php54</div><div class="line">brew services restart homebrew/php/php56</div><div class="line">brew services restart homebrew/php/php71</div><div class="line">brew services restart nginx</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/17/talk-about-regular.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/17/talk-about-regular.html" itemprop="url">2017-08-17 正则浅析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T11:41:17+08:00">
-                2017-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/17/talk-about-regular.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/17/talk-about-regular.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/17/talk-about-regular.html" class="leancloud_visitors" data-flag-title="2017-08-17 正则浅析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文只探讨正则在php中的一些使用，小白用户还是先了解下正则相关的基础概念：<a href="https://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external">正则表达式30分钟入门教程</a></p>
-<h2 id="一、正则基础函数">一、正则基础函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 函数参数说明</div><div class="line"> * $pattern = 正则表达式</div><div class="line"> * $subject = 匹配的目标数据</div><div class="line"> * </div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">// 只将第一个匹配到的结果赋值给$matches，$matches为一维数组。preg_match返回值为匹配到的次数，0或1.</span></div><div class="line">preg_match($pattern, $subject); </div><div class="line"><span class="comment">// 将所有匹配到的结果赋值给$matches,$matches为二维数组。preg_match_all返回值为匹配到的次数。</span></div><div class="line">preg_match_all($pattern, $subject, $matches);</div><div class="line"></div><div class="line"><span class="comment">// preg_filter()和preg_replace()区别：在对数组方面替换的时候，preg_replace()会返回所有结果，preg_filter()只会返回替换到的结果。</span></div><div class="line">preg_replace($pattern, $replacement, $subject);</div><div class="line">preg_filter($pattern, $replacement, $subject);</div><div class="line"></div><div class="line"><span class="comment">// 只匹配，不替换，返回匹配到的数组值</span></div><div class="line">preg_grep($pattern, <span class="keyword">array</span> $input);</div><div class="line"></div><div class="line"><span class="comment">// 区别explode(…)</span></div><div class="line">preg_split($pattern, $subject);</div><div class="line"></div><div class="line"><span class="comment">// 它会将正则表达式中的特殊字符进行转义。</span></div><div class="line"><span class="comment">// regex的运算符： . \ + * ? [ ^ ] $ ( ) &#123; &#125; = ! &lt; &gt; | : -</span></div><div class="line"><span class="comment">// 转义符号 \</span></div><div class="line">preg_quote($str)</div></pre></td></tr></table></figure>
-<h2 id="二、正则表达式基本语法">二、正则表达式基本语法</h2><p>正则表达式基本语法归类：</p>
-<ul>
-<li>界定符： 表示一个正则表达式的开始和结束；EG：/[0-9]/; eg: $pattern = ‘/[0-9]/‘ 或者 #[0-9]# ｛[0-9]｝(不推荐使用大括号)；</li>
-<li>原子: 原装可以分为可见原子和不可见原子，都能用正则表达式进行原子匹配。<ul>
-<li>可见原子：Unicode编码表中用键盘输出后肉眼可见的字符, 比如<ul>
-<li>标点 _ ;,?等等</li>
-<li>英文字母和数字</li>
-<li>汉字/日文等其他语言文字</li>
-<li>求和等数理化公式符号</li>
-<li>其他可见字符</li>
-<li>特殊原子：\ 因为本身还是转义字符，所以要用\才能匹配到一个\符号</li>
-</ul>
-</li>
-<li>不可见原子：Unicode编码表中用键盘输出后肉眼不可见的字符<ul>
-<li>换行符 \n</li>
-<li>回车符 \r</li>
-<li>制表符 \t</li>
-<li>空格</li>
-<li>其他不可见符号</li>
-</ul>
-</li>
-<li>元字符：<br>  [] -&gt; 匹配出现在[]中的任意一个原子<br>  | -&gt; 或运算，匹配|符号左右两边的任意一个<br>  [^ ] -&gt;首先这里^必须和[紧挨着，才表示匹配除了[]里面任意原子的字符<br>  [ ^ ]-&gt;如果不挨着，就只表示匹配^这种字符了</li>
-<li>原子的集合：<ul>
-<li><code>.</code>  匹配除换行符之外的任意字符。等价于[^\n]。</li>
-<li><code>\d</code> 匹配任意一个十进制数字，即[0-9]。</li>
-<li><code>\D</code> 匹配任意一个非十进制数字，即[^0-9]。</li>
-<li><code>\s</code> 匹配一个不可见原子，即[\f\n\r\t\v]。</li>
-<li><code>\S</code> 匹配一个可见原子，即[^\f\n\r\t\v]。</li>
-<li><code>\w</code> 匹配任意一个数字，字母或下划线，即[0-9a-zA-Z_]。</li>
-<li><code>\W</code> 匹配任意一个非数字，字母或是下划线，即[^0-9a-zA-Z_]。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>量词<ul>
-<li><code>{n}</code> 表示其前面的原子恰好出现n次。</li>
-<li><code>{n,}</code> 表示其前面的原子最少出现n次。</li>
-<li><code>{n,m}</code> 表示其前面的原子最少出现n次，最多出现m次。</li>
-<li>`` 匹配0次，1次，或者多次其之前的原子，即{0,}。 ?      ???????</li>
-<li><code>+</code> 匹配1次，或者多次其之前的原子，即{1,}。</li>
-<li><code>?</code> 匹配0次，1次，或者1次其之前的原子，即{0,1}。<blockquote>
-<p>备注:量词不仅支持原子，同样支持原子的集合，同样支持元字符的写法。例如：\w{4}</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>边界控制<ol>
-<li><code>^</code> 匹配字符串开始的位置</li>
-<li><code>$</code> 匹配字符串结尾的位置</li>
-</ol>
-</li>
-<li>模式单元<ul>
-<li><code>（）</code>匹配其中的整体为一个原子, 例如：（H|h)ello则匹配Hello和hello的结果。</li>
-</ul>
-</li>
-<li>修正模式<ul>
-<li>贪婪匹配: 匹配结果存在歧义时取其长</li>
-<li>懒惰匹配: 匹配结果存在歧义时取其短</li>
-<li>常见的修正模式：<ul>
-<li><code>U</code> 懒惰匹配</li>
-<li><code>i</code> 忽略英文字母大小写</li>
-<li><code>x</code> 忽略空白(空格，制表符等空白符）</li>
-<li><code>s</code> 让元字符’.’匹配包括换行符在内的所有字符</li>
-<li><code>e</code> 后面单独写下~<blockquote>
-<p>惰模式的标识为大写的U<br>例如：<br>$pattern = ‘/hello.+12/‘;<br>$subject = ‘hello<strong>1231321233123131’;<br>在贪婪模式下匹配的结果为：hello</strong>1231321233123131<br>而修改为懒惰匹配</p>
-<p>$pattern = ‘/hello.+12/U’;<br>$subject = ‘hello<strong>1231321233123131’;<br>那么结果就会变为：hello</strong>12</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="三、常见正则表达式练习">三、常见正则表达式练习</h2><ul>
-<li>非空：<code>/.+/</code></li>
-<li>浮点数匹配： <code>/\d+.\d{2}$/</code> ，实现保留两位的浮点数，$符号是上文中的边界控制哦~</li>
-<li>手机号匹配：<code>/1[34578]\d{9}/</code>，匹配到的为1开头，第二位为3，4，5，7，或8的11位手机号</li>
-<li>email地址匹配： <code>/^\w+(.\w+)*@\w+(.\w+)+$/</code> (\w 字母,数字,下划线)</li>
-<li>URL匹配：http是否出现，是http还是https。即 <code>^(https?://)?</code>。是否是二级域名? 即：<code>(\w+.)+</code>。顶级域名。即：<code>[a-zA-Z]+</code>。故：正则表达式：<code>^(https?://)?(\w+.)+[a-zA-Z]+$</code></li>
-</ul>
-<h3 id="3-1_正则工具类的设计实现">3.1 正则工具类的设计实现</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegexTool</span> </span>&#123;</div><div class="line">    <span class="comment">//常用的regex表达式数组</span></div><div class="line">    <span class="keyword">private</span> $validata = <span class="keyword">array</span>(</div><div class="line">        <span class="string">'require'</span>   =&gt;  <span class="string">'/.+/'</span>,</div><div class="line">            <span class="string">'email'</span>     =&gt;  <span class="string">'/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/'</span>,</div><div class="line">            <span class="string">'url'</span>       =&gt;  <span class="string">'/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]&#123;2,4&#125;(?:[\/\?#][\/=\?%\-&amp;~`@[\]\':+!\.#\w]*)?$/'</span>,</div><div class="line">            <span class="string">'currency'</span>  =&gt;  <span class="string">'/^\d+(\.\d+)?$/'</span>,</div><div class="line">            <span class="string">'number'</span>    =&gt;  <span class="string">'/^\d+$/'</span>,</div><div class="line">            <span class="string">'zip'</span>       =&gt;  <span class="string">'/^\d&#123;6&#125;$/'</span>,</div><div class="line">            <span class="string">'integer'</span>   =&gt;  <span class="string">'/^[-\+]?\d+$/'</span>,</div><div class="line">            <span class="string">'double'</span>    =&gt;  <span class="string">'/^[-\+]?\d+(\.\d+)?$/'</span>,</div><div class="line">            <span class="string">'english'</span>   =&gt;  <span class="string">'/^[A-Za-z]+$/'</span>,</div><div class="line">            <span class="string">'qq'</span>        =&gt;    <span class="string">'/^\d&#123;5,11&#125;$/'</span>,</div><div class="line">            <span class="string">'mobile'</span>    =&gt;    <span class="string">'/^1(3|4|5|7|8)\d&#123;9&#125;$/'</span>,</div><div class="line">        );</div><div class="line">    <span class="comment">//返回数组还是返回真假的boolean变量</span></div><div class="line">    <span class="keyword">private</span> $returnMatechResult = <span class="keyword">false</span>;</div><div class="line">    <span class="comment">//修正模式</span></div><div class="line">    <span class="keyword">private</span> $fixmode = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">//匹配结果数组</span></div><div class="line">    <span class="keyword">private</span> $matches = <span class="keyword">array</span>();</div><div class="line">    <span class="comment">//是否匹配成功</span></div><div class="line">    <span class="keyword">private</span> $isMatch = <span class="keyword">false</span>;</div><div class="line">    <span class="comment">//类的构造函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($returnMatchResult = false, $fixMode = null)</span> </span>&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;returnMatchResult = $returnMatchResult;</div><div class="line">    <span class="keyword">$this</span>-&gt;fixMode = $fixMode;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//核心匹配方法</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">regex</span><span class="params">($pattern ,$subject)</span></span>&#123;</div><div class="line">       <span class="comment">//array_key_exists判断键值是否存在</span></div><div class="line">        <span class="keyword">if</span> (array_key_exists(strtolower($pattern), <span class="keyword">$this</span>-&gt;validata)) &#123;</div><div class="line">            $pattern = <span class="keyword">$this</span>-&gt;validata[$pattern].<span class="keyword">$this</span>-&gt;fixmode;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">$this</span>-&gt;returnMatchResult?</div><div class="line">        preg_match_all($pattern, $subject, <span class="keyword">$this</span>-&gt;matches):<span class="keyword">$this</span>-&gt;isMatch = preg_match($pattern, $subject)===<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;getRegexResult();</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//获取返回值类型的方法</span></div><div class="line">   <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">getRegexResult</span><span class="params">()</span></span>&#123;</div><div class="line">           <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;returnMatchResult) &#123;</div><div class="line">               <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;matches;</div><div class="line">           &#125;<span class="keyword">else</span>&#123;</div><div class="line">               <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;isMatch;</div><div class="line">           &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//切换返回值类型</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">togoReturnType</span><span class="params">($boolean = null)</span></span>&#123;</div><div class="line"></div><div class="line">           <span class="keyword">if</span> (<span class="keyword">empty</span>($boolean)) &#123;</div><div class="line">               <span class="keyword">$this</span>-&gt;returnMatchResult = !<span class="keyword">$this</span>-&gt;returnMatchResult;</div><div class="line">           &#125;<span class="keyword">else</span>&#123;</div><div class="line">               <span class="keyword">$this</span>-&gt;returnMatchResult = is_bool($boolean)?$boolean:(bool)$boolean;</div><div class="line">           &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//设定修正模式</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setFixMode</span><span class="params">($fixMode)</span> </span>&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;fixMode = $fixMode;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//一些数据验证方法</span></div><div class="line"></div><div class="line">   <span class="comment">//是否为空</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">noEmpty</span><span class="params">($str)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex(<span class="string">'require'</span>,$str);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//验证email</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isEmail</span><span class="params">($email)</span></span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex(<span class="string">'email'</span>,$email);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//....其他的类似，省略了，小伙伴自己可以自定义添加哦~</span></div><div class="line"></div><div class="line">   <span class="comment">//用户自定义正则表达式</span></div><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($pattern, $subject)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;regex($pattern, $subject);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="四、其他语言或ide工具的正则语法使用">四、其他语言或ide工具的正则语法使用</h2><h3 id="4-1_vim下正则使用">4.1 vim下正则使用</h3><p>vim下的正则使用主要是批量替换的功能，使用语法如：<code>:[range]s/from/to/[flags]</code></p>
-<h4 id="vim替换语法">vim替换语法</h4><p>range:搜索范围，如果没有指定范围，则作用于但前行。</p>
-<ul>
-<li>:1,10s/from/to/ 表示在第1到第10行（包含第1，第10行）之间搜索替换；</li>
-<li>:10s/from/to/ 表示只在第10行搜索替换；</li>
-<li>:%s/from/to/ 表示在所有行中搜索替换；</li>
-<li>1,$s/from/to/ 同上。</li>
-</ul>
-<p>flags 有如下四个选项：</p>
-<ul>
-<li><code>c</code> confirm，每次替换前询问；</li>
-<li><code>e</code> error， 不显示错误；</li>
-<li><code>g</code> globle，不询问，整行替换。如果不加g选项，则只替换每行的第一个匹配到的字符串；</li>
-<li><code>i</code> ignore，忽略大小写。</li>
-</ul>
-<h4 id="vim中使用的正则表达式语法">vim中使用的正则表达式语法</h4><p>这里只针对vim中特殊的正则进行说明，其他的与通用正则大体一致。</p>
-<ul>
-<li>元字符： 大体一致，比如<code>\w</code> 代表匹配单词字母，等同于[0-9A-Za-z_]</li>
-<li>一些普通字符需转意<ul>
-<li><code>.</code>: 匹配<code>.</code>字符, 不需要转义</li>
-<li><code>\</code>: 匹配<code>\</code>字符, 不需要转义</li>
-</ul>
-</li>
-<li>表示位置的元字符<ul>
-<li><code>\&lt;</code>: 匹配单词词首</li>
-<li><code>\&gt;</code>: 匹配单词词尾</li>
-</ul>
-</li>
-</ul>
-<h4 id="vim_使用范例">vim 使用范例</h4><ul>
-<li><code>%s/^\(.\+\)$/,(\1)/</code> : 缓存变量使用，在vim中用 <code>\num</code>表示；</li>
-<li><code>:%s/\n//g</code>: 批量删除换行</li>
-<li>删除行尾空格：<code>:%s/\s+$//g</code></li>
-<li>删除行首多余空格：<code>%s/^\s*//</code> 或者 <code>%s/^ *//</code></li>
-<li>删除沒有內容的空行：<code>%s/^$//</code> 或者 <code>g/^$/d</code></li>
-<li>删除包含有空格组成的空行：<code>%s/^\s*$//</code> 或者 <code>g/^\s*$/d</code></li>
-<li>删除以空格或TAB开头到结尾的空行：<code>%s/^[ |\t]*$//</code> 或者 <code>g/^[ |\t]*$/d</code></li>
-<li>把文中的所有字符串“<code>abc……xyz</code>”替换为“<code>xyz……abc</code>”可以有下列写法<ul>
-<li><code>:%s/abc\(.*\)xyz/xyz\1abc/g</code></li>
-<li><code>:%s/\(abc\)\(.*\)\(xyz\)/\3\2\1/g</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="一些学习工具">一些学习工具</h2><ul>
-<li><a href="http://http//regexpal.com/" target="_blank" rel="external">regexpal工具</a>: 正则表达式书写辅助工具 regexpal 是Google Code上的一个开源项目，可以实时匹配正则表达式，方便调试，使用HTML和JS开发，推荐给大家使用。</li>
-<li><a href="http://eastrock.github.io/2015/09/20/php_study_zhengze/" target="_blank" rel="external">鬼斧神工的正则表达式（PHP语言）</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/14/tools/ocr-begin.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/tools/ocr-begin.html" itemprop="url">OCR开发之找轮子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T11:21:46+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/14/tools/ocr-begin.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/14/tools/ocr-begin.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/14/tools/ocr-begin.html" class="leancloud_visitors" data-flag-title="OCR开发之找轮子">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近有从图书中拍照ocr部分段落的需求，这里是收集的部分入门 及 目前商用的接口方案。</p>
-<p>以下关于OCR介绍来自搜索：</p>
-<p>OCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，针对印刷体字符，采用光学的方式将纸质文档中的文字转换成为黑白点阵的图像文件，并通过识别软件将图像中的文字转换成文本格式，供文字处理软件进一步编辑加工的技术。如何除错或利用辅助信息提高识别正确率，是OCR最重要的课题，ICR（Intelligent Character Recognition）的名词也因此而产生。衡量一个OCR系统性能好坏的主要指标有：拒识率、误识率、识别速度、用户界面的友好性，产品的稳定性，易用性及可行性等。</p>
-<p>简单地说吧，就是识别印刷品上面的文字，大概用得比较多的情况是：用设备的摄像头拍一张照片，照片中有文字，然后通过OCR技术将照片中的字符识别出来，转化为字符。顺便说一下，如果想“干坏事”的话，也可以用OCR技术来识别一些简单的图片验证码，呵呵，不过，现在很多网站的验证码都比较“狡猾”，要准确识别出来不那么容易。</p>
-<ul>
-<li><a href="https://www.leadtools.com/" target="_blank" rel="external">LEADTOOLS</a>: 英文识别文档SDK，支持c#、html5、ios和安卓等平台</li>
-<li><a href="https://cloud.tencent.com/document/product/460" target="_blank" rel="external">腾讯云 - 万象优图2.0</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/11/action/auth-open-weixin.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/11/action/auth-open-weixin.html" itemprop="url">微信第三方网站对接</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T17:47:43+08:00">
-                2017-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实战/" itemprop="url" rel="index">
-                    <span itemprop="name">实战</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/11/action/auth-open-weixin.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/11/action/auth-open-weixin.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/11/action/auth-open-weixin.html" class="leancloud_visitors" data-flag-title="微信第三方网站对接">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、开发之前">一、开发之前</h2><h3 id="1-1_开发工具">1.1 开发工具</h3><p>在着手开发之前，首选要了解微信开发相关文档和调试工具：</p>
-<ul>
-<li><a href="http://bbs.mb.qq.com/thread-1416936-1-1.html" target="_blank" rel="external">TBS开发调试利器——TBS Studio</a></li>
-<li><a href="https://mp.weixin.qq.com/wiki/10/e5f772f4521da17fa0d7304f68b97d7e.html" target="_blank" rel="external">微信web开发者工具</a></li>
-<li>公众号本地调试可以使用其他内网穿透的工具, 比如<a href="https://natapp.cn" target="_blank" rel="external">https://natapp.cn</a>(同时也支持https,用于微信小程序)</li>
-<li>模拟器<ul>
-<li><a href="http://mumu.163.com/" target="_blank" rel="external">网易MuMu模拟器</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2_账号申请">1.2 账号申请</h3><ol>
-<li>你要有微信开发账号，需要第三方验证</li>
-<li>写网站接入申请单</li>
-</ol>
-<h2 id="二、网站对接">二、网站对接</h2><h2 id="三、模拟测试">三、模拟测试</h2><h3 id="3-1_方法一、用Chrome在电脑上模拟微信内置浏览器">3.1 方法一、用Chrome在电脑上模拟微信内置浏览器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 安卓微信UA</span></div><div class="line"><span class="keyword">var</span> android_ua = <span class="string">'mozilla/5.0 (linux; u; android 4.1.2; zh-cn; mi-one plus build/jzo54k) applewebkit/534.30 (khtml, like gecko) version/4.0 mobile safari/534.30 micromessenger/5.0.1.352'</span>;</div><div class="line"></div><div class="line"><span class="comment">// iPhone微信UA</span></div><div class="line"><span class="keyword">var</span> iphone_ua = <span class="string">'mozilla/5.0 (iphone; cpu iphone os 5_1_1 like mac os x) applewebkit/534.46 (khtml, like gecko) mobile/9b206 micromessenger/5.0'</span>;</div><div class="line"></div><div class="line"><span class="comment">// JS判断是否微信浏览器</span></div><div class="line">functionisWeixinBrowser()&#123;  </div><div class="line">    <span class="keyword">var</span> ua = navigator.userAgent.toLowerCase();  </div><div class="line">    <span class="keyword">return</span> (<span class="regexp">/micromessenger/</span>.test(ua)) ? <span class="literal">true</span> : <span class="literal">false</span> ;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_weixin</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ua = navigator.userAgent.toLowerCase();</div><div class="line">    <span class="keyword">if</span>(ua.match(<span class="regexp">/MicroMessenger/i</span>)==<span class="string">"micromessenger"</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="3-2_命令端配置">3.2 命令端配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --user-agent=<span class="string">"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329 MicroMessenger/5.0.1"</span> xxx.com</div></pre></td></tr></table></figure>
-<h3 id="3-3_php配置">3.3 php配置</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * PHP 判断是否微信浏览器</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_weixin</span><span class="params">()</span></span>&#123; </div><div class="line">    <span class="keyword">if</span> ( strpos($_SERVER[<span class="string">'HTTP_USER_AGENT'</span>], <span class="string">'MicroMessenger'</span>) !== <span class="keyword">false</span> ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1982,7 +1910,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">172</span>
+                <span class="site-state-item-count">178</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2004,7 +1932,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
