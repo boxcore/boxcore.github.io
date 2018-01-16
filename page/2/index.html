@@ -644,6 +644,175 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/php/php-sqlite-usage.html" itemprop="url">PHP使用SQLite扩展</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/22/php/php-sqlite-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/22/php/php-sqlite-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/22/php/php-sqlite-usage.html" class="leancloud_visitors" data-flag-title="PHP使用SQLite扩展">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="开启sqlite">开启sqlite</h2><p>一. Windows下开启sqlite: </p>
+<pre><code><span class="setting">extension=<span class="value">php_pdo.dll</span></span>
+<span class="setting">extension=<span class="value">php_sqlite.dll</span></span>
+</code></pre><p>二. Unix/Linux下开启sqlite:</p>
+<p>是编译的时候添加: </p>
+<pre><code>--<span class="keyword">with</span>-sqlite=<span class="keyword">shared</span> 
+</code></pre><p>在安装后添加的编译: </p>
+<pre><code>tar xvf php-your<span class="class">.version</span><span class="class">.here</span><span class="class">.tar</span><span class="class">.gz</span>
+ cd php-your<span class="class">.version</span><span class="class">.here</span>/ext/sqlite/
+ phpize
+ ./configure
+ make
+ make install
+</code></pre><p>## </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/python/learn-python.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -837,196 +1006,6 @@ Dictionary（字典）
 </blockquote>
 <h2 id="if流程控制-1">if流程控制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 判断一</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"></div><div class="line"><span class="comment"># 判断二</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't get printed!"</span></div><div class="line"><span class="keyword">elif</span> <span class="number">8</span> &lt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I also don't get printed!"</span></div></pre></td></tr></table></figure>
 <h2 id="while语句">while语句</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-preg.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/php/php-preg.html" itemprop="url">PHP正则使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/php/php-preg.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-preg.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/php/php-preg.html" class="leancloud_visitors" data-flag-title="PHP正则使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="正则中的一些概念">正则中的一些概念</h1><h2 id="元字符">元字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.   匹配除换行符意外的任意字符</div><div class="line">\w  匹配字母或数字或下划线</div><div class="line">\s  匹配任意的空白符</div><div class="line">\d  匹配数字</div><div class="line">\b  匹配单词的开始或结束</div><div class="line">^   匹配字符串的开始</div><div class="line">$   匹配字符串的结束</div><div class="line">[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符</div><div class="line">\W  \w的反义，即匹配任意非字母，数字，下划线和汉字的字符</div><div class="line">\S  \s的反义，即匹配任意非空白符的字符</div><div class="line">\D  \d的反义，即匹配任意非数字的字符</div><div class="line">\B  \b的反义，即不是单词开头或结束的位置</div><div class="line">[^x]    匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</div></pre></td></tr></table></figure>
-<h2 id="重复">重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*   重复零次或更多次</div><div class="line">+   重复 1 次或更多次</div><div class="line">?   重复零次或 1 次</div><div class="line">&#123;n&#125; 重复 n 次</div><div class="line">&#123;n,&#125;    重复 n 次或更多次</div><div class="line">&#123;n,m&#125;   重复 n 到 m 次</div></pre></td></tr></table></figure>
-<h2 id="模式修正符">模式修正符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i   模式中的字符将同时匹配大小写字母</div><div class="line">m   字符串视为多行</div><div class="line">s   将字符串视为单行，换行符作为普通字符</div><div class="line">x   将模式中的空白忽略</div><div class="line">e   preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。</div><div class="line">A   强制仅从目标字符串的开头开始匹配</div><div class="line">D   模式中的 $ 元字符仅匹配目标字符串的结尾</div><div class="line">U   匹配最近的字符串</div><div class="line">u   模式字符串被当成 UTF-8</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="PHP正则函数">PHP正则函数</h1><p>在 PHP 应用中，正则表达式主要用于：    </p>
-<ol>
-<li>正则匹配：根据正则表达式匹配相应的内容</li>
-<li>正则替换：根据正则表达式匹配内容并替换</li>
-<li>正则分割：根据正则表达式分割字符串</li>
-</ol>
-<h2 id="PHP_正则表达式匹配_preg_match_与_preg_match_all_函数">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</h2><h3 id="preg_match()">preg_match()</h3><p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
-<p>语法：  </p>
-<blockquote>
-<p>int preg_match( string pattern, string subject [, array matches ] )</p>
-</blockquote>
-<p>参数说明：<br>    pattern 正则表达式<br>    subject 需要匹配检索的对象<br>    matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推</p>
-<h3 id="preg_match_all()">preg_match_all()</h3><p>preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
-<p>语法：</p>
-<blockquote>
-<p>int preg_match_all( string pattern, string subject, array matches [, int flags ] ) </p>
-</blockquote>
-<p>参数说明:<br>pattern: 正则表达式<br>subject: 需要匹配检索的对象<br>matches: 存储匹配结果的数组<br>flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有：</p>
-<pre><code><span class="number">1</span>. PREG_PATTERN_ORDER：默认，对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为全部模式匹配的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推
-<span class="number">2</span>. PREG_SET_ORDER：对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为第一组匹配项的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第二组匹配项的数组，以此类推
-<span class="number">3</span>. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量  
-</code></pre><hr>
-<h1 id="部分实例">部分实例</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1，过滤所有html标签的正则表达式：</span></div><div class="line">&lt;/?[^&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//2，过滤所有html标签的属性的正则表达式：</span></div><div class="line">$html = preg_replace(<span class="string">"/&lt;([a-zA-Z]+)[^&gt;]*&gt;/"</span>,<span class="string">"&lt;\\1&gt;"</span>,$html);</div><div class="line"></div><div class="line"><span class="comment">//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：</span></div><div class="line">&lt;/?[^pP/&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：</span></div><div class="line">&lt;/?[aApPbB][^&gt;]*&gt;</div><div class="line"></div><div class="line"><span class="comment">//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：</span></div><div class="line">\s(?!alt)[a-zA-Z]+=[^\s]*</div><div class="line"></div><div class="line"><span class="comment">//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：</span></div><div class="line">(\s)alt=[^\s]*</div></pre></td></tr></table></figure>
-<p>正则表达式中排除不需要匹配的字符串或字符<br>(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串</p>
-<p>(2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报)  </p>
-<p>加上|用于或选择。上面列出的字符串都不会参与匹配  </p>
-<hr>
-<h1 id="常用正则">常用正则</h1><ol>
-<li>删除空行:    <code>\r\n\r\n =&gt; \r\n\</code></li>
-<li>删除有空格的空行:    <code>^ +$ =&gt;</code></li>
-</ol>
-
           
         
       
@@ -1439,7 +1418,7 @@ Dictionary（字典）
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-preg.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1458,7 +1437,7 @@ Dictionary（字典）
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/22/php/php-sqlite-usage.html" itemprop="url">PHP使用SQLite扩展</a></h1>
+                <a class="post-title-link" href="/2017/12/22/php/php-preg.html" itemprop="url">PHP正则使用</a></h1>
         
 
         <div class="post-meta">
@@ -1511,9 +1490,9 @@ Dictionary（字典）
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/22/php/php-sqlite-usage.html#comments" itemprop="discussionUrl">
+                <a href="/2017/12/22/php/php-preg.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-sqlite-usage.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/12/22/php/php-preg.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1521,7 +1500,7 @@ Dictionary（字典）
 
           
           
-             <span id="/2017/12/22/php/php-sqlite-usage.html" class="leancloud_visitors" data-flag-title="PHP使用SQLite扩展">
+             <span id="/2017/12/22/php/php-preg.html" class="leancloud_visitors" data-flag-title="PHP正则使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1551,20 +1530,41 @@ Dictionary（字典）
       
         
           
-            <h2 id="开启sqlite">开启sqlite</h2><p>一. Windows下开启sqlite: </p>
-<pre><code><span class="setting">extension=<span class="value">php_pdo.dll</span></span>
-<span class="setting">extension=<span class="value">php_sqlite.dll</span></span>
-</code></pre><p>二. Unix/Linux下开启sqlite:</p>
-<p>是编译的时候添加: </p>
-<pre><code>--<span class="keyword">with</span>-sqlite=<span class="keyword">shared</span> 
-</code></pre><p>在安装后添加的编译: </p>
-<pre><code>tar xvf php-your<span class="class">.version</span><span class="class">.here</span><span class="class">.tar</span><span class="class">.gz</span>
- cd php-your<span class="class">.version</span><span class="class">.here</span>/ext/sqlite/
- phpize
- ./configure
- make
- make install
-</code></pre><p>## </p>
+            <h1 id="正则中的一些概念">正则中的一些概念</h1><h2 id="元字符">元字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.   匹配除换行符意外的任意字符</div><div class="line">\w  匹配字母或数字或下划线</div><div class="line">\s  匹配任意的空白符</div><div class="line">\d  匹配数字</div><div class="line">\b  匹配单词的开始或结束</div><div class="line">^   匹配字符串的开始</div><div class="line">$   匹配字符串的结束</div><div class="line">[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符</div><div class="line">\W  \w的反义，即匹配任意非字母，数字，下划线和汉字的字符</div><div class="line">\S  \s的反义，即匹配任意非空白符的字符</div><div class="line">\D  \d的反义，即匹配任意非数字的字符</div><div class="line">\B  \b的反义，即不是单词开头或结束的位置</div><div class="line">[^x]    匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符</div></pre></td></tr></table></figure>
+<h2 id="重复">重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*   重复零次或更多次</div><div class="line">+   重复 1 次或更多次</div><div class="line">?   重复零次或 1 次</div><div class="line">&#123;n&#125; 重复 n 次</div><div class="line">&#123;n,&#125;    重复 n 次或更多次</div><div class="line">&#123;n,m&#125;   重复 n 到 m 次</div></pre></td></tr></table></figure>
+<h2 id="模式修正符">模式修正符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">i   模式中的字符将同时匹配大小写字母</div><div class="line">m   字符串视为多行</div><div class="line">s   将字符串视为单行，换行符作为普通字符</div><div class="line">x   将模式中的空白忽略</div><div class="line">e   preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。</div><div class="line">A   强制仅从目标字符串的开头开始匹配</div><div class="line">D   模式中的 $ 元字符仅匹配目标字符串的结尾</div><div class="line">U   匹配最近的字符串</div><div class="line">u   模式字符串被当成 UTF-8</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="PHP正则函数">PHP正则函数</h1><p>在 PHP 应用中，正则表达式主要用于：    </p>
+<ol>
+<li>正则匹配：根据正则表达式匹配相应的内容</li>
+<li>正则替换：根据正则表达式匹配内容并替换</li>
+<li>正则分割：根据正则表达式分割字符串</li>
+</ol>
+<h2 id="PHP_正则表达式匹配_preg_match_与_preg_match_all_函数">PHP 正则表达式匹配 preg_match 与 preg_match_all 函数</h2><h3 id="preg_match()">preg_match()</h3><p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
+<p>语法：  </p>
+<blockquote>
+<p>int preg_match( string pattern, string subject [, array matches ] )</p>
+</blockquote>
+<p>参数说明：<br>    pattern 正则表达式<br>    subject 需要匹配检索的对象<br>    matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推</p>
+<h3 id="preg_match_all()">preg_match_all()</h3><p>preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
+<p>语法：</p>
+<blockquote>
+<p>int preg_match_all( string pattern, string subject, array matches [, int flags ] ) </p>
+</blockquote>
+<p>参数说明:<br>pattern: 正则表达式<br>subject: 需要匹配检索的对象<br>matches: 存储匹配结果的数组<br>flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有：</p>
+<pre><code><span class="number">1</span>. PREG_PATTERN_ORDER：默认，对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为全部模式匹配的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推
+<span class="number">2</span>. PREG_SET_ORDER：对结果排序使 <span class="variable">$matches</span>[<span class="number">0</span>] 为第一组匹配项的数组，<span class="variable">$matches</span>[<span class="number">1</span>] 为第二组匹配项的数组，以此类推
+<span class="number">3</span>. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量  
+</code></pre><hr>
+<h1 id="部分实例">部分实例</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1，过滤所有html标签的正则表达式：</span></div><div class="line">&lt;/?[^&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//2，过滤所有html标签的属性的正则表达式：</span></div><div class="line">$html = preg_replace(<span class="string">"/&lt;([a-zA-Z]+)[^&gt;]*&gt;/"</span>,<span class="string">"&lt;\\1&gt;"</span>,$html);</div><div class="line"></div><div class="line"><span class="comment">//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：</span></div><div class="line">&lt;/?[^pP/&gt;]+&gt;</div><div class="line"></div><div class="line"><span class="comment">//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：</span></div><div class="line">&lt;/?[aApPbB][^&gt;]*&gt;</div><div class="line"></div><div class="line"><span class="comment">//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：</span></div><div class="line">\s(?!alt)[a-zA-Z]+=[^\s]*</div><div class="line"></div><div class="line"><span class="comment">//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：</span></div><div class="line">(\s)alt=[^\s]*</div></pre></td></tr></table></figure>
+<p>正则表达式中排除不需要匹配的字符串或字符<br>(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串</p>
+<p>(2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报)  </p>
+<p>加上|用于或选择。上面列出的字符串都不会参与匹配  </p>
+<hr>
+<h1 id="常用正则">常用正则</h1><ol>
+<li>删除空行:    <code>\r\n\r\n =&gt; \r\n\</code></li>
+<li>删除有空格的空行:    <code>^ +$ =&gt;</code></li>
+</ol>
 
           
         
