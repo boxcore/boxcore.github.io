@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-01-16T10:05:52.000Z</updated>
+  <updated>2018-02-01T13:21:44.000Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,163 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP CURL使用</title>
+    <link href="http://boxcore.github.io/2018/02/01/php/php-curl-usage.html"/>
+    <id>http://boxcore.github.io/2018/02/01/php/php-curl-usage.html</id>
+    <published>2018-02-01T12:31:18.000Z</published>
+    <updated>2018-02-01T13:21:44.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP INI配置</title>
+    <link href="http://boxcore.github.io/2018/02/01/php/php-ini-setting.html"/>
+    <id>http://boxcore.github.io/2018/02/01/php/php-ini-setting.html</id>
+    <published>2018-02-01T09:19:23.000Z</published>
+    <updated>2018-02-01T12:31:05.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ini_set相关&quot;&gt;ini_set相关&lt;/h2&gt;&lt;h3 id=&quot;配置时区&quot;&gt;配置时区&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;配置文件：&lt;code&gt;date.timezone = Asia/Shanghai&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;php文件中配置：&lt;code&gt;dat
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome PHP</title>
+    <link href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html"/>
+    <id>http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html</id>
+    <published>2018-01-31T02:33:49.000Z</published>
+    <updated>2018-01-31T02:36:01.723Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;操作类&quot;&gt;操作类&lt;/h2&gt;&lt;h3 id=&quot;DB操作类&quot;&gt;DB操作类&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/joshcam/mysqli-database-class&quot; target=&quot;_blank&quot; rel=&quot;exter
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome API</title>
+    <link href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-api.html"/>
+    <id>http://boxcore.github.io/2018/01/31/awesome-tools/awesome-api.html</id>
+    <published>2018-01-31T02:28:59.000Z</published>
+    <updated>2018-01-31T02:32:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;API标准&quot;&gt;API标准&lt;/h2&gt;&lt;h2 id=&quot;API测试工具&quot;&gt;API测试工具&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/thx/rap2-delos&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RA
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux之文件查找find</title>
+    <link href="http://boxcore.github.io/2018/01/30/linux/linux-find.html"/>
+    <id>http://boxcore.github.io/2018/01/30/linux/linux-find.html</id>
+    <published>2018-01-30T13:23:33.000Z</published>
+    <updated>2018-01-30T14:09:41.284Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;find参数&quot;&gt;find参数&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-print0&lt;/code&gt; : 不换行输出内容，也可以理解\0 是定界符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;使用&quot;&gt;使用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;查找某个字符串在目录下出现次数&lt;/li&gt;
+
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+      <category term="find" scheme="http://boxcore.github.io/tags/find/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书《PHP实战》</title>
+    <link href="http://boxcore.github.io/2018/01/25/books/php-in-action.html"/>
+    <id>http://boxcore.github.io/2018/01/25/books/php-in-action.html</id>
+    <published>2018-01-25T13:19:55.000Z</published>
+    <updated>2018-01-26T02:04:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Preview&quot;&gt;Preview&lt;/h2&gt;&lt;h2 id=&quot;Content&quot;&gt;Content&lt;/h2&gt;&lt;h3 id=&quot;第一部分：工具和概念&quot;&gt;第一部分：工具和概念&lt;/h3&gt;&lt;p&gt;第一部分中的几章循序渐进，从 PHP 面向对象编程的具体细节讲到面向对象应用程序设计这个
+    
+    </summary>
+    
+      <category term="books" scheme="http://boxcore.github.io/categories/books/"/>
+    
+    
+      <category term="阅读" scheme="http://boxcore.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux之文件操作</title>
+    <link href="http://boxcore.github.io/2018/01/17/linux/linux-files.html"/>
+    <id>http://boxcore.github.io/2018/01/17/linux/linux-files.html</id>
+    <published>2018-01-17T07:46:03.000Z</published>
+    <updated>2018-01-17T07:46:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;统计目录大小&quot;&gt;统计目录大小&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;du -hs *&lt;/li&gt;
+&lt;li&gt;find . -maxdepth 1 -type d -mindepth 1 -exec du -hs {} \;&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>主机系统调研</title>
+    <link href="http://boxcore.github.io/2018/01/17/topic/host-system-research.html"/>
+    <id>http://boxcore.github.io/2018/01/17/topic/host-system-research.html</id>
+    <published>2018-01-17T04:13:01.000Z</published>
+    <updated>2018-01-17T04:19:22.416Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前比较流行的主机管理系统有whmcs和&lt;a href=&quot;http://www.cloudgoing.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IDCSystem&lt;/a&gt;，前者主要服务linux后者主要是用在windows系列的虚拟主机中。由
+    
+    </summary>
+    
+      <category term="research" scheme="http://boxcore.github.io/categories/research/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Awesome Tools</title>
@@ -123,7 +280,7 @@
     <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html"/>
     <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html</id>
     <published>2018-01-05T03:55:50.000Z</published>
-    <updated>2018-01-05T03:58:33.230Z</updated>
+    <updated>2018-01-31T02:42:42.090Z</updated>
     
     <summary type="html">
     
@@ -260,163 +417,6 @@
     </summary>
     
       <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP设计模式</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-design-pattern.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-design-pattern.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:37:22.528Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们常用的php设计模式有: &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#Singleton(单例模式&quot;&gt;单例模式&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Singleton(单例模式&quot;&gt;单例模式&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;Interpre
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP正则使用</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-preg.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-preg.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:38:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;正则中的一些概念&quot;&gt;正则中的一些概念&lt;/h1&gt;&lt;h2 id=&quot;元字符&quot;&gt;元字符&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP使用redis</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-redis-usage.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-redis-usage.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:39:07.654Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;Redis简介:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PHP使用SQLite扩展</title>
-    <link href="http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html"/>
-    <id>http://boxcore.github.io/2017/12/22/php/php-sqlite-usage.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-22T14:39:50.779Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;开启sqlite&quot;&gt;开启sqlite&lt;/h2&gt;&lt;p&gt;一. Windows下开启sqlite: &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;setting&quot;&gt;extension=&lt;span class=&quot;value&quot;&gt;php_pdo.dll&lt;/span
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python语言</title>
-    <link href="http://boxcore.github.io/2017/12/22/python/learn-python.html"/>
-    <id>http://boxcore.github.io/2017/12/22/python/learn-python.html</id>
-    <published>2017-12-22T14:33:05.000Z</published>
-    <updated>2017-12-25T01:29:52.154Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python笔记&lt;/p&gt;
-&lt;h1 id=&quot;变量类型&quot;&gt;变量类型&lt;/h1&gt;&lt;h2 id=&quot;数字&quot;&gt;数字&lt;/h2&gt;&lt;h2 id=&quot;字符串&quot;&gt;字符串&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-    
-    </summary>
-    
-      <category term="python" scheme="http://boxcore.github.io/categories/python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL数据备份&amp;导入</title>
-    <link href="http://boxcore.github.io/2017/12/22/sql/mysql-dump-and-source.html"/>
-    <id>http://boxcore.github.io/2017/12/22/sql/mysql-dump-and-source.html</id>
-    <published>2017-12-22T14:27:59.000Z</published>
-    <updated>2017-12-22T14:31:42.696Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;mysqldump语法：&lt;/p&gt;
-&lt;p&gt;mysqldump按条件查找：&lt;br&gt;mysqldump按条件查找的参数是 -where/-w，例子如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;mysqldump -uroot -p123456 dbname table_name 
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://boxcore.github.io/categories/mysql/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux文件操作命令之局域共享samba</title>
-    <link href="http://boxcore.github.io/2017/12/22/linux/linux-samba.html"/>
-    <id>http://boxcore.github.io/2017/12/22/linux/linux-samba.html</id>
-    <published>2017-12-22T14:27:59.000Z</published>
-    <updated>2017-12-22T14:28:11.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;samba简写smb, 是linux下局域网共享服务.&lt;/p&gt;
-&lt;h2 id=&quot;安装samba&quot;&gt;安装samba&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下用户管理sudo</title>
-    <link href="http://boxcore.github.io/2017/12/22/linux/linux-sudo.html"/>
-    <id>http://boxcore.github.io/2017/12/22/linux/linux-sudo.html</id>
-    <published>2017-12-22T14:26:05.000Z</published>
-    <updated>2017-12-22T14:26:21.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;添加sudo用户&quot;&gt;添加sudo用户&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;keyword&quot;&gt;chmod&lt;/span&gt; u+w /etc/sudoers
-&lt;span class=&quot;keyword&quot;&gt;vim&lt;/span&gt; /etc/sudoers 
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
     
     
   </entry>

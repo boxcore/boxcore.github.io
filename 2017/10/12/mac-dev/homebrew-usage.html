@@ -105,7 +105,7 @@
 <meta property="og:description" content="homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。
 一、安装homebrew二、配置homebrew2.1 修改homebrew镜像默认的，homebrew是使用github作为代码源，同步的时候会比较慢，所以就有了备选方案  -  使用USTC提供的homebrew镜像。具体操作可以看这篇文章《替换及重置Homebrew默认源》
 12345">
-<meta property="og:updated_time" content="2017-10-12T07:16:32.000Z">
+<meta property="og:updated_time" content="2018-02-01T12:29:42.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="homebrew的安装与使用">
 <meta name="twitter:description" content="homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。
@@ -423,6 +423,9 @@
         <p>homebrew是mac下非常不错的包管理软件，类似centos下的yum吧，下面说说他的安装及基础使用。</p>
 <h2 id="一、安装homebrew">一、安装homebrew</h2><h2 id="二、配置homebrew">二、配置homebrew</h2><h3 id="2-1_修改homebrew镜像">2.1 修改homebrew镜像</h3><p>默认的，homebrew是使用github作为代码源，同步的时候会比较慢，所以就有了备选方案  -  使用USTC提供的homebrew镜像。具体操作可以看这篇文章<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git" target="_blank" rel="external">《替换及重置Homebrew默认源》</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">替换brew.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/brew.git</div><div class="line"></div><div class="line">替换homebrew-core.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</div><div class="line"></div><div class="line"></div><div class="line">重置brew.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://github.com/Homebrew/brew.git</div><div class="line"></div><div class="line">重置homebrew-core.git:</div><div class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></div><div class="line">git remote <span class="built_in">set</span>-url origin https://github.com/Homebrew/homebrew-core.git</div></pre></td></tr></table></figure>
+<h2 id="三、常用homebrew工具">三、常用homebrew工具</h2><ul>
+<li><code>brew install inetutils</code>: inetutils里面包含ftp工具，具体可以看一看GNU软件包列表，里面介绍了inetutils网络工具组包含了ftp,telnet,rsh,rlogin,tftp。所以，mac只要安装inetutils就可以了。</li>
+</ul>
 
       
     </div>
@@ -573,7 +576,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">178</span>
+                <span class="site-state-item-count">186</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +587,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -595,7 +598,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -655,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装homebrew"><span class="nav-number">1.</span> <span class="nav-text">一、安装homebrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置homebrew"><span class="nav-number">2.</span> <span class="nav-text">二、配置homebrew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_修改homebrew镜像"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 修改homebrew镜像</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装homebrew"><span class="nav-number">1.</span> <span class="nav-text">一、安装homebrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置homebrew"><span class="nav-number">2.</span> <span class="nav-text">二、配置homebrew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_修改homebrew镜像"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 修改homebrew镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、常用homebrew工具"><span class="nav-number">3.</span> <span class="nav-text">三、常用homebrew工具</span></a></li></ol></div>
             
 
           </div>
