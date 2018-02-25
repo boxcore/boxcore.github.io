@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-02-01T13:21:44.000Z</updated>
+  <updated>2018-02-13T02:41:45.236Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,116 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式文件系统FastDFS搭建</title>
+    <link href="http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html"/>
+    <id>http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html</id>
+    <published>2018-02-13T02:41:23.000Z</published>
+    <updated>2018-02-13T02:41:45.236Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+      <category term="fastdfs" scheme="http://boxcore.github.io/tags/fastdfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome Windows</title>
+    <link href="http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html"/>
+    <id>http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html</id>
+    <published>2018-02-12T09:18:48.000Z</published>
+    <updated>2018-02-12T09:19:35.052Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;包管理工具&quot;&gt;包管理工具&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://chocolatey.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;chocolatey&lt;/a&gt;: The package manager for W
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+      <category term="mac" scheme="http://boxcore.github.io/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows下共享WiFi</title>
+    <link href="http://boxcore.github.io/2018/02/12/windows/window-share-wifi.html"/>
+    <id>http://boxcore.github.io/2018/02/12/windows/window-share-wifi.html</id>
+    <published>2018-02-12T02:12:38.000Z</published>
+    <updated>2018-02-12T02:13:07.520Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight cmd&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用htpasswd设置web密码</title>
+    <link href="http://boxcore.github.io/2018/02/08/linux/linux-htpasswd-usage.html"/>
+    <id>http://boxcore.github.io/2018/02/08/linux/linux-htpasswd-usage.html</id>
+    <published>2018-02-08T08:58:52.000Z</published>
+    <updated>2018-02-08T09:07:31.614Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;网页验证密码可以通过nginx的&lt;code&gt;ngx_http_auth_basic_module&lt;/code&gt;模块进行配置，但生产账号和密码则需要用到htpasswd这个工具&lt;/p&gt;
+&lt;h2 id=&quot;一、安装htpasswd&quot;&gt;一、安装htpasswd&lt;/h2&gt;&lt;figur
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Resilio Sync使用</title>
+    <link href="http://boxcore.github.io/2018/02/07/fgfw/rslsync-usage.html"/>
+    <id>http://boxcore.github.io/2018/02/07/fgfw/rslsync-usage.html</id>
+    <published>2018-02-07T10:04:43.000Z</published>
+    <updated>2018-02-07T10:05:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装&quot;&gt;一、安装&lt;/h2&gt;&lt;h3 id=&quot;1-1_linux下安装rslsync&quot;&gt;1.1 linux下安装rslsync&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux文件操作命令之获取当前目录</title>
+    <link href="http://boxcore.github.io/2018/02/05/linux/linux-get-cur-dir.html"/>
+    <id>http://boxcore.github.io/2018/02/05/linux/linux-get-cur-dir.html</id>
+    <published>2018-02-05T07:39:06.000Z</published>
+    <updated>2018-02-05T07:42:59.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;readlink&quot;&gt;readlink&lt;/h2&gt;&lt;p&gt;readlink– help&lt;br&gt;用法：readlink【选项】… 文件输出符号链接值或权威文件名。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-f, --canonicalize&lt;/code&gt; 递归跟随给出文件名
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>PHP CURL使用</title>
@@ -58,7 +168,7 @@
     <link href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html"/>
     <id>http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html</id>
     <published>2018-01-31T02:33:49.000Z</published>
-    <updated>2018-01-31T02:36:01.723Z</updated>
+    <updated>2018-02-12T06:55:19.261Z</updated>
     
     <summary type="html">
     
@@ -197,7 +307,7 @@
     <link href="http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html"/>
     <id>http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html</id>
     <published>2018-01-15T16:03:59.000Z</published>
-    <updated>2018-01-15T16:09:43.653Z</updated>
+    <updated>2018-02-12T06:42:26.302Z</updated>
     
     <summary type="html">
     
@@ -254,28 +364,6 @@
   </entry>
   
   <entry>
-    <title>Awesome Spider</title>
-    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html"/>
-    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html</id>
-    <published>2018-01-05T03:55:50.000Z</published>
-    <updated>2018-01-10T02:31:13.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于爬虫采集的一些好工具：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/luyishisi/Anti-Anti-Spider/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Anti-Anti-Spider&lt;/a&gt;&lt;/
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="spider" scheme="http://boxcore.github.io/tags/spider/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Awesome Mac</title>
     <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html"/>
     <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html</id>
@@ -297,127 +385,24 @@
   </entry>
   
   <entry>
-    <title>feed订阅配置</title>
-    <link href="http://boxcore.github.io/2018/01/04/tools/feed-setting.html"/>
-    <id>http://boxcore.github.io/2018/01/04/tools/feed-setting.html</id>
-    <published>2018-01-04T06:15:59.000Z</published>
-    <updated>2018-01-04T06:16:57.946Z</updated>
+    <title>Awesome Spider</title>
+    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html"/>
+    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html</id>
+    <published>2018-01-05T03:55:50.000Z</published>
+    <updated>2018-01-10T02:31:13.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;mark:&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="feed" scheme="http://boxcore.github.io/tags/feed/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nextcloud折腾笔记</title>
-    <link href="http://boxcore.github.io/2018/01/04/tools/nextcloud-usage.html"/>
-    <id>http://boxcore.github.io/2018/01/04/tools/nextcloud-usage.html</id>
-    <published>2018-01-04T03:37:00.000Z</published>
-    <updated>2018-01-04T03:38:43.082Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NextCloud是php开源的私有网盘管理工具，支持app和web，这里说下其安装及使用&lt;/p&gt;
-&lt;h2 id=&quot;一、安装Nextcloud&quot;&gt;一、安装Nextcloud&lt;/h2&gt;&lt;h3 id=&quot;1-1_服务端安装&quot;&gt;1.1 服务端安装&lt;/h3&gt;&lt;h3 id=&quot;1-2_客
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="disk" scheme="http://boxcore.github.io/tags/disk/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Composer Note</title>
-    <link href="http://boxcore.github.io/2017/12/26/composer-note.html"/>
-    <id>http://boxcore.github.io/2017/12/26/composer-note.html</id>
-    <published>2017-12-26T06:59:18.000Z</published>
-    <updated>2017-12-26T07:04:32.143Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Composer 是 PHP 的一个依赖管理工具，类似于node.js的npm，相关收录的php包可以在&lt;a href=&quot;https://packagist.org/explore/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;packagist&lt;/a&gt;
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="composer" scheme="http://boxcore.github.io/tags/composer/"/>
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>下载工具合集</title>
-    <link href="http://boxcore.github.io/2017/12/26/tools/download-tookit.html"/>
-    <id>http://boxcore.github.io/2017/12/26/tools/download-tookit.html</id>
-    <published>2017-12-26T04:24:12.000Z</published>
-    <updated>2017-12-26T04:25:29.849Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1、由于业务发展上的调整，“QQ旋风”将于2017年9月6日停止运营&lt;br&gt;2、迅雷关闭远程离线下载&lt;/p&gt;
-&lt;p&gt;如上，很多之前提供下载的工具由于种种原因怕是要关闭的，下面是一些备用的推荐工具以供选择：&lt;/p&gt;
-&lt;p&gt;1、百度网盘&lt;br&gt;2、free download m
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows常用工具快捷命令</title>
-    <link href="http://boxcore.github.io/2017/12/25/windows/window-cli-usage.html"/>
-    <id>http://boxcore.github.io/2017/12/25/windows/window-cli-usage.html</id>
-    <published>2017-12-25T01:26:43.000Z</published>
-    <updated>2017-12-25T01:27:02.181Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;Ctrl + r&lt;/code&gt;调用出此命令, 但里面常用的应用有:&lt;/p&gt;
+      &lt;p&gt;关于爬虫采集的一些好工具：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;mstsc: 远程桌面&lt;/li&gt;
-&lt;li&gt;sysdm.cpl : 系统属性&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;li&gt;&lt;a href=&quot;https://github.com/luyishisi/Anti-Anti-Spider/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Anti-Anti-Spider&lt;/a&gt;&lt;/
     
     </summary>
     
-      <category term="Journal" scheme="http://boxcore.github.io/categories/Journal/"/>
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
     
     
-  </entry>
-  
-  <entry>
-    <title>WHOIS查询</title>
-    <link href="http://boxcore.github.io/2017/12/22/tools/whois.html"/>
-    <id>http://boxcore.github.io/2017/12/22/tools/whois.html</id>
-    <published>2017-12-22T14:41:02.000Z</published>
-    <updated>2017-12-22T14:41:13.521Z</updated>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
+      <category term="spider" scheme="http://boxcore.github.io/tags/spider/"/>
     
   </entry>
   

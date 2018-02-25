@@ -329,6 +329,1013 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/11/php-object-class-summary.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/11/php-object-class-summary.html" itemprop="url">PHP对象类总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-11T17:20:16+08:00">
+                2013-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/11/php-object-class-summary.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/11/php-object-class-summary.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/11/php-object-class-summary.html" class="leancloud_visitors" data-flag-title="PHP对象类总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用类的过程中遇到的N多总结下如下：</p>
+<p>1、Fatal error: Cannot redeclare class的解决办法</p>
+<p>从字面来看也很好理解，说明是重复定义了类，找了一下自己的代码，是因为存在同名的类导致的，修改了类名就好了。</p>
+<p>判断代码：</p>
+<p>if (!class_exists(‘pageModule’)){</p>
+<pre><code>require_once<span class="list">(<span class="keyword">PATH_site</span>.<span class="quoted">'fileadmin/scripts/class</span>.page.php')</span><span class="comment">;</span>
+</code></pre><p>}</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/10/learn131210-ajax-little-practice.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/10/learn131210-ajax-little-practice.html" itemprop="url">Learn131210 Ajax小练习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-10T09:32:58+08:00">
+                2013-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/10/learn131210-ajax-little-practice.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/10/learn131210-ajax-little-practice.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/10/learn131210-ajax-little-practice.html" class="leancloud_visitors" data-flag-title="Learn131210 Ajax小练习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先，在PHP端必须得知道的是需要用到的json_decode和json_encode.</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/08/fixed-ecshop-jquery-compatibility-problems.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/08/fixed-ecshop-jquery-compatibility-problems.html" itemprop="url">解决ECshop下jQuery冲突问题及其可能出现的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-08T23:50:56+08:00">
+                2013-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/08/fixed-ecshop-jquery-compatibility-problems.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/08/fixed-ecshop-jquery-compatibility-problems.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/08/fixed-ecshop-jquery-compatibility-problems.html" class="leancloud_visitors" data-flag-title="解决ECshop下jQuery冲突问题及其可能出现的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>终于，今天把ecshop下的jquery问题彻底解决了。下面附上方法，建议都新建一群文件名为  *_jq.js的文件，如transpor.js我都改成transpor_jq.js,用来识别这是用js的json写的！</p>
+<p>1.  在transpor.js中去掉ec中重写json的方法：</p>
+<p>约在450 到 735行间，看到注释有  “json.js   2007-03-06” 的地方就干掉他，如果发现有   *.prototype.toJSONString 类似的函数，总之在这段代码区间，发现prototype重写方法就干掉！</p>
+<p>2. 引入jquery文件：</p>
+<p>{insert_scripts files=’jquery.js,jquery.json-1.3.js’} 必须保证这段代码是在其他js前调用的！</p>
+<p>3. 替换ecshop原来用到转json数据的代码：</p>
+<p>替换 <em>.toJSONString() 为 $.toJSON(</em>)<br>替换 <em>.parseJSON() 为 $.evalJSON(</em>)</p>
+<p>解决范例：<br>a.在商品浏览页，用户评论这里：<br>Ajax.call(‘comment.php’, ‘cmt=’ + cmt.toJSONString(), commentResponse, ‘POST’, ‘JSON’);<br>替换为<br>Ajax.call(‘comment.php’, ‘cmt=’ + $.toJSON(cmt), commentResponse, ‘POST’, ‘JSON’);</p>
+<p>b.index.js 里<br>var res = result.parseJSON();<br>替换为<br>var res = $.evalJSON(result);</p>
+<p>&nbsp;</p>
+<p>可能遇到的问题：</p>
+<p>1. 如果遇到 transport.js/run() undified 弹窗报错，那么你需要在页面中加入这个代码：</p>
+<p><pre class="brush:javascript">&lt;script type=”text/javascript”&gt;<br>    var process_request = “{$lang.process_request}”;<br>&lt;/script&gt;</pre><br>&nbsp;</p>
+<p><a href="http://code.google.com/p/boxcore/source/browse/trunk/_files/ecshop/jquery_ecshop.rar" target="_blank" rel="external">附件下载</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/08/dev-think-baidu-api-for-map.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/08/dev-think-baidu-api-for-map.html" itemprop="url">Dev131208 百度API开发 - 多自定义坐标调用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-08T20:03:08+08:00">
+                2013-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Journal/" itemprop="url" rel="index">
+                    <span itemprop="name">Journal</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/08/dev-think-baidu-api-for-map.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/08/dev-think-baidu-api-for-map.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/08/dev-think-baidu-api-for-map.html" class="leancloud_visitors" data-flag-title="Dev131208 百度API开发 - 多自定义坐标调用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>任务背景：开发一个线下商城地图，由于客户没有在百度标记过商家地图，故添加标记的同时必须有自定义信息的标记。同时，一个城市列表中需要展现多个坐标。</p>
+<p>任务分析：</p>
+<p>1. 选择省份、城市会出现多个标记的点</p>
+<p>2. 标记的点可以展现自定义信息。</p>
+<p>&nbsp;</p>
+<p>思路：</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/08/ecshop-mysql-using-btree-error.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/08/ecshop-mysql-using-btree-error.html" itemprop="url">Ecshop数据导入时遇到问题 USING BTREE 错误解决办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-08T16:48:39+08:00">
+                2013-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/" itemprop="url" rel="index">
+                    <span itemprop="name">ECshop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ECshop/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/08/ecshop-mysql-using-btree-error.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/08/ecshop-mysql-using-btree-error.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/08/ecshop-mysql-using-btree-error.html" class="leancloud_visitors" data-flag-title="Ecshop数据导入时遇到问题 USING BTREE 错误解决办法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你优化过Mysql的数据结构或者版本不一致，那么极有可能遇到此类问题。</p>
+<p>报USING BTREE 错误：</p>
+<p><pre class="brush:sql">You have an error in your SQL syntax; check the<br>manual that corresponds to your MySQL server version for the right syntax to use<br>near ‘USING BTREE,UNIQUE KEY <code>user_name</code> (<code>suppliers_name</code>) USING BTREE ,</pre><br>&nbsp;</p>
+<p>其实解决这个问题很简单。</p>
+<p>打开要导入的文件在里面搜索 BTREE 找到如下内容</p>
+<p>UNIQUE KEY <code>user_name</code> (<code>suppliers_name</code>) USING BTREE ，修改为</p>
+<p>UNIQUE KEY <code>user_name</code> USING BTREE (<code>suppliers_name</code>) ，</p>
+<p>即把USING BTREE 放到索引字段前面即可.</p>
+<p>再次导入顺利通过了</p>
+<p>&nbsp;</p>
+<hr>
+<p>查找 USING BTREE mysql，你会看到很多这样的例子，mysql 5.14版本之前不认识 USING BTREE。解决办法有两个：</p>
+<p>1、直接删除 USING BTREE</p>
+<p>2、导出脚本时开启兼容性 mysqldump –compatible=mysql40</p>
+<p>&nbsp;</p>
+<p>批量找出USING BTREE，然后修改吧少年。。。</p>
+<p>&nbsp;</p>
+<p>以下几个关于USING BTREE 的链接：</p>
+<p>USING BTREE mysql  <a href="http://stackoverflow.com/questions/3767753/mysql-error-using-btree" target="_blank" rel="external">http://stackoverflow.com/questions/3767753/mysql-error-using-btree</a></p>
+<p>关于USING BTREE Bug  <a href="http://bugs.mysql.com/bug.php?id=25162" target="_blank" rel="external">http://bugs.mysql.com/bug.php?id=25162</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/05/share-open-code.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/05/share-open-code.html" itemprop="url">研究开源系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-05T09:52:20+08:00">
+                2013-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/12/05/share-open-code.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2013/12/05/share-open-code.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2013/12/05/share-open-code.html" class="leancloud_visitors" data-flag-title="研究开源系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1. 调查问卷系统<br>LimeSurvey</p>
+<p>2. 博客</p>
+<p>3. crm</p>
+<p>4. cms</p>
+<p>5. todo</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/12/05/ecshop-global-function.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -967,1107 +1974,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/28/linux-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/28/linux-setting.html" itemprop="url">linux常用修改</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-28T16:21:06+08:00">
-                2013-11-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/28/linux-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/28/linux-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/28/linux-setting.html" class="leancloud_visitors" data-flag-title="linux常用修改">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1. CentOS修改语言:</p>
-<p>方法一: /etc/sysconfig/i18n 里面的LANG=”zh_CN.UTF-8” 修改为 LANG=”en_US.UTF-8”</p>
-<p>方法二: 把/etc/sysconfig/i18n复制到要更改用户的主目录下 如: $ cp /etc/sysconfig/i18n ~home/.i18n, 再修改</p>
-<p>方法三: 终端临时更改</p>
-<p><pre class="brush:bash">export LANG=”zh_CN.GBK”   //中文显示<br>export LANG=”en_US.UTF-8” //英文显示</pre><br>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/27/share-magzine-website.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/27/share-magzine-website.html" itemprop="url">杂志网站相关研究</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-27T23:07:19+08:00">
-                2013-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Research/" itemprop="url" rel="index">
-                    <span itemprop="name">Research</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/27/share-magzine-website.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/27/share-magzine-website.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/27/share-magzine-website.html" class="leancloud_visitors" data-flag-title="杂志网站相关研究">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.<a href="http://weecai.com/journal.htm" target="_blank" rel="external">http://weecai.com/journal.htm</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/27/share-teamwork-software.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/27/share-teamwork-software.html" itemprop="url">协作开发用的应用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-27T22:50:59+08:00">
-                2013-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/App/" itemprop="url" rel="index">
-                    <span itemprop="name">App</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/27/share-teamwork-software.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/27/share-teamwork-software.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/27/share-teamwork-software.html" class="leancloud_visitors" data-flag-title="协作开发用的应用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一. 代码管理软件</p>
-<p><a href="http://www.sourcetreeapp.com/" target="_blank" rel="external">http://www.sourcetreeapp.com/</a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>二. 网页协作管理工具</p>
-<p>国内:</p>
-<p><a href="https://tower.im/" target="_blank" rel="external">https://tower.im/</a></p>
-<p>&nbsp;</p>
-<p>国外:</p>
-<p><a href="https://trello.com/" target="_blank" rel="external">https://trello.com/</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/26/mysql-delete-duplicate-records.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/26/mysql-delete-duplicate-records.html" itemprop="url">MySQL删除重复记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-26T13:31:33+08:00">
-                2013-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/26/mysql-delete-duplicate-records.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/26/mysql-delete-duplicate-records.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/26/mysql-delete-duplicate-records.html" class="leancloud_visitors" data-flag-title="MySQL删除重复记录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>网上查了很多关于删mysql中重复记录的方法,很多都是copy且没有经过大脑思考的文章,太浪费时间了,故经过自己测试,给出下面一些语句</p>
-<p><pre class="brush:sql">DELETE books AS a FROM books AS a,<br>(<br>SELECT *<br>FROM books<br>GROUP BY book_name<br>HAVING count(1) &gt;1<br>order by null<br>) AS b<br>WHERE a.book_name = b.book_name AND a.id &gt; b.id;</pre><br>&nbsp;</p>
-<p>参考文档</p>
-<p><a href="http://stackoverflow.com/questions/16035495/you-cant-specify-target-table-for-update-in-from-clause" target="_blank" rel="external">http://stackoverflow.com/questions/16035495/you-cant-specify-target-table-for-update-in-from-clause</a></p>
-<p><a href="http://www.cnblogs.com/sunss/archive/2011/01/29/1947469.html" target="_blank" rel="external">http://www.cnblogs.com/sunss/archive/2011/01/29/1947469.html</a></p>
-<p><a href="http://www.cnblogs.com/lorgine/archive/2011/01/14/1935447.html" target="_blank" rel="external">http://www.cnblogs.com/lorgine/archive/2011/01/14/1935447.html</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/24/linux-centos-svn.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/24/linux-centos-svn.html" itemprop="url">CentOS lnmp环境搭建SVN服务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-24T22:42:49+08:00">
-                2013-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/24/linux-centos-svn.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/24/linux-centos-svn.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/24/linux-centos-svn.html" class="leancloud_visitors" data-flag-title="CentOS lnmp环境搭建SVN服务">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>安装svn相关基础环境说明：</strong><br>环境：CentOS 6.3<br>原有服务环境：lnmpa 1.0 full</p>
-<p>安装svn的版本： subversion 1.8.3<br>由于lnmpa编译的时候没有安上–enable-dav 故svn使用不了httpd的服务，我们只用svn协议来访问<br>同步好后再执行钩子程序同步到虚拟空间下做网站服务。</p>
-<p><strong>安装步骤：</strong></p>
-<p>各个安装包说明：<br>1.self 1.2.1 推荐版本，1.3.0后面会出现报错。<br>Subversion 1.8中http客户端基于neon已经被移除如果要支持http方式需要在安装svn前安装serf，安装serf推荐用serf-1.2.1<br>2.apr、apr-unit<br>安装apr、apr-unit</p>
-<p><pre class="brush:bash"># cd /root/lamp/source</pre></p>
-<h1 id="wget_http://archive-apache-org/dist/apr/apr-1-4-8-tar-gz_#LAMP中已经下载">wget <a href="http://archive.apache.org/dist/apr/apr-1.4.8.tar.gz" target="_blank" rel="external">http://archive.apache.org/dist/apr/apr-1.4.8.tar.gz</a> #LAMP中已经下载</h1><h1 id="wget_http://archive-apache-org/dist/apr/apr-util-1-5-2-tar-gz">wget <a href="http://archive.apache.org/dist/apr/apr-util-1.5.2.tar.gz" target="_blank" rel="external">http://archive.apache.org/dist/apr/apr-util-1.5.2.tar.gz</a></h1><h1 id="tar_xzf_apr-1-4-8-tar-gz">tar xzf apr-1.4.8.tar.gz</h1><h1 id="cd_apr-1-4-8">cd apr-1.4.8</h1><h1 id="-/configure_–prefix=/usr/local/apache">./configure –prefix=/usr/local/apache</h1><h1 id="make_&amp;&amp;_make_install">make &amp;&amp; make install</h1><h1 id="cd_-/">cd ../</h1><h1 id="tar_xzf_apr-util-1-5-2-tar-gz">tar xzf apr-util-1.5.2.tar.gz</h1><h1 id="cd_apr-util-1-5-2">cd apr-util-1.5.2</h1><h1 id="-/configure_–prefix=/usr/local/apache-1">./configure –prefix=/usr/local/apache</h1><h1 id="make_&amp;&amp;_make_install-1">make &amp;&amp; make install</h1><h1 id="cd_-/-1">cd ../</h1><p><strong>2.安装serf-1.2.1 （需要httpd服务才安装，下面只是参考，将不进行安装）</strong></p>
-<p><pre class="brush:bash"># yum -y install expat-devel</pre></p>
-<h1 id="wget_http://serf-googlecode-com/files/serf-1-2-1-tar-bz2_#serf-1-2-1-zip是win版有问题">wget <a href="http://serf.googlecode.com/files/serf-1.2.1.tar.bz2" target="_blank" rel="external">http://serf.googlecode.com/files/serf-1.2.1.tar.bz2</a> #serf-1.2.1.zip是win版有问题</h1><h1 id="tar_xjf_serf-1-2-1-tar-bz2">tar xjf serf-1.2.1.tar.bz2</h1><h1 id="cd_serf-1-2-1">cd serf-1.2.1</h1><h1 id="-/configure_–prefix=/usr/local/serf_–with-apr=/usr/local/apache_–with-apr-util=/usr/local/apache">./configure –prefix=/usr/local/serf –with-apr=/usr/local/apache –with-apr-util=/usr/local/apache</h1><h1 id="make_&amp;&amp;_make_install-2">make &amp;&amp; make install</h1><h1 id="cd_-">cd ..</h1><p>&nbsp;</p>
-<p><strong>3.安装svn</strong></p>
-<p><pre class="brush:bash"># wget <a href="http://mirror.bit.edu.cn/apache/subversion/subversion-1.8.3.tar.gz" target="_blank" rel="external">http://mirror.bit.edu.cn/apache/subversion/subversion-1.8.3.tar.gz</a></pre></p>
-<h1 id="tar_xzf_subversion-1-8-3-tar-gz">tar xzf subversion-1.8.3.tar.gz</h1><h1 id="cd_subversion-1-8-1">cd subversion-1.8.1</h1><h1 id="-/get-deps-sh_//此步骤会等比较久，是配置svn服务库的脚步，完成后会出现如下提醒">./get-deps.sh //此步骤会等比较久，是配置svn服务库的脚步，完成后会出现如下提醒</h1><hr>
-<p>If you require mod_dav_svn, the recommended version of httpd is:<br><a href="http://archive.apache.org/dist/httpd/httpd-2.4.6.tar.bz2" target="_blank" rel="external">http://archive.apache.org/dist/httpd/httpd-2.4.6.tar.bz2</a></p>
-<p>If you require apr-iconv, its recommended version is:<br><a href="http://archive.apache.org/dist/apr/apr-iconv-1.2.1.tar.bz2" target="_blank" rel="external">http://archive.apache.org/dist/apr/apr-iconv-1.2.1.tar.bz2</a></p>
-<hr>
-<h1 id="-/configure_–prefix=/usr/local/subversion_–with-apxs=/usr/local/apache/bin/apxs_–with-apr=/usr/local/apache_–with-apr-util=/usr/local/apache_–with-zlib_–with-openssl_–enable-maintainer-mode_–with-serf=/usr/local/serf_–enable-mod-activation">./configure –prefix=/usr/local/subversion –with-apxs=/usr/local/apache/bin/apxs –with-apr=/usr/local/apache –with-apr-util=/usr/local/apache –with-zlib –with-openssl –enable-maintainer-mode –with-serf=/usr/local/serf –enable-mod-activation</h1><h1 id="make_&amp;&amp;_make_install-3">make &amp;&amp; make install</h1><h1 id="cd_--1">cd ..</h1><p>&nbsp;</p>
-<p><strong>4. 检测svn是否安装成功</strong></p>
-<p><pre class="brush:bash"># vim /usr/local/apache/conf/httpd.conf</pre></p>
-<h1 id="LoadModule_dav_svn_module_/usr/local/subversion/libexec/mod_dav_svn-so">LoadModule dav_svn_module /usr/local/subversion/libexec/mod_dav_svn.so</h1><h1 id="LoadModule_authz_svn_module_/usr/local/subversion/libexec/mod_authz_svn-so">LoadModule authz_svn_module /usr/local/subversion/libexec/mod_authz_svn.so</h1><p>&nbsp;</p>
-<p><strong>5.把svn相关的命令添加到环境变量中</strong></p>
-<p><pre class="brush:bash">/<em> 方法一 </em>/</pre></p>
-<h1 id="ln_-s_/usr/local/subversion/bin/svn_/usr/local/bin">ln -s /usr/local/subversion/bin/svn /usr/local/bin</h1><p>//这样在ssh中直接输入 svn –version就可以看到svn的版本等信息了<br>/<em> 方法二 (未测试) </em>/</p>
-<h1 id="echo_“export_PATH=$PATH:/usr/local/subversion/bin/“_&gt;&gt;_/etc/profile">echo “export PATH=$PATH:/usr/local/subversion/bin/“ &gt;&gt; /etc/profile</h1><h1 id="source_/etc/profile">source /etc/profile</h1><p><strong>* svn项目配置 建立仓库</strong></p>
-<p><pre class="brush:bash"># mkdir -p /opt/svn/</pre></p>
-<h1 id="mkdir_-p_/opt/svn/svntest/">mkdir -p /opt/svn/svntest/</h1><h1 id="svnadmin_create_/opt/svn/svntest/">svnadmin create /opt/svn/svntest/</h1><p>或 /usr/local/subversion/bin/svnadmin create /opt/svn/mall/</p>
-<p>/<em>修改配置文件</em>/</p>
-<h1 id="cd_/opt/svn/svntest/conf/">cd /opt/svn/svntest/conf/</h1><h1 id="vi_svnserve-conf">vi svnserve.conf</h1><hr>
-<p><pre class="brush:bash">[general]<br>anon-access = none<br>auth-access = write<br>password-db = passwd</pre></p>
-<h2 id="authz-db_=_authz">authz-db = authz</h2><h1 id="vim_authz_//给svntest仓库添加一个用户，权限为可写。">vim authz //给svntest仓库添加一个用户，权限为可写。</h1><hr>
-<p>[svntest:/]</p>
-<h2 id="testuser_=_rw">testuser = rw</h2><h1 id="vi_passwd">vi passwd</h1><h2 id="//由于是测试，密码设置为123456">//由于是测试，密码设置为123456</h2><h2 id="testuser_=_123456">testuser = 123456</h2><p>//设置好后启用svn服务</p>
-<h1 id="svnserve_-d_-r_/opt/svn/">svnserve -d -r /opt/svn/</h1><p>或</p>
-<h1 id="/usr/local/subversion/bin/svnserve_-d_-r_/opt/svn/">/usr/local/subversion/bin/svnserve -d -r /opt/svn/</h1><p>//添加到开机启动</p>
-<h1 id="vim_/etc/rc-d/rc-local">vim /etc/rc.d/rc.local</h1><p>然后写入上面的代码</p>
-<p>//查看是否启用了</p>
-<h1 id="netstat_-tunlp_|_grep_svn">netstat -tunlp | grep svn</h1><h1 id="ps_-aux|grep_svn">ps -aux|grep svn</h1><p>//杀死进程</p>
-<h1 id="kill_-9_node">kill -9 node</h1><p><strong>* SVN钩子程序设置</strong></p>
-<p>说明：<br>首先要在网站目录下检出文件</p>
-<h1 id="svn_checkout_svn://42-51-133-35/zoy/_/home/wwwroot/zoy-ch-boxcore-org/">svn checkout svn://42.51.133.35/zoy/ /home/wwwroot/zoy.ch.boxcore.org/</h1><h1 id="svn_update_/home/wwwroot/zoy-ch-boxcore-org/">svn update /home/wwwroot/zoy.ch.boxcore.org/</h1><h1 id="vim_/opt/svn/zoy/hooks/post-commit">vim /opt/svn/zoy/hooks/post-commit</h1><hr>
-<p><pre class="brush:bash">#!/bin/sh<br>SVN=/usr/local/subversion/bin/svn<br>WEB=/home/wwwroot/zoy.ch.boxcore.org<br>$SVN update $WEB –username 用户名 –password 密码</pre></p>
-<h2 id="chown_-R_www:www_$WEB">chown -R www:www $WEB</h2><h1 id="chmod_777_/opt/svn/zoy/hooks/post-commit">chmod 777 /opt/svn/zoy/hooks/post-commit</h1><p>&nbsp;</p>
-<p><strong>参考文档:</strong><br><a href="http://blog.csdn.net/xiaodanpeng/article/details/8898794" target="_blank" rel="external">http://blog.csdn.net/xiaodanpeng/article/details/8898794</a><br><a href="http://lookdfw.blog.163.com/blog/static/58249742201010652235834/" target="_blank" rel="external">http://lookdfw.blog.163.com/blog/static/58249742201010652235834/</a><br><a href="http://chenxiao18.blog.51cto.com/1144683/1196264" target="_blank" rel="external">http://chenxiao18.blog.51cto.com/1144683/1196264</a> 《对apache做./configure 增加参数支持svn<br><a href="http://freeloda.blog.51cto.com/2033581/1189145" target="_blank" rel="external">http://freeloda.blog.51cto.com/2033581/1189145</a> 《SVN 安装与配置</p>
-<p><a href="http://www.open.collab.net/scdocs/ddUsingSVN_command-line.html.zh-cn" target="_blank" rel="external">http://www.open.collab.net/scdocs/ddUsingSVN_command-line.html.zh-cn</a> 《linux下svn命令</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2013/11/22/nginx-rewrite-rule.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/22/nginx-rewrite-rule.html" itemprop="url">Nginx下重写规则</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-22T15:10:59+08:00">
-                2013-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RexExp/" itemprop="url" rel="index">
-                    <span itemprop="name">RexExp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/11/22/nginx-rewrite-rule.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/11/22/nginx-rewrite-rule.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2013/11/22/nginx-rewrite-rule.html" class="leancloud_visitors" data-flag-title="Nginx下重写规则">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>推荐使用自动转换工具:</p>
-<p><a href="http://www.anilcetin.com/convert-apache-htaccess-to-nginx/" target="_blank" rel="external">http://www.anilcetin.com/convert-apache-htaccess-to-nginx/</a></p>
-<p><a href="http://winginx.com/htaccess" target="_blank" rel="external">http://winginx.com/htaccess</a></p>
-<p>&nbsp;</p>
-<p>Nginx Rewrite规则相关指令<br>Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下：</p>
-<p>rewrite ^/b/(.*).html /play.php?video=$1 break;</p>
-<p>如果加上if语句，示例如下：</p>
-<p>if (!-f $request_filename)</p>
-<p>rewrite ^/img/(.*)$ /site/$host/images/$1 last;</p>
-<p>Nginx与Apache的Rewrite规则实例对比</p>
-<p>简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如：</p>
-<p>Apache Rewrite 规则：</p>
-<p>RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L]</p>
-<p>RewriteRule ^/ceshi/$ /zl/ceshi.php [L]</p>
-<p>RewriteRule ^/(mianshi)<em>([a-zA-Z]+)/$ /zl/index.php?name=$1</em>$2 [L]</p>
-<p>RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L]</p>
-<p>Nginx Rewrite 规则：</p>
-<p>rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;</p>
-<p>rewrite ^/ceshi/$ /zl/ceshi.php last;</p>
-<p>rewrite ^/(mianshi)<em>([a-zA-Z]+)/$ /zl/index.php?name=$1</em>$2 last;</p>
-<p>rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last;</p>
-<p>由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。</p>
-<p>如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误：</p>
-<p>rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last;</p>
-<p>加上引号就正确了：<br>rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last;</p>
-<p>Apache与Nginx的Rewrite规则在URL跳转时有细微的区别：</p>
-<p>Apache Rewrite 规则：<br>RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L]</p>
-<p>Nginx Rewrite 规则：<br>rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ <a href="http://$host/$1/" target="_blank" rel="external">http://$host/$1/</a> permanent;</p>
-<p>以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“<a href="http://$host”，这是在Nginx中要求的。" target="_blank" rel="external">http://$host”，这是在Nginx中要求的。</a></p>
-<p>另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如：</p>
-<p>Apache Rewrite 规则：<br>RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://%{HTTP_HOST}" target="_blank" rel="external">http://%{HTTP_HOST}</a> [L]</p>
-<p>Nginx Rewrite 规则：<br>rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://$host" target="_blank" rel="external">http://$host</a> last;</p>
-<p>Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系：</p>
-<p>Apache的RewriteCond指令对应Nginx的if指令；<br>Apache的RewriteRule指令对应Nginx的rewrite指令；<br>Apache的[R]标记对应Nginx的redirect标记；<br>Apache的[P]标记对应Nginx的last标记；<br>Apache的[R,L]标记对应Nginx的redirect标记；<br>Apache的[P,L]标记对应Nginx的last标记；<br>Apache的[PT,L]标记对应Nginx的last标记；</p>
-<p>允许指定的域名访问本站，其他域名一律跳转到<a href="http://www.aaa.com" target="_blank" rel="external">http://www.aaa.com</a></p>
-<p>Apache Rewrite 规则：<br>RewriteCond %{HTTP_HOST} ^(.*?).domain.com$<br>RewriteCond %{HTTP_HOST} !^qita.domain.com$<br>RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -f<br>RewriteRule ^/wu/$ /market/%1/index.htm [L]</p>
-<p>Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例：</p>
-<p>Nginx Rewrite 规则：<br>if ($host ~<em> ^(.</em>?).domain.com$) set $var_wupin_city $1;<br>set $var_wupin ‘1′;</p>
-<p>if ($host ~* ^qita.domain.com$)</p>
-<p>set $var_wupin ‘0′;</p>
-<p>if (!-f $document_root/market/$var_wupin_city/index.htm)</p>
-<p>set $var_wupin ‘0′;</p>
-<p>if ($var_wupin ~ ‘1′)</p>
-<p>rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;<br>}</p>
-<p>&nbsp;</p>
-<p>rewrite 的语法</p>
-<p>&nbsp;</p>
-<p>语法: rewrite regex replacement flag</p>
-<p>默认: none</p>
-<p>作用域: server, location, if</p>
-<p>This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file.</p>
-<p>这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。</p>
-<p>Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so:</p>
-<p>注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。</p>
-<p>rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 <em>*</em>https=1就可以了。</p>
-<p>nginx的rewrite规则参考：</p>
-<p>~ 为区分大小写匹配<br>~<em> 为不区分大小写匹配<br>!~和!~</em>分别为区分大小写不匹配及不区分大小写不匹<br>-f和!-f用来判断是否存在文件<br>-d和!-d用来判断是否存在目录<br>-e和!-e用来判断是否存在文件或目录<br>-x和!-x用来判断文件是否可执行<br>last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的<br>break 终止匹配, 不再匹配后面的规则<br>redirect 返回302临时重定向 地址栏会显示跳转后的地址<br>permanent 返回301永久重定向 地址栏会显示跳转后的地址<br>$args<br>$content_length<br>$content_type<br>$document_root<br>$document_uri<br>$host<br>$http_user_agent<br>$http_cookie<br>$limit_rate<br>$request_body_file<br>$request_method<br>$remote_addr<br>$remote_port<br>$remote_user<br>$request_filename<br>$request_uri<br>$query_string<br>$scheme<br>$server_protocol<br>$server_addr<br>$server_name<br>$server_port<br>$uri<br>结合QeePHP的例子</p>
-<p>if (!-d $request_filename) {<br>rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;<br>rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;<br>break;<br>多目录转成参数<br>abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2</p>
-<p>if ($host ~<em> (.</em>).domain.com) {<br>set $sub_name $1;<br>rewrite ^/sort/(d+)/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;<br>}<br>目录对换<br>/123456/xxxx -&gt; /xxxx?id=123456</p>
-<p>rewrite ^/(d+)/(.+)/ /$2?id=$1 last;<br>例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下：</p>
-<p>if ($http_user_agent ~ MSIE) {<br>rewrite ^(.*)$ /nginx-ie/$1 break;<br>}<br>目录自动加“/”</p>
-<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>禁止htaccess</p>
-<p>location ~/.ht {<br>deny all;<br>}<br>禁止多个目录</p>
-<p>location ~ ^/(cron|templates)/ {<br>deny all;<br>break;<br>}<br>禁止以/data开头的文件<br>可以禁止/data/下多级目录下.log.txt等请求;</p>
-<p>location ~ ^/data {<br>deny all;<br>}<br>禁止单个目录<br>不能禁止.log.txt能请求</p>
-<p>location /searchword/cron/ {<br>deny all;<br>}<br>禁止单个文件</p>
-<p>location ~ /data/sql/data.sql {<br>deny all;<br>}<br>给favicon.ico和robots.txt设置过期时间;<br>这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志</p>
-<p>location ~(favicon.ico) {<br>log_not_found off;<br>expires 99d;<br>break;<br>}</p>
-<p>location ~(robots.txt) {<br>log_not_found off;<br>expires 7d;<br>break;<br>}<br>设定某个文件的过期时间;这里为600秒，并不记录访问日志</p>
-<p>location ^~ /html/scripts/loadhead_1.js {<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 600;<br>break;<br>}<br>文件反盗链并设置过期时间<br>这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求<br>“rewrite ^/ <a href="http://leech.divmy.com/leech.gif;”显示一张防盗链图片" target="_blank" rel="external">http://leech.divmy.com/leech.gif;”显示一张防盗链图片</a><br>“access_log off;”不记录访问日志，减轻压力<br>“expires 3d”所有文件3天的浏览器缓存</p>
-<p>location ~<em> ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {<br>valid_referers none blocked </em>.c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;<br>if ($invalid_referer) {<br>rewrite ^/ <a href="http://leech.divmy.com/leech.gif" target="_blank" rel="external">http://leech.divmy.com/leech.gif</a>;<br>return 412;<br>break;<br>}<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 3d;<br>break;<br>}<br>只充许固定ip访问网站，并加上密码</p>
-<p>root /opt/htdocs/www;<br>allow 208.97.167.194;<br>allow 222.33.1.2;<br>allow 231.152.49.4;<br>deny all;<br>auth_basic “C1G_ADMIN”;<br>auth_basic_user_file htpasswd;<br>将多级目录下的文件转成一个文件，增强seo效果<br>/job-123-456-789.html 指向/job/123/456/789.html</p>
-<p>rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;<br>将根目录下某个文件夹指向2级目录<br>如/shanghaijob/ 指向 /area/shanghai/<br>如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/</p>
-<p>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>上面例子有个问题是访问/shanghai 时将不会匹配</p>
-<p>rewrite ^/([0-9a-z]+)job$ /area/$1/ last;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>这样/shanghai 也可以访问了，但页面中的相对链接无法使用，<br>如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。</p>
-<p>那我加上自动跳转也是不行咯<br>(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果</p>
-<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>知道原因后就好办了，让我手动跳转吧</p>
-<p>rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>文件和目录不存在的时候重定向：</p>
-<p>if (!-e $request_filename) {<br>proxy_pass <a href="http://127.0.0.1" target="_blank" rel="external">http://127.0.0.1</a>;<br>}<br>域名跳转</p>
-<p>server<br>{<br>listen 80;<br>server_name jump.88dgw.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/ <a href="http://www.88dgw.com/" target="_blank" rel="external">http://www.88dgw.com/</a>;<br>access_log off;<br>}<br>多域名转向</p>
-<p>server_name www.7oom.com/ www.divmy.com/;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs;<br>if ($host ~ “c1gstudio.net”) {<br>rewrite ^(.*) <a href="http://www.7oom.com$1/" target="_blank" rel="external">http://www.7oom.com$1/</a> permanent;<br>}<br>三级域名跳转</p>
-<p>if ($http_host ~<em> “^(.</em>).i.c1gstudio.com$”) {<br>rewrite ^(.*) <a href="http://top.88dgw.com$1/" target="_blank" rel="external">http://top.88dgw.com$1/</a>;<br>break;<br>}<br>域名镜向</p>
-<p>server<br>{<br>listen 80;<br>server_name mirror.c1gstudio.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/(.*) <a href="http://www.divmy.com/$1" target="_blank" rel="external">http://www.divmy.com/$1</a> last;<br>access_log off;<br>}<br>某个子目录作镜向</p>
-<p>location ^~ /zhaopinhui {<br>rewrite ^.+ <a href="http://zph.divmy.com/" target="_blank" rel="external">http://zph.divmy.com/</a> last;<br>break;<br>}<br>discuz ucenter home (uchome) rewrite</p>
-<p>rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;<br>rewrite ^/(space|network).html$ /$1.php last;<br>rewrite ^/([0-9]+)$ /space.php?uid=$1 last;<br>discuz 7 rewrite</p>
-<p>rewrite ^(.<em>)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;<br>rewrite ^(.</em>)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;<br>rewrite ^(.<em>)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page%3D$4&amp;page=$3 last;<br>rewrite ^(.</em>)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;<br>rewrite ^(.<em>)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;<br>rewrite ^(.</em>)/tag-(.+).html$ $1/tag.php?name=$2 last;<br>给discuz某版块单独配置域名</p>
-<p>server_name bbs.c1gstudio.com news.c1gstudio.com;</p>
-<p>location = / {<br>if ($http_host ~ news.divmy.com$) {<br>rewrite ^.+ <a href="http://news.divmy.com/forum-831-1.html" target="_blank" rel="external">http://news.divmy.com/forum-831-1.html</a> last;<br>break;<br>}<br>}<br>discuz ucenter 头像 rewrite 优化</p>
-<p>location ^~ /ucenter {<br>location ~ .*.php?$<br>{</p>
-<p>#fastcgi_pass unix:/tmp/php-cgi.sock;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
-<p>location /ucenter/data/avatar {<br>log_not_found off;<br>access_log off;<br>location ~ /(.<em>)_big.jpg$ {<br>error_page 404 /ucenter/images/noavatar_big.gif;<br>}<br>location ~ /(.</em>)_middle.jpg$ {<br>error_page 404 /ucenter/images/noavatar_middle.gif;<br>}<br>location ~ /(.*)_small.jpg$ {<br>error_page 404 /ucenter/images/noavatar_small.gif;<br>}<br>expires 300;<br>break;<br>}<br>}<br>jspace rewrite</p>
-<p>location ~ .*.php?$<br>{</p>
-<p>#fastcgi_pass unix:/tmp/php-cgi.sock;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
-<p>location ~<em> ^/index.php/<br>{<br>rewrite ^/index.php/(.</em>) /index.php?$1 break;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}<br>另外这里还有一个工具可以直接把apache规则转化为nginx规则</p>
-<p><a href="http://www.anilcetin.com/convert-apache-htaccess-to-nginx/" target="_blank" rel="external">http://www.anilcetin.com/convert-apache-htaccess-to-nginx/</a></p>
-<p>参考：</p>
-<p><a href="http://wiki.nginx.org/NginxChsHttpRewriteModule" target="_blank" rel="external">http://wiki.nginx.org/NginxChsHttpRewriteModule</a></p>
-<p><a href="http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx" target="_blank" rel="external">http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx</a></p>
-<p><a href="http://www.divmy.com/" target="_blank" rel="external">http://www.divmy.com/</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2112,7 +2023,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">186</span>
+                <span class="site-state-item-count">192</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2134,7 +2045,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

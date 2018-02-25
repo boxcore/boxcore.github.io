@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！
 一、aria2安装12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#!/bin/bash# install ari">
-<meta property="og:updated_time" content="2017-10-16T01:46:13.000Z">
+<meta property="og:updated_time" content="2018-02-08T09:23:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="aria2远程下载利器">
 <meta name="twitter:description" content="安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！
@@ -448,7 +448,11 @@
 <p>当源地址存在诸如 &amp;, * 等 shell 的特殊字符，请使用单引号或双引号把 URI 包含起来。</p>
 </blockquote>
 <h3 id="2-2_常见命令">2.2 常见命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">aria2c -c <span class="_">-s</span> 5 http://example.org/mylinux.iso</div><div class="line"></div><div class="line">aria2c http://a/f.iso   ftp://b/f.iso  <span class="comment"># Download from 2 sources</span></div><div class="line"></div><div class="line">aria2c -x2 http://a/f.iso <span class="comment"># Download using 2 connections per host</span></div><div class="line">aria2c <span class="string">'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C'</span> <span class="comment"># BitTorrent Magnet URI</span></div></pre></td></tr></table></figure>
-<h2 id="三、aria2相关工具">三、aria2相关工具</h2><ul>
+<h2 id="三、aria2前端管理工具">三、aria2前端管理工具</h2><ul>
+<li>webui-aria2: <a href="https://github.com/ziahamza/webui-aria2.git" target="_blank" rel="external">https://github.com/ziahamza/webui-aria2.git</a></li>
+<li>AriaNg: <a href="https://github.com/mayswind/AriaNg.git" target="_blank" rel="external">https://github.com/mayswind/AriaNg.git</a></li>
+</ul>
+<h2 id="四、aria2相关工具">四、aria2相关工具</h2><ul>
 <li><a href="https://github.com/mayswind/AriaNg" target="_blank" rel="external">https://github.com/mayswind/AriaNg</a>, <a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
 <li><a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
 <li><a href="https://github.com/ziahamza/webui-aria2" target="_blank" rel="external">https://github.com/ziahamza/webui-aria2</a></li>
@@ -617,7 +621,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">186</span>
+                <span class="site-state-item-count">192</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -639,7 +643,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -699,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、aria2安装"><span class="nav-number">1.</span> <span class="nav-text">一、aria2安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、aria2使用"><span class="nav-number">2.</span> <span class="nav-text">二、aria2使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_基本说明"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基本说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_常见命令"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 常见命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、aria2相关工具"><span class="nav-number">3.</span> <span class="nav-text">三、aria2相关工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、aria2安装"><span class="nav-number">1.</span> <span class="nav-text">一、aria2安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、aria2使用"><span class="nav-number">2.</span> <span class="nav-text">二、aria2使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_基本说明"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基本说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_常见命令"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 常见命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、aria2前端管理工具"><span class="nav-number">3.</span> <span class="nav-text">三、aria2前端管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、aria2相关工具"><span class="nav-number">4.</span> <span class="nav-text">四、aria2相关工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

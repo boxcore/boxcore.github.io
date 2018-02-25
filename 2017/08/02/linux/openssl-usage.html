@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="一、OpenSSL使用1234567openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cnopenssl req -new -newkey rsa:2048 -sha256 -nodes -">
 <meta property="og:image" content="http://bxfile.qiniudn.com/imgs/2017-08-18-175916.jpg">
-<meta property="og:updated_time" content="2017-11-10T02:45:14.000Z">
+<meta property="og:updated_time" content="2018-02-25T02:10:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenSSL使用及域名签名">
 <meta name="twitter:description" content="一、OpenSSL使用1234567openssl req -in server.csr -noout -subject # 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cnopenssl req -new -newkey rsa:2048 -sha256 -nodes -">
@@ -438,6 +438,8 @@
 <h4 id="在线CSR生产工具">在线CSR生产工具</h4><ul>
 <li><a href="https://csr.chinassl.net/generator-csr.html" target="_blank" rel="external">CSR文件在线生成工具</a></li>
 </ul>
+<h2 id="三、证书配置">三、证书配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform PEM -in yourdomain.crt &gt; public.pem</div><div class="line">openssl rsa -in yourdomain.key -text &gt; private.pem</div><div class="line">openssl rsa -in yourdomain.key -out yourdomain.key.pem</div><div class="line"></div><div class="line"></div><div class="line">openssl req -newkey rsa:2048 -nodes -keyout local.key -x509 -days 365 -out certificate.pem <span class="comment"># 生成 专用密钥和公用证书</span></div><div class="line">openssl x509 -text -noout -in certificate.pem <span class="comment"># 检查已创建的证书</span></div><div class="line">openssl pkcs12 -inkey local.key -in certificate.pem -export -out certificate.p12 <span class="comment"># 将密钥和证书组合在 PKCS#12 (P12) 捆绑软件中</span></div><div class="line">openssl pkcs12 -in certificate.p12 -noout -info <span class="comment"># 验证您的 P12 文件</span></div></pre></td></tr></table></figure>
+<p>nginx配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">service &#123;</div><div class="line"></div><div class="line">    listen       443 ssl;</div><div class="line">    server_name  7daka.local;</div><div class="line">    ssl_certificate      /www/ssl/local/certificate.pem;</div><div class="line">    ssl_certificate_key  /www/ssl/local/local.key;</div><div class="line">    ssl_session_cache    shared:SSL:1m;</div><div class="line">    ssl_session_timeout  5m;</div><div class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">    ssl_prefer_server_ciphers  on;</div><div class="line">    ... ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="参考">参考</h2><ul>
 <li><a href="http://www.barretlee.com/blog/2016/04/24/detail-about-ca-and-certs/" target="_blank" rel="external">细说 CA 和证书</a></li>
 <li><a href="https://lixingcong.github.io/2016/12/20/cloudflare-self-sign/" target="_blank" rel="external">Cloudflare自签名SSL证书</a></li>
@@ -594,7 +596,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">186</span>
+                <span class="site-state-item-count">192</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -616,7 +618,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -676,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、OpenSSL使用"><span class="nav-number">1.</span> <span class="nav-text">一、OpenSSL使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#openssl配置"><span class="nav-number">1.1.</span> <span class="nav-text">openssl配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、SSL证书说明"><span class="nav-number">2.</span> <span class="nav-text">二、SSL证书说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_SSL证书概念和分类"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 SSL证书概念和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书用途"><span class="nav-number">2.1.1.</span> <span class="nav-text">SSL证书用途</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书认证类别"><span class="nav-number">2.1.2.</span> <span class="nav-text">SSL证书认证类别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL提供商"><span class="nav-number">2.1.3.</span> <span class="nav-text">SSL提供商</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线CSR生产工具"><span class="nav-number">2.1.4.</span> <span class="nav-text">在线CSR生产工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、OpenSSL使用"><span class="nav-number">1.</span> <span class="nav-text">一、OpenSSL使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#openssl配置"><span class="nav-number">1.1.</span> <span class="nav-text">openssl配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、SSL证书说明"><span class="nav-number">2.</span> <span class="nav-text">二、SSL证书说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_SSL证书概念和分类"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 SSL证书概念和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书用途"><span class="nav-number">2.1.1.</span> <span class="nav-text">SSL证书用途</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书认证类别"><span class="nav-number">2.1.2.</span> <span class="nav-text">SSL证书认证类别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL提供商"><span class="nav-number">2.1.3.</span> <span class="nav-text">SSL提供商</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线CSR生产工具"><span class="nav-number">2.1.4.</span> <span class="nav-text">在线CSR生产工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、证书配置"><span class="nav-number">3.</span> <span class="nav-text">三、证书配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
