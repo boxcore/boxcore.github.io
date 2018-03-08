@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-02-13T02:41:45.236Z</updated>
+  <updated>2018-03-08T01:31:14.337Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,121 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过teredo获取ipv6地址</title>
+    <link href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html"/>
+    <id>http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html</id>
+    <published>2018-03-07T13:05:21.000Z</published>
+    <updated>2018-03-08T01:31:14.337Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.&lt;/p&gt;
+&lt;p&gt;那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤&lt;/p&gt;
+&lt;h2 id=&quot;一、window下开启&quot;&gt;一、window下开启&lt;/h2&gt;&lt;p&gt;说明：&lt;br
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+      <category term="ipv6" scheme="http://boxcore.github.io/tags/ipv6/"/>
+    
+      <category term="teredo" scheme="http://boxcore.github.io/tags/teredo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac常用快捷键</title>
+    <link href="http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html"/>
+    <id>http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html</id>
+    <published>2018-03-06T15:19:32.000Z</published>
+    <updated>2018-03-07T02:47:19.182Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自己常用的mac下快捷键整理,以免遗忘做个备份:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开破解软件显示“软件包已损坏”: &lt;code&gt;sudo spctl --master-(disable/enable)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动词典默认取词功能快捷键: &lt;code&gt;C
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome Web Toolkit</title>
+    <link href="http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html"/>
+    <id>http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html</id>
+    <published>2018-03-04T07:48:39.000Z</published>
+    <updated>2018-03-05T03:08:49.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在线工具合集:&lt;/p&gt;
+&lt;h2 id=&quot;下载地址转换&quot;&gt;下载地址转换&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://zh.savefrom.net/1-how-to-download-youtube-video.html&quot; target=&quot;_blank&quot; re
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CMD学习笔记</title>
+    <link href="http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html"/>
+    <id>http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html</id>
+    <published>2018-03-03T00:27:49.000Z</published>
+    <updated>2018-03-05T03:02:28.367Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是&lt;code&gt;936&lt;/code&gt; 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令&lt;code&gt;chcp&lt;/code&gt;了。&lt;/p&gt;
+&lt;h2 id=&quot;命令帮助&quot;&gt;命令帮助&lt;/h2&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下VNC服务安装与配置</title>
+    <link href="http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html"/>
+    <id>http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html</id>
+    <published>2018-03-01T09:48:22.000Z</published>
+    <updated>2018-03-05T03:02:50.101Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装vnc&quot;&gt;安装vnc&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+      <category term="fastdfs" scheme="http://boxcore.github.io/tags/fastdfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>优秀产品推荐</title>
+    <link href="http://boxcore.github.io/2018/02/28/affiliate/index.html"/>
+    <id>http://boxcore.github.io/2018/02/28/affiliate/index.html</id>
+    <published>2018-02-28T04:17:07.000Z</published>
+    <updated>2018-02-28T04:18:51.904Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;交易平台&quot;&gt;交易平台&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://vip.zb.com/activity/joinbtc?tuijianid=36c87688cfcbcb1d34afb17dd197fd27&quot; target=&quot;_blank&quot; rel
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>分布式文件系统FastDFS搭建</title>
@@ -279,130 +394,6 @@
     
       <category term="research" scheme="http://boxcore.github.io/categories/research/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Tools</title>
-    <link href="http://boxcore.github.io/2018/01/16/awesome-tools/index.html"/>
-    <id>http://boxcore.github.io/2018/01/16/awesome-tools/index.html</id>
-    <published>2018-01-16T09:50:09.000Z</published>
-    <updated>2018-01-16T10:05:52.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;All IN One&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://boxcore.github.io/statics/sb/ico/min-oss.svg&quot; alt=&quot;Open-Source Software&quot; t
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL密码重置</title>
-    <link href="http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html"/>
-    <id>http://boxcore.github.io/2018/01/16/sql/mysql-reset-password.html</id>
-    <published>2018-01-15T16:03:59.000Z</published>
-    <updated>2018-02-12T06:42:26.302Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;mysql忘记密码时需要用到参数&lt;code&gt;skip-grant-tables&lt;/code&gt;，可以在配置文件中，也可以在mysqld执行的时候带上该参数。&lt;/p&gt;
-&lt;p&gt;操作步骤类似：&lt;code&gt;vi /etc/my.cnf&lt;/code&gt; 在&lt;code&gt;[mysqld]&lt;/
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://boxcore.github.io/categories/mysql/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux安全日志操作</title>
-    <link href="http://boxcore.github.io/2018/01/16/linux/linux-system-logs.html"/>
-    <id>http://boxcore.github.io/2018/01/16/linux/linux-system-logs.html</id>
-    <published>2018-01-15T16:01:26.000Z</published>
-    <updated>2018-01-15T16:02:44.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;last&lt;/code&gt; : 查看登录成功的用户信息&lt;br&gt;  最新的登录记录在最前面，所以可以用 一下命令来查看。&lt;br&gt;  last | less&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;lastb&lt;/code&gt;:查看登录失败的用户信息
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux磁盘操作命令</title>
-    <link href="http://boxcore.github.io/2018/01/10/linux/linux-disk-manage.html"/>
-    <id>http://boxcore.github.io/2018/01/10/linux/linux-disk-manage.html</id>
-    <published>2018-01-10T02:35:55.000Z</published>
-    <updated>2018-01-10T02:44:50.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;查看硬盘分区: &lt;code&gt;fdisk -l&lt;/code&gt;&lt;br&gt;查看数据盘的文件系统类型: &lt;code&gt;df -ihT&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;磁盘格式说明：&lt;/p&gt;
-&lt;p&gt;ext4 ： centos6默认盘格式&lt;br&gt;xfs : centos7默认盘格式&lt;/p&gt;
-&lt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Mac</title>
-    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html"/>
-    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html</id>
-    <published>2018-01-05T03:55:50.000Z</published>
-    <updated>2018-01-31T02:42:42.090Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Dock相关&quot;&gt;Dock相关&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;HyperDock:  让Mac拥有 Windows 的窗口预览和管理体验。 &lt;a href=&quot;https://sspai.com/post/32855&quot; target=&quot;_blank&quot; rel=&quot;exte
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="mac" scheme="http://boxcore.github.io/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Spider</title>
-    <link href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html"/>
-    <id>http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html</id>
-    <published>2018-01-05T03:55:50.000Z</published>
-    <updated>2018-01-10T02:31:13.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于爬虫采集的一些好工具：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/luyishisi/Anti-Anti-Spider/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Anti-Anti-Spider&lt;/a&gt;&lt;/
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="spider" scheme="http://boxcore.github.io/tags/spider/"/>
     
   </entry>
   

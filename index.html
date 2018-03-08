@@ -329,6 +329,893 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/tools/teredo-ipv6-setting.html" itemprop="url">通过teredo获取ipv6地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T21:05:21+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/07/tools/teredo-ipv6-setting.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/07/tools/teredo-ipv6-setting.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/07/tools/teredo-ipv6-setting.html" class="leancloud_visitors" data-flag-title="通过teredo获取ipv6地址">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.</p>
+<p>那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤</p>
+<h2 id="一、window下开启">一、window下开启</h2><p>说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">netsh int ipv6 show int <span class="comment"># 查看所有适配器</span></div><div class="line">netsh int ipv6 show teredo <span class="comment"># 查看teredo适配器状态</span></div><div class="line">netsh int ipv6 show route <span class="comment"># </span></div><div class="line">netsh int ter <span class="built_in">set</span> state client</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net <span class="comment"># 设置teredo服务器</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-1_win10开启ipv6">1.1 win10开启ipv6</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.com</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state enterpriseclient server=default</div><div class="line"></div><div class="line"><span class="comment"># 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试</span></div><div class="line">ping -6 ipv6.test-ipv6.com</div><div class="line">ping -6 [2001:470:1:18::125]</div><div class="line"></div><div class="line">netsh interface ipv6 reset <span class="comment"># 重置 IPv6 配置， 需要重启系统</span></div><div class="line">-------------------- 重启后的分割线 -----</div><div class="line"></div><div class="line">ipconfig /all <span class="comment"># 查看当前网络信息</span></div><div class="line"></div><div class="line"><span class="comment"># 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法</span></div><div class="line"></div><div class="line"><span class="comment"># 第一种：修改 Teredo 服务器为 teredo.remlab.net</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line"></div><div class="line"><span class="comment"># 第二种：先卸载当前 Teredo 适配器再重新启用</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">disable</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">type</span>=default</div><div class="line">ping -6 ipv6.test-ipv6.com</div></pre></td></tr></table></figure>
+<h2 id="二、mac开启ipv6">二、mac开启ipv6</h2><ul>
+<li>安装miredo <a href="https://github.com/darconeous/miredo-osx" target="_blank" rel="external">https://github.com/darconeous/miredo-osx</a></li>
+<li>下载安装： <a href="https://sourceforge.net/projects/tuntaposx/" target="_blank" rel="external">https://sourceforge.net/projects/tuntaposx/</a></li>
+</ul>
+<p>注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span>+R</div><div class="line">csrutil <span class="built_in">disable</span></div><div class="line">reboot</div></pre></td></tr></table></figure></p>
+<p>重新安装</p>
+<h2 id="分享：teredo服务器">分享：teredo服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">win1710.ipv6.microsoft.com</div><div class="line">teredo.ipv6.microsoft.com</div><div class="line">teredo.remlab.net</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/06/mac-dev/mac-shortcut-key.html" itemprop="url">Mac常用快捷键</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T23:19:32+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/mac-dev/mac-shortcut-key.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/06/mac-dev/mac-shortcut-key.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/06/mac-dev/mac-shortcut-key.html" class="leancloud_visitors" data-flag-title="Mac常用快捷键">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>自己常用的mac下快捷键整理,以免遗忘做个备份:</p>
+<ul>
+<li>打开破解软件显示“软件包已损坏”: <code>sudo spctl --master-(disable/enable)</code></li>
+<li>启动词典默认取词功能快捷键: <code>Command+Control+d</code></li>
+<li>控制隐藏文件的显示与隐藏:  <code>Command+Shift+.</code></li>
+<li>整理文件夹: <code>Command+Option+1/2/3/4</code></li>
+<li>拷贝文件内容:  <code>pbcopy &lt; 文件路径</code></li>
+<li>显示端口占用情况: <code>lsof -i:端口号</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/04/awesome-tools/awesome-web-toolkit.html" itemprop="url">Awesome Web Toolkit</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T15:48:39+08:00">
+                2018-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/04/awesome-tools/awesome-web-toolkit.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/04/awesome-tools/awesome-web-toolkit.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/04/awesome-tools/awesome-web-toolkit.html" class="leancloud_visitors" data-flag-title="Awesome Web Toolkit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在线工具合集:</p>
+<h2 id="下载地址转换">下载地址转换</h2><ul>
+<li><a href="https://zh.savefrom.net/1-how-to-download-youtube-video.html" target="_blank" rel="external">Youtube下载地址在线转换</a>: 一个在线的youtube下载地址提取工具</li>
+<li><a href="https://apps.evozi.com/apk-downloader/" target="_blank" rel="external">APK Downloader</a>: Google Play安卓应用下载地址提取</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/03/windows/windows-cmd-usage.html" itemprop="url">CMD学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T08:27:49+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/03/windows/windows-cmd-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/03/windows/windows-cmd-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/03/windows/windows-cmd-usage.html" class="leancloud_visitors" data-flag-title="CMD学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是<code>936</code> 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令<code>chcp</code>了。</p>
+<h2 id="命令帮助">命令帮助</h2><blockquote>
+<p>chcp [编码编号]</p>
+<ul>
+<li>编码编号： 指系统字符集编码编号，该字符集在<code>CONFIG.SYS</code>文件中由COUNTRY命令定义,对应的编码编号如下:<br>  1258 越南语<br>　　1257 波罗的语<br>　　1256 阿拉伯语<br>　　1255 希伯来语<br>　　1254 土耳其语<br>　　1253 希腊语<br>　　1252 拉丁 1 字符 (ANSI)<br>　　1251 西里尔语<br>　　1250 中欧语言<br>　　950 繁体中文<br>　　949 朝鲜语<br>　　936 简体中文（默认）<br>　　932 日语<br>　　874 泰国语<br>　　850 多语种 (MS-DOS Latin1)<br>　　437 MS-DOS 美国英语 </li>
+</ul>
+</blockquote>
+<p>dos指令: </p>
+<ul>
+<li>chcp 65001 就是换成UTF-8代码页 </li>
+<li>chcp 936 可以换回默认的GBK </li>
+<li>chcp 437 是美国英语 </li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/01/linux/linux-vncserver-usage.html" itemprop="url">Linux下VNC服务安装与配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T17:48:22+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/linux/linux-vncserver-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/01/linux/linux-vncserver-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/01/linux/linux-vncserver-usage.html" class="leancloud_visitors" data-flag-title="Linux下VNC服务安装与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装vnc">安装vnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">yum install -y tigervnc-server tigervn</div><div class="line">vncserver</div><div class="line">systemctl start vncserver@:1.service <span class="comment"># or vncserver :1</span></div><div class="line">systemctl <span class="built_in">enable</span> vncserver@:1.service  <span class="comment"># 设置开机启动</span></div><div class="line">systemctl stop vncserver@:1.service <span class="comment"># 关闭 或 vncserver -kill :1</span></div><div class="line"></div><div class="line">firewall-cmd --permanent --add-port=5901/tcp  <span class="comment"># 防火墙配置</span></div><div class="line">service firewalld restart</div></pre></td></tr></table></figure>
+<h2 id="卸载_tigervnc">卸载 tigervnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">yum remove  -y tigervnc-server tigervn</div><div class="line">systemctl stop vncserver@:1.service</div><div class="line">rm -rf ~\.vnc</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/28/affiliate/index.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/affiliate/index.html" itemprop="url">优秀产品推荐</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T12:17:07+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/affiliate/index.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/affiliate/index.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/28/affiliate/index.html" class="leancloud_visitors" data-flag-title="优秀产品推荐">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="交易平台">交易平台</h2><ul>
+<li><a href="https://vip.zb.com/activity/joinbtc?tuijianid=36c87688cfcbcb1d34afb17dd197fd27" target="_blank" rel="external">ZB</a>： 国人使用最多的区块链交易平台</li>
+</ul>
+<h2 id="VPS">VPS</h2><ul>
+<li><a href="https://www.vultr.com/?ref=7229300" target="_blank" rel="external">vultr</a>: 国外云主机推荐，有日本东京机房，海外一般走CN2线路</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -959,882 +1846,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/07/fgfw/rslsync-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/fgfw/rslsync-usage.html" itemprop="url">Resilio Sync使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T18:04:43+08:00">
-                2018-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/07/fgfw/rslsync-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/07/fgfw/rslsync-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/07/fgfw/rslsync-usage.html" class="leancloud_visitors" data-flag-title="Resilio Sync使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、安装">一、安装</h2><h3 id="1-1_linux下安装rslsync">1.1 linux下安装rslsync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># centos</span></div><div class="line">rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc</div><div class="line">yum update</div><div class="line">yum install resilio-sync</div><div class="line">ll</div><div class="line">rslsync --webui.listen 0.0.0.0:8888</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/05/linux/linux-get-cur-dir.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/05/linux/linux-get-cur-dir.html" itemprop="url">Linux文件操作命令之获取当前目录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T15:39:06+08:00">
-                2018-02-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/05/linux/linux-get-cur-dir.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/05/linux/linux-get-cur-dir.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/05/linux/linux-get-cur-dir.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之获取当前目录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="readlink">readlink</h2><p>readlink– help<br>用法：readlink【选项】… 文件输出符号链接值或权威文件名。</p>
-<ul>
-<li><code>-f, --canonicalize</code> 递归跟随给出文件名的所有符号链接以标准化，除最后一个外所有组件必须存在</li>
-<li><code>-e, -- canonicalize-existing</code> 递归跟随给出文件名的所有符号链接以标准化，所有组件都必须存在</li>
-<li><code>-m, -- canonicalize-missing</code> 递归跟随给出文件名的所有符号链接以标准化，但不对组件存在性作出要求</li>
-<li><code>-n, --nonewline</code> 不输出尾随的新行</li>
-<li><code>-q; quiet,</code></li>
-<li><code>-s, --silent</code> 缩减大多数的错误消息</li>
-<li><code>-v, --verbose</code> 报告所有错误消息</li>
-<li><code>--help</code> 显示此帮助信息并退出</li>
-<li><code>--version</code> 显示版本信息并退出</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SHELL_FOLDER=$(dirname $(readlink <span class="_">-f</span> <span class="string">"<span class="variable">$0</span>"</span>)) <span class="comment">#最佳方案</span></div><div class="line">SHELL_FOLDER=$(<span class="built_in">cd</span> <span class="string">"<span class="variable">$(dirname "$0")</span>"</span>;<span class="built_in">pwd</span>) </div><div class="line">SHELL_FOLDER=$(dirname <span class="string">"<span class="variable">$0</span>"</span>) <span class="comment"># 不一定是绝对路径</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-curl-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/php/php-curl-usage.html" itemprop="url">PHP CURL使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T20:31:18+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/php/php-curl-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/01/php/php-curl-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/01/php/php-curl-usage.html" class="leancloud_visitors" data-flag-title="PHP CURL使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">'X-FORWARDED-FOR:111.222.333.4'</span>, <span class="string">'CLIENT-IP:111.222.333.4'</span>)); <span class="comment">// 伪造IP </span></div><div class="line">curl_setopt($ch, CURLOPT_REFERER, <span class="string">"http://www.test.com"</span>); <span class="comment">// 伪造来源  </span></div><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_PROXY, <span class="string">"http://111.222.333.4:110"</span>);  <span class="comment">// 使用代理访问</span></div><div class="line">curl_setopt($ch,CURLOPT_ENCODING , <span class="string">"gzip"</span>); <span class="comment">// 解开gzip网页文件</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">gunzip</span><span class="params">($zipped)</span> </span>&#123;</div><div class="line">      $offset = <span class="number">0</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,<span class="number">0</span>,<span class="number">2</span>) == <span class="string">"\x1f\x8b"</span>)</div><div class="line">         $offset = <span class="number">2</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,$offset,<span class="number">1</span>) == <span class="string">"\x08"</span>)  &#123;</div><div class="line">         <span class="comment"># file_put_contents("tmp.gz", substr($zipped, $offset - 2));</span></div><div class="line">         <span class="keyword">return</span> gzinflate(substr($zipped, $offset + <span class="number">8</span>));</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="string">"Unknown Format"</span>;</div><div class="line">   &#125;  </div><div class="line"></div><div class="line">      $headers_enabled = <span class="number">1</span>;</div><div class="line">      curl_setopt($c, CURLOPT_HEADER,  $headers_enabled)</div><div class="line">      $ret = curl_exec($c);</div><div class="line"></div><div class="line">      <span class="keyword">if</span> ($headers_enabled) &#123;</div><div class="line">         <span class="comment"># file_put_contents("preungzip.html", $ret);</span></div><div class="line"></div><div class="line">         $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $ret, <span class="number">2</span>);</div><div class="line">         <span class="keyword">while</span> (!strncmp($sections[<span class="number">1</span>], <span class="string">'HTTP/'</span>, <span class="number">5</span>)) &#123;</div><div class="line">            $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $sections[<span class="number">1</span>], <span class="number">2</span>);</div><div class="line">         &#125;</div><div class="line">         $headers = $sections[<span class="number">0</span>];</div><div class="line">         $data = $sections[<span class="number">1</span>];</div><div class="line"></div><div class="line">         <span class="keyword">if</span> (preg_match(<span class="string">'/^Content-Encoding: gzip/mi'</span>, $headers)) &#123;</div><div class="line">            printf(<span class="string">"gzip header found\n"</span>);</div><div class="line">            <span class="keyword">return</span> gunzip($data);</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">return</span> $ret;</div></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://stackoverflow.com/questions/310650/decode-gzipped-web-page-retrieved-via-curl-in-php" target="_blank" rel="external">Decode gzipped web page retrieved via cURL in PHP</a></li>
-<li><a href="http://php.net/manual/zh/function.curl-setopt.php" target="_blank" rel="external">curl_setopt</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-ini-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/php/php-ini-setting.html" itemprop="url">PHP INI配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T17:19:23+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/php/php-ini-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/01/php/php-ini-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/01/php/php-ini-setting.html" class="leancloud_visitors" data-flag-title="PHP INI配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="ini_set相关">ini_set相关</h2><h3 id="配置时区">配置时区</h3><ul>
-<li>配置文件：<code>date.timezone = Asia/Shanghai</code></li>
-<li>php文件中配置：<code>date_default_timezone_set(&#39;Asia/Shanghai&#39;);</code> 和 <code>ini_set(&#39;date.timezone&#39;,&#39;Asia/Shanghai&#39;);</code>;</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/31/awesome-tools/awesome-php.html" itemprop="url">Awesome PHP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T10:33:49+08:00">
-                2018-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/31/awesome-tools/awesome-php.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/31/awesome-tools/awesome-php.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/31/awesome-tools/awesome-php.html" class="leancloud_visitors" data-flag-title="Awesome PHP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="操作类">操作类</h2><h3 id="DB操作类">DB操作类</h3><ul>
-<li><a href="https://github.com/joshcam/mysqli-database-class" target="_blank" rel="external">PHP Mysqli 操作类</a></li>
-</ul>
-<h3 id="网络工具">网络工具</h3><ul>
-<li><a href="https://github.com/geerlingguy/ping" target="_blank" rel="external">php Ping 检查</a></li>
-</ul>
-<h3 id="开源系统">开源系统</h3><ul>
-<li><a href="https://gitee.com/einsqing/wemall" target="_blank" rel="external">WeMall商城</a>: wemall7.0 开源系统，基于thinkphp5开发，支持composer，优化核心，减少依赖，基于全新的架构思想和命名空间。同类的用node.js开发的如<a href="https://github.com/shen100/wemall" target="_blank" rel="external">wemall</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-api.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/31/awesome-tools/awesome-api.html" itemprop="url">Awesome API</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T10:28:59+08:00">
-                2018-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/31/awesome-tools/awesome-api.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/31/awesome-tools/awesome-api.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/31/awesome-tools/awesome-api.html" class="leancloud_visitors" data-flag-title="Awesome API">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="API标准">API标准</h2><h2 id="API测试工具">API测试工具</h2><ul>
-<li><a href="https://github.com/thx/rap2-delos" target="_blank" rel="external">RAP2</a>: 阿里妈妈前端团队出品的开源接口管理工具RAP第二代 <a href="http://rap2.taobao.org" target="_blank" rel="external">http://rap2.taobao.org</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1884,7 +1895,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1906,7 +1917,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
