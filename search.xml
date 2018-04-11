@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Nginx下重写规则]]></title>
+    <url>%2F2018%2F04%2F07%2Fnginx-rewrite-rule.html</url>
+    <content type="text"><![CDATA[我们知道apache和nginx都可以对url链接进行重写，apache主要通过.htacess文件来实现，而nginx主要是通过域名配置来实现。两者的用法区别很大，这里针对这2种链接重新工具进行对比，并给大家介绍nginx常用的一些rewrite配置。 一、Nginx Rewrite基础二、nginx rewrite和apache rewrite区别Nginx Rewrite规则相关指令Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下： rewrite ^/b/(.*).html /play.php?video=$1 break; 如果加上if语句，示例如下： if (!-f $request_filename)rewrite ^/img/(.*)$ /site/$host/images/$1 last; Nginx与Apache的Rewrite规则实例对比 简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如： Apache Rewrite 规则： 1234RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L]RewriteRule ^/ceshi/$ /zl/ceshi.php [L]RewriteRule ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 [L]RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L] Nginx Rewrite 规则： 1234rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;rewrite ^/ceshi/$ /zl/ceshi.php last;rewrite ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 last;rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last; 由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。 如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误： rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last; 加上引号就正确了： rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last; Apache与Nginx的Rewrite规则在URL跳转时有细微的区别： Apache Rewrite 规则： RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L] Nginx Rewrite 规则： rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ http://$host/$1/ permanent; 以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“http://$host”，这是在Nginx中要求的。 另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如： Apache Rewrite 规则： RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=http://%{HTTP_HOST} [L] Nginx Rewrite 规则： rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=http://$host last; Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系： Apache的RewriteCond指令对应Nginx的if指令；Apache的RewriteRule指令对应Nginx的rewrite指令；Apache的[R]标记对应Nginx的redirect标记；Apache的[P]标记对应Nginx的last标记；Apache的[R,L]标记对应Nginx的redirect标记；Apache的[P,L]标记对应Nginx的last标记；Apache的[PT,L]标记对应Nginx的last标记； 允许指定的域名访问本站，其他域名一律跳转到http://www.aaa.com Apache Rewrite 规则：RewriteCond %{HTTP_HOST} ^(.*?).domain.com$RewriteCond %{HTTP_HOST} !^qita.domain.com$RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -fRewriteRule ^/wu/$ /market/%1/index.htm [L] Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例： Nginx Rewrite 规则：if ($host ~ ^(.?).domain.com$) set $var_wupin_city $1;set $var_wupin ‘1′; if ($host ~* ^qita.domain.com$) set $var_wupin ‘0′; if (!-f $document_root/market/$var_wupin_city/index.htm) set $var_wupin ‘0′; if ($var_wupin ~ ‘1′) rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;} &nbsp; rewrite 的语法 &nbsp; 语法: rewrite regex replacement flag 默认: none 作用域: server, location, if This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file. 这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。 Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so: 注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。 rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 *https=1就可以了。 nginx的rewrite规则参考： ~ 为区分大小写匹配~ 为不区分大小写匹配!~和!~分别为区分大小写不匹配及不区分大小写不匹-f和!-f用来判断是否存在文件-d和!-d用来判断是否存在目录-e和!-e用来判断是否存在文件或目录-x和!-x用来判断文件是否可执行last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的break 终止匹配, 不再匹配后面的规则redirect 返回302临时重定向 地址栏会显示跳转后的地址permanent 返回301永久重定向 地址栏会显示跳转后的地址$args$content_length$content_type$document_root$document_uri$host$http_user_agent$http_cookie$limit_rate$request_body_file$request_method$remote_addr$remote_port$remote_user$request_filename$request_uri$query_string$scheme$server_protocol$server_addr$server_name$server_port$uri结合QeePHP的例子 if (!-d $request_filename) {rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;break;多目录转成参数abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2 if ($host ~ (.).domain.com) {set $sub_name $1;rewrite ^/sort/(d+)/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;}目录对换/123456/xxxx -&gt; /xxxx?id=123456 rewrite ^/(d+)/(.+)/ /$2?id=$1 last;例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下： if ($http_user_agent ~ MSIE) {rewrite ^(.*)$ /nginx-ie/$1 break;}目录自动加“/” if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}禁止htaccess location ~/.ht {deny all;}禁止多个目录 location ~ ^/(cron|templates)/ {deny all;break;}禁止以/data开头的文件可以禁止/data/下多级目录下.log.txt等请求; location ~ ^/data {deny all;}禁止单个目录不能禁止.log.txt能请求 location /searchword/cron/ {deny all;}禁止单个文件 location ~ /data/sql/data.sql {deny all;}给favicon.ico和robots.txt设置过期时间;这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志 location ~(favicon.ico) {log_not_found off;expires 99d;break;} location ~(robots.txt) {log_not_found off;expires 7d;break;}设定某个文件的过期时间;这里为600秒，并不记录访问日志 location ^~ /html/scripts/loadhead_1.js {access_log off;root /opt/lampp/htdocs/web;expires 600;break;}文件反盗链并设置过期时间这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求“rewrite ^/ http://leech.divmy.com/leech.gif;”显示一张防盗链图片“access_log off;”不记录访问日志，减轻压力“expires 3d”所有文件3天的浏览器缓存 location ~ ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {valid_referers none blocked .c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;if ($invalid_referer) {rewrite ^/ http://leech.divmy.com/leech.gif;return 412;break;}access_log off;root /opt/lampp/htdocs/web;expires 3d;break;}只充许固定ip访问网站，并加上密码 root /opt/htdocs/www;allow 208.97.167.194;allow 222.33.1.2;allow 231.152.49.4;deny all;auth_basic “C1G_ADMIN”;auth_basic_user_file htpasswd;将多级目录下的文件转成一个文件，增强seo效果/job-123-456-789.html 指向/job/123/456/789.html rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;将根目录下某个文件夹指向2级目录如/shanghaijob/ 指向 /area/shanghai/如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/ rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;上面例子有个问题是访问/shanghai 时将不会匹配 rewrite ^/([0-9a-z]+)job$ /area/$1/ last;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;这样/shanghai 也可以访问了，但页面中的相对链接无法使用，如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。 那我加上自动跳转也是不行咯(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果 if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}知道原因后就好办了，让我手动跳转吧 rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;文件和目录不存在的时候重定向： if (!-e $request_filename) {proxy_pass http://127.0.0.1;}域名跳转 server{listen 80;server_name jump.88dgw.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/ http://www.88dgw.com/;access_log off;}多域名转向 server_name www.7oom.com/ www.divmy.com/;index index.html index.htm index.php;root /opt/lampp/htdocs;if ($host ~ “c1gstudio.net”) {rewrite ^(.*) http://www.7oom.com$1/ permanent;}三级域名跳转 if ($http_host ~ “^(.).i.c1gstudio.com$”) {rewrite ^(.*) http://top.88dgw.com$1/;break;}域名镜向 server{listen 80;server_name mirror.c1gstudio.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/(.*) http://www.divmy.com/$1 last;access_log off;}某个子目录作镜向 location ^~ /zhaopinhui {rewrite ^.+ http://zph.divmy.com/ last;break;}discuz ucenter home (uchome) rewrite rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;rewrite ^/(space|network).html$ /$1.php last;rewrite ^/([0-9]+)$ /space.php?uid=$1 last;discuz 7 rewrite rewrite ^(.)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;rewrite ^(.)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;rewrite ^(.)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page%3D$4&amp;page=$3 last;rewrite ^(.)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;rewrite ^(.)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;rewrite ^(.)/tag-(.+).html$ $1/tag.php?name=$2 last;给discuz某版块单独配置域名 server_name bbs.c1gstudio.com news.c1gstudio.com; location = / {if ($http_host ~ news.divmy.com$) {rewrite ^.+ http://news.divmy.com/forum-831-1.html last;break;}}discuz ucenter 头像 rewrite 优化 location ^~ /ucenter {location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location /ucenter/data/avatar {log_not_found off;access_log off;location ~ /(.)_big.jpg$ {error_page 404 /ucenter/images/noavatar_big.gif;}location ~ /(.)_middle.jpg$ {error_page 404 /ucenter/images/noavatar_middle.gif;}location ~ /(.*)_small.jpg$ {error_page 404 /ucenter/images/noavatar_small.gif;}expires 300;break;}}jspace rewrite location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location ~ ^/index.php/{rewrite ^/index.php/(.) /index.php?$1 break;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} 三、常用配置Nginx强制使用https访问(http跳转到https)1234567891011121314151617181920212223## 方法一：80、443单独进行配置server &#123; listen 80; server_name test.com; ... ... rewrite ^(.*)$ https://$host$1 permanent; &#125;## 方法二：同时配置80&amp;443端口的访问，当访问80时强制调整到443server &#123; listen 443; #ssl端口 listen 80; #用户习惯用http访问，加上80，后面通过497状态码让它自动跳到443端口 server_name test.com; #为一个server&#123;......&#125;开启ssl支持 ssl on; #指定PEM格式的证书文件 ssl_certificate /etc/nginx/test.pem; #指定PEM格式的私钥文件 ssl_certificate_key /etc/nginx/test.key; #让http请求重定向到https请求 error_page 497 https://$host$uri?$args; &#125; ### 参考 http://wiki.nginx.org/NginxChsHttpRewriteModule http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx http://www.divmy.com/ 工具类 nginx规则转换工具： http://www.anilcetin.com/convert-apache-htaccess-to-nginx/ http://winginx.com/htaccess]]></content>
+      <categories>
+        <category>正则</category>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>rewrite</tag>
+        <tag>重写</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[代理模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-proxy.html</url>
+    <content type="text"><![CDATA[在客户端与实体之间建立一个代理对象（proxy），客户端对实体进行的操作全部委派给代理对象，隐藏实体的具体实现细节。 Proxy还可以与业务代码分离，部署到另外的服务器，业务代码中通过RPC来委派任务。]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[原型模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-prototype.html</url>
+    <content type="text"><![CDATA[原型模式 与工厂模式作用类似，都是用来创建对象 与工厂模式的实现不懂，原型模式是首先创建好一个原型对象，然后通过clone原型对象来创建新的对象。这样就免去了类创建是重复的初始化操作 原型模式适用于大对象的创建。创建一个大对象需要很大的开销，如果每次new就会消耗很大，原型模式仅需内存拷贝即可 先建立一个对象原型，其后的每次操作先去clone原型对象，然后进行操作，减少对象初始化的开销。]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[观察者模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-observer.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据对象映射模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-data-mapper.html</url>
+    <content type="text"><![CDATA[数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。 在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。 结合使用数据对象映射模式，工厂模式，注册器模式]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[策略模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-strategy.html</url>
+    <content type="text"><![CDATA[策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告 使用策略模式可以实现 Ioc，依赖倒置、控制反转 代码实现和使用控制反转策略模式 依赖到置。 解耦。[ 查看全文 ]]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[适配器模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-adapter.html</url>
+    <content type="text"><![CDATA[新建一个IDatabase 123456789101112131415161718192021222324252627282930313233343536373839404142434445interface IDatabase&#123; function connect($host,$user,$password,$dbname); function query($sql); function close();&#125;Database下面的 mysql mysqli pdonamespace IMooc\Database;use IMooc\IDatabase;class Mysql implements IDatabase&#123; protected $conn; function connect($host, $user, $password, $dbname)&#123; $conn = mysql_connect($host,$user,$password); mysql_db_name($dbname,$conn); $this-&gt;conn = $conn; &#125; function query($sql)&#123; $res = mysql_query($sql,$this-&gt;conn); return $res; &#125; function close()&#123; mysql_close($this-&gt;conn); &#125; &#125;namespace IMooc\Database;use IMooc\IDatabase;class PDO implements IDatabase&#123; protected $conn; function connect($host,$user,$password,$dbname)&#123; $conn = new \PDO("mysql:host=$host;dbname=$dbname",$user,$password); $this-&gt;conn = $conn; &#125; function query($sql)&#123; return $this-&gt;conn-&gt;query($sql); &#125; function close()&#123; unset($this-&gt;conn); &#125;&#125;]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[装饰器模式]]></title>
+    <url>%2F2018%2F04%2F02%2Fphp%2Fphp-design-patterns-decorator.html</url>
+    <content type="text"><![CDATA[定义一个装饰器的接口，声明两个方法，beforXXX() afterXXX(), 然后在类里定义一个方法 addDecorator 添加一个装饰器，保存到一个内部数组，再定义一个beforXXX() afterXXX(); 分别循环每个装饰器，执行装饰器里定义的beforXXX afterXXX方法, 最后在执行代码之前和之后添加$this-&gt;beforXXX() 和 $this-&gt;afterXXX()]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[迭代器模式]]></title>
+    <url>%2F2018%2F04%2F02%2Fphp%2Fphp-design-patterns-iterator.html</url>
+    <content type="text"><![CDATA[迭代器模式 迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素 相比传统的编程模式，迭代器模式可以隐藏遍历元素所需的操作 应用场景遍历数据库表，拿到所有的user对象，然后用佛 foreach 循环，在循环的过程中修改某些字段的值。 如果一个对象是一个集合，比如数据结果集。我们通常需要逐个取出每一个元素，如果想用foreach逐个取出的话，集合类需要继承迭代器接口，实现接口中的方法，才可以被foreach迭代。迭代器模式其实就是可使用foreach模式. 迭代器需要实现的方法： rewind，将索引重置到数组第一个元素； valid，验证数据有效性； current，获取当前数据； next，将索引值向下移动； key，获取当前索引 参考资料 Iterator（迭代器）接口 :http://php.net/manual/zh/class.iterator.php http://designpatternsphp.readthedocs.io/zh_CN/latest/Behavioral/Iterator/README.html http://laravelacademy.org/post/2882.html https://segmentfault.com/a/1190000007547513]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP魔术方法]]></title>
+    <url>%2F2018%2F04%2F02%2Fphp%2Fphp-magic-methods.html</url>
+    <content type="text"><![CDATA[php中的魔术方法有construct()， destruct()， call()， callStatic()， get()， set()， isset()， unset()， sleep()， wakeup()， toString()， invoke()， set_state()， clone() 和 __debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。 __get/__set 类的属性魔术方法，当外部访问私有或者未定义属性时自动调用__call/__callStatic 类的方法魔术方法，当外部访问私有或者未定义方法以及静态方法的时候自动调用 __callStatic也必须声明为static__toString 将类的对象当成字符串使用时自动调用__invoke 将类的对象当成函数使用时自动调用]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SPL标准库使用]]></title>
+    <url>%2F2018%2F04%2F02%2Fphp%2Fphp-spl.html</url>
+    <content type="text"><![CDATA[SPL库常用四中数据结构栈：(先进后出)123$stack = new SplStack();$stack-&gt;push('data1\n'); // 入栈echo $stack-&gt;pop(); // 出栈 队列:（先进先出）123$queue = new SplQueue();$quue-&gt;enqueue('data'); // 入队echo $queue-&gt;dequeue(); // 出队 堆：（先进先出）123$heap = new SplMinHeap();$heap-&gt;insert('data'); // 存入echo $heap-&gt;extract(); // 提取 固定数组： 1234$array = new SplFixedArray(10); // //输入长度值$array[0]=1;$array[9]=10;var_dump($array);]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《MySQL技术内幕》Note]]></title>
+    <url>%2F2018%2F03%2F30%2Fbooks%2Fmysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95.html</url>
+    <content type="text"><![CDATA[第一本读完的mysql书 时间 阅读前准备书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (http://dev.mysql.com/doc/index-other.html）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据库较大，主要用来展示一些复杂的查询；还有一个 tpcc 数据库，是一个模拟 TPC-C 测试的数据库，用户可以从http://code.google.com/p/david-mysql-tools/下载]]></content>
+      <categories>
+        <category>books</category>
+      </categories>
+      <tags>
+        <tag>阅读</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[通过teredo获取ipv6地址]]></title>
     <url>%2F2018%2F03%2F07%2Ftools%2Fteredo-ipv6-setting.html</url>
-    <content type="text"><![CDATA[因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题. 那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤 一、window下开启说明：12345netsh int ipv6 show int # 查看所有适配器netsh int ipv6 show teredo # 查看teredo适配器状态netsh int ipv6 show route # netsh int ter set state clientnetsh interface teredo set state server=teredo.remlab.net # 设置teredo服务器 1.1 win10开启ipv6123456789101112131415161718192021# 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.comnetsh interface teredo set state enterpriseclient server=default# 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试ping -6 ipv6.test-ipv6.comping -6 [2001:470:1:18::125]netsh interface ipv6 reset # 重置 IPv6 配置， 需要重启系统-------------------- 重启后的分割线 -----ipconfig /all # 查看当前网络信息# 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法# 第一种：修改 Teredo 服务器为 teredo.remlab.netnetsh interface teredo set state server=teredo.remlab.net# 第二种：先卸载当前 Teredo 适配器再重新启用netsh interface Teredo set state disablenetsh interface Teredo set state type=defaultping -6 ipv6.test-ipv6.com 二、mac开启ipv6 安装miredo https://github.com/darconeous/miredo-osx 下载安装： https://sourceforge.net/projects/tuntaposx/ 注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：123command+Rcsrutil disablereboot 重新安装 分享：teredo服务器123win1710.ipv6.microsoft.comteredo.ipv6.microsoft.comteredo.remlab.net]]></content>
+    <content type="text"><![CDATA[因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题. 那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤 一、window下开启说明：12345netsh int ipv6 show int # 查看所有适配器netsh int ipv6 show teredo # 查看teredo适配器状态netsh int ipv6 show route # netsh int ter set state clientnetsh interface teredo set state server=teredo.remlab.net # 设置teredo服务器 1.1 win10开启ipv6123456789101112131415161718192021# 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.comnetsh interface teredo set state enterpriseclient server=default# 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试ping -6 ipv6.test-ipv6.comping -6 [2001:470:1:18::125]netsh interface ipv6 reset # 重置 IPv6 配置， 需要重启系统-------------------- 重启后的分割线 -----ipconfig /all # 查看当前网络信息# 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法# 第一种：修改 Teredo 服务器为 teredo.remlab.netnetsh interface teredo set state server=teredo.remlab.net# 第二种：先卸载当前 Teredo 适配器再重新启用netsh interface Teredo set state disablenetsh interface Teredo set state type=defaultping -6 ipv6.test-ipv6.com 批量脚本 参考来源:https://github.com/XX-net/XX-Net/issues/7000 12345678910111213141516171819202122232425@echo offnet start "ip helper"netsh interface ipv6 show teredonetsh interface teredo set state defaultnetsh interface 6to4 set state defaultnetsh interface isatap set state defaultnetsh interface teredo set state server=teredo.remlab.netnetsh interface ipv6 set teredo enterpriseclientnetsh int ter set state enterpriseclientipconfig /allnetsh int ipv6 show intnetsh int ipv6 show routenetsh int ipv6 show teredoroute DELETE ::/0netsh int ipv6 add route ::/0 "Teredo Tunneling Pseudo-Interface"netsh int ipv6 show prefixnetsh int ipv6 set prefix 2002::/16 30 1netsh int ipv6 set prefix 2001::/32 5 1route printnetsh interface ipv6 show addressnetsh interface ipv6 show routecmdnetsh int ipv6 add route ::/0 "Teredo Tunneling Pseudo-Interface" 二、mac开启ipv6 安装miredo https://github.com/darconeous/miredo-osx 下载安装： https://sourceforge.net/projects/tuntaposx/ 注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：123command+Rcsrutil disablereboot mac重新安装先删除tuntap再重新安装 12345sudo rm -rf /Library/Extensions/tap.kextsudo rm -rf /Library/Extensions/tun.kextsudo rm -rf /Library/StartupItems/tapsudo rm -rf /Library/StartupItems/tun 分享：teredo服务器123win1710.ipv6.microsoft.comteredo.ipv6.microsoft.comteredo.remlab.net]]></content>
       <categories>
         <category>tools</category>
       </categories>
@@ -120,7 +265,7 @@
   <entry>
     <title><![CDATA[Linux之文件查找find]]></title>
     <url>%2F2018%2F01%2F30%2Flinux%2Flinux-find.html</url>
-    <content type="text"><![CDATA[find参数 -print0 : 不换行输出内容，也可以理解\0 是定界符 使用 查找某个字符串在目录下出现次数 1find &lt;directory&gt; -type f -name "*.php" | xargs grep "&lt;strings&gt;" 是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c” 表示只找C语言写的代码，从而避免去查binary；也可以不写，表示找所有文件是你要找的某个字符串]]></content>
+    <content type="text"><![CDATA[一、find基础说明 find [dir] [param] [match] -print0 : 不换行输出内容，也可以理解\0 是定界符 二、find使用2.1 使用文件名查找文件12find -name "MyCProgram.c" #find -iname "MyCProgram.c" # 忽略大小写查找 2.2 使用mindepth和maxdepth限定搜索指定目录的深度123find / -maxdepth 2 -name passwdfind / -maxdepth 3 -name passwdfind / -mindepth 3 -maxdepth 5 -name passwd 2.3 在find命令查找到的文件上执行命令// 搜索后 {}将会被当前文件名取代 find -iname “MyCProgram.c” -exec md5sum {} \; 2.4 相反匹配 find -maxdepth 1 -not -iname “MyCProgram.c” 2.5 使用inode编号查找文件列子： 1234567touch "test-file-name"touch "test-file-name " //注意有空格ls -i1 test* //查看两个文件find -inum 16187430 -exec mv &#123;&#125; new-test-file-name \; # 重命名特殊的文件名find -inum 804180 -exec rm &#123;&#125; \; # 使用inode编号来删除那些具有特殊符号的文件名 2.6 根据文件权限查找文件找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限 find . -perm -g=r -type f -exec ls -l {} \; 找到对组用户具有只读权限的文件 find . -perm g=r -type f -exec ls -l {} \; 找到对组用户具有只读权限的文件(使用八进制权限形式) find . -perm 040 -type f -exec ls -l {} \; 2.7 找到home目录及子目录下所有的空文件(0字节文件)123find ~ -emptyfind . -maxdepth 1 -emptyfind . -maxdepth 1 -empty -not -name ".*" # 只列出当年目录下的非隐藏空文件 2.8 按照文件大小进行查找1234567find . -type f -exec ls -s &#123;&#125; \; | sort -n -r | head -5 # 查找5个最大的文件find . -type f -exec ls -s &#123;&#125; \; | sort -n | head -5 # 查找5个最小的文件find . -not -empty -type f -exec ls -s &#123;&#125; \; | sort -n | head -5find ~ -size +100M //查找比指定文件大的文件find ~ -size -100M //查找比指定文件小的文件find ~ -size 100M //查找符合给定大小的文件 2.9 按照文件类型进行查找12345find . -type s //只查找socket文件find . -type d //查找所有的目录find . -type f //查找所有的一般文件find . -type f -name ".*" //查找所有的隐藏文件find -type d -name ".*" //查找所有的隐藏目录 2.10 通过和其他文件比较修改时间查找文件显示在指定文件之后做出修改的文件。下面的find命令将显示所有的在ordinary_file之后创建修改的文件。 1234567891011121314151617ls -lrt-----------------------------------total 0-rw-r----- 1 root root 0 2009-02-19 20:27 others_can_also_read----r----- 1 root root 0 2009-02-19 20:27 others_can_only_read-rw------- 1 root root 0 2009-02-19 20:29 ordinary_file-rw-r--r-- 1 root root 0 2009-02-19 20:30 everybody_read-rwxrwxrwx 1 root root 0 2009-02-19 20:31 all_for_all---------- 1 root root 0 2009-02-19 20:31 no_for_all ----------------------------------find -newer ordinary_file----------------------../everybody_read./all_for_all./no_for_all---------------------- 2.11 给常用find操作取别名若你发现有些东西很有用，你可以给他取别名。并且在任何你希望的地方执行。常用的删除a.out文件。alias rmao=”find . -iname a.out -exec rm {} \;”rmao 删除c程序产生的core文件。 alias rmc=”find . -iname core -exec rm {} \;”rmc 2.12 用find命令删除大型打包文件find / -type f -name .zip -size +100M -exec rm -i {} \;”//用别名rm100m删除所有大雨100M的.tar文件alias rm100m=”find / -type f -name *.tar -size +100M -exec rm -i {} \;”alias svnadmin=”/usr/local/subversion/bin/svnadmin” 2.13 查找某个字符串在目录下出现次数1find &lt;directory&gt; -type f -name "*.php" | xargs grep "&lt;strings&gt;" 是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c” 表示只找C语言写的代码，从而避免去查binary；也可以不写，表示找所有文件是你要找的某个字符串 参考文档 妈咪，我找到了！15个实用的Linux find命令示例]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -268,33 +413,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[PHP使用SQLite扩展]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-sqlite-usage.html</url>
-    <content type="text"><![CDATA[开启sqlite一. Windows下开启sqlite: extension=php_pdo.dll extension=php_sqlite.dll 二. Unix/Linux下开启sqlite: 是编译的时候添加: --with-sqlite=shared 在安装后添加的编译: tar xvf php-your.version.here.tar.gz cd php-your.version.here/ext/sqlite/ phpize ./configure make make install ##]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[PHP设计模式]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
-    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[PHP使用redis]]></title>
     <url>%2F2017%2F12%2F22%2Fphp%2Fphp-redis-usage.html</url>
     <content type="text"><![CDATA[Redis简介: 是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步. window下安装使用redis需要文件: PHP官方Redis扩展下载 win下Redis程序(32位,在目录/bin中) Win下Redis程序(64位) 解压下redis,有如下文件: redis-server.exe：服务程序 redis-check-dump.exe：本地数据库检查 redis-check-aof.exe：更新日志检查 redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具). windows下 使用redis安装好redis后可以在cmd中运行{dir}\redis-server.exe运行redis服务.运行后redis服务端后,可以在cmd通过redis-cli.exe -h 127.0.0.1 -p 6379来运行客户端 简单测试: 1234redis 127.0.0.1:6379&gt; set mykey somevalueOKredis 127.0.0.1:6379&gt; get mykey"somevalue" 如何添加值到list: 123456789101112131415redis 127.0.0.1:6379&gt; lpush mylist val1(integer) 1redis 127.0.0.1:6379&gt; lpush mylist val2(integer) 2redis 127.0.0.1:6379&gt; lpush mylist val3(integer) 3redis 127.0.0.1:6379&gt; lpush mylist val4(integer) 4redis 127.0.0.1:6379&gt; lrange mylist 0 -1 1&gt; val1 2&gt; val2 3&gt; val3 4&gt; val4redis 127.0.0.1:6379&gt; rpop mylist "val1" redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的 ab 工具). 1D:\wnmp\redis&gt;redis-benchmark -n 100000 –c 50 linux下安装使用redis 参考 http://my.oschina.net/lujianing/blog/204103]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[PHP正则使用]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-preg.html</url>
-    <content type="text"><![CDATA[正则中的一些概念元字符12345678910111213. 匹配除换行符意外的任意字符\w 匹配字母或数字或下划线\s 匹配任意的空白符\d 匹配数字\b 匹配单词的开始或结束^ 匹配字符串的开始$ 匹配字符串的结束[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符\W \w的反义，即匹配任意非字母，数字，下划线和汉字的字符\S \s的反义，即匹配任意非空白符的字符\D \d的反义，即匹配任意非数字的字符\B \b的反义，即不是单词开头或结束的位置[^x] 匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符 重复123456* 重复零次或更多次+ 重复 1 次或更多次? 重复零次或 1 次&#123;n&#125; 重复 n 次&#123;n,&#125; 重复 n 次或更多次&#123;n,m&#125; 重复 n 到 m 次 模式修正符123456789i 模式中的字符将同时匹配大小写字母m 字符串视为多行s 将字符串视为单行，换行符作为普通字符x 将模式中的空白忽略e preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。A 强制仅从目标字符串的开头开始匹配D 模式中的 $ 元字符仅匹配目标字符串的结尾U 匹配最近的字符串u 模式字符串被当成 UTF-8 PHP正则函数在 PHP 应用中，正则表达式主要用于： 正则匹配：根据正则表达式匹配相应的内容 正则替换：根据正则表达式匹配内容并替换 正则分割：根据正则表达式分割字符串 PHP 正则表达式匹配 preg_match 与 preg_match_all 函数preg_match()preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。 语法： int preg_match( string pattern, string subject [, array matches ] ) 参数说明： pattern 正则表达式 subject 需要匹配检索的对象 matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推 preg_match_all()preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。 语法： int preg_match_all( string pattern, string subject, array matches [, int flags ] ) 参数说明:pattern: 正则表达式subject: 需要匹配检索的对象matches: 存储匹配结果的数组flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有： 1. PREG_PATTERN_ORDER：默认，对结果排序使 $matches[0] 为全部模式匹配的数组，$matches[1] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推 2. PREG_SET_ORDER：对结果排序使 $matches[0] 为第一组匹配项的数组，$matches[1] 为第二组匹配项的数组，以此类推 3. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量 部分实例1234567891011121314151617//1，过滤所有html标签的正则表达式：&lt;/?[^&gt;]+&gt;//2，过滤所有html标签的属性的正则表达式：$html = preg_replace("/&lt;([a-zA-Z]+)[^&gt;]*&gt;/","&lt;\\1&gt;",$html);//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：&lt;/?[^pP/&gt;]+&gt;//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：&lt;/?[aApPbB][^&gt;]*&gt;//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：\s(?!alt)[a-zA-Z]+=[^\s]*//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：(\s)alt=[^\s]* 正则表达式中排除不需要匹配的字符串或字符(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串 (2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报) 加上|用于或选择。上面列出的字符串都不会参与匹配 常用正则 删除空行: \r\n\r\n =&gt; \r\n\ 删除有空格的空行: ^ +$ =&gt;]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -308,11 +429,27 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Linux文件操作命令之局域共享samba]]></title>
-    <url>%2F2017%2F12%2F22%2Flinux%2Flinux-samba.html</url>
-    <content type="text"><![CDATA[samba简写smb, 是linux下局域网共享服务. 安装samba12345678yum -y install samba # yum安装smbrpm -qa | grep samba # 查看smb是否安装whereis samba # 查看smb目录目录chkconfig smb on # 开机自启smb服务chkconfig --list smb # 确认 Samba 启动标签，确认 2-5 为 on 的状态/etc/rc.d/init.d/smb start # 启动 Samba 服务 添加防火墙规则: vi /etc/sysconfig/iptables # 写入: -A INPUT -m state --state NEW -m tcp -p tcp --dport 139 -j ACCEPT -A INPUT -m state --state NEW -m tcp -p tcp --dport 445 -j ACCEPT -A INPUT -p udp -m udp --dport 137 -j ACCEPT -A INPUT -p udp -m udp --dport 138 -j ACCEPT samba配置 vi /etc/samba/smb.conf [global]workgroup = 工作组server string = 描述log file = 日志位置max log size = 日志最大大小 KBsecurity = user 安全等级user 使用samba用户登录。注意：samba用户由系统用户转变过来。要把用户生成为samba用户，此用户必须已经是系统用户share 不用密码server 使用验证服务器验证domain 域控制器验证 ·share definitions 共享设置 [共享目录名]commetn = 目录描述browseable = yes 目录是否对没有权限的用户可见writeable = yes 可写（要与系统目录权限相与）valid users = 用户名 用户限制（目录是哪个用户所有）path = /www 指定共享目录位置 添加samba用户smbpasswd -a username # 添加samba用户, 用户名必须存在系统用户名中 smbpasswd -x username # 删除samba用户 pdbedit -L 查看samba用户 添加用户和目录后,确认目录下用户的权限: mkdir /pub mkdir /soft chmod 777 /pub chmod 700 /soft chown aa /soft service smb restart 注意: samba权限和系统权限取最严格权限 samba用户必须是系统用户 启动的服务名是smb 客户端使用 windows： 文件夹地址栏: \\192.168.56.220\www 如果修改了密码或用户后,验证信息错误,可以在dos下删除缓存 net use * /del 删除缓存 net use * /del /y 或 net use \\{servename} /del /y net use \\{servername} /user:{username} {password} linux客户端： smbclient //192.168.140.253/soft -U aa]]></content>
+    <title><![CDATA[PHP设计模式]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
+    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 图说设计模式 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
       <categories>
-        <category>linux</category>
+        <category>php</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP使用SQLite扩展]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-sqlite-usage.html</url>
+    <content type="text"><![CDATA[开启sqlite一. Windows下开启sqlite: extension=php_pdo.dll extension=php_sqlite.dll 二. Unix/Linux下开启sqlite: 是编译的时候添加: --with-sqlite=shared 在安装后添加的编译: tar xvf php-your.version.here.tar.gz cd php-your.version.here/ext/sqlite/ phpize ./configure make make install ##]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP正则使用]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-preg.html</url>
+    <content type="text"><![CDATA[正则中的一些概念元字符12345678910111213. 匹配除换行符意外的任意字符\w 匹配字母或数字或下划线\s 匹配任意的空白符\d 匹配数字\b 匹配单词的开始或结束^ 匹配字符串的开始$ 匹配字符串的结束[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符\W \w的反义，即匹配任意非字母，数字，下划线和汉字的字符\S \s的反义，即匹配任意非空白符的字符\D \d的反义，即匹配任意非数字的字符\B \b的反义，即不是单词开头或结束的位置[^x] 匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符 重复123456* 重复零次或更多次+ 重复 1 次或更多次? 重复零次或 1 次&#123;n&#125; 重复 n 次&#123;n,&#125; 重复 n 次或更多次&#123;n,m&#125; 重复 n 到 m 次 模式修正符123456789i 模式中的字符将同时匹配大小写字母m 字符串视为多行s 将字符串视为单行，换行符作为普通字符x 将模式中的空白忽略e preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。A 强制仅从目标字符串的开头开始匹配D 模式中的 $ 元字符仅匹配目标字符串的结尾U 匹配最近的字符串u 模式字符串被当成 UTF-8 PHP正则函数在 PHP 应用中，正则表达式主要用于： 正则匹配：根据正则表达式匹配相应的内容 正则替换：根据正则表达式匹配内容并替换 正则分割：根据正则表达式分割字符串 PHP 正则表达式匹配 preg_match 与 preg_match_all 函数preg_match()preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。 语法： int preg_match( string pattern, string subject [, array matches ] ) 参数说明： pattern 正则表达式 subject 需要匹配检索的对象 matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推 preg_match_all()preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。 语法： int preg_match_all( string pattern, string subject, array matches [, int flags ] ) 参数说明:pattern: 正则表达式subject: 需要匹配检索的对象matches: 存储匹配结果的数组flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有： 1. PREG_PATTERN_ORDER：默认，对结果排序使 $matches[0] 为全部模式匹配的数组，$matches[1] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推 2. PREG_SET_ORDER：对结果排序使 $matches[0] 为第一组匹配项的数组，$matches[1] 为第二组匹配项的数组，以此类推 3. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量 部分实例1234567891011121314151617//1，过滤所有html标签的正则表达式：&lt;/?[^&gt;]+&gt;//2，过滤所有html标签的属性的正则表达式：$html = preg_replace("/&lt;([a-zA-Z]+)[^&gt;]*&gt;/","&lt;\\1&gt;",$html);//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：&lt;/?[^pP/&gt;]+&gt;//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：&lt;/?[aApPbB][^&gt;]*&gt;//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：\s(?!alt)[a-zA-Z]+=[^\s]*//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：(\s)alt=[^\s]* 正则表达式中排除不需要匹配的字符串或字符(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串 (2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报) 加上|用于或选择。上面列出的字符串都不会参与匹配 常用正则 删除空行: \r\n\r\n =&gt; \r\n\ 删除有空格的空行: ^ +$ =&gt;]]></content>
+      <categories>
+        <category>php</category>
       </categories>
   </entry>
   <entry>
@@ -321,6 +458,14 @@
     <content type="text"><![CDATA[mysqldump语法： mysqldump按条件查找：mysqldump按条件查找的参数是 -where/-w，例子如： mysqldump -uroot -p123456 dbname table_name -where “id&gt;90” &gt; ~/db.sql 常见问题: 在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的文件会出现乱码,故需要特别指定下编码的格式. 1234567# 在cmd下导出mysqldump -uroot -p --default-character-set=utf8 mo（dbname） &gt; E://xxxx.sql# 在cmd下导入mysql -u root -p --default-character-set=utf8 use dbname source /root/newsdata.sql 而且需要注意,在linux中要配置默认编码为:default-character-set=utf8]]></content>
       <categories>
         <category>mysql</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux文件操作命令之局域共享samba]]></title>
+    <url>%2F2017%2F12%2F22%2Flinux%2Flinux-samba.html</url>
+    <content type="text"><![CDATA[samba简写smb, 是linux下局域网共享服务. 安装samba12345678yum -y install samba # yum安装smbrpm -qa | grep samba # 查看smb是否安装whereis samba # 查看smb目录目录chkconfig smb on # 开机自启smb服务chkconfig --list smb # 确认 Samba 启动标签，确认 2-5 为 on 的状态/etc/rc.d/init.d/smb start # 启动 Samba 服务 添加防火墙规则: vi /etc/sysconfig/iptables # 写入: -A INPUT -m state --state NEW -m tcp -p tcp --dport 139 -j ACCEPT -A INPUT -m state --state NEW -m tcp -p tcp --dport 445 -j ACCEPT -A INPUT -p udp -m udp --dport 137 -j ACCEPT -A INPUT -p udp -m udp --dport 138 -j ACCEPT samba配置 vi /etc/samba/smb.conf [global]workgroup = 工作组server string = 描述log file = 日志位置max log size = 日志最大大小 KBsecurity = user 安全等级user 使用samba用户登录。注意：samba用户由系统用户转变过来。要把用户生成为samba用户，此用户必须已经是系统用户share 不用密码server 使用验证服务器验证domain 域控制器验证 ·share definitions 共享设置 [共享目录名]commetn = 目录描述browseable = yes 目录是否对没有权限的用户可见writeable = yes 可写（要与系统目录权限相与）valid users = 用户名 用户限制（目录是哪个用户所有）path = /www 指定共享目录位置 添加samba用户smbpasswd -a username # 添加samba用户, 用户名必须存在系统用户名中 smbpasswd -x username # 删除samba用户 pdbedit -L 查看samba用户 添加用户和目录后,确认目录下用户的权限: mkdir /pub mkdir /soft chmod 777 /pub chmod 700 /soft chown aa /soft service smb restart 注意: samba权限和系统权限取最严格权限 samba用户必须是系统用户 启动的服务名是smb 客户端使用 windows： 文件夹地址栏: \\192.168.56.220\www 如果修改了密码或用户后,验证信息错误,可以在dos下删除缓存 net use * /del 删除缓存 net use * /del /y 或 net use \\{servename} /del /y net use \\{servername} /user:{username} {password} linux客户端： smbclient //192.168.140.253/soft -U aa]]></content>
+      <categories>
+        <category>linux</category>
       </categories>
   </entry>
   <entry>
@@ -539,7 +684,7 @@
   <entry>
     <title><![CDATA[Linux网络命令之ssh]]></title>
     <url>%2F2017%2F10%2F10%2Flinux%2Flinux-ssh.html</url>
-    <content type="text"><![CDATA[一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]] [user@]hostname [command] 主要参数说明： -l 指定登入用户 -p 设置端口号 -f 后台运行，并推荐加上 -n 参数 -n 将标准输入重定向到 /dev/null，防止读取标准输入 -N 不执行远程命令，只做端口转发 -q 安静模式，忽略一切对话和错误提示 -T 禁用伪终端配置 二、常用案例2.1 远程执行bash命令 ssh -l www-online 192.168.110.34 “cat /proc/cpuinfo” 不过一般执行后，可以写这样的语句来判断执行有无异常 ssh 调用远程命令后不能自动退出解决方法可以将标准输出与标准错误输出重定向到/dev/null，这样就不会一直处于等待状态。 ssh -l www-online 192.168.110.34 “/home/www-online/uptimelog.sh &gt; /dev/null 2&gt;&amp;1 &amp;” 实际上，想ssh退出，我们可以在ssh执行完成后kill掉ssh这个进程来实现。首先，创建一个sh执行ssh的命令,这里需要用到ssh的 -f 与 -n 参数，因为我们需要ssh也以后台方式运行，这样才可以获取到进程号进行kill操作。创建ssh_uptimelog.sh，脚本如下 1234567891011#!/bin/bashssh -f -n -l www-online 192.168.110.34 "/home/www-online/uptimelog.sh &amp;" # 后台运行sshpid=$(ps aux | grep "ssh -f -n -l www-online 192.168.110.34 /home/www-online/uptimelog.sh" | awk '&#123;print $2&#125;' | sort -n | head -n 1) # 获取进程号echo "ssh command is running, pid:$&#123;pid&#125;"sleep 3 &amp;&amp; kill $&#123;pid&#125; &amp;&amp; echo "ssh command is complete" # 延迟3秒后执行kill命令，关闭ssh进程，延迟时间可以根据调用的命令不同调整exit 0 三、SSH配置修改3.1 加速ssh登陆ssh默认开启GSSAPIAuthentication登陆验证，将其设置为no就可以了，配置文件在/etc/ssh/ssh_config,修改重启sshd即可 说明如： GSSAPI：Generic Security Services Application Program Interface，GSSAPI 本身是一套 API，由 IETF 标准化。其最主要也是著名的实现是基于 Kerberos 的。一般说到 GSSAPI 都暗指 Kerberos 实现。GSSAPI 是一套通用网络安全系统接口。该接口是对各种不同的客户端服务器安全机制的封装，以消除安全接口的不同，降低编程难度。]]></content>
+    <content type="text"><![CDATA[一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]] [user@]hostname [command] 主要参数说明： -l 指定登入用户 -p 设置端口号 -f 后台运行，并推荐加上 -n 参数 -n 将标准输入重定向到 /dev/null，防止读取标准输入 -N 不执行远程命令，只做端口转发 -q 安静模式，忽略一切对话和错误提示 -T 禁用伪终端配置 二、常用案例2.1 远程执行bash命令 ssh -l www-online 192.168.110.34 “cat /proc/cpuinfo” 不过一般执行后，可以写这样的语句来判断执行有无异常 ssh 调用远程命令后不能自动退出解决方法可以将标准输出与标准错误输出重定向到/dev/null，这样就不会一直处于等待状态。 ssh -l www-online 192.168.110.34 “/home/www-online/uptimelog.sh &gt; /dev/null 2&gt;&amp;1 &amp;” 实际上，想ssh退出，我们可以在ssh执行完成后kill掉ssh这个进程来实现。首先，创建一个sh执行ssh的命令,这里需要用到ssh的 -f 与 -n 参数，因为我们需要ssh也以后台方式运行，这样才可以获取到进程号进行kill操作。创建ssh_uptimelog.sh，脚本如下 1234567891011#!/bin/bashssh -f -n -l www-online 192.168.110.34 "/home/www-online/uptimelog.sh &amp;" # 后台运行sshpid=$(ps aux | grep "ssh -f -n -l www-online 192.168.110.34 /home/www-online/uptimelog.sh" | awk '&#123;print $2&#125;' | sort -n | head -n 1) # 获取进程号echo "ssh command is running, pid:$&#123;pid&#125;"sleep 3 &amp;&amp; kill $&#123;pid&#125; &amp;&amp; echo "ssh command is complete" # 延迟3秒后执行kill命令，关闭ssh进程，延迟时间可以根据调用的命令不同调整exit 0 三、SSH配置修改12// 常用配置PermitRootLogin yes # 是否开启root登陆 3.1 加速ssh登陆ssh默认开启GSSAPIAuthentication登陆验证，将其设置为no就可以了，配置文件在/etc/ssh/ssh_config,修改重启sshd即可 说明如： GSSAPI：Generic Security Services Application Program Interface，GSSAPI 本身是一套 API，由 IETF 标准化。其最主要也是著名的实现是基于 Kerberos 的。一般说到 GSSAPI 都暗指 Kerberos 实现。GSSAPI 是一套通用网络安全系统接口。该接口是对各种不同的客户端服务器安全机制的封装，以消除安全接口的不同，降低编程难度。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Linux网络命令之端口扫描nmap]]></title>
@@ -564,7 +709,7 @@
   <entry>
     <title><![CDATA[GIT使用手册]]></title>
     <url>%2F2017%2F09%2F08%2Ftools%2Fgit-usage.html</url>
-    <content type="text"><![CDATA[一、基本命令1.1 版本回退12345git reset --hard # 回退到当前版本（放弃所有修改）git checkout &#123;file_name&#125; # 放弃某个文件的修改git reset &#123;UUID&#125; # 回退到某一版本但保存自该版本起的修改git reset --hard &#123;UUID&#125; # 回退到某一版本并且放弃所有的修改git reset --hard origin/master # 回退到和远程版本一样, origin代表你远程仓库的名字，master代表分支名 1.2 git submodule使用这其实是 git 的子模块功能,作用是为了在项目中引入另一个项目的部分或全部内容，但是这两个项目是分开开发或管理的,这样直接使用 git submodule 就可以不必要将另一个项目复制一份直接引用即可。 常用 git submodule命令 12345678910111213git submodule add repourl # 添加 git 子模块git submodule init # 初次clone带有子模块的仓库如果想查看子模块的内容git submodule update # 或者 git submodule update --init --recursivevi .gitmodules # 更新子模块地址git submodule sync # 然后提交更改即可git rm --cached &#123;submodule_path&#125; # submodule_path即子模块在仓库下的路径(这之前需要删除删除 .gitsubmodule中对应submodule的条目 和 删除 .Git/config 中对应submodule的条目)git commit -m 'xxx'git push 具体的关于 git submodule 的说明以及使用，请点击这里 1.3 分支合并分支合并分为两种情况,一种是本地分支合并,一种是远程分支合并到本地分支 12git merge 分支名称 # 本地分支合并git pull origin master # 远程分支合并到本地分支 1.4 代码提交1.4.1 如何从众多提交中保留只需要的提交如果说在众多提交中,已某个提交为基准,只保留上游众多提交中的某个或者某几个,可以使用 cherry-pick命令,具体是: git cherry-pick 如果没有冲突,则回显示如下: 123Finished one cherry-pick.# On branch dev# Your branch is ahead of 'origin/dev' by 3 commits. 如果存在冲突,则需要解决冲突然后继续,关于如何冲突,请查看如何处理代码冲突小节 1.4.2 修改最后一次提交更多参考：http://git.mydoc.io/?t=83152 1.4.5 改写历史，去除大文件123git filter-branch --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --allgit push origin --tags --forcegit push origin --all --force 并告知所有组员，push 代码前需要 pull rebase，而不是 merge，否则会从该组员的本地仓库再次引入到远程库中 1.4.6 恢复已经被删除文件git checkout commit_id -- path_to_file可以试一下使用git ls-files -d | xargs -i git checkout {} 不过新的版本开始不支持了！ 二、配置http(s)方式自动记住密码123git config --global credential.helper cache # 记住密码十五分钟git config credential.helper 'cache --timeout=3600' # 这里记住的是一个小时，如需其他时间，请修改3600为你想修改的时间，单位是秒git config --global credential.helper store # 设置长期记住密码 或者，比如http://yourname:password@git.oschina.net/name/project.git //注意，码云平台同时支持个性地址与邮箱，当使用邮箱时，请对@符号使用%40替换 如果你原本使用的 ssh 地址想更换成 http(s) 地址，可以执行以下命令: 12git remote rm origin # 删除原本的ssh仓库地址 origin 代表你原本ssh地址的仓库的别名 git remote add origin http://git.oschina.net/username/project.git # 新增http地址的仓库 输入问题（git 出现warning crlf will be replaced by…）后面经常带 ^M 的时候是windows上传文件导致的，需要这样进行处理 1git config --global core.autocrlf input # Configure Git on OS X to properly handle line endings 产生这个问题的原因是，windows、Linux和Mac在处理文件换行时的标示符是不一致的。windows使用CRLF作为结束符，而Linux和Mac使用LF作为结束符。 同时呢，Git 有两种模式来对待换行符，你可以通过下面这行代码查看你的git配置。 123# 作为Linux和Mac开发者，这个配置应当为false，而windows开发者，则应当设置为true。git config core.autocrlf # 针对项目配置 - windows为主要开发环境git config --global core.autocrlf false #]]></content>
+    <content type="text"><![CDATA[一、基本命令1.1 版本回退12345git reset --hard # 回退到当前版本（放弃所有修改）git checkout &#123;file_name&#125; # 放弃某个文件的修改git reset &#123;UUID&#125; # 回退到某一版本但保存自该版本起的修改git reset --hard &#123;UUID&#125; # 回退到某一版本并且放弃所有的修改git reset --hard origin/master # 回退到和远程版本一样, origin代表你远程仓库的名字，master代表分支名 1.2 git submodule使用这其实是 git 的子模块功能,作用是为了在项目中引入另一个项目的部分或全部内容，但是这两个项目是分开开发或管理的,这样直接使用 git submodule 就可以不必要将另一个项目复制一份直接引用即可。 常用 git submodule命令 12345678910111213git submodule add repourl # 添加 git 子模块git submodule init # 初次clone带有子模块的仓库如果想查看子模块的内容git submodule update # 或者 git submodule update --init --recursivevi .gitmodules # 更新子模块地址git submodule sync # 然后提交更改即可git rm --cached &#123;submodule_path&#125; # submodule_path即子模块在仓库下的路径(这之前需要删除删除 .gitsubmodule中对应submodule的条目 和 删除 .Git/config 中对应submodule的条目)git commit -m 'xxx'git push 具体的关于 git submodule 的说明以及使用，请点击这里 1.3 分支合并分支合并分为两种情况,一种是本地分支合并,一种是远程分支合并到本地分支 12git merge 分支名称 # 本地分支合并git pull origin master # 远程分支合并到本地分支 1.4 代码提交1.4.1 如何从众多提交中保留只需要的提交如果说在众多提交中,已某个提交为基准,只保留上游众多提交中的某个或者某几个,可以使用 cherry-pick命令,具体是: git cherry-pick 如果没有冲突,则回显示如下: 123Finished one cherry-pick.# On branch dev# Your branch is ahead of 'origin/dev' by 3 commits. 如果存在冲突,则需要解决冲突然后继续,关于如何冲突,请查看如何处理代码冲突小节 1.4.2 修改最后一次提交更多参考：http://git.mydoc.io/?t=83152 1.4.5 改写历史，去除大文件123git filter-branch --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --allgit push origin --tags --forcegit push origin --all --force 并告知所有组员，push 代码前需要 pull rebase，而不是 merge，否则会从该组员的本地仓库再次引入到远程库中 1.4.6 恢复已经被删除文件git checkout commit_id -- path_to_file可以试一下使用git ls-files -d | xargs -i git checkout {} 不过新的版本开始不支持了！ 二、配置http(s)方式自动记住密码123git config --global credential.helper cache # 记住密码十五分钟git config credential.helper 'cache --timeout=3600' # 这里记住的是一个小时，如需其他时间，请修改3600为你想修改的时间，单位是秒git config --global credential.helper store # 设置长期记住密码 或者，比如http://yourname:password@git.oschina.net/name/project.git //注意，码云平台同时支持个性地址与邮箱，当使用邮箱时，请对@符号使用%40替换 如果你原本使用的 ssh 地址想更换成 http(s) 地址，可以执行以下命令: 12git remote rm origin # 删除原本的ssh仓库地址 origin 代表你原本ssh地址的仓库的别名 git remote add origin http://git.oschina.net/username/project.git # 新增http地址的仓库 CRLF换行输入问题 git 出现warning crlf will be replaced by…里面的文本文件所使用的换行符，在不同的系统平台上是不一样的。UNIX/Linux 使用的是 0x0A（LF），早期的 Mac OS 使用的是 0x0D（CR），后来的 OS X 在更换内核后与 UNIX 保持一致了。但 DOS/Windows 一直使用 0x0D0A（CRLF） 作为换行符。跨平台协作开发是常有的，不统一的换行符确实对跨平台的文件交换带来了麻烦。最大的问题是，在不同平台上，换行符发生改变时，Git 会认为整个文件被修改，这就造成我们没法 diff，不能正确反映本次的修改。 还好 Git 在设计时就考虑了这一点，其提供2个选项进行操作 autocrlf配置 git config –global core.autocrlf {true|false|input} 参数说明： true: 提交时转换为LF，检出时转换为CRLF input: 提交时转换为LF，检出时不转换 false: 提交检出均不转换 在 Windows 上，系统默认配置一般为 true。如果文件编码是 UTF8 并且包含中文字符，那最好还是把 autocrlf 设置为 false。否则，就会遇到我所遇到的问题，Git 尝试将 CRLF 转化为 LF 时失败，导致无法 add 。 如果把 autocrlf 设置为 false 时，那另一个配置项 safecrlf 最好设置为 ture。该选项用于检查文件是否包含混合换行符，其有三个可选项. safecrlf配置 git config –global core.safecrlf {true|false|warn } true: 拒绝提交包含混合换行符的文件 false: 允许提交包含混合换行符的文件 warn: 提交包含混合换行符的文件时给出警告 综合方案mac下，如果有mac和windows开发用户，可以这样设置：12git config --global core.autocrlf falsegit config --global core.safecrlf warn 或false 虽然代码能被提交，但是项目中的文件可能会包含两种格式的换行符。而且会有如上提到的问题，文件被视为整个被修改，无法 diff，之所以使用版本控制工具，最重要的原因之一就是其 diff 功能。 最好默认选择LF,或者强制转成LF，没办法，用windows的码农且不会配置LF的太多太多。。。]]></content>
   </entry>
   <entry>
     <title><![CDATA[mpv播放器安装和使用]]></title>
@@ -1119,8 +1264,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Package Control</tag>
         <tag>Packges</tag>
+        <tag>Package Control</tag>
       </tags>
   </entry>
   <entry>
@@ -1131,8 +1276,8 @@
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Sublime Text</tag>
         <tag>CTags</tag>
+        <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
       </tags>
   </entry>
@@ -1146,8 +1291,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Emmet</tag>
+        <tag>Packges</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>
@@ -1413,19 +1558,6 @@
         <tag>linux</tag>
         <tag>centos</tag>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Nginx下重写规则]]></title>
-    <url>%2F2013%2F11%2F22%2Fnginx-rewrite-rule.html</url>
-    <content type="text"><![CDATA[推荐使用自动转换工具: http://www.anilcetin.com/convert-apache-htaccess-to-nginx/ http://winginx.com/htaccess &nbsp; Nginx Rewrite规则相关指令Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下： rewrite ^/b/(.*).html /play.php?video=$1 break; 如果加上if语句，示例如下： if (!-f $request_filename) rewrite ^/img/(.*)$ /site/$host/images/$1 last; Nginx与Apache的Rewrite规则实例对比 简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如： Apache Rewrite 规则： RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L] RewriteRule ^/ceshi/$ /zl/ceshi.php [L] RewriteRule ^/(mianshi)([a-zA-Z]+)/$ /zl/index.php?name=$1$2 [L] RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L] Nginx Rewrite 规则： rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last; rewrite ^/ceshi/$ /zl/ceshi.php last; rewrite ^/(mianshi)([a-zA-Z]+)/$ /zl/index.php?name=$1$2 last; rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last; 由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。 如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误： rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last; 加上引号就正确了：rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last; Apache与Nginx的Rewrite规则在URL跳转时有细微的区别： Apache Rewrite 规则：RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L] Nginx Rewrite 规则：rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ http://$host/$1/ permanent; 以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“http://$host”，这是在Nginx中要求的。 另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如： Apache Rewrite 规则：RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=http://%{HTTP_HOST} [L] Nginx Rewrite 规则：rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=http://$host last; Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系： Apache的RewriteCond指令对应Nginx的if指令；Apache的RewriteRule指令对应Nginx的rewrite指令；Apache的[R]标记对应Nginx的redirect标记；Apache的[P]标记对应Nginx的last标记；Apache的[R,L]标记对应Nginx的redirect标记；Apache的[P,L]标记对应Nginx的last标记；Apache的[PT,L]标记对应Nginx的last标记； 允许指定的域名访问本站，其他域名一律跳转到http://www.aaa.com Apache Rewrite 规则：RewriteCond %{HTTP_HOST} ^(.*?).domain.com$RewriteCond %{HTTP_HOST} !^qita.domain.com$RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -fRewriteRule ^/wu/$ /market/%1/index.htm [L] Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例： Nginx Rewrite 规则：if ($host ~ ^(.?).domain.com$) set $var_wupin_city $1;set $var_wupin ‘1′; if ($host ~* ^qita.domain.com$) set $var_wupin ‘0′; if (!-f $document_root/market/$var_wupin_city/index.htm) set $var_wupin ‘0′; if ($var_wupin ~ ‘1′) rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;} &nbsp; rewrite 的语法 &nbsp; 语法: rewrite regex replacement flag 默认: none 作用域: server, location, if This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file. 这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。 Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so: 注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。 rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 *https=1就可以了。 nginx的rewrite规则参考： ~ 为区分大小写匹配~ 为不区分大小写匹配!~和!~分别为区分大小写不匹配及不区分大小写不匹-f和!-f用来判断是否存在文件-d和!-d用来判断是否存在目录-e和!-e用来判断是否存在文件或目录-x和!-x用来判断文件是否可执行last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的break 终止匹配, 不再匹配后面的规则redirect 返回302临时重定向 地址栏会显示跳转后的地址permanent 返回301永久重定向 地址栏会显示跳转后的地址$args$content_length$content_type$document_root$document_uri$host$http_user_agent$http_cookie$limit_rate$request_body_file$request_method$remote_addr$remote_port$remote_user$request_filename$request_uri$query_string$scheme$server_protocol$server_addr$server_name$server_port$uri结合QeePHP的例子 if (!-d $request_filename) {rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;break;多目录转成参数abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2 if ($host ~ (.).domain.com) {set $sub_name $1;rewrite ^/sort/(d+)/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;}目录对换/123456/xxxx -&gt; /xxxx?id=123456 rewrite ^/(d+)/(.+)/ /$2?id=$1 last;例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下： if ($http_user_agent ~ MSIE) {rewrite ^(.*)$ /nginx-ie/$1 break;}目录自动加“/” if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}禁止htaccess location ~/.ht {deny all;}禁止多个目录 location ~ ^/(cron|templates)/ {deny all;break;}禁止以/data开头的文件可以禁止/data/下多级目录下.log.txt等请求; location ~ ^/data {deny all;}禁止单个目录不能禁止.log.txt能请求 location /searchword/cron/ {deny all;}禁止单个文件 location ~ /data/sql/data.sql {deny all;}给favicon.ico和robots.txt设置过期时间;这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志 location ~(favicon.ico) {log_not_found off;expires 99d;break;} location ~(robots.txt) {log_not_found off;expires 7d;break;}设定某个文件的过期时间;这里为600秒，并不记录访问日志 location ^~ /html/scripts/loadhead_1.js {access_log off;root /opt/lampp/htdocs/web;expires 600;break;}文件反盗链并设置过期时间这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求“rewrite ^/ http://leech.divmy.com/leech.gif;”显示一张防盗链图片“access_log off;”不记录访问日志，减轻压力“expires 3d”所有文件3天的浏览器缓存 location ~ ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {valid_referers none blocked .c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;if ($invalid_referer) {rewrite ^/ http://leech.divmy.com/leech.gif;return 412;break;}access_log off;root /opt/lampp/htdocs/web;expires 3d;break;}只充许固定ip访问网站，并加上密码 root /opt/htdocs/www;allow 208.97.167.194;allow 222.33.1.2;allow 231.152.49.4;deny all;auth_basic “C1G_ADMIN”;auth_basic_user_file htpasswd;将多级目录下的文件转成一个文件，增强seo效果/job-123-456-789.html 指向/job/123/456/789.html rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;将根目录下某个文件夹指向2级目录如/shanghaijob/ 指向 /area/shanghai/如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/ rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;上面例子有个问题是访问/shanghai 时将不会匹配 rewrite ^/([0-9a-z]+)job$ /area/$1/ last;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;这样/shanghai 也可以访问了，但页面中的相对链接无法使用，如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。 那我加上自动跳转也是不行咯(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果 if (-d $request_filename){rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;}知道原因后就好办了，让我手动跳转吧 rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;文件和目录不存在的时候重定向： if (!-e $request_filename) {proxy_pass http://127.0.0.1;}域名跳转 server{listen 80;server_name jump.88dgw.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/ http://www.88dgw.com/;access_log off;}多域名转向 server_name www.7oom.com/ www.divmy.com/;index index.html index.htm index.php;root /opt/lampp/htdocs;if ($host ~ “c1gstudio.net”) {rewrite ^(.*) http://www.7oom.com$1/ permanent;}三级域名跳转 if ($http_host ~ “^(.).i.c1gstudio.com$”) {rewrite ^(.*) http://top.88dgw.com$1/;break;}域名镜向 server{listen 80;server_name mirror.c1gstudio.com;index index.html index.htm index.php;root /opt/lampp/htdocs/www;rewrite ^/(.*) http://www.divmy.com/$1 last;access_log off;}某个子目录作镜向 location ^~ /zhaopinhui {rewrite ^.+ http://zph.divmy.com/ last;break;}discuz ucenter home (uchome) rewrite rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;rewrite ^/(space|network).html$ /$1.php last;rewrite ^/([0-9]+)$ /space.php?uid=$1 last;discuz 7 rewrite rewrite ^(.)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;rewrite ^(.)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;rewrite ^(.)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page%3D$4&amp;page=$3 last;rewrite ^(.)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;rewrite ^(.)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;rewrite ^(.)/tag-(.+).html$ $1/tag.php?name=$2 last;给discuz某版块单独配置域名 server_name bbs.c1gstudio.com news.c1gstudio.com; location = / {if ($http_host ~ news.divmy.com$) {rewrite ^.+ http://news.divmy.com/forum-831-1.html last;break;}}discuz ucenter 头像 rewrite 优化 location ^~ /ucenter {location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location /ucenter/data/avatar {log_not_found off;access_log off;location ~ /(.)_big.jpg$ {error_page 404 /ucenter/images/noavatar_big.gif;}location ~ /(.)_middle.jpg$ {error_page 404 /ucenter/images/noavatar_middle.gif;}location ~ /(.*)_small.jpg$ {error_page 404 /ucenter/images/noavatar_small.gif;}expires 300;break;}}jspace rewrite location ~ .*.php?${ #fastcgi_pass unix:/tmp/php-cgi.sock;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;} location ~ ^/index.php/{rewrite ^/index.php/(.) /index.php?$1 break;fastcgi_pass 127.0.0.1:9000;fastcgi_index index.php;include fcgi.conf;}另外这里还有一个工具可以直接把apache规则转化为nginx规则 http://www.anilcetin.com/convert-apache-htaccess-to-nginx/ 参考： http://wiki.nginx.org/NginxChsHttpRewriteModule http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx http://www.divmy.com/]]></content>
-      <categories>
-        <category>RexExp</category>
-      </categories>
-      <tags>
-        <tag>Nginx</tag>
-        <tag>rewrite</tag>
-        <tag>重写</tag>
       </tags>
   </entry>
   <entry>

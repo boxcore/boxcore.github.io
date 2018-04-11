@@ -95,40 +95,37 @@
 
 
 
-<meta name="description" content="find参数
+<meta name="description" content="一、find基础说明
+find [dir] [param] [match]
+
+
 -print0 : 不换行输出内容，也可以理解\0 是定界符
 
-使用
-查找某个字符串在目录下出现次数
-
-1find &amp;lt;directory&amp;gt; -type f -name &quot;*.php&quot; | xargs grep &quot;&amp;lt;strings&amp;gt;&quot;
-
-是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c”  表示只找C语言写的代码，从而">
+二、find使用2.1 使用文件名查找文件12find -name &quot;MyCProgram.c&quot; #find -iname &quot;MyCProgram.c&quot;	# 忽略大小写查找
+2.2 使用mindepth和maxdepth限定搜索指定目录的深度123find">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux之文件查找find">
 <meta property="og:url" content="http://boxcore.github.io/2018/01/30/linux/linux-find.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="find参数
+<meta property="og:description" content="一、find基础说明
+find [dir] [param] [match]
+
+
 -print0 : 不换行输出内容，也可以理解\0 是定界符
 
-使用
-查找某个字符串在目录下出现次数
-
-1find &amp;lt;directory&amp;gt; -type f -name &quot;*.php&quot; | xargs grep &quot;&amp;lt;strings&amp;gt;&quot;
-
-是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c”  表示只找C语言写的代码，从而">
-<meta property="og:updated_time" content="2018-01-30T14:09:41.284Z">
+二、find使用2.1 使用文件名查找文件12find -name &quot;MyCProgram.c&quot; #find -iname &quot;MyCProgram.c&quot;	# 忽略大小写查找
+2.2 使用mindepth和maxdepth限定搜索指定目录的深度123find">
+<meta property="og:updated_time" content="2018-03-18T06:29:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux之文件查找find">
-<meta name="twitter:description" content="find参数
+<meta name="twitter:description" content="一、find基础说明
+find [dir] [param] [match]
+
+
 -print0 : 不换行输出内容，也可以理解\0 是定界符
 
-使用
-查找某个字符串在目录下出现次数
-
-1find &amp;lt;directory&amp;gt; -type f -name &quot;*.php&quot; | xargs grep &quot;&amp;lt;strings&amp;gt;&quot;
-
-是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c”  表示只找C语言写的代码，从而">
+二、find使用2.1 使用文件名查找文件12find -name &quot;MyCProgram.c&quot; #find -iname &quot;MyCProgram.c&quot;	# 忽略大小写查找
+2.2 使用mindepth和maxdepth限定搜索指定目录的深度123find">
 
 
 
@@ -460,16 +457,51 @@
       
 
       
-        <h2 id="find参数">find参数</h2><ul>
+        <h2 id="一、find基础说明">一、find基础说明</h2><blockquote>
+<p>find [dir] [param] [match]</p>
+</blockquote>
+<ul>
 <li><code>-print0</code> : 不换行输出内容，也可以理解\0 是定界符</li>
 </ul>
-<h2 id="使用">使用</h2><ul>
-<li>查找某个字符串在目录下出现次数</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;directory&gt; -type f -name <span class="string">"*.php"</span> | xargs grep <span class="string">"&lt;strings&gt;"</span></div></pre></td></tr></table></figure>
+<h2 id="二、find使用">二、find使用</h2><h3 id="2-1_使用文件名查找文件">2.1 使用文件名查找文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find -name <span class="string">"MyCProgram.c"</span> <span class="comment">#</span></div><div class="line">find -iname <span class="string">"MyCProgram.c"</span>	<span class="comment"># 忽略大小写查找</span></div></pre></td></tr></table></figure>
+<h3 id="2-2_使用mindepth和maxdepth限定搜索指定目录的深度">2.2 使用<code>mindepth</code>和<code>maxdepth</code>限定搜索指定目录的深度</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -maxdepth 2 -name passwd</div><div class="line">find / -maxdepth 3 -name passwd</div><div class="line">find / -mindepth 3 -maxdepth 5 -name passwd</div></pre></td></tr></table></figure>
+<h3 id="2-3_在find命令查找到的文件上执行命令">2.3 在find命令查找到的文件上执行命令</h3><p>// 搜索后 {}将会被当前文件名取代</p>
+<blockquote>
+<p>find -iname “MyCProgram.c” -exec md5sum {} \; </p>
+</blockquote>
+<h3 id="2-4_相反匹配">2.4 相反匹配</h3><blockquote>
+<p>find -maxdepth 1 -not -iname “MyCProgram.c”</p>
+</blockquote>
+<h3 id="2-5_使用inode编号查找文件">2.5 使用inode编号查找文件</h3><p>列子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">touch <span class="string">"test-file-name"</span></div><div class="line">touch <span class="string">"test-file-name "</span>  //注意有空格</div><div class="line">ls -i1 <span class="built_in">test</span>*  //查看两个文件</div><div class="line"></div><div class="line"></div><div class="line">find -inum 16187430 -exec mv &#123;&#125; new-test-file-name \; <span class="comment"># 重命名特殊的文件名</span></div><div class="line">find -inum 804180 -exec rm &#123;&#125; \; <span class="comment"># 使用inode编号来删除那些具有特殊符号的文件名</span></div></pre></td></tr></table></figure>
+<h3 id="2-6_根据文件权限查找文件">2.6 根据文件权限查找文件</h3><p>找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限</p>
+<blockquote>
+<p>find . -perm -g=r -type f -exec ls -l {} \;</p>
+</blockquote>
+<p>找到对组用户具有只读权限的文件</p>
+<blockquote>
+<p>find . -perm g=r -type f -exec ls -l {} \;</p>
+</blockquote>
+<p>找到对组用户具有只读权限的文件(使用八进制权限形式)</p>
+<blockquote>
+<p>find . -perm 040 -type f -exec ls -l {} \;</p>
+</blockquote>
+<h3 id="2-7_找到home目录及子目录下所有的空文件(0字节文件)">2.7 找到home目录及子目录下所有的空文件(0字节文件)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find ~ -empty</div><div class="line">find . -maxdepth 1 -empty</div><div class="line">find . -maxdepth 1 -empty -not -name <span class="string">".*"</span> <span class="comment"># 只列出当年目录下的非隐藏空文件</span></div></pre></td></tr></table></figure>
+<h3 id="2-8_按照文件大小进行查找">2.8 按照文件大小进行查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">find . -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n -r | head -5 <span class="comment"># 查找5个最大的文件</span></div><div class="line">find . -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n  | head -5 <span class="comment"># 查找5个最小的文件</span></div><div class="line">find . -not -empty -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n  | head -5</div><div class="line"></div><div class="line">find ~ -size +100M //查找比指定文件大的文件</div><div class="line">find ~ -size -100M //查找比指定文件小的文件</div><div class="line">find ~ -size 100M //查找符合给定大小的文件</div></pre></td></tr></table></figure>
+<h3 id="2-9_按照文件类型进行查找">2.9 按照文件类型进行查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">find . -type s //只查找socket文件</div><div class="line">find . -type d //查找所有的目录</div><div class="line">find . -type f //查找所有的一般文件</div><div class="line">find . -type f -name <span class="string">".*"</span>  //查找所有的隐藏文件</div><div class="line">find -type d -name <span class="string">".*"</span> //查找所有的隐藏目录</div></pre></td></tr></table></figure>
+<h3 id="2-10_通过和其他文件比较修改时间查找文件">2.10 通过和其他文件比较修改时间查找文件</h3><p>显示在指定文件之后做出修改的文件。下面的find命令将显示所有的在ordinary_file之后创建修改的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ls -lrt</div><div class="line">-----------------------------------</div><div class="line">total 0</div><div class="line">-rw-r----- 1 root root 0 2009-02-19 20:27 others_can_also_read</div><div class="line">----r----- 1 root root 0 2009-02-19 20:27 others_can_only_read</div><div class="line">-rw------- 1 root root 0 2009-02-19 20:29 ordinary_file</div><div class="line">-rw-r--r-- 1 root root 0 2009-02-19 20:30 everybody_read</div><div class="line">-rwxrwxrwx 1 root root 0 2009-02-19 20:31 all_for_all</div><div class="line">---------- 1 root root 0 2009-02-19 20:31 no_for_all</div><div class="line"> ----------------------------------</div><div class="line">find -newer ordinary_file</div><div class="line">----------------------</div><div class="line">.</div><div class="line">./everybody_read</div><div class="line">./all_for_all</div><div class="line">./no_for_all</div><div class="line">----------------------</div></pre></td></tr></table></figure>
+<h3 id="2-11_给常用find操作取别名">2.11 给常用find操作取别名</h3><p>若你发现有些东西很有用，你可以给他取别名。并且在任何你希望的地方执行。<br>常用的删除a.out文件。<br>alias rmao=”find . -iname a.out -exec rm {} \;”<br>rmao</p>
+<p>删除c程序产生的core文件。</p>
+<p>alias rmc=”find . -iname core -exec rm {} \;”<br>rmc</p>
+<h3 id="2-12_用find命令删除大型打包文件">2.12 用find命令删除大型打包文件</h3><p>find / -type f -name <em>.zip -size +100M -exec rm -i {} \;”<br>//用别名rm100m删除所有大雨100M的</em>.tar文件<br>alias rm100m=”find / -type f -name *.tar -size +100M -exec rm -i {} \;”<br>alias svnadmin=”/usr/local/subversion/bin/svnadmin”</p>
+<h3 id="2-13_查找某个字符串在目录下出现次数">2.13 查找某个字符串在目录下出现次数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;directory&gt; -type f -name <span class="string">"*.php"</span> | xargs grep <span class="string">"&lt;strings&gt;"</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p><directory>是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c”  表示只找C语言写的代码，从而避免去查binary；也可以不写，表示找所有文件<strings>是你要找的某个字符串</strings></directory></p>
 </blockquote>
+<h2 id="参考文档">参考文档</h2><ul>
+<li><a href="http://blog.jobbole.com/48856/" target="_blank" rel="external">妈咪，我找到了！15个实用的Linux find命令示例</a></li>
+</ul>
 
       
     </div>
@@ -626,7 +658,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">209</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -637,7 +669,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -708,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#find参数"><span class="nav-number">1.</span> <span class="nav-text">find参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、find基础说明"><span class="nav-number">1.</span> <span class="nav-text">一、find基础说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、find使用"><span class="nav-number">2.</span> <span class="nav-text">二、find使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_使用文件名查找文件"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 使用文件名查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_使用mindepth和maxdepth限定搜索指定目录的深度"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 使用mindepth和maxdepth限定搜索指定目录的深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3_在find命令查找到的文件上执行命令"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 在find命令查找到的文件上执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4_相反匹配"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 相反匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5_使用inode编号查找文件"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 使用inode编号查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6_根据文件权限查找文件"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 根据文件权限查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7_找到home目录及子目录下所有的空文件(0字节文件)"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 找到home目录及子目录下所有的空文件(0字节文件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8_按照文件大小进行查找"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 按照文件大小进行查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9_按照文件类型进行查找"><span class="nav-number">2.9.</span> <span class="nav-text">2.9 按照文件类型进行查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10_通过和其他文件比较修改时间查找文件"><span class="nav-number">2.10.</span> <span class="nav-text">2.10 通过和其他文件比较修改时间查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11_给常用find操作取别名"><span class="nav-number">2.11.</span> <span class="nav-text">2.11 给常用find操作取别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12_用find命令删除大型打包文件"><span class="nav-number">2.12.</span> <span class="nav-text">2.12 用find命令删除大型打包文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13_查找某个字符串在目录下出现次数"><span class="nav-number">2.13.</span> <span class="nav-text">2.13 查找某个字符串在目录下出现次数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">3.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
 
           </div>

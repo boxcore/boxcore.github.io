@@ -101,7 +101,7 @@
 <meta property="og:url" content="http://boxcore.github.io/2017/10/10/linux/linux-ssh.html">
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-e escape_char] [-F configfile]           [-I pkcs11] [-i identity_file]">
-<meta property="og:updated_time" content="2017-10-10T09:38:00.000Z">
+<meta property="og:updated_time" content="2018-03-14T07:58:05.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux网络命令之ssh">
 <meta name="twitter:description" content="一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-e escape_char] [-F configfile]           [-I pkcs11] [-i identity_file]">
@@ -433,7 +433,8 @@
 </blockquote>
 <p>实际上，想ssh退出，我们可以在ssh执行完成后kill掉ssh这个进程来实现。<br>首先，创建一个sh执行ssh的命令,这里需要用到ssh的 -f 与 -n 参数，因为我们需要ssh也以后台方式运行，这样才可以获取到进程号进行kill操作。<br>创建ssh_uptimelog.sh，脚本如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">ssh <span class="_">-f</span> -n <span class="_">-l</span> www-online 192.168.110.34 <span class="string">"/home/www-online/uptimelog.sh &amp;"</span> <span class="comment"># 后台运行ssh</span></div><div class="line"></div><div class="line">pid=$(ps aux | grep <span class="string">"ssh -f -n -l www-online 192.168.110.34 /home/www-online/uptimelog.sh"</span> | awk <span class="string">'&#123;print $2&#125;'</span> | sort -n | head -n 1) <span class="comment"># 获取进程号</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"ssh command is running, pid:<span class="variable">$&#123;pid&#125;</span>"</span></div><div class="line"></div><div class="line">sleep 3 &amp;&amp; <span class="built_in">kill</span> <span class="variable">$&#123;pid&#125;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"ssh command is complete"</span> <span class="comment"># 延迟3秒后执行kill命令，关闭ssh进程，延迟时间可以根据调用的命令不同调整</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
-<h2 id="三、SSH配置修改">三、SSH配置修改</h2><h3 id="3-1_加速ssh登陆">3.1 加速ssh登陆</h3><p>ssh默认开启GSSAPIAuthentication登陆验证，将其设置为no就可以了，配置文件在<code>/etc/ssh/ssh_config</code>,修改重启sshd即可</p>
+<h2 id="三、SSH配置修改">三、SSH配置修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 常用配置</div><div class="line">PermitRootLogin yes <span class="comment"># 是否开启root登陆</span></div></pre></td></tr></table></figure>
+<h3 id="3-1_加速ssh登陆">3.1 加速ssh登陆</h3><p>ssh默认开启GSSAPIAuthentication登陆验证，将其设置为no就可以了，配置文件在<code>/etc/ssh/ssh_config</code>,修改重启sshd即可</p>
 <p>说明如：</p>
 <blockquote>
 <p>GSSAPI：Generic Security Services Application Program Interface，GSSAPI 本身是一套 API，由 IETF 标准化。<br>其最主要也是著名的实现是基于 Kerberos 的。一般说到 GSSAPI 都暗指 Kerberos 实现。<br>GSSAPI 是一套通用网络安全系统接口。该接口是对各种不同的客户端服务器安全机制的封装，以消除安全接口的不同，降低编程难度。</p>
@@ -588,7 +589,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">209</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -599,7 +600,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
