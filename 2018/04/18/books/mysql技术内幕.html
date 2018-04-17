@@ -1,0 +1,1385 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="阅读," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="BoxCore" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="第一本读完的mysql书
+时间
+
+阅读前准备书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (http://dev.mysql.com/doc/index-other.html）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《MySQL技术内幕》Note">
+<meta property="og:url" content="http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="第一本读完的mysql书
+时间
+
+阅读前准备书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (http://dev.mysql.com/doc/index-other.html）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据">
+<meta property="og:updated_time" content="2018-04-17T17:54:22.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《MySQL技术内幕》Note">
+<meta name="twitter:description" content="第一本读完的mysql书
+时间
+
+阅读前准备书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (http://dev.mysql.com/doc/index-other.html）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '10739498',
+      author: 'boxcore'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html"/>
+
+
+
+
+
+  <title>《MySQL技术内幕》Note | BoxCore</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BoxCore</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Start</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《MySQL技术内幕》Note</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T01:54:21+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/books/" itemprop="url" rel="index">
+                    <span itemprop="name">books</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/18/books/mysql技术内幕.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/18/books/mysql技术内幕.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/18/books/mysql技术内幕.html" class="leancloud_visitors" data-flag-title="《MySQL技术内幕》Note">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>第一本读完的mysql书</li>
+<li>时间</li>
+</ul>
+<h2 id="阅读前准备">阅读前准备</h2><p>书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (<a href="http://dev.mysql.com/doc/index-other.html" target="_blank" rel="external">http://dev.mysql.com/doc/index-other.html</a>）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据库较大，主要用来展示一些复杂的查询；还有一个 tpcc 数据库，是一个模拟 TPC-C 测试的数据库，用户可以从<a href="http://code.google.com/p/david-mysql-tools/" target="_blank" rel="external">http://code.google.com/p/david-mysql-tools/</a>下载</p>
+<h2 id="一、SQL编程">一、SQL编程</h2><h2 id="二、数据类型">二、数据类型</h2><h3 id="2-1_类型属性">2.1 类型属性</h3><h4 id="2-1-1_UNSIGNED">2.1.1 UNSIGNED</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> book_mysql <span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8;</div><div class="line"><span class="keyword">use</span> book_mysql;</div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span>  t ( a <span class="built_in">int</span> <span class="keyword">unsigned</span>, b <span class="built_in">int</span> <span class="keyword">unsigned</span>) <span class="keyword">engine</span>=<span class="keyword">InnoDB</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t\G;</div><div class="line"><span class="keyword">select</span> a-b <span class="keyword">from</span> t;</div><div class="line"><span class="comment">-- mac下报错：ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '(`book_mysql`.`t`.`a` - `book_mysql`.`t`.`b`)'</span></div></pre></td></tr></table></figure>
+<p>在 MySQL 数据库中，对于 UNSIGNED 数的操作，其返回值都是 UNSIGNED 的, C语言内部会将其转为最大值，即0xFFFFFFFF (4294967295)。这样需要在mysql中设置</p>
+<blockquote>
+<p>SET sql_mode=’NO_UNSIGNED_SUBTRACTION’;</p>
+</blockquote>
+<p>这时候就返回了<code>-1</code></p>
+<h4 id="2-1-2_ZEROFILL">2.1.2 ZEROFILL</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show create table t\G;</div><div class="line"></div><div class="line">***************************[ 1. row ]***************************</div><div class="line">Table        | t</div><div class="line">Create Table | CREATE TABLE `t` (</div><div class="line">  `a` int(10) unsigned DEFAULT NULL,</div><div class="line">  `b` int(10) unsigned DEFAULT NULL</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8</div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span></div><div class="line">Time: 0.012s</div><div class="line"></div><div class="line">mysql&gt; select * from t\G;</div><div class="line">mysql&gt; alter table t change column a a int(4) unsigned zerofill;</div><div class="line"></div><div class="line">mysql&gt; select * from t\G;</div><div class="line">*************************** 1. row ***************************</div><div class="line">a: 0001</div><div class="line">b: 2</div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select a,hex(a) from t\G;</div><div class="line">*************************** 1. row ***************************</div><div class="line">     a: 0001</div><div class="line">hex(a): 1</div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</div></pre></td></tr></table></figure>
+<p>zerofill字段，在数据内部存储的还是原来的数字，前面的0是zerofill属性后的一种格式输出而已</p>
+<h3 id="2-2_SQL_MODE设置">2.2 SQL_MODE设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; mysql: select @@global.sql_mode\G; -- 全局sql_mode设置</div><div class="line">@@global.sql_mode: STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</div><div class="line"></div><div class="line">&gt; select @@session.sql_mode\G; -- 当前会话sql_mode设置</div><div class="line">@@session.sql_mode: NO_UNSIGNED_SUBTRACTION</div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>STRICT_TRANS_TABLES</code>：在该模式下，如果一个值不能插人到一个事务表（例如表的存储引擎为 InnoDB）中，则中断当前的操作不影响非事务表（例如表的存储引擎为 MyISAM）。</p>
+</li>
+<li><p><code>ALLOW_INVALID_DATES</code>：该选项并不完全对日期的合法性进行检查，只检查月份是否在 1~12 之间，日期是否在 1 ~31 之间。该模式仅对 DATE 和 DATETIME 类型有效，而对 TIMESTAMP 无效，因为 TIMESTAMP 总是要求一个合法的输人。</p>
+</li>
+<li><p><code>ANSI_QUOTES</code>：启用 <code>ANSI_QUOTES</code> 后，不能用双引号来引用字符串，因为它将被解释为识别符</p>
+</li>
+<li><p><code>ERROR_FOR_ DIVISION_BY_ZERO</code>：在 INSERT 或 UPDATE 过程中，如果数据被零除（或 MOD  (X, 0）），则产生错误（否则为警告）。如果未给出该模式，那么数据被零除时 MySQL 返回 NULL。如果用到 INSERT IGNORE 或 UPDATE IGNORE 中，MySQL 生成被零除警告，但操作结果为 NULL。</p>
+</li>
+<li><p><code>HIGH_NOT_PRECEDENCE NOT</code>：操作符的优先顺序是表达式。例如，NOT a BETWEEN b AND c 被解释为 NOT  (a BETWEEN b AND c），在一些旧版本 MySQL 中，前面的表达式被解释为（NOT a) BETWEEN b AND C。启用 HIGH<em> NOT</em> PRECEDENCE SQL 模式，可以获得以前旧版本的更高优先级的结果。</p>
+</li>
+<li><p><code>IGNORE_SPACE</code>：函数名和括号“（”之间有空格。除了增加一些烦恼，这个选项好像没有任何好处，要访问保存为关键字的数据库、表或列名，用户必须引用该选项。例如某个表中有 user 这一列，而 MySQL 数据库中又有 user 这个函数，user 会被解释为函数，如果想要选择 user 这一列，则需要引用。</p>
+</li>
+<li><p><code>NO_AUTO_CREATE_USER</code>：禁止 GRANT 创建密码为空的用户。</p>
+</li>
+<li><p><code>NO_AUTO_VALUE_ON_ZERO</code>：该选项影响列为自增长的插入。在默认设置下，插入 0 或 NULL 代表生成下一个自增长值。如果用户希望插入的值为 0，而该列又是自增长的，那么这个选项就有用了。</p>
+</li>
+<li><p><code>NO_BACKSLASH_ESCAPES</code>：反斜杠“\”作为普通字符而非转义符，示例如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> sql_mode=<span class="string">''</span>;</div><div class="line"><span class="keyword">select</span> <span class="string">'\\'</span>\G;</div><div class="line"><span class="keyword">set</span> sql_mode=<span class="string">'NO_BACKSLASH_ESCAPES'</span>;</div><div class="line"><span class="keyword">select</span> <span class="string">'\\'</span>\G;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>NO_DIR_IN_CREATE</code>：在创建表时忽视所有 INDEX DIRECTORY 和 DATADIRECTORY 的选项。</p>
+</li>
+<li><code>NO_ENGINE_SUBSTITUTION</code>：如果需要的存储引擎被禁用或未编译，那么抛出错误。默认用默认的存储引擎替代，并抛出一个异常。</li>
+<li><code>NO_UNSIGNED_SUBTRACTION</code>：之前已经介绍过，启翩这个选项后两个 UNSIGNED 类型相减返回 SIGNED 类型。</li>
+<li><code>NO_ZERO_DATE</code>：在非严格模式下，可以插入形如“0000-00-00 00:00:00”的非法日期，MySQL 数据库仅抛出一个警告。而启用该选项后，MySQL 数据库不允许插人零日期，插人零日期会抛出错误而非警告。</li>
+<li><code>NO_ZERO_IN_DATE</code>：在严格模式下，不允许日期和月份为零。如“2011-00-01”和“2011-01-00”这样的格式是不允许的。采用日期或月份为零的格式时 MySQL 都会直接抛出错误而非警告，示例如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SET sql_ mode= <span class="string">'NO_ ZERO_ IN_ DATE'</span>;</div><div class="line"></div><div class="line">Query OK, 0 rows affected  (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; CREATE TABLE a  (a DATETIME);</div><div class="line"></div><div class="line">Query OK，0 rows af fected  (0.04 sec)</div><div class="line"></div><div class="line">mysql&gt; INSERT INTO a SELECT <span class="string">'2011-01-00'</span>;</div><div class="line"></div><div class="line">ERROR 1292  (22007): Incorrect datet ime value: <span class="string">'2011-01-00'</span> <span class="keyword">for</span> column <span class="string">'a'</span> at row 1</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>ONLY_FULL_GROUP_BY</code>：对于 GROUPBY 聚合操作，如果在 SELECT 中的列没有在 GROUP BY 中出现，那么这句 SQL 是不合法的，因为 a 列不在 GROUPBY 从句中，示例如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> sql_mode= <span class="string">'ONLY_FULL_GROUP_BY'</span>;</div><div class="line"><span class="keyword">SELECT</span> a, <span class="keyword">SUM</span> (b) <span class="keyword">FROM</span> t <span class="keyword">GROUP</span> <span class="keyword">BY</span> b;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>PAD_CHAR__TO_FULL_LENGTH</code>：对于 CHAR 类型字段，不要截断空洞数据。空洞数据就是自动填充值为 0 x20 的数据。先来看 MySQL 数据库在默认情况下的表现。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE  (a CHAR (10));</div><div class="line">Query OK，0 rows affected  (0.04 sec)</div><div class="line"></div><div class="line">mysql&gt; INSERT INTO t SELECT <span class="string">'a'</span>;</div><div class="line">Query OK，1 row affected  (0.01 sec) Records; 1 Duplicates: 0 Warnings: 0</div><div class="line"></div><div class="line">mysql&gt; SELECT a, CHAR LENGTH (a), HEX (a) FROM t\G;</div><div class="line">★************************** 1. Row ***********************★★★★</div><div class="line">a: a CHAR LENGTH (a): 1</div><div class="line">    HEX (a): 61 </div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span>  (0.04 sec)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以看到，在默认情况下，虽然 a 列是 CHAR 类型，但是返回的长度是 1, 这是因为 MySQL 数据库已经对后面的空洞数据进行了截断。若启用 PAD<em> CHAR</em> TO<em> FULL</em> LENGTH 选项，则反映的是实际存储的内容，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SELECT a, CHAR LENGTH (a), HEX (a) FROM t\G;</div><div class="line">***************************1. Row *★★**★*****★*********★**★★*</div><div class="line">a: a</div><div class="line">CHAR LENGTH (a): 10</div><div class="line">HEX (a): 61202020202020202020</div><div class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span>  (0.00 sec)</div></pre></td></tr></table></figure>
+<p>可以看到在 CHAR 列 a 中实际存储的值为 0 x61202020202020202020。</p>
+<ul>
+<li><p><code>PIPES_AS_CONCAT</code>：将“”视为字符串的连接操作符而非或运算符，这和 Oracle 数据库是一样的，也和字符串的拼接函数 Concat 相类似，例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> sq1_mode= <span class="string">'pipes_as_concat'</span>;</div><div class="line"><span class="keyword">SelECT</span> <span class="string">'a'</span>||<span class="string">'b'</span>||<span class="string">'c'</span>\G;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>REAL_AS_FLOAT</code>：将 REAL 视为 FLOAT 的同义词，而不是 DOUBLE 的同义词。</p>
+</li>
+<li><code>STRICT_ALL_TABLES</code>：对所有引擎的表都启用严格模式。（STRICT_TRANS_TABLES 只对支持事务的表启用严格模式）。</li>
+</ul>
+<p>在严格模式下，一旦任何操作的数据产生问题，都会终止当前的操作。对于启用 <code>STRICT_ALL_TABLES</code> 选项的非事务引擎来说，这时数据可能停留在一个未知的状态。这可能不是所有非事务引擎愿意看到的一种情况，因此需要非常小心这个选项可能带来的潜在影响。</p>
+<h3 id="2-3_日期和时间类型">2.3 日期和时间类型</h3><p>TODO：暂不阅读</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/阅读/" rel="tag"># 阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/17/windows/windows-software/winrar-remove-ad.html" rel="next" title="Winrar去广告">
+                <i class="fa fa-chevron-left"></i> Winrar去广告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Go</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/My-Booklist/" title="我的书单" target="_blank">我的书单</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读前准备"><span class="nav-number">1.</span> <span class="nav-text">阅读前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、SQL编程"><span class="nav-number">2.</span> <span class="nav-text">一、SQL编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据类型"><span class="nav-number">3.</span> <span class="nav-text">二、数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_类型属性"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 类型属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1_UNSIGNED"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.1.1 UNSIGNED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2_ZEROFILL"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.1.2 ZEROFILL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_SQL_MODE设置"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 SQL_MODE设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3_日期和时间类型"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 日期和时间类型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+<div class="theme-info" style="text-decoration: none;">
+<a href="https://www.upyun.com/league?utm_source=boxcore&amp;utm_medium=referral" target="_blank" rel="noreferrer noopener">
+<img alt="又拍云" style="height:40px;width:auto;display:inline;"  class="b-lazy b-loaded" src="/statics/images/yp-logo.png">
+</a>
+</div>
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://boxcore.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html';
+          this.page.identifier = '2018/04/18/books/mysql技术内幕.html';
+          this.page.title = '《MySQL技术内幕》Note';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://boxcore.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

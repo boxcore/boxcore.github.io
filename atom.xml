@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-04-06T16:24:51.000Z</updated>
+  <updated>2018-04-17T17:54:22.989Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -16,11 +16,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>《MySQL技术内幕》Note</title>
+    <link href="http://boxcore.github.io/2018/04/18/books/mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95.html"/>
+    <id>http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html</id>
+    <published>2018-04-17T17:54:21.000Z</published>
+    <updated>2018-04-17T17:54:22.989Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;第一本读完的mysql书&lt;/li&gt;
+&lt;li&gt;时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;阅读前准备&quot;&gt;阅读前准备&lt;/h2&gt;&lt;p&gt;书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟
+    
+    </summary>
+    
+      <category term="books" scheme="http://boxcore.github.io/categories/books/"/>
+    
+    
+      <category term="阅读" scheme="http://boxcore.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Winrar去广告</title>
+    <link href="http://boxcore.github.io/2018/04/17/windows/windows-software/winrar-remove-ad.html"/>
+    <id>http://boxcore.github.io/2018/04/17/windows/windows-software/winrar-remove-ad.html</id>
+    <published>2018-04-17T14:27:59.000Z</published>
+    <updated>2018-04-17T01:54:13.282Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.下载WinRAR 5.5WinRAR官网（&lt;a href=&quot;http://www.rarlab.com）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.rarlab.com）&lt;/a&gt;&lt;br&gt;2.下载 Resource Hacker
+    
+    </summary>
+    
+      <category term="window" scheme="http://boxcore.github.io/categories/window/"/>
+    
+      <category term="软件" scheme="http://boxcore.github.io/categories/window/%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux网络命令之centos7防火墙firewall-cmd</title>
+    <link href="http://boxcore.github.io/2018/04/17/linux/linux-firewall-cmd.html"/>
+    <id>http://boxcore.github.io/2018/04/17/linux/linux-firewall-cmd.html</id>
+    <published>2018-04-17T14:15:08.000Z</published>
+    <updated>2018-04-17T01:54:13.279Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;firewall-cmd使用说明&quot;&gt;firewall-cmd使用说明&lt;/h2&gt;&lt;p&gt;firewalld是centos7的一大特性，最大的好处有两个：支持动态更新，不用重启服务；第二个就是加入了防火墙的“zone”概念&lt;/p&gt;
+&lt;p&gt;firewalld有图形界面和工
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux文件操作命令之LFTP、FTP</title>
+    <link href="http://boxcore.github.io/2018/04/11/linux/linux-lftp-and-ftp.html"/>
+    <id>http://boxcore.github.io/2018/04/11/linux/linux-lftp-and-ftp.html</id>
+    <published>2018-04-11T10:36:32.000Z</published>
+    <updated>2018-04-11T10:37:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我的操作脚本范例：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div cl
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Nginx下重写规则</title>
     <link href="http://boxcore.github.io/2018/04/07/nginx-rewrite-rule.html"/>
     <id>http://boxcore.github.io/2018/04/07/nginx-rewrite-rule.html</id>
     <published>2018-04-06T16:14:58.000Z</published>
-    <updated>2018-04-06T16:24:51.000Z</updated>
+    <updated>2018-04-17T01:54:13.280Z</updated>
     
     <summary type="html">
     
@@ -283,26 +365,19 @@
   </entry>
   
   <entry>
-    <title>《MySQL技术内幕》Note</title>
-    <link href="http://boxcore.github.io/2018/03/30/books/mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95.html"/>
-    <id>http://boxcore.github.io/2018/03/30/books/mysql技术内幕.html</id>
-    <published>2018-03-30T02:01:57.000Z</published>
-    <updated>2018-03-30T04:13:18.000Z</updated>
+    <title>Awesome Software</title>
+    <link href="http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html"/>
+    <id>http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html</id>
+    <published>2018-03-30T07:48:39.000Z</published>
+    <updated>2018-04-16T13:22:08.718Z</updated>
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;第一本读完的mysql书&lt;/li&gt;
-&lt;li&gt;时间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;阅读前准备&quot;&gt;阅读前准备&lt;/h2&gt;&lt;p&gt;书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟
+      &lt;h2 id=&quot;网盘同步&quot;&gt;网盘同步&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;dropbox离线安装包: &lt;a href=&quot;https://www.dropbox.com/downloading?type=full&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https:/
     
     </summary>
     
-      <category term="books" scheme="http://boxcore.github.io/categories/books/"/>
-    
-    
-      <category term="阅读" scheme="http://boxcore.github.io/tags/%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -381,82 +456,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下VNC服务安装与配置</title>
-    <link href="http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html"/>
-    <id>http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html</id>
-    <published>2018-03-01T09:48:22.000Z</published>
-    <updated>2018-03-05T03:02:50.101Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装vnc&quot;&gt;安装vnc&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-      <category term="fastdfs" scheme="http://boxcore.github.io/tags/fastdfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>优秀产品推荐</title>
-    <link href="http://boxcore.github.io/2018/02/28/affiliate/index.html"/>
-    <id>http://boxcore.github.io/2018/02/28/affiliate/index.html</id>
-    <published>2018-02-28T04:17:07.000Z</published>
-    <updated>2018-02-28T04:18:51.904Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;交易平台&quot;&gt;交易平台&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://vip.zb.com/activity/joinbtc?tuijianid=36c87688cfcbcb1d34afb17dd197fd27&quot; target=&quot;_blank&quot; rel
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>分布式文件系统FastDFS搭建</title>
-    <link href="http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html"/>
-    <id>http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html</id>
-    <published>2018-02-13T02:41:23.000Z</published>
-    <updated>2018-02-13T02:41:45.236Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-      <category term="fastdfs" scheme="http://boxcore.github.io/tags/fastdfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Windows</title>
-    <link href="http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html"/>
-    <id>http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html</id>
-    <published>2018-02-12T09:18:48.000Z</published>
-    <updated>2018-02-12T09:19:35.052Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;包管理工具&quot;&gt;包管理工具&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://chocolatey.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;chocolatey&lt;/a&gt;: The package manager for W
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="mac" scheme="http://boxcore.github.io/tags/mac/"/>
     
   </entry>
   

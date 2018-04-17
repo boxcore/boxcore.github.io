@@ -95,31 +95,31 @@
 
 
 
-<meta name="description" content="mysqldump语法：
+<meta name="description" content="一、mysqldump基本用法mysqldump语法：
 mysqldump按条件查找：mysqldump按条件查找的参数是 -where/-w，例子如：
 
 mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~/db.sql
 
-常见问题: 在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的">
+常见问题在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入lin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL数据备份&导入">
 <meta property="og:url" content="http://boxcore.github.io/2017/12/22/sql/mysql-dump-and-source.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="mysqldump语法：
+<meta property="og:description" content="一、mysqldump基本用法mysqldump语法：
 mysqldump按条件查找：mysqldump按条件查找的参数是 -where/-w，例子如：
 
 mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~/db.sql
 
-常见问题: 在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的">
-<meta property="og:updated_time" content="2017-12-22T14:31:42.696Z">
+常见问题在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入lin">
+<meta property="og:updated_time" content="2018-04-11T10:33:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL数据备份&导入">
-<meta name="twitter:description" content="mysqldump语法：
+<meta name="twitter:description" content="一、mysqldump基本用法mysqldump语法：
 mysqldump按条件查找：mysqldump按条件查找的参数是 -where/-w，例子如：
 
 mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~/db.sql
 
-常见问题: 在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的">
+常见问题在win下导入sql文件乱码问题中文cmd中默认的编码格式是gbk,直接导入lin">
 
 
 
@@ -451,14 +451,16 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
       
 
       
-        <p>mysqldump语法：</p>
+        <h2 id="一、mysqldump基本用法">一、mysqldump基本用法</h2><p>mysqldump语法：</p>
 <p>mysqldump按条件查找：<br>mysqldump按条件查找的参数是 -where/-w，例子如：</p>
 <blockquote>
 <p>mysqldump -uroot -p123456 dbname table_name -where “id&gt;90” &gt; ~/db.sql</p>
 </blockquote>
-<h3 id="常见问题:_在win下导入sql文件乱码问题">常见问题: 在win下导入sql文件乱码问题</h3><p>中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的文件会出现乱码,故需要特别指定下编码的格式.</p>
+<h3 id="常见问题">常见问题</h3><h4 id="在win下导入sql文件乱码问题">在win下导入sql文件乱码问题</h4><p>中文cmd中默认的编码格式是gbk,直接导入linux下导出的utf8编码的文件会出现乱码,故需要特别指定下编码的格式.</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在<span class="built_in">cmd</span>下导出</div><div class="line">mysqldump -uroot -p --default-character-<span class="built_in">set</span>=utf8 mo（dbname） &gt; E://xxxx.sql</div><div class="line"></div><div class="line"># 在<span class="built_in">cmd</span>下导入</div><div class="line">mysql -u root -p --default-character-<span class="built_in">set</span>=utf8 </div><div class="line">use dbname </div><div class="line">source /root/newsdata.sql</div></pre></td></tr></table></figure>
 <p>而且需要注意,在linux中要配置默认编码为:<code>default-character-set=utf8</code></p>
+<h2 id="二、mysqldump相关工具">二、mysqldump相关工具</h2><p>2.1 使用perl备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install perl-DBD-MySQL <span class="comment"># 使用前需要安装插件：</span></div><div class="line">perl /home/wwwroot/default/_msd2/msd_cron/crondump.pl -config=mysqldumper -html_output=0</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -495,8 +497,8 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/22/linux/linux-samba.html" rel="next" title="Linux文件操作命令之局域共享samba">
-                <i class="fa fa-chevron-left"></i> Linux文件操作命令之局域共享samba
+              <a href="/2017/12/22/linux/linux-sudo.html" rel="next" title="Linux下用户管理sudo">
+                <i class="fa fa-chevron-left"></i> Linux下用户管理sudo
               </a>
             
           </div>
@@ -505,8 +507,8 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/22/php/php-preg.html" rel="prev" title="PHP正则使用">
-                PHP正则使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/22/linux/linux-samba.html" rel="prev" title="Linux文件操作命令之局域共享samba">
+                Linux文件操作命令之局域共享samba <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -609,7 +611,7 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">209</span>
+                <span class="site-state-item-count">214</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -620,7 +622,7 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -691,7 +693,7 @@ mysqldump -uroot -p123456 dbname table_name -where “id&amp;gt;90” &amp;gt; ~
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题:_在win下导入sql文件乱码问题"><span class="nav-number">1.</span> <span class="nav-text">常见问题: 在win下导入sql文件乱码问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、mysqldump基本用法"><span class="nav-number">1.</span> <span class="nav-text">一、mysqldump基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题"><span class="nav-number">1.1.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在win下导入sql文件乱码问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">在win下导入sql文件乱码问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、mysqldump相关工具"><span class="nav-number">2.</span> <span class="nav-text">二、mysqldump相关工具</span></a></li></ol></div>
             
 
           </div>
