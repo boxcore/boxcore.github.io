@@ -329,6 +329,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/23/linux/axel-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/23/linux/axel-usage.html" itemprop="url">Linux下载工具axel使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T10:09:00+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/23/linux/axel-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/23/linux/axel-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/23/linux/axel-usage.html" class="leancloud_visitors" data-flag-title="Linux下载工具axel使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="二、axel">二、axel</h2><p>axel tools是多线程下载工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ 编译安装</div><div class="line">wget http://mirrors.boxcore.org/lnmp/axel-1.0b.tar.gz</div><div class="line">tar zxvf axel-1.0b.tar.gz</div><div class="line"><span class="built_in">cd</span> axel-1.0b</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div><div class="line"><span class="built_in">cd</span> ../</div><div class="line"></div><div class="line">$ CentOS rpm包安装</div><div class="line">wget -c http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm <span class="comment"># 64bit:http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.x86_64.rpm</span></div><div class="line">rpm -ivh axel-2.4-1.el5.rf.i386.rpm</div><div class="line"></div><div class="line">$ ubuntu</div><div class="line">apt-get install axel</div></pre></td></tr></table></figure>
+<h3 id="Axel命令使用方法">Axel命令使用方法</h3><p>axel 参数 文件下载地址<br>可选参数：</p>
+<ul>
+<li><code>-n</code>   指定线程数</li>
+<li><code>-o</code>   指定另存为目录</li>
+<li><code>-s</code>   指定每秒的最大比特数</li>
+<li><code>-q</code>   静默模式</li>
+</ul>
+<p>如从Diahosting下载lnmp安装包指定10个线程，存到/tmp/：<code>axel -n 10 -o /tmp/ http://soft.vpser.net/lnmp/lnmp0.7-full.tar.gz</code></p>
+<p>如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/22/chrome-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1857,169 +2001,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/linux/openssl-usage.html" itemprop="url">OpenSSL使用及域名签名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T09:58:18+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/02/linux/openssl-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/02/linux/openssl-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/02/linux/openssl-usage.html" class="leancloud_visitors" data-flag-title="OpenSSL使用及域名签名">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、OpenSSL使用">一、OpenSSL使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl req -in server.csr -noout -subject <span class="comment"># 查看csr信息 比如 subject=/C=CN/ST=Guangdong/L=Guangzhou/O=LKS/OU=IT Dept./CN=*.mianfeibang.cn</span></div><div class="line"></div><div class="line">openssl req -new -newkey rsa:2048 -sha256 -nodes -out domain.cc.csr -keyout domain.cc.key -subj <span class="string">"/C=CN/ST=GuangZhou/L=GuangZhou/O=domain Inc./OU=Web Security/CN=domain.cc/CN=*.domain.cc"</span></div><div class="line"></div><div class="line">openssl req -new -sha256 -key domain.key -subj <span class="string">"/"</span> \</div><div class="line">  -reqexts SAN -config &lt;(cat /etc/ssl/openssl.cnf \</div><div class="line">  &lt;(<span class="built_in">printf</span> <span class="string">"[SAN]\nsubjectAltName=DNS:foo.com,DNS:www.foo.com"</span>))</div></pre></td></tr></table></figure>
-<h3 id="openssl配置">openssl配置</h3><p>各系统openssl默认配置地址：</p>
-<ul>
-<li>Debian: /etc/ssl/openssl.cnf</li>
-<li>RHEL and CentOS: /etc/pki/tls/openssl.cnf</li>
-<li>Mac OSX: /System/Library/OpenSSL/openssl.cnf</li>
-</ul>
-<h2 id="二、SSL证书说明">二、SSL证书说明</h2><h3 id="2-1_SSL证书概念和分类">2.1 SSL证书概念和分类</h3><p>CA，Catificate Authority，它的作用就是提供证书（即服务器证书，由域名、公司信息、序列号和签名信息组成）加强服务端和客户端之间信息交互的安全性，以及证书运维相关服务。任何个体/组织都可以扮演 CA 的角色，只不过难以得到客户端的信任，能够受浏览器默认信任的 CA 大厂商有很多，其中 TOP5 是 Symantec、Comodo、Godaddy、GolbalSign 和 Digicert。</p>
-<h4 id="SSL证书用途">SSL证书用途</h4><ol>
-<li>保证服务器和客户端的真实性，杜绝中间人攻击和钓鱼网站</li>
-<li>保护用户数据，通常是客户端的数据到服务器的传输是经过加密传输的，第三方无法监听。</li>
-</ol>
-<h4 id="SSL证书认证类别">SSL证书认证类别</h4><p><img src="http://bxfile.qiniudn.com/imgs/2017-08-18-175916.jpg" alt="alt"></p>
-<ul>
-<li>DV（Domain Validation），面向个体用户，安全体系相对较弱，验证方式就是向 whois 信息中的邮箱发送邮件，按照邮件内容进行验证即可通过；</li>
-<li>OV（Organization Validation），面向企业用户，证书在 DV 证书验证的基础上，还需要公司的授权，CA 通过拨打信息库中公司的电话来确认；</li>
-<li>EV（Extended Validation），打开 Github 的网页，你会看到 URL 地址栏展示了注册公司的信息，这会让用户产生更大的信任，这类证书的申请除了以上两个确认外，还需要公司提供金融机构的开户许可证，要求十分严格。</li>
-</ul>
-<h4 id="SSL提供商">SSL提供商</h4><p>国内免费SSL证书CA提供商：Wosign.com（已经废弃）<br>国外免费SSL证书CA提供商：StartSSL.com , letsencrypt.org（免费3个月，18年开始支持泛域名） , Cloudflare.com</p>
-<h4 id="在线CSR生产工具">在线CSR生产工具</h4><ul>
-<li><a href="https://csr.chinassl.net/generator-csr.html" target="_blank" rel="external">CSR文件在线生成工具</a></li>
-</ul>
-<h2 id="三、证书配置">三、证书配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">openssl x509 -inform PEM -in yourdomain.crt &gt; public.pem</div><div class="line">openssl rsa -in yourdomain.key -text &gt; private.pem</div><div class="line">openssl rsa -in yourdomain.key -out yourdomain.key.pem</div><div class="line"></div><div class="line"></div><div class="line">openssl req -newkey rsa:2048 -nodes -keyout local.key -x509 -days 365 -out certificate.pem <span class="comment"># 生成 专用密钥和公用证书</span></div><div class="line">openssl x509 -text -noout -in certificate.pem <span class="comment"># 检查已创建的证书</span></div><div class="line">openssl pkcs12 -inkey local.key -in certificate.pem -export -out certificate.p12 <span class="comment"># 将密钥和证书组合在 PKCS#12 (P12) 捆绑软件中</span></div><div class="line">openssl pkcs12 -in certificate.p12 -noout -info <span class="comment"># 验证您的 P12 文件</span></div></pre></td></tr></table></figure>
-<p>nginx配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">service &#123;</div><div class="line"></div><div class="line">    listen       443 ssl;</div><div class="line">    server_name  7daka.local;</div><div class="line">    ssl_certificate      /www/ssl/local/certificate.pem;</div><div class="line">    ssl_certificate_key  /www/ssl/local/local.key;</div><div class="line">    ssl_session_cache    shared:SSL:1m;</div><div class="line">    ssl_session_timeout  5m;</div><div class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">    ssl_prefer_server_ciphers  on;</div><div class="line">    ... ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="参考">参考</h2><ul>
-<li><a href="http://www.barretlee.com/blog/2016/04/24/detail-about-ca-and-certs/" target="_blank" rel="external">细说 CA 和证书</a></li>
-<li><a href="https://lixingcong.github.io/2016/12/20/cloudflare-self-sign/" target="_blank" rel="external">Cloudflare自签名SSL证书</a></li>
-<li><a href="http://fengwan.blog.51cto.com/508652/1869743" target="_blank" rel="external">OpenSSL生成自签名的sha256泛域名证书</a></li>
-<li><a href="https://www.ecyy.net/46.html#more-46" target="_blank" rel="external">申请Comodo PositiveSSL免费SSL证书教程</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2069,7 +2050,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">226</span>
+                <span class="site-state-item-count">227</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2091,7 +2072,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
