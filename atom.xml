@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-04-17T17:54:22.989Z</updated>
+  <updated>2018-05-14T04:24:00.815Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -16,11 +16,245 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ngrok内网穿透</title>
+    <link href="http://boxcore.github.io/2018/05/14/linux/ngrok-usage.html"/>
+    <id>http://boxcore.github.io/2018/05/14/linux/ngrok-usage.html</id>
+    <published>2018-05-14T04:23:52.000Z</published>
+    <updated>2018-05-14T04:24:00.815Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux配置docker（未完待续）</title>
+    <link href="http://boxcore.github.io/2018/05/14/topic/docker/docker-for-linux.html"/>
+    <id>http://boxcore.github.io/2018/05/14/topic/docker/docker-for-linux.html</id>
+    <published>2018-05-14T03:52:37.000Z</published>
+    <updated>2018-05-14T04:13:52.549Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是个人开发环境安装和配置docker的过程，环境为&lt;code&gt;centos 6.3&lt;/code&gt;, 一执行傻瓜安装程序发现大坑，只支持centos7! 看来得好好编译一番。。。&lt;/p&gt;
+&lt;h2 id=&quot;一、安装docker&quot;&gt;一、安装docker&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+      <category term="docker" scheme="http://boxcore.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Awesome AI</title>
+    <link href="http://boxcore.github.io/2018/05/14/awesome-tools/awesome-ai.html"/>
+    <id>http://boxcore.github.io/2018/05/14/awesome-tools/awesome-ai.html</id>
+    <published>2018-05-14T03:43:49.000Z</published>
+    <updated>2018-05-14T03:45:02.560Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ashnkumar/sketch-code&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sketch-code&lt;/a&gt;: 通过机器学习将手稿原型转html页面：&lt;br&gt;&lt;img src=
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VIM使用</title>
+    <link href="http://boxcore.github.io/2018/05/14/vim-editor-plan.html"/>
+    <id>http://boxcore.github.io/2018/05/14/vim-editor-plan.html</id>
+    <published>2018-05-14T03:25:26.000Z</published>
+    <updated>2018-05-14T03:26:57.610Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、VIM的配置&quot;&gt;一、VIM的配置&lt;/h2&gt;&lt;h3 id=&quot;1-1_VIM中空格代替tab&quot;&gt;1.1 VIM中空格代替tab&lt;/h3&gt;&lt;p&gt;修改文件: &lt;code&gt;vi /etc/vim/vimrc&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highl
+    
+    </summary>
+    
+      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://boxcore.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git小Tips</title>
+    <link href="http://boxcore.github.io/2018/05/10/git/git-tips.html"/>
+    <id>http://boxcore.github.io/2018/05/10/git/git-tips.html</id>
+    <published>2018-05-09T18:22:46.000Z</published>
+    <updated>2018-05-10T02:15:38.171Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;拉取&quot;&gt;拉取&lt;/h2&gt;&lt;p&gt;当 git fetch 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。 然而，有一个命令叫作 git pull 在大多数情况下它的含义是一个 git fetch 紧接着一个 git 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git基础：分支</title>
+    <link href="http://boxcore.github.io/2018/05/10/git/git-branch.html"/>
+    <id>http://boxcore.github.io/2018/05/10/git/git-branch.html</id>
+    <published>2018-05-09T18:04:28.000Z</published>
+    <updated>2018-05-10T02:15:38.170Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;git branch -a :查看远程分支&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout -b iss53&lt;/code&gt; ： 新建分支（iss53）并切换到该分支， 等同于&lt;code&gt;git branch iss53 &amp;amp;&amp;amp; git ch
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git报错及处理</title>
+    <link href="http://boxcore.github.io/2018/05/10/git/git-fixed-errors.html"/>
+    <id>http://boxcore.github.io/2018/05/10/git/git-fixed-errors.html</id>
+    <published>2018-05-09T17:47:21.000Z</published>
+    <updated>2018-05-10T02:15:38.170Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;branch、tag有同名称时删除分支或标签错误的问题&quot;&gt;branch、tag有同名称时删除分支或标签错误的问题&lt;/h2&gt;&lt;p&gt;先举个栗子, 执行一个删除分支命令时&lt;code&gt;git push orign :v1.1-final&lt;/code&gt;报如下错误：&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git基础：打标签</title>
+    <link href="http://boxcore.github.io/2018/05/10/git/git-tags.html"/>
+    <id>http://boxcore.github.io/2018/05/10/git/git-tags.html</id>
+    <published>2018-05-09T17:45:57.000Z</published>
+    <updated>2018-05-10T02:15:38.171Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;同大多数 VCS 一样，Git 也可以对某一时间点上的版本打上标签。人们在发布某个软件版本（比如 v1.0 等等）的时候，经常这么做。本节我们一起来学习如何列出所有可用的标签，如何新建标签，以及各种不同类型标签之间的差别。&lt;/p&gt;
+&lt;p&gt;另外，打标签还有一个好处就是，在gi
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在Mac、Linux 终端显示 Git 当前所在分支</title>
+    <link href="http://boxcore.github.io/2018/05/10/git/git-show-branch-in-ternimal.html"/>
+    <id>http://boxcore.github.io/2018/05/10/git/git-show-branch-in-ternimal.html</id>
+    <published>2018-05-09T17:17:16.000Z</published>
+    <updated>2018-05-10T02:15:38.171Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;进入你的&lt;code&gt;home&lt;/code&gt;目录&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pr
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Tor使用</title>
+    <link href="http://boxcore.github.io/2018/05/04/tools/tor-usage.html"/>
+    <id>http://boxcore.github.io/2018/05/04/tools/tor-usage.html</id>
+    <published>2018-05-04T09:31:03.000Z</published>
+    <updated>2018-05-04T18:16:43.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Dropbox使用</title>
+    <link href="http://boxcore.github.io/2018/05/01/tools/dropbox-usage.html"/>
+    <id>http://boxcore.github.io/2018/05/01/tools/dropbox-usage.html</id>
+    <published>2018-05-01T06:24:03.000Z</published>
+    <updated>2018-05-02T02:37:19.022Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dropbox是国外较大的网盘之一，居于国内网盘的尿性及审查，博主就经常使用它同步自己重要的文(zhong)件(zi)了。如果还没有账号的，点这个 &lt;a href=&quot;https://db.tt/UzSdXuuE&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git初探</title>
+    <link href="http://boxcore.github.io/2018/04/23/topic/git-start.html"/>
+    <id>http://boxcore.github.io/2018/04/23/topic/git-start.html</id>
+    <published>2018-04-23T07:53:24.000Z</published>
+    <updated>2018-05-07T08:56:51.226Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[TOC]&lt;br&gt;Git是一个开源的分布式版本控制软件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/006tNc79gy1fqmpnn1xiuj30u00frjs0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;背
+    
+    </summary>
+    
+      <category term="git" scheme="http://boxcore.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://boxcore.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jetbrains系列软件激活（idea等）</title>
+    <link href="http://boxcore.github.io/2018/04/19/jetbrains-soft-idea-active.html"/>
+    <id>http://boxcore.github.io/2018/04/19/jetbrains-soft-idea-active.html</id>
+    <published>2018-04-18T17:13:00.000Z</published>
+    <updated>2018-05-14T02:11:16.782Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JetBrains系列软件注册码（适用于2018版）：&lt;br&gt;亲测试 idea、datagrap可以使用&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;li
+    
+    </summary>
+    
+      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>《MySQL技术内幕》Note</title>
     <link href="http://boxcore.github.io/2018/04/18/books/mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95.html"/>
     <id>http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html</id>
     <published>2018-04-17T17:54:21.000Z</published>
-    <updated>2018-04-17T17:54:22.989Z</updated>
+    <updated>2018-04-18T02:41:59.418Z</updated>
     
     <summary type="html">
     
@@ -172,290 +406,6 @@
       <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
     
       <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>观察者模式</title>
-    <link href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-observer.html"/>
-    <id>http://boxcore.github.io/2018/04/04/php/php-design-patterns-observer.html</id>
-    <published>2018-04-03T16:51:22.000Z</published>
-    <updated>2018-04-03T16:59:56.141Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据对象映射模式</title>
-    <link href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-data-mapper.html"/>
-    <id>http://boxcore.github.io/2018/04/04/php/php-design-patterns-data-mapper.html</id>
-    <published>2018-04-03T16:27:57.000Z</published>
-    <updated>2018-04-03T16:45:59.118Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。&lt;/li&gt;
-&lt;li&gt;在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。&lt;/li&gt;
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;结合使用数据对
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>策略模式</title>
-    <link href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-strategy.html"/>
-    <id>http://boxcore.github.io/2018/04/04/php/php-design-patterns-strategy.html</id>
-    <published>2018-04-03T16:27:57.000Z</published>
-    <updated>2018-04-03T16:40:13.878Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式&lt;/li&gt;
-&lt;li&gt;实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告&lt;/li&gt;
-&lt;li&gt;使用策略模式可以实现 I
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>适配器模式</title>
-    <link href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-adapter.html"/>
-    <id>http://boxcore.github.io/2018/04/04/php/php-design-patterns-adapter.html</id>
-    <published>2018-04-03T16:18:25.000Z</published>
-    <updated>2018-04-03T16:29:26.640Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;新建一个IDatabase&lt;/p&gt;
-&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>装饰器模式</title>
-    <link href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-decorator.html"/>
-    <id>http://boxcore.github.io/2018/04/02/php/php-design-patterns-decorator.html</id>
-    <published>2018-04-01T17:49:15.000Z</published>
-    <updated>2018-04-01T17:56:59.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;定义一个装饰器的接口，声明两个方法，beforXXX() afterXXX(), 然后在类里定义一个方法 addDecorator 添加一个装饰器，保存到一个内部数组，再定义一个beforXXX() afterXXX(); 分别循环每个装饰器，执行装饰器里定义的beforX
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>迭代器模式</title>
-    <link href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-iterator.html"/>
-    <id>http://boxcore.github.io/2018/04/02/php/php-design-patterns-iterator.html</id>
-    <published>2018-04-01T17:05:35.000Z</published>
-    <updated>2018-04-01T17:11:44.618Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;迭代器模式&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素&lt;/li&gt;
-&lt;li&gt;相比传统的编程模式，迭代器模式可以隐藏遍历元素所需的操作&lt;/li&gt;
-&lt;
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP魔术方法</title>
-    <link href="http://boxcore.github.io/2018/04/02/php/php-magic-methods.html"/>
-    <id>http://boxcore.github.io/2018/04/02/php/php-magic-methods.html</id>
-    <published>2018-04-01T16:53:26.000Z</published>
-    <updated>2018-04-01T16:56:50.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;php中的魔术方法有&lt;strong&gt;construct()， &lt;/strong&gt;destruct()， &lt;strong&gt;call()， &lt;/strong&gt;callStatic()， &lt;strong&gt;get()， &lt;/strong&gt;set()， &lt;strong&gt;isset()
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SPL标准库使用</title>
-    <link href="http://boxcore.github.io/2018/04/02/php/php-spl.html"/>
-    <id>http://boxcore.github.io/2018/04/02/php/php-spl.html</id>
-    <published>2018-04-01T16:02:44.000Z</published>
-    <updated>2018-04-01T16:49:22.446Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;SPL库常用四中数据结构&lt;br&gt;栈：(先进后出)&lt;br&gt;&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2
-    
-    </summary>
-    
-      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://boxcore.github.io/tags/php/"/>
-    
-      <category term="设计模式" scheme="http://boxcore.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Software</title>
-    <link href="http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html"/>
-    <id>http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html</id>
-    <published>2018-03-30T07:48:39.000Z</published>
-    <updated>2018-04-16T13:22:08.718Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;网盘同步&quot;&gt;网盘同步&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;dropbox离线安装包: &lt;a href=&quot;https://www.dropbox.com/downloading?type=full&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https:/
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>通过teredo获取ipv6地址</title>
-    <link href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html"/>
-    <id>http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html</id>
-    <published>2018-03-07T13:05:21.000Z</published>
-    <updated>2018-03-14T16:44:30.453Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.&lt;/p&gt;
-&lt;p&gt;那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤&lt;/p&gt;
-&lt;h2 id=&quot;一、window下开启&quot;&gt;一、window下开启&lt;/h2&gt;&lt;p&gt;说明：&lt;br
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-      <category term="ipv6" scheme="http://boxcore.github.io/tags/ipv6/"/>
-    
-      <category term="teredo" scheme="http://boxcore.github.io/tags/teredo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac常用快捷键</title>
-    <link href="http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html"/>
-    <id>http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html</id>
-    <published>2018-03-06T15:19:32.000Z</published>
-    <updated>2018-03-07T02:47:19.182Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自己常用的mac下快捷键整理,以免遗忘做个备份:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开破解软件显示“软件包已损坏”: &lt;code&gt;sudo spctl --master-(disable/enable)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;启动词典默认取词功能快捷键: &lt;code&gt;C
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Awesome Web Toolkit</title>
-    <link href="http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html"/>
-    <id>http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html</id>
-    <published>2018-03-04T07:48:39.000Z</published>
-    <updated>2018-03-09T15:31:32.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在线工具合集:&lt;/p&gt;
-&lt;h2 id=&quot;下载地址转换&quot;&gt;下载地址转换&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://zh.savefrom.net/1-how-to-download-youtube-video.html&quot; target=&quot;_blank&quot; re
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CMD学习笔记</title>
-    <link href="http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html"/>
-    <id>http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html</id>
-    <published>2018-03-03T00:27:49.000Z</published>
-    <updated>2018-03-05T03:02:28.367Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是&lt;code&gt;936&lt;/code&gt; 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令&lt;code&gt;chcp&lt;/code&gt;了。&lt;/p&gt;
-&lt;h2 id=&quot;命令帮助&quot;&gt;命令帮助&lt;/h2&gt;&lt;
-    
-    </summary>
-    
     
   </entry>
   

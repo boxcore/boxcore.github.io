@@ -329,7 +329,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-mac.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/05/linux/linux-get-cur-dir.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +348,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/05/awesome-tools/awesome-mac.html" itemprop="url">Awesome Mac</a></h1>
+                <a class="post-title-link" href="/2018/02/05/linux/linux-get-cur-dir.html" itemprop="url">Linux文件操作命令之获取当前目录</a></h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T11:55:50+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T15:39:06+08:00">
+                2018-02-05
               </time>
             
 
@@ -371,28 +371,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -401,9 +379,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/05/awesome-tools/awesome-mac.html#comments" itemprop="discussionUrl">
+                <a href="/2018/02/05/linux/linux-get-cur-dir.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/05/awesome-tools/awesome-mac.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/05/linux/linux-get-cur-dir.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -411,7 +389,7 @@
 
           
           
-             <span id="/2018/01/05/awesome-tools/awesome-mac.html" class="leancloud_visitors" data-flag-title="Awesome Mac">
+             <span id="/2018/02/05/linux/linux-get-cur-dir.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之获取当前目录">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -441,25 +419,178 @@
       
         
           
-            <h2 id="mac软件">mac软件</h2><ul>
-<li><a href="https://github.com/integralpro/nosleep/releases" target="_blank" rel="external">NoSleep</a>: 让电脑不自动睡眠的软件，亲测有bug，关闭后电脑合盖还是很耗电！！！</li>
+            <h2 id="readlink">readlink</h2><p>readlink– help<br>用法：readlink【选项】… 文件输出符号链接值或权威文件名。</p>
+<ul>
+<li><code>-f, --canonicalize</code> 递归跟随给出文件名的所有符号链接以标准化，除最后一个外所有组件必须存在</li>
+<li><code>-e, -- canonicalize-existing</code> 递归跟随给出文件名的所有符号链接以标准化，所有组件都必须存在</li>
+<li><code>-m, -- canonicalize-missing</code> 递归跟随给出文件名的所有符号链接以标准化，但不对组件存在性作出要求</li>
+<li><code>-n, --nonewline</code> 不输出尾随的新行</li>
+<li><code>-q; quiet,</code></li>
+<li><code>-s, --silent</code> 缩减大多数的错误消息</li>
+<li><code>-v, --verbose</code> 报告所有错误消息</li>
+<li><code>--help</code> 显示此帮助信息并退出</li>
+<li><code>--version</code> 显示版本信息并退出</li>
 </ul>
-<h3 id="Dock相关">Dock相关</h3><ul>
-<li>HyperDock:  让Mac拥有 Windows 的窗口预览和管理体验。 <a href="https://sspai.com/post/32855" target="_blank" rel="external">媒体报道</a></li>
-</ul>
-<h2 id="Terminal相关">Terminal相关</h2><ul>
-<li>icdiff: 比diff命令好看的代码差异对比命令，安装：<code>pip install git+https://github.com/jeffkaufman/icdiff.git</code></li>
-<li>mosh:  使用udf连接，ip变化了也能连<a href="https://mosh.org/#usage" target="_blank" rel="external">https://mosh.org/#usage</a></li>
-<li>mycli: 比mysql-cli更好的命令行工具，不过有个bug：zerofill字段前面的0不能显示</li>
-<li></li>
-</ul>
-<h2 id="homebrew_相关工具">homebrew 相关工具</h2><ul>
-<li>wtf: 缩略语查询</li>
-<li>w3m: termial下浏览网页</li>
-</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SHELL_FOLDER=$(dirname $(readlink <span class="_">-f</span> <span class="string">"<span class="variable">$0</span>"</span>)) <span class="comment">#最佳方案</span></div><div class="line">SHELL_FOLDER=$(<span class="built_in">cd</span> <span class="string">"<span class="variable">$(dirname "$0")</span>"</span>;<span class="built_in">pwd</span>) </div><div class="line">SHELL_FOLDER=$(dirname <span class="string">"<span class="variable">$0</span>"</span>) <span class="comment"># 不一定是绝对路径</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-curl-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/01/php/php-curl-usage.html" itemprop="url">PHP CURL使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T20:31:18+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/01/php/php-curl-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/01/php/php-curl-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/01/php/php-curl-usage.html" class="leancloud_visitors" data-flag-title="PHP CURL使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">'X-FORWARDED-FOR:111.222.333.4'</span>, <span class="string">'CLIENT-IP:111.222.333.4'</span>)); <span class="comment">// 伪造IP </span></div><div class="line">curl_setopt($ch, CURLOPT_REFERER, <span class="string">"http://www.test.com"</span>); <span class="comment">// 伪造来源  </span></div><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_PROXY, <span class="string">"http://111.222.333.4:110"</span>);  <span class="comment">// 使用代理访问</span></div><div class="line">curl_setopt($ch,CURLOPT_ENCODING , <span class="string">"gzip"</span>); <span class="comment">// 解开gzip网页文件</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">gunzip</span><span class="params">($zipped)</span> </span>&#123;</div><div class="line">      $offset = <span class="number">0</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,<span class="number">0</span>,<span class="number">2</span>) == <span class="string">"\x1f\x8b"</span>)</div><div class="line">         $offset = <span class="number">2</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,$offset,<span class="number">1</span>) == <span class="string">"\x08"</span>)  &#123;</div><div class="line">         <span class="comment"># file_put_contents("tmp.gz", substr($zipped, $offset - 2));</span></div><div class="line">         <span class="keyword">return</span> gzinflate(substr($zipped, $offset + <span class="number">8</span>));</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="string">"Unknown Format"</span>;</div><div class="line">   &#125;  </div><div class="line"></div><div class="line">      $headers_enabled = <span class="number">1</span>;</div><div class="line">      curl_setopt($c, CURLOPT_HEADER,  $headers_enabled)</div><div class="line">      $ret = curl_exec($c);</div><div class="line"></div><div class="line">      <span class="keyword">if</span> ($headers_enabled) &#123;</div><div class="line">         <span class="comment"># file_put_contents("preungzip.html", $ret);</span></div><div class="line"></div><div class="line">         $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $ret, <span class="number">2</span>);</div><div class="line">         <span class="keyword">while</span> (!strncmp($sections[<span class="number">1</span>], <span class="string">'HTTP/'</span>, <span class="number">5</span>)) &#123;</div><div class="line">            $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $sections[<span class="number">1</span>], <span class="number">2</span>);</div><div class="line">         &#125;</div><div class="line">         $headers = $sections[<span class="number">0</span>];</div><div class="line">         $data = $sections[<span class="number">1</span>];</div><div class="line"></div><div class="line">         <span class="keyword">if</span> (preg_match(<span class="string">'/^Content-Encoding: gzip/mi'</span>, $headers)) &#123;</div><div class="line">            printf(<span class="string">"gzip header found\n"</span>);</div><div class="line">            <span class="keyword">return</span> gunzip($data);</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">return</span> $ret;</div></pre></td></tr></table></figure>
 <h2 id="参考">参考</h2><ul>
-<li><a href="https://github.com/jaywcjlove/awesome-mac" target="_blank" rel="external">awesome-mac</a></li>
-<li><a href="https://www.zhihu.com/question/59227720" target="_blank" rel="external">https://www.zhihu.com/question/59227720</a></li>
+<li><a href="https://stackoverflow.com/questions/310650/decode-gzipped-web-page-retrieved-via-curl-in-php" target="_blank" rel="external">Decode gzipped web page retrieved via cURL in PHP</a></li>
+<li><a href="http://php.net/manual/zh/function.curl-setopt.php" target="_blank" rel="external">curl_setopt</a></li>
 </ul>
 
           
@@ -504,7 +635,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/05/awesome-tools/awesome-spider.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-ini-setting.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -523,7 +654,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/05/awesome-tools/awesome-spider.html" itemprop="url">Awesome Spider</a></h1>
+                <a class="post-title-link" href="/2018/02/01/php/php-ini-setting.html" itemprop="url">PHP INI配置</a></h1>
         
 
         <div class="post-meta">
@@ -535,487 +666,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T11:55:50+08:00">
-                2018-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/05/awesome-tools/awesome-spider.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/05/awesome-tools/awesome-spider.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/05/awesome-tools/awesome-spider.html" class="leancloud_visitors" data-flag-title="Awesome Spider">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>关于爬虫采集的一些好工具：</p>
-<ul>
-<li><a href="https://github.com/luyishisi/Anti-Anti-Spider/" target="_blank" rel="external">Anti-Anti-Spider</a></li>
-<li><a href="https://github.com/wujuguang/discuzx-tools" target="_blank" rel="external">Discuz自动上传附件，发帖，注册用户，留言，顶帖等自动化工具</a></li>
-<li><a href="https://github.com/tigerstudent/TiebaWasher" target="_blank" rel="external">模拟登录wap版百度贴吧，定时刷新指定贴吧，抢先二楼回复;贴吧签到</a></li>
-<li><a href="https://github.com/iicx/BaiduUtil" target="_blank" rel="external">百度贴吧工具类</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/04/tools/feed-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/04/tools/feed-setting.html" itemprop="url">feed订阅配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T14:15:59+08:00">
-                2018-01-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/04/tools/feed-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/04/tools/feed-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/04/tools/feed-setting.html" class="leancloud_visitors" data-flag-title="feed订阅配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mark:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Feedly: https://www.feedly.com/home#subscription/feed/%s</div><div class="line">inoreader: http://www.inoreader.com/feed/%s</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/04/tools/nextcloud-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/04/tools/nextcloud-usage.html" itemprop="url">Nextcloud折腾笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T11:37:00+08:00">
-                2018-01-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/04/tools/nextcloud-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/04/tools/nextcloud-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/04/tools/nextcloud-usage.html" class="leancloud_visitors" data-flag-title="Nextcloud折腾笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>NextCloud是php开源的私有网盘管理工具，支持app和web，这里说下其安装及使用</p>
-<h2 id="一、安装Nextcloud">一、安装Nextcloud</h2><h3 id="1-1_服务端安装">1.1 服务端安装</h3><h3 id="1-2_客户端安装">1.2 客户端安装</h3><ul>
-<li>ios: <a href="https://itunes.apple.com/us/app/nextcloud/id1125420102?mt=8" target="_blank" rel="external">https://itunes.apple.com/us/app/nextcloud/id1125420102?mt=8</a></li>
-<li>andriod : &lt;&gt;</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/26/composer-note.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/26/composer-note.html" itemprop="url">Composer Note</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T14:59:18+08:00">
-                2017-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T17:19:23+08:00">
+                2018-02-01
               </time>
             
 
@@ -1055,9 +707,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/26/composer-note.html#comments" itemprop="discussionUrl">
+                <a href="/2018/02/01/php/php-ini-setting.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/26/composer-note.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/01/php/php-ini-setting.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1065,7 +717,7 @@
 
           
           
-             <span id="/2017/12/26/composer-note.html" class="leancloud_visitors" data-flag-title="Composer Note">
+             <span id="/2018/02/01/php/php-ini-setting.html" class="leancloud_visitors" data-flag-title="PHP INI配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1095,59 +747,9 @@
       
         
           
-            <p>Composer 是 PHP 的一个依赖管理工具，类似于node.js的npm，相关收录的php包可以在<a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a>找到。下面是composer常用到的资源库，mark在笔记最前方便查阅</p>
-<ul>
-<li><a href="https://packagist.org/explore/" target="_blank" rel="external">packagist</a></li>
-</ul>
-<h2 id="version">version</h2><ul>
-<li>composer v1.5.5 : 截止2017-12-26前的最新版；</li>
-<li>composer v1.2: </li>
-</ul>
-<h2 id="一、安装composer">一、安装composer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ mac</div><div class="line">brew install composer</div><div class="line"></div><div class="line">$ linux</div><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div><div class="line"></div><div class="line">$ windows</div><div class="line">$ 下载安装 https://getcomposer.org/Composer-Setup.exe</div><div class="line">$ 或者下载phar文件</div><div class="line">php -r <span class="string">"readfile('https://getcomposer.org/installer');"</span> | php</div><div class="line"><span class="built_in">echo</span> @php <span class="string">"%~dp0composer.phar"</span> %*&gt;composer.bat</div></pre></td></tr></table></figure>
-<h2 id="二、composer配置">二、composer配置</h2><h3 id="2-1_镜像的配置">2.1 镜像的配置</h3><p><code>packagist</code> 是 Composer 的主要资源库。 一个 Composer 的库基本上是一个包的源：记录了可以得到包的地方。Packagist 的目标是成为大家使用库资源的中央存储平台。由于国内网络的问题composer源可以替换回国内, 操作方法如下</p>
-<ul>
-<li>设置为全局</li>
-</ul>
-<p><code>composer config repo.packagist composer https://packagist.phpcomposer.com</code></p>
-<blockquote>
-<p>composer 全量中国镜像：<a href="http://pkg.phpcomposer.com/" target="_blank" rel="external">http://pkg.phpcomposer.com/</a></p>
-</blockquote>
-<ul>
-<li>应用内设置</li>
-</ul>
-<p>上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息（你也可以自己手工添加）：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"repositories": &#123;</div><div class="line">    "packagist": &#123;</div><div class="line">        "type": "composer",</div><div class="line">        "url": "https://packagist.phpcomposer.com"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="2-2_配置语法">2.2 配置语法</h3><h4 id="关于_require_Key配置">关于 <code>require</code> Key配置</h4><p>第一件事情（并且往往只需要做这一件事），你需要在 composer.json 文件中指定 <code>require key</code> 的值。你只需要简单的告诉 Composer 你的项目需要依赖哪些包。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"monolog/monolog"</span>: <span class="string">"1.0.*"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>关于包名称和包版本可以参考文章<a href="http://docs.phpcomposer.com/01-basic-usage.html#Package-Names" target="_blank" rel="external">http://docs.phpcomposer.com/01-basic-usage.html#Package-Names</a></p>
-<blockquote>
-<p>更多配置内容请参考 <a href="http://docs.phpcomposer.com/04-schema.html" target="_blank" rel="external">composer.json 架构</a></p>
-</blockquote>
-<h2 id="三、使用composer">三、使用composer</h2><h3 id="3-1_composer基础命令使用">3.1 composer基础命令使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ 一些帮助命令</div><div class="line">composer <span class="built_in">help</span></div><div class="line">composer list</div><div class="line">composer <span class="built_in">help</span> require</div><div class="line"></div><div class="line"></div><div class="line">$ composer 安装</div><div class="line">composer init</div><div class="line"></div><div class="line"></div><div class="line">$ 引入composer</div><div class="line">composer require monolog/monolog</div><div class="line"></div><div class="line"></div><div class="line">$ 创建项目语法：composer create-project 名称 目录 版本 参数</div><div class="line">composer create-project slim/slim slim-2.6.2 2.6.2</div><div class="line">composer create-project laravel/laravel learnlaravel5 5.2.31 --prefer-dist <span class="comment"># 使用composer安装laravel</span></div><div class="line"><span class="comment"># 说明--prefer-dist：强制使用压缩包，而不是克隆源代码</span></div><div class="line"></div><div class="line">composer install --no-dev <span class="comment"># 非开发环境，不执行require-dev的包安装</span></div><div class="line">php composer.phar update <span class="comment"># 更新包 同 composer update</span></div><div class="line">php composer.phar update monolog/monolog [...] <span class="comment"># 只更新指定的依赖包</span></div></pre></td></tr></table></figure>
-<p>跟多关于composer的命令可以在这里看：<a href="http://docs.phpcomposer.com/03-cli.html" target="_blank" rel="external">http://docs.phpcomposer.com/03-cli.html</a></p>
-<h3 id="3-2_php使用composer">3.2 php使用composer</h3><h4 id="1)_自动加载">1) 自动加载</h4><p>对于库的自动加载信息，Composer 生成了一个 vendor/autoload.php 文件。你可以简单的引入这个文件，你会得到一个自由的自动加载支持。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'vendor/autoload.php'</span>;</div></pre></td></tr></table></figure>
-<p>这使得你可以很容易的使用第三方代码。例如：如果你的项目依赖 monolog，你就可以像这样开始使用这个类库，并且他们将被自动加载。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$log = <span class="keyword">new</span> Monolog\Logger(<span class="string">'name'</span>);</div><div class="line">$log-&gt;pushHandler(<span class="keyword">new</span> Monolog\Handler\StreamHandler(<span class="string">'app.log'</span>, Monolog\Logger::WARNING));</div><div class="line"></div><div class="line">$log-&gt;addWarning(<span class="string">'Foo'</span>);</div></pre></td></tr></table></figure></p>
-<p>另外还有其他方法实现composer的自动加载，方法如下</p>
-<ol>
-<li>可以在 composer.json 的 autoload 字段中增加自己的 autoloader。<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"autoload"</span>: &#123;</div><div class="line">        <span class="attr">"psr-4"</span>: &#123;<span class="attr">"Acme\\"</span>: <span class="string">"src/"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>Composer 将注册一个 PSR-4 autoloader 到 Acme 命名空间。添加 autoload 字段后，你应该再次运行 install 命令来生成 vendor/autoload.php 文件。</p>
-</blockquote>
-<ol>
-<li>将包含调用的返回值存储在变量中，并添加更多的命名空间。这对于在一个测试套件中自动加载类文件是非常有用的，例如:<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$loader = <span class="keyword">require</span> <span class="string">'vendor/autoload.php'</span>;</div><div class="line">$loader-&gt;add(<span class="string">'Acme\\Test\\'</span>, <span class="keyword">__DIR__</span>);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="3-3_升级composer">3.3 升级composer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">composer selfupdate</div><div class="line"></div><div class="line">Use composer self-update --rollback to <span class="built_in">return</span> to version 66efc9af8601234b8ab3a5fb91cfa7a2f30e9bbd</div></pre></td></tr></table></figure>
-<h3 id="3-4_卸载包">3.4 卸载包</h3><ul>
-<li>语法<code>composer global remove {包名}</code>，比如<code>composer global remove phpunit/phpunit</code></li>
-</ul>
-<h2 id="四、composer实战">四、composer实战</h2><h3 id="4-1_使用composer配置laravel">4.1 使用composer配置laravel</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># 安装指定版本的laravel</span></div><div class="line">composer create-project laravel/laravel=5.1.* myProject</div></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://www.kancloud.cn/thinkphp/composer/35668" target="_blank" rel="external">https://www.kancloud.cn/thinkphp/composer/35668</a></li>
-<li><a href="https://my.oschina.net/zhuyajie/blog/506025" target="_blank" rel="external">https://my.oschina.net/zhuyajie/blog/506025</a></li>
+            <h2 id="ini_set相关">ini_set相关</h2><h3 id="配置时区">配置时区</h3><ul>
+<li>配置文件：<code>date.timezone = Asia/Shanghai</code></li>
+<li>php文件中配置：<code>date_default_timezone_set(&#39;Asia/Shanghai&#39;);</code> 和 <code>ini_set(&#39;date.timezone&#39;,&#39;Asia/Shanghai&#39;);</code>;</li>
 </ul>
 
           
@@ -1192,7 +794,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/26/tools/download-tookit.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-php.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1211,7 +813,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/26/tools/download-tookit.html" itemprop="url">下载工具合集</a></h1>
+                <a class="post-title-link" href="/2018/01/31/awesome-tools/awesome-php.html" itemprop="url">Awesome PHP</a></h1>
         
 
         <div class="post-meta">
@@ -1223,8 +825,1011 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T12:24:12+08:00">
-                2017-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T10:33:49+08:00">
+                2018-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/31/awesome-tools/awesome-php.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/31/awesome-tools/awesome-php.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/31/awesome-tools/awesome-php.html" class="leancloud_visitors" data-flag-title="Awesome PHP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="操作类">操作类</h2><h3 id="DB操作类">DB操作类</h3><ul>
+<li><a href="https://github.com/joshcam/mysqli-database-class" target="_blank" rel="external">PHP Mysqli 操作类</a></li>
+</ul>
+<h3 id="网络工具">网络工具</h3><ul>
+<li><a href="https://github.com/geerlingguy/ping" target="_blank" rel="external">php Ping 检查</a></li>
+</ul>
+<h3 id="开源系统">开源系统</h3><ul>
+<li><a href="https://gitee.com/einsqing/wemall" target="_blank" rel="external">WeMall商城</a>: wemall7.0 开源系统，基于thinkphp5开发，支持composer，优化核心，减少依赖，基于全新的架构思想和命名空间。同类的用node.js开发的如<a href="https://github.com/shen100/wemall" target="_blank" rel="external">wemall</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/31/awesome-tools/awesome-api.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/31/awesome-tools/awesome-api.html" itemprop="url">Awesome API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T10:28:59+08:00">
+                2018-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/31/awesome-tools/awesome-api.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/31/awesome-tools/awesome-api.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/31/awesome-tools/awesome-api.html" class="leancloud_visitors" data-flag-title="Awesome API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="API标准">API标准</h2><h2 id="API测试工具">API测试工具</h2><ul>
+<li><a href="https://github.com/thx/rap2-delos" target="_blank" rel="external">RAP2</a>: 阿里妈妈前端团队出品的开源接口管理工具RAP第二代 <a href="http://rap2.taobao.org" target="_blank" rel="external">http://rap2.taobao.org</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/30/linux/linux-find.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/30/linux/linux-find.html" itemprop="url">Linux之文件查找find</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T21:23:33+08:00">
+                2018-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/30/linux/linux-find.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/30/linux/linux-find.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/30/linux/linux-find.html" class="leancloud_visitors" data-flag-title="Linux之文件查找find">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、find基础说明">一、find基础说明</h2><blockquote>
+<p>find [dir] [param] [match]</p>
+</blockquote>
+<ul>
+<li><code>-print0</code> : 不换行输出内容，也可以理解\0 是定界符</li>
+</ul>
+<h2 id="二、find使用">二、find使用</h2><h3 id="2-1_使用文件名查找文件">2.1 使用文件名查找文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find -name <span class="string">"MyCProgram.c"</span> <span class="comment">#</span></div><div class="line">find -iname <span class="string">"MyCProgram.c"</span>	<span class="comment"># 忽略大小写查找</span></div></pre></td></tr></table></figure>
+<h3 id="2-2_使用mindepth和maxdepth限定搜索指定目录的深度">2.2 使用<code>mindepth</code>和<code>maxdepth</code>限定搜索指定目录的深度</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -maxdepth 2 -name passwd</div><div class="line">find / -maxdepth 3 -name passwd</div><div class="line">find / -mindepth 3 -maxdepth 5 -name passwd</div></pre></td></tr></table></figure>
+<h3 id="2-3_在find命令查找到的文件上执行命令">2.3 在find命令查找到的文件上执行命令</h3><p>// 搜索后 {}将会被当前文件名取代</p>
+<blockquote>
+<p>find -iname “MyCProgram.c” -exec md5sum {} \; </p>
+</blockquote>
+<h3 id="2-4_相反匹配">2.4 相反匹配</h3><blockquote>
+<p>find -maxdepth 1 -not -iname “MyCProgram.c”</p>
+</blockquote>
+<h3 id="2-5_使用inode编号查找文件">2.5 使用inode编号查找文件</h3><p>列子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">touch <span class="string">"test-file-name"</span></div><div class="line">touch <span class="string">"test-file-name "</span>  //注意有空格</div><div class="line">ls -i1 <span class="built_in">test</span>*  //查看两个文件</div><div class="line"></div><div class="line"></div><div class="line">find -inum 16187430 -exec mv &#123;&#125; new-test-file-name \; <span class="comment"># 重命名特殊的文件名</span></div><div class="line">find -inum 804180 -exec rm &#123;&#125; \; <span class="comment"># 使用inode编号来删除那些具有特殊符号的文件名</span></div></pre></td></tr></table></figure>
+<h3 id="2-6_根据文件权限查找文件">2.6 根据文件权限查找文件</h3><p>找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限</p>
+<blockquote>
+<p>find . -perm -g=r -type f -exec ls -l {} \;</p>
+</blockquote>
+<p>找到对组用户具有只读权限的文件</p>
+<blockquote>
+<p>find . -perm g=r -type f -exec ls -l {} \;</p>
+</blockquote>
+<p>找到对组用户具有只读权限的文件(使用八进制权限形式)</p>
+<blockquote>
+<p>find . -perm 040 -type f -exec ls -l {} \;</p>
+</blockquote>
+<h3 id="2-7_找到home目录及子目录下所有的空文件(0字节文件)">2.7 找到home目录及子目录下所有的空文件(0字节文件)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find ~ -empty</div><div class="line">find . -maxdepth 1 -empty</div><div class="line">find . -maxdepth 1 -empty -not -name <span class="string">".*"</span> <span class="comment"># 只列出当年目录下的非隐藏空文件</span></div></pre></td></tr></table></figure>
+<h3 id="2-8_按照文件大小进行查找">2.8 按照文件大小进行查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">find . -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n -r | head -5 <span class="comment"># 查找5个最大的文件</span></div><div class="line">find . -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n  | head -5 <span class="comment"># 查找5个最小的文件</span></div><div class="line">find . -not -empty -type f -exec ls <span class="_">-s</span> &#123;&#125; \; | sort -n  | head -5</div><div class="line"></div><div class="line">find ~ -size +100M //查找比指定文件大的文件</div><div class="line">find ~ -size -100M //查找比指定文件小的文件</div><div class="line">find ~ -size 100M //查找符合给定大小的文件</div></pre></td></tr></table></figure>
+<h3 id="2-9_按照文件类型进行查找">2.9 按照文件类型进行查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">find . -type s //只查找socket文件</div><div class="line">find . -type d //查找所有的目录</div><div class="line">find . -type f //查找所有的一般文件</div><div class="line">find . -type f -name <span class="string">".*"</span>  //查找所有的隐藏文件</div><div class="line">find -type d -name <span class="string">".*"</span> //查找所有的隐藏目录</div></pre></td></tr></table></figure>
+<h3 id="2-10_通过和其他文件比较修改时间查找文件">2.10 通过和其他文件比较修改时间查找文件</h3><p>显示在指定文件之后做出修改的文件。下面的find命令将显示所有的在ordinary_file之后创建修改的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ls -lrt</div><div class="line">-----------------------------------</div><div class="line">total 0</div><div class="line">-rw-r----- 1 root root 0 2009-02-19 20:27 others_can_also_read</div><div class="line">----r----- 1 root root 0 2009-02-19 20:27 others_can_only_read</div><div class="line">-rw------- 1 root root 0 2009-02-19 20:29 ordinary_file</div><div class="line">-rw-r--r-- 1 root root 0 2009-02-19 20:30 everybody_read</div><div class="line">-rwxrwxrwx 1 root root 0 2009-02-19 20:31 all_for_all</div><div class="line">---------- 1 root root 0 2009-02-19 20:31 no_for_all</div><div class="line"> ----------------------------------</div><div class="line">find -newer ordinary_file</div><div class="line">----------------------</div><div class="line">.</div><div class="line">./everybody_read</div><div class="line">./all_for_all</div><div class="line">./no_for_all</div><div class="line">----------------------</div></pre></td></tr></table></figure>
+<h3 id="2-11_给常用find操作取别名">2.11 给常用find操作取别名</h3><p>若你发现有些东西很有用，你可以给他取别名。并且在任何你希望的地方执行。<br>常用的删除a.out文件。<br>alias rmao=”find . -iname a.out -exec rm {} \;”<br>rmao</p>
+<p>删除c程序产生的core文件。</p>
+<p>alias rmc=”find . -iname core -exec rm {} \;”<br>rmc</p>
+<h3 id="2-12_用find命令删除大型打包文件">2.12 用find命令删除大型打包文件</h3><p>find / -type f -name <em>.zip -size +100M -exec rm -i {} \;”<br>//用别名rm100m删除所有大雨100M的</em>.tar文件<br>alias rm100m=”find / -type f -name *.tar -size +100M -exec rm -i {} \;”<br>alias svnadmin=”/usr/local/subversion/bin/svnadmin”</p>
+<h3 id="2-13_查找某个字符串在目录下出现次数">2.13 查找某个字符串在目录下出现次数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find &lt;directory&gt; -type f -name <span class="string">"*.php"</span> | xargs grep <span class="string">"&lt;strings&gt;"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><directory>是你要找的文件夹；如果是当前文件夹可以省略-type f 说明，只找文件-name “*.c”  表示只找C语言写的代码，从而避免去查binary；也可以不写，表示找所有文件<strings>是你要找的某个字符串</strings></directory></p>
+</blockquote>
+<h3 id="2-14_[重要]删除空文件或者目录">2.14 [重要]删除空文件或者目录</h3><p>删除空目录：</p>
+<blockquote>
+<p>find . -type d -empty | xargs -n 1 rm -rf</p>
+</blockquote>
+<p>删除空文件：</p>
+<blockquote>
+<p>find . -name “*” -type f -size 0c | xargs -n 1 rm -f</p>
+</blockquote>
+<h2 id="参考文档">参考文档</h2><ul>
+<li><a href="http://blog.jobbole.com/48856/" target="_blank" rel="external">妈咪，我找到了！15个实用的Linux find命令示例</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/25/books/php-in-action.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/25/books/php-in-action.html" itemprop="url">读书《PHP实战》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T21:19:55+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/books/" itemprop="url" rel="index">
+                    <span itemprop="name">books</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/25/books/php-in-action.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/25/books/php-in-action.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/25/books/php-in-action.html" class="leancloud_visitors" data-flag-title="读书《PHP实战》">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Preview">Preview</h2><h2 id="Content">Content</h2><h3 id="第一部分：工具和概念">第一部分：工具和概念</h3><p>第一部分中的几章循序渐进，从 PHP 面向对象编程的具体细节讲到面向对象应用程序设计这个更抽象的主题。</p>
+<ul>
+<li>第 1 章介绍并讨论了 PHP 和敏捷实践的利弊。</li>
+<li>第 2 章和第 3 章解释 PHP 面向对象编程的机制和语法。尽管对象和类是难以分割的东西，但是第 2 章主要关注对象的特性，而第 3 章则重点关注类。</li>
+<li>第 4 章讨论了对象和类的概念好在哪里，它们如何与现实世界产生联系，以及如何区分面向对象设计的优劣。</li>
+<li>第 5 章讨论最基本的类的关系一继承、关联和组合，以及程序设计中接口的作用。</li>
+<li>第 6 章开始我们正式探索面向对象设计，将面向对象理论作为设计的指导思想。</li>
+<li>第 7 章介绍设计模式再现常见设计问题的解决方案，并且描述一些最常见的问题。</li>
+<li>第 8 章介绍设计原则和模式在处理日期和时间时的另一种应用。</li>
+</ul>
+<h2 id="第一部分_工具和概念">第一部分 工具和概念</h2><h3 id="第1章_PHP与现代软件开发">第1章 PHP与现代软件开发</h3><h4 id="1-1">1.1</h4><p>作者写这本书时是php5.3版本，而现在php版本已经到7.2了，所以里面有不少东西是“过时”的，最大的特点是他在描述php的优点和缺点时，更加凸显出php社区变化之快。至少现在看，里面有不少观点是不可苟同的了。对于此我这边来整理下我所理解的PHP缺点：</p>
+<ol>
+<li>缺少类型安全<br>由于php的松散类型，导致了php写程序的时候要做很多安全的判断，不然就当韭菜了，典型的一个例子如, 在编程的时候不应该使用如下的这段代码：<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(intval($a)&gt;<span class="number">1000</span>) &#123;</div><div class="line">    mysql_query(<span class="string">"select * from news where id="</span>.$a)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个时候<code>$a</code>的值有可能是<code>1002 union…</code>..</p>
+<p>不像c、java那样需要严格定义好类型的php，注定写代码的时候多留点心眼咯！</p>
+<p>另外有其他缺点补充的欢迎评论区说明！</p>
+<h4 id="1-2">1.2</h4><p>先引用问中的一段话把：</p>
+<blockquote>
+<p>本节将简略介绍敏捷开发[^xp]和面向对象设计中最重要的思想。我们将介绍设计模式、重构和单元测试，了解它们的工作原理以及如何互相配合，并能开始看到如何在 PHP 中实现它们。</p>
+</blockquote>
+<p>虽然有点不太通顺，但这句话感动了我，让我有看下去的冲动了！作者先是权衡了【敏捷开发】和 普通开发的思路，但这些都不是最解决问题的理想方法。他承诺了一句: <code>我们开出的成功处方是将最佳方法与最好的软件工具相结合，而在我们看来，最好的软件工具就是 PHP。下面我们看一下 PHP 5 是如何与方法论联系起来的。</code>。好，让我们拭目以待！</p>
+<p>敏捷开发的一些基本元素之间的彼此依赖关系如下：</p>
+<p><img src="http://img.mianfeibang.cn/pic/2018-01-26-015219.jpg" alt="图 1-6 敏捷开发的一些基本元素之间的彼此依赖关系"></p>
+<h4 id="ch1相关参考">ch1相关参考</h4><ul>
+<li><a href="http://blog.csdn.net/wangshubo1989/article/details/48954893" target="_blank" rel="external">浅析C++中的is-a和has-a关系（公有继承、包含、私有继承）</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/Is-a" target="_blank" rel="external">Is-a</a></li>
+</ul>
+<h3 id="第2章_PHP中的对象">第2章 PHP中的对象</h3><hr>
+<p>[^xp]敏捷方法论【如极限编程（Extreme Programming, XP）】尝试着用这样的方式来解决这个问题：只进行较少的前期设计，确保一直能够对设计进行更改，并使用重构（refactoring）这样一套系统的过程来不断改善代码的结构。<br>[^TDD]TDD(test-driven development，测试驱动开发）或测试先行开发（test-first develop- pment）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/17/linux/linux-files.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/linux/linux-files.html" itemprop="url">Linux之文件操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T15:46:03+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/17/linux/linux-files.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/17/linux/linux-files.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/17/linux/linux-files.html" class="leancloud_visitors" data-flag-title="Linux之文件操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="统计目录大小">统计目录大小</h2><ul>
+<li>du -hs *</li>
+<li>find . -maxdepth 1 -type d -mindepth 1 -exec du -hs {} \;</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/17/topic/host-system-research.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/topic/host-system-research.html" itemprop="url">主机系统调研</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T12:13:01+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/17/topic/host-system-research.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/17/topic/host-system-research.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/17/topic/host-system-research.html" class="leancloud_visitors" data-flag-title="主机系统调研">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前比较流行的主机管理系统有whmcs和<a href="http://www.cloudgoing.com/" target="_blank" rel="external">IDCSystem</a>，前者主要服务linux后者主要是用在windows系列的虚拟主机中。由于业务的需要，在没有盈利的情况下只能搞些第三方破解的主机管理系统了。</p>
+<h2 id="一、系统说明和版本">一、系统说明和版本</h2><p><strong>WHMCS</strong><br>版本说明：</p>
+<ul>
+<li>v5.x</li>
+<li>v6.x</li>
+<li>v7.x</li>
+</ul>
+<p>参考网站：</p>
+<ul>
+<li><a href="https://my.l3.ee/clientarea.php" target="_blank" rel="external">ToSpeed</a></li>
+</ul>
+<p><strong>IDCSystem</strong></p>
+<p>版本说明：</p>
+<p>参考网站：</p>
+<ul>
+<li><a href="http://idc.hostshare.cn/page.aspx?c=login&amp;r=%2fidcSystem.aspx%3fc%3dmyservice%26stype%3d1" target="_blank" rel="external">主机分享 - 众筹IDC组织</a></li>
+</ul>
+<h2 id="二、插件生态">二、插件生态</h2><h2 id="三、一些可行性计划">三、一些可行性计划</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/01/16/awesome-tools/index.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/awesome-tools/index.html" itemprop="url">Awesome Tools</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T17:50:09+08:00">
+                2018-01-16
               </time>
             
 
@@ -1264,9 +1869,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/26/tools/download-tookit.html#comments" itemprop="discussionUrl">
+                <a href="/2018/01/16/awesome-tools/index.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/26/tools/download-tookit.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/16/awesome-tools/index.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1274,7 +1879,7 @@
 
           
           
-             <span id="/2017/12/26/tools/download-tookit.html" class="leancloud_visitors" data-flag-title="下载工具合集">
+             <span id="/2018/01/16/awesome-tools/index.html" class="leancloud_visitors" data-flag-title="Awesome Tools">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1304,751 +1909,20 @@
       
         
           
-            <p>1、由于业务发展上的调整，“QQ旋风”将于2017年9月6日停止运营<br>2、迅雷关闭远程离线下载</p>
-<p>如上，很多之前提供下载的工具由于种种原因怕是要关闭的，下面是一些备用的推荐工具以供选择：</p>
-<p>1、百度网盘<br>2、free download manager 不支持ed2k<br><a href="http://www.freedownloadmanager.org/" target="_blank" rel="external">http://www.freedownloadmanager.org/</a></p>
-<p>3、Persepolis Download Manager 是一款即开即用的 aria2 客户端，用来下载网络上的文件，支持 HTTP / HTTPS，FTP，SFTP，BitTorrent 和 Metalink 等协议<br><a href="https://persepolisdm.github.io/" target="_blank" rel="external">https://persepolisdm.github.io/</a><br><a href="https://github.com/persepolisdm/persepolis" target="_blank" rel="external">https://github.com/persepolisdm/persepolis</a></p>
-<p>4、<a href="https://webtorrent.io/" target="_blank" rel="external">https://webtorrent.io/</a> best of the world<br><a href="https://instant.io/" target="_blank" rel="external">https://instant.io/</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/25/windows/window-cli-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/25/windows/window-cli-usage.html" itemprop="url">Windows常用工具快捷命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:26:43+08:00">
-                2017-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/25/windows/window-cli-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/25/windows/window-cli-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/25/windows/window-cli-usage.html" class="leancloud_visitors" data-flag-title="Windows常用工具快捷命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>Ctrl + r</code>调用出此命令, 但里面常用的应用有:</p>
-<ul>
-<li>mstsc: 远程桌面</li>
-<li>sysdm.cpl : 系统属性</li>
+            <h2 id="代码管理工具">代码管理工具</h2><ul>
+<li>gist工具<ul>
+<li>github gist</li>
+<li><a href="https://www.gistoapp.com/" target="_blank" rel="external"></a>: github gist客户端管理工具</li>
+<li><a href="https://www.cacher.io/" target="_blank" rel="external">cacher</a>: 比github gist更好的第三方在线gist管理</li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/tools/whois.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/tools/whois.html" itemprop="url">WHOIS查询</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:41:02+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/tools/whois.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/tools/whois.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/tools/whois.html" class="leancloud_visitors" data-flag-title="WHOIS查询">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * whois查询接口</div><div class="line"> *</div><div class="line"> * 参考: http://stackoverflow.com/questions/3072247/free-open-source-whois-api</div><div class="line"> * http://www.cnblogs.com/case/articles/1883737.html</div><div class="line"> * http://apidoc.chaxun.la/WHOIS%E6%9F%A5%E8%AF%A2API</div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询域名可用</div><div class="line"> * url: http://panda.www.net.cn/cgi-bin/check.cgi?area_domain=&#123;$domian&#125;</div><div class="line"> * 返回状态说明:</div><div class="line"> * 200: </div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * whois info查询</div><div class="line"> * url:  http://whois.hichina.com/whois/api_whois?host=&#123;$doname&#125;&amp;open=0</div><div class="line"> * post数据:</div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * http://whomsy.com/api/biaomeng.net</div><div class="line"> * 说明文档:http://whomsy.com/apidoc</div><div class="line"> */</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/php/php-design-pattern.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/php/php-design-pattern.html" itemprop="url">PHP设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/php/php-design-pattern.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/php/php-design-pattern.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/php/php-design-pattern.html" class="leancloud_visitors" data-flag-title="PHP设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们常用的php设计模式有: </p>
-<ul>
-<li><a href="#Singleton(单例模式">单例模式</a>)</li>
-<li><a href="#Singleton(单例模式">单例模式</a>)</li>
+</li>
 </ul>
-<h2 id="Interpreter(解释器模式)">Interpreter(解释器模式)</h2><h2 id="Factory(工厂模式)">Factory(工厂模式)</h2><h2 id="Facade(外观模式)">Facade(外观模式)</h2><h2 id="Decorator(装饰模式)">Decorator(装饰模式)</h2><h2 id="Builder(建造者模式)">Builder(建造者模式)</h2><h2 id="Adapter(适配器模式)">Adapter(适配器模式)</h2><h2 id="Template_(模板模式)">Template (模板模式)</h2><h2 id="Command(命令模式)">Command(命令模式)</h2><h2 id="Singleton(单例模式)">Singleton(单例模式)</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。</p>
-<p>单例模式的要点有三个：</p>
-<ol>
-<li>是某个类只能有一个实例；</li>
-<li>是它必须自行创建这个实例；</li>
-<li>是它必须自行向整个系统提供这个实例。</li>
-</ol>
-<p><strong>为什么要使用PHP单例模式？</strong></p>
-<p>多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”.   而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。</p>
-<ol>
-<li><p>php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。</p>
-</li>
-<li><p>如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。</p>
-</li>
-<li><p>在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。</p>
-</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 设计模式之单例模式</div><div class="line">* $_instance必须声明为静态的私有变量</div><div class="line">* 构造函数和析构函数必须声明为私有,防止外部程序new</div><div class="line">* 类从而失去单例模式的意义</div><div class="line">* getInstance()方法必须设置为公有的,必须调用此方法</div><div class="line">* 以返回实例的一个引用</div><div class="line">* ::操作符只能访问静态变量和静态函数</div><div class="line">* new对象都会消耗内存</div><div class="line">* 使用场景:最常用的地方是数据库连接。 </div><div class="line">* 使用单例模式生成一个对象后，</div><div class="line">* 该对象可以被其它众多对象所使用。 </div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">//保存例实例在此属性中</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> $_instance;</div><div class="line"></div><div class="line"><span class="comment">//构造函数声明为private,防止直接创建对象</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">'I am Construceted'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//单例方法</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">singleton</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="keyword">self</span>::$_instance))</div><div class="line">&#123;</div><div class="line">$c=<span class="keyword">__CLASS__</span>;</div><div class="line"><span class="keyword">self</span>::$_instance=<span class="keyword">new</span> $c;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="keyword">self</span>::$_instance;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//阻止用户复制对象实例</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">trigger_error(<span class="string">'Clone is not allow'</span> ,E_USER_ERROR);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span>(<span class="string">"test"</span>);</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这个写法会出错，因为构造方法被声明为private</span></div><div class="line">$test = <span class="keyword">new</span> Example;</div><div class="line"></div><div class="line"><span class="comment">// 下面将得到Example类的单例对象</span></div><div class="line">$test = Example::singleton();</div><div class="line">$test-&gt;test();</div><div class="line"></div><div class="line"><span class="comment">// 复制对象将导致一个E_USER_ERROR.</span></div><div class="line">$test_clone = <span class="keyword">clone</span> $test;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="Observer(观察者模式)">Observer(观察者模式)</h2><h2 id="Strategy(策略模式)">Strategy(策略模式)</h2><h2 id="Visitor_(访问者模式)">Visitor (访问者模式)</h2><h2 id="Memento_(备忘录模式)">Memento (备忘录模式)</h2><h2 id="Prototype_(原型模式)">Prototype (原型模式)</h2><h2 id="Mediator_(中介者模式)">Mediator (中介者模式)</h2><h2 id="FlyWeight_(享元模式)">FlyWeight (享元模式)</h2><h2 id="Chain_Of_Responsibility_(职责链模式)">Chain Of Responsibility (职责链模式)</h2><h2 id="Bridge_(桥接模式)">Bridge (桥接模式)</h2><h2 id="Proxy_(代理模式)">Proxy (代理模式)</h2><h2 id="State_(状态模式)">State (状态模式)</h2><h2 id="Composite_(组合模式)">Composite (组合模式)</h2><h2 id="Interator_(迭代器模式)">Interator (迭代器模式)</h2><hr>
-<p><strong>解释</strong></p>
-<ul>
-<li><p><strong>参考文章</strong></p>
-</li>
-<li><p><a href="http://design-patterns.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="external">图说设计模式</a></p>
-</li>
-<li><a href="http://www.cnblogs.com/bluefrog/archive/2011/06/28/2092634.html" target="_blank" rel="external">php设计模式 (总结)</a></li>
-<li><a href="http://www.cnblogs.com/zox2011/archive/2011/09/20/2182119.html" target="_blank" rel="external">PHP单例模式（转载）</a></li>
-<li><a href="http://www.phppan.com/2010/06/php-design-pattern-6-singleton/" target="_blank" rel="external">PHP设计模式笔记：使用PHP实现单例模式</a></li>
+<h2 id="科学上网">科学上网</h2><ul>
+<li><a href="proxifier">proxifier</a> : 激活码<br>  L6Z8A-XY2J4-BTZ3P-ZZ7DF-A2Q9C（Portable Edition）<br>  5EZ8G-C3WL5-B56YG-SCXM9-6QZAP（Standard Edition）<br>  P427L-9Y552-5433E-8DSR3-58Z68（MAC）</li>
 </ul>
+<h2 id="All_IN_One">All IN One</h2><p><strong>说明</strong></p>
+<p><img src="https://boxcore.github.io/statics/sb/ico/min-oss.svg" alt="Open-Source Software" title="开源软件"> 表示 <strong>开源软件</strong> ，点击进入 <strong>开源</strong> 仓库；<br><img src="https://boxcore.github.io/statics/sb/ico/min-free.svg" alt="Freeware" title="免费软件"> 表示 <strong>免费</strong> 使用，或者个人 <strong>免费</strong> ；<br><img src="https://boxcore.github.io/statics/sb/ico/min-hot.svg" alt="hot" title="热门软件"> 表示 <strong>热门</strong> 的软件；<br><img src="https://boxcore.github.io/statics/sb/ico/min-tuijian.svg" alt="tuijian" title="推荐软件"> 表示 <strong>推荐</strong> 的软件；<br><img src="https://boxcore.github.io/statics/sb/ico/min-bibei.svg" alt="必备" title="装机必备软件"> 表示 <strong>装机必备</strong> 的软件；<br><img src="https://boxcore.github.io/statics/sb/ico/min-app-store.svg" alt="App Store" title="苹果应用商店软件"> 表示 <strong>App store</strong> 连接地址;<br><img src="https://boxcore.github.io/statics/sb/star/red.svg" alt="1 star" title="1星推荐软件"> 表示 <strong>强烈推荐</strong> 的必装神器，数量来表达强烈的程度；</p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/12/22/python/learn-python.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/python/learn-python.html" itemprop="url">Python语言</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:33:05+08:00">
-                2017-12-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/22/python/learn-python.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/22/python/learn-python.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/22/python/learn-python.html" class="leancloud_visitors" data-flag-title="Python语言">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python笔记</p>
-<h1 id="变量类型">变量类型</h1><h2 id="数字">数字</h2><h2 id="字符串">字符串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">my_var= <span class="string">"string"</span></div><div class="line">str(<span class="number">1.2</span>)</div><div class="line">len(my_var)</div><div class="line">my_var.lower()</div><div class="line">my_var.upper()</div><div class="line">my_var.isalpha() <span class="comment"># 是否是字母(纯字母)</span></div><div class="line">word = my_var + len(my_var) <span class="comment"># 字符串拼接</span></div><div class="line"></div><div class="line"><span class="comment"># 字符串索引 </span></div><div class="line">word = <span class="string">"python"</span></div><div class="line"><span class="keyword">print</span> word[<span class="number">2</span>] <span class="comment"># 输出t</span></div><div class="line"><span class="keyword">print</span> word[<span class="number">1</span>:<span class="number">4</span>] <span class="comment"># 输出ytho</span></div></pre></td></tr></table></figure>
-<h1 id="时间处理库">时间处理库</h1><p>首先要引入时间处理库才能使用其相关的函数:  </p>
-<blockquote>
-<p>from datetime import datetime</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">now = datetime.now() <span class="comment"># 获取当前时间格式如: 2014-05-30 07:44:47.352977</span></div><div class="line"><span class="comment"># 获取指定时间</span></div><div class="line"><span class="keyword">print</span> now.year  <span class="comment"># 输出年 2014</span></div><div class="line"><span class="keyword">print</span> now.month <span class="comment"># 输出月 5, 没有前导0</span></div><div class="line"><span class="keyword">print</span> now.day   <span class="comment"># 输出日期 30</span></div><div class="line"><span class="keyword">print</span> now.hour  <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> now.minute <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> now.second <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> <span class="string">'%s/%s/%s %s:%s:%s'</span> % ( now.month, now.day, now.year, now.hour, now.minute, now.second) <span class="comment"># Grand Finale Datetime</span></div></pre></td></tr></table></figure>
-<h1 id="控制结构">控制结构</h1><h2 id="布尔操作(Boolean_Operators)">布尔操作(Boolean Operators)</h2><p>比较运算(comparators): ==, !=, &gt;, &gt;=, &lt;, 和 &lt;=<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bool_1 = <span class="number">100</span> == (<span class="number">2</span>*<span class="number">50</span>) <span class="comment"># True</span></div><div class="line">bool_2 = <span class="number">99</span>!=(<span class="number">98</span>+<span class="number">1</span>) <span class="comment"># False</span></div></pre></td></tr></table></figure></p>
-<h2 id="not|and|or_逻辑判断">not|and|or 逻辑判断</h2><p>优先级: not &gt; and &gt; or  </p>
-<blockquote>
-<p>True or not False and False # returns True. </p>
-</blockquote>
-<h2 id="if流程控制">if流程控制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 判断一</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"></div><div class="line"><span class="comment"># 判断二</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't get printed!"</span></div><div class="line"><span class="keyword">elif</span> <span class="number">8</span> &lt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I also don't get printed!"</span></div></pre></td></tr></table></figure>
-<h2 id="一些测试范例">一些测试范例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Handler</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(self, prefix, name, *args)</span>:</span></div><div class="line">        method = getattr(self,prefix+name,<span class="keyword">None</span>)</div><div class="line">        <span class="keyword">if</span> callable(method): <span class="keyword">return</span> method(*args)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self, name)</span>:</span></div><div class="line">        self.callback(<span class="string">'start_'</span>, name)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end</span><span class="params">(self, name)</span>:</span></div><div class="line">        self.callback(<span class="string">'end_'</span>, name)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(self, name)</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">substitution</span><span class="params">(match)</span>:</span></div><div class="line">            result = self.callback(<span class="string">'sub_'</span>, name, match)</div><div class="line">            <span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">None</span>: match.group(<span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> result</div><div class="line">        <span class="keyword">return</span> substitution</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTMLRenderer</span><span class="params">(Handler)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line"></div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_document</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;html&gt;&lt;head&gt;&lt;title&gt;...&lt;/title&gt;&lt;/head&gt;&lt;body&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_document</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/body&gt;&lt;/html&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_paragraph</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;p&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_paragraph</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/p&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_heading</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;h2&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_heading</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/h2&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_list</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;ul&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_list</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/ul&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_listitem</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;li&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_listitem</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/li&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_title</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;h1&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end_title</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'&lt;/h1&gt;'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sub_emphasis</span><span class="params">(self, match)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;em&gt;%s&lt;/em&gt;'</span> % match.group(<span class="number">1</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sub_url</span><span class="params">(self,  match)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;a href="%s"&gt;%s&lt;/a&gt;'</span> % (match.group(<span class="number">1</span>),match.group(<span class="number">1</span>))</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sub_mail</span><span class="params">(self,  match)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;a href="mailto:%s"&gt;%s&lt;/a&gt;'</span> % (match.group(<span class="number">1</span>),match.group(<span class="number">1</span>))</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">feed</span><span class="params">(self, data)</span>:</span></div><div class="line">        <span class="keyword">print</span> data</div></pre></td></tr></table></figure>
-<p>计划安排<br>学习时间安排：<br>    Python基础 2014/5/30 ~ 2014/6/30</p>
-<p>学习Python主要参考资料:</p>
-<ol>
-<li><a href="https://docs.python.org/2/" target="_blank" rel="external">https://docs.python.org/2/</a>  </li>
-<li><a href="http://www.codecademy.com/zh/tracks/python" target="_blank" rel="external">http://www.codecademy.com/zh/tracks/python</a>  </li>
-<li><a href="http://www.pythondoc.com/pythontutorial27/index.html" target="_blank" rel="external">http://www.pythondoc.com/pythontutorial27/index.html</a>  </li>
-<li><a href="http://sebug.net/paper/python/" target="_blank" rel="external">http://sebug.net/paper/python/</a>  </li>
-<li><a href="http://www.w3cschool.cc/python/python-tutorial.html" target="_blank" rel="external">http://www.w3cschool.cc/python/python-tutorial.html</a>  </li>
-</ol>
-<hr>
-<h2 id="一-_Python基础教程">一. Python基础教程</h2><h3 id="1-1_调用python解析器">1.1 调用python解析器</h3><p><strong>1).  在windows中运行pytion脚本</strong></p>
-<p>设置环境变量:  </p>
-<blockquote>
-<p>set path=%path%;C:\python27</p>
-</blockquote>
-<p><strong>2). 在unix中运行pytion脚本</strong></p>
-<p>首行添加:<br><code>#! /usr/bin/env python</code><br>然后执行shell<br><code>chmod +x myscript.py</code><br>运行 ./myscript.py 就可以编译python脚本.  </p>
-<h2 id="二、多行语句">二、多行语句</h2><p>Python语句中一般以新行作为为语句的结束符。</p>
-<p>但是我们可以使用斜杠（ \）将一行的语句分为多行显示，如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">total = item_one + \</div><div class="line">        item_two + \</div><div class="line">        item_three</div></pre></td></tr></table></figure></p>
-<p>语句中包含[], {} 或 () 括号就不需要使用多行连接符。如下实例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">days = [<span class="string">'Monday'</span>, <span class="string">'Tuesday'</span>, <span class="string">'Wednesday'</span>,</div><div class="line">       <span class="string">'Thursday'</span>, <span class="string">'Friday'</span>]</div></pre></td></tr></table></figure></p>
-<h2 id="Python_引号">Python 引号</h2><p>Python 接收单引号(‘ )，双引号(“ )，三引号(‘’’ “””) 来表示字符串，引号的开始与结束必须的相同类型的。</p>
-<p>其中三引号可以由多行组成，编写多行文本的快捷语法，常用语文档字符串，在文件的特定地点，被当做注释。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">word = <span class="string">'word'</span></div><div class="line">sentence = <span class="string">"This is a sentence."</span></div><div class="line">paragraph = <span class="string">"""This is a paragraph. It is</span></div><div class="line">made up of multiple lines and sentences."""</div></pre></td></tr></table></figure></p>
-<h2 id="Python注释">Python注释</h2><p>python中单行注释采用 # 开头。python没有块注释，所以现在推荐的多行注释也是采用的 #</p>
-<p>##Python空行<br>函数之间或类的方法之间用空行分隔，表示一段新的代码的开始。类和函数入口之间也用一行空行分隔，以突出函数入口的开始。</p>
-<p>空行与代码缩进不同，空行并不是Python语法的一部分。书写时不插入空行，Python解释器运行也不会出错。但是空行的作用在于分隔两段不同功能或含义的代码，便于日后代码的维护或重构。</p>
-<p>记住：空行也是程序代码的一部分。</p>
-<h2 id="等待用户输入">等待用户输入</h2><p>raw_input函数按回车键后就会等待用户输入：  </p>
-<blockquote>
-<p>raw_input(“\n\nPress the enter key to exit.”)</p>
-</blockquote>
-<h2 id="同一行显示多条语句">同一行显示多条语句</h2><p>Python可以在同一行中使用多条语句，语句之间使用分号(;)分割，以下是一个简单的实例：  </p>
-<blockquote>
-<p>import sys; x = ‘foo’; sys.stdout.write(x + ‘\n’)</p>
-</blockquote>
-<h1 id="变量类型-1">变量类型</h1><p>变量存储在内存中的值。这就意味着在创建变量时会在内存中开辟一个空间。基于变量的数据类型，解释器会分配指定内存，并决定什么数据可以被存储在内存中。因此，变量可以指定不同的数据类型，这些变量可以存储整数，小数或字符。</p>
-<p>python允许同时为多个变量赋值: </p>
-<ol>
-<li>为多个变量赋同个值: a = b = c = 1  </li>
-<li>多个对象指定多个变量: a, b, c = 1, 2, “john”   </li>
-</ol>
-<p>Python有五个标准的数据类型：</p>
-<pre><code>Numbers（数字）
-<span class="built_in">String</span>（字符串）
-<span class="built_in">List</span>（列表）
-Tuple（元组）
-Dictionary（字典）
-</code></pre><h2 id="数字-1">数字</h2><h2 id="字符串-1">字符串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">my_var= <span class="string">"string"</span></div><div class="line">str(<span class="number">1.2</span>)</div><div class="line">len(my_var)</div><div class="line">my_var.lower()</div><div class="line">my_var.upper()</div><div class="line">my_var.isalpha() <span class="comment"># 是否是字母(纯字母)</span></div><div class="line">word = my_var + len(my_var) <span class="comment"># 字符串拼接</span></div><div class="line"></div><div class="line"><span class="comment"># 字符串索引 </span></div><div class="line">word = <span class="string">"python"</span></div><div class="line"><span class="keyword">print</span> word[<span class="number">2</span>] <span class="comment"># 输出t</span></div><div class="line"><span class="keyword">print</span> word[<span class="number">1</span>:<span class="number">4</span>] <span class="comment"># 输出ytho</span></div></pre></td></tr></table></figure>
-<h2 id="函数">函数</h2><p>函数的定义由3部分组成:  </p>
-<ol>
-<li>header头, 包含 <code>def</code>函数定义关键字, 函数名 和 参数(parameters): def tax(bill):</li>
-<li>注释,说明函数作用, 在函数header头第二行</li>
-<li>函数主体(body), 必须使用缩进</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tax</span><span class="params">(bill)</span>:</span></div><div class="line">    <span class="string">"""Adds 8% tax to a restaurant bill."""</span></div><div class="line">    bill *= <span class="number">1.08</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"With tax: %f"</span> % bill</div><div class="line">    <span class="keyword">return</span> bill</div><div class="line"></div><div class="line">meal_with_tax = tax(<span class="number">100</span>)</div></pre></td></tr></table></figure>
-<h1 id="时间处理库-1">时间处理库</h1><p>首先要引入时间处理库才能使用其相关的函数:  </p>
-<blockquote>
-<p>from datetime import datetime</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">now = datetime.now() <span class="comment"># 获取当前时间格式如: 2014-05-30 07:44:47.352977</span></div><div class="line"><span class="comment"># 获取指定时间</span></div><div class="line"><span class="keyword">print</span> now.year  <span class="comment"># 输出年 2014</span></div><div class="line"><span class="keyword">print</span> now.month <span class="comment"># 输出月 5, 没有前导0</span></div><div class="line"><span class="keyword">print</span> now.day   <span class="comment"># 输出日期 30</span></div><div class="line"><span class="keyword">print</span> now.hour  <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> now.minute <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> now.second <span class="comment"># </span></div><div class="line"><span class="keyword">print</span> <span class="string">'%s/%s/%s %s:%s:%s'</span> % ( now.month, now.day, now.year, now.hour, now.minute, now.second) <span class="comment"># Grand Finale Datetime</span></div></pre></td></tr></table></figure>
-<h1 id="控制结构-1">控制结构</h1><h2 id="布尔操作(Boolean_Operators)-1">布尔操作(Boolean Operators)</h2><p>比较运算(comparators): ==, !=, &gt;, &gt;=, &lt;, 和 &lt;=<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bool_1 = <span class="number">100</span> == (<span class="number">2</span>*<span class="number">50</span>) <span class="comment"># True</span></div><div class="line">bool_2 = <span class="number">99</span>!=(<span class="number">98</span>+<span class="number">1</span>) <span class="comment"># False</span></div></pre></td></tr></table></figure></p>
-<h2 id="not|and|or_逻辑判断-1">not|and|or 逻辑判断</h2><p>优先级: not &gt; and &gt; or  </p>
-<blockquote>
-<p>True or not False and False # returns True. </p>
-</blockquote>
-<h2 id="if流程控制-1">if流程控制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 判断一</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"></div><div class="line"><span class="comment"># 判断二</span></div><div class="line"><span class="keyword">if</span> <span class="number">8</span> &gt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I don't get printed!"</span></div><div class="line"><span class="keyword">elif</span> <span class="number">8</span> &lt; <span class="number">9</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I get printed!"</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I also don't get printed!"</span></div></pre></td></tr></table></figure>
-<h2 id="while语句">while语句</h2>
           
         
       
@@ -2086,7 +1960,7 @@ Dictionary（字典）
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2131,7 +2005,7 @@ Dictionary（字典）
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2142,7 +2016,7 @@ Dictionary（字典）
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -2153,7 +2027,7 @@ Dictionary（字典）
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

@@ -95,28 +95,28 @@
 
 
 
-<meta name="description" content="windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
+<meta name="description" content="cmd编码windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
 命令帮助
 chcp [编码编号]
 
-编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　1255 希伯">
+编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMD学习笔记">
 <meta property="og:url" content="http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
+<meta property="og:description" content="cmd编码windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
 命令帮助
 chcp [编码编号]
 
-编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　1255 希伯">
-<meta property="og:updated_time" content="2018-03-05T03:02:28.367Z">
+编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　12">
+<meta property="og:updated_time" content="2018-05-14T02:11:16.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CMD学习笔记">
-<meta name="twitter:description" content="windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
+<meta name="twitter:description" content="cmd编码windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是936 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令chcp了。
 命令帮助
 chcp [编码编号]
 
-编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　1255 希伯">
+编码编号： 指系统字符集编码编号，该字符集在CONFIG.SYS文件中由COUNTRY命令定义,对应的编码编号如下:  1258 越南语　　1257 波罗的语　　1256 阿拉伯语　　12">
 
 
 
@@ -426,8 +426,8 @@ chcp [编码编号]
       
 
       
-        <p>windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是<code>936</code> 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令<code>chcp</code>了。</p>
-<h2 id="命令帮助">命令帮助</h2><blockquote>
+        <h3 id="cmd编码">cmd编码</h3><p>windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是<code>936</code> 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令<code>chcp</code>了。</p>
+<h4 id="命令帮助">命令帮助</h4><blockquote>
 <p>chcp [编码编号]</p>
 <ul>
 <li>编码编号： 指系统字符集编码编号，该字符集在<code>CONFIG.SYS</code>文件中由COUNTRY命令定义,对应的编码编号如下:<br>  1258 越南语<br>　　1257 波罗的语<br>　　1256 阿拉伯语<br>　　1255 希伯来语<br>　　1254 土耳其语<br>　　1253 希腊语<br>　　1252 拉丁 1 字符 (ANSI)<br>　　1251 西里尔语<br>　　1250 中欧语言<br>　　950 繁体中文<br>　　949 朝鲜语<br>　　936 简体中文（默认）<br>　　932 日语<br>　　874 泰国语<br>　　850 多语种 (MS-DOS Latin1)<br>　　437 MS-DOS 美国英语 </li>
@@ -438,6 +438,19 @@ chcp [编码编号]
 <li>chcp 65001 就是换成UTF-8代码页 </li>
 <li>chcp 936 可以换回默认的GBK </li>
 <li>chcp 437 是美国英语 </li>
+</ul>
+<h3 id="进入指定目录">进入指定目录</h3><ol>
+<li>切换盘： &gt; D:\dir\dir</li>
+<li>切目录： cd dir\dir\</li>
+</ol>
+<h3 id="环境变量">环境变量</h3><blockquote>
+<p>set path=%path%;C:\python27<br>说明，windows中添加环境变量后可以直接在cmd窗口中敲其快捷的命令，一般设置命令的目录为环境变量即可。</p>
+<p>添加环境变量设置生效： set PATH=dir  （需要重开cmd窗口）</p>
+<p>查看环境变量： echo %PATH%</p>
+</blockquote>
+<h3 id="ipconfig使用">ipconfig使用</h3><ul>
+<li><code>ipconfig -a</code>: 显示所有ip</li>
+<li><code>ipconfig /flushdns</code>: 刷新dns缓存</li>
 </ul>
 
       
@@ -589,7 +602,7 @@ chcp [编码编号]
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -600,7 +613,7 @@ chcp [编码编号]
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -611,7 +624,7 @@ chcp [编码编号]
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -671,7 +684,7 @@ chcp [编码编号]
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令帮助"><span class="nav-number">1.</span> <span class="nav-text">命令帮助</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#cmd编码"><span class="nav-number">1.</span> <span class="nav-text">cmd编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令帮助"><span class="nav-number">1.1.</span> <span class="nav-text">命令帮助</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入指定目录"><span class="nav-number">2.</span> <span class="nav-text">进入指定目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">3.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipconfig使用"><span class="nav-number">4.</span> <span class="nav-text">ipconfig使用</span></a></li></ol></div>
             
 
           </div>

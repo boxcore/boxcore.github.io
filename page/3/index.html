@@ -329,7 +329,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-observer.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +348,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/01/linux/linux-vncserver-usage.html" itemprop="url">Linux下VNC服务安装与配置</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-observer.html" itemprop="url">观察者模式</a></h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T17:48:22+08:00">
-                2018-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:51:22+08:00">
+                2018-04-04
               </time>
             
 
@@ -383,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -401,9 +401,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/01/linux/linux-vncserver-usage.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-observer.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/01/linux/linux-vncserver-usage.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-observer.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -411,7 +411,7 @@
 
           
           
-             <span id="/2018/03/01/linux/linux-vncserver-usage.html" class="leancloud_visitors" data-flag-title="Linux下VNC服务安装与配置">
+             <span id="/2018/04/04/php/php-design-patterns-observer.html" class="leancloud_visitors" data-flag-title="观察者模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -441,8 +441,7 @@
       
         
           
-            <h2 id="安装vnc">安装vnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">yum install -y tigervnc-server tigervn</div><div class="line">vncserver</div><div class="line">systemctl start vncserver@:1.service <span class="comment"># or vncserver :1</span></div><div class="line">systemctl <span class="built_in">enable</span> vncserver@:1.service  <span class="comment"># 设置开机启动</span></div><div class="line">systemctl stop vncserver@:1.service <span class="comment"># 关闭 或 vncserver -kill :1</span></div><div class="line"></div><div class="line">firewall-cmd --permanent --add-port=5901/tcp  <span class="comment"># 防火墙配置</span></div><div class="line">service firewalld restart</div></pre></td></tr></table></figure>
-<h2 id="卸载_tigervnc">卸载 tigervnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">yum remove  -y tigervnc-server tigervn</div><div class="line">systemctl stop vncserver@:1.service</div><div class="line">rm -rf ~\.vnc</div></pre></td></tr></table></figure>
+            
           
         
       
@@ -485,7 +484,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/28/affiliate/index.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-strategy.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -504,7 +503,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/28/affiliate/index.html" itemprop="url">优秀产品推荐</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-strategy.html" itemprop="url">策略模式</a></h1>
         
 
         <div class="post-meta">
@@ -516,147 +515,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T12:17:07+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/28/affiliate/index.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/affiliate/index.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/28/affiliate/index.html" class="leancloud_visitors" data-flag-title="优秀产品推荐">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="交易平台">交易平台</h2><ul>
-<li><a href="https://vip.zb.com/activity/joinbtc?tuijianid=36c87688cfcbcb1d34afb17dd197fd27" target="_blank" rel="external">ZB</a>： 国人使用最多的区块链交易平台</li>
-</ul>
-<h2 id="VPS">VPS</h2><ul>
-<li><a href="https://www.vultr.com/?ref=7229300" target="_blank" rel="external">vultr</a>: 国外云主机推荐，有日本东京机房，海外一般走CN2线路</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/13/linux/deploy-fastdfs.html" itemprop="url">分布式文件系统FastDFS搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T10:41:23+08:00">
-                2018-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:27:57+08:00">
+                2018-04-04
               </time>
             
 
@@ -678,8 +538,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -696,9 +556,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/13/linux/deploy-fastdfs.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-strategy.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/13/linux/deploy-fastdfs.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-strategy.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -706,7 +566,7 @@
 
           
           
-             <span id="/2018/02/13/linux/deploy-fastdfs.html" class="leancloud_visitors" data-flag-title="分布式文件系统FastDFS搭建">
+             <span id="/2018/04/04/php/php-design-patterns-strategy.html" class="leancloud_visitors" data-flag-title="策略模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -736,7 +596,13 @@
       
         
           
-            
+            <ol>
+<li>策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式</li>
+<li>实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告</li>
+<li>使用策略模式可以实现 Ioc，依赖倒置、控制反转</li>
+</ol>
+<h2 id="代码实现和使用">代码实现和使用</h2><h2 id="控制反转">控制反转</h2><p>策略模式 依赖到置。 解耦。<br>[ 查看全文 ]</p>
+
           
         
       
@@ -779,7 +645,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-data-mapper.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -798,7 +664,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/awesome-tools/awesome-windows.html" itemprop="url">Awesome Windows</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-data-mapper.html" itemprop="url">数据对象映射模式</a></h1>
         
 
         <div class="post-meta">
@@ -810,8 +676,1121 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T17:18:48+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:27:57+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/04/php/php-design-patterns-data-mapper.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-data-mapper.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/04/php/php-design-patterns-data-mapper.html" class="leancloud_visitors" data-flag-title="数据对象映射模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。</li>
+<li>在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。</li>
+<li><ol>
+<li>结合使用数据对象映射模式，工厂模式，注册器模式</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-adapter.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-adapter.html" itemprop="url">适配器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:18:25+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/04/php/php-design-patterns-adapter.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-adapter.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/04/php/php-design-patterns-adapter.html" class="leancloud_visitors" data-flag-title="适配器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>新建一个IDatabase</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host,$user,$password,$dbname)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line">Database下面的 mysql mysqli pdo</div><div class="line"><span class="keyword">namespace</span> <span class="title">IMooc</span>\<span class="title">Database</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">IMooc</span>\<span class="title">IDatabase</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mysql</span> <span class="keyword">implements</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="keyword">protected</span> $conn;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host, $user, $password, $dbname)</span></span>&#123;</div><div class="line">		$conn = mysql_connect($host,$user,$password);</div><div class="line">		mysql_db_name($dbname,$conn);</div><div class="line">		<span class="keyword">$this</span>-&gt;conn = $conn;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>&#123;</div><div class="line">		$res = mysql_query($sql,<span class="keyword">$this</span>-&gt;conn);</div><div class="line">		<span class="keyword">return</span> $res;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>&#123;</div><div class="line">		mysql_close(<span class="keyword">$this</span>-&gt;conn);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="keyword">namespace</span> <span class="title">IMooc</span>\<span class="title">Database</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">IMooc</span>\<span class="title">IDatabase</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PDO</span> <span class="keyword">implements</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="keyword">protected</span> $conn;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host,$user,$password,$dbname)</span></span>&#123;</div><div class="line">		$conn = <span class="keyword">new</span> \PDO(<span class="string">"mysql:host=$host;dbname=$dbname"</span>,$user,$password);</div><div class="line">		<span class="keyword">$this</span>-&gt;conn = $conn;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;conn-&gt;query($sql);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;conn);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-decorator.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-design-patterns-decorator.html" itemprop="url">装饰器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T01:49:15+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-design-patterns-decorator.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-design-patterns-decorator.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-design-patterns-decorator.html" class="leancloud_visitors" data-flag-title="装饰器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>定义一个装饰器的接口，声明两个方法，beforXXX() afterXXX(), 然后在类里定义一个方法 addDecorator 添加一个装饰器，保存到一个内部数组，再定义一个beforXXX() afterXXX(); 分别循环每个装饰器，执行装饰器里定义的beforXXX  afterXXX方法, 最后在执行代码之前和之后添加$this-&gt;beforXXX()  和 $this-&gt;afterXXX()</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-iterator.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-design-patterns-iterator.html" itemprop="url">迭代器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T01:05:35+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-design-patterns-iterator.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-design-patterns-iterator.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-design-patterns-iterator.html" class="leancloud_visitors" data-flag-title="迭代器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<blockquote>
+<blockquote>
+<p>迭代器模式</p>
+<ol>
+<li>迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素</li>
+<li>相比传统的编程模式，迭代器模式可以隐藏遍历元素所需的操作</li>
+</ol>
+<p>应用场景<br>遍历数据库表，拿到所有的user对象，然后用佛 foreach 循环，在循环的过程中修改某些字段的值。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>如果一个对象是一个集合，比如数据结果集。<br>我们通常需要逐个取出每一个元素，如果想用foreach逐个取出的话，集合类需要继承迭代器接口，实现接口中的方法，才可以被foreach迭代。<br>迭代器模式其实就是可使用foreach模式.</p>
+<p>迭代器需要实现的方法：</p>
+<ol>
+<li>rewind，将索引重置到数组第一个元素；</li>
+<li>valid，验证数据有效性；</li>
+<li>current，获取当前数据；</li>
+<li>next，将索引值向下移动；</li>
+<li>key，获取当前索引</li>
+</ol>
+<h2 id="参考资料">参考资料</h2><ul>
+<li>Iterator（迭代器）接口 :<a href="http://php.net/manual/zh/class.iterator.php" target="_blank" rel="external">http://php.net/manual/zh/class.iterator.php</a></li>
+<li><a href="http://designpatternsphp.readthedocs.io/zh_CN/latest/Behavioral/Iterator/README.html" target="_blank" rel="external">http://designpatternsphp.readthedocs.io/zh_CN/latest/Behavioral/Iterator/README.html</a></li>
+<li><a href="http://laravelacademy.org/post/2882.html" target="_blank" rel="external">http://laravelacademy.org/post/2882.html</a></li>
+<li><a href="https://segmentfault.com/a/1190000007547513" target="_blank" rel="external">https://segmentfault.com/a/1190000007547513</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-magic-methods.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-magic-methods.html" itemprop="url">PHP魔术方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T00:53:26+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-magic-methods.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-magic-methods.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-magic-methods.html" class="leancloud_visitors" data-flag-title="PHP魔术方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>php中的魔术方法有<strong>construct()， </strong>destruct()， <strong>call()， </strong>callStatic()， <strong>get()， </strong>set()， <strong>isset()， </strong>unset()， <strong>sleep()， </strong>wakeup()， <strong>toString()， </strong>invoke()， <strong>set_state()， </strong>clone() 和 __debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。</p>
+<p><code>__get</code>/<code>__set</code>    类的属性魔术方法，当外部访问私有或者未定义属性时自动调用<br><code>__call</code>/<code>__callStatic</code>   类的方法魔术方法，当外部访问私有或者未定义方法以及静态方法的时候自动调用  <code>__callStatic</code>也必须声明为static<br><code>__toString</code>    将类的对象当成字符串使用时自动调用<br><code>__invoke</code>     将类的对象当成函数使用时自动调用</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-spl.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-spl.html" itemprop="url">SPL标准库使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T00:02:44+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-spl.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-spl.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-spl.html" class="leancloud_visitors" data-flag-title="SPL标准库使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SPL库常用四中数据结构<br>栈：(先进后出)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$stack = <span class="keyword">new</span> SplStack();</div><div class="line">$stack-&gt;push(<span class="string">'data1\n'</span>); <span class="comment">// 入栈</span></div><div class="line"><span class="keyword">echo</span> $stack-&gt;pop(); <span class="comment">// 出栈</span></div></pre></td></tr></table></figure></p>
+<p>队列:（先进先出）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$queue = <span class="keyword">new</span> SplQueue();</div><div class="line">$quue-&gt;enqueue(<span class="string">'data'</span>); <span class="comment">// 入队</span></div><div class="line"><span class="keyword">echo</span> $queue-&gt;dequeue(); <span class="comment">// 出队</span></div></pre></td></tr></table></figure></p>
+<p>堆：（先进先出）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$heap = <span class="keyword">new</span> SplMinHeap();</div><div class="line">$heap-&gt;insert(<span class="string">'data'</span>); <span class="comment">// 存入</span></div><div class="line"><span class="keyword">echo</span> $heap-&gt;extract(); <span class="comment">// 提取</span></div></pre></td></tr></table></figure></p>
+<p>固定数组：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$array = <span class="keyword">new</span> SplFixedArray(<span class="number">10</span>); <span class="comment">// //输入长度值</span></div><div class="line">$array[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">$array[<span class="number">9</span>]=<span class="number">10</span>;</div><div class="line">var_dump($array);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/30/awesome-tools/awesome-software.html" itemprop="url">Awesome Software</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T15:48:39+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/30/awesome-tools/awesome-software.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/30/awesome-tools/awesome-software.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/30/awesome-tools/awesome-software.html" class="leancloud_visitors" data-flag-title="Awesome Software">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="网盘同步">网盘同步</h2><ul>
+<li>dropbox离线安装包: <a href="https://www.dropbox.com/downloading?type=full" target="_blank" rel="external">https://www.dropbox.com/downloading?type=full</a></li>
+</ul>
+<h2 id="原型工具">原型工具</h2><ul>
+<li>Axure 8<br>激活码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Team Edition</div><div class="line">Koshy</div><div class="line">wTADPqxn3KChzJxLmUr5jTTitCgsfRkftQQ1yIG9HmK83MYSm7GPxLREGn+Ii6xY</div><div class="line"></div><div class="line">Pro edition</div><div class="line">Koshy</div><div class="line">vOGJRhoXEfnOfMy5CtKnY2kY7dy6XacABiPhi5hxeoSrpaUwt3ErjXW8BL86t7DR</div><div class="line"></div><div class="line">Enterprise edition</div><div class="line">Koshy</div><div class="line">G+8mHClRTq3V9jVHXHwbe7iCcXfl5u1ssC+NzEcR7gYjffEukH6d3N1B/6/79ZRZ</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/tools/teredo-ipv6-setting.html" itemprop="url">通过teredo获取ipv6地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T21:05:21+08:00">
+                2018-03-07
               </time>
             
 
@@ -851,9 +1830,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/12/awesome-tools/awesome-windows.html#comments" itemprop="discussionUrl">
+                <a href="/2018/03/07/tools/teredo-ipv6-setting.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/12/awesome-tools/awesome-windows.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/07/tools/teredo-ipv6-setting.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -861,7 +1840,7 @@
 
           
           
-             <span id="/2018/02/12/awesome-tools/awesome-windows.html" class="leancloud_visitors" data-flag-title="Awesome Windows">
+             <span id="/2018/03/07/tools/teredo-ipv6-setting.html" class="leancloud_visitors" data-flag-title="通过teredo获取ipv6地址">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -891,939 +1870,23 @@
       
         
           
-            <h2 id="包管理工具">包管理工具</h2><ul>
-<li><a href="https://chocolatey.org/" target="_blank" rel="external">chocolatey</a>: The package manager for Windows, 类似于mac下的brew</li>
+            <p>因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.</p>
+<p>那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤</p>
+<h2 id="一、window下开启">一、window下开启</h2><p>说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">netsh int ipv6 show int <span class="comment"># 查看所有适配器</span></div><div class="line">netsh int ipv6 show teredo <span class="comment"># 查看teredo适配器状态</span></div><div class="line">netsh int ipv6 show route <span class="comment"># </span></div><div class="line">netsh int ter <span class="built_in">set</span> state client</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net <span class="comment"># 设置teredo服务器</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-1_win10开启ipv6">1.1 win10开启ipv6</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.com</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state enterpriseclient server=default</div><div class="line"></div><div class="line"><span class="comment"># 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试</span></div><div class="line">ping -6 ipv6.test-ipv6.com</div><div class="line">ping -6 [2001:470:1:18::125]</div><div class="line"></div><div class="line">netsh interface ipv6 reset <span class="comment"># 重置 IPv6 配置， 需要重启系统</span></div><div class="line">-------------------- 重启后的分割线 -----</div><div class="line"></div><div class="line">ipconfig /all <span class="comment"># 查看当前网络信息</span></div><div class="line"></div><div class="line"><span class="comment"># 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法</span></div><div class="line"></div><div class="line"><span class="comment"># 第一种：修改 Teredo 服务器为 teredo.remlab.net</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line"></div><div class="line"><span class="comment"># 第二种：先卸载当前 Teredo 适配器再重新启用</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">disable</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">type</span>=default</div><div class="line">ping -6 ipv6.test-ipv6.com</div></pre></td></tr></table></figure>
+<p><strong>批量脚本</strong></p>
+<blockquote>
+<p>参考来源:<a href="https://github.com/XX-net/XX-Net/issues/7000" target="_blank" rel="external">https://github.com/XX-net/XX-Net/issues/7000</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@<span class="built_in">echo</span> off</div><div class="line">net start <span class="string">"ip helper"</span></div><div class="line">netsh interface ipv6 show teredo</div><div class="line">netsh interface teredo <span class="built_in">set</span> state default</div><div class="line">netsh interface 6to4 <span class="built_in">set</span> state default</div><div class="line">netsh interface isatap <span class="built_in">set</span> state default</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line">netsh interface ipv6 <span class="built_in">set</span> teredo enterpriseclient</div><div class="line">netsh int ter <span class="built_in">set</span> state enterpriseclient</div><div class="line">ipconfig /all</div><div class="line">netsh int ipv6 show int</div><div class="line">netsh int ipv6 show route</div><div class="line">netsh int ipv6 show teredo</div><div class="line">route DELETE ::/0</div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div><div class="line">netsh int ipv6 show prefix</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2002::/16 30 1</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2001::/32 5 1</div><div class="line">route <span class="built_in">print</span></div><div class="line">netsh interface ipv6 show address</div><div class="line">netsh interface ipv6 show route</div><div class="line">cmd</div><div class="line"></div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div></pre></td></tr></table></figure>
+<h2 id="二、mac开启ipv6">二、mac开启ipv6</h2><ul>
+<li>安装miredo <a href="https://github.com/darconeous/miredo-osx" target="_blank" rel="external">https://github.com/darconeous/miredo-osx</a></li>
+<li>下载安装： <a href="https://sourceforge.net/projects/tuntaposx/" target="_blank" rel="external">https://sourceforge.net/projects/tuntaposx/</a></li>
 </ul>
-<p>以管理员模式运行cmd,输入命令:</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@"<span class="variable">%SystemRoot%</span>\System32\WindowsPowerShell\v1.<span class="number">0</span>\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.<span class="built_in">Net</span>.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; <span class="built_in">SET</span> "<span class="built_in">PATH</span>=<span class="variable">%PATH%</span>;<span class="variable">%ALLUSERSPROFILE%</span>\chocolatey\bin"</div></pre></td></tr></table></figure>
-<h2 id="文件管理">文件管理</h2><ul>
-<li><a href="http://www.listary.com/download" target="_blank" rel="external">listary</a>:一个快递打卡应用的软件, 快捷键是按2次<code>ctrl</code></li>
-<li><a href="http://cn.ejie.me/" target="_blank" rel="external">Clover</a>: Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/12/windows/window-share-wifi.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/12/windows/window-share-wifi.html" itemprop="url">Windows下共享WiFi</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T10:12:38+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/12/windows/window-share-wifi.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/12/windows/window-share-wifi.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/12/windows/window-share-wifi.html" class="leancloud_visitors" data-flag-title="Windows下共享WiFi">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">netsh wlan <span class="built_in">set</span> hostednetwork <span class="built_in">mode</span>=disallow # 关闭</div><div class="line">netsh wlan <span class="built_in">set</span> hostednetwork <span class="built_in">mode</span>=allow ssid=CMCC_free key=abc654321</div><div class="line">netsh wlan stop hostednetwork</div><div class="line">netsh wlan <span class="built_in">start</span> hostednetwork</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/08/linux/linux-htpasswd-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/linux/linux-htpasswd-usage.html" itemprop="url">使用htpasswd设置web密码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T16:58:52+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/08/linux/linux-htpasswd-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/08/linux/linux-htpasswd-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/08/linux/linux-htpasswd-usage.html" class="leancloud_visitors" data-flag-title="使用htpasswd设置web密码">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>网页验证密码可以通过nginx的<code>ngx_http_auth_basic_module</code>模块进行配置，但生产账号和密码则需要用到htpasswd这个工具</p>
-<h2 id="一、安装htpasswd">一、安装htpasswd</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum  -y install httpd-tools  <span class="comment"># centos安装</span></div><div class="line"></div><div class="line">htpasswd -c /usr/<span class="built_in">local</span>/nginx/passwd <span class="variable">$USER_NAME</span></div></pre></td></tr></table></figure>
-<h2 id="二、使用">二、使用</h2><p>htpasswd支持的参数如下：</p>
-<ul>
-<li><code>-c</code>: 创建一个加密文件</li>
-<li><code>-n</code>: 不更新加密文件，只将htpasswd命令加密后的用户名密码显示在屏幕上</li>
-<li><code>-m</code>: 默认htpassswd命令采用MD5算法对密码进行加密</li>
-<li><code>-d</code>: htpassswd命令采用CRYPT算法对密码进行加密</li>
-<li><code>-p</code>: htpassswd命令不对密码进行进行加密，即明文密码</li>
-<li><code>-s</code>: htpassswd命令采用SHA算法对密码进行加密</li>
-<li><code>-b</code>: htpassswd命令行中一并输入用户名和密码而不是根据提示输入密码</li>
-<li><code>-D</code>: 删除指定的用户</li>
-</ul>
-<h3 id="2-1_htpasswd密码配置">2.1 htpasswd密码配置</h3><p>利用htpasswd命令添加用户： <code>htpasswd -bc ./.passwd username pass</code><br>在原有密码文件中增加下一个用户: <code>htpasswd -b ./.passwd onlyzq pass</code><br>利用 htpasswd 命令修改密码: <code>htpasswd -D .passwd username</code> 或指定密码 <code>htpasswd -b .passwd username pass</code><br>用htpasswd命令删除用户名和密码： <code>htpasswd -D .passwd username</code></p>
-<h3 id="2-2_在nginx中启用密码访问">2.2 在nginx中启用密码访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    server_name  localhost;</div><div class="line">    ... ...</div><div class="line">    auth_basic &quot;Please input password&quot;;</div><div class="line">    auth_basic_user_file /usr/local/nginx/passwd;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/07/fgfw/rslsync-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/fgfw/rslsync-usage.html" itemprop="url">Resilio Sync使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T18:04:43+08:00">
-                2018-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/07/fgfw/rslsync-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/07/fgfw/rslsync-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/07/fgfw/rslsync-usage.html" class="leancloud_visitors" data-flag-title="Resilio Sync使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、安装">一、安装</h2><h3 id="1-1_linux下安装rslsync">1.1 linux下安装rslsync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># centos</span></div><div class="line">rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc</div><div class="line">yum update</div><div class="line">yum install resilio-sync</div><div class="line">ll</div><div class="line">rslsync --webui.listen 0.0.0.0:8888</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/05/linux/linux-get-cur-dir.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/05/linux/linux-get-cur-dir.html" itemprop="url">Linux文件操作命令之获取当前目录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T15:39:06+08:00">
-                2018-02-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/05/linux/linux-get-cur-dir.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/05/linux/linux-get-cur-dir.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/05/linux/linux-get-cur-dir.html" class="leancloud_visitors" data-flag-title="Linux文件操作命令之获取当前目录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="readlink">readlink</h2><p>readlink– help<br>用法：readlink【选项】… 文件输出符号链接值或权威文件名。</p>
-<ul>
-<li><code>-f, --canonicalize</code> 递归跟随给出文件名的所有符号链接以标准化，除最后一个外所有组件必须存在</li>
-<li><code>-e, -- canonicalize-existing</code> 递归跟随给出文件名的所有符号链接以标准化，所有组件都必须存在</li>
-<li><code>-m, -- canonicalize-missing</code> 递归跟随给出文件名的所有符号链接以标准化，但不对组件存在性作出要求</li>
-<li><code>-n, --nonewline</code> 不输出尾随的新行</li>
-<li><code>-q; quiet,</code></li>
-<li><code>-s, --silent</code> 缩减大多数的错误消息</li>
-<li><code>-v, --verbose</code> 报告所有错误消息</li>
-<li><code>--help</code> 显示此帮助信息并退出</li>
-<li><code>--version</code> 显示版本信息并退出</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SHELL_FOLDER=$(dirname $(readlink <span class="_">-f</span> <span class="string">"<span class="variable">$0</span>"</span>)) <span class="comment">#最佳方案</span></div><div class="line">SHELL_FOLDER=$(<span class="built_in">cd</span> <span class="string">"<span class="variable">$(dirname "$0")</span>"</span>;<span class="built_in">pwd</span>) </div><div class="line">SHELL_FOLDER=$(dirname <span class="string">"<span class="variable">$0</span>"</span>) <span class="comment"># 不一定是绝对路径</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-curl-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/php/php-curl-usage.html" itemprop="url">PHP CURL使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T20:31:18+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/php/php-curl-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/01/php/php-curl-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/01/php/php-curl-usage.html" class="leancloud_visitors" data-flag-title="PHP CURL使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">'X-FORWARDED-FOR:111.222.333.4'</span>, <span class="string">'CLIENT-IP:111.222.333.4'</span>)); <span class="comment">// 伪造IP </span></div><div class="line">curl_setopt($ch, CURLOPT_REFERER, <span class="string">"http://www.test.com"</span>); <span class="comment">// 伪造来源  </span></div><div class="line"></div><div class="line">curl_setopt($ch, CURLOPT_PROXY, <span class="string">"http://111.222.333.4:110"</span>);  <span class="comment">// 使用代理访问</span></div><div class="line">curl_setopt($ch,CURLOPT_ENCODING , <span class="string">"gzip"</span>); <span class="comment">// 解开gzip网页文件</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">gunzip</span><span class="params">($zipped)</span> </span>&#123;</div><div class="line">      $offset = <span class="number">0</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,<span class="number">0</span>,<span class="number">2</span>) == <span class="string">"\x1f\x8b"</span>)</div><div class="line">         $offset = <span class="number">2</span>;</div><div class="line">      <span class="keyword">if</span> (substr($zipped,$offset,<span class="number">1</span>) == <span class="string">"\x08"</span>)  &#123;</div><div class="line">         <span class="comment"># file_put_contents("tmp.gz", substr($zipped, $offset - 2));</span></div><div class="line">         <span class="keyword">return</span> gzinflate(substr($zipped, $offset + <span class="number">8</span>));</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="string">"Unknown Format"</span>;</div><div class="line">   &#125;  </div><div class="line"></div><div class="line">      $headers_enabled = <span class="number">1</span>;</div><div class="line">      curl_setopt($c, CURLOPT_HEADER,  $headers_enabled)</div><div class="line">      $ret = curl_exec($c);</div><div class="line"></div><div class="line">      <span class="keyword">if</span> ($headers_enabled) &#123;</div><div class="line">         <span class="comment"># file_put_contents("preungzip.html", $ret);</span></div><div class="line"></div><div class="line">         $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $ret, <span class="number">2</span>);</div><div class="line">         <span class="keyword">while</span> (!strncmp($sections[<span class="number">1</span>], <span class="string">'HTTP/'</span>, <span class="number">5</span>)) &#123;</div><div class="line">            $sections = explode(<span class="string">"\x0d\x0a\x0d\x0a"</span>, $sections[<span class="number">1</span>], <span class="number">2</span>);</div><div class="line">         &#125;</div><div class="line">         $headers = $sections[<span class="number">0</span>];</div><div class="line">         $data = $sections[<span class="number">1</span>];</div><div class="line"></div><div class="line">         <span class="keyword">if</span> (preg_match(<span class="string">'/^Content-Encoding: gzip/mi'</span>, $headers)) &#123;</div><div class="line">            printf(<span class="string">"gzip header found\n"</span>);</div><div class="line">            <span class="keyword">return</span> gunzip($data);</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">return</span> $ret;</div></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://stackoverflow.com/questions/310650/decode-gzipped-web-page-retrieved-via-curl-in-php" target="_blank" rel="external">Decode gzipped web page retrieved via cURL in PHP</a></li>
-<li><a href="http://php.net/manual/zh/function.curl-setopt.php" target="_blank" rel="external">curl_setopt</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/01/php/php-ini-setting.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/php/php-ini-setting.html" itemprop="url">PHP INI配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T17:19:23+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/php/php-ini-setting.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/01/php/php-ini-setting.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/01/php/php-ini-setting.html" class="leancloud_visitors" data-flag-title="PHP INI配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="ini_set相关">ini_set相关</h2><h3 id="配置时区">配置时区</h3><ul>
-<li>配置文件：<code>date.timezone = Asia/Shanghai</code></li>
-<li>php文件中配置：<code>date_default_timezone_set(&#39;Asia/Shanghai&#39;);</code> 和 <code>ini_set(&#39;date.timezone&#39;,&#39;Asia/Shanghai&#39;);</code>;</li>
-</ul>
+<p>注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span>+R</div><div class="line">csrutil <span class="built_in">disable</span></div><div class="line">reboot</div></pre></td></tr></table></figure></p>
+<h3 id="mac重新安装">mac重新安装</h3><p>先删除tuntap再重新安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo rm -rf /Library/Extensions/tap.kext</div><div class="line">sudo rm -rf /Library/Extensions/tun.kext</div><div class="line">sudo rm -rf /Library/StartupItems/tap</div><div class="line">sudo rm -rf /Library/StartupItems/tun</div></pre></td></tr></table></figure>
+<h2 id="分享：teredo服务器">分享：teredo服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">win1710.ipv6.microsoft.com</div><div class="line">teredo.ipv6.microsoft.com</div><div class="line">teredo.remlab.net</div></pre></td></tr></table></figure>
 
           
         
@@ -1862,7 +1925,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1907,7 +1970,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1918,7 +1981,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1929,7 +1992,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

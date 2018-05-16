@@ -107,7 +107,7 @@
 12345#下载命令工具wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTAchmod 755 /usr/sbin/gdrive#验证终端gdrive about
 
 参考项目：https://gith">
-<meta property="og:updated_time" content="2018-01-09T07:08:41.053Z">
+<meta property="og:updated_time" content="2018-05-02T02:04:37.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Drive 服务器应用指南">
 <meta name="twitter:description" content="一、gdrive cli命令安装这个是比较通用的命令，centos7以下的推荐使用。
@@ -432,7 +432,11 @@
 <p>另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法</p>
 <h4 id="同步上传">同步上传</h4><p>gdrive upload -p 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI –recursive “/home/wwwroot/sync/ebookplan”</p>
 <p>gdrive [global] sync upload [options] <path></path> <fileid>          Sync local directory to drive</fileid></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gdrive sync upload  <span class="string">"/home/wwwroot/sync/ebookplan"</span> 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI</div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync/kindlemate'</span> 1mtcRv-OZTD8y05LUdBMlx2MNB88NzpKo</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync'</span> 1PtAwU94atg4jJJKoV757yM9ncL0WBI4t</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">gdrive sync upload  <span class="string">"/home/wwwroot/sync/ebookplan"</span> 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI</div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync/kindlemate'</span> 1mtcRv-OZTD8y05LUdBMlx2MNB88NzpKo</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync'</span> 1PtAwU94atg4jJJKoV757yM9ncL0WBI4t</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/data/苏菇莨第一部分'</span> 1DjotQOQuJNKTXh2SJESBYO3ThxYTvdI9 &gt;&gt; /data/logs/苏菇莨第一部分.log &amp;</div><div class="line">gdrive sync upload  <span class="string">'/data/magzine'</span> 1HpDYUFek1zvjPJ9tDRlrHQgWD4Hl-LcZ &gt;&gt; /data/logs/magzine.log &amp;</div><div class="line">gdrive sync upload  <span class="string">'/data/magzine/财富'</span> 1<span class="keyword">fi</span>0b6jJlu3irO3CUICfmXKUI7bDAPhJM</div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/ro.laikansha.com/xiake'</span>  1atGHzcYdP81iivt36aG8mEd29ilb_I61</div></pre></td></tr></table></figure>
+<h2 id="帮助">帮助</h2><ul>
+<li><a href="http://yulongniu.bionutshell.org/blog/2016/10/21/linux-sync-google-drive/" target="_blank" rel="external">http://yulongniu.bionutshell.org/blog/2016/10/21/linux-sync-google-drive/</a></li>
+</ul>
+
       
     </div>
 
@@ -582,7 +586,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -593,7 +597,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -604,7 +608,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -664,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、gdrive_cli命令安装"><span class="nav-number">1.</span> <span class="nav-text">一、gdrive cli命令安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_怎么使用gdrive"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 怎么使用gdrive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步上传"><span class="nav-number">1.1.1.</span> <span class="nav-text">同步上传</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、gdrive_cli命令安装"><span class="nav-number">1.</span> <span class="nav-text">一、gdrive cli命令安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_怎么使用gdrive"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 怎么使用gdrive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步上传"><span class="nav-number">1.1.1.</span> <span class="nav-text">同步上传</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助"><span class="nav-number">2.</span> <span class="nav-text">帮助</span></a></li></ol></div>
             
 
           </div>

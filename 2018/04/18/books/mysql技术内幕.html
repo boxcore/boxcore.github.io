@@ -107,7 +107,7 @@
 时间
 
 阅读前准备书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (http://dev.mysql.com/doc/index-other.html）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据">
-<meta property="og:updated_time" content="2018-04-17T17:54:22.989Z">
+<meta property="og:updated_time" content="2018-04-18T02:41:59.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《MySQL技术内幕》Note">
 <meta name="twitter:description" content="第一本读完的mysql书
@@ -450,6 +450,13 @@
 <li>时间</li>
 </ul>
 <h2 id="阅读前准备">阅读前准备</h2><p>书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟公司员工的数据，用户可以通过官网下载 (<a href="http://dev.mysql.com/doc/index-other.html" target="_blank" rel="external">http://dev.mysql.com/doc/index-other.html</a>）；另一个是 dbt3 数据库，是通过 Database Test Suite 程序生成的，该数据库较大，主要用来展示一些复杂的查询；还有一个 tpcc 数据库，是一个模拟 TPC-C 测试的数据库，用户可以从<a href="http://code.google.com/p/david-mysql-tools/" target="_blank" rel="external">http://code.google.com/p/david-mysql-tools/</a>下载</p>
+<p>字节B(Byte), 1B=8bit(位)<br>字符与字节：</p>
+<ul>
+<li>ASCII码： 一个英文字母（不分大小写）占一个字节的空间，一个中文汉字占两个字节的空间</li>
+<li>UTF-8编码：一个英文字符等于一个字节，一个中文（含繁体）等于三个字节。中文标点占三个字节，英文标点占一个字节</li>
+<li>Unicode编码：一个英文等于两个字节，一个中文（含繁体）等于两个字节。中文标点占两个字节，英文标点占两个字节</li>
+</ul>
+<p>国际单位制(SI)<br>1KB=1000B；1MB=1000KB=1000×1000B。其中1000=103。<br>1B（byte，字节）= 8 bit</p>
 <h2 id="一、SQL编程">一、SQL编程</h2><h2 id="二、数据类型">二、数据类型</h2><h3 id="2-1_类型属性">2.1 类型属性</h3><h4 id="2-1-1_UNSIGNED">2.1.1 UNSIGNED</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> book_mysql <span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8;</div><div class="line"><span class="keyword">use</span> book_mysql;</div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span>  t ( a <span class="built_in">int</span> <span class="keyword">unsigned</span>, b <span class="built_in">int</span> <span class="keyword">unsigned</span>) <span class="keyword">engine</span>=<span class="keyword">InnoDB</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t\G;</div><div class="line"><span class="keyword">select</span> a-b <span class="keyword">from</span> t;</div><div class="line"><span class="comment">-- mac下报错：ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '(`book_mysql`.`t`.`a` - `book_mysql`.`t`.`b`)'</span></div></pre></td></tr></table></figure>
 <p>在 MySQL 数据库中，对于 UNSIGNED 数的操作，其返回值都是 UNSIGNED 的, C语言内部会将其转为最大值，即0xFFFFFFFF (4294967295)。这样需要在mysql中设置</p>
 <blockquote>
@@ -560,6 +567,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/04/19/jetbrains-soft-idea-active.html" rel="prev" title="jetbrains系列软件激活（idea等）">
+                jetbrains系列软件激活（idea等） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -660,7 +671,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -671,7 +682,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -682,7 +693,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

@@ -95,37 +95,40 @@
 
 
 
-<meta name="description" content="who: 查看服务器当前登陆的用户
+<meta name="description" content="一、查看系统信息
+who: 查看服务器当前登陆的用户
 who /var/log/wtmp
 arp: 查看服务器mac信息
 cat  /var/log/secure : 查看最近有谁登陆过服务器，也可以看ssh登陆失败日志
 finger： 需要安装该命令才可以使用，用于查看并显示指定帐号的用户相关信息
 
 lastlogcat /var/log/lastlog
-lastlog文件在每次有用户登录时被查询。可以使用la">
+lastlog文件在每次有用户登录时被查">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux查看服务器基础信息">
 <meta property="og:url" content="http://boxcore.github.io/2017/10/10/linux/linux-basic.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="who: 查看服务器当前登陆的用户
+<meta property="og:description" content="一、查看系统信息
+who: 查看服务器当前登陆的用户
 who /var/log/wtmp
 arp: 查看服务器mac信息
 cat  /var/log/secure : 查看最近有谁登陆过服务器，也可以看ssh登陆失败日志
 finger： 需要安装该命令才可以使用，用于查看并显示指定帐号的用户相关信息
 
 lastlogcat /var/log/lastlog
-lastlog文件在每次有用户登录时被查询。可以使用la">
-<meta property="og:updated_time" content="2018-03-05T03:02:28.366Z">
+lastlog文件在每次有用户登录时被查">
+<meta property="og:updated_time" content="2018-05-14T03:49:37.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux查看服务器基础信息">
-<meta name="twitter:description" content="who: 查看服务器当前登陆的用户
+<meta name="twitter:description" content="一、查看系统信息
+who: 查看服务器当前登陆的用户
 who /var/log/wtmp
 arp: 查看服务器mac信息
 cat  /var/log/secure : 查看最近有谁登陆过服务器，也可以看ssh登陆失败日志
 finger： 需要安装该命令才可以使用，用于查看并显示指定帐号的用户相关信息
 
 lastlogcat /var/log/lastlog
-lastlog文件在每次有用户登录时被查询。可以使用la">
+lastlog文件在每次有用户登录时被查">
 
 
 
@@ -435,7 +438,7 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
       
 
       
-        <ul>
+        <h2 id="一、查看系统信息">一、查看系统信息</h2><ul>
 <li>who: 查看服务器当前登陆的用户</li>
 <li><code>who /var/log/wtmp</code></li>
 <li>arp: 查看服务器mac信息</li>
@@ -445,11 +448,16 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
 <h3 id="lastlog">lastlog</h3><p><code>cat /var/log/lastlog</code></p>
 <p>lastlog文件在每次有用户登录时被查询。可以使用lastlog命令检查某特定用户上次登录的时间，并格式化输出上次登录日志/var/log/lastlog的内容</p>
 <p>另外，可加一些参数，例如，”last -u 102”命令将报告UID为102的用户;”last -t 7”命令表示限制为上一周的报告。</p>
-<h3 id="修改主机名称">修改主机名称</h3><p>centos修改主机名称</p>
-<blockquote>
+<h2 id="二、系统配置">二、系统配置</h2><h3 id="2-1_修改主机名称">2.1 修改主机名称</h3><h4 id="centos_7_修改主机名称">centos 7 修改主机名称</h4><blockquote>
 <p>hostnamectl set-hostname fastdfs-1<br>要永久修改主机名，你可以修改静态主机名：<code>hostnamectl --static set-hostname [主机名]</code></p>
 </blockquote>
 <p>通过文件配置主机名:<br>需要修改2个文件:  /etc/hostsname 和 /etc/hosts</p>
+<h4 id="centos_6修改主机名称">centos 6修改主机名称</h4><p>vi /etc/sysconfig/network<br>修改项目：HOSTNAME</p>
+<h4 id="使用sysctl修改：">使用sysctl修改：</h4><p>sysctl kernel.hostname=your.name</p>
+<h4 id="其他系统修改">其他系统修改</h4><ul>
+<li>debain/ubuntu修改地址：/etc/hostname</li>
+</ul>
+<h3 id="2-2_修改系统语言">2.2 修改系统语言</h3><p>配置文件地址：/etc/sysconfig/i18n</p>
 
       
     </div>
@@ -600,7 +608,7 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -611,7 +619,7 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -622,7 +630,7 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -682,7 +690,7 @@ lastlog文件在每次有用户登录时被查询。可以使用la">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lastlog"><span class="nav-number">1.</span> <span class="nav-text">lastlog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主机名称"><span class="nav-number">2.</span> <span class="nav-text">修改主机名称</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、查看系统信息"><span class="nav-number">1.</span> <span class="nav-text">一、查看系统信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lastlog"><span class="nav-number">1.1.</span> <span class="nav-text">lastlog</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、系统配置"><span class="nav-number">2.</span> <span class="nav-text">二、系统配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_修改主机名称"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 修改主机名称</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#centos_7_修改主机名称"><span class="nav-number">2.1.1.</span> <span class="nav-text">centos 7 修改主机名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#centos_6修改主机名称"><span class="nav-number">2.1.2.</span> <span class="nav-text">centos 6修改主机名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用sysctl修改："><span class="nav-number">2.1.3.</span> <span class="nav-text">使用sysctl修改：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他系统修改"><span class="nav-number">2.1.4.</span> <span class="nav-text">其他系统修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_修改系统语言"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 修改系统语言</span></a></li></ol></li></ol></div>
             
 
           </div>

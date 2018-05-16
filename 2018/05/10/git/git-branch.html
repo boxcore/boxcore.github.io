@@ -95,19 +95,25 @@
 
 
 
-<meta name="description" content="VIM的配置VIM中空格代替tab修改文件: vi /etc/vim/vimrc
-123set expandtab     &quot; 使用空格代替tab. set tabstop=4     &quot; 空格数量是4。 set shiftwidth=4  &quot; 自动缩进的宽度。">
+<meta name="description" content="git branch -a :查看远程分支
+git checkout -b iss53 ： 新建分支（iss53）并切换到该分支， 等同于git branch iss53 &amp;amp;&amp;amp; git checkout iss53
+git checkout master &amp;amp;&amp;amp; git merge hotfix: 回到主干并合并分区hotfix
+这个时候如果代码没有冲突就会直接合并">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计划：VIM使用">
-<meta property="og:url" content="http://boxcore.github.io/2014/03/15/vim-editor-plan.html">
+<meta property="og:title" content="Git基础：分支">
+<meta property="og:url" content="http://boxcore.github.io/2018/05/10/git/git-branch.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="VIM的配置VIM中空格代替tab修改文件: vi /etc/vim/vimrc
-123set expandtab     &quot; 使用空格代替tab. set tabstop=4     &quot; 空格数量是4。 set shiftwidth=4  &quot; 自动缩进的宽度。">
-<meta property="og:updated_time" content="2017-11-24T06:46:52.933Z">
+<meta property="og:description" content="git branch -a :查看远程分支
+git checkout -b iss53 ： 新建分支（iss53）并切换到该分支， 等同于git branch iss53 &amp;amp;&amp;amp; git checkout iss53
+git checkout master &amp;amp;&amp;amp; git merge hotfix: 回到主干并合并分区hotfix
+这个时候如果代码没有冲突就会直接合并">
+<meta property="og:updated_time" content="2018-05-10T02:15:38.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计划：VIM使用">
-<meta name="twitter:description" content="VIM的配置VIM中空格代替tab修改文件: vi /etc/vim/vimrc
-123set expandtab     &quot; 使用空格代替tab. set tabstop=4     &quot; 空格数量是4。 set shiftwidth=4  &quot; 自动缩进的宽度。">
+<meta name="twitter:title" content="Git基础：分支">
+<meta name="twitter:description" content="git branch -a :查看远程分支
+git checkout -b iss53 ： 新建分支（iss53）并切换到该分支， 等同于git branch iss53 &amp;amp;&amp;amp; git checkout iss53
+git checkout master &amp;amp;&amp;amp; git merge hotfix: 回到主干并合并分区hotfix
+这个时候如果代码没有冲突就会直接合并">
 
 
 
@@ -135,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://boxcore.github.io/2014/03/15/vim-editor-plan.html"/>
+  <link rel="canonical" href="http://boxcore.github.io/2018/05/10/git/git-branch.html"/>
 
 
 
 
 
-  <title>计划：VIM使用 | BoxCore</title>
+  <title>Git基础：分支 | BoxCore</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -331,7 +337,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2014/03/15/vim-editor-plan.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-branch.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计划：VIM使用</h1>
+          <h1 class="post-title" itemprop="name headline">Git基础：分支</h1>
         
 
         <div class="post-meta">
@@ -360,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-15T22:34:49+08:00">
-                2014-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T02:04:28+08:00">
+                2018-05-10
               </time>
             
 
@@ -371,28 +377,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Journal/" itemprop="url" rel="index">
-                    <span itemprop="name">Journal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -401,9 +385,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/03/15/vim-editor-plan.html#comments" itemprop="discussionUrl">
+                <a href="/2018/05/10/git/git-branch.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/15/vim-editor-plan.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/05/10/git/git-branch.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -411,7 +395,7 @@
 
           
           
-             <span id="/2014/03/15/vim-editor-plan.html" class="leancloud_visitors" data-flag-title="计划：VIM使用">
+             <span id="/2018/05/10/git/git-branch.html" class="leancloud_visitors" data-flag-title="Git基础：分支">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -439,8 +423,40 @@
       
 
       
-        <h2 id="VIM的配置">VIM的配置</h2><h3 id="VIM中空格代替tab">VIM中空格代替tab</h3><p>修改文件: <code>vi /etc/vim/vimrc</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> expandtab     <span class="string">" 使用空格代替tab. </span></div><div class="line">set tabstop=4     " 空格数量是4。 </div><div class="line"><span class="built_in">set</span> shiftwidth=4  <span class="string">" 自动缩进的宽度。</span></div></pre></td></tr></table></figure>
+        <ul>
+<li>git branch -a :查看远程分支</li>
+<li><code>git checkout -b iss53</code> ： 新建分支（iss53）并切换到该分支， 等同于<code>git branch iss53 &amp;&amp; git checkout iss53</code></li>
+<li><code>git checkout master &amp;&amp; git merge hotfix</code>: 回到主干并合并分区hotfix<blockquote>
+<p>这个时候如果代码没有冲突就会直接合并，如果有，则需要修改对应文件，add后添加到缓冲区再提交。当然，也可以使用<code>git mergetool</code> gui工具解决代码冲突；</p>
+</blockquote>
+</li>
+<li><code>git branch -d hotfix</code> : 删除分区，一般在合并到主干后操作</li>
+<li><code>git branch -m devel develop</code> ： 重命名本地分支</li>
+<li><code>git push origin &lt;branchName&gt;</code> ： 推送本地分支</li>
+<li><code>git push --delete origin &lt;branchName&gt;</code> ： 删除远程分支</li>
+<li><code>git push origin :&lt;branchName&gt;</code> ： 删除远程分支</li>
+<li><code>git fetch -p</code>:在fetch之后删除掉没有与远程分支对应的本地分支</li>
+<li><code>git branch -vv</code>: 如果想要查看设置的所有跟踪分支，可以使用 git branch 的 -vv 选项。 这会将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后或是都有。</li>
+<li></li>
+</ul>
+<h2 id="问题处理">问题处理</h2><ol>
+<li><p>如果本地分支删除后没有提交到远程，怎么恢复：</p>
+<blockquote>
+<p>git pull –rebase origin master # 重新从远程拉一份全的就好</p>
+</blockquote>
+</li>
+<li><p>如何重命名远程分支</p>
+<blockquote>
+<p><code>git branch -av</code>查看所有分支信息 -》 删除对应的远程分支 -》 重命名本地分支 -》 推送本地分支</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="参考">参考</h2><ul>
+<li><a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6</a></li>
+<li><a href="http://blog.zengrong.net/post/1746.html" target="_blank" rel="external">http://blog.zengrong.net/post/1746.html</a></li>
+<li><a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF" target="_blank" rel="external">https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF</a></li>
+</ul>
+
       
     </div>
 
@@ -476,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/02/26/linux/webbench-usage.html" rel="next" title="webbench模拟并发连接测试网站的负载能力">
-                <i class="fa fa-chevron-left"></i> webbench模拟并发连接测试网站的负载能力
+              <a href="/2018/05/10/git/git-fixed-errors.html" rel="next" title="Git报错及处理">
+                <i class="fa fa-chevron-left"></i> Git报错及处理
               </a>
             
           </div>
@@ -486,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/04/05/sublime-text-3-install-and-usage.html" rel="prev" title="Sublime Text 3 安装使用心得">
-                Sublime Text 3 安装使用心得 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/10/git/git-tips.html" rel="prev" title="Git小Tips">
+                Git小Tips <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -590,7 +606,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">225</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -601,7 +617,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -612,7 +628,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -672,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VIM的配置"><span class="nav-number">1.</span> <span class="nav-text">VIM的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VIM中空格代替tab"><span class="nav-number">1.1.</span> <span class="nav-text">VIM中空格代替tab</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题处理"><span class="nav-number">1.</span> <span class="nav-text">问题处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -824,9 +840,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://boxcore.github.io/2014/03/15/vim-editor-plan.html';
-          this.page.identifier = '2014/03/15/vim-editor-plan.html';
-          this.page.title = '计划：VIM使用';
+          this.page.url = 'http://boxcore.github.io/2018/05/10/git/git-branch.html';
+          this.page.identifier = '2018/05/10/git/git-branch.html';
+          this.page.title = 'Git基础：分支';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://boxcore.disqus.com/embed.js';
