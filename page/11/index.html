@@ -329,6 +329,285 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/25/linux-dev/google-drive-usage-for-linux.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/linux-dev/google-drive-usage-for-linux.html" itemprop="url">Google Drive 服务器应用指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:39:40+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/linux-dev/google-drive-usage-for-linux.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/25/linux-dev/google-drive-usage-for-linux.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/25/linux-dev/google-drive-usage-for-linux.html" class="leancloud_visitors" data-flag-title="Google Drive 服务器应用指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、gdrive_cli命令安装">一、gdrive cli命令安装</h2><p>这个是比较通用的命令，centos7以下的推荐使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#下载命令工具</span></div><div class="line">wget -O /usr/sbin/gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA</div><div class="line">chmod 755 /usr/sbin/gdrive</div><div class="line"><span class="comment">#验证终端</span></div><div class="line">gdrive about</div></pre></td></tr></table></figure>
+<ul>
+<li>参考项目：<a href="https://github.com/prasmussen/gdrive#downloads" target="_blank" rel="external">https://github.com/prasmussen/gdrive#downloads</a></li>
+</ul>
+<h3 id="1-1_怎么使用gdrive">1.1 怎么使用gdrive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#gdrive 上传 tar 包到目录 0B2_oloQ2sUujdzFiYkNtOGhNMkU(用gdrive list查询google drive对应的目录地址)，成功后删除 tar 包</span></div><div class="line">/usr/sbin/gdrive upload -p 0B2_oloQ2sUujdzFiYkNtOGhNMkU --delete <span class="string">"/tmp/seonoco.com.tar.gz"</span></div><div class="line"></div><div class="line"><span class="comment">#上传目录</span></div><div class="line">gdrive upload -p 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs --recursive <span class="string">"/home/wwwroot/tmp"</span></div><div class="line">gdrive download --recursive 0B1AsrnTQB-6rZ1JNWTBlMDFHdGs</div></pre></td></tr></table></figure>
+<p>另外，可使用gdrive help 与对应的命令 比如gdrive help upload查询详细的用法</p>
+<h4 id="同步上传">同步上传</h4><p>gdrive upload -p 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI –recursive “/home/wwwroot/sync/ebookplan”</p>
+<p>gdrive [global] sync upload [options] <path></path> <fileid>          Sync local directory to drive</fileid></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">gdrive sync upload  <span class="string">"/home/wwwroot/sync/ebookplan"</span> 1tGnCrN4XCaKI17oNW1UUwBMjextHwxpI</div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync/kindlemate'</span> 1mtcRv-OZTD8y05LUdBMlx2MNB88NzpKo</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/sync'</span> 1PtAwU94atg4jJJKoV757yM9ncL0WBI4t</div><div class="line"></div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/data/苏菇莨第一部分'</span> 1DjotQOQuJNKTXh2SJESBYO3ThxYTvdI9 &gt;&gt; /data/logs/苏菇莨第一部分.log &amp;</div><div class="line">gdrive sync upload  <span class="string">'/data/magzine'</span> 1HpDYUFek1zvjPJ9tDRlrHQgWD4Hl-LcZ &gt;&gt; /data/logs/magzine.log &amp;</div><div class="line">gdrive sync upload  <span class="string">'/data/magzine/财富'</span> 1<span class="keyword">fi</span>0b6jJlu3irO3CUICfmXKUI7bDAPhJM</div><div class="line"></div><div class="line">gdrive sync upload  <span class="string">'/home/wwwroot/ro.laikansha.com/xiake'</span>  1atGHzcYdP81iivt36aG8mEd29ilb_I61</div></pre></td></tr></table></figure>
+<h2 id="帮助">帮助</h2><ul>
+<li><a href="http://yulongniu.bionutshell.org/blog/2016/10/21/linux-sync-google-drive/" target="_blank" rel="external">http://yulongniu.bionutshell.org/blog/2016/10/21/linux-sync-google-drive/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/25/linux-dev/lnmp1.4-analisys.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/linux-dev/lnmp1.4-analisys.html" itemprop="url">LNMP1.4脚本分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T14:14:38+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/linux-dev/lnmp1.4-analisys.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/25/linux-dev/lnmp1.4-analisys.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/25/linux-dev/lnmp1.4-analisys.html" class="leancloud_visitors" data-flag-title="LNMP1.4脚本分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="/bin/lnmp_分析"><code>/bin/lnmp</code> 分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取vhost列表：</span></div><div class="line">ls /usr/<span class="built_in">local</span>/nginx/conf/vhost/ | grep <span class="string">".conf$"</span> | sed <span class="string">'s/.conf//g'</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/15/java/java-basic.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1519,340 +1798,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-if.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/linux/linux-if.html" itemprop="url">Linux流程控制语句之if</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T17:07:45+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/10/linux/linux-if.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/10/linux/linux-if.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/10/linux/linux-if.html" class="leancloud_visitors" data-flag-title="Linux流程控制语句之if">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>语法：</p>
-<blockquote>
-<p>if ….; then<br>　 ….<br>elif ….; then<br>　 ….<br>else<br>　 ….<br>fi</p>
-</blockquote>
-<p>[ -f “somefile” ] ：判断是否是一个文件<br>[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限<br>[ -n “$var” ] ：判断$var变量是否有值<br>[ “$a” = “$b” ] ：判断$a和$b是否相等<br>    -r file　　　　　用户可读为真<br>　　-w file　　　　　用户可写为真<br>　　-x file　　　　　用户可执行为真<br>　　-f file　　　　　文件为正规文件为真<br>　　-d file　　　　　文件为目录为真<br>　　-c file　　　　　文件为字符特殊文件为真<br>　　-b file　　　　　文件为块特殊文件为真<br>　　-s file　　　　　文件大小非0时为真<br>　　-t file　　　　　当文件描述符(默认为1)指定的设备为终端时为真  </p>
-<p>含条件选择的shell脚本          对于不含变量的任务简单shell脚本一般能胜任。但在执行一些决策任务时，就需要包含if/then的条件判断了。shell脚本编程支持此类运算，包括比较运算、判断文件是否存在等。基本的if条件命令选项有： - eq —比较两个参数是否相等（例如，if [ 2 –eq 5 ]）<br>-ne —比较两个参数是否不相等<br>-lt —参数1是否小于参数2<br>-le —参数1是否小于等于参数2<br>-gt —参数1是否大于参数2<br>-ge —参数1是否大于等于参数2<br>-f — 检查某文件是否存在（例如，if [ -f “filename” ]）<br>-d — 检查目录是否存在<br>几乎所有的判断都可以用这些比较运算符实现。脚本中常用-f命令选项在执行某一文件之前检查它是否存在。 ##################################################################<br>判断文件是否存在 </p>
-<p>#!/bin/sh<br>YACCESS=<code>date -d yesterday +%Y%m%d</code><br>FILE=”access_$YACCESS.log.tgz”<br>cd /data/nginx/logs<br>if [ -f “$FILE” ];then<br>echo “OK”<br>else<br>echo “error $FILE” &gt; error.log<br>mail -s “$FILE backup fail” xxxx@yyyy.com &lt;error.log<br>fi</p>
-<p>###############</p>
-<p>#!/bin/sh</p>
-<p>#<br>DIR=/data/img_cache<br>DAY=<code>date +&quot;%Y-%m-%d %H:%M&quot;</code><br>NUM=<code>ls $DIR |wc -l</code><br>DIRNAME=<code>ls $DIR| grep leveldb | head -n 1 | awk &#39;{print $NF}&#39;</code><br>if [[ $NUM -gt 3 ]];then<br>    rm -rf $DIR/$DIRNAME<br>    echo “———$DAY—-($DIR)———————–” &gt;&gt; /tmp/img_cache.log<br>    echo “$DIRNAME Deleted successful” &gt;&gt; /tmp/img_cache.log<br>fi<br>补充：文件测试操作：<br>返回true，如果：<br>-e                          文件存在<br>-a                          文件存在（已被弃用）<br>-f                           被测文件是一个regular文件（正常文件，非目录或设备）<br>-s                          文件长度不为0<br>-d                          被测对象是目录<br>-b                          被测对象是块设备<br>-c                          被测对象是字符设备<br>-p                          被测对象是管道<br>-h                          被测文件是符号连接<br>-L                          被测文件是符号连接<br>-S(大写)                 被测文件是一个socket<br>-t                          关联到一个终端设备的文件描述符。用来检测脚本的stdin[-t0]或[-t1]是一个终端<br>-r                          文件具有读权限，针对运行脚本的用户<br>-w                         文件具有写权限，针对运行脚本的用户<br>-x                          文件具有执行权限，针对运行脚本的用户<br>-u                          set-user-id(suid)标志到文件，即普通用户可以使用的root权限文件，通过chmod +s file实现<br>-k                          设置粘贴位<br>-O                         运行脚本的用户是文件的所有者<br>-G                         文件的group-id和运行脚本的用户相同<br>-N                         从文件最后被阅读到现在，是否被修改<br>f1 -nt f2                文件f1是否比f2新<br>f1 -ot f2                文件f1是否比f2旧<br>f1 -ef f2                文件f1和f2是否硬连接到同一个文件<br>二元比较操作符，比较变量或比较数字<br>整数比较：<br>-eq                       等于            if [ “$a” -eq “$b” ]<br>-ne                       不等于         if [ “$a” -ne “$b” ]<br>-gt                        大于            if [ “$a” -gt “$b” ]<br>-ge                       大于等于      if [ “$a” -ge “$b” ]<br>-lt                         小于            if [ “$a” -lt “$b” ]<br>-le                        小于等于      if [ “$a” -le “$b” ]<br>&lt;                          小于（需要双括号）       (( “$a” &lt; “$b” ))<br>&lt;=                        小于等于(…)                (( “$a” &lt;= “$b” ))</p>
-<blockquote>
-<pre><code>大于(...)                      (( <span class="string">"<span class="variable">$a</span>"</span> &gt; <span class="string">"<span class="variable">$b</span>"</span> ))
-</code></pre><p>=                        大于等于(…)                (( “$a” &gt;= “$b” ))<br>字符串比较：<br>=                          等于           if [ “$a” = “$b” ]<br>==                        与=等价<br>!=                         不等于        if [ “$a” = “$b” ]<br>&lt;                          小于，在ASCII字母中的顺序：<br>                            if [[ “$a” &lt; “$b” ]]<br>                            if [ “$a” \&lt; “$b” ]         #需要对&lt;进行转义<br>                         大于<br>-z                         字符串为null，即长度为0<br>-n                         字符串不为null，即长度不为0</p>
-</blockquote>
-<h2 id="二、语法">二、语法</h2><p>在“判断条件”这个字段里可以直接写入bash下的命令、也可以写成条件测试<br>在判断条件中要进行条件测试：</p>
-<h3 id="条件测试方式：">条件测试方式：</h3><pre><code>“[ expression ]”一个中括弧里写表达式，
-“<span class="string">[[ expression ]]</span>”两个中括弧里写上表达式
-“test expression”
-“bash命令”
-</code></pre><h3 id="条件测试的类型：">条件测试的类型：</h3><p>整数测试</p>
-<pre><code>expression:[ 数值<span class="number">1</span> 比较符 数值<span class="number">2</span> ]
-比较符一般有以下几种：
-大于：-<span class="function"><span class="title">gt</span><span class="params">(greater than)</span></span>，大于等于：-<span class="function"><span class="title">ge</span><span class="params">(greater equal)</span></span>，小于：-<span class="function"><span class="title">lt</span><span class="params">(less than)</span></span>，小于等于：<span class="function"><span class="title">le</span><span class="params">(less equal)</span></span>，不等于：-<span class="function"><span class="title">ne</span><span class="params">(not equal)</span></span>
-</code></pre><p>字符测试</p>
-<pre><code><span class="string">"\&gt;"</span>：大于
-<span class="string">"\&lt;"</span>：小于
-<span class="string">"=="</span>或者<span class="string">"="</span>：等于
-<span class="string">"=~"</span>：判断左边的字符串能否被右边的模式所匹配，通常用于<span class="string">[[ expression ]]</span>
-</code></pre><p>单目测试：</p>
-<pre><code>-<span class="ruby">z：格式为<span class="string">"[ -z $STRING ]"</span>，表示为空值时则为真，不为空值时则为假
-</span>-<span class="ruby">n：格式为<span class="string">"[ -n $STRING ]"</span>，表示为空值时则为假，不为空值时则为真</span>
-</code></pre><p>文件、目录测试</p>
-<pre><code>-<span class="ruby">d：测试目录是否存在
-</span>-<span class="ruby">f：测试档案是否存在</span>
-</code></pre><h3 id="组合条件测试：">组合条件测试：</h3><p>当有多个测试条件时，我们可以把这些测试条件组合起来使用：</p>
-<pre><code>-<span class="ruby">a：逻辑与
-</span>-<span class="ruby">o：逻辑或
-</span>！：逻辑非，这是单目操作
-</code></pre><p>当是bash命令之间组合测试时，则：<br>    &amp;&amp;：逻辑与<br>    ||：逻辑或<br>    ！：逻辑非</p>
-<h2 id="三、例子">三、例子</h2><h3 id="1、写一个脚本来测试一个用户是不是管理员，如果是管理员则显示“用户名_is_admin”,如果是系统用户刚显示“用户名_is_system_user”,否则显示“用户名_is_common_user”">1、写一个脚本来测试一个用户是不是管理员，如果是管理员则显示“用户名 is admin”,如果是系统用户刚显示“用户名 is system user”,否则显示“用户名 is common user”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Uid=`id -u <span class="variable">$1</span> &amp;&gt; /dev/null`</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Uid</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"No such user <span class="variable">$1</span>;"</span></div><div class="line">        <span class="built_in">exit</span> 8</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Uid</span> <span class="_">-eq</span> <span class="string">'0'</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is admin."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Uid</span> <span class="_">-gt</span> <span class="string">'0'</span> <span class="_">-a</span> <span class="variable">$Uid</span> <span class="_">-lt</span> <span class="string">'500'</span> ];<span class="keyword">then</span> //这里用到了逻辑与运算</div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is system user."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Uid</span> -ge <span class="string">'500'</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is common user."</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<h3 id="2、写一个脚本测试一个用户的shell是不是/bin/bash，如果是那输出“用户名_is_bash_user-”,否则输出“用户名_is_no_bash_user-”">2、写一个脚本测试一个用户的shell是不是/bin/bash，如果是那输出“用户名 is bash user.”,否则输出“用户名 is no bash user.”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Bash=`grep <span class="string">"^<span class="variable">$1</span>\&gt;"</span> /etc/passwd | cut <span class="_">-d</span>: <span class="_">-f</span>7`</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Bash</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"No such user <span class="variable">$1</span>."</span></div><div class="line">        <span class="built_in">exit</span> 9</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Bash</span> == <span class="string">"/bin/bash"</span> ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is bash user."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span> is not bash user."</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<h3 id="3、写一个备份脚本，传递参数“gzip,bzip2,xz”给脚本，让脚本调用相应的压缩工具对备份文件进行压缩，当用户没有给定参数时，则调用gzip进行压缩。把/etc目录下的所有文件归档压缩后备份到/backup目录下，备份的文件名为”etc-日期-时间”的形式，">3、写一个备份脚本，传递参数“gzip,bzip2,xz”给脚本，让脚本调用相应的压缩工具对备份文件进行压缩，当用户没有给定参数时，则调用gzip进行压缩。把/etc目录下的所有文件归档压缩后备份到/backup目录下，备份的文件名为”etc-日期-时间”的形式，</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line">Com=<span class="variable">$1</span></div><div class="line">[ -z /backup ] || mkdir /backup &amp;&gt; /dev/null //当无/backup时则建立</div><div class="line"><span class="keyword">if</span> [ -z <span class="variable">$Com</span> ];<span class="keyword">then</span></div><div class="line">        Com=gzip</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$Com</span> == <span class="string">'gzip'</span> ];<span class="keyword">then</span></div><div class="line">        tar zcf /backup/etc-`date +%F-%H:%M:%S.tar.gz` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(gzip)."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Com</span> == <span class="string">'bzip2'</span> ];<span class="keyword">then</span></div><div class="line">        tar jcf /backup/etc-`date +%F-%H:%M:%S.tar.bz2` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(bz2)."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$Com</span> == <span class="string">'xz'</span> ];<span class="keyword">then</span></div><div class="line">        tar Jcf /backup/etc-`date +%F-%H:%M:%S.tar.xz` /etc/* &amp;&gt; /dev/null</div><div class="line">        [ $? == 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Backup etc finished.(xz)."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"Usage:`basename <span class="variable">$0</span>` &#123;[gzip|bzip2|xz]&#125;"</span></div><div class="line">        <span class="built_in">exit</span>=7</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<p>此脚本在centos5.8上不tar不能调用xz压缩工具进行工作，man tar发现选项里没有“J”选项，但在centos 6.2上能正常工作，应该是tar版本问题。</p>
-<h3 id="4_判断上一个语句是否正常执行">4 判断上一个语句是否正常执行</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-ssh.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/linux/linux-ssh.html" itemprop="url">Linux网络命令之ssh</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T16:59:40+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/10/linux/linux-ssh.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/10/linux/linux-ssh.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/10/linux/linux-ssh.html" class="leancloud_visitors" data-flag-title="Linux网络命令之ssh">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、基础">一、基础</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">usage: ssh [-1246AaC<span class="built_in">fg</span>KkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</div><div class="line">           [-D [bind_address:]port] [<span class="_">-e</span> escape_char] [-F configfile]</div><div class="line">           [-I pkcs11] [-i identity_file]</div><div class="line">           [-L [bind_address:]port:host:hostport]</div><div class="line">           [<span class="_">-l</span> login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]</div><div class="line">           [-R [bind_address:]port:host:hostport] [-S ctl_path]</div><div class="line">           [-W host:port] [-w local_tun[:remote_tun]]</div><div class="line">           [user@]hostname [<span class="built_in">command</span>]</div></pre></td></tr></table></figure>
-<p>主要参数说明：</p>
-<pre><code>-<span class="ruby">l 指定登入用户
-</span>-<span class="ruby">p 设置端口号
-</span>-<span class="ruby">f 后台运行，并推荐加上 -n 参数
-</span>-<span class="ruby">n 将标准输入重定向到 /dev/null，防止读取标准输入
-</span>-<span class="ruby"><span class="constant">N</span> 不执行远程命令，只做端口转发
-</span>-<span class="ruby">q 安静模式，忽略一切对话和错误提示
-</span>-<span class="ruby"><span class="constant">T</span> 禁用伪终端配置</span>
-</code></pre><h2 id="二、常用案例">二、常用案例</h2><h3 id="2-1_远程执行bash命令">2.1 远程执行bash命令</h3><blockquote>
-<p>ssh -l www-online 192.168.110.34 “cat /proc/cpuinfo”</p>
-</blockquote>
-<p>不过一般执行后，可以写这样的语句来判断执行有无异常</p>
-<p><strong>ssh 调用远程命令后不能自动退出解决方法</strong><br>可以将标准输出与标准错误输出重定向到/dev/null，这样就不会一直处于等待状态。</p>
-<blockquote>
-<p>ssh -l www-online 192.168.110.34 “/home/www-online/uptimelog.sh &gt; /dev/null 2&gt;&amp;1 &amp;”</p>
-</blockquote>
-<p>实际上，想ssh退出，我们可以在ssh执行完成后kill掉ssh这个进程来实现。<br>首先，创建一个sh执行ssh的命令,这里需要用到ssh的 -f 与 -n 参数，因为我们需要ssh也以后台方式运行，这样才可以获取到进程号进行kill操作。<br>创建ssh_uptimelog.sh，脚本如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">ssh <span class="_">-f</span> -n <span class="_">-l</span> www-online 192.168.110.34 <span class="string">"/home/www-online/uptimelog.sh &amp;"</span> <span class="comment"># 后台运行ssh</span></div><div class="line"></div><div class="line">pid=$(ps aux | grep <span class="string">"ssh -f -n -l www-online 192.168.110.34 /home/www-online/uptimelog.sh"</span> | awk <span class="string">'&#123;print $2&#125;'</span> | sort -n | head -n 1) <span class="comment"># 获取进程号</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"ssh command is running, pid:<span class="variable">$&#123;pid&#125;</span>"</span></div><div class="line"></div><div class="line">sleep 3 &amp;&amp; <span class="built_in">kill</span> <span class="variable">$&#123;pid&#125;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"ssh command is complete"</span> <span class="comment"># 延迟3秒后执行kill命令，关闭ssh进程，延迟时间可以根据调用的命令不同调整</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
-<h2 id="三、SSH配置修改">三、SSH配置修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 常用配置</div><div class="line">PermitRootLogin yes <span class="comment"># 是否开启root登陆</span></div></pre></td></tr></table></figure>
-<h3 id="3-1_加速ssh登陆">3.1 加速ssh登陆</h3><p>ssh默认开启GSSAPIAuthentication登陆验证，将其设置为no就可以了，配置文件在<code>/etc/ssh/ssh_config</code>,修改重启sshd即可</p>
-<p>说明如：</p>
-<blockquote>
-<p>GSSAPI：Generic Security Services Application Program Interface，GSSAPI 本身是一套 API，由 IETF 标准化。<br>其最主要也是著名的实现是基于 Kerberos 的。一般说到 GSSAPI 都暗指 Kerberos 实现。<br>GSSAPI 是一套通用网络安全系统接口。该接口是对各种不同的客户端服务器安全机制的封装，以消除安全接口的不同，降低编程难度。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1902,7 +1847,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">227</span>
+                <span class="site-state-item-count">229</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1913,7 +1858,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

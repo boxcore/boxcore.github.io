@@ -329,6 +329,340 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/23/linux/curl-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/23/linux/curl-usage.html" itemprop="url">Linux下载工具curl使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T10:10:35+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/23/linux/curl-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/23/linux/curl-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/23/linux/curl-usage.html" class="leancloud_visitors" data-flag-title="Linux下载工具curl使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://boxblog.b0.upaiyun.com/images/2017-08-23-024018.jpg" alt="alt"></p>
+<p>curl是一个开源的用于数据传输的命令行工具与库，它使用URL语法格式，支持众多传输协议，包括：HTTP、HTTPS、FTP、FTPS、GOPHER、TFTP、SCP、SFTP、SMB、TELNET、DICT、LDAP、LDAPS、FILE、IMAP、SMTP、POP3、RTSP和RTMP。curl库提供了很多强大的功能，你可以利用它来进行HTTP/HTTPS请求、上传/下载文件等，且支持Cookie、认证、代理、限速等。</p>
+<h2 id="一、CURL使用">一、CURL使用</h2><p>常用的一些参数</p>
+<ul>
+<li><code>-e,--referer &lt;URL&gt;</code>: 指定来源的网页</li>
+<li><code>-v</code>: 显示http握手过程</li>
+<li><code>-i</code>: 显示header信息</li>
+<li><code>-I</code>: 只显示header信息</li>
+<li><code>--trace,--trace-ascii &lt;FILE&gt;</code> : 查看更详细的通信过程</li>
+<li><code>-X POST --data &quot;data=xxx&quot;,--data-urlencode &quot;date=April 1&quot;</code>：POST参数，使用–data-urlencode配置时会对参数进行urlencode</li>
+<li><code>--form upload=&lt;localfilename&gt; --form press=OK</code>：文件上传</li>
+<li><code>--user-agent &quot;[User Agent]&quot;</code>：UA参数</li>
+<li><code>-c &lt;cookie file&gt;</code>: 保存服务器返回的COOKIE文件</li>
+<li><code>-b &lt;cookie file&gt;</code>: 使用COOKIE文件</li>
+<li><code>-H,--header &#39;&lt;param&gt;&#39;</code>：自定义头信息，上面其他的参数都可以在这里写完整的header头信息；</li>
+</ul>
+<h3 id="1-1_URL访问">1.1 URL访问</h3><p>下面是curl常用的一些方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl boxcore.xxx <span class="comment"># 访问网页</span></div><div class="line">curl -L itbilu.com <span class="comment"># 跟踪URL重定向</span></div><div class="line">curl -o [文件名] itbilu.com <span class="comment"># 页面保存</span></div><div class="line">curl -i itbilu.com <span class="comment"># 查看头信息使用-i或--include参数，添加-i参数后，页面响应头会和页面源码（响应体）一块返回</span></div><div class="line">curl -I itbilu.com <span class="comment"># 只想查看响应头，可以使用-I或--head参数：</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-2_表单提交和文件上传">1.2 表单提交和文件上传</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">curl https://itbilu.com/?keyword=linux&amp;page=3 </div><div class="line">curl -X POST --data <span class="string">'keyword=linux'</span> itbilu.com <span class="comment"># -X参数指定请求方法，--data参数添加提交数据</span></div><div class="line">curl -X DELETE itbilu.com/examlple.html <span class="comment"># 其它HTTP请求方法，比如使用DELETE请求</span></div><div class="line">curl -X PUT --data <span class="string">'keyword=linux'</span> itbilu.com <span class="comment"># 使用PUT请求，并指定请求数据</span></div><div class="line"></div><div class="line">curl -T ./index.html www.uploadhttp.com/receive.cgi <span class="comment"># curl支持文件上传，上传文件时使用-T或--upload-file参数</span></div></pre></td></tr></table></figure>
+<h3 id="1-3_HTTPS支持">1.3 HTTPS支持</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl https://itbilu.com</div><div class="line">curl -E mycert.pem https:/itbilu.com <span class="comment"># 如果使用的本地ssl证书认证的HTTPS，可以通过-E或--cert参数指定本地证书</span></div></pre></td></tr></table></figure>
+<h3 id="1-4_添加请求头">1.4 添加请求头</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -H <span class="string">'Content-Type:application/json'</span> -H <span class="string">'Authorization: account pswd'</span> itbilu.com <span class="comment"># 指定Content-Type及Authorization请求头：</span></div></pre></td></tr></table></figure>
+<h3 id="1-5_Cookie支持">1.5 Cookie支持</h3><p>Cookie是一种常用的保持服务端会话信息的方法，crul也支持使用Cookie。<br>可以通过–cookie参数指定发送请求时的Cookie值，也可以通过-b [文件名]来指定一个存储了Cookie值的本地文件：<code>curl -b stored_cookies_in_file itbilu.com</code></p>
+<p>Cookie值可能会被服务器所返回的值所修改，并应用于下次HTTP请求。这时，可以能过-c参数指定存储服务器返回Cookie值的存储文件：<code>curl -b cookies.txt -c newcookies.txt itbilu.com</code></p>
+<p>除以上用法外，curl还可以设置用户代理（客户端）信息、使用代理服务器、指定认证用户名／密码等。详见：curl语法及选项</p>
+<h2 id="二、curl语法及选项">二、curl语法及选项</h2><h3 id="语法">语法</h3><p>curl语法结构如下：</p>
+<blockquote>
+<p>curl [options…] <url></url></p>
+</blockquote>
+<h3 id="参数选项">参数选项</h3><p>curl（7.29.0）所支持的选项（options）参数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div></pre></td><td class="code"><pre><div class="line">在以下选项中，(H) 表示仅适用 HTTP/HTTPS ，(F) 表示仅适用于 FTP</div><div class="line">    --anyauth       选择 &quot;any&quot; 认证方法 (H)</div><div class="line">-a, --append        添加要上传的文件 (F/SFTP)</div><div class="line">    --basic         使用HTTP基础认证（Basic Authentication）(H)</div><div class="line">    --cacert FILE   CA 证书，用于每次请求认证 (SSL)</div><div class="line">    --capath DIR    CA 证书目录 (SSL)</div><div class="line">-E, --cert CERT[:PASSWD] 客户端证书文件及密码 (SSL)</div><div class="line">    --cert-type TYPE 证书文件类型 (DER/PEM/ENG) (SSL)</div><div class="line">    --ciphers LIST  SSL 秘钥 (SSL)</div><div class="line">    --compressed    请求压缩 (使用 deflate 或 gzip)</div><div class="line">-K, --config FILE   指定配置文件</div><div class="line">    --connect-timeout SECONDS  连接超时设置</div><div class="line">-C, --continue-at OFFSET  断点续转</div><div class="line">-b, --cookie STRING/FILE  Cookies字符串或读取Cookies的文件位置 (H)</div><div class="line">-c, --cookie-jar FILE  操作结束后，要写入 Cookies 的文件位置 (H)</div><div class="line">    --create-dirs   创建必要的本地目录层次结构</div><div class="line">    --crlf          在上传时将 LF 转写为 CRLF</div><div class="line">    --crlfile FILE  从指定的文件获得PEM格式CRL列表</div><div class="line">-d, --data DATA     HTTP POST 数据 (H)</div><div class="line">    --data-ascii DATA  ASCII 编码 HTTP POST 数据 (H)</div><div class="line">    --data-binary DATA  binary 编码 HTTP POST 数据 (H)</div><div class="line">    --data-urlencode DATA  url 编码 HTTP POST 数据 (H)</div><div class="line">    --delegation STRING GSS-API 委托权限</div><div class="line">    --digest        使用数字身份验证 (H)</div><div class="line">    --disable-eprt  禁止使用 EPRT 或 LPRT (F)</div><div class="line">    --disable-epsv  禁止使用 EPSV (F)</div><div class="line">-D, --dump-header FILE  将头信息写入指定的文件</div><div class="line">    --egd-file FILE  为随机数据设置EGD socket路径(SSL)</div><div class="line">    --engine ENGINGE  加密引擎 (SSL). &quot;--engine list&quot; 指定列表</div><div class="line">-f, --fail          连接失败时不显示HTTP错误信息 (H)</div><div class="line">-F, --form CONTENT  模拟 HTTP 表单数据提交（multipart POST） (H)</div><div class="line">    --form-string STRING  模拟 HTTP 表单数据提交 (H)</div><div class="line">    --ftp-account DATA  帐户数据提交 (F)</div><div class="line">    --ftp-alternative-to-user COMMAND  指定替换 &quot;USER [name]&quot; 的字符串 (F)</div><div class="line">    --ftp-create-dirs  如果不存在则创建远程目录 (F)</div><div class="line">    --ftp-method [MULTICWD/NOCWD/SINGLECWD] 控制 CWD (F)</div><div class="line">    --ftp-pasv      使用 PASV/EPSV 替换 PORT (F)</div><div class="line">-P, --ftp-port ADR  使用指定 PORT 及地址替换 PASV (F)</div><div class="line">    --ftp-skip-pasv-ip 跳过 PASV 的IP地址 (F)</div><div class="line">    --ftp-pret      在 PASV 之前发送 PRET (drftpd) (F)</div><div class="line">    --ftp-ssl-ccc   在认证之后发送 CCC (F)</div><div class="line">    --ftp-ssl-ccc-mode ACTIVE/PASSIVE  设置 CCC 模式 (F)</div><div class="line">    --ftp-ssl-control ftp 登录时需要 SSL/TLS (F)</div><div class="line">-G, --get           使用 HTTP GET 方法发送 -d 数据  (H)</div><div class="line">-g, --globoff       禁用的 URL 队列 及范围使用 &#123;&#125; 和 []</div><div class="line">-H, --header LINE   要发送到服务端的自定义请求头 (H)</div><div class="line">-I, --head          仅显示响应文档头</div><div class="line">-h, --help          显示帮助</div><div class="line">-0, --http1.0       使用 HTTP 1.0 (H)</div><div class="line">    --ignore-content-length  忽略 HTTP Content-Length 头</div><div class="line">-i, --include       在输出中包含协议头 (H/F)</div><div class="line">-k, --insecure      允许连接到 SSL 站点，而不使用证书 (H)</div><div class="line">    --interface INTERFACE  指定网络接口／地址</div><div class="line">-4, --ipv4          将域名解析为 IPv4 地址</div><div class="line">-6, --ipv6          将域名解析为 IPv6 地址</div><div class="line">-j, --junk-session-cookies 读取文件中但忽略会话cookie (H)</div><div class="line">    --keepalive-time SECONDS  keepalive 包间隔</div><div class="line">    --key KEY       私钥文件名 (SSL/SSH)</div><div class="line">    --key-type TYPE 私钥文件类型 (DER/PEM/ENG) (SSL)</div><div class="line">    --krb LEVEL     启用指定安全级别的 Kerberos (F)</div><div class="line">    --libcurl FILE  命令的libcurl等价代码</div><div class="line">    --limit-rate RATE  限制传输速度</div><div class="line">-l, --list-only    只列出FTP目录的名称 (F)</div><div class="line">    --local-port RANGE  强制使用的本地端口号</div><div class="line">-L, --location      跟踪重定向 (H)</div><div class="line">    --location-trusted 类似 --location 并发送验证信息到其它主机 (H)</div><div class="line">-M, --manual        显示全手动</div><div class="line">    --mail-from FROM  从这个地址发送邮件</div><div class="line">    --mail-rcpt TO  发送邮件到这个接收人(s)</div><div class="line">    --mail-auth AUTH  原始电子邮件的起始地址</div><div class="line">    --max-filesize BYTES  下载的最大文件大小 (H/F)</div><div class="line">    --max-redirs NUM  最大重定向数 (H)</div><div class="line">-m, --max-time SECONDS  允许的最多传输时间</div><div class="line">    --metalink      处理指定的URL上的XML文件</div><div class="line">    --negotiate     使用 HTTP Negotiate 认证 (H)</div><div class="line">-n, --netrc         必须从 .netrc 文件读取用户名和密码</div><div class="line">    --netrc-optional 使用 .netrc 或 URL; 将重写 -n 参数</div><div class="line">    --netrc-file FILE  设置要使用的 netrc 文件名</div><div class="line">-N, --no-buffer     禁用输出流的缓存</div><div class="line">    --no-keepalive  禁用 connection 的 keepalive</div><div class="line">    --no-sessionid  禁止重复使用 SSL session-ID (SSL)</div><div class="line">    --noproxy       不使用代理的主机列表</div><div class="line">    --ntlm          使用 HTTP NTLM 认证 (H)</div><div class="line">-o, --output FILE   将输出写入文件，而非 stdout</div><div class="line">    --pass PASS     传递给私钥的短语 (SSL/SSH)</div><div class="line">    --post301       在 301 重定向后不要切换为 GET 请求 (H)</div><div class="line">    --post302       在 302 重定向后不要切换为 GET 请求 (H)</div><div class="line">    --post303       在 303 重定向后不要切换为 GET 请求 (H)</div><div class="line">-#, --progress-bar  以进度条显示传输进度</div><div class="line">    --proto PROTOCOLS  启用/禁用 指定的协议</div><div class="line">    --proto-redir PROTOCOLS  在重定向上 启用/禁用 指定的协议</div><div class="line">-x, --proxy [PROTOCOL://]HOST[:PORT] 在指定的端口上使用代理</div><div class="line">    --proxy-anyauth 在代理上使用 &quot;any&quot; 认证方法 (H)</div><div class="line">    --proxy-basic   在代理上使用 Basic 认证  (H)</div><div class="line">    --proxy-digest  在代理上使用 Digest 认证 (H)</div><div class="line">    --proxy-negotiate 在代理上使用 Negotiate 认证 (H)</div><div class="line">    --proxy-ntlm    在代理上使用 NTLM 认证 (H)</div><div class="line">-U, --proxy-user USER[:PASSWORD]  代理用户名及密码</div><div class="line">     --proxy1.0 HOST[:PORT]  在指定的端口上使用 HTTP/1.0 代理</div><div class="line">-p, --proxytunnel   使用HTTP代理 (用于 CONNECT)</div><div class="line">    --pubkey KEY    公钥文件名 (SSH)</div><div class="line">-Q, --quote CMD     在传输开始前向服务器发送命令 (F/SFTP)</div><div class="line">    --random-file FILE  读取随机数据的文件 (SSL)</div><div class="line">-r, --range RANGE   仅检索范围内的字节</div><div class="line">    --raw           使用原始HTTP传输，而不使用编码 (H)</div><div class="line">-e, --referer       Referer URL (H)</div><div class="line">-J, --remote-header-name 从远程文件读取头信息 (H)</div><div class="line">-O, --remote-name   将输出写入远程文件</div><div class="line">    --remote-name-all 使用所有URL的远程文件名</div><div class="line">-R, --remote-time   将远程文件的时间设置在本地输出上</div><div class="line">-X, --request COMMAND  使用指定的请求命令</div><div class="line">    --resolve HOST:PORT:ADDRESS  将 HOST:PORT 强制解析到 ADDRESS</div><div class="line">    --retry NUM   出现问题时的重试次数</div><div class="line">    --retry-delay SECONDS 重试时的延时时长</div><div class="line">    --retry-max-time SECONDS  仅在指定时间段内重试</div><div class="line">-S, --show-error    显示错误. 在选项 -s 中，当 curl 出现错误时将显示</div><div class="line">-s, --silent        Silent模式。不输出任务内容</div><div class="line">    --socks4 HOST[:PORT]  在指定的 host + port 上使用 SOCKS4 代理</div><div class="line">    --socks4a HOST[:PORT]  在指定的 host + port 上使用 SOCKSa 代理</div><div class="line">    --socks5 HOST[:PORT]  在指定的 host + port 上使用 SOCKS5 代理</div><div class="line">    --socks5-hostname HOST[:PORT] SOCKS5 代理，指定用户名、密码</div><div class="line">    --socks5-gssapi-service NAME  为gssapi使用SOCKS5代理服务名称 </div><div class="line">    --socks5-gssapi-nec  与NEC Socks5服务器兼容</div><div class="line">-Y, --speed-limit RATE  在指定限速时间之后停止传输</div><div class="line">-y, --speed-time SECONDS  指定时间之后触发限速. 默认 30</div><div class="line">    --ssl           尝试 SSL/TLS (FTP, IMAP, POP3, SMTP)</div><div class="line">    --ssl-reqd      需要 SSL/TLS (FTP, IMAP, POP3, SMTP)</div><div class="line">-2, --sslv2         使用 SSLv2 (SSL)</div><div class="line">-3, --sslv3         使用 SSLv3 (SSL)</div><div class="line">    --ssl-allow-beast 允许的安全漏洞，提高互操作性(SSL)</div><div class="line">    --stderr FILE   重定向 stderr 的文件位置. - means stdout</div><div class="line">    --tcp-nodelay   使用 TCP_NODELAY 选项</div><div class="line">-t, --telnet-option OPT=VAL  设置 telnet 选项</div><div class="line">     --tftp-blksize VALUE  设备 TFTP BLKSIZE 选项 (必须 &gt;512)</div><div class="line">-z, --time-cond TIME  基于时间条件的传输</div><div class="line">-1, --tlsv1         使用 =&gt; TLSv1 (SSL)</div><div class="line">    --tlsv1.0       使用 TLSv1.0 (SSL)</div><div class="line">    --tlsv1.1       使用 TLSv1.1 (SSL)</div><div class="line">    --tlsv1.2       使用 TLSv1.2 (SSL)</div><div class="line">    --trace FILE    将 debug 信息写入指定的文件</div><div class="line">    --trace-ascii FILE  类似 --trace 但使用16进度输出</div><div class="line">    --trace-time    向 trace/verbose 输出添加时间戳</div><div class="line">    --tr-encoding   请求压缩传输编码 (H)</div><div class="line">-T, --upload-file FILE  将文件传输（上传）到指定位置</div><div class="line">    --url URL       指定所使用的 URL</div><div class="line">-B, --use-ascii     使用 ASCII/text 传输</div><div class="line">-u, --user USER[:PASSWORD]  指定服务器认证用户名、密码</div><div class="line">    --tlsuser USER  TLS 用户名</div><div class="line">    --tlspassword STRING TLS 密码</div><div class="line">    --tlsauthtype STRING  TLS 认证类型 (默认 SRP)</div><div class="line">    --unix-socket FILE    通过这个 UNIX socket 域连接</div><div class="line">-A, --user-agent STRING  要发送到服务器的 User-Agent (H)</div><div class="line">-v, --verbose       显示详细操作信息</div><div class="line">-V, --version       显示版本号并退出</div><div class="line">-w, --write-out FORMAT  完成后输出什么</div><div class="line">    --xattr        将元数据存储在扩展文件属性中</div><div class="line">-q                 .curlrc 如果作为第一个参数无效</div></pre></td></tr></table></figure>
+<h2 id="三、我的实战操作">三、我的实战操作</h2><h3 id="post数据">post数据</h3><p><code>curl -d &quot;username=xxx&amp;password=abc&amp;secret=true&quot;  &quot;URL&quot;</code></p>
+<h3 id="上传文件">上传文件</h3><p>通过脚本发送post请求，顺便附带文本数据，比如通过”浏览”选择本地的card.txt并上传发送post请求：<br><code>curl  -F &quot;blob=@card.txt;type=text/plain&quot;  &quot;http://172.16.102.208:8089/wiapi/score?leaderboard_id=7778a8143f111272&amp;score=40&amp;app_key=8d49f16fe034b98b&amp;_test_user=test01&quot;</code></p>
+<p>其中-F 为带文件的形式发送post请求，   blob为文本框中的name元素对应的属性值。<type="text" name="blob"></type="text"></p>
+<h3 id="指定hosts访问">指定hosts访问</h3><blockquote>
+<p>curl -H “Host:jp.laikansha.com” “<a href="http://216.239.32.21/time.php" target="_blank" rel="external">http://216.239.32.21/time.php</a>“</p>
+</blockquote>
+<h2 id="参考">参考</h2><ul>
+<li><a href="https://itbilu.com/linux/man/4yZ9qH_7X.html" target="_blank" rel="external">https://itbilu.com/linux/man/4yZ9qH_7X.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/23/linux/wget-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/23/linux/wget-usage.html" itemprop="url">Linux下载工具wget使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T10:09:33+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/23/linux/wget-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/23/linux/wget-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/23/linux/wget-usage.html" class="leancloud_visitors" data-flag-title="Linux下载工具wget使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、wget">一、wget</h2><h3 id="应用场景">应用场景</h3><p>批量下载或递归下载网页中的所有文件： <code>wget -r http://site.com/content_dir</code><br>指定下载编码后再重命名: <code>wget --restrict-file-names=ascii -m www.xxx.com/</code></p>
+<blockquote>
+<p>下载为ascii的文件名, 可以使用软件RenamePro8.0在“高级文件名变”更里面有一个“文件名编码与解码”，“ANSI编码URL字符串转换为文字”</p>
+</blockquote>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://moper.me/wget-download-the-file-name-garbled.html" target="_blank" rel="external">http://moper.me/wget-download-the-file-name-garbled.html</a></li>
+<li><a href="http://rubyer.me/blog/111/" target="_blank" rel="external">http://rubyer.me/blog/111/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/23/linux/axel-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1723,284 +2057,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/tools/github-gist-usage.html" itemprop="url">Github·Gist使用攻略</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T11:17:05+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/04/tools/github-gist-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/04/tools/github-gist-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/04/tools/github-gist-usage.html" class="leancloud_visitors" data-flag-title="Github·Gist使用攻略">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Gist 是 Github 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 Gist 页面提供访问的 JavaScript 片段用于嵌入其他网站，如：个人博客等。下面说说gist的一些正确打开姿势。</p>
-<h2 id="一、使用、管理Gist">一、使用、管理Gist</h2><h3 id="1-1_使用_Github_Gist">1.1 使用 Github Gist</h3><p>github官网默认功能，这里不多说了</p>
-<h3 id="1-2_gistboxapp">1.2 gistboxapp</h3><p>gistboxapp是一个gist集成管理工具，GistBox 是可以直接用 Github 账户登录的，实时同步你的 Gist 到 Github，很方便。GitBox 从体验上来说更加方便，界面元素丰富，功能也比较全。如果不想用 Sublime Text, 又觉着 Github 自己的 Gist 管理太简单，GistBox是一种不错的方式。官网是 <a href="https://app.gistboxapp.com/，功能功能截图如下：" target="_blank" rel="external">https://app.gistboxapp.com/，功能功能截图如下：</a></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fi7ix9oamwj30mj0goq5f.jpg" alt="gistboxapp"></p>
-<h3 id="1-3_使用_Sublime_Text_+_Gist插件">1.3 使用 Sublime Text + Gist插件</h3><p>安装插件：Gist</p>
-<p>配置token: 插件下的user setting下配置，</p>
-<p>添加 Github Token:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    // Your GitHub API token</div><div class="line">    // see: https://github.com/condemil/Gist#generating-access-token</div><div class="line">    "token": "a28b686c3a74······c300f42414c7", // 从命令行得到的 token</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="分享Gist代码">分享Gist代码</h2><p>这里直接粘贴部分代码片段：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 使用iframe加载 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">src</span>=<span class="string">"https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.pibb"</span> <span class="attr">allowfullscreen</span>=<span class="string">"allowfullscreen"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 使用js加载 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>或者添加通用的处理规则在function中：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// wordpress usage</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * WordPress 使用 iframe 嵌入Github Gist代码</div><div class="line"> * https://www.wpdaxue.com/wp-iframe-handler-gist.html</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wp_iframe_handler_gist</span><span class="params">( $matches, $attr, $url, $rawattr )</span> </span>&#123;</div><div class="line">	$iframe = <span class="string">'&lt;iframe width="100%" height="300" src="https://gist.github.com/'</span>. esc_attr($matches[<span class="number">1</span>]) .<span class="string">'/'</span>. esc_attr($matches[<span class="number">2</span>]) . <span class="string">'.pibb" frameborder=0 &gt;&lt;/iframe&gt;'</span>;</div><div class="line">	<span class="keyword">return</span> apply_filters( <span class="string">'iframe_gist'</span>, $iframe, $matches, $attr, $url, $rawattr );</div><div class="line">&#125;</div><div class="line">wp_embed_register_handler( <span class="string">'gist_iframe'</span>, <span class="string">'#https://gist.github.com/(.*?)/([\d]+)#i'</span>, <span class="string">'wp_iframe_handler_gist'</span> );</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/04/php/php-manual.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/php/php-manual.html" itemprop="url">我的PHP手册</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T11:08:25+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/04/php/php-manual.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/04/php/php-manual.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/04/php/php-manual.html" class="leancloud_visitors" data-flag-title="我的PHP手册">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="文件参数">文件参数</h2><p>parse_str:</p>
-<iframe width="100%" height="300" src="https://gist.github.com/boxcore/32ac12a9dda2c5bb46893395e90f4209.pibb" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2050,7 +2106,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">227</span>
+                <span class="site-state-item-count">229</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2061,7 +2117,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

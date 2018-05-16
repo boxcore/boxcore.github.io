@@ -194,6 +194,30 @@
   </entry>
   
   <entry>
+    <title>ThinkCMF笔记</title>
+    <link href="http://boxcore.github.io/2018/05/02/php/thinkphp-thinkcmf-usage.html"/>
+    <id>http://boxcore.github.io/2018/05/02/php/thinkphp-thinkcmf-usage.html</id>
+    <published>2018-05-02T07:07:54.000Z</published>
+    <updated>2018-05-16T14:39:02.264Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常用模板配置&quot;&gt;常用模板配置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{$site_info.site_name|default=&amp;#39;&amp;#39;}&lt;/code&gt;： 站点名称&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="thinkphp" scheme="http://boxcore.github.io/categories/thinkphp/"/>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/thinkphp/php/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Dropbox使用</title>
     <link href="http://boxcore.github.io/2018/05/01/tools/dropbox-usage.html"/>
     <id>http://boxcore.github.io/2018/05/01/tools/dropbox-usage.html</id>
@@ -205,6 +229,25 @@
       &lt;p&gt;dropbox是国外较大的网盘之一，居于国内网盘的尿性及审查，博主就经常使用它同步自己重要的文(zhong)件(zi)了。如果还没有账号的，点这个 &lt;a href=&quot;https://db.tt/UzSdXuuE&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
     
     </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Thinkphp学习笔记</title>
+    <link href="http://boxcore.github.io/2018/04/29/php/learn-thinkphp.html"/>
+    <id>http://boxcore.github.io/2018/04/29/php/learn-thinkphp.html</id>
+    <published>2018-04-29T15:27:11.000Z</published>
+    <updated>2018-05-16T14:38:46.345Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;thinkphp 3迁移5&lt;br&gt;thinkphp5 学习笔记&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
     
     
   </entry>
@@ -351,51 +394,6 @@
     
       <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Linux文件操作命令之LFTP、FTP</title>
-    <link href="http://boxcore.github.io/2018/04/11/linux/linux-lftp-and-ftp.html"/>
-    <id>http://boxcore.github.io/2018/04/11/linux/linux-lftp-and-ftp.html</id>
-    <published>2018-04-11T10:36:32.000Z</published>
-    <updated>2018-04-11T10:37:40.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我的操作脚本范例：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div cl
-    
-    </summary>
-    
-      <category term="linux" scheme="http://boxcore.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx下重写规则</title>
-    <link href="http://boxcore.github.io/2018/04/07/nginx-rewrite-rule.html"/>
-    <id>http://boxcore.github.io/2018/04/07/nginx-rewrite-rule.html</id>
-    <published>2018-04-06T16:14:58.000Z</published>
-    <updated>2018-04-17T01:54:13.280Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们知道apache和nginx都可以对url链接进行重写，apache主要通过&lt;code&gt;.htacess&lt;/code&gt;文件来实现，而nginx主要是通过域名配置来实现。两者的用法区别很大，这里针对这2种链接重新工具进行对比，并给大家介绍nginx常用的一些rewrite
-    
-    </summary>
-    
-      <category term="正则" scheme="http://boxcore.github.io/categories/%E6%AD%A3%E5%88%99/"/>
-    
-      <category term="nginx" scheme="http://boxcore.github.io/categories/%E6%AD%A3%E5%88%99/nginx/"/>
-    
-    
-      <category term="Nginx" scheme="http://boxcore.github.io/tags/Nginx/"/>
-    
-      <category term="rewrite" scheme="http://boxcore.github.io/tags/rewrite/"/>
-    
-      <category term="重写" scheme="http://boxcore.github.io/tags/%E9%87%8D%E5%86%99/"/>
     
   </entry>
   

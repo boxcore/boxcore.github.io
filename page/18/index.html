@@ -329,6 +329,403 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/02/15/php/php-standard-code-tools.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/15/php/php-standard-code-tools.html" itemprop="url">PHP代码标准和测试(未完待续)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T12:21:10+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/15/php/php-standard-code-tools.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/15/php/php-standard-code-tools.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/15/php/php-standard-code-tools.html" class="leancloud_visitors" data-flag-title="PHP代码标准和测试(未完待续)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用于检测php代码标准的套件有:</p>
+<ul>
+<li>phpcs</li>
+<li>phpmd</li>
+<li>phpcbf</li>
+<li>php-cs-fixer</li>
+</ul>
+<p>下面将简单介绍这些工具的安装和使用方法</p>
+<h3 id="一,_安装">一, 安装</h3><p>使用composer安装(推荐)<br>然后，确保~/.composer/vendor/bin目录在你的PATH中。<br>export PATH=”$PATH:$HOME/.composer/vendor/bin”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">composer global require <span class="string">"squizlabs/php_codesniffer=*"</span></div><div class="line">composer global require phpmd/phpmd</div><div class="line">composer global require fabpot/php-cs-fixer</div></pre></td></tr></table></figure>
+<p>检查是否都成功安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">which</span> phpcs</div><div class="line">$ <span class="built_in">which</span> phpmd</div><div class="line">$ <span class="built_in">which</span> php-cs-fixer</div><div class="line">$ <span class="built_in">which</span> phpcbf</div></pre></td></tr></table></figure></p>
+<h3 id="二,_使用">二, 使用</h3><h4 id="2-1_phpcs">2.1 phpcs</h4><ul>
+<li>查看帮助：phpcs –help</li>
+<li>添加标准：phpcs –config-set installed_paths PATH_TO_SEARCH_STANDARDS</li>
+</ul>
+<blockquote>
+<p>注意：假设标准为 Weibo, 目录为:<br>/Users/overtrue/code_standards/Weibo<br>其中Weibo 里才是 ruleset.xml，那么对应上面的 PATH_TO_SEARCH_STANDARDS 应该为：<br>phpcs –config-set installed_paths /Users/overtrue/code_standards</p>
+</blockquote>
+<p>开发中我们经常使用wordpress的标准来, 设置如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcs</div><div class="line">phpcs --config-set installed_paths /www/default_path_to/wpcs</div></pre></td></tr></table></figure>
+<ul>
+<li>查看已经安装的标准：phpcs -i</li>
+<li>查看配置：phpcs –config-show</li>
+<li>检查代码规范：</li>
+</ul>
+<blockquote>
+<p>phpcs ./codes/Example.php<br>// or<br>phpcs ./codes/</p>
+</blockquote>
+<ul>
+<li>指定标准：phpcs ./codes/Example.php –standard=PSR2</li>
+<li>报告格式：phpcs –report=summary /path/to/code</li>
+</ul>
+<blockquote>
+<p>可用的格式有（默认为: full）：<br>  full, xml, checkstyle, csv<br>  json, emacs, source, summary, diff<br>  svnblame, gitblame, hgblame or notifysend</p>
+</blockquote>
+<ul>
+<li><p>修复代码</p>
+<ul>
+<li><p>第一种：使用 diff 形式打补丁：</p>
+<blockquote>
+<p>phpcs –report-diff=/path/to/changes.diff /path/to/code<br>patch -p0 -ui /path/to/changes.diff</p>
+<h1 id="patching_file_/path/to/code/file-php">patching file /path/to/code/file.php</h1></blockquote>
+</li>
+<li><p>第二种：使用 PHP Code Beautifier 和 Fixer：</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>phpcbf /path/to/code<br>以上命令会自动修复原文件，如果不想直接覆盖原文件，可以使用 –suffix 指定修复后的代码后缀：<br>phpcs /path/to/code –suffix=.fixed</p>
+</blockquote>
+<p>更多 PHPCS 的使用请参考：<a href="https://github.com/squizlabs/PHP_CodeSniffer/wiki" target="_blank" rel="external">https://github.com/squizlabs/PHP_CodeSniffer/wiki</a></p>
+<h4 id="2-2_phpmd使用">2.2 phpmd使用</h4><p>使用phpmd检查代码质量操作如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># phpmd 代码路径 报告格式</span></div><div class="line">phpmd /path/to/<span class="built_in">source</span> text</div><div class="line"></div><div class="line"><span class="comment"># phpmd 代码路径 报告格式 规则列表</span></div><div class="line">phpmd /path/to/<span class="built_in">source</span> text codesize,unusedcode,naming</div><div class="line"></div><div class="line"><span class="comment"># phpmd 代码路径 报告格式 规则xml文件</span></div><div class="line">phpmd /path/to/<span class="built_in">source</span> text /phpmd_ruleset.xml</div></pre></td></tr></table></figure>
+<p>报告格式有：</p>
+<ul>
+<li>xml, 以 XML 格式输出；</li>
+<li>text, 简单的文本格式；</li>
+<li>html, 输出到单个的html；</li>
+</ul>
+<p>这里有一个phpmd规则可参考：<a href="https://github.com/overtrue/phpmd-rulesets" target="_blank" rel="external">https://github.com/overtrue/phpmd-rulesets</a></p>
+<p>更多关于 PHPMD 的使用请参考：<a href="http://phpmd.org/documentation/index.html" target="_blank" rel="external">http://phpmd.org/documentation/index.html</a></p>
+<h4 id="2-3_php-cs-fixer">2.3 php-cs-fixer</h4><hr>
+<p>参考</p>
+<ul>
+<li><a href="https://laravel-china.org/topics/547" target="_blank" rel="external">php-cs-fixer的使用</a></li>
+<li><a href="http://wulijun.github.io/php-the-right-way/" target="_blank" rel="external">http://wulijun.github.io/php-the-right-way/</a></li>
+<li><a href="http://overtrue.me/articles/2015/05/install-phpcs-and-phpmd.html" target="_blank" rel="external">http://overtrue.me/articles/2015/05/install-phpcs-and-phpmd.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/01/27/sql/mongodb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/27/sql/mongodb.html" itemprop="url">MongoDB学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-27T11:02:31+08:00">
+                2017-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/27/sql/mongodb.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/27/sql/mongodb.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/01/27/sql/mongodb.html" class="leancloud_visitors" data-flag-title="MongoDB学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-_安装">一. 安装</h2><p>本着快速掌握mongodb的目的, 直接在mac上使用homebrew安装了mongodb, 命令如下:</p>
+<blockquote>
+<p>brew install mongodb</p>
+</blockquote>
+<h2 id="二-_Mongodb基础">二. Mongodb基础</h2><p>mongodb的类型有2种, 集合和文档.</p>
+<h3 id="2-1_基础语法">2.1 基础语法</h3><ul>
+<li>show dbs : 查看数据库</li>
+<li>show tables : 查看表</li>
+<li>use DB_NAME : 切换数据库, 如果没有则创建, 当写入第一条数据时创建</li>
+<li>dropDatabase() : 删除数据库</li>
+</ul>
+<h4 id="2-1-2_集合相关方法">2.1.2 集合相关方法</h4><p> db.createCollection(name, options)  创建集合</p>
+<hr>
+<p><strong>参考文档:</strong></p>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/mongodb/mongodb-overview.html" target="_blank" rel="external">极客学院 - MongoDB教程</a></li>
+<li><a href="https://mongodb-documentation.readthedocs.io/" target="_blank" rel="external">MongoDB手册</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/01/27/sql/sql.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1744,330 +2141,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2016/09/17/wordpress-to-hexo.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/17/wordpress-to-hexo.html" itemprop="url">Hexo用法&wordpress迁移</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T00:37:00+08:00">
-                2016-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/17/wordpress-to-hexo.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/09/17/wordpress-to-hexo.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/17/wordpress-to-hexo.html" class="leancloud_visitors" data-flag-title="Hexo用法&wordpress迁移">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天把wp博客迁移到了hexo，主要原因是以后不用考虑空间问题。下面是迁移的代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用npm安装插件</span></div><div class="line">npm install hexo-migrator-wordpress --save</div><div class="line"><span class="comment">#（先去Wordprdss导出你的XML文件先），在博客目录执行</span></div><div class="line">hexo migrate wordpress wordpress.xml</div><div class="line"><span class="comment">#导完之后，插件和xml都可以卸掉了~_~</span></div><div class="line"></div><div class="line"><span class="comment"># 另外，由于mac中有报错`&#123; [Error: Cannot find module './build/Release/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' &#125;`， 需执行命令:</span></div><div class="line">npm install hexo --no-optional</div></pre></td></tr></table></figure>
-<p>另外，如果需要在线可视化编辑器，可以安装hexo-admin这个工具：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save hexo-admin</div></pre></td></tr></table></figure></p>
-<p>完成后，访问 <code>localhost:4000/admin</code>就是后台编辑的页面了。</p>
-<p>enjoy it！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2015/02/25/api-standard.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/25/api-standard.html" itemprop="url">API标准</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-25T14:51:37+08:00">
-                2015-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/25/api-standard.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/25/api-standard.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/25/api-standard.html" class="leancloud_visitors" data-flag-title="API标准">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工作中会遇到许多API的工作，目前最流行的方案是使用<code>RESTful API</code>。</p>
-<h2 id="附录1：code对照表参考">附录1：code对照表参考</h2><p>仅供参考，API接口开发人员可根据实际情况自定义相应结果码或节点</p>
-<ul>
-<li>200 ok - 成功状态，对应，GET,PUT,PATCH,DELETE.</li>
-<li>500 faild - 失败状态</li>
-<li>304 not modified - HTTP缓存有效。</li>
-<li>400 bad request - 请求格式错误。可以标识参数错误或参数缺失</li>
-<li>401 unauthorized - 未授权。</li>
-<li>403 forbidden - 鉴权成功，但是该用户没有权限。</li>
-<li>404 not found - 请求的资源或接口不存在</li>
-<li>405 method not allowed - 该http方法不被允许。</li>
-<li>410 gone - 这个url对应的资源现在不可用。</li>
-<li>415 unsupported media type - 请求类型错误。</li>
-<li>422 unprocessable entity - 校验错误时用。</li>
-<li>429 too many request - 请求过多。</li>
-</ul>
-<h3 id="API参考说明">API参考说明</h3><p><strong>参考文档：</strong></p>
-<ul>
-<li><a href="https://github.com/ZhangBohan/http-api-design-ZH_CN" target="_blank" rel="external">HTTP API 设计指南</a></li>
-<li><a href="https://github.com/WhiteHouse/api-standards" target="_blank" rel="external">白宫API标准</a></li>
-<li><a href="http://segmentfault.com/q/1010000000500665#a-1020000000503507" target="_blank" rel="external">php实现restful api有什么框架使用方便？</a></li>
-<li><a href="http://mlongbo.com/http-apixiang-ying-shu-ju-gui-fan-zheng-li/" target="_blank" rel="external">HTTP API响应数据规范整理</a></li>
-<li><a href="http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340" target="_blank" rel="external">A Beginner’s Guide to HTTP and REST</a></li>
-<li><a href="http://segmentfault.com/blog/cloudmario/1190000000635914" target="_blank" rel="external">RESTful实践总结</a></li>
-</ul>
-<p><strong>PHP RESTful相关项目：</strong></p>
-<ul>
-<li><a href="https://github.com/yeaha/Lysine2" target="_blank" rel="external">Lysine2</a></li>
-<li><a href="https://github.com/anandkunal/ToroPHP" target="_blank" rel="external">ToroPHP</a></li>
-<li><a href="https://github.com/evan108108/RESTFullYii" target="_blank" rel="external">RESTFullYii</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2117,7 +2190,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">227</span>
+                <span class="site-state-item-count">229</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2128,7 +2201,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

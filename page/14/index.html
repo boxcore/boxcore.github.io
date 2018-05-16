@@ -329,6 +329,284 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/04/tools/github-gist-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/04/tools/github-gist-usage.html" itemprop="url">Github·Gist使用攻略</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T11:17:05+08:00">
+                2017-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/04/tools/github-gist-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/04/tools/github-gist-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/04/tools/github-gist-usage.html" class="leancloud_visitors" data-flag-title="Github·Gist使用攻略">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Gist 是 Github 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 Gist 页面提供访问的 JavaScript 片段用于嵌入其他网站，如：个人博客等。下面说说gist的一些正确打开姿势。</p>
+<h2 id="一、使用、管理Gist">一、使用、管理Gist</h2><h3 id="1-1_使用_Github_Gist">1.1 使用 Github Gist</h3><p>github官网默认功能，这里不多说了</p>
+<h3 id="1-2_gistboxapp">1.2 gistboxapp</h3><p>gistboxapp是一个gist集成管理工具，GistBox 是可以直接用 Github 账户登录的，实时同步你的 Gist 到 Github，很方便。GitBox 从体验上来说更加方便，界面元素丰富，功能也比较全。如果不想用 Sublime Text, 又觉着 Github 自己的 Gist 管理太简单，GistBox是一种不错的方式。官网是 <a href="https://app.gistboxapp.com/，功能功能截图如下：" target="_blank" rel="external">https://app.gistboxapp.com/，功能功能截图如下：</a></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fi7ix9oamwj30mj0goq5f.jpg" alt="gistboxapp"></p>
+<h3 id="1-3_使用_Sublime_Text_+_Gist插件">1.3 使用 Sublime Text + Gist插件</h3><p>安装插件：Gist</p>
+<p>配置token: 插件下的user setting下配置，</p>
+<p>添加 Github Token:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    // Your GitHub API token</div><div class="line">    // see: https://github.com/condemil/Gist#generating-access-token</div><div class="line">    "token": "a28b686c3a74······c300f42414c7", // 从命令行得到的 token</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="分享Gist代码">分享Gist代码</h2><p>这里直接粘贴部分代码片段：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 使用iframe加载 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">src</span>=<span class="string">"https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.pibb"</span> <span class="attr">allowfullscreen</span>=<span class="string">"allowfullscreen"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 使用js加载 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://gist.github.com/boxcore/9abd100553a3585c50b7c348e50e2f87.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>或者添加通用的处理规则在function中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// wordpress usage</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * WordPress 使用 iframe 嵌入Github Gist代码</div><div class="line"> * https://www.wpdaxue.com/wp-iframe-handler-gist.html</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wp_iframe_handler_gist</span><span class="params">( $matches, $attr, $url, $rawattr )</span> </span>&#123;</div><div class="line">	$iframe = <span class="string">'&lt;iframe width="100%" height="300" src="https://gist.github.com/'</span>. esc_attr($matches[<span class="number">1</span>]) .<span class="string">'/'</span>. esc_attr($matches[<span class="number">2</span>]) . <span class="string">'.pibb" frameborder=0 &gt;&lt;/iframe&gt;'</span>;</div><div class="line">	<span class="keyword">return</span> apply_filters( <span class="string">'iframe_gist'</span>, $iframe, $matches, $attr, $url, $rawattr );</div><div class="line">&#125;</div><div class="line">wp_embed_register_handler( <span class="string">'gist_iframe'</span>, <span class="string">'#https://gist.github.com/(.*?)/([\d]+)#i'</span>, <span class="string">'wp_iframe_handler_gist'</span> );</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/04/php/php-manual.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/04/php/php-manual.html" itemprop="url">我的PHP手册</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T11:08:25+08:00">
+                2017-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/04/php/php-manual.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/04/php/php-manual.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/04/php/php-manual.html" class="leancloud_visitors" data-flag-title="我的PHP手册">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文件参数">文件参数</h2><p>parse_str:</p>
+<iframe width="100%" height="300" src="https://gist.github.com/boxcore/32ac12a9dda2c5bb46893395e90f4209.pibb" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/02/linux/openssl-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1571,421 +1849,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/19/learn-vuejs.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/19/learn-vuejs.html" itemprop="url">Vue.js学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T20:02:40+08:00">
-                2017-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/19/learn-vuejs.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/19/learn-vuejs.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/07/19/learn-vuejs.html" class="leancloud_visitors" data-flag-title="Vue.js学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>作为开发者，学习一门新语言或者框架的时候，势必会想到，为什么会学（用）这个呢？同样的，学vue.js理由有很多，下面是我觉得vue.js做的比较好的地方：</p>
-<ol>
-<li>目前属于中文世界最流行的前端框架，有丰富的文档支持，上手极快。</li>
-<li>单文件组件的好处</li>
-</ol>
-<p>同样的，也有很多不好的地方，跟以往的框架不一样，这里会有些新的思维。本来想着把目前几个后台的smarty都切换到vue.js,发现其成本太高，如果要用vuejs，全部模板都要重构!这相当是vuejs的一些坏处了吧。。。</p>
-<p>好了，废话不多说，开始说下vue.js的一些基础内容咯。</p>
-<h2 id="一、说说Vue-js">一、说说Vue.js</h2><p>首先带个问题：</p>
-<ol>
-<li>Vue.js 的核心思想是什么？<blockquote>
-<p>答： 1、数据驱动; 2、组件化</p>
-</blockquote>
-</li>
-<li>Vue.js 的单文件组件有什么作用？<blockquote>
-<p>答： </p>
-</blockquote>
-</li>
-</ol>
-<p>Vue.js 可以做什么？</p>
-<ul>
-<li>移动端的web开发</li>
-<li>后台管理系统</li>
-<li>混合应用 WebApp</li>
-<li>其他一些不用兼容IE8及以下的项目（如果你还用IE8以下的浏览器，建议你弃坑！）</li>
-</ul>
-<h3 id="1-1_常用指令">1.1 常用指令</h3><ul>
-<li>条件指令 ：v-if、v-else</li>
-<li>循环指令 ：v-for</li>
-<li>事件指令 ：v-on</li>
-<li>其他指令 ：v-show、v-model …</li>
-</ul>
-<p>他们都有一个共性就是<code>v-前缀</code>，这就是vue.js指令的特点了。那么如何使用vue.js呢？这里有个简单例子：</p>
-<h2 id="二、vue-js基础">二、vue.js基础</h2><h3 id="2-1_数据驱动(Data-Driven)">2.1 数据驱动(Data-Driven)</h3><p>vue.js是通过 <code>MVVM</code> 的数据绑定实例自动同步</p>
-<h3 id="2-2_组件化(Component)">2.2 组件化(Component)</h3><h3 id="2-3_实例生命周期（Life-Cycle）">2.3 实例生命周期（Life-Cycle）</h3><p>常用的生命周期钩子函数</p>
-<h2 id="三、vue-js进阶">三、vue.js进阶</h2><h3 id="3-1_Vue-js_脚手架工具的使用">3.1 Vue.js 脚手架工具的使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vue init webpack vue-demo     <span class="comment"># 初始化项目</span></div><div class="line"><span class="built_in">cd</span> vue-demo                   <span class="comment"># 切换到该项目</span></div><div class="line">npm install                   <span class="comment"># 安装依赖的包</span></div><div class="line">npm run dev 与 npm run build   <span class="comment"># 开发与打包</span></div></pre></td></tr></table></figure>
-<p>vue.js包含内容</p>
-<ul>
-<li>template</li>
-<li>script</li>
-<li>css</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/07/19/phpunit-right-way.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/19/phpunit-right-way.html" itemprop="url">PHPUNIT测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T14:22:10+08:00">
-                2017-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/api/" itemprop="url" rel="index">
-                    <span itemprop="name">api</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/19/phpunit-right-way.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/19/phpunit-right-way.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/07/19/phpunit-right-way.html" class="leancloud_visitors" data-flag-title="PHPUNIT测试">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-_PHPUNIT是什么">1. PHPUNIT是什么</h2><p>PHPUnit是一个用PHP编程语言开发的开源软件，是一个单元测试框架。</p>
-<h3 id="1-1_为什么要用PHPUNIT">1.1 为什么要用PHPUNIT</h3><ol>
-<li>用phpunit是一个不错的主意</li>
-<li>更改代码不会破坏他原有的结构 - 我们不需要修改源码。。</li>
-<li>帮助其他开发人员了解您的代码的作用（并帮助入职过程，新人等等。。）</li>
-<li>帮助您在编写代码时保持检查。 它会迫使你思考一些事情，例如“我将如何测试这个？</li>
-<li>帮助你在晚上能睡好觉。。。。</li>
-</ol>
-<h3 id="1-2_单元测试的概念">1.2 单元测试的概念</h3><p> 程序单元是应用的最小可测试部件。 在过程化编程中，一个单元就是单个程序、函数、过程等；对于面向对象编程，最小单元就是方法，包括基类（超类）、抽象类、或者派生类（子类）中的方法。</p>
-<h2 id="2-_开始学习">2. 开始学习</h2><p>Getting Started With PHPUnit： <a href="http://phpunit.de/" target="_blank" rel="external">http://phpunit.de/</a></p>
-<h3 id="安装">安装</h3><ul>
-<li>旧方法：PEAR</li>
-<li>新方法：PHAR or Composer</li>
-</ul>
-<p><a href="http://phpunit.de/manual/current/en/installation.html" target="_blank" rel="external">http://phpunit.de/manual/current/en/installation.html</a></p>
-<h3 id="案例1">案例1</h3><p>The Code:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Unicorns</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> $count = <span class="number">8</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;count;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">steal</span><span class="params">($number)</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;count -= $number;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>The Unit Test<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnicornsTest</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test_can_steal</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// Setup</span></div><div class="line">        $unicorns = Unicorns();</div><div class="line"></div><div class="line">        <span class="comment">// Action</span></div><div class="line">        $unicorns-&gt;steal(<span class="number">5</span>);</div><div class="line">        </div><div class="line">        <span class="comment">// Assert</span></div><div class="line">        <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">3</span>, $unicorns-&gt;getCount());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Running PHPUnit</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ phpunit tests/unicorns.php</div></pre></td></tr></table></figure>
-<pre><code>PHPUnit <span class="number">3.4</span><span class="number">.0</span> by Sebastian Bergmann.
-Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</span><span class="function">Mb
-<span class="title">OK</span> <span class="params">(<span class="number">1</span> tests, <span class="number">1</span> assertions)</span></span>
-</code></pre><h3 id="案例2">案例2</h3><p>The “Optimizer”</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Unicorns() &#123;</div><div class="line">    private $count = 8;</div><div class="line"></div><div class="line">    public function getCount() &#123;</div><div class="line">        return $this-&gt;count;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public function steal($number) &#123;</div><div class="line">        $this-&gt;count -= $this-&gt;count - $number &gt;= 0 ? $number : 0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>OUR TEST:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class UnicornsTest extends PHPUnit_Framework_TestCase() &#123;</div><div class="line">    public function test_can_steal() &#123;</div><div class="line">        $unicorns = Unicorns();</div><div class="line">        $unicorns-&gt;steal(5);</div><div class="line">        $this-&gt;assertEquals(3, $unicorns-&gt;getCount());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public function test_cant_steal() &#123;</div><div class="line">        $unicorns = Unicorns();</div><div class="line">        $unicorns-&gt;steal(1000);</div><div class="line">        $this-&gt;assertEquals(8, $unicorns-&gt;getCount());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Running PHPUnit<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">PHPUnit 3.4.0 by Sebastian Bergmann.</div><div class="line">..</div><div class="line">Time: 0 seconds, Memory: 0.5Mb</div><div class="line">OK (2 tests, 2 assertions)</div></pre></td></tr></table></figure></p>
-<h3 id="案例3">案例3</h3><p>The Bad “Optimizer”</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Unicorns() &#123;</div><div class="line">    private $count = 8;</div><div class="line"></div><div class="line">    public function getCount() &#123;</div><div class="line">        return $this-&gt;count;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public function steal($num) &#123;</div><div class="line">        $this-&gt;count -= $this-&gt;count - $num &gt;= 0 ? $num : $this-&gt;count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Running PHPUnit (again): </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">phpunit tests/unicorns.php</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">PHPUnit 3.4.0 by Sebastian Bergmann.</div><div class="line"></div><div class="line">Time: 0 seconds, Memory: 0.5Mb</div><div class="line">There was 1 failure:</div><div class="line"></div><div class="line">1) UnicornsTest::<span class="built_in">test</span>\_cant\_steal</div><div class="line">Failed asserting that 0 matches expected 8.</div><div class="line"></div><div class="line">/path/to/<span class="built_in">test</span>/unicorns.php:11</div><div class="line"></div><div class="line">FAILURES!</div><div class="line">Tests: 2, Assertions: 2, Failures: 1.</div></pre></td></tr></table></figure>
-<h2 id="3-_配置项">3. 配置项</h2><ul>
-<li>assertEquals()</li>
-<li>assertTrue()</li>
-<li>assertFalse()</li>
-<li>assertLessThan()</li>
-<li>assertNull()</li>
-<li>assertRegExp()</li>
-</ul>
-<p><a href="http://phpunit.de/manual/current/en/appendixes.assertions.html" target="_blank" rel="external">http://phpunit.de/manual/current/en/appendixes.assertions.html</a></p>
-<h2 id="4-_FizzBuzz">4. FizzBuzz</h2><pre><code>FizzBuzz是借鉴一个英国学校里小孩子经常玩的游戏。改编后的题目大概是这样的 “编写程序把<span class="number">1</span>-<span class="number">100</span>的数字打印出来。不过，要把<span class="number">3</span>的倍数打成<span class="string">"Fizz"</span>，把<span class="number">5</span>的倍数打成<span class="string">"Buzz"</span>。而如果一个数既是<span class="number">3</span>的倍数。又是<span class="number">5</span>的倍数时，就打成<span class="string">"Fizz-Buzz"</span>，其余的输出数字。然后在论坛看见这道编程题很多计算级系的高材生(博士、硕士之类的)都不能现场写出来，更有多年经验自称高级开发程序员在几分钟内也写不出来
-</code></pre><p>不过既然说到这了，那就先打开来考验下自己，最后我是通过两种方式来实现的：<br>第一种：利用循环和条件判断，过滤满足特定条件的数字，然后输出结果，代码如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">for</span> ($i = <span class="number">1</span>; $i &lt;= <span class="number">100</span>; $i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>($i % <span class="number">3</span> == <span class="number">0</span> &amp;&amp; $i % <span class="number">5</span> ==<span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"FizzBuzz&lt;br /&gt;\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>($i % <span class="number">3</span> == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Fizz&lt;br /&gt;\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>($i % <span class="number">5</span> == <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Buzz&lt;br /&gt;\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">echo</span> $i.<span class="string">"&lt;br /&gt;\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 或者更加简单</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> ($i = <span class="number">1</span>; $i &lt;= <span class="number">100</span>; $i++) &#123;</div><div class="line">    $mod3 = $i % <span class="number">3</span>;</div><div class="line">    $mod5 = $i % <span class="number">5</span>;</div><div class="line">    <span class="keyword">echo</span> (!$mod3 &amp;&amp; !$mod5 ? <span class="string">"FizzBuzz"</span> : (!$mod3 ? <span class="string">"Fizz"</span> : (!$mod5 ? <span class="string">"Buzz"</span> : $i))) .<span class="string">"&lt;br&gt;\n"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fhp6awd4ddj30pe0jdjty.jpg" alt="Alt text"></p>
-<ul>
-<li>URL: <a href="https://devtest.net/take_test/test_attempts/new" target="_blank" rel="external">https://devtest.net/take_test/test_attempts/new</a></li>
-</ul>
-<h2 id="5-_扩展">5. 扩展</h2><h2 id="DOCUMENT">DOCUMENT</h2><ul>
-<li><a href="https://phpunit.de/manual/current/zh_cn/writing-tests-for-phpunit.html" target="_blank" rel="external">https://phpunit.de/manual/current/zh_cn/writing-tests-for-phpunit.html</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2035,7 +1898,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">227</span>
+                <span class="site-state-item-count">229</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2046,7 +1909,7 @@ Time: <span class="number">0</span> seconds, Memory: <span class="number">0.5</s
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
