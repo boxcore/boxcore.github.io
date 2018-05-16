@@ -329,6 +329,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/09/linux/linux-file-dir.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/09/linux/linux-file-dir.html" itemprop="url">Linux之文件和目录操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T20:44:33+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/linux/linux-file-dir.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/09/linux/linux-file-dir.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/09/linux/linux-file-dir.html" class="leancloud_visitors" data-flag-title="Linux之文件和目录操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>dirname $0，取得当前执行的脚本文件的父目录</p>
+<p>cd <code>dirname $0</code>，进入这个目录(切换当前工作目录)</p>
+<p>pwd，显示当前工作目录(cd执行后的)</p>
+<p>由此，我们获得了当前正在执行的脚本的存放路径。</p>
+<p>bash循环读入文件的每一行并处理</p>
+<p>cat afile | while read oneline<br>do<br>    echo $oneline<br>done<br>这只是个简单例子，把文件afile的每一行读入，然后显示出来。</p>
+<p>也可以这样(如果行中有空格或者tab则无法使用此方法,不好意思啊,呵呵):<br>for i in <code>cat afile</code><br>do<br>echo $i<br>done</p>
+<h4 id="逐行处理文件内容">逐行处理文件内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ 通过<span class="built_in">read</span>命令完成</div><div class="line">cat data.dat | <span class="keyword">while</span> <span class="built_in">read</span> line</div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span> &lt; data.dat</div><div class="line"></div><div class="line"></div><div class="line">$ 使用awk命令完成</div><div class="line"></div><div class="line">cat data.dat | awk <span class="string">'&#123;print $0&#125;'</span></div><div class="line">cat data.dat | awk <span class="string">'for(i=2;i&lt;NF;i++) &#123;printf $i&#125; printf "\n"&#125;'</span></div><div class="line"></div><div class="line">$ 使用<span class="keyword">for</span> var <span class="keyword">in</span> file 命令完成</div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> $(cat data.dat)</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat data.dat`</div><div class="line"><span class="keyword">do</span> </div><div class="line">    <span class="built_in">echo</span> <span class="string">"File:<span class="variable">$&#123;line&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>补充：</p>
+<p>如果输入文本每行中没有空格，则line在输入文本中按换行符分隔符循环取值．</p>
+<p>如果输入文本中包括空格或制表符，则不是换行读取，line在输入文本中按空格分隔符或制表符或换行符特环取值．</p>
+<p>可以通过把IFS设置为换行符来达到逐行读取的功能．</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/09/linux/linux-netstat.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1786,150 +1931,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/22/chrome-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/chrome-usage.html" itemprop="url">Google Chrome使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T14:49:27+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/chrome-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/22/chrome-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/22/chrome-usage.html" class="leancloud_visitors" data-flag-title="Google Chrome使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用场景">使用场景</h2><h3 id="1-_Chrome修改UserAgent">1. Chrome修改UserAgent</h3><p>Chrome修改UserAgent<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">boxcore</span>\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Google</span>\<span class="title">Chrome</span>\<span class="title">Application</span>\<span class="title">chrome.exe</span> —<span class="title">user</span>-<span class="title">agent</span>=”<span class="title">iPad</span>” —<span class="title">profile</span>-<span class="title">directory</span>=”<span class="title">Profile</span> 1”</span></div></pre></td></tr></table></figure></p>
-<p>其他的ua比如：</p>
-<p>—user-agent=”iPhone”<br>Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7</p>
-<h3 id="2-_Chrome关闭强制跳转https">2. Chrome关闭强制跳转https</h3><blockquote>
-<p>chrome://net-internals/#hsts<br><code>Delete domain security policies</code>栏的输入框中输入：xxx.com -&gt; 点击<code>delete</code>按钮，即可完成配置。</p>
-</blockquote>
-<ul>
-<li>地址栏中输入 chrome://net-internals/#hsts</li>
-<li>在 Delete domain 中输入项目的域名，并Delete 删除</li>
-<li>可以在 Query domain 测试是否删除成功</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1979,7 +1980,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">226</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1990,7 +1991,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

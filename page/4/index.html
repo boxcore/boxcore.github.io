@@ -329,6 +329,178 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/tools/teredo-ipv6-setting.html" itemprop="url">通过teredo获取ipv6地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T21:05:21+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/07/tools/teredo-ipv6-setting.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/07/tools/teredo-ipv6-setting.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/07/tools/teredo-ipv6-setting.html" class="leancloud_visitors" data-flag-title="通过teredo获取ipv6地址">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.</p>
+<p>那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤</p>
+<h2 id="一、window下开启">一、window下开启</h2><p>说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">netsh int ipv6 show int <span class="comment"># 查看所有适配器</span></div><div class="line">netsh int ipv6 show teredo <span class="comment"># 查看teredo适配器状态</span></div><div class="line">netsh int ipv6 show route <span class="comment"># </span></div><div class="line">netsh int ter <span class="built_in">set</span> state client</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net <span class="comment"># 设置teredo服务器</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-1_win10开启ipv6">1.1 win10开启ipv6</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.com</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state enterpriseclient server=default</div><div class="line"></div><div class="line"><span class="comment"># 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试</span></div><div class="line">ping -6 ipv6.test-ipv6.com</div><div class="line">ping -6 [2001:470:1:18::125]</div><div class="line"></div><div class="line">netsh interface ipv6 reset <span class="comment"># 重置 IPv6 配置， 需要重启系统</span></div><div class="line">-------------------- 重启后的分割线 -----</div><div class="line"></div><div class="line">ipconfig /all <span class="comment"># 查看当前网络信息</span></div><div class="line"></div><div class="line"><span class="comment"># 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法</span></div><div class="line"></div><div class="line"><span class="comment"># 第一种：修改 Teredo 服务器为 teredo.remlab.net</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line"></div><div class="line"><span class="comment"># 第二种：先卸载当前 Teredo 适配器再重新启用</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">disable</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">type</span>=default</div><div class="line">ping -6 ipv6.test-ipv6.com</div></pre></td></tr></table></figure>
+<p><strong>批量脚本</strong></p>
+<blockquote>
+<p>参考来源:<a href="https://github.com/XX-net/XX-Net/issues/7000" target="_blank" rel="external">https://github.com/XX-net/XX-Net/issues/7000</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@<span class="built_in">echo</span> off</div><div class="line">net start <span class="string">"ip helper"</span></div><div class="line">netsh interface ipv6 show teredo</div><div class="line">netsh interface teredo <span class="built_in">set</span> state default</div><div class="line">netsh interface 6to4 <span class="built_in">set</span> state default</div><div class="line">netsh interface isatap <span class="built_in">set</span> state default</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line">netsh interface ipv6 <span class="built_in">set</span> teredo enterpriseclient</div><div class="line">netsh int ter <span class="built_in">set</span> state enterpriseclient</div><div class="line">ipconfig /all</div><div class="line">netsh int ipv6 show int</div><div class="line">netsh int ipv6 show route</div><div class="line">netsh int ipv6 show teredo</div><div class="line">route DELETE ::/0</div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div><div class="line">netsh int ipv6 show prefix</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2002::/16 30 1</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2001::/32 5 1</div><div class="line">route <span class="built_in">print</span></div><div class="line">netsh interface ipv6 show address</div><div class="line">netsh interface ipv6 show route</div><div class="line">cmd</div><div class="line"></div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div></pre></td></tr></table></figure>
+<h2 id="二、mac开启ipv6">二、mac开启ipv6</h2><ul>
+<li>安装miredo <a href="https://github.com/darconeous/miredo-osx" target="_blank" rel="external">https://github.com/darconeous/miredo-osx</a></li>
+<li>下载安装： <a href="https://sourceforge.net/projects/tuntaposx/" target="_blank" rel="external">https://sourceforge.net/projects/tuntaposx/</a></li>
+</ul>
+<p>注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span>+R</div><div class="line">csrutil <span class="built_in">disable</span></div><div class="line">reboot</div></pre></td></tr></table></figure></p>
+<h3 id="mac重新安装">mac重新安装</h3><p>先删除tuntap再重新安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo rm -rf /Library/Extensions/tap.kext</div><div class="line">sudo rm -rf /Library/Extensions/tun.kext</div><div class="line">sudo rm -rf /Library/StartupItems/tap</div><div class="line">sudo rm -rf /Library/StartupItems/tun</div></pre></td></tr></table></figure>
+<h2 id="分享：teredo服务器">分享：teredo服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">win1710.ipv6.microsoft.com</div><div class="line">teredo.ipv6.microsoft.com</div><div class="line">teredo.remlab.net</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1699,139 +1871,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/07/fgfw/rslsync-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/fgfw/rslsync-usage.html" itemprop="url">Resilio Sync使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T18:04:43+08:00">
-                2018-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/07/fgfw/rslsync-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/07/fgfw/rslsync-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/07/fgfw/rslsync-usage.html" class="leancloud_visitors" data-flag-title="Resilio Sync使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、安装">一、安装</h2><h3 id="1-1_linux下安装rslsync">1.1 linux下安装rslsync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># centos</span></div><div class="line">rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc</div><div class="line">yum update</div><div class="line">yum install resilio-sync</div><div class="line">ll</div><div class="line">rslsync --webui.listen 0.0.0.0:8888</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1881,7 +1920,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">226</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1892,7 +1931,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
