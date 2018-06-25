@@ -329,6 +329,342 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/06/25/tools/fgfw/shadowsocksR-libev-install.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/25/tools/fgfw/shadowsocksR-libev-install.html" itemprop="url">编译安装shadowsocksr-libev</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T10:07:26+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/25/tools/fgfw/shadowsocksR-libev-install.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/25/tools/fgfw/shadowsocksR-libev-install.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/25/tools/fgfw/shadowsocksR-libev-install.html" class="leancloud_visitors" data-flag-title="编译安装shadowsocksr-libev">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Mac编译安装">Mac编译安装</h2><p>mac编译前可能遇到错误<code>openssl not found</code>, 可以通过如下配置再编译：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> LDFLAGS=<span class="string">"-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"</span></div><div class="line"><span class="built_in">export</span> CFLAGS=<span class="string">"-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"</span></div><div class="line"><span class="built_in">export</span> CPPFLAGS=<span class="string">"-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"</span></div></pre></td></tr></table></figure></p>
+<p>or</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> LIBRARY_PATH=<span class="string">"/usr/local/opt/openssl/lib"</span></div></pre></td></tr></table></figure>
+<p>开始安装：</p>
+<blockquote>
+<p>PS： 如果代码同步过慢可以先上github下载！</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/shadowsocksr-backup/shadowsocksr-libev.git</div><div class="line"><span class="built_in">cd</span> shadowsocksr-libev</div><div class="line">sudo ./configure --prefix=/usr/<span class="built_in">local</span>/shadowsocksR --disable-documentation</div><div class="line">sudo make -j4</div><div class="line">sudo make install</div><div class="line">sudo mkdir /usr/<span class="built_in">local</span>/shadowsocksR/conf</div><div class="line">sudo vi /usr/<span class="built_in">local</span>/shadowsocksR/conf/config.json</div></pre></td></tr></table></figure>
+<p>加入以下内容，并根据自己的服务器进行正确修改</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">    <span class="attr">"server"</span>:<span class="string">"your server address here"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">1234</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"your password here"</span>, </div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">600</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"加密方式，none"</span>, </div><div class="line">    <span class="attr">"protocol"</span>:<span class="string">"协议：auth_aes128_md5|auth_chain_a"</span>, </div><div class="line">    <span class="attr">"obfs"</span>:<span class="string">"混淆：tls1.2_ticket_auth|http_simple"</span>, </div><div class="line">    <span class="attr">"obfs_param"</span>:<span class="string">"混淆参数"</span> ,</div><div class="line">    <span class="attr">"group"</span>:<span class="string">"any you like"</span>,</div><div class="line">    <span class="attr">"local_address"</span>:<span class="string">"0.0.0.0"</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/shadowsocksR/bin/ss-local -c /usr/<span class="built_in">local</span>/shadowsocksR/conf/config.json</div></pre></td></tr></table></figure>
+<p>mac自启动配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/Library/LaunchAgents/com.ssr.launcher.plist</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">  &lt;dict&gt;</div><div class="line">    &lt;key&gt;Label&lt;/key&gt;</div><div class="line">    &lt;string&gt;com.ssr.launcher.plist&lt;/string&gt;</div><div class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">    &lt;array&gt;</div><div class="line">      &lt;string&gt;/usr/local/shadowsocksR/bin/ss-local&lt;/string&gt;</div><div class="line">      &lt;string&gt;-c&lt;/string&gt;</div><div class="line">      &lt;string&gt;/usr/local/shadowsocksR/conf/config.json&lt;/string&gt;</div><div class="line">    &lt;/array&gt;</div><div class="line">    &lt;key&gt;RunAtLoad&lt;/key&gt;</div><div class="line">    &lt;true/&gt;</div><div class="line">    &lt;key&gt;KeepAlive&lt;/key&gt;</div><div class="line">    &lt;true/&gt;</div><div class="line">  &lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+<p>如果有多个，可以这样配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">cat &gt; ~/Library/LaunchAgents/com.ssr_hk.launcher.plist &lt;&lt;EOF</div><div class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC <span class="string">"-//Apple//DTD PLIST 1.0//EN"</span> <span class="string">"http://www.apple.com/DTDs/PropertyList-1.0.dtd"</span>&gt;</div><div class="line">&lt;plist version=<span class="string">"1.0"</span>&gt;</div><div class="line">  &lt;dict&gt;</div><div class="line">    &lt;key&gt;Label&lt;/key&gt;</div><div class="line">    &lt;string&gt;com.ssr_hk.launcher.plist&lt;/string&gt;</div><div class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">    &lt;array&gt;</div><div class="line">      &lt;string&gt;/usr/<span class="built_in">local</span>/shadowsocksR/bin/ss-local&lt;/string&gt;</div><div class="line">      &lt;string&gt;-c&lt;/string&gt;</div><div class="line">      &lt;string&gt;/usr/<span class="built_in">local</span>/shadowsocksR/conf/ssg_hk.json&lt;/string&gt;</div><div class="line">    &lt;/array&gt;</div><div class="line">    &lt;key&gt;RunAtLoad&lt;/key&gt;</div><div class="line">    &lt;<span class="literal">true</span>/&gt;</div><div class="line">    &lt;key&gt;KeepAlive&lt;/key&gt;</div><div class="line">    &lt;<span class="literal">true</span>/&gt;</div><div class="line">  &lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div><div class="line">EOF</div><div class="line"></div><div class="line"></div><div class="line">cat &gt; ~/Library/LaunchAgents/com.ssr_tw.launcher.plist &lt;&lt;EOF</div><div class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC <span class="string">"-//Apple//DTD PLIST 1.0//EN"</span> <span class="string">"http://www.apple.com/DTDs/PropertyList-1.0.dtd"</span>&gt;</div><div class="line">&lt;plist version=<span class="string">"1.0"</span>&gt;</div><div class="line">  &lt;dict&gt;</div><div class="line">    &lt;key&gt;Label&lt;/key&gt;</div><div class="line">    &lt;string&gt;com.ssr_tw.launcher.plist&lt;/string&gt;</div><div class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">    &lt;array&gt;</div><div class="line">      &lt;string&gt;/usr/<span class="built_in">local</span>/shadowsocksR/bin/ss-local&lt;/string&gt;</div><div class="line">      &lt;string&gt;-c&lt;/string&gt;</div><div class="line">      &lt;string&gt;/usr/<span class="built_in">local</span>/shadowsocksR/conf/ssg_tw.json&lt;/string&gt;</div><div class="line">    &lt;/array&gt;</div><div class="line">    &lt;key&gt;RunAtLoad&lt;/key&gt;</div><div class="line">    &lt;<span class="literal">true</span>/&gt;</div><div class="line">    &lt;key&gt;KeepAlive&lt;/key&gt;</div><div class="line">    &lt;<span class="literal">true</span>/&gt;</div><div class="line">  &lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div><div class="line">EOF</div></pre></td></tr></table></figure></p>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">launchctl unload ~/Library/LaunchAgents/com.ssr.launcher.plist</div><div class="line">launchctl load ~/Library/LaunchAgents/com.ssr.launcher.plist</div><div class="line">launchctl unload ~/Library/LaunchAgents/com.ssr_hk.launcher.plist</div><div class="line">launchctl load ~/Library/LaunchAgents/com.ssr_hk.launcher.plist</div><div class="line">launchctl unload ~/Library/LaunchAgents/com.ssr_tw.launcher.plist</div><div class="line">launchctl load ~/Library/LaunchAgents/com.ssr_tw.launcher.plist</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/06/07/topic/gae/gae-run-php.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/topic/gae/gae-run-php.html" itemprop="url">GAE下运行php</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T13:12:21+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/07/topic/gae/gae-run-php.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/07/topic/gae/gae-run-php.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/07/topic/gae/gae-run-php.html" class="leancloud_visitors" data-flag-title="GAE下运行php">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、基础">一、基础</h2><p>这之前你可能需要下载 google cloud sdk</p>
+<ul>
+<li><a href="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-188.0.0-darwin-x86_64.tar.gz" target="_blank" rel="external">https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-188.0.0-darwin-x86_64.tar.gz</a></li>
+<li></li>
+</ul>
+<h2 id="二、实操">二、实操</h2><h3 id="2-1_在gae_php环境输出hello_world!">2.1 在gae php环境输出hello world!</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">TUTORIALDIR=src/lks-rss/php_gae_quickstart_editor-2018-06-07-13-08</div><div class="line">git <span class="built_in">clone</span> https://github.com/GoogleCloudPlatform/appengine-php-guestbook.git <span class="variable">$TUTORIALDIR</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$TUTORIALDIR</span></div><div class="line">git checkout phase0-helloworld</div><div class="line"></div><div class="line">dev_appserver.py --php_executable_path=/usr/bin/php-cgi <span class="variable">$PWD</span>  <span class="comment"># 在cloud shell上测试</span></div><div class="line"></div><div class="line"></div><div class="line">gcloud app create <span class="comment"># 创建应用</span></div><div class="line">gcloud app deploy app.yaml --project lks-rss <span class="comment"># 部署应用</span></div><div class="line"></div><div class="line">curl <span class="string">'https://lks-rss.appspot.com/'</span></div></pre></td></tr></table></figure>
+<h3 id="2-2_google_cloud_sdk_使用">2.2 google cloud sdk 使用</h3><p>说明：在国内登陆google登陆的过程最好使用vpn，或者全局代理，如果在terminal中配置代理可能导致登陆失败！<br>or 使用gcloud代理配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gcloud config <span class="built_in">set</span> proxy/<span class="built_in">type</span> PROXY_TYPE</div><div class="line">gcloud config <span class="built_in">set</span> proxy/address PROXY_IP_ADDRESS</div><div class="line">gcloud config <span class="built_in">set</span> proxy/port PROXY_PORT</div><div class="line"></div><div class="line">gcloud config <span class="built_in">set</span> proxy/username USERNAME</div><div class="line">gcloud config <span class="built_in">set</span> proxy/password PASSWORD</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gcloud init --skip-diagnostics <span class="comment"># 初始化并登陆Google账户，选择一个工程</span></div><div class="line">gcloud auth login <span class="comment">#进行登录</span></div><div class="line">gcloud projects list <span class="comment"># 列出当前账号的所有工程列表。</span></div><div class="line">gcloud config <span class="built_in">set</span> project my-project <span class="comment"># 可以选择另外一个工程。</span></div><div class="line">gcloud app browse <span class="comment"># 来查看工程的显示效果</span></div></pre></td></tr></table></figure>
+<p>遇到问题：</p>
+<ol>
+<li><p>登陆验证失败，提示：ERROR: gcloud crashed (SSLHandshakeError): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661)</p>
+</li>
+<li><p>gdk yaml配置问题<br>在 app.yaml 文件所在目录下，使用 gcloud app deploy 来发布当前目录工程。 app.yaml文件和Google App Engine SDK使用的yaml文件略有不同，要删除最开头的两行。</p>
+</li>
+</ol>
+<h2 id="三、sdk设置">三、sdk设置</h2><h3 id="3-1_在idea中配置google_cloud_sdk">3.1 在idea中配置google cloud sdk</h3><p>配置设定sdk的路径，然后会提醒</p>
+<blockquote>
+<p>The Cloud SDK does not contain the app-engine-java component. To install, run “gcloud components install app-engine-java”</p>
+</blockquote>
+<p>我一般会执行以下命令去更新</p>
+<ul>
+<li>gcloud components install app-engine-java</li>
+<li>gcloud components install app-engine-php</li>
+</ul>
+<h2 id="四、配置文件">四、配置文件</h2><h3 id="4-1_app-yaml">4.1 app.yaml</h3><h3 id="4-2_cron-yaml_定时脚本">4.2 cron.yaml 定时脚本</h3><p>项目根目录配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cron:</div><div class="line">- description: &quot;gen juejin rss&quot;</div><div class="line">  url: /rss/juejin.rss.php</div><div class="line">  schedule: every 20 mins</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>gcloud app deploy cron.yaml</p>
+</blockquote>
+<h2 id="五、storage使用">五、storage使用</h2><p>获取公开的文件配置：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$options = [</div><div class="line">    <span class="string">'gs'</span> =&gt; [</div><div class="line">        <span class="string">'acl'</span>           =&gt; <span class="string">'public-read'</span>, <span class="comment">// 设置文件未公开状态</span></div><div class="line">        <span class="string">'Content-Type'</span>  =&gt; <span class="string">'text/plain'</span>, <span class="comment">// 指定文件类型</span></div><div class="line">    ],</div><div class="line">];</div><div class="line">$context = stream_context_create($options);</div><div class="line">$fileName = <span class="string">"gs://$&#123;my_bucket&#125;/public_file.txt"</span>;</div><div class="line">file_put_contents($fileName, $publicFileText, <span class="number">0</span>, $context);</div><div class="line"></div><div class="line">$publicUrl = CloudStorageTools::getPublicUrl($fileName, <span class="keyword">false</span>);</div><div class="line"></div><div class="line">$fileContents = file_get_contents($filePath); <span class="comment">// 获取文件内容</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/14/linux/ngrok-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1527,327 +1863,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-show-branch-in-ternimal.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/git/git-show-branch-in-ternimal.html" itemprop="url">在Mac、Linux 终端显示 Git 当前所在分支</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T01:17:16+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/10/git/git-show-branch-in-ternimal.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/10/git/git-show-branch-in-ternimal.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/10/git/git-show-branch-in-ternimal.html" class="leancloud_visitors" data-flag-title="在Mac、Linux 终端显示 Git 当前所在分支">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>进入你的<code>home</code>目录</li>
-</ol>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div></pre></td></tr></table></figure>
-<ol>
-<li><p>编辑<code>.bashrc</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi .bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>将下面的代码加入到文件的最后处</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> git_branch &#123;</div><div class="line">   branch=<span class="string">"`git branch 2&gt;/dev/null | grep "</span>^\*<span class="string">" | sed -e "</span>s/^\*\ //<span class="string">"`"</span></div><div class="line">   <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span> != <span class="string">""</span> ];<span class="keyword">then</span></div><div class="line">       <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span> = <span class="string">"(no branch)"</span> ];<span class="keyword">then</span></div><div class="line">           branch=<span class="string">"(`git rev-parse --short HEAD`...)"</span></div><div class="line">       <span class="keyword">fi</span></div><div class="line">       <span class="built_in">echo</span> <span class="string">" (<span class="variable">$branch</span>)"</span></div><div class="line">   <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">export</span> PS1=<span class="string">'\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\] \$ '</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>保存退出</p>
-</li>
-<li><p>执行加载命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ./.bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>完成</p>
-</li>
-</ol>
-<blockquote>
-<p>Mac 下面启动的 shell 是 login shell，所以加载的配置文件是<code>.bash_profile</code>，不会加载<code>.bashrc</code>。如果你是 Mac 用户的话，需要再执行下面的命令，这样每次开机后才会自动生效：</p>
-</blockquote>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"[ -r ~/.bashrc ] &amp;&amp; source ~/.bashrc"</span> &gt;&gt; .bash_profile</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/04/tools/tor-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/04/tools/tor-usage.html" itemprop="url">Tor使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T17:31:03+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/04/tools/tor-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/04/tools/tor-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/04/tools/tor-usage.html" class="leancloud_visitors" data-flag-title="Tor使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">brew install tor</div><div class="line">cp /usr/<span class="built_in">local</span>/etc/tor/torrc.sample /usr/<span class="built_in">local</span>/etc/tor/torrc</div><div class="line">brew services start tor</div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">'SOCKS5Proxy 127.0.0.1:5566'</span> &gt; torrc</div><div class="line">tor <span class="_">-f</span> torrc</div><div class="line"></div><div class="line"><span class="comment"># 傻瓜化 的配置可以 下载tor浏览器，参考：https://www.torproject.org/download/download#warning</span></div><div class="line">wget https://dist.torproject.org/torbrowser//7.5.3/TorBrowser-7.5.3-osx64_zh-CN.dmg</div></pre></td></tr></table></figure>
-<p>启动日志：</p>
-<pre><code>May 04 18:16:57.948 [notice] Tor 0.3.1.7 (git-6babd3d9ba9318b3) running on Darwin with Libevent 2.1.8-stable, OpenSSL 1.0.2l, Zlib 1.2.11, Liblzma N/A, and Libzstd N/A.
-May 04 18:16:57.948 [notice] Tor can't <span class="operator"><span class="keyword">help</span> you <span class="keyword">if</span> you <span class="keyword">use</span> it wrong! Learn how <span class="keyword">to</span> be <span class="keyword">safe</span> <span class="keyword">at</span> https://www.torproject.org/download/download#<span class="keyword">warning</span>
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.949</span> [<span class="keyword">notice</span>] <span class="keyword">Read</span> configuration <span class="keyword">file</span> <span class="string">"/usr/local/etc/tor/torrc"</span>.
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.952</span> [<span class="keyword">notice</span>] Opening Socks listener <span class="keyword">on</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9050</span>
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.000</span> [<span class="keyword">notice</span>] Parsing GEOIP IPv4 <span class="keyword">file</span> /usr/<span class="keyword">local</span>/Cellar/tor/<span class="number">0.3</span><span class="number">.1</span><span class="number">.7</span>/<span class="keyword">share</span>/tor/geoip.
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Parsing GEOIP IPv6 <span class="keyword">file</span> /usr/<span class="keyword">local</span>/Cellar/tor/<span class="number">0.3</span><span class="number">.1</span><span class="number">.7</span>/<span class="keyword">share</span>/tor/geoip6.
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">0</span>%: <span class="keyword">Starting</span>
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] <span class="keyword">Starting</span> <span class="keyword">with</span> <span class="keyword">guard</span> <span class="keyword">context</span> <span class="string">"default"</span>
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">80</span>%: Connecting <span class="keyword">to</span> the Tor network
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">59.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">85</span>%: Finishing handshake <span class="keyword">with</span> <span class="keyword">first</span> hop
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">17</span>:<span class="number">00.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">90</span>%: Establishing a Tor circuit
-May <span class="number">04</span> <span class="number">18</span>:<span class="number">17</span>:<span class="number">02.000</span> [<span class="keyword">notice</span>] Tor has successfully opened a circuit. Looks <span class="keyword">like</span> <span class="keyword">client</span> functionality <span class="keyword">is</span> working.</span>
-</code></pre><p>启动好tor服务后，配置 socket5代理 127.0.0.1:9050 即可匿名访问网络了，具体可以访问whoer.net查看下，比如我的是：<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqzh9ce3hgj31if0ekt9p.jpg" alt=""></p>
-<blockquote>
-<p>注意： 使用tor后访问国内网站很不稳定的，不建议访问</p>
-</blockquote>
-<h2 id="高级配置">高级配置</h2><h3 id="获取网桥">获取网桥</h3><p>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs2" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs2</a> 获取obfs2网桥<br>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs3" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs3</a> 获取obfs3网桥<br>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs4" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs4</a> 获取obfs4网桥[推荐]<br>访问 <a href="https://bridges.torproject.org/bridges?transport=scramblesuit" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=scramblesuit</a> 获取scramblesuit网桥</p>
-<p>获取网桥：<br><a href="https://bridges.torproject.org/bridges?transport=obfs4" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs4</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">obfs4 192.36.31.156:58717 C96BE6BB62B5C3A16CF2AC44D7DA0ABA519FBDCF cert=BuWcPXK6XaGGiXaJo6z3LfVgXioGbCe8tHBM644m5uuX2soci9ZLQ4WE2ehzkGlx1EreAA iat-mode=0</div><div class="line">obfs4 52.15.193.17:9443 BD0299D93D9206411A3232BBF467DC95DAF77298 cert=+nI8zcEMq/yhQ7wxFTm9IXP1bIqbJlq4wmYXOiQNzphnD4ZwzUjUpn1GkhJKSQXFR6JgEg iat-mode=0</div><div class="line">obfs4 31.220.45.126:443 51F5957DCCA58AC686864A7A6A47B917486E3625 cert=cZFybuS2DSlRdpG9GRKS+dqF297Mp1mduHVt/N011fPXXePMqA1ckubxQdGEDj7U5kJkPw iat-mode=0</div></pre></td></tr></table></figure>
-<h2 id="i2p">i2p</h2><p><a href="https://geti2p.net/zh-cn/download" target="_blank" rel="external">https://geti2p.net/zh-cn/download</a></p>
-<p>java -jar i2pinstall_0.9.34.jar启动安装程序 installer</p>
-<p>On most systems, I2P can be started with:</p>
-<p>/Applications/i2p/i2prouter start</p>
-<p>If I2P does not start, please try:</p>
-<p>/Applications/i2p/runplain.sh</p>
-<p>启动后，访问<a href="http://127.0.0.1:7657/" target="_blank" rel="external">http://127.0.0.1:7657/</a> 即可</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1892,7 +1912,7 @@ May <span class="number">04</span> <span class="number">18</span>:<span class="n
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">229</span>
+                <span class="site-state-item-count">231</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

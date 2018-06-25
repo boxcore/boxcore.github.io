@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[编译安装shadowsocksr-libev]]></title>
+    <url>%2F2018%2F06%2F25%2Ftools%2Ffgfw%2FshadowsocksR-libev-install.html</url>
+    <content type="text"><![CDATA[Mac编译安装mac编译前可能遇到错误openssl not found, 可以通过如下配置再编译：123export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include" or 1export LIBRARY_PATH="/usr/local/opt/openssl/lib" 开始安装： PS： 如果代码同步过慢可以先上github下载！ 1234567git clone https://github.com/shadowsocksr-backup/shadowsocksr-libev.gitcd shadowsocksr-libevsudo ./configure --prefix=/usr/local/shadowsocksR --disable-documentationsudo make -j4sudo make installsudo mkdir /usr/local/shadowsocksR/confsudo vi /usr/local/shadowsocksR/conf/config.json 加入以下内容，并根据自己的服务器进行正确修改 12345678910111213&#123; "server":"your server address here", "server_port":1234, "local_port":1080, "password":"your password here", "timeout":600, "method":"加密方式，none", "protocol":"协议：auth_aes128_md5|auth_chain_a", "obfs":"混淆：tls1.2_ticket_auth|http_simple", "obfs_param":"混淆参数" , "group":"any you like", "local_address":"0.0.0.0",&#125; 启动服务： 1/usr/local/shadowsocksR/bin/ss-local -c /usr/local/shadowsocksR/conf/config.json mac自启动配置： 1vim ~/Library/LaunchAgents/com.ssr.launcher.plist 123456789101112131415161718&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;&lt;plist version=&quot;1.0&quot;&gt; &lt;dict&gt; &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;com.ssr.launcher.plist&lt;/string&gt; &lt;key&gt;ProgramArguments&lt;/key&gt; &lt;array&gt; &lt;string&gt;/usr/local/shadowsocksR/bin/ss-local&lt;/string&gt; &lt;string&gt;-c&lt;/string&gt; &lt;string&gt;/usr/local/shadowsocksR/conf/config.json&lt;/string&gt; &lt;/array&gt; &lt;key&gt;RunAtLoad&lt;/key&gt; &lt;true/&gt; &lt;key&gt;KeepAlive&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt;&lt;/plist&gt; 如果有多个，可以这样配置：123456789101112131415161718192021222324252627282930313233343536373839404142cat &gt; ~/Library/LaunchAgents/com.ssr_hk.launcher.plist &lt;&lt;EOF&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt; &lt;dict&gt; &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;com.ssr_hk.launcher.plist&lt;/string&gt; &lt;key&gt;ProgramArguments&lt;/key&gt; &lt;array&gt; &lt;string&gt;/usr/local/shadowsocksR/bin/ss-local&lt;/string&gt; &lt;string&gt;-c&lt;/string&gt; &lt;string&gt;/usr/local/shadowsocksR/conf/ssg_hk.json&lt;/string&gt; &lt;/array&gt; &lt;key&gt;RunAtLoad&lt;/key&gt; &lt;true/&gt; &lt;key&gt;KeepAlive&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt;&lt;/plist&gt;EOFcat &gt; ~/Library/LaunchAgents/com.ssr_tw.launcher.plist &lt;&lt;EOF&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt; &lt;dict&gt; &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;com.ssr_tw.launcher.plist&lt;/string&gt; &lt;key&gt;ProgramArguments&lt;/key&gt; &lt;array&gt; &lt;string&gt;/usr/local/shadowsocksR/bin/ss-local&lt;/string&gt; &lt;string&gt;-c&lt;/string&gt; &lt;string&gt;/usr/local/shadowsocksR/conf/ssg_tw.json&lt;/string&gt; &lt;/array&gt; &lt;key&gt;RunAtLoad&lt;/key&gt; &lt;true/&gt; &lt;key&gt;KeepAlive&lt;/key&gt; &lt;true/&gt; &lt;/dict&gt;&lt;/plist&gt;EOF 启动服务： 123456launchctl unload ~/Library/LaunchAgents/com.ssr.launcher.plistlaunchctl load ~/Library/LaunchAgents/com.ssr.launcher.plistlaunchctl unload ~/Library/LaunchAgents/com.ssr_hk.launcher.plistlaunchctl load ~/Library/LaunchAgents/com.ssr_hk.launcher.plistlaunchctl unload ~/Library/LaunchAgents/com.ssr_tw.launcher.plistlaunchctl load ~/Library/LaunchAgents/com.ssr_tw.launcher.plist]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[GAE下运行php]]></title>
+    <url>%2F2018%2F06%2F07%2Ftopic%2Fgae%2Fgae-run-php.html</url>
+    <content type="text"><![CDATA[一、基础这之前你可能需要下载 google cloud sdk https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-188.0.0-darwin-x86_64.tar.gz 二、实操2.1 在gae php环境输出hello world!123456789101112TUTORIALDIR=src/lks-rss/php_gae_quickstart_editor-2018-06-07-13-08git clone https://github.com/GoogleCloudPlatform/appengine-php-guestbook.git $TUTORIALDIRcd $TUTORIALDIRgit checkout phase0-helloworlddev_appserver.py --php_executable_path=/usr/bin/php-cgi $PWD # 在cloud shell上测试gcloud app create # 创建应用gcloud app deploy app.yaml --project lks-rss # 部署应用curl 'https://lks-rss.appspot.com/' 2.2 google cloud sdk 使用说明：在国内登陆google登陆的过程最好使用vpn，或者全局代理，如果在terminal中配置代理可能导致登陆失败！or 使用gcloud代理配置： 123456gcloud config set proxy/type PROXY_TYPEgcloud config set proxy/address PROXY_IP_ADDRESSgcloud config set proxy/port PROXY_PORTgcloud config set proxy/username USERNAMEgcloud config set proxy/password PASSWORD 12345gcloud init --skip-diagnostics # 初始化并登陆Google账户，选择一个工程gcloud auth login #进行登录gcloud projects list # 列出当前账号的所有工程列表。gcloud config set project my-project # 可以选择另外一个工程。gcloud app browse # 来查看工程的显示效果 遇到问题： 登陆验证失败，提示：ERROR: gcloud crashed (SSLHandshakeError): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661) gdk yaml配置问题在 app.yaml 文件所在目录下，使用 gcloud app deploy 来发布当前目录工程。 app.yaml文件和Google App Engine SDK使用的yaml文件略有不同，要删除最开头的两行。 三、sdk设置3.1 在idea中配置google cloud sdk配置设定sdk的路径，然后会提醒 The Cloud SDK does not contain the app-engine-java component. To install, run “gcloud components install app-engine-java” 我一般会执行以下命令去更新 gcloud components install app-engine-java gcloud components install app-engine-php 四、配置文件4.1 app.yaml4.2 cron.yaml 定时脚本项目根目录配置文件：1234cron:- description: &quot;gen juejin rss&quot; url: /rss/juejin.rss.php schedule: every 20 mins gcloud app deploy cron.yaml 五、storage使用获取公开的文件配置： 12345678910111213$options = [ 'gs' =&gt; [ 'acl' =&gt; 'public-read', // 设置文件未公开状态 'Content-Type' =&gt; 'text/plain', // 指定文件类型 ],];$context = stream_context_create($options);$fileName = "gs://$&#123;my_bucket&#125;/public_file.txt";file_put_contents($fileName, $publicFileText, 0, $context);$publicUrl = CloudStorageTools::getPublicUrl($fileName, false);$fileContents = file_get_contents($filePath); // 获取文件内容]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[ngrok内网穿透]]></title>
     <url>%2F2018%2F05%2F14%2Flinux%2Fngrok-usage.html</url>
     <content type="text"></content>
@@ -82,7 +95,7 @@
   <entry>
     <title><![CDATA[Thinkphp学习笔记]]></title>
     <url>%2F2018%2F04%2F29%2Fphp%2Flearn-thinkphp.html</url>
-    <content type="text"><![CDATA[thinkphp 3迁移5thinkphp5 学习笔记]]></content>
+    <content type="text"><![CDATA[ithinkphp 3迁移5thinkphp5 学习笔记]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -213,9 +226,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[数据对象映射模式]]></title>
-    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-data-mapper.html</url>
-    <content type="text"><![CDATA[数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。 在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。 结合使用数据对象映射模式，工厂模式，注册器模式]]></content>
+    <title><![CDATA[策略模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-strategy.html</url>
+    <content type="text"><![CDATA[策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告 使用策略模式可以实现 Ioc，依赖倒置、控制反转 代码实现和使用控制反转策略模式 依赖到置。 解耦。[ 查看全文 ]]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -225,9 +238,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[策略模式]]></title>
-    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-strategy.html</url>
-    <content type="text"><![CDATA[策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告 使用策略模式可以实现 Ioc，依赖倒置、控制反转 代码实现和使用控制反转策略模式 依赖到置。 解耦。[ 查看全文 ]]]></content>
+    <title><![CDATA[数据对象映射模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-data-mapper.html</url>
+    <content type="text"><![CDATA[数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。 在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。 结合使用数据对象映射模式，工厂模式，注册器模式]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -489,17 +502,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Awesome Spider]]></title>
-    <url>%2F2018%2F01%2F05%2Fawesome-tools%2Fawesome-spider.html</url>
-    <content type="text"><![CDATA[关于爬虫采集的一些好工具： Anti-Anti-Spider Discuz自动上传附件，发帖，注册用户，留言，顶帖等自动化工具 模拟登录wap版百度贴吧，定时刷新指定贴吧，抢先二楼回复;贴吧签到 百度贴吧工具类]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>spider</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Awesome Mac]]></title>
     <url>%2F2018%2F01%2F05%2Fawesome-tools%2Fawesome-mac.html</url>
     <content type="text"><![CDATA[mac软件 NoSleep: 让电脑不自动睡眠的软件，亲测有bug，关闭后电脑合盖还是很耗电！！！ Dock相关 HyperDock: 让Mac拥有 Windows 的窗口预览和管理体验。 媒体报道 Terminal相关 icdiff: 比diff命令好看的代码差异对比命令，安装：pip install git+https://github.com/jeffkaufman/icdiff.git mosh: 使用udf连接，ip变化了也能连https://mosh.org/#usage mycli: 比mysql-cli更好的命令行工具，不过有个bug：zerofill字段前面的0不能显示 homebrew 相关工具 wtf: 缩略语查询 w3m: termial下浏览网页 参考 awesome-mac https://www.zhihu.com/question/59227720]]></content>
@@ -508,6 +510,17 @@
       </categories>
       <tags>
         <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Awesome Spider]]></title>
+    <url>%2F2018%2F01%2F05%2Fawesome-tools%2Fawesome-spider.html</url>
+    <content type="text"><![CDATA[关于爬虫采集的一些好工具： Anti-Anti-Spider Discuz自动上传附件，发帖，注册用户，留言，顶帖等自动化工具 模拟登录wap版百度贴吧，定时刷新指定贴吧，抢先二楼回复;贴吧签到 百度贴吧工具类]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -569,6 +582,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[PHP设计模式]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
+    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 图说设计模式 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[PHP使用SQLite扩展]]></title>
     <url>%2F2017%2F12%2F22%2Fphp%2Fphp-sqlite-usage.html</url>
     <content type="text"><![CDATA[开启sqlite一. Windows下开启sqlite: extension=php_pdo.dll extension=php_sqlite.dll 二. Unix/Linux下开启sqlite: 是编译的时候添加: --with-sqlite=shared 在安装后添加的编译: tar xvf php-your.version.here.tar.gz cd php-your.version.here/ext/sqlite/ phpize ./configure make make install ##]]></content>
@@ -588,14 +609,6 @@
     <title><![CDATA[PHP正则使用]]></title>
     <url>%2F2017%2F12%2F22%2Fphp%2Fphp-preg.html</url>
     <content type="text"><![CDATA[正则中的一些概念元字符12345678910111213. 匹配除换行符意外的任意字符\w 匹配字母或数字或下划线\s 匹配任意的空白符\d 匹配数字\b 匹配单词的开始或结束^ 匹配字符串的开始$ 匹配字符串的结束[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符\W \w的反义，即匹配任意非字母，数字，下划线和汉字的字符\S \s的反义，即匹配任意非空白符的字符\D \d的反义，即匹配任意非数字的字符\B \b的反义，即不是单词开头或结束的位置[^x] 匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符 重复123456* 重复零次或更多次+ 重复 1 次或更多次? 重复零次或 1 次&#123;n&#125; 重复 n 次&#123;n,&#125; 重复 n 次或更多次&#123;n,m&#125; 重复 n 到 m 次 模式修正符123456789i 模式中的字符将同时匹配大小写字母m 字符串视为多行s 将字符串视为单行，换行符作为普通字符x 将模式中的空白忽略e preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。A 强制仅从目标字符串的开头开始匹配D 模式中的 $ 元字符仅匹配目标字符串的结尾U 匹配最近的字符串u 模式字符串被当成 UTF-8 PHP正则函数在 PHP 应用中，正则表达式主要用于： 正则匹配：根据正则表达式匹配相应的内容 正则替换：根据正则表达式匹配内容并替换 正则分割：根据正则表达式分割字符串 PHP 正则表达式匹配 preg_match 与 preg_match_all 函数preg_match()preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。 语法： int preg_match( string pattern, string subject [, array matches ] ) 参数说明： pattern 正则表达式 subject 需要匹配检索的对象 matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推 preg_match_all()preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。 语法： int preg_match_all( string pattern, string subject, array matches [, int flags ] ) 参数说明:pattern: 正则表达式subject: 需要匹配检索的对象matches: 存储匹配结果的数组flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有： 1. PREG_PATTERN_ORDER：默认，对结果排序使 $matches[0] 为全部模式匹配的数组，$matches[1] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推 2. PREG_SET_ORDER：对结果排序使 $matches[0] 为第一组匹配项的数组，$matches[1] 为第二组匹配项的数组，以此类推 3. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量 部分实例1234567891011121314151617//1，过滤所有html标签的正则表达式：&lt;/?[^&gt;]+&gt;//2，过滤所有html标签的属性的正则表达式：$html = preg_replace("/&lt;([a-zA-Z]+)[^&gt;]*&gt;/","&lt;\\1&gt;",$html);//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：&lt;/?[^pP/&gt;]+&gt;//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：&lt;/?[aApPbB][^&gt;]*&gt;//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：\s(?!alt)[a-zA-Z]+=[^\s]*//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：(\s)alt=[^\s]* 正则表达式中排除不需要匹配的字符串或字符(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串 (2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报) 加上|用于或选择。上面列出的字符串都不会参与匹配 常用正则 删除空行: \r\n\r\n =&gt; \r\n\ 删除有空格的空行: ^ +$ =&gt;]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[PHP设计模式]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
-    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 图说设计模式 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -656,7 +669,7 @@
   <entry>
     <title><![CDATA[Sublime Text使用]]></title>
     <url>%2F2017%2F12%2F22%2Ftools%2Fsublime-text-usage.html</url>
-    <content type="text"><![CDATA[激活码sublime text 3 v3143 激活码： —– BEGIN LICENSE —–TwitterInc200 User LicenseEA7E-8900071D77F72E 390CDD93 4DCBA022 FAF6079061AA12C0 A37081C5 D0316412 4584D13694D7F7D4 95BC8C1C 527DA828 560BB037D1EDDD8C AE7B379F 50C9D69D B35179EF2FE898C4 8E4277A8 555CE714 E1FB0E43D5D52613 C3D12E98 BC49967F 7652EED29D2D2E61 67610860 6D338B72 5CF95C69E36B85CC 84991F19 7575D828 470A92AB—— END LICENSE ——]]></content>
+    <content type="text"><![CDATA[激活码v3176添加hosts:12127.0.0.1 www.sublimetext.com127.0.0.1 license.sublimehq.com 12345678910111213----- BEGIN LICENSE -----sgbteamSingle User LicenseEA7E-11532598891CBB9 F1513E4F 1A3405C1 A865D53F115F202E 7B91AB2D 0D2A40ED 352B269B76E84F0B CD69BFC7 59F2DFEF E267328F215652A3 E88F9D8F 4C38E3BA 5B2DAAE4969624E7 DC9CD4D5 717FB40C 1B9738CF20B3C4F1 E917B5B3 87C38D9C ACCE7DD85F7EF854 86B9743C FADC04AA FB0DA5C0F913BE58 42FEA319 F954EFDD AE881E0B------ END LICENSE ------ v3143sublime text 3 v3143 激活码： 12345678910111213—– BEGIN LICENSE —–TwitterInc200 User LicenseEA7E-8900071D77F72E 390CDD93 4DCBA022 FAF6079061AA12C0 A37081C5 D0316412 4584D13694D7F7D4 95BC8C1C 527DA828 560BB037D1EDDD8C AE7B379F 50C9D69D B35179EF2FE898C4 8E4277A8 555CE714 E1FB0E43D5D52613 C3D12E98 BC49967F 7652EED29D2D2E61 67610860 6D338B72 5CF95C69E36B85CC 84991F19 7575D828 470A92AB—— END LICENSE ——]]></content>
       <categories>
         <category>tools</category>
       </categories>
@@ -778,7 +791,7 @@
   <entry>
     <title><![CDATA[RESILIO SYNC激活和激活失效修复]]></title>
     <url>%2F2017%2F11%2F08%2Ftools%2Fresilio-sync-license-crack.html</url>
-    <content type="text"><![CDATA[分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。目前对所有版本有效，测试到最高版本 2.5.9 版本。 rslsync –webui.listen 0.0.0.0:8888 一、安装 Resilio Sync去官网下载，不过官网可能被ban，需要自行百度一下 二、授权新安装的resilio sync授权步骤： 打开resilio sync 双击安装授权文件Resilio_Sync_Personal.btskey，如果授权成功接着执行下一步，授权失败则需要删除用户配置文件 配置hosts，添加记录 127.0.0.1 license.resilio.com 配置授权文件目录不可写入，具体方法参考下面的2.1 和2.2 2.1 windows下配置授权找到安装目录 可以删除 License 目录和.SyncUserxxxxxx 目录 禁止写入权限 2.2 mac下配置授权打开terminal工具 12345678cd ~/Library/Application\ Support/Resilio\ Syncls -a # 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录chmod -R -w .SyncUser1510108713chmod -R -w Licensesudo rm -rf ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicensechmod -R -w ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense 三、墙内使用rslsync配置同步节点ip走代理： 12173.244.217.42209.95.56.60]]></content>
+    <content type="text"><![CDATA[分享一个Resilio Sync永久的授权文件, 可以任意的选择性同步，使用所有 Resilio Sync 的高级功能。目前对所有版本有效，测试到最高版本 2.5.9 版本。 rslsync –webui.listen 0.0.0.0:8888 一、安装 Resilio Sync去官网下载，不过官网可能被ban，需要自行百度一下 二、授权新安装的resilio sync授权步骤： 打开resilio sync 双击安装授权文件Resilio_Sync_Personal.btskey，如果授权成功接着执行下一步，授权失败则需要删除用户配置文件 配置hosts，添加记录 127.0.0.1 license.resilio.com 配置授权文件目录不可写入，具体方法参考下面的2.1 和2.2 2.1 windows下配置授权默认地，resilio用户授权配置文件主要是在 C:\Users\用户目录\AppData\Roaming\Resilio Sync目录下的.SyncUserxxxxxxx和License下。如果需要重新授权，需要将这2个文件夹删除，重启resilio后又可以试用15天软件了。另外，可以下载破解key，屏蔽激活ip后，配置.SyncUserxxxxxxx和License这2个目录不可写即可。 可能的操作如下： 找到安装目录 可以删除 License 目录和.SyncUserxxxxxx 目录 禁止写入权限 2.2 mac下配置授权打开terminal工具 12345678cd ~/Library/Application\ Support/Resilio\ Syncls -a # 查看所有文件找到 .SyncUserxxx 类似的目录（我的是.SyncUser1510108713） 和License目录chmod -R -w .SyncUser1510108713chmod -R -w Licensesudo rm -rf ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicensechmod -R -w ~/Library/Application\ Support/Resilio\ Sync/.SyncUser1510129113 ~/Library/Application\ Support/Resilio\ SyncLicense 三、墙内使用rslsync配置同步节点ip走代理： 12173.244.217.42209.95.56.60]]></content>
   </entry>
   <entry>
     <title><![CDATA[MySQL多开]]></title>
@@ -1410,8 +1423,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>lnmp</tag>
         <tag>linux</tag>
+        <tag>lnmp</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>

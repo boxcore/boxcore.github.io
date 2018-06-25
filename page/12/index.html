@@ -329,6 +329,337 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-iptables.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/linux/linux-iptables.html" itemprop="url">Linux网络命令之防火墙控制iptables</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T17:51:33+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/10/linux/linux-iptables.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/10/linux/linux-iptables.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/10/linux/linux-iptables.html" class="leancloud_visitors" data-flag-title="Linux网络命令之防火墙控制iptables">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>配置防火墙规则文件: <code>/etc/sysconfig/iptables</code></p>
+<p>启动和关闭防火墙: <code>service iptables restart|start|stop</code></p>
+<p>在防火墙中，来往的数据流被称为IP压缩（本文下面也称数据流为IP压缩）。防火墙有三条缺省规则链来过滤IP压缩，分别为：</p>
+<pre><code><span class="label">INPUT</span>：所有以主机为目的地的<span class="literal">IP</span>压缩
+<span class="label">OUTPUT</span>：所有以主机为源的<span class="literal">IP</span>压缩
+<span class="label">FORWARD</span>：所有经过主机，但是既不是以主机为源，也不是以主机为目的地的压缩
+</code></pre><p>而我们最关注的是INPUT规则，这样可以屏蔽一些黑客行为，或者局域网共享。下面以centOS 6.5的默认规则为例子，讲解下各条规则大概的意思：</p>
+<pre><code>-A INPUT -m <span class="keyword">state</span> –<span class="keyword">state</span> ESTABLISHED,RELATED -j ACCEPT
+</code></pre><p>-m 选项: 装入一个模块（state）。state 模块能够查看一个压缩并判断它的状态是  NEW、ESTABLISHED 还是 RELATED。<br>NEW 指內进的压缩属于不是由主机主导的新增连接。<br>ESTABLISHED 及 RELATED 指內进的压缩隶属于一条现存的连接，或者与现存的连接有关系。  </p>
+<p>这条规则的意思是：以本主机为目的地的IP压缩，如果隶属于现有的连接，则接受（accept）</p>
+<pre><code>-A INPUT -<span class="tag">p</span> icmp -j ACCEPT
+</code></pre><p>表示接受icmp协议的IP压缩，icmp协议主要是ping，很多同学在局域网能ping通一台机器，但是无法通过web访问，就是因为开启了icmp协议，但是http等协议没有开，后面会讲解如何解决这个问题</p>
+<pre><code>-A INPUT -<span class="built_in">i</span> lo -<span class="built_in">j</span> ACCEPT
+</code></pre><p>这条规则表示接受那些来自本机（localhost或者127.0.0.1的IP压缩）</p>
+<pre><code>-A INPUT -m <span class="keyword">state</span> –<span class="keyword">state</span> NEW -m tcp  -p tcp –dport <span class="number">22</span> -j ACCEPT
+</code></pre><p>表示表示接受不是由本机引导的新增的，基于端口号22的连接（句子有点长，仔细体会哈）。22端口是ssh连接用的，所以如果你想远程操作机器，需要开启端口22</p>
+<pre><code>-A INPUT -j <span class="keyword">REJECT</span> –<span class="keyword">reject</span>-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝来自已经被禁止的主机的icmp的IP压缩</p>
+<pre><code>-A <span class="keyword">FORWARD</span> -j REJECTED –reject-<span class="keyword">with</span> icmp-host-prohibited
+</code></pre><p>表示拒绝经过本机且源自那些已经被禁止的主机的icmp的IP压缩</p>
+<p>下面再详细说说各个参数的意思：</p>
+<p>-A：表示添加一条规则(add)</p>
+<p>相应的还有：-P（设置规则的缺省值，比如-P INPUT ACCEPT表示没有以本机为目的地的IP压缩默认是接受的）</p>
+<p>-F（清楚所有存在的规则，好添加新的规则）</p>
+<p>-j：表示满足规则执行的相应的操作，意为jump，比如 ……-j ACCEPT就表示满足相应的规则就接受</p>
+<p>-i：界面的意思（interface），lo是本机的意思（localhost）</p>
+<p>注意，编辑完iptables文件之后，使用service iptables restart重启防火墙，可以使用命令：iptables -L查看规则是否生效</p>
+<p>或者使用命令行</p>
+<p>（1）重启后永久性生效：</p>
+<pre><code>开启：chkconfig iptables <span class="function_start"><span class="keyword">on</span></span>
+关闭：chkconfig iptables off
+</code></pre><p>（2）即时生效，重启后失效：</p>
+<pre><code>开启：service iptables <span class="literal">start</span>
+关闭：service iptables <span class="literal">stop</span>
+</code></pre><p>比如局域网中搭建了一台centOS作为服务器，并且建立了LAMP或者LNMP环境，想让局域网中的其他人都能通过web访问该机器，那么先得固定机器的IP地址，将BOOTPROTO改成static，然后将IPADDR设置一个固定的IP（比如192.168.1.22），在设置子网掩码NETMASK（比如255.255.255.0），NETWORK和GATAWAY和DNS等也设置好，然后就是信任来自本局域网的访问了，添加下面的规则到iptables中，再重启防火墙即可。具体如何配置网络看这里：CentOS网络配置详解</p>
+<pre><code>-<span class="ruby"><span class="constant">A</span> <span class="constant">INPUT</span> -i eth<span class="number">0</span> -j <span class="constant">ACCEPT</span>                                       <span class="comment">#eth0是你的网卡号，用ifconfig -a命令查看你自己的网卡号</span></span>
+</code></pre><p>或者你想信任来自一系列IP的访问，可以用斜线记法规定IP的范围，比如：</p>
+<pre><code>-A INPUT -s <span class="number">192.168</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">24</span> -j ACCEPT                <span class="preprocessor">#即接受来自<span class="number">192.168</span><span class="number">.1</span><span class="number">.0</span>-<span class="number">192.168</span><span class="number">.1</span><span class="number">.255</span>的ip区段的IP压缩</span>
+</code></pre><p>或者为每一个IP添加一条规则，但是当IP比较多时会很麻烦，比如</p>
+<pre><code>-A INPUT -s <span class="number">192.168</span><span class="number">.1</span><span class="number">.22</span> -j ACCEPT
+</code></pre><p>打开80端口的规则</p>
+<pre><code>-A INPUT -<span class="tag">p</span> tcp –dport <span class="number">80</span> -j ACCEPT
+</code></pre><h2 id="参考">参考</h2><ul>
+<li><a href="https://www.awaimai.com/1650.html" target="_blank" rel="external">https://www.awaimai.com/1650.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-basic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/linux/linux-basic.html" itemprop="url">Linux查看服务器基础信息</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T17:27:51+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/10/linux/linux-basic.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/10/linux/linux-basic.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/10/linux/linux-basic.html" class="leancloud_visitors" data-flag-title="Linux查看服务器基础信息">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、查看系统信息">一、查看系统信息</h2><ul>
+<li>who: 查看服务器当前登陆的用户</li>
+<li><code>who /var/log/wtmp</code></li>
+<li>arp: 查看服务器mac信息</li>
+<li><code>cat  /var/log/secure</code> : 查看最近有谁登陆过服务器，也可以看ssh登陆失败日志</li>
+<li>finger： 需要安装该命令才可以使用，用于查看并显示指定帐号的用户相关信息</li>
+</ul>
+<h3 id="lastlog">lastlog</h3><p><code>cat /var/log/lastlog</code></p>
+<p>lastlog文件在每次有用户登录时被查询。可以使用lastlog命令检查某特定用户上次登录的时间，并格式化输出上次登录日志/var/log/lastlog的内容</p>
+<p>另外，可加一些参数，例如，”last -u 102”命令将报告UID为102的用户;”last -t 7”命令表示限制为上一周的报告。</p>
+<h2 id="二、系统配置">二、系统配置</h2><h3 id="2-1_修改主机名称">2.1 修改主机名称</h3><h4 id="centos_7_修改主机名称">centos 7 修改主机名称</h4><blockquote>
+<p>hostnamectl set-hostname fastdfs-1<br>要永久修改主机名，你可以修改静态主机名：<code>hostnamectl --static set-hostname [主机名]</code></p>
+</blockquote>
+<p>通过文件配置主机名:<br>需要修改2个文件:  /etc/hostsname 和 /etc/hosts</p>
+<h4 id="centos_6修改主机名称">centos 6修改主机名称</h4><p>vi /etc/sysconfig/network<br>修改项目：HOSTNAME</p>
+<h4 id="使用sysctl修改：">使用sysctl修改：</h4><p>sysctl kernel.hostname=your.name</p>
+<h4 id="其他系统修改">其他系统修改</h4><ul>
+<li>debain/ubuntu修改地址：/etc/hostname</li>
+</ul>
+<h3 id="2-2_修改系统语言">2.2 修改系统语言</h3><p>配置文件地址：/etc/sysconfig/i18n</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/10/10/linux/linux-if.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1598,363 +1929,11 @@ nmap -PN -T4 -p139,<span class="number">445</span> -n -v --script=smb-check-vuln
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/31/tools/aria2-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/31/tools/aria2-usage.html" itemprop="url">aria2远程下载利器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T19:47:36+08:00">
-                2017-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/31/tools/aria2-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/31/tools/aria2-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/31/tools/aria2-usage.html" class="leancloud_visitors" data-flag-title="aria2远程下载利器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装aria2路程很颠簸，最好不用全部依赖包都编译，太耗时间了。所以，就有本文了，下面是我个人vps在centos 6.8 下安装成功的范例，免费拿去吧！</p>
-<h2 id="一、aria2安装">一、aria2安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># install aria2 for centos 6.8</span></div><div class="line"><span class="comment"># author: boxcore</span></div><div class="line"><span class="comment"># aria2 docs：https://github.com/aria2/aria2</span></div><div class="line"><span class="comment"># more gnu project for download : http://ftp.gnu.org/gnu/ ; ftp://gcc.gnu.org/pub/gcc/infrastructure/</span></div><div class="line"><span class="comment"># </span></div><div class="line"><span class="comment"># aria2 gui tools:</span></div><div class="line"><span class="comment"># for mac: https://github.com/yangshun1029/aria2gui/releases</span></div><div class="line"><span class="comment"># </span></div><div class="line">yum install bison libssh2-devel expat-devel gmp-devel nettle-devel libuv-devel libssh2-devel zlib-devel c-ares-devel cppunit-devel gnutls-devel libgcrypt-devel libxml2-devel sqlite-devel gettext lzma-devel xz-devel gperftools gperftools-devel gperftools-libs jemalloc-devel</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">## install gcc 4.8</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line">wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo</div><div class="line">yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++</div><div class="line"></div><div class="line">ln <span class="_">-s</span> /opt/rh/devtoolset-2/root/usr/bin/* /usr/<span class="built_in">local</span>/bin/</div><div class="line"><span class="built_in">hash</span> -r</div><div class="line">g++ --version</div><div class="line"></div><div class="line"><span class="comment">## install libuv, see https://github.com/libuv/libuv</span></div><div class="line">wget https://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz</div><div class="line">tar vxf libuv-v1.9.1.tar.gz</div><div class="line"><span class="built_in">cd</span> libuv-v1.9.1</div><div class="line">sh autogen.sh</div><div class="line">./configure</div><div class="line">make</div><div class="line">make check</div><div class="line">make install</div><div class="line"></div><div class="line"><span class="comment">## install jemalloc, see: http://jemalloc.net/</span></div><div class="line">wget https://github.com/jemalloc/jemalloc/releases/download/5.0.1/jemalloc-5.0.1.tar.bz2</div><div class="line">tar vxf jemalloc-5.0.1.tar.bz2</div><div class="line"><span class="built_in">cd</span> jemalloc-5.0.1</div><div class="line">./configure</div><div class="line">make</div><div class="line">make check</div><div class="line">make install</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">cd</span> /opt</div><div class="line">wget https://github.com/aria2/aria2/releases/download/release-1.27.1/aria2-1.27.1.tar.gz</div><div class="line">tar xzf aria2-1.27.1.tar.gz</div><div class="line"><span class="built_in">cd</span> aria2-1.27.1</div><div class="line">./configure --enable-static=yes --enable-shared=no --with-libuv --with-jemalloc --with-ca-bundle=<span class="string">'/etc/pki/tls/certs/ca-bundle.crt'</span> ARIA2_STATIC=yes</div><div class="line">make &amp;&amp; make check &amp;&amp; make install</div></pre></td></tr></table></figure>
-<p>然后，你就可以使用aria2c命令试一下咯。。。</p>
-<h2 id="二、aria2使用">二、aria2使用</h2><h3 id="2-1_基本说明">2.1 基本说明</h3><h4 id="基础命令说明">基础命令说明</h4><pre><code>-<span class="ruby"><span class="symbol">c:</span> 断点续传
-</span>-<span class="ruby"><span class="symbol">s:</span> 使用线程数</span>
-</code></pre><blockquote>
-<p>当源地址存在诸如 &amp;, * 等 shell 的特殊字符，请使用单引号或双引号把 URI 包含起来。</p>
-</blockquote>
-<h4 id="aria2c服务">aria2c服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">aria2c --conf-path=<span class="string">"/root/.aria2/aria2.conf"</span> -D  <span class="comment"># 启动aria服务</span></div><div class="line"></div><div class="line">ps -ef|grep aira2c <span class="comment"># 查看并杀死aria2c</span></div></pre></td></tr></table></figure>
-<h3 id="2-2_常见命令">2.2 常见命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">aria2c -c <span class="_">-s</span> 5 http://example.org/mylinux.iso</div><div class="line"></div><div class="line">aria2c http://a/f.iso   ftp://b/f.iso  <span class="comment"># Download from 2 sources</span></div><div class="line"></div><div class="line">aria2c -x2 http://a/f.iso <span class="comment"># Download using 2 connections per host</span></div><div class="line">aria2c <span class="string">'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C'</span> <span class="comment"># BitTorrent Magnet URI</span></div></pre></td></tr></table></figure>
-<h2 id="三、aria2前端管理工具">三、aria2前端管理工具</h2><ul>
-<li>webui-aria2: <a href="https://github.com/ziahamza/webui-aria2.git" target="_blank" rel="external">https://github.com/ziahamza/webui-aria2.git</a></li>
-<li>AriaNg: <a href="https://github.com/mayswind/AriaNg.git" target="_blank" rel="external">https://github.com/mayswind/AriaNg.git</a></li>
-</ul>
-<h2 id="四、aria2相关工具">四、aria2相关工具</h2><ul>
-<li><a href="https://github.com/mayswind/AriaNg" target="_blank" rel="external">https://github.com/mayswind/AriaNg</a>, <a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
-<li><a href="https://doub.io/wlzy-30/" target="_blank" rel="external">https://doub.io/wlzy-30/</a></li>
-<li><a href="https://github.com/ziahamza/webui-aria2" target="_blank" rel="external">https://github.com/ziahamza/webui-aria2</a></li>
-<li><a href="https://github.com/binux/yaaw" target="_blank" rel="external">https://github.com/binux/yaaw</a></li>
-<li><a href="https://dy.ghostry.cn/" target="_blank" rel="external">https://dy.ghostry.cn/</a></li>
-</ul>
-<h2 id="参考">参考</h2><ul>
-<li><a href="http://skypegnu1.blog.51cto.com/8991766/1637168" target="_blank" rel="external">http://skypegnu1.blog.51cto.com/8991766/1637168</a></li>
-<li><a href="http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/" target="_blank" rel="external">http://moflying.com/2016/06/05/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aria2%E5%8F%8Awebui-aria2%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90/</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2017/08/27/php/php-design-patterns.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/27/php/php-design-patterns.html" itemprop="url">PHP设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T23:58:41+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/27/php/php-design-patterns.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/27/php/php-design-patterns.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/27/php/php-design-patterns.html" class="leancloud_visitors" data-flag-title="PHP设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>笔记内容来自慕课 <a href="http://www.imooc.com/video/4846" target="_blank" rel="external">大话PHP设计模式</a>。</p>
-<h2 id="一、面向对象的高级特性">一、面向对象的高级特性</h2><p>这里主要是学习 第三章、命名空间和Autoload 和 第四章、PHP面向对象 2章的内容笔记</p>
-<h3 id="命名空间_namespace">命名空间 namespace</h3><h3 id="类自动载入">类自动载入</h3><p>旧的方法</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Test1::test();</div><div class="line">Test2::test();</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__autoload</span><span class="params">($class)</span></span>&#123;</div><div class="line">    <span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/'</span> . $class . <span class="string">'.php'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">spl_autoload_register(<span class="string">'autoload2'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">autoload2</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/'</span> . $class . <span class="string">'.php'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>PSR-0规范内容：</p>
-<ol>
-<li>命名空间必须与绝对路径一致</li>
-<li>类名首字母必须大写</li>
-<li>除入口文件外，其他<code>.php</code>必须只有一个类</li>
-</ol>
-<p>开发符合psr-0规范的基础框架</p>
-<ol>
-<li>全部使用命名空间</li>
-<li>所有php文件必须自动载入，不能有include/require</li>
-<li>单一入口</li>
-</ol>
-<h3 id="SPL库的使用（php标准库）">SPL库的使用（php标准库）</h3><p>主要参考文档：<a href="http://php.net/manual/zh/book.spl.php" target="_blank" rel="external">php标准库</a></p>
-<ol>
-<li>SplStack、SplQueue、SplHeap、SplFixedArray等数据结构类</li>
-<li>ArrayIterator、AppendIterator、Countable、ArrayObject</li>
-<li>SPL提供的函数</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$stack = <span class="keyword">new</span> SplStack();</div><div class="line">$stack-&gt;push(<span class="string">"data1\n"</span>);</div><div class="line">$stack-&gt;push(<span class="string">"data2\n"</span>);</div><div class="line"><span class="keyword">echo</span> $stack-&gt;pop(); <span class="comment">// data2</span></div><div class="line"><span class="keyword">echo</span> $stack-&gt;pop(); <span class="comment">// data1</span></div><div class="line"></div><div class="line"></div><div class="line">$queue = <span class="keyword">new</span> SplQueue();</div><div class="line">$queue-&gt;enqueue(<span class="string">"data1\n"</span>);</div><div class="line">$queue-&gt;enqueue(<span class="string">"data2\n"</span>);</div><div class="line"><span class="keyword">echo</span> $queue-&gt;dequeue(); <span class="comment">// data1</span></div><div class="line"><span class="keyword">echo</span> $queue-&gt;dequeue(); <span class="comment">// data2</span></div><div class="line"></div><div class="line"><span class="comment">// 堆 （最小结构堆）</span></div><div class="line">$heap = <span class="keyword">new</span> SplMinHeap();</div><div class="line">$heap-&gt;insert(<span class="string">"data1\n"</span>);</div><div class="line">$heap-&gt;insert(<span class="string">"data2\n"</span>);</div><div class="line"><span class="keyword">echo</span> $heap-&gt;extract(); <span class="comment">// data1</span></div><div class="line"><span class="keyword">echo</span> $heap-&gt;extract(); <span class="comment">// data2</span></div><div class="line"></div><div class="line"><span class="comment">// 固定尺寸（长度）的数组</span></div><div class="line">$array = <span class="keyword">new</span> SplFixedArray(<span class="number">10</span>);</div><div class="line">$array[<span class="number">0</span>] = <span class="number">123</span>;</div><div class="line">$array[<span class="number">9</span>] = <span class="number">1234</span>;</div></pre></td></tr></table></figure>
-<h3 id="php链式操作">php链式操作</h3><p>链式操作实现： $db-&gt;where()-&gt;get();</p>
-<p>每个方法有返回值</p>
-<h3 id="php魔术方法的使用">php魔术方法的使用</h3><ol>
-<li><strong>get/</strong>set:</li>
-<li><strong>call/</strong>callstatic:</li>
-<li>__toString:</li>
-<li>__invoke: 将一个php对象当做一个函数执行</li>
-</ol>
-<h2 id="二、设计模式">二、设计模式</h2><p>3种基本设计模式</p>
-<ol>
-<li>工厂模式：工厂方法或者类生产对象，而不是在代码中直接new</li>
-<li>单例模式：使某个类的对象仅允许创建一个</li>
-<li>注册模式：全局共享和交换对象</li>
-</ol>
-<p>其他设计模式</p>
-<p>适配器模式<br>策略模式<br>数据对象映射模式<br>观察者模式<br>原型模式<br>装饰器模式<br>迭代器模式<br>代理模式</p>
-<h3 id="一、工厂模式">一、工厂模式</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1999,7 +1978,7 @@ nmap -PN -T4 -p139,<span class="number">445</span> -n -v --script=smb-check-vuln
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">229</span>
+                <span class="site-state-item-count">231</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -329,6 +329,322 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-show-branch-in-ternimal.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/10/git/git-show-branch-in-ternimal.html" itemprop="url">在Mac、Linux 终端显示 Git 当前所在分支</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T01:17:16+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/10/git/git-show-branch-in-ternimal.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/10/git/git-show-branch-in-ternimal.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/10/git/git-show-branch-in-ternimal.html" class="leancloud_visitors" data-flag-title="在Mac、Linux 终端显示 Git 当前所在分支">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>进入你的<code>home</code>目录</li>
+</ol>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div></pre></td></tr></table></figure>
+<ol>
+<li><p>编辑<code>.bashrc</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi .bashrc</div></pre></td></tr></table></figure>
+</li>
+<li><p>将下面的代码加入到文件的最后处</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> git_branch &#123;</div><div class="line">   branch=<span class="string">"`git branch 2&gt;/dev/null | grep "</span>^\*<span class="string">" | sed -e "</span>s/^\*\ //<span class="string">"`"</span></div><div class="line">   <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span> != <span class="string">""</span> ];<span class="keyword">then</span></div><div class="line">       <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span> = <span class="string">"(no branch)"</span> ];<span class="keyword">then</span></div><div class="line">           branch=<span class="string">"(`git rev-parse --short HEAD`...)"</span></div><div class="line">       <span class="keyword">fi</span></div><div class="line">       <span class="built_in">echo</span> <span class="string">" (<span class="variable">$branch</span>)"</span></div><div class="line">   <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">export</span> PS1=<span class="string">'\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\] \$ '</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>保存退出</p>
+</li>
+<li><p>执行加载命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ./.bashrc</div></pre></td></tr></table></figure>
+</li>
+<li><p>完成</p>
+</li>
+</ol>
+<blockquote>
+<p>Mac 下面启动的 shell 是 login shell，所以加载的配置文件是<code>.bash_profile</code>，不会加载<code>.bashrc</code>。如果你是 Mac 用户的话，需要再执行下面的命令，这样每次开机后才会自动生效：</p>
+</blockquote>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"[ -r ~/.bashrc ] &amp;&amp; source ~/.bashrc"</span> &gt;&gt; .bash_profile</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/04/tools/tor-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/04/tools/tor-usage.html" itemprop="url">Tor使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T17:31:03+08:00">
+                2018-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/04/tools/tor-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/04/tools/tor-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/04/tools/tor-usage.html" class="leancloud_visitors" data-flag-title="Tor使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">brew install tor</div><div class="line">cp /usr/<span class="built_in">local</span>/etc/tor/torrc.sample /usr/<span class="built_in">local</span>/etc/tor/torrc</div><div class="line">brew services start tor</div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">'SOCKS5Proxy 127.0.0.1:5566'</span> &gt; torrc</div><div class="line">tor <span class="_">-f</span> torrc</div><div class="line"></div><div class="line"><span class="comment"># 傻瓜化 的配置可以 下载tor浏览器，参考：https://www.torproject.org/download/download#warning</span></div><div class="line">wget https://dist.torproject.org/torbrowser//7.5.3/TorBrowser-7.5.3-osx64_zh-CN.dmg</div></pre></td></tr></table></figure>
+<p>启动日志：</p>
+<pre><code>May 04 18:16:57.948 [notice] Tor 0.3.1.7 (git-6babd3d9ba9318b3) running on Darwin with Libevent 2.1.8-stable, OpenSSL 1.0.2l, Zlib 1.2.11, Liblzma N/A, and Libzstd N/A.
+May 04 18:16:57.948 [notice] Tor can't <span class="operator"><span class="keyword">help</span> you <span class="keyword">if</span> you <span class="keyword">use</span> it wrong! Learn how <span class="keyword">to</span> be <span class="keyword">safe</span> <span class="keyword">at</span> https://www.torproject.org/download/download#<span class="keyword">warning</span>
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.949</span> [<span class="keyword">notice</span>] <span class="keyword">Read</span> configuration <span class="keyword">file</span> <span class="string">"/usr/local/etc/tor/torrc"</span>.
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.952</span> [<span class="keyword">notice</span>] Opening Socks listener <span class="keyword">on</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9050</span>
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">57.000</span> [<span class="keyword">notice</span>] Parsing GEOIP IPv4 <span class="keyword">file</span> /usr/<span class="keyword">local</span>/Cellar/tor/<span class="number">0.3</span><span class="number">.1</span><span class="number">.7</span>/<span class="keyword">share</span>/tor/geoip.
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Parsing GEOIP IPv6 <span class="keyword">file</span> /usr/<span class="keyword">local</span>/Cellar/tor/<span class="number">0.3</span><span class="number">.1</span><span class="number">.7</span>/<span class="keyword">share</span>/tor/geoip6.
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">0</span>%: <span class="keyword">Starting</span>
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] <span class="keyword">Starting</span> <span class="keyword">with</span> <span class="keyword">guard</span> <span class="keyword">context</span> <span class="string">"default"</span>
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">58.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">80</span>%: Connecting <span class="keyword">to</span> the Tor network
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">16</span>:<span class="number">59.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">85</span>%: Finishing handshake <span class="keyword">with</span> <span class="keyword">first</span> hop
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">17</span>:<span class="number">00.000</span> [<span class="keyword">notice</span>] Bootstrapped <span class="number">90</span>%: Establishing a Tor circuit
+May <span class="number">04</span> <span class="number">18</span>:<span class="number">17</span>:<span class="number">02.000</span> [<span class="keyword">notice</span>] Tor has successfully opened a circuit. Looks <span class="keyword">like</span> <span class="keyword">client</span> functionality <span class="keyword">is</span> working.</span>
+</code></pre><p>启动好tor服务后，配置 socket5代理 127.0.0.1:9050 即可匿名访问网络了，具体可以访问whoer.net查看下，比如我的是：<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqzh9ce3hgj31if0ekt9p.jpg" alt=""></p>
+<blockquote>
+<p>注意： 使用tor后访问国内网站很不稳定的，不建议访问</p>
+</blockquote>
+<h2 id="高级配置">高级配置</h2><h3 id="获取网桥">获取网桥</h3><p>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs2" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs2</a> 获取obfs2网桥<br>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs3" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs3</a> 获取obfs3网桥<br>访问 <a href="https://bridges.torproject.org/bridges?transport=obfs4" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs4</a> 获取obfs4网桥[推荐]<br>访问 <a href="https://bridges.torproject.org/bridges?transport=scramblesuit" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=scramblesuit</a> 获取scramblesuit网桥</p>
+<p>获取网桥：<br><a href="https://bridges.torproject.org/bridges?transport=obfs4" target="_blank" rel="external">https://bridges.torproject.org/bridges?transport=obfs4</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">obfs4 192.36.31.156:58717 C96BE6BB62B5C3A16CF2AC44D7DA0ABA519FBDCF cert=BuWcPXK6XaGGiXaJo6z3LfVgXioGbCe8tHBM644m5uuX2soci9ZLQ4WE2ehzkGlx1EreAA iat-mode=0</div><div class="line">obfs4 52.15.193.17:9443 BD0299D93D9206411A3232BBF467DC95DAF77298 cert=+nI8zcEMq/yhQ7wxFTm9IXP1bIqbJlq4wmYXOiQNzphnD4ZwzUjUpn1GkhJKSQXFR6JgEg iat-mode=0</div><div class="line">obfs4 31.220.45.126:443 51F5957DCCA58AC686864A7A6A47B917486E3625 cert=cZFybuS2DSlRdpG9GRKS+dqF297Mp1mduHVt/N011fPXXePMqA1ckubxQdGEDj7U5kJkPw iat-mode=0</div></pre></td></tr></table></figure>
+<h2 id="i2p">i2p</h2><p><a href="https://geti2p.net/zh-cn/download" target="_blank" rel="external">https://geti2p.net/zh-cn/download</a></p>
+<p>java -jar i2pinstall_0.9.34.jar启动安装程序 installer</p>
+<p>On most systems, I2P can be started with:</p>
+<p>/Applications/i2p/i2prouter start</p>
+<p>If I2P does not start, please try:</p>
+<p>/Applications/i2p/runplain.sh</p>
+<p>启动后，访问<a href="http://127.0.0.1:7657/" target="_blank" rel="external">http://127.0.0.1:7657/</a> 即可</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/02/php/thinkphp-thinkcmf-usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -821,7 +1137,7 @@
       
         
           
-            <p>thinkphp 3迁移5<br>thinkphp5 学习笔记</p>
+            <p>i<br>thinkphp 3迁移5<br>thinkphp5 学习笔记</p>
 
           
         
@@ -1960,343 +2276,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/17/windows/windows-software/winrar-remove-ad.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/windows/windows-software/winrar-remove-ad.html" itemprop="url">Winrar去广告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T22:27:59+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/window/" itemprop="url" rel="index">
-                    <span itemprop="name">window</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/window/软件/" itemprop="url" rel="index">
-                    <span itemprop="name">软件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/17/windows/windows-software/winrar-remove-ad.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/17/windows/windows-software/winrar-remove-ad.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/04/17/windows/windows-software/winrar-remove-ad.html" class="leancloud_visitors" data-flag-title="Winrar去广告">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.下载WinRAR 5.5WinRAR官网（<a href="http://www.rarlab.com）" target="_blank" rel="external">http://www.rarlab.com）</a><br>2.下载 Resource Hacker.<br>3.用压缩软件打开WinRAR安装包，提取 WinRAR.exe<br>4.打开Resource Hacker,<br>点击菜单，点击打开，浏览刚才提取出来的WinRAR.exe,浏览到后点击打开。<br>展开”字串表”<br>找到80 2052右键，点删除红色中的一个#。<br>或者在右侧定位到：<br>1272,  “##0aN9=&gt;34_9hwrq&gt;(-dd-qhjucw.<code>il*dl*skiv[6,mtnj&gt;H:5&amp;bo;6&amp;q?$Vscswhldl&amp;g&lt;$F&amp;vr</code>;svk<code>2Q;hwrq&gt;(-dd-qhjucw.</code>il<em>dl</em>skiv[5,mtnj&gt;H:5&bo;6&amp;q?$Vscswhldl&amp;g&lt;$F&amp;vr<code>;svk</code>14mLgA36^&gt;hwrq&gt;(-dd-qhjucw.<code>il*dl*skiv[5,mtnj&gt;H:5&amp;bo;6&amp;q?$Vscswhldl&amp;g&lt;$F&amp;vr</code>;svk`Z5”<br>删除引号内开头的 “##0aN9=一个#，变成”#0aN9=<br>然后编译保存。这样不仅去广告，还可以保留数字签名。<br>对使用均没有影响。点击是，接着点菜单，点保存。修改完毕后可以替换到原安装包，亦可直接替换到 WinRAR安装目录。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/17/linux/linux-firewall-cmd.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/linux/linux-firewall-cmd.html" itemprop="url">Linux网络命令之centos7防火墙firewall-cmd</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T22:15:08+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/17/linux/linux-firewall-cmd.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/17/linux/linux-firewall-cmd.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/04/17/linux/linux-firewall-cmd.html" class="leancloud_visitors" data-flag-title="Linux网络命令之centos7防火墙firewall-cmd">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="firewall-cmd使用说明">firewall-cmd使用说明</h2><p>firewalld是centos7的一大特性，最大的好处有两个：支持动态更新，不用重启服务；第二个就是加入了防火墙的“zone”概念</p>
-<p>firewalld有图形界面和工具界面，由于我在服务器上使用，图形界面请参照官方文档，本文以字符界面做介绍</p>
-<p>firewalld的字符界面管理工具是 firewall-cmd </p>
-<p>firewalld默认配置文件有两个：/usr/lib/firewalld/ （系统配置，尽量不要修改）和 /etc/firewalld/ （用户配置地址）</p>
-<p>zone概念：<br>硬件防火墙默认一般有三个区，firewalld引入这一概念系统默认存在以下区域（根据文档自己理解，如果有误请指正）：<br>drop：默认丢弃所有包<br>block：拒绝所有外部连接，允许内部发起的连接<br>public：指定外部连接可以进入<br>external：这个不太明白，功能上和上面相同，允许指定的外部连接<br>dmz：和硬件防火墙一样，受限制的公共连接可以进入<br>work：工作区，概念和workgoup一样，也是指定的外部连接允许<br>home：类似家庭组<br>internal：信任所有连接<br>对防火墙不算太熟悉，还没想明白public、external、dmz、work、home从功能上都需要自定义允许连接，具体使用上的区别还需高人指点</p>
-<h2 id="应用">应用</h2><h3 id="开放端口">开放端口</h3><p>永久的开放需要的端口:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo firewall-cmd --zone=public --add-port=3000/tcp --permanent</div><div class="line">sudo firewall-cmd --reload</div><div class="line">firewall-cmd --list-all <span class="comment">#检查新的防火墙规则</span></div></pre></td></tr></table></figure></p>
-<h3 id="服务器状态">服务器状态</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//临时关闭防火墙,重启后会重新自动打开</span></div><div class="line">systemctl restart firewalld</div><div class="line"><span class="comment">//检查防火墙状态</span></div><div class="line">firewall-cmd --state</div><div class="line">firewall-cmd --<span class="built_in">list</span>-all</div><div class="line"><span class="comment">//Disable firewall</span></div><div class="line">systemctl disable firewalld</div><div class="line">systemctl stop firewalld</div><div class="line">systemctl status firewalld</div><div class="line"><span class="comment">//Enable firewall</span></div><div class="line">systemctl enable firewalld</div><div class="line">systemctl start firewalld</div><div class="line">systemctl status firewalld</div></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://blog.csdn.net/spxfzc/article/details/39645133" target="_blank" rel="external">https://blog.csdn.net/spxfzc/article/details/39645133</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2341,7 +2325,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">229</span>
+                <span class="site-state-item-count">231</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
