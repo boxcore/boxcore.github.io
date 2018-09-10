@@ -96,30 +96,39 @@
 
 
 <meta name="description" content="netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。
-一、命令帮助二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
+一、命令帮助
+-ntlp : 列出所有端口
+
+二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
 
 netstat -apn | grep 8080
 
-一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID #">
+一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux网络命令之netstat">
 <meta property="og:url" content="http://boxcore.github.io/2017/10/09/linux/linux-netstat.html">
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。
-一、命令帮助二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
+一、命令帮助
+-ntlp : 列出所有端口
+
+二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
 
 netstat -apn | grep 8080
 
-一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID #">
-<meta property="og:updated_time" content="2017-10-20T09:17:18.000Z">
+一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详">
+<meta property="og:updated_time" content="2018-09-08T08:57:28.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux网络命令之netstat">
 <meta name="twitter:description" content="netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。
-一、命令帮助二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
+一、命令帮助
+-ntlp : 列出所有端口
+
+二、常见案例2.1 查看端口是否被占用例如查询8080端口是否被占用，并可以查看pid/程序名
 
 netstat -apn | grep 8080
 
-一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详细信息kill -9 PID #">
+一般找到端口使用的PID后可以执行如下进行关闭：12ps -ef | grep PID # 查看详">
 
 
 
@@ -430,7 +439,10 @@ netstat -apn | grep 8080
 
       
         <p>netstat是linux下网络情况命令，同样的window下也是一样，下面说说他的基础使用和常用情景。</p>
-<h2 id="一、命令帮助">一、命令帮助</h2><h2 id="二、常见案例">二、常见案例</h2><h3 id="2-1_查看端口是否被占用">2.1 查看端口是否被占用</h3><p>例如查询8080端口是否被占用，并可以查看pid/程序名</p>
+<h2 id="一、命令帮助">一、命令帮助</h2><ul>
+<li><code>-ntlp</code> : 列出所有端口</li>
+</ul>
+<h2 id="二、常见案例">二、常见案例</h2><h3 id="2-1_查看端口是否被占用">2.1 查看端口是否被占用</h3><p>例如查询8080端口是否被占用，并可以查看pid/程序名</p>
 <blockquote>
 <p>netstat -apn | grep 8080</p>
 </blockquote>
@@ -599,7 +611,7 @@ netstat -apn | grep 8080
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">231</span>
+                <span class="site-state-item-count">236</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

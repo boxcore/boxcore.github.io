@@ -101,7 +101,7 @@
 <meta property="og:url" content="http://boxcore.github.io/2017/10/10/linux/linux-ssh.html">
 <meta property="og:site_name" content="BoxCore">
 <meta property="og:description" content="一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-e escape_char] [-F configfile]           [-I pkcs11] [-i identity_file]">
-<meta property="og:updated_time" content="2018-03-14T07:58:05.317Z">
+<meta property="og:updated_time" content="2018-08-23T13:13:30.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux网络命令之ssh">
 <meta name="twitter:description" content="一、基础12345678usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]           [-D [bind_address:]port] [-e escape_char] [-F configfile]           [-I pkcs11] [-i identity_file]">
@@ -439,6 +439,13 @@
 <blockquote>
 <p>GSSAPI：Generic Security Services Application Program Interface，GSSAPI 本身是一套 API，由 IETF 标准化。<br>其最主要也是著名的实现是基于 Kerberos 的。一般说到 GSSAPI 都暗指 Kerberos 实现。<br>GSSAPI 是一套通用网络安全系统接口。该接口是对各种不同的客户端服务器安全机制的封装，以消除安全接口的不同，降低编程难度。</p>
 </blockquote>
+<h3 id="3-2_开启ssh免密码登陆">3.2 开启ssh免密码登陆</h3><p>设置内容：<br>vi /etc/ssh/sshd_config</p>
+<blockquote>
+<p>RSAAuthentication yes<br>PubkeyAuthentication yes<br>AuthorizedKeysFile      .ssh/authorized_keys</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">chmod 700 ~/.ssh</div><div class="line">chmod 600 ~/.ssh/authorized_keys</div><div class="line">service sshd restart</div></pre></td></tr></table></figure>
+<p>重启sshd后尝试使用无密码登陆服务器。</p>
+<p>可能遇到问题：selinux未关闭，依然需要输入密码。处理方法，配置关闭selinux：<br>vi /etc/selinux/config<br>修改以下内容：<br>将<code>SELINUX=enforcing</code>修改为<code>SELINUX=disabled</code></p>
 
       
     </div>
@@ -589,7 +596,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">231</span>
+                <span class="site-state-item-count">236</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -671,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础"><span class="nav-number">1.</span> <span class="nav-text">一、基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常用案例"><span class="nav-number">2.</span> <span class="nav-text">二、常用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_远程执行bash命令"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 远程执行bash命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、SSH配置修改"><span class="nav-number">3.</span> <span class="nav-text">三、SSH配置修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_加速ssh登陆"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 加速ssh登陆</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础"><span class="nav-number">1.</span> <span class="nav-text">一、基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常用案例"><span class="nav-number">2.</span> <span class="nav-text">二、常用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_远程执行bash命令"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 远程执行bash命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、SSH配置修改"><span class="nav-number">3.</span> <span class="nav-text">三、SSH配置修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_加速ssh登陆"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 加速ssh登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2_开启ssh免密码登陆"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 开启ssh免密码登陆</span></a></li></ol></li></ol></div>
             
 
           </div>

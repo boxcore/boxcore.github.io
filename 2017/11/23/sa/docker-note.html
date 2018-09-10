@@ -105,7 +105,7 @@ bash下一般执行这个语句就可以：dockerd --registry-mirror=https://reg
 <meta property="og:description" content="一、docker的一些基础概念1.1 配置Docker使用中国镜像镜像地址合集：12http://ac8437da.m.daocloud.iohttps://registry.docker-cn.com
 bash下一般执行这个语句就可以：dockerd --registry-mirror=https://registry.docker-cn.com
 如果你的是linux系统，可以通过下面这个命令一">
-<meta property="og:updated_time" content="2017-11-25T06:49:53.687Z">
+<meta property="og:updated_time" content="2018-08-28T05:50:38.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Note">
 <meta name="twitter:description" content="一、docker的一些基础概念1.1 配置Docker使用中国镜像镜像地址合集：12http://ac8437da.m.daocloud.iohttps://registry.docker-cn.com
@@ -485,7 +485,14 @@ bash下一般执行这个语句就可以：dockerd --registry-mirror=https://reg
 </code></pre><h3 id="laravel_docker使用">laravel docker使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">composer create-project --prefer-dist laravel/laravel blog</div><div class="line">docker pull laraedit/laraedit</div><div class="line">docker run <span class="_">-d</span> --name laravel -p 8082:80 -p 3307:3306 -v &#123;blog对应的目录&#125;:/var/www/html/app laraedit/laraedit</div><div class="line">docker <span class="built_in">exec</span> -it laravel /bin/bash</div></pre></td></tr></table></figure>
 <p>进入docker container后可以执行这个命令链接mysql</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u homestead -h 192.168.99.100 -P 3307 -p <span class="comment"># 預設帳號為 homestead 密碼為 secret</span></div></pre></td></tr></table></figure>
-
+<h2 id="四、docker-compose安装和使用">四、docker-compose安装和使用</h2><p>要使用docker-compose，先要检查系统是否加载overlayfs，如果是centos7以上则默认已经加载。可以使用<code>lsmod | grep overlay</code>来检查是否加载，如果没有，则使用如下命令去加载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 内核加载overlayfs系统</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"overlay"</span> &gt; /etc/modules-load.d/overlay.conf</div><div class="line">reboot</div></pre></td></tr></table></figure>
+<p>编辑docker配置文件，让docker使用overlay文件系统</p>
+<p>vim /etc/sysconfig/docker</p>
+<blockquote>
+<p>OPTIONS=’–selinux-enabled -s overlay<br>具体可以参考文章：<a href="https://blog.csdn.net/oxo_520/article/details/79873710" target="_blank" rel="external">https://blog.csdn.net/oxo_520/article/details/79873710</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname <span class="_">-s</span>)-$(uname -m) -o /usr/<span class="built_in">local</span>/bin/docker-compose</div><div class="line">chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -635,7 +642,7 @@ bash下一般执行这个语句就可以：dockerd --registry-mirror=https://reg
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">231</span>
+                <span class="site-state-item-count">236</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -717,7 +724,7 @@ bash下一般执行这个语句就可以：dockerd --registry-mirror=https://reg
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、docker的一些基础概念"><span class="nav-number">1.</span> <span class="nav-text">一、docker的一些基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_配置Docker使用中国镜像"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 配置Docker使用中国镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用镜像"><span class="nav-number">2.</span> <span class="nav-text">二、使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行镜像"><span class="nav-number">2.1.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出镜像"><span class="nav-number">2.2.</span> <span class="nav-text">列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看虚悬镜像"><span class="nav-number">2.2.1.</span> <span class="nav-text">查看虚悬镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层镜像"><span class="nav-number">2.2.2.</span> <span class="nav-text">中间层镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker_commit使用"><span class="nav-number">2.2.3.</span> <span class="nav-text">docker commit使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dockerfile_定制镜像"><span class="nav-number">2.2.4.</span> <span class="nav-text">Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、容器使用"><span class="nav-number">3.</span> <span class="nav-text">三、容器使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例"><span class="nav-number">4.</span> <span class="nav-text">范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel_docker使用"><span class="nav-number">4.1.</span> <span class="nav-text">laravel docker使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、docker的一些基础概念"><span class="nav-number">1.</span> <span class="nav-text">一、docker的一些基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_配置Docker使用中国镜像"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 配置Docker使用中国镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用镜像"><span class="nav-number">2.</span> <span class="nav-text">二、使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行镜像"><span class="nav-number">2.1.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出镜像"><span class="nav-number">2.2.</span> <span class="nav-text">列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看虚悬镜像"><span class="nav-number">2.2.1.</span> <span class="nav-text">查看虚悬镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层镜像"><span class="nav-number">2.2.2.</span> <span class="nav-text">中间层镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker_commit使用"><span class="nav-number">2.2.3.</span> <span class="nav-text">docker commit使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dockerfile_定制镜像"><span class="nav-number">2.2.4.</span> <span class="nav-text">Dockerfile 定制镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、容器使用"><span class="nav-number">3.</span> <span class="nav-text">三、容器使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例"><span class="nav-number">4.</span> <span class="nav-text">范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel_docker使用"><span class="nav-number">4.1.</span> <span class="nav-text">laravel docker使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、docker-compose安装和使用"><span class="nav-number">5.</span> <span class="nav-text">四、docker-compose安装和使用</span></a></li></ol></div>
             
 
           </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://boxcore.github.io/"/>
-  <updated>2018-06-25T02:39:18.648Z</updated>
+  <updated>2018-09-07T19:25:38.101Z</updated>
   <id>http://boxcore.github.io/</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018-09-04：配置ss服务记</title>
+    <link href="http://boxcore.github.io/2018/09/04/deploy-ss-server-note.html"/>
+    <id>http://boxcore.github.io/2018/09/04/deploy-ss-server-note.html</id>
+    <published>2018-09-04T15:44:14.000Z</published>
+    <updated>2018-09-07T19:25:38.101Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;配置perl及cpan包管理器&quot;&gt;配置perl及cpan包管理器&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2018-08-30：网站攻击优化</title>
+    <link href="http://boxcore.github.io/2018/08/30/hack-sites.html"/>
+    <id>http://boxcore.github.io/2018/08/30/hack-sites.html</id>
+    <published>2018-08-29T17:54:36.000Z</published>
+    <updated>2018-09-06T17:08:57.351Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。&lt;br&gt;由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。&lt;/p&gt;
+&lt;p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微信多开</title>
+    <link href="http://boxcore.github.io/2018/08/25/tools/wechat-duokai.html"/>
+    <id>http://boxcore.github.io/2018/08/25/tools/wechat-duokai.html</id>
+    <published>2018-08-25T14:30:42.000Z</published>
+    <updated>2018-08-25T14:31:46.795Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;mac下微信多开&quot;&gt;mac下微信多开&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Golang基础</title>
+    <link href="http://boxcore.github.io/2018/07/08/topic/go/golang-basic.html"/>
+    <id>http://boxcore.github.io/2018/07/08/topic/go/golang-basic.html</id>
+    <published>2018-07-07T17:05:59.000Z</published>
+    <updated>2018-07-09T01:57:00.652Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;&lt;h3 id=&quot;工具篇&quot;&gt;工具篇&lt;/h3&gt;&lt;h3 id=&quot;文档教程&quot;&gt;文档教程&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://go-tour-zh.appspot.com/list&quot; target=&quot;_blank&quot; rel
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下mysql多开</title>
+    <link href="http://boxcore.github.io/2018/06/25/sql/mysql-for-mac-run.html"/>
+    <id>http://boxcore.github.io/2018/06/25/sql/mysql-for-mac-run.html</id>
+    <published>2018-06-25T02:58:59.000Z</published>
+    <updated>2018-06-25T02:59:17.175Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>编译安装shadowsocksr-libev</title>
@@ -285,112 +367,6 @@
     
       <category term="php" scheme="http://boxcore.github.io/categories/php/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>vscode编辑器深入浅出</title>
-    <link href="http://boxcore.github.io/2018/04/24/topic/vscode-editor-tutorial.html"/>
-    <id>http://boxcore.github.io/2018/04/24/topic/vscode-editor-tutorial.html</id>
-    <published>2018-04-24T08:52:29.000Z</published>
-    <updated>2018-05-16T14:37:01.297Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://jeasonstudio.gitbooks.io/vscode-cn-doc/content/md/%E5%AE%9A%E5%88%B6%E5%8C%96/%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89
-    
-    </summary>
-    
-      <category term="topic" scheme="http://boxcore.github.io/categories/topic/"/>
-    
-      <category term="editor" scheme="http://boxcore.github.io/categories/topic/editor/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>产品设计UML基础</title>
-    <link href="http://boxcore.github.io/2018/04/24/topic/pm-uml-start.html"/>
-    <id>http://boxcore.github.io/2018/04/24/topic/pm-uml-start.html</id>
-    <published>2018-04-24T06:04:02.000Z</published>
-    <updated>2018-05-16T14:38:14.184Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、各种图&quot;&gt;一、各种图&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;有向无环图（DAG）:如果一个有向图从任意顶点出发无法经过若干条边回到该点，则这个图是一个有向无环图（DAG图）.因为有向图中一个点经过两种路线到达另一个点未必形成环，因此有向无环图未必能转化成树，但任何有向树均
-    
-    </summary>
-    
-      <category term="topic" scheme="http://boxcore.github.io/categories/topic/"/>
-    
-    
-      <category term="pm" scheme="http://boxcore.github.io/tags/pm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git初探</title>
-    <link href="http://boxcore.github.io/2018/04/23/topic/git-start.html"/>
-    <id>http://boxcore.github.io/2018/04/23/topic/git-start.html</id>
-    <published>2018-04-23T07:53:24.000Z</published>
-    <updated>2018-05-07T08:56:51.226Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[TOC]&lt;br&gt;Git是一个开源的分布式版本控制软件。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/006tNc79gy1fqmpnn1xiuj30u00frjs0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;背
-    
-    </summary>
-    
-      <category term="git" scheme="http://boxcore.github.io/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://boxcore.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jetbrains系列软件激活（idea等）</title>
-    <link href="http://boxcore.github.io/2018/04/19/jetbrains-soft-idea-active.html"/>
-    <id>http://boxcore.github.io/2018/04/19/jetbrains-soft-idea-active.html</id>
-    <published>2018-04-18T17:13:00.000Z</published>
-    <updated>2018-05-14T02:11:16.782Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JetBrains系列软件注册码（适用于2018版）：&lt;br&gt;亲测试 idea、datagrap可以使用&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;li
-    
-    </summary>
-    
-      <category term="tools" scheme="http://boxcore.github.io/categories/tools/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>《MySQL技术内幕》Note</title>
-    <link href="http://boxcore.github.io/2018/04/18/books/mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95.html"/>
-    <id>http://boxcore.github.io/2018/04/18/books/mysql技术内幕.html</id>
-    <published>2018-04-17T17:54:21.000Z</published>
-    <updated>2018-04-18T02:41:59.418Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;第一本读完的mysql书&lt;/li&gt;
-&lt;li&gt;时间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;阅读前准备&quot;&gt;阅读前准备&lt;/h2&gt;&lt;p&gt;书中的示例一共用到三个数据库文件：一个是 employees 数据库，该数据库是 MySQL 数据库官方提供的示例数据库，主要用来模拟
-    
-    </summary>
-    
-      <category term="books" scheme="http://boxcore.github.io/categories/books/"/>
-    
-    
-      <category term="阅读" scheme="http://boxcore.github.io/tags/%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   

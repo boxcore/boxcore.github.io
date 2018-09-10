@@ -329,6 +329,757 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/09/04/deploy-ss-server-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/deploy-ss-server-note.html" itemprop="url">2018-09-04：配置ss服务记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T23:44:14+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/04/deploy-ss-server-note.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/04/deploy-ss-server-note.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/09/04/deploy-ss-server-note.html" class="leancloud_visitors" data-flag-title="2018-09-04：配置ss服务记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="配置perl及cpan包管理器">配置perl及cpan包管理器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">yum install -y perl perl-core perl-CPAN <span class="comment"># 单有perl还不行，需要依赖其CPAN包管理器</span></div><div class="line"></div><div class="line">perl -MCPAN <span class="_">-e</span> shell <span class="comment"># 然后需要安装perl的DBI组件</span></div><div class="line">cpan&gt;install DBI</div><div class="line"></div><div class="line">//安装完成后退出cpan</div><div class="line">cpan&gt;quit</div></pre></td></tr></table></figure>
+<h2 id="安装改版">安装改版</h2><p>配置nginx</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sever&#123;</div><div class="line"></div><div class="line">    root /xxxx/pulbli;</div><div class="line">    location / &#123;</div><div class="line">        try_files $uri $uri/ /index.php$is_args$args;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/sphard/ss-panel-v3-mod_UIChanges.git tmp &amp;&amp; mv tmp/.git . &amp;&amp; rm -rf tmp &amp;&amp; git reset --hard</div><div class="line"></div><div class="line"></div><div class="line">php composer.phar install</div><div class="line"></div><div class="line">crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
+<p>添加如下cron：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">30 22 * * * php /www/wwwroot/你的站点目录/xcat sendDiaryMail</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat synclogin</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat syncvpn</div><div class="line">0 0 * * * php -n /www/wwwroot/你的站点目录/xcat dailyjob</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat checkjob    </div><div class="line">*/1 * * * * php -n /www/wwwroot/你的站点目录/xcat syncnas</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php -n xcat createAdmin</div><div class="line"></div><div class="line">php xcat syncusers</div></pre></td></tr></table></figure>
+<h3 id="安装ssr后端服务">安装ssr后端服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz</div><div class="line">tar xf libsodium-1.0.16.tar.gz &amp;&amp; <span class="built_in">cd</span> libsodium-1.0.16</div><div class="line">./configure &amp;&amp; make -j2 &amp;&amp; make install</div><div class="line"><span class="built_in">echo</span> /usr/<span class="built_in">local</span>/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf</div><div class="line">ldconfig</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">cd</span> /root</div><div class="line">yum  install -y python-setuptools</div><div class="line">easy_install pip</div><div class="line">git <span class="built_in">clone</span> -b manyuser https://github.com/glzjin/shadowsocks.git</div><div class="line"><span class="built_in">cd</span> shadowsocks</div><div class="line">pip install -r requirements.txt</div><div class="line">cp apiconfig.py userapiconfig.py</div><div class="line">cp config.json user-config.json</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/08/30/hack-sites.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/30/hack-sites.html" itemprop="url">2018-08-30：网站攻击优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-30T01:54:36+08:00">
+                2018-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/hack-sites.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/30/hack-sites.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/30/hack-sites.html" class="leancloud_visitors" data-flag-title="2018-08-30：网站攻击优化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。<br>由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。</p>
+<p>分类命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;print $1,$4&#125;'</span> /usr/<span class="built_in">local</span>/nginx/logs/<span class="variable">$1</span> |grep 2014:`date|awk <span class="string">'&#123;print $4&#125;'</span>|awk -F <span class="string">':'</span> <span class="string">'&#123;print $1&#125;'</span>`|awk <span class="string">'&#123;print $1&#125;'</span>|sort |uniq -c |sort -rn|head -<span class="variable">$2</span> &gt; /usr/<span class="built_in">local</span>/uniqIpAccessCnt/`date +%Y-%m-%d-%H`.txt</div><div class="line"></div><div class="line">cat host.access.log|awk <span class="string">'&#123;print $1&#125;'</span>|sort|uniq -c|sort -n</div></pre></td></tr></table></figure>
+<h2 id="一、php的配置">一、php的配置</h2><h3 id="1-1_配置请求的时间">1.1 配置请求的时间</h3><p>首先设置下请求时间，不过看情况来设置，如果受到攻击应该配置短些。下面例子为配置300s，如果位置仅仅是小部分人使用或者是统计分析业务，可以设置长些到300s。其他的如果是面对公众的，还是设置短些好。</p>
+<p>php-fpm的配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max_execution_time = 300</div><div class="line">request_terminate_timeout = 300</div></pre></td></tr></table></figure></p>
+<h3 id="1-2_启用opcache">1.2 启用opcache</h3><p>启用opcache后，php部分源码会缓存到内存里面，加速读取，建议开启。</p>
+<h2 id="二、nginx配置">二、nginx配置</h2><h3 id="2-1_nginx查看并发连接数">2.1 nginx查看并发连接数</h3><p>这个操作难度稍大，要在编译nginx时加上<code>--with-http_stub_status_module</code>,然后配置Nginx.conf，在server点里面加入如下内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">location /status &#123;</div><div class="line">    stub_status on;</div><div class="line">    access_log /usr/<span class="keyword">local</span>/nginx/logs/status.log;</div><div class="line">    auth_basic <span class="string">"NginxStatus"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后可以通过浏览器访问 <code>http://localhost/status</code> 查看，如下图</p>
+<p><img src="http://img.mianfeibang.cn/pic/2018-09-05-075142.jpg" alt=""></p>
+<p>各个参数的解读如下：</p>
+<ul>
+<li><code>Active connections</code>：当前 Nginx 正处理的活动连接数。</li>
+<li><code>server accepts handledrequests</code>：总共处理了8 个连接 , 成功创建 8 次握手,总共处理了500个请求。</li>
+<li><code>Reading</code>：nginx 读取到客户端的 Header 信息数。</li>
+<li><code>Writing</code>：nginx 返回给客户端的 Header 信息数。</li>
+<li><code>Waiting</code>：开启 keep-alive 的情况下，这个值等于 active - (reading + writing)，意思就是 Nginx 已经处理完正在等候下一次请求指令的驻留连接</li>
+</ul>
+<h3 id="2-2_[核心]nginx防刷模块_limit">2.2 [核心]nginx防刷模块 limit</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">    limit_req_zone $binary_remote_addr zone=one:<span class="number">10</span>m rate=<span class="number">8</span>r/s;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        limit_req   zone=one  burst=<span class="number">1</span>  nodelay;</div><div class="line">        </div><div class="line">        location /search/ &#123; # 限制server请求</div><div class="line">            limit_req zone=one burst=<span class="number">5</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>limit_req_zone size 配置说明：设置10M 就可以存储 16 万的 IP 统计信息，这可是非常吊了，可小站的话可以设置陈1m这样，即1s内只处理16k的请求，多的就返回503错误。</li>
+<li>limit_req_zone rate配置说明：普通浏览器的同时并发数量，按照 Dropbox 技术博客里所谈到的，目前主流浏览器限制 AJAX 对同一个子域名的并发连接数是6个。IE 6，IE 7 是两个。</li>
+</ul>
+<p>rate=10r/m 的意思是每个地址每分钟只能请求10次，也就是说根据令牌桶原理burst=1 一共有1块令牌，并且每分钟只新增10块令牌，<br>1块令牌发完后多出来的那些请求就会返回503</p>
+<p>加上 nodelay之后超过 burst大小的请求就会直接返回503</p>
+<p>如果没有该字段会造成大量的tcp连接请求等待。</p>
+<p>参考资料</p>
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_limit_req_module.html" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_limit_req_module.html</a></p>
+</blockquote>
+<h3 id="2-3_nginx日志分析刷量IP">2.3 nginx日志分析刷量IP</h3><p>每小时记录一次独立IP的访问次数到文件里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-ne</span> 2 ];<span class="keyword">then</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Missing Operand..."</span></div><div class="line"><span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line">awk <span class="string">'&#123;print $1,$4&#125;'</span> /usr/<span class="built_in">local</span>/nginx/logs/<span class="variable">$1</span> |grep 2014:`date|awk <span class="string">'&#123;print $4&#125;'</span>|awk -F <span class="string">':'</span> <span class="string">'&#123;print $1&#125;'</span>`|awk <span class="string">'&#123;print $1&#125;'</span>|sort |uniq -c |sort -rn|head -<span class="variable">$2</span> &gt; /usr/<span class="built_in">local</span>/uniqIpAccessCnt/`date +%Y-%m-%d-%H`.txt</div></pre></td></tr></table></figure>
+<p>再写python监控报警：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># -*- coding: cp936 -*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">import</span> email</div><div class="line"><span class="keyword">import</span> smtplib</div><div class="line"><span class="keyword">import</span> mimetypes</div><div class="line"><span class="keyword">from</span> email.MIMEMultipart <span class="keyword">import</span> MIMEMultipart</div><div class="line"><span class="keyword">from</span> email.MIMEText <span class="keyword">import</span> MIMEText</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">SendMail</span><span class="params">()</span>:</span></div><div class="line">    server = <span class="string">'Web-1.2.3.4'</span></div><div class="line">    mail_to = [<span class="string">"san.zhang@abc.com"</span>, <span class="string">"si.li@abc.com"</span>]</div><div class="line">    mail_host = <span class="string">"mail.abc.com"</span></div><div class="line">    mail_user = <span class="string">"webmaster@abc.com"</span></div><div class="line">    mail_pass = <span class="string">"passwd"</span></div><div class="line">    mail_from = <span class="string">"webmaster@abc.com"</span></div><div class="line">    mail_postfix = <span class="string">"abc.com"</span></div><div class="line">    mail_subject = <span class="string">"Malicious Access - "</span> + server +<span class="string">" !!!"</span></div><div class="line">    mail_body = mailbody</div><div class="line">    msg = MIMEMultipart()</div><div class="line">    body = MIMEText(mail_body,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'gb2312'</span>)</div><div class="line">    body = MIMEText(mail_body,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'utf-8'</span>)</div><div class="line">    msg.attach(body)</div><div class="line">    </div><div class="line">    msg[<span class="string">'Subject'</span>] = mail_subject</div><div class="line">    msg[<span class="string">'From'</span>] = mail_from</div><div class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(mail_to)</div><div class="line">    </div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        s = smtplib.SMTP()</div><div class="line">        s.connect(mail_host)</div><div class="line">        s.login(mail_user,mail_pass)</div><div class="line">        s.sendmail(mail_from, mail_to, msg.as_string())</div><div class="line">        s.close()</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span> Exception, e:</div><div class="line">        <span class="keyword">print</span> str(e)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handlefile</span><span class="params">()</span>:</span></div><div class="line">    path=<span class="string">r"/usr/local/uniqIpAccessCnt/"</span></div><div class="line">    files=[(os.path.getmtime(path+x),path+x) <span class="keyword">for</span> x <span class="keyword">in</span> os.listdir(path)]</div><div class="line">    files.sort()</div><div class="line">    fname = files[<span class="number">-1</span>][<span class="number">1</span>]</div><div class="line">    <span class="keyword">print</span> fname</div><div class="line">    f = open(fname, <span class="string">'r'</span>)</div><div class="line">    line = f.readline()</div><div class="line">    cnt = (line.split(<span class="string">'.'</span>)[<span class="number">0</span>]).split(<span class="string">' '</span>)[<span class="number">-2</span>]</div><div class="line">    <span class="keyword">print</span> cnt</div><div class="line">    <span class="keyword">if</span> int(cnt) &gt; <span class="number">10000</span>:</div><div class="line">        <span class="keyword">global</span> mailbody</div><div class="line">        mailbody = <span class="string">'Access record as follows in the last hour:\n\n\n  Count      IP\n\n'</span> </div><div class="line">        lines = f.readlines()</div><div class="line">        f.close()</div><div class="line">        mailbody = mailbody + line</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> lines:</div><div class="line">            mailbody = mailbody + x</div><div class="line">        <span class="keyword">print</span> mailbody</div><div class="line">        SendMail()</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    handlefile()</div><div class="line">main()</div></pre></td></tr></table></figure>
+<h4 id="2-4_切割nginx日志">2.4 切割nginx日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#此脚本用于自动分割Nginx的日志，包括access.log和error.log</span></div><div class="line"><span class="comment">#每天00:00执行此脚本 将前一天的access.log重命名为access-xxxx-xx-xx.log格式，并重新打开日志文件</span></div><div class="line"><span class="comment">#Nginx日志文件所在目录</span></div><div class="line">LOG_PATH=/opt/nginx/logs</div><div class="line"><span class="comment">#获取昨天的日期</span></div><div class="line">YESTERDAY=$(date <span class="_">-d</span> <span class="string">"yesterday"</span> +%Y-%m-%d)</div><div class="line"><span class="comment">#获取pid文件路径</span></div><div class="line">PID=/var/run/nginx/nginx.pid</div><div class="line"><span class="comment">#分割日志</span></div><div class="line">mv <span class="variable">$&#123;LOG_PATH&#125;</span>access.log <span class="variable">$&#123;LOG_PATH&#125;</span>access-<span class="variable">$&#123;YESTERDAY&#125;</span>.log</div><div class="line">mv <span class="variable">$&#123;LOG_PATH&#125;</span>error.log <span class="variable">$&#123;LOG_PATH&#125;</span>error-<span class="variable">$&#123;YESTERDAY&#125;</span>.log</div><div class="line"><span class="comment">#向Nginx主进程发送USR1信号，重新打开日志文件</span></div><div class="line"><span class="built_in">kill</span> -USR1 `cat <span class="variable">$&#123;PID&#125;</span>`</div><div class="line">chmod +x /opt/nginx/cut_nginx_log.sh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">crontab <span class="_">-e</span></div><div class="line"><span class="comment"># 输入以下内容并保存</span></div><div class="line">00 00 * * * /bin/bash /opt/nginx/sbin/cut_nginx_log.sh</div></pre></td></tr></table></figure>
+<h2 id="三、linux配置">三、linux配置</h2><h3 id="3-1_linux下使用命令统计服务器并发数">3.1 linux下使用命令统计服务器并发数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;++S[$NF]&#125; END &#123;for(a in S) print a, S[a]&#125;'</span></div></pre></td></tr></table></figure>
+<p>显示结果：</p>
+<pre><code>TIME_WAIT <span class="number">17</span>
+ESTABLISHED <span class="number">3254</span>
+LAST_ACK <span class="number">236</span>
+FIN_WAIT_1 <span class="number">648</span>
+FIN_WAIT_2 <span class="number">581</span>
+CLOSING <span class="number">7</span>
+CLOSE_WAIT <span class="number">4916</span>
+</code></pre><p>解析：</p>
+<ul>
+<li>CLOSED  //无连接是活动的或正在进行</li>
+<li>LISTEN  //服务器在等待进入呼叫</li>
+<li>SYN_RECV  //一个连接请求已经到达，等待确认</li>
+<li>SYN_SENT  //应用已经开始，打开一个连接</li>
+<li>ESTABLISHED  //正常数据传输状态/当前并发连接数</li>
+<li>FIN_WAIT1  //应用说它已经完成</li>
+<li>FIN_WAIT2  //另一边已同意释放</li>
+<li>ITMED_WAIT  //等待所有分组死掉</li>
+<li>CLOSING  //两边同时尝试关闭</li>
+<li>TIME_WAIT  //另一边已初始化一个释放</li>
+<li>LAST_ACK  //等待所有分组死掉</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/08/25/tools/wechat-duokai.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/tools/wechat-duokai.html" itemprop="url">微信多开</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T22:30:42+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/25/tools/wechat-duokai.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/25/tools/wechat-duokai.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/25/tools/wechat-duokai.html" class="leancloud_visitors" data-flag-title="微信多开">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="mac下微信多开">mac下微信多开</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">open -n /Applications/WeChat.app/Contents/MacOS/WeChat</div><div class="line">open /Applications/WeChat.app/Contents/MacOS/WeChat</div></pre></td></tr></table></figure>
+<h2 id="windows下微信多开">windows下微信多开</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/07/08/topic/go/golang-basic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/08/topic/go/golang-basic.html" itemprop="url">Golang基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T01:05:59+08:00">
+                2018-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/08/topic/go/golang-basic.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/08/topic/go/golang-basic.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/08/topic/go/golang-basic.html" class="leancloud_visitors" data-flag-title="Golang基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考资料">参考资料</h2><h3 id="工具篇">工具篇</h3><h3 id="文档教程">文档教程</h3><ul>
+<li><a href="http://go-tour-zh.appspot.com/list" target="_blank" rel="external">Go 指南</a></li>
+<li><a href="https://github.com/studygolang/studygolang" target="_blank" rel="external">studygolang</a></li>
+</ul>
+<p>系统入门</p>
+<p><a href="https://gobyexample.com/" target="_blank" rel="external">《GO BY EXAMPLE》</a>：GO的特性全部用简单代码给你展示，方便记不住的时候查询和巩固。<br><a href="https://github.com/polaris1119/The-Golang-Standard-Library-by-Example/" target="_blank" rel="external">《Go语言标准库》</a>: Polaris编写，一本有价值的入门书<br><a href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md" target="_blank" rel="external">《GO WEB编程》</a>:GO在WEB方面的编程应用学习指导</p>
+<h3 id="视频教程">视频教程</h3><ul>
+<li><a href="http://edu.51cto.com/course/1762.html" target="_blank" rel="external">51跟无闻学Go语言：Go编程基础视频教程</a></li>
+<li><a href="https://www.shiyanlou.com/courses/11" target="_blank" rel="external">实验楼：Go语言编程</a></li>
+<li><a href="https://www.shiyanlou.com/courses/219" target="_blank" rel="external">实验楼：Go语言体验课</a></li>
+</ul>
+<h3 id="书籍">书籍</h3><h3 id="社区">社区</h3><ul>
+<li><a href="https://studygolang.com/" target="_blank" rel="external">https://studygolang.com/</a></li>
+<li><a href="https://www.golangtc.com/" target="_blank" rel="external">https://www.golangtc.com/</a></li>
+</ul>
+<h3 id="API和类库">API和类库</h3><ul>
+<li><a href="https://github.com/Go-SQL" target="_blank" rel="external">https://github.com/Go-SQL</a></li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/06/25/sql/mysql-for-mac-run.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/25/sql/mysql-for-mac-run.html" itemprop="url">Mac下mysql多开</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T10:58:59+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/25/sql/mysql-for-mac-run.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/25/sql/mysql-for-mac-run.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/25/sql/mysql-for-mac-run.html" class="leancloud_visitors" data-flag-title="Mac下mysql多开">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC <span class="string">"-//Apple//DTD PLIST 1.0//EN"</span> <span class="string">"http://www.apple.com/DTDs/PropertyList-1.0.dtd"</span>&gt;</div><div class="line">&lt;plist version=<span class="string">"1.0"</span>&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">  &lt;key&gt;KeepAlive&lt;/key&gt;</div><div class="line">  &lt;<span class="literal">true</span>/&gt;</div><div class="line">  &lt;key&gt;Label&lt;/key&gt;</div><div class="line">  &lt;string&gt;homebrew.mxcl.mysql3308&lt;/string&gt;</div><div class="line">  &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">  &lt;array&gt;</div><div class="line">    &lt;string&gt;/usr/<span class="built_in">local</span>/opt/mysql/bin/mysqld_safe&lt;/string&gt;</div><div class="line">    &lt;string&gt;--defaults-file=/Volumes/sync/DB/mysql/my-3308.cnf&lt;/string&gt;</div><div class="line">    &lt;string&gt;--bind-address=127.0.0.1&lt;/string&gt;</div><div class="line">  &lt;/array&gt;</div><div class="line">  &lt;key&gt;RunAtLoad&lt;/key&gt;</div><div class="line">  &lt;<span class="literal">true</span>/&gt;</div><div class="line">  &lt;key&gt;WorkingDirectory&lt;/key&gt;</div><div class="line">  &lt;array&gt;</div><div class="line">    &lt;string&gt;/usr/<span class="built_in">local</span>/var/mysql&lt;/string&gt;</div><div class="line">  &lt;/array&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/06/25/tools/fgfw/shadowsocksR-libev-install.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1104,765 +1855,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/14/vim-editor-plan.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/14/vim-editor-plan.html" itemprop="url">VIM使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T11:25:26+08:00">
-                2018-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/14/vim-editor-plan.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/14/vim-editor-plan.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/14/vim-editor-plan.html" class="leancloud_visitors" data-flag-title="VIM使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、VIM的配置">一、VIM的配置</h2><h3 id="1-1_VIM中空格代替tab">1.1 VIM中空格代替tab</h3><p>修改文件: <code>vi /etc/vim/vimrc</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> expandtab     <span class="string">" 使用空格代替tab. </span></div><div class="line">set tabstop=4     " 空格数量是4。 </div><div class="line"><span class="built_in">set</span> shiftwidth=4  <span class="string">" 自动缩进的宽度。</span></div></pre></td></tr></table></figure>
-<h3 id="1-2_linux下vim中文乱码的解决方法">1.2 linux下vim中文乱码的解决方法</h3><p><code>vi ~/.vimrc</code>: </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</div><div class="line"><span class="built_in">set</span> termencoding=utf-8</div><div class="line"><span class="built_in">set</span> encoding=utf-8</div></pre></td></tr></table></figure>
-<h3 id="1-3">1.3</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-tips.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/git/git-tips.html" itemprop="url">Git小Tips</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T02:22:46+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/10/git/git-tips.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/10/git/git-tips.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/10/git/git-tips.html" class="leancloud_visitors" data-flag-title="Git小Tips">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="拉取">拉取</h2><p>当 git fetch 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。 然而，有一个命令叫作 git pull 在大多数情况下它的含义是一个 git fetch 紧接着一个 git merge 命令。 如果有一个像之前章节中演示的设置好的跟踪分支，不管它是显式地设置还是通过 clone 或 checkout 命令为你创建的，git pull 都会查找当前分支所跟踪的服务器与分支，从服务器上抓取数据然后尝试合并入那个远程分支。</p>
-<p><a href="https://git-scm.com/book/zh/v2/Git-分支-远程分支" target="_blank" rel="external">text</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-branch.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/git/git-branch.html" itemprop="url">Git基础：分支</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T02:04:28+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/10/git/git-branch.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/10/git/git-branch.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/10/git/git-branch.html" class="leancloud_visitors" data-flag-title="Git基础：分支">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>git branch -a :查看远程分支</li>
-<li><code>git checkout -b iss53</code> ： 新建分支（iss53）并切换到该分支， 等同于<code>git branch iss53 &amp;&amp; git checkout iss53</code></li>
-<li><code>git checkout master &amp;&amp; git merge hotfix</code>: 回到主干并合并分区hotfix<blockquote>
-<p>这个时候如果代码没有冲突就会直接合并，如果有，则需要修改对应文件，add后添加到缓冲区再提交。当然，也可以使用<code>git mergetool</code> gui工具解决代码冲突；</p>
-</blockquote>
-</li>
-<li><code>git branch -d hotfix</code> : 删除分区，一般在合并到主干后操作</li>
-<li><code>git branch -m devel develop</code> ： 重命名本地分支</li>
-<li><code>git push origin &lt;branchName&gt;</code> ： 推送本地分支</li>
-<li><code>git push --delete origin &lt;branchName&gt;</code> ： 删除远程分支</li>
-<li><code>git push origin :&lt;branchName&gt;</code> ： 删除远程分支</li>
-<li><code>git fetch -p</code>:在fetch之后删除掉没有与远程分支对应的本地分支</li>
-<li><code>git branch -vv</code>: 如果想要查看设置的所有跟踪分支，可以使用 git branch 的 -vv 选项。 这会将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后或是都有。</li>
-<li></li>
-</ul>
-<h2 id="问题处理">问题处理</h2><ol>
-<li><p>如果本地分支删除后没有提交到远程，怎么恢复：</p>
-<blockquote>
-<p>git pull –rebase origin master # 重新从远程拉一份全的就好</p>
-</blockquote>
-</li>
-<li><p>如何重命名远程分支</p>
-<blockquote>
-<p><code>git branch -av</code>查看所有分支信息 -》 删除对应的远程分支 -》 重命名本地分支 -》 推送本地分支</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6</a></li>
-<li><a href="http://blog.zengrong.net/post/1746.html" target="_blank" rel="external">http://blog.zengrong.net/post/1746.html</a></li>
-<li><a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF" target="_blank" rel="external">https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-fixed-errors.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/git/git-fixed-errors.html" itemprop="url">Git报错及处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T01:47:21+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/10/git/git-fixed-errors.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/10/git/git-fixed-errors.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/10/git/git-fixed-errors.html" class="leancloud_visitors" data-flag-title="Git报错及处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="branch、tag有同名称时删除分支或标签错误的问题">branch、tag有同名称时删除分支或标签错误的问题</h2><p>先举个栗子, 执行一个删除分支命令时<code>git push orign :v1.1-final</code>报如下错误：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fatal: &apos;orign&apos; does not appear to be a git repository</div><div class="line">fatal: Could not read from remote repository.</div></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20170803190118177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI0NTI2MjM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>解决方法很简单，指明操作对象的绝对路径就能准确操作了</p>
-<p>对象    路径<br>branch    refs/heads/branch_name<br>tag    refs/tags/tag_name</p>
-<p>举个删除的例子：</p>
-<p>//删除 dev_test 分支<br>git push origin :refs/heads/dev_test</p>
-<p>//删除 dev_test 标签<br>git push origin :refs/tags/dev_test</p>
-<blockquote>
-<p>结论：如果有同名字的标签和分支时，删除的时候要写全路径</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/05/10/git/git-tags.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/git/git-tags.html" itemprop="url">Git基础：打标签</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T01:45:57+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/10/git/git-tags.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/10/git/git-tags.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/10/git/git-tags.html" class="leancloud_visitors" data-flag-title="Git基础：打标签">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>同大多数 VCS 一样，Git 也可以对某一时间点上的版本打上标签。人们在发布某个软件版本（比如 v1.0 等等）的时候，经常这么做。本节我们一起来学习如何列出所有可用的标签，如何新建标签，以及各种不同类型标签之间的差别。</p>
-<p>另外，打标签还有一个好处就是，在github上可以压缩下载对应的版本软件</p>
-<ul>
-<li><code>git tag</code> : 显示本地标签</li>
-<li><code>git tag -l &#39;v1.4.2.*&#39;</code> : 搜索对应标签</li>
-<li><code>git tag -a v1.4 -m &#39;my version 1.4&#39;</code> ： 新建标签</li>
-<li><code>git show v1.4</code>：查看相应标签的版本信息，并连同显示打标签时的提交对象</li>
-<li><code>git tag -s v1.5 -m &#39;my signed 1.5 tag&#39;</code> : 如果你有自己的私钥，还可以用 GPG 来签署标签，只需要把之前的 -a 改为 -s （译注： 取 signed 的首字母）即可</li>
-<li><code>git tag -v [tag-name]</code> : 验证已经签署的标签</li>
-<li><code>git tag -a v1.2 9fceb02</code> : 打标签的时候跟上对应提交对象的校验和（或前几位字符）, 文件有更改时漏打标签，可通过这个命令重打</li>
-<li><code>git push origin v1.5</code>: 推送标签</li>
-<li><code>git push origin --tags</code>: 一次推送所有本地新增的标签上去</li>
-<li><code>git fetch origin tag &lt;tagname&gt;</code>: 获取远程tag</li>
-<li><code>git tag -d &lt;tagname&gt;</code>: 删除tag</li>
-<li><code>git push origin :refs/tags/&lt;tagname&gt;</code>: 删除远程tag</li>
-</ul>
-<h2 id="问题">问题</h2><ol>
-<li>如何重打标签内容？</li>
-</ol>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="external">Git-scm: Git 基础 - 打标签</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1912,7 +1904,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">231</span>
+                <span class="site-state-item-count">236</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

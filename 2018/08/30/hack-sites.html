@@ -1,0 +1,1355 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="BoxCore" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。
+分类命令：
+123awk &apos;&amp;#123;print $1,$4&amp;#125;&apos; /usr/local/nginx/logs/$1 |grep 2014">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018-08-30：网站攻击优化">
+<meta property="og:url" content="http://boxcore.github.io/2018/08/30/hack-sites.html">
+<meta property="og:site_name" content="BoxCore">
+<meta property="og:description" content="近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。
+分类命令：
+123awk &apos;&amp;#123;print $1,$4&amp;#125;&apos; /usr/local/nginx/logs/$1 |grep 2014">
+<meta property="og:image" content="http://img.mianfeibang.cn/pic/2018-09-05-075142.jpg">
+<meta property="og:updated_time" content="2018-09-06T17:08:57.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018-08-30：网站攻击优化">
+<meta name="twitter:description" content="近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。
+分类命令：
+123awk &apos;&amp;#123;print $1,$4&amp;#125;&apos; /usr/local/nginx/logs/$1 |grep 2014">
+<meta name="twitter:image" content="http://img.mianfeibang.cn/pic/2018-09-05-075142.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '10739498',
+      author: 'boxcore'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://boxcore.github.io/2018/08/30/hack-sites.html"/>
+
+
+
+
+
+  <title>2018-08-30：网站攻击优化 | BoxCore</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=5740547&web_id=5740547" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BoxCore</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Start</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/08/30/hack-sites.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018-08-30：网站攻击优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-30T01:54:36+08:00">
+                2018-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/hack-sites.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/30/hack-sites.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/30/hack-sites.html" class="leancloud_visitors" data-flag-title="2018-08-30：网站攻击优化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近段时间网站受到攻击，访问网站经常返回502，也是没得闲下来，跟他们斗智斗勇慢慢知道了很多防刷防攻击的配置。<br>由于我网站架构是nginx+php+wordpress构成的，对于此优化仅仅限于linux、nginx和php配置的优化。下面给大家一一讲解。</p>
+<p>分类命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;print $1,$4&#125;'</span> /usr/<span class="built_in">local</span>/nginx/logs/<span class="variable">$1</span> |grep 2014:`date|awk <span class="string">'&#123;print $4&#125;'</span>|awk -F <span class="string">':'</span> <span class="string">'&#123;print $1&#125;'</span>`|awk <span class="string">'&#123;print $1&#125;'</span>|sort |uniq -c |sort -rn|head -<span class="variable">$2</span> &gt; /usr/<span class="built_in">local</span>/uniqIpAccessCnt/`date +%Y-%m-%d-%H`.txt</div><div class="line"></div><div class="line">cat host.access.log|awk <span class="string">'&#123;print $1&#125;'</span>|sort|uniq -c|sort -n</div></pre></td></tr></table></figure>
+<h2 id="一、php的配置">一、php的配置</h2><h3 id="1-1_配置请求的时间">1.1 配置请求的时间</h3><p>首先设置下请求时间，不过看情况来设置，如果受到攻击应该配置短些。下面例子为配置300s，如果位置仅仅是小部分人使用或者是统计分析业务，可以设置长些到300s。其他的如果是面对公众的，还是设置短些好。</p>
+<p>php-fpm的配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max_execution_time = 300</div><div class="line">request_terminate_timeout = 300</div></pre></td></tr></table></figure></p>
+<h3 id="1-2_启用opcache">1.2 启用opcache</h3><p>启用opcache后，php部分源码会缓存到内存里面，加速读取，建议开启。</p>
+<h2 id="二、nginx配置">二、nginx配置</h2><h3 id="2-1_nginx查看并发连接数">2.1 nginx查看并发连接数</h3><p>这个操作难度稍大，要在编译nginx时加上<code>--with-http_stub_status_module</code>,然后配置Nginx.conf，在server点里面加入如下内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">location /status &#123;</div><div class="line">    stub_status on;</div><div class="line">    access_log /usr/<span class="keyword">local</span>/nginx/logs/status.log;</div><div class="line">    auth_basic <span class="string">"NginxStatus"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后可以通过浏览器访问 <code>http://localhost/status</code> 查看，如下图</p>
+<p><img src="http://img.mianfeibang.cn/pic/2018-09-05-075142.jpg" alt=""></p>
+<p>各个参数的解读如下：</p>
+<ul>
+<li><code>Active connections</code>：当前 Nginx 正处理的活动连接数。</li>
+<li><code>server accepts handledrequests</code>：总共处理了8 个连接 , 成功创建 8 次握手,总共处理了500个请求。</li>
+<li><code>Reading</code>：nginx 读取到客户端的 Header 信息数。</li>
+<li><code>Writing</code>：nginx 返回给客户端的 Header 信息数。</li>
+<li><code>Waiting</code>：开启 keep-alive 的情况下，这个值等于 active - (reading + writing)，意思就是 Nginx 已经处理完正在等候下一次请求指令的驻留连接</li>
+</ul>
+<h3 id="2-2_[核心]nginx防刷模块_limit">2.2 [核心]nginx防刷模块 limit</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">    limit_req_zone $binary_remote_addr zone=one:<span class="number">10</span>m rate=<span class="number">8</span>r/s;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        limit_req   zone=one  burst=<span class="number">1</span>  nodelay;</div><div class="line">        </div><div class="line">        location /search/ &#123; # 限制server请求</div><div class="line">            limit_req zone=one burst=<span class="number">5</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>limit_req_zone size 配置说明：设置10M 就可以存储 16 万的 IP 统计信息，这可是非常吊了，可小站的话可以设置陈1m这样，即1s内只处理16k的请求，多的就返回503错误。</li>
+<li>limit_req_zone rate配置说明：普通浏览器的同时并发数量，按照 Dropbox 技术博客里所谈到的，目前主流浏览器限制 AJAX 对同一个子域名的并发连接数是6个。IE 6，IE 7 是两个。</li>
+</ul>
+<p>rate=10r/m 的意思是每个地址每分钟只能请求10次，也就是说根据令牌桶原理burst=1 一共有1块令牌，并且每分钟只新增10块令牌，<br>1块令牌发完后多出来的那些请求就会返回503</p>
+<p>加上 nodelay之后超过 burst大小的请求就会直接返回503</p>
+<p>如果没有该字段会造成大量的tcp连接请求等待。</p>
+<p>参考资料</p>
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_limit_req_module.html" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_limit_req_module.html</a></p>
+</blockquote>
+<h3 id="2-3_nginx日志分析刷量IP">2.3 nginx日志分析刷量IP</h3><p>每小时记录一次独立IP的访问次数到文件里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-ne</span> 2 ];<span class="keyword">then</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Missing Operand..."</span></div><div class="line"><span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line">awk <span class="string">'&#123;print $1,$4&#125;'</span> /usr/<span class="built_in">local</span>/nginx/logs/<span class="variable">$1</span> |grep 2014:`date|awk <span class="string">'&#123;print $4&#125;'</span>|awk -F <span class="string">':'</span> <span class="string">'&#123;print $1&#125;'</span>`|awk <span class="string">'&#123;print $1&#125;'</span>|sort |uniq -c |sort -rn|head -<span class="variable">$2</span> &gt; /usr/<span class="built_in">local</span>/uniqIpAccessCnt/`date +%Y-%m-%d-%H`.txt</div></pre></td></tr></table></figure>
+<p>再写python监控报警：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># -*- coding: cp936 -*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">import</span> email</div><div class="line"><span class="keyword">import</span> smtplib</div><div class="line"><span class="keyword">import</span> mimetypes</div><div class="line"><span class="keyword">from</span> email.MIMEMultipart <span class="keyword">import</span> MIMEMultipart</div><div class="line"><span class="keyword">from</span> email.MIMEText <span class="keyword">import</span> MIMEText</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">SendMail</span><span class="params">()</span>:</span></div><div class="line">    server = <span class="string">'Web-1.2.3.4'</span></div><div class="line">    mail_to = [<span class="string">"san.zhang@abc.com"</span>, <span class="string">"si.li@abc.com"</span>]</div><div class="line">    mail_host = <span class="string">"mail.abc.com"</span></div><div class="line">    mail_user = <span class="string">"webmaster@abc.com"</span></div><div class="line">    mail_pass = <span class="string">"passwd"</span></div><div class="line">    mail_from = <span class="string">"webmaster@abc.com"</span></div><div class="line">    mail_postfix = <span class="string">"abc.com"</span></div><div class="line">    mail_subject = <span class="string">"Malicious Access - "</span> + server +<span class="string">" !!!"</span></div><div class="line">    mail_body = mailbody</div><div class="line">    msg = MIMEMultipart()</div><div class="line">    body = MIMEText(mail_body,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'gb2312'</span>)</div><div class="line">    body = MIMEText(mail_body,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'utf-8'</span>)</div><div class="line">    msg.attach(body)</div><div class="line">    </div><div class="line">    msg[<span class="string">'Subject'</span>] = mail_subject</div><div class="line">    msg[<span class="string">'From'</span>] = mail_from</div><div class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(mail_to)</div><div class="line">    </div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        s = smtplib.SMTP()</div><div class="line">        s.connect(mail_host)</div><div class="line">        s.login(mail_user,mail_pass)</div><div class="line">        s.sendmail(mail_from, mail_to, msg.as_string())</div><div class="line">        s.close()</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span> Exception, e:</div><div class="line">        <span class="keyword">print</span> str(e)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handlefile</span><span class="params">()</span>:</span></div><div class="line">    path=<span class="string">r"/usr/local/uniqIpAccessCnt/"</span></div><div class="line">    files=[(os.path.getmtime(path+x),path+x) <span class="keyword">for</span> x <span class="keyword">in</span> os.listdir(path)]</div><div class="line">    files.sort()</div><div class="line">    fname = files[<span class="number">-1</span>][<span class="number">1</span>]</div><div class="line">    <span class="keyword">print</span> fname</div><div class="line">    f = open(fname, <span class="string">'r'</span>)</div><div class="line">    line = f.readline()</div><div class="line">    cnt = (line.split(<span class="string">'.'</span>)[<span class="number">0</span>]).split(<span class="string">' '</span>)[<span class="number">-2</span>]</div><div class="line">    <span class="keyword">print</span> cnt</div><div class="line">    <span class="keyword">if</span> int(cnt) &gt; <span class="number">10000</span>:</div><div class="line">        <span class="keyword">global</span> mailbody</div><div class="line">        mailbody = <span class="string">'Access record as follows in the last hour:\n\n\n  Count      IP\n\n'</span> </div><div class="line">        lines = f.readlines()</div><div class="line">        f.close()</div><div class="line">        mailbody = mailbody + line</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> lines:</div><div class="line">            mailbody = mailbody + x</div><div class="line">        <span class="keyword">print</span> mailbody</div><div class="line">        SendMail()</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    handlefile()</div><div class="line">main()</div></pre></td></tr></table></figure>
+<h4 id="2-4_切割nginx日志">2.4 切割nginx日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#此脚本用于自动分割Nginx的日志，包括access.log和error.log</span></div><div class="line"><span class="comment">#每天00:00执行此脚本 将前一天的access.log重命名为access-xxxx-xx-xx.log格式，并重新打开日志文件</span></div><div class="line"><span class="comment">#Nginx日志文件所在目录</span></div><div class="line">LOG_PATH=/opt/nginx/logs</div><div class="line"><span class="comment">#获取昨天的日期</span></div><div class="line">YESTERDAY=$(date <span class="_">-d</span> <span class="string">"yesterday"</span> +%Y-%m-%d)</div><div class="line"><span class="comment">#获取pid文件路径</span></div><div class="line">PID=/var/run/nginx/nginx.pid</div><div class="line"><span class="comment">#分割日志</span></div><div class="line">mv <span class="variable">$&#123;LOG_PATH&#125;</span>access.log <span class="variable">$&#123;LOG_PATH&#125;</span>access-<span class="variable">$&#123;YESTERDAY&#125;</span>.log</div><div class="line">mv <span class="variable">$&#123;LOG_PATH&#125;</span>error.log <span class="variable">$&#123;LOG_PATH&#125;</span>error-<span class="variable">$&#123;YESTERDAY&#125;</span>.log</div><div class="line"><span class="comment">#向Nginx主进程发送USR1信号，重新打开日志文件</span></div><div class="line"><span class="built_in">kill</span> -USR1 `cat <span class="variable">$&#123;PID&#125;</span>`</div><div class="line">chmod +x /opt/nginx/cut_nginx_log.sh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">crontab <span class="_">-e</span></div><div class="line"><span class="comment"># 输入以下内容并保存</span></div><div class="line">00 00 * * * /bin/bash /opt/nginx/sbin/cut_nginx_log.sh</div></pre></td></tr></table></figure>
+<h2 id="三、linux配置">三、linux配置</h2><h3 id="3-1_linux下使用命令统计服务器并发数">3.1 linux下使用命令统计服务器并发数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;++S[$NF]&#125; END &#123;for(a in S) print a, S[a]&#125;'</span></div></pre></td></tr></table></figure>
+<p>显示结果：</p>
+<pre><code>TIME_WAIT <span class="number">17</span>
+ESTABLISHED <span class="number">3254</span>
+LAST_ACK <span class="number">236</span>
+FIN_WAIT_1 <span class="number">648</span>
+FIN_WAIT_2 <span class="number">581</span>
+CLOSING <span class="number">7</span>
+CLOSE_WAIT <span class="number">4916</span>
+</code></pre><p>解析：</p>
+<ul>
+<li>CLOSED  //无连接是活动的或正在进行</li>
+<li>LISTEN  //服务器在等待进入呼叫</li>
+<li>SYN_RECV  //一个连接请求已经到达，等待确认</li>
+<li>SYN_SENT  //应用已经开始，打开一个连接</li>
+<li>ESTABLISHED  //正常数据传输状态/当前并发连接数</li>
+<li>FIN_WAIT1  //应用说它已经完成</li>
+<li>FIN_WAIT2  //另一边已同意释放</li>
+<li>ITMED_WAIT  //等待所有分组死掉</li>
+<li>CLOSING  //两边同时尝试关闭</li>
+<li>TIME_WAIT  //另一边已初始化一个释放</li>
+<li>LAST_ACK  //等待所有分组死掉</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/25/tools/wechat-duokai.html" rel="next" title="微信多开">
+                <i class="fa fa-chevron-left"></i> 微信多开
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/04/deploy-ss-server-note.html" rel="prev" title="2018-09-04：配置ss服务记">
+                2018-09-04：配置ss服务记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg"
+               alt="Zack Hwang" />
+          <p class="site-author-name" itemprop="name">Zack Hwang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Go</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">236</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baibaobing.com/" title="小白博客" target="_blank">小白博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/My-Booklist/" title="我的书单" target="_blank">我的书单</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、php的配置"><span class="nav-number">1.</span> <span class="nav-text">一、php的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1_配置请求的时间"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 配置请求的时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2_启用opcache"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 启用opcache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、nginx配置"><span class="nav-number">2.</span> <span class="nav-text">二、nginx配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1_nginx查看并发连接数"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 nginx查看并发连接数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2_[核心]nginx防刷模块_limit"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 [核心]nginx防刷模块 limit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3_nginx日志分析刷量IP"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 nginx日志分析刷量IP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4_切割nginx日志"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.4 切割nginx日志</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、linux配置"><span class="nav-number">3.</span> <span class="nav-text">三、linux配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1_linux下使用命令统计服务器并发数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 linux下使用命令统计服务器并发数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack Hwang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+<div class="theme-info" style="text-decoration: none;">
+<a href="https://www.upyun.com/league?utm_source=boxcore&amp;utm_medium=referral" target="_blank" rel="noreferrer noopener">
+<img alt="又拍云" style="height:40px;width:auto;display:inline;"  class="b-lazy b-loaded" src="/statics/images/yp-logo.png">
+</a>
+</div>
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://boxcore.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://boxcore.github.io/2018/08/30/hack-sites.html';
+          this.page.identifier = '2018/08/30/hack-sites.html';
+          this.page.title = '2018-08-30：网站攻击优化';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://boxcore.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130003"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("apTx8PWlWA8nVTglHenMijHX-gzGzoHsz", "yMtBjpbSVnxEiB24zNaQzBTO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
