@@ -105,7 +105,7 @@
 <meta property="og:description" content="配置perl及cpan包管理器12345678yum install -y perl perl-core perl-CPAN # 单有perl还不行，需要依赖其CPAN包管理器perl -MCPAN -e shell # 然后需要安装perl的DBI组件cpan&amp;gt;install DBI//安装完成后退出cpancpan&amp;gt;quit
 安装改版配置nginx
 1234567sever&amp;#12">
-<meta property="og:updated_time" content="2018-09-07T19:25:38.101Z">
+<meta property="og:updated_time" content="2018-09-17T05:35:27.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018-09-04：配置ss服务记">
 <meta name="twitter:description" content="配置perl及cpan包管理器12345678yum install -y perl perl-core perl-CPAN # 单有perl还不行，需要依赖其CPAN包管理器perl -MCPAN -e shell # 然后需要安装perl的DBI组件cpan&amp;gt;install DBI//安装完成后退出cpancpan&amp;gt;quit
@@ -423,7 +423,7 @@
         <h2 id="配置perl及cpan包管理器">配置perl及cpan包管理器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">yum install -y perl perl-core perl-CPAN <span class="comment"># 单有perl还不行，需要依赖其CPAN包管理器</span></div><div class="line"></div><div class="line">perl -MCPAN <span class="_">-e</span> shell <span class="comment"># 然后需要安装perl的DBI组件</span></div><div class="line">cpan&gt;install DBI</div><div class="line"></div><div class="line">//安装完成后退出cpan</div><div class="line">cpan&gt;quit</div></pre></td></tr></table></figure>
 <h2 id="安装改版">安装改版</h2><p>配置nginx</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sever&#123;</div><div class="line"></div><div class="line">    root /xxxx/pulbli;</div><div class="line">    location / &#123;</div><div class="line">        try_files $uri $uri/ /index.php$is_args$args;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/sphard/ss-panel-v3-mod_UIChanges.git tmp &amp;&amp; mv tmp/.git . &amp;&amp; rm -rf tmp &amp;&amp; git reset --hard</div><div class="line"></div><div class="line"></div><div class="line">php composer.phar install</div><div class="line"></div><div class="line">crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># 安装不同的ss-panel</span></div><div class="line">git <span class="built_in">clone</span> https://github.com/sphard/ss-panel-v3-mod_UIChanges.git tmp &amp;&amp; mv tmp/.git . &amp;&amp; rm -rf tmp &amp;&amp; git reset --hard</div><div class="line"></div><div class="line">git <span class="built_in">clone</span> https://github.com/xcxnig/ss-panel-v3-mod_UIChanges.git tmp &amp;&amp; mv tmp/.git . &amp;&amp; rm -rf tmp &amp;&amp; git reset --hard</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">php composer.phar install</div><div class="line"></div><div class="line">crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
 <p>添加如下cron：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">30 22 * * * php /www/wwwroot/你的站点目录/xcat sendDiaryMail</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat synclogin</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat syncvpn</div><div class="line">0 0 * * * php -n /www/wwwroot/你的站点目录/xcat dailyjob</div><div class="line">*/1 * * * * php /www/wwwroot/你的站点目录/xcat checkjob    </div><div class="line">*/1 * * * * php -n /www/wwwroot/你的站点目录/xcat syncnas</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php -n xcat createAdmin</div><div class="line"></div><div class="line">php xcat syncusers</div></pre></td></tr></table></figure>
@@ -473,6 +473,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/22/sspanel/index.html" rel="prev" title="ss-panel安装配置教程系列">
+                ss-panel安装配置教程系列 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -574,7 +578,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">236</span>
+                <span class="site-state-item-count">246</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -596,7 +600,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
