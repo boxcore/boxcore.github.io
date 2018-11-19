@@ -329,7 +329,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/30/awesome-tools/awesome-software.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/07/nginx-rewrite-rule.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -348,7 +348,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/30/awesome-tools/awesome-software.html" itemprop="url">Awesome Software</a></h1>
+                <a class="post-title-link" href="/2018/04/07/nginx-rewrite-rule.html" itemprop="url">Nginx下重写规则</a></h1>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T15:48:39+08:00">
-                2018-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T00:14:58+08:00">
+                2018-04-07
               </time>
             
 
@@ -371,6 +371,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/正则/" itemprop="url" rel="index">
+                    <span itemprop="name">正则</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/正则/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -379,9 +412,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/30/awesome-tools/awesome-software.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/07/nginx-rewrite-rule.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/30/awesome-tools/awesome-software.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/07/nginx-rewrite-rule.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,7 +422,7 @@
 
           
           
-             <span id="/2018/03/30/awesome-tools/awesome-software.html" class="leancloud_visitors" data-flag-title="Awesome Software">
+             <span id="/2018/04/07/nginx-rewrite-rule.html" class="leancloud_visitors" data-flag-title="Nginx下重写规则">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,11 +452,124 @@
       
         
           
-            <h2 id="网盘同步">网盘同步</h2><ul>
-<li>dropbox离线安装包: <a href="https://www.dropbox.com/downloading?type=full" target="_blank" rel="external">https://www.dropbox.com/downloading?type=full</a></li>
+            <p>我们知道apache和nginx都可以对url链接进行重写，apache主要通过<code>.htacess</code>文件来实现，而nginx主要是通过域名配置来实现。两者的用法区别很大，这里针对这2种链接重新工具进行对比，并给大家介绍nginx常用的一些rewrite配置。</p>
+<h2 id="一、Nginx_Rewrite基础">一、Nginx Rewrite基础</h2><h2 id="二、nginx_rewrite和apache_rewrite区别">二、nginx rewrite和apache rewrite区别</h2><p>Nginx Rewrite规则相关指令<br>Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下：</p>
+<blockquote>
+<p>rewrite ^/b/(.*).html /play.php?video=$1 break;</p>
+</blockquote>
+<p>如果加上if语句，示例如下：</p>
+<blockquote>
+<p>if (!-f $request_filename)<br>rewrite ^/img/(.*)$ /site/$host/images/$1 last;</p>
+</blockquote>
+<p>Nginx与Apache的Rewrite规则实例对比</p>
+<p>简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。例如：</p>
+<p>Apache Rewrite 规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L]</div><div class="line">RewriteRule ^/ceshi/$ /zl/ceshi.php [L]</div><div class="line">RewriteRule ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 [L]</div><div class="line">RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L]</div></pre></td></tr></table></figure>
+<p>Nginx Rewrite 规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;</div><div class="line">rewrite ^/ceshi/$ /zl/ceshi.php last;</div><div class="line">rewrite ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 last;</div><div class="line">rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last;</div></pre></td></tr></table></figure>
+<p>由以上示例可以看出，Apache的Rewrite规则改为Nginx的Rewrite规则，其实很简单：Apache的RewriteRule指令换成Nginx的rewrite指令，Apache的[L]标记换成Nginx的last标记，中间的内容不变。</p>
+<p>如果Apache的Rewrite规则改为Nginx的Rewrite规则后，使用nginx -t命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误：</p>
+<blockquote>
+<p>rewrite ^/([0-9]{5}).html$ /x.jsp?id=$1 last;</p>
+</blockquote>
+<p>加上引号就正确了：</p>
+<blockquote>
+<p>rewrite “^/([0-9]{5}).html$” /x.jsp?id=$1 last;</p>
+</blockquote>
+<p>Apache与Nginx的Rewrite规则在URL跳转时有细微的区别：</p>
+<p>Apache Rewrite 规则：</p>
+<blockquote>
+<p>RewriteRule ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L]</p>
+</blockquote>
+<p>Nginx Rewrite 规则：</p>
+<blockquote>
+<p>rewrite ^/html/tagindex/([a-zA-Z]+)/.*$ <a href="http://$host/$1/" target="_blank" rel="external">http://$host/$1/</a> permanent;</p>
+</blockquote>
+<p>以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“<a href="http://$host”，这是在Nginx中要求的。" target="_blank" rel="external">http://$host”，这是在Nginx中要求的。</a></p>
+<p>另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如：</p>
+<p>Apache Rewrite 规则：</p>
+<blockquote>
+<p>RewriteRule ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://%{HTTP_HOST}" target="_blank" rel="external">http://%{HTTP_HOST}</a> [L]</p>
+</blockquote>
+<p>Nginx Rewrite 规则：</p>
+<blockquote>
+<p>rewrite ^/user/login/$ /user/login.php?login=1&amp;forward=<a href="http://$host" target="_blank" rel="external">http://$host</a> last;</p>
+</blockquote>
+<p>Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系：</p>
+<p>Apache的RewriteCond指令对应Nginx的if指令；<br>Apache的RewriteRule指令对应Nginx的rewrite指令；<br>Apache的[R]标记对应Nginx的redirect标记；<br>Apache的[P]标记对应Nginx的last标记；<br>Apache的[R,L]标记对应Nginx的redirect标记；<br>Apache的[P,L]标记对应Nginx的last标记；<br>Apache的[PT,L]标记对应Nginx的last标记；</p>
+<p>允许指定的域名访问本站，其他域名一律跳转到<a href="http://www.aaa.com" target="_blank" rel="external">http://www.aaa.com</a></p>
+<p>Apache Rewrite 规则：<br>RewriteCond %{HTTP_HOST} ^(.*?).domain.com$<br>RewriteCond %{HTTP_HOST} !^qita.domain.com$<br>RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -f<br>RewriteRule ^/wu/$ /market/%1/index.htm [L]</p>
+<p>Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例：</p>
+<p>Nginx Rewrite 规则：<br>if ($host ~<em> ^(.</em>?).domain.com$) set $var_wupin_city $1;<br>set $var_wupin ‘1′;</p>
+<p>if ($host ~* ^qita.domain.com$)</p>
+<p>set $var_wupin ‘0′;</p>
+<p>if (!-f $document_root/market/$var_wupin_city/index.htm)</p>
+<p>set $var_wupin ‘0′;</p>
+<p>if ($var_wupin ~ ‘1′)</p>
+<p>rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;<br>}</p>
+<p>&nbsp;</p>
+<p>rewrite 的语法</p>
+<p>&nbsp;</p>
+<p>语法: rewrite regex replacement flag</p>
+<p>默认: none</p>
+<p>作用域: server, location, if</p>
+<p>This directive changes URI in accordance with the regular expression and the replacement string. Directives are carried out in order of appearance in the configuration file.</p>
+<p>这个指令根据表达式来更改URI，或者修改字符串。指令根据配置文件中的顺序来执行。</p>
+<p>Be aware that the rewrite regex only matches the relative path instead of the absolute URL. If you want to match the hostname, you should use an if condition, like so:</p>
+<p>注意重写表达式只对相对路径有效。如果你想配对主机名，你应该使用if语句。</p>
+<p>rewrite只是会改写路径部分的东东，不会改动用户的输入参数，因此这里的if规则里面，你无需关心用户在浏览器里输入的参数，rewrite后会自动添加的，因此，我们只是加上了一个？号和后面我们想要的一个小小的参数 <em>*</em>https=1就可以了。</p>
+<p>nginx的rewrite规则参考：</p>
+<p>~ 为区分大小写匹配<br>~<em> 为不区分大小写匹配<br>!~和!~</em>分别为区分大小写不匹配及不区分大小写不匹<br>-f和!-f用来判断是否存在文件<br>-d和!-d用来判断是否存在目录<br>-e和!-e用来判断是否存在文件或目录<br>-x和!-x用来判断文件是否可执行<br>last 相当于Apache里的[L]标记，表示完成rewrite，呵呵这应该是最常用的<br>break 终止匹配, 不再匹配后面的规则<br>redirect 返回302临时重定向 地址栏会显示跳转后的地址<br>permanent 返回301永久重定向 地址栏会显示跳转后的地址<br>$args<br>$content_length<br>$content_type<br>$document_root<br>$document_uri<br>$host<br>$http_user_agent<br>$http_cookie<br>$limit_rate<br>$request_body_file<br>$request_method<br>$remote_addr<br>$remote_port<br>$remote_user<br>$request_filename<br>$request_uri<br>$query_string<br>$scheme<br>$server_protocol<br>$server_addr<br>$server_name<br>$server_port<br>$uri<br>结合QeePHP的例子</p>
+<p>if (!-d $request_filename) {<br>rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;amp;controller=$1&amp;amp;action=$2&amp;amp;$3 last;<br>rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;amp;controller=$1 last;<br>break;<br>多目录转成参数<br>abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2</p>
+<p>if ($host ~<em> (.</em>).domain.com) {<br>set $sub_name $1;<br>rewrite ^/sort/(d+)/?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;<br>}<br>目录对换<br>/123456/xxxx -&gt; /xxxx?id=123456</p>
+<p>rewrite ^/(d+)/(.+)/ /$2?id=$1 last;<br>例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下：</p>
+<p>if ($http_user_agent ~ MSIE) {<br>rewrite ^(.*)$ /nginx-ie/$1 break;<br>}<br>目录自动加“/”</p>
+<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>禁止htaccess</p>
+<p>location ~/.ht {<br>deny all;<br>}<br>禁止多个目录</p>
+<p>location ~ ^/(cron|templates)/ {<br>deny all;<br>break;<br>}<br>禁止以/data开头的文件<br>可以禁止/data/下多级目录下.log.txt等请求;</p>
+<p>location ~ ^/data {<br>deny all;<br>}<br>禁止单个目录<br>不能禁止.log.txt能请求</p>
+<p>location /searchword/cron/ {<br>deny all;<br>}<br>禁止单个文件</p>
+<p>location ~ /data/sql/data.sql {<br>deny all;<br>}<br>给favicon.ico和robots.txt设置过期时间;<br>这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志</p>
+<p>location ~(favicon.ico) {<br>log_not_found off;<br>expires 99d;<br>break;<br>}</p>
+<p>location ~(robots.txt) {<br>log_not_found off;<br>expires 7d;<br>break;<br>}<br>设定某个文件的过期时间;这里为600秒，并不记录访问日志</p>
+<p>location ^~ /html/scripts/loadhead_1.js {<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 600;<br>break;<br>}<br>文件反盗链并设置过期时间<br>这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求<br>“rewrite ^/ <a href="http://leech.divmy.com/leech.gif;”显示一张防盗链图片" target="_blank" rel="external">http://leech.divmy.com/leech.gif;”显示一张防盗链图片</a><br>“access_log off;”不记录访问日志，减轻压力<br>“expires 3d”所有文件3天的浏览器缓存</p>
+<p>location ~<em> ^.+.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {<br>valid_referers none blocked </em>.c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;<br>if ($invalid_referer) {<br>rewrite ^/ <a href="http://leech.divmy.com/leech.gif" target="_blank" rel="external">http://leech.divmy.com/leech.gif</a>;<br>return 412;<br>break;<br>}<br>access_log off;<br>root /opt/lampp/htdocs/web;<br>expires 3d;<br>break;<br>}<br>只充许固定ip访问网站，并加上密码</p>
+<p>root /opt/htdocs/www;<br>allow 208.97.167.194;<br>allow 222.33.1.2;<br>allow 231.152.49.4;<br>deny all;<br>auth_basic “C1G_ADMIN”;<br>auth_basic_user_file htpasswd;<br>将多级目录下的文件转成一个文件，增强seo效果<br>/job-123-456-789.html 指向/job/123/456/789.html</p>
+<p>rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+).html$ /job/$1/$2/jobshow_$3.html last;<br>将根目录下某个文件夹指向2级目录<br>如/shanghaijob/ 指向 /area/shanghai/<br>如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/</p>
+<p>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>上面例子有个问题是访问/shanghai 时将不会匹配</p>
+<p>rewrite ^/([0-9a-z]+)job$ /area/$1/ last;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>这样/shanghai 也可以访问了，但页面中的相对链接无法使用，<br>如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。</p>
+<p>那我加上自动跳转也是不行咯<br>(-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果</p>
+<p>if (-d $request_filename){<br>rewrite ^/(.*)([^/])$ <a href="http://$host/$1$2/" target="_blank" rel="external">http://$host/$1$2/</a> permanent;<br>}<br>知道原因后就好办了，让我手动跳转吧</p>
+<p>rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;<br>rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;<br>文件和目录不存在的时候重定向：</p>
+<p>if (!-e $request_filename) {<br>proxy_pass <a href="http://127.0.0.1" target="_blank" rel="external">http://127.0.0.1</a>;<br>}<br>域名跳转</p>
+<p>server<br>{<br>listen 80;<br>server_name jump.88dgw.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/ <a href="http://www.88dgw.com/" target="_blank" rel="external">http://www.88dgw.com/</a>;<br>access_log off;<br>}<br>多域名转向</p>
+<p>server_name www.7oom.com/ www.divmy.com/;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs;<br>if ($host ~ “c1gstudio.net”) {<br>rewrite ^(.*) <a href="http://www.7oom.com$1/" target="_blank" rel="external">http://www.7oom.com$1/</a> permanent;<br>}<br>三级域名跳转</p>
+<p>if ($http_host ~<em> “^(.</em>).i.c1gstudio.com$”) {<br>rewrite ^(.*) <a href="http://top.88dgw.com$1/" target="_blank" rel="external">http://top.88dgw.com$1/</a>;<br>break;<br>}<br>域名镜向</p>
+<p>server<br>{<br>listen 80;<br>server_name mirror.c1gstudio.com;<br>index index.html index.htm index.php;<br>root /opt/lampp/htdocs/www;<br>rewrite ^/(.*) <a href="http://www.divmy.com/$1" target="_blank" rel="external">http://www.divmy.com/$1</a> last;<br>access_log off;<br>}<br>某个子目录作镜向</p>
+<p>location ^~ /zhaopinhui {<br>rewrite ^.+ <a href="http://zph.divmy.com/" target="_blank" rel="external">http://zph.divmy.com/</a> last;<br>break;<br>}<br>discuz ucenter home (uchome) rewrite</p>
+<p>rewrite ^/(space|network)-(.+).html$ /$1.php?rewrite=$2 last;<br>rewrite ^/(space|network).html$ /$1.php last;<br>rewrite ^/([0-9]+)$ /space.php?uid=$1 last;<br>discuz 7 rewrite</p>
+<p>rewrite ^(.<em>)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;<br>rewrite ^(.</em>)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;<br>rewrite ^(.<em>)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&amp;extra=page%3D$4&amp;page=$3 last;<br>rewrite ^(.</em>)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;<br>rewrite ^(.<em>)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;<br>rewrite ^(.</em>)/tag-(.+).html$ $1/tag.php?name=$2 last;<br>给discuz某版块单独配置域名</p>
+<p>server_name bbs.c1gstudio.com news.c1gstudio.com;</p>
+<p>location = / {<br>if ($http_host ~ news.divmy.com$) {<br>rewrite ^.+ <a href="http://news.divmy.com/forum-831-1.html" target="_blank" rel="external">http://news.divmy.com/forum-831-1.html</a> last;<br>break;<br>}<br>}<br>discuz ucenter 头像 rewrite 优化</p>
+<p>location ^~ /ucenter {<br>location ~ .*.php?$<br>{</p>
+<p>#fastcgi_pass unix:/tmp/php-cgi.sock;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
+<p>location /ucenter/data/avatar {<br>log_not_found off;<br>access_log off;<br>location ~ /(.<em>)_big.jpg$ {<br>error_page 404 /ucenter/images/noavatar_big.gif;<br>}<br>location ~ /(.</em>)_middle.jpg$ {<br>error_page 404 /ucenter/images/noavatar_middle.gif;<br>}<br>location ~ /(.*)_small.jpg$ {<br>error_page 404 /ucenter/images/noavatar_small.gif;<br>}<br>expires 300;<br>break;<br>}<br>}<br>jspace rewrite</p>
+<p>location ~ .*.php?$<br>{</p>
+<p>#fastcgi_pass unix:/tmp/php-cgi.sock;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
+<p>location ~<em> ^/index.php/<br>{<br>rewrite ^/index.php/(.</em>) /index.php?$1 break;<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fcgi.conf;<br>}</p>
+<h2 id="三、常用配置">三、常用配置</h2><h3 id="Nginx强制使用https访问(http跳转到https)">Nginx强制使用https访问(http跳转到https)</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">## 方法一：<span class="number">80</span>、<span class="number">443</span>单独进行配置</div><div class="line">server &#123;</div><div class="line">    listen  <span class="number">80</span>;  </div><div class="line">    server_name test.com;  </div><div class="line">    ... ... </div><div class="line">    rewrite ^(.*)$  https://$host$<span class="number">1</span> permanent;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">## 方法二：同时配置<span class="number">80</span>&amp;<span class="number">443</span>端口的访问，当访问<span class="number">80</span>时强制调整到<span class="number">443</span></div><div class="line">server &#123;  </div><div class="line">    listen       <span class="number">443</span>;  #ssl端口  </div><div class="line">    listen       <span class="number">80</span>;   #用户习惯用http访问，加上<span class="number">80</span>，后面通过<span class="number">497</span>状态码让它自动跳到<span class="number">443</span>端口  </div><div class="line">    server_name  test.com;  </div><div class="line">    #为一个server&#123;......&#125;开启ssl支持  </div><div class="line">    ssl                  on;  </div><div class="line">    #指定PEM格式的证书文件   </div><div class="line">    ssl_certificate      /etc/nginx/test.pem;   </div><div class="line">    #指定PEM格式的私钥文件  </div><div class="line">    ssl_certificate_key  /etc/nginx/test.key;  </div><div class="line">      </div><div class="line">    #让http请求重定向到https请求   </div><div class="line">    error_page <span class="number">497</span>  https://$host$uri?$args;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###</p>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://wiki.nginx.org/NginxChsHttpRewriteModule" target="_blank" rel="external">http://wiki.nginx.org/NginxChsHttpRewriteModule</a></li>
+<li><a href="http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx" target="_blank" rel="external">http://blog.csdn.net/cnbird2008/archive/2009/08/04/4409620.aspx</a></li>
+<li><a href="http://www.divmy.com/" target="_blank" rel="external">http://www.divmy.com/</a></li>
+<li>推荐阅读：<a href="https://xuexb.com/post/nginx-url-rewrite.html#rewrite" target="_blank" rel="external">https://xuexb.com/post/nginx-url-rewrite.html#rewrite</a></li>
 </ul>
-<h2 id="原型工具">原型工具</h2><ul>
-<li>Axure 8<br>激活码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Team Edition</div><div class="line">Koshy</div><div class="line">wTADPqxn3KChzJxLmUr5jTTitCgsfRkftQQ1yIG9HmK83MYSm7GPxLREGn+Ii6xY</div><div class="line"></div><div class="line">Pro edition</div><div class="line">Koshy</div><div class="line">vOGJRhoXEfnOfMy5CtKnY2kY7dy6XacABiPhi5hxeoSrpaUwt3ErjXW8BL86t7DR</div><div class="line"></div><div class="line">Enterprise edition</div><div class="line">Koshy</div><div class="line">G+8mHClRTq3V9jVHXHwbe7iCcXfl5u1ssC+NzEcR7gYjffEukH6d3N1B/6/79ZRZ</div></pre></td></tr></table></figure>
+<h3 id="工具类">工具类</h3><ul>
+<li>nginx规则转换工具：<ul>
+<li><a href="http://www.anilcetin.com/convert-apache-htaccess-to-nginx/" target="_blank" rel="external">http://www.anilcetin.com/convert-apache-htaccess-to-nginx/</a></li>
+<li><a href="http://winginx.com/htaccess" target="_blank" rel="external">http://winginx.com/htaccess</a></li>
+</ul>
 </li>
 </ul>
 
@@ -469,7 +615,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/07/tools/teredo-ipv6-setting.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-proxy.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -488,7 +634,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/07/tools/teredo-ipv6-setting.html" itemprop="url">通过teredo获取ipv6地址</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-proxy.html" itemprop="url">代理模式</a></h1>
         
 
         <div class="post-meta">
@@ -500,8 +646,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T21:05:21+08:00">
-                2018-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T01:04:42+08:00">
+                2018-04-04
               </time>
             
 
@@ -523,8 +669,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -541,9 +687,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/07/tools/teredo-ipv6-setting.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-proxy.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/07/tools/teredo-ipv6-setting.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-proxy.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -551,7 +697,7 @@
 
           
           
-             <span id="/2018/03/07/tools/teredo-ipv6-setting.html" class="leancloud_visitors" data-flag-title="通过teredo获取ipv6地址">
+             <span id="/2018/04/04/php/php-design-patterns-proxy.html" class="leancloud_visitors" data-flag-title="代理模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -581,462 +727,10 @@
       
         
           
-            <p>因为运营商的原因,我们普通民众家里是用不了ipv6的,但是有teredo这个大杀器可以解决这个问题.</p>
-<p>那么,如何开启ipv6呢,下面针对不同的系统提供操作步骤</p>
-<h2 id="一、window下开启">一、window下开启</h2><p>说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">netsh int ipv6 show int <span class="comment"># 查看所有适配器</span></div><div class="line">netsh int ipv6 show teredo <span class="comment"># 查看teredo适配器状态</span></div><div class="line">netsh int ipv6 show route <span class="comment"># </span></div><div class="line">netsh int ter <span class="built_in">set</span> state client</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net <span class="comment"># 设置teredo服务器</span></div></pre></td></tr></table></figure></p>
-<h3 id="1-1_win10开启ipv6">1.1 win10开启ipv6</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置 Teredo 服务器，默认为：win10.ipv6.microsoft.com</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state enterpriseclient server=default</div><div class="line"></div><div class="line"><span class="comment"># 测试 IPv6 连接，如果不能ping通则需要重置一下teredo试试</span></div><div class="line">ping -6 ipv6.test-ipv6.com</div><div class="line">ping -6 [2001:470:1:18::125]</div><div class="line"></div><div class="line">netsh interface ipv6 reset <span class="comment"># 重置 IPv6 配置， 需要重启系统</span></div><div class="line">-------------------- 重启后的分割线 -----</div><div class="line"></div><div class="line">ipconfig /all <span class="comment"># 查看当前网络信息</span></div><div class="line"></div><div class="line"><span class="comment"># 如果经过上面操作后仍无法启用 IPv6，可能是 Teredo 服务器无法正常连接，也可能是 Windows 自身配置问题，可尝试以下两种方法</span></div><div class="line"></div><div class="line"><span class="comment"># 第一种：修改 Teredo 服务器为 teredo.remlab.net</span></div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line"></div><div class="line"><span class="comment"># 第二种：先卸载当前 Teredo 适配器再重新启用</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">disable</span></div><div class="line">netsh interface Teredo <span class="built_in">set</span> state <span class="built_in">type</span>=default</div><div class="line">ping -6 ipv6.test-ipv6.com</div></pre></td></tr></table></figure>
-<p><strong>批量脚本</strong></p>
-<blockquote>
-<p>参考来源:<a href="https://github.com/XX-net/XX-Net/issues/7000" target="_blank" rel="external">https://github.com/XX-net/XX-Net/issues/7000</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@<span class="built_in">echo</span> off</div><div class="line">net start <span class="string">"ip helper"</span></div><div class="line">netsh interface ipv6 show teredo</div><div class="line">netsh interface teredo <span class="built_in">set</span> state default</div><div class="line">netsh interface 6to4 <span class="built_in">set</span> state default</div><div class="line">netsh interface isatap <span class="built_in">set</span> state default</div><div class="line">netsh interface teredo <span class="built_in">set</span> state server=teredo.remlab.net</div><div class="line">netsh interface ipv6 <span class="built_in">set</span> teredo enterpriseclient</div><div class="line">netsh int ter <span class="built_in">set</span> state enterpriseclient</div><div class="line">ipconfig /all</div><div class="line">netsh int ipv6 show int</div><div class="line">netsh int ipv6 show route</div><div class="line">netsh int ipv6 show teredo</div><div class="line">route DELETE ::/0</div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div><div class="line">netsh int ipv6 show prefix</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2002::/16 30 1</div><div class="line">netsh int ipv6 <span class="built_in">set</span> prefix 2001::/32 5 1</div><div class="line">route <span class="built_in">print</span></div><div class="line">netsh interface ipv6 show address</div><div class="line">netsh interface ipv6 show route</div><div class="line">cmd</div><div class="line"></div><div class="line">netsh int ipv6 add route ::/0 <span class="string">"Teredo Tunneling Pseudo-Interface"</span></div></pre></td></tr></table></figure>
-<h2 id="二、mac开启ipv6">二、mac开启ipv6</h2><ul>
-<li>安装miredo <a href="https://github.com/darconeous/miredo-osx" target="_blank" rel="external">https://github.com/darconeous/miredo-osx</a></li>
-<li>下载安装： <a href="https://sourceforge.net/projects/tuntaposx/" target="_blank" rel="external">https://sourceforge.net/projects/tuntaposx/</a></li>
-</ul>
-<p>注： 很多反馈Mac10.13 安装不了，是系统保护，关闭就好了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span>+R</div><div class="line">csrutil <span class="built_in">disable</span></div><div class="line">reboot</div></pre></td></tr></table></figure></p>
-<h3 id="mac重新安装">mac重新安装</h3><p>先删除tuntap再重新安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo rm -rf /Library/Extensions/tap.kext</div><div class="line">sudo rm -rf /Library/Extensions/tun.kext</div><div class="line">sudo rm -rf /Library/StartupItems/tap</div><div class="line">sudo rm -rf /Library/StartupItems/tun</div></pre></td></tr></table></figure>
-<h2 id="分享：teredo服务器">分享：teredo服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">win1710.ipv6.microsoft.com</div><div class="line">teredo.ipv6.microsoft.com</div><div class="line">teredo.remlab.net</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/06/mac-dev/mac-shortcut-key.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/mac-dev/mac-shortcut-key.html" itemprop="url">Mac常用快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T23:19:32+08:00">
-                2018-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/06/mac-dev/mac-shortcut-key.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/06/mac-dev/mac-shortcut-key.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/06/mac-dev/mac-shortcut-key.html" class="leancloud_visitors" data-flag-title="Mac常用快捷键">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>自己常用的mac下快捷键整理,以免遗忘做个备份:</p>
-<ul>
-<li>打开破解软件显示“软件包已损坏”: <code>sudo spctl --master-(disable/enable)</code></li>
-<li>启动词典默认取词功能快捷键: <code>Command+Control+d</code></li>
-<li>控制隐藏文件的显示与隐藏:  <code>Command+Shift+.</code></li>
-<li>整理文件夹: <code>Command+Option+1/2/3/4</code></li>
-<li>拷贝文件内容:  <code>pbcopy &lt; 文件路径</code></li>
-<li>显示端口占用情况: <code>lsof -i:端口号</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/04/awesome-tools/awesome-web-toolkit.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/04/awesome-tools/awesome-web-toolkit.html" itemprop="url">Awesome Web Toolkit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T15:48:39+08:00">
-                2018-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/04/awesome-tools/awesome-web-toolkit.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/04/awesome-tools/awesome-web-toolkit.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/04/awesome-tools/awesome-web-toolkit.html" class="leancloud_visitors" data-flag-title="Awesome Web Toolkit">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在线工具合集:</p>
-<h2 id="下载地址转换">下载地址转换</h2><ul>
-<li><a href="https://zh.savefrom.net/1-how-to-download-youtube-video.html" target="_blank" rel="external">Youtube下载地址在线转换</a>: 一个在线的youtube下载地址提取工具</li>
-<li><a href="https://apps.evozi.com/apk-downloader/" target="_blank" rel="external">APK Downloader</a>: Google Play安卓应用下载地址提取</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/03/windows/windows-cmd-usage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/03/windows/windows-cmd-usage.html" itemprop="url">CMD学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T08:27:49+08:00">
-                2018-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/03/windows/windows-cmd-usage.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/03/windows/windows-cmd-usage.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/03/windows/windows-cmd-usage.html" class="leancloud_visitors" data-flag-title="CMD学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="cmd编码">cmd编码</h3><p>windows下的cmd我们经常遇到编码问题，如果你是中文的操作系统，他默认的编码是<code>936</code> 。那么，如何解决命令行的乱码以及编码的问题?这就需要用到命令<code>chcp</code>了。</p>
-<h4 id="命令帮助">命令帮助</h4><blockquote>
-<p>chcp [编码编号]</p>
-<ul>
-<li>编码编号： 指系统字符集编码编号，该字符集在<code>CONFIG.SYS</code>文件中由COUNTRY命令定义,对应的编码编号如下:<br>  1258 越南语<br>　　1257 波罗的语<br>　　1256 阿拉伯语<br>　　1255 希伯来语<br>　　1254 土耳其语<br>　　1253 希腊语<br>　　1252 拉丁 1 字符 (ANSI)<br>　　1251 西里尔语<br>　　1250 中欧语言<br>　　950 繁体中文<br>　　949 朝鲜语<br>　　936 简体中文（默认）<br>　　932 日语<br>　　874 泰国语<br>　　850 多语种 (MS-DOS Latin1)<br>　　437 MS-DOS 美国英语 </li>
-</ul>
-</blockquote>
-<p>dos指令: </p>
-<ul>
-<li>chcp 65001 就是换成UTF-8代码页 </li>
-<li>chcp 936 可以换回默认的GBK </li>
-<li>chcp 437 是美国英语 </li>
-</ul>
-<h3 id="进入指定目录">进入指定目录</h3><ol>
-<li>切换盘： &gt; D:\dir\dir</li>
-<li>切目录： cd dir\dir\</li>
+            <ol>
+<li>在客户端与实体之间建立一个代理对象（proxy），客户端对实体进行的操作全部委派给代理对象，隐藏实体的具体实现细节。</li>
+<li>Proxy还可以与业务代码分离，部署到另外的服务器，业务代码中通过RPC来委派任务。</li>
 </ol>
-<h3 id="环境变量">环境变量</h3><blockquote>
-<p>set path=%path%;C:\python27<br>说明，windows中添加环境变量后可以直接在cmd窗口中敲其快捷的命令，一般设置命令的目录为环境变量即可。</p>
-<p>添加环境变量设置生效： set PATH=dir  （需要重开cmd窗口）</p>
-<p>查看环境变量： echo %PATH%</p>
-</blockquote>
-<h3 id="ipconfig使用">ipconfig使用</h3><ul>
-<li><code>ipconfig -a</code>: 显示所有ip</li>
-<li><code>ipconfig /flushdns</code>: 刷新dns缓存</li>
-</ul>
 
           
         
@@ -1080,7 +774,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/03/01/linux/linux-vncserver-usage.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-prototype.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1099,7 +793,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/01/linux/linux-vncserver-usage.html" itemprop="url">Linux下VNC服务安装与配置</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-prototype.html" itemprop="url">原型模式</a></h1>
         
 
         <div class="post-meta">
@@ -1111,8 +805,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T17:48:22+08:00">
-                2018-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T01:00:03+08:00">
+                2018-04-04
               </time>
             
 
@@ -1134,8 +828,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -1152,9 +846,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/01/linux/linux-vncserver-usage.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-prototype.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/01/linux/linux-vncserver-usage.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-prototype.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1162,7 +856,7 @@
 
           
           
-             <span id="/2018/03/01/linux/linux-vncserver-usage.html" class="leancloud_visitors" data-flag-title="Linux下VNC服务安装与配置">
+             <span id="/2018/04/04/php/php-design-patterns-prototype.html" class="leancloud_visitors" data-flag-title="原型模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1192,146 +886,13 @@
       
         
           
-            <h2 id="安装vnc">安装vnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">yum install -y tigervnc-server tigervn</div><div class="line">vncserver</div><div class="line">systemctl start vncserver@:1.service <span class="comment"># or vncserver :1</span></div><div class="line">systemctl <span class="built_in">enable</span> vncserver@:1.service  <span class="comment"># 设置开机启动</span></div><div class="line">systemctl stop vncserver@:1.service <span class="comment"># 关闭 或 vncserver -kill :1</span></div><div class="line"></div><div class="line">firewall-cmd --permanent --add-port=5901/tcp  <span class="comment"># 防火墙配置</span></div><div class="line">service firewalld restart</div></pre></td></tr></table></figure>
-<h2 id="卸载_tigervnc">卸载 tigervnc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">yum remove  -y tigervnc-server tigervn</div><div class="line">systemctl stop vncserver@:1.service</div><div class="line">rm -rf ~\.vnc</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/28/affiliate/index.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zack Hwang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BoxCore">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/affiliate/index.html" itemprop="url">优秀产品推荐</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T12:17:07+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/28/affiliate/index.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/affiliate/index.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/28/affiliate/index.html" class="leancloud_visitors" data-flag-title="优秀产品推荐">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="交易平台">交易平台</h2><ul>
-<li><a href="https://vip.zb.com/activity/joinbtc?tuijianid=36c87688cfcbcb1d34afb17dd197fd27" target="_blank" rel="external">ZB</a>： 国人使用最多的区块链交易平台</li>
-</ul>
-<h2 id="VPS">VPS</h2><ul>
-<li><a href="https://www.vultr.com/?ref=7229300" target="_blank" rel="external">vultr</a>: 国外云主机推荐，有日本东京机房，海外一般走CN2线路</li>
-</ul>
+            <p>原型模式</p>
+<ol>
+<li>与工厂模式作用类似，都是用来创建对象</li>
+<li>与工厂模式的实现不懂，原型模式是首先创建好一个原型对象，然后通过clone原型对象来创建新的对象。这样就免去了类创建是重复的初始化操作</li>
+<li>原型模式适用于大对象的创建。创建一个大对象需要很大的开销，如果每次new就会消耗很大，原型模式仅需内存拷贝即可</li>
+</ol>
+<p>先建立一个对象原型，其后的每次操作先去clone原型对象，然后进行操作，减少对象初始化的开销。</p>
 
           
         
@@ -1375,7 +936,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/13/linux/deploy-fastdfs.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-observer.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1394,7 +955,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/13/linux/deploy-fastdfs.html" itemprop="url">分布式文件系统FastDFS搭建</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-observer.html" itemprop="url">观察者模式</a></h1>
         
 
         <div class="post-meta">
@@ -1406,8 +967,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T10:41:23+08:00">
-                2018-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:51:22+08:00">
+                2018-04-04
               </time>
             
 
@@ -1429,8 +990,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -1447,9 +1008,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/13/linux/deploy-fastdfs.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-observer.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/13/linux/deploy-fastdfs.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-observer.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1457,7 +1018,7 @@
 
           
           
-             <span id="/2018/02/13/linux/deploy-fastdfs.html" class="leancloud_visitors" data-flag-title="分布式文件系统FastDFS搭建">
+             <span id="/2018/04/04/php/php-design-patterns-observer.html" class="leancloud_visitors" data-flag-title="观察者模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1530,7 +1091,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/12/awesome-tools/awesome-windows.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-data-mapper.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1549,7 +1110,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/awesome-tools/awesome-windows.html" itemprop="url">Awesome Windows</a></h1>
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-data-mapper.html" itemprop="url">数据对象映射模式</a></h1>
         
 
         <div class="post-meta">
@@ -1561,8 +1122,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T17:18:48+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:27:57+08:00">
+                2018-04-04
               </time>
             
 
@@ -1584,8 +1145,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -1602,9 +1163,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/12/awesome-tools/awesome-windows.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/04/php/php-design-patterns-data-mapper.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/12/awesome-tools/awesome-windows.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-data-mapper.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1612,7 +1173,7 @@
 
           
           
-             <span id="/2018/02/12/awesome-tools/awesome-windows.html" class="leancloud_visitors" data-flag-title="Awesome Windows">
+             <span id="/2018/04/04/php/php-design-patterns-data-mapper.html" class="leancloud_visitors" data-flag-title="数据对象映射模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1642,38 +1203,668 @@
       
         
           
-            <h2 id="包管理工具">包管理工具</h2><ul>
-<li><a href="https://chocolatey.org/" target="_blank" rel="external">chocolatey</a>: The package manager for Windows, 类似于mac下的brew</li>
-</ul>
-<p>以管理员模式运行cmd,输入命令:</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@"<span class="variable">%SystemRoot%</span>\System32\WindowsPowerShell\v1.<span class="number">0</span>\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.<span class="built_in">Net</span>.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; <span class="built_in">SET</span> "<span class="built_in">PATH</span>=<span class="variable">%PATH%</span>;<span class="variable">%ALLUSERSPROFILE%</span>\chocolatey\bin"</div></pre></td></tr></table></figure>
-<h2 id="文件管理">文件管理</h2><ul>
-<li><a href="http://www.listary.com/download" target="_blank" rel="external">listary</a>:一个快递打卡应用的软件, 快捷键是按2次<code>ctrl</code></li>
-<li><a href="http://cn.ejie.me/" target="_blank" rel="external">Clover</a>: Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。</li>
-</ul>
-<h2 id="图片处理">图片处理</h2><ul>
-<li><p><a href="http://www.faststone.org/FSCaptureDetail.htm" target="_blank" rel="external">FastStone Capture</a>: win下非常受欢迎的截图工具</p>
-<p>  name//serial：</p>
-<pre><code>TEAM JiOO <span class="comment">// CPCWXRVCZW30HMKE8KQQUXW</span>
-bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
-</code></pre><p>　　    TEAM_BRAiGHTLiNG_2007<br>　　        XPNMF-ISDYF-LCSED-BPATU<br>　　        RPTME-IMDHD-MIEPX-VLXAW</p>
+            <ol>
+<li>数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。</li>
+<li>在代码中实现数据对象映射模式，我们将实现一个 ORM 类，将复杂的 SQL 语句映射成对象属性的操作。</li>
+<li><ol>
+<li>结合使用数据对象映射模式，工厂模式，注册器模式</li>
+</ol>
 </li>
-<li><p><a href=""></a></p>
-</li>
-<li><a href=""></a></li>
-</ul>
-<h2 id="网络嗅探">网络嗅探</h2><ul>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
-</ul>
-<h2 id="系统工具">系统工具</h2><ul>
-<li><p><a href="">cmder</a>: windows下替代默认cmd的工具</p>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-strategy.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-strategy.html" itemprop="url">策略模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:27:57+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/04/php/php-design-patterns-strategy.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-strategy.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/04/php/php-design-patterns-strategy.html" class="leancloud_visitors" data-flag-title="策略模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式</li>
+<li>实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告</li>
+<li>使用策略模式可以实现 Ioc，依赖倒置、控制反转</li>
+</ol>
+<h2 id="代码实现和使用">代码实现和使用</h2><h2 id="控制反转">控制反转</h2><p>策略模式 依赖到置。 解耦。<br>[ 查看全文 ]</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/04/php/php-design-patterns-adapter.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/04/php/php-design-patterns-adapter.html" itemprop="url">适配器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:18:25+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/04/php/php-design-patterns-adapter.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/04/php/php-design-patterns-adapter.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/04/php/php-design-patterns-adapter.html" class="leancloud_visitors" data-flag-title="适配器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>新建一个IDatabase</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host,$user,$password,$dbname)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line">Database下面的 mysql mysqli pdo</div><div class="line"><span class="keyword">namespace</span> <span class="title">IMooc</span>\<span class="title">Database</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">IMooc</span>\<span class="title">IDatabase</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mysql</span> <span class="keyword">implements</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="keyword">protected</span> $conn;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host, $user, $password, $dbname)</span></span>&#123;</div><div class="line">		$conn = mysql_connect($host,$user,$password);</div><div class="line">		mysql_db_name($dbname,$conn);</div><div class="line">		<span class="keyword">$this</span>-&gt;conn = $conn;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>&#123;</div><div class="line">		$res = mysql_query($sql,<span class="keyword">$this</span>-&gt;conn);</div><div class="line">		<span class="keyword">return</span> $res;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>&#123;</div><div class="line">		mysql_close(<span class="keyword">$this</span>-&gt;conn);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="keyword">namespace</span> <span class="title">IMooc</span>\<span class="title">Database</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">IMooc</span>\<span class="title">IDatabase</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PDO</span> <span class="keyword">implements</span> <span class="title">IDatabase</span></span>&#123;</div><div class="line">	<span class="keyword">protected</span> $conn;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host,$user,$password,$dbname)</span></span>&#123;</div><div class="line">		$conn = <span class="keyword">new</span> \PDO(<span class="string">"mysql:host=$host;dbname=$dbname"</span>,$user,$password);</div><div class="line">		<span class="keyword">$this</span>-&gt;conn = $conn;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($sql)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;conn-&gt;query($sql);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;conn);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-decorator.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-design-patterns-decorator.html" itemprop="url">装饰器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T01:49:15+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-design-patterns-decorator.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-design-patterns-decorator.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-design-patterns-decorator.html" class="leancloud_visitors" data-flag-title="装饰器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>定义一个装饰器的接口，声明两个方法，beforXXX() afterXXX(), 然后在类里定义一个方法 addDecorator 添加一个装饰器，保存到一个内部数组，再定义一个beforXXX() afterXXX(); 分别循环每个装饰器，执行装饰器里定义的beforXXX  afterXXX方法, 最后在执行代码之前和之后添加$this-&gt;beforXXX()  和 $this-&gt;afterXXX()</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-design-patterns-iterator.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zack Hwang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://en.gravatar.com/userimage/62729481/263e97e948db42bcdaad9295c9bb12d9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoxCore">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/php/php-design-patterns-iterator.html" itemprop="url">迭代器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T01:05:35+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/php/php-design-patterns-iterator.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/02/php/php-design-patterns-iterator.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/02/php/php-design-patterns-iterator.html" class="leancloud_visitors" data-flag-title="迭代器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
 <blockquote>
-<p>管理员默认下执行<code>Cmder.exe /REGISTER ALL</code> 可以给右键添加菜单<br>配置cmder打开目录：<code>&quot;cmd&quot;: &quot;D:\\Program Files\\cmder\\Cmder.exe /start \&quot;${file_path}\&quot;&quot;</code><br>更多请参考：<a href="https://www.jianshu.com/p/979db1a96f6d" target="_blank" rel="external">https://www.jianshu.com/p/979db1a96f6d</a></p>
+<blockquote>
+<p>迭代器模式</p>
+<ol>
+<li>迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素</li>
+<li>相比传统的编程模式，迭代器模式可以隐藏遍历元素所需的操作</li>
+</ol>
+<p>应用场景<br>遍历数据库表，拿到所有的user对象，然后用佛 foreach 循环，在循环的过程中修改某些字段的值。</p>
 </blockquote>
-</li>
-<li><p><a href=""></a></p>
-</li>
+</blockquote>
+</blockquote>
+<p>如果一个对象是一个集合，比如数据结果集。<br>我们通常需要逐个取出每一个元素，如果想用foreach逐个取出的话，集合类需要继承迭代器接口，实现接口中的方法，才可以被foreach迭代。<br>迭代器模式其实就是可使用foreach模式.</p>
+<p>迭代器需要实现的方法：</p>
+<ol>
+<li>rewind，将索引重置到数组第一个元素；</li>
+<li>valid，验证数据有效性；</li>
+<li>current，获取当前数据；</li>
+<li>next，将索引值向下移动；</li>
+<li>key，获取当前索引</li>
+</ol>
+<h2 id="参考资料">参考资料</h2><ul>
+<li>Iterator（迭代器）接口 :<a href="http://php.net/manual/zh/class.iterator.php" target="_blank" rel="external">http://php.net/manual/zh/class.iterator.php</a></li>
+<li><a href="http://designpatternsphp.readthedocs.io/zh_CN/latest/Behavioral/Iterator/README.html" target="_blank" rel="external">http://designpatternsphp.readthedocs.io/zh_CN/latest/Behavioral/Iterator/README.html</a></li>
+<li><a href="http://laravelacademy.org/post/2882.html" target="_blank" rel="external">http://laravelacademy.org/post/2882.html</a></li>
+<li><a href="https://segmentfault.com/a/1190000007547513" target="_blank" rel="external">https://segmentfault.com/a/1190000007547513</a></li>
 </ul>
 
           
@@ -1718,7 +1909,7 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/02/12/windows/window-share-wifi.html">
+    <link itemprop="mainEntityOfPage" href="http://boxcore.github.io/2018/04/02/php/php-magic-methods.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zack Hwang">
@@ -1737,7 +1928,7 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/windows/window-share-wifi.html" itemprop="url">Windows下共享WiFi</a></h1>
+                <a class="post-title-link" href="/2018/04/02/php/php-magic-methods.html" itemprop="url">PHP魔术方法</a></h1>
         
 
         <div class="post-meta">
@@ -1749,8 +1940,8 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T10:12:38+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T00:53:26+08:00">
+                2018-04-02
               </time>
             
 
@@ -1772,8 +1963,8 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -1790,9 +1981,9 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/12/windows/window-share-wifi.html#comments" itemprop="discussionUrl">
+                <a href="/2018/04/02/php/php-magic-methods.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/12/windows/window-share-wifi.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/02/php/php-magic-methods.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1800,7 +1991,7 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
 
           
           
-             <span id="/2018/02/12/windows/window-share-wifi.html" class="leancloud_visitors" data-flag-title="Windows下共享WiFi">
+             <span id="/2018/04/02/php/php-magic-methods.html" class="leancloud_visitors" data-flag-title="PHP魔术方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1830,7 +2021,8 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
       
         
           
-            <figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">netsh wlan <span class="built_in">set</span> hostednetwork <span class="built_in">mode</span>=disallow # 关闭</div><div class="line">netsh wlan <span class="built_in">set</span> hostednetwork <span class="built_in">mode</span>=allow ssid=CMCC_free key=abc654321</div><div class="line">netsh wlan stop hostednetwork</div><div class="line">netsh wlan <span class="built_in">start</span> hostednetwork</div></pre></td></tr></table></figure>
+            <p>php中的魔术方法有<strong>construct()， </strong>destruct()， <strong>call()， </strong>callStatic()， <strong>get()， </strong>set()， <strong>isset()， </strong>unset()， <strong>sleep()， </strong>wakeup()， <strong>toString()， </strong>invoke()， <strong>set_state()， </strong>clone() 和 __debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。</p>
+<p><code>__get</code>/<code>__set</code>    类的属性魔术方法，当外部访问私有或者未定义属性时自动调用<br><code>__call</code>/<code>__callStatic</code>   类的方法魔术方法，当外部访问私有或者未定义方法以及静态方法的时候自动调用  <code>__callStatic</code>也必须声明为static<br><code>__toString</code>    将类的对象当成字符串使用时自动调用<br><code>__invoke</code>     将类的对象当成函数使用时自动调用</p>
 
           
         
@@ -1869,7 +2061,7 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1914,7 +2106,7 @@ bluman <span class="comment">// VPISCJULXUFGDDXYAUYF</span>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">246</span>
+                <span class="site-state-item-count">257</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

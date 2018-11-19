@@ -95,30 +95,30 @@
 
 
 
-<meta name="description" content="目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
-一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式
-1.1 使用qq邮箱发送方法
-去qq邮箱">
+<meta name="description" content="状态： mailgun不稳定、使用gcp邮件不稳定
+
+目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
+一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ss-panel安装配置教程系列(一) - 邮件配置">
 <meta property="og:url" content="http://boxcore.github.io/2018/09/22/sspanel/sspanel-email-setting.html">
 <meta property="og:site_name" content="BoxCore">
-<meta property="og:description" content="目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
-一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式
-1.1 使用qq邮箱发送方法
-去qq邮箱">
+<meta property="og:description" content="状态： mailgun不稳定、使用gcp邮件不稳定
+
+目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
+一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择">
 <meta property="og:image" content="https://camo.githubusercontent.com/e734e89f86c1469b0d9146de73ebd7204c03e3bc/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f44505935364e44324b514a52555359542e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/d3cec36fe59ee1caa699c7cae4698240ec78e56f/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f565659544b4233525a463953594f40575f494330422e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/bd0400480399f6368b5f7c34c456e1248a43dfa6/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f40314b52544c4e55573947345954584a54372e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/ef96378634857ee08a03bd6b842f4a7ccfa0ba2f/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f3849593057524e594441505f494d30472e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/0982c9bcff5fe95eb132c01a98e65d645b4980aa/68747470733a2f2f7075752e73682f427250734c2f323532343631353031382e6a7067">
-<meta property="og:updated_time" content="2018-09-22T07:27:32.967Z">
+<meta property="og:updated_time" content="2018-11-11T14:14:30.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ss-panel安装配置教程系列(一) - 邮件配置">
-<meta name="twitter:description" content="目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
-一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式
-1.1 使用qq邮箱发送方法
-去qq邮箱">
+<meta name="twitter:description" content="状态： mailgun不稳定、使用gcp邮件不稳定
+
+目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。
+一、smtp使用smtp发送邮件先要在配置中设置：$System_Config[&amp;#39;mailDriver&amp;#39;] = &amp;#39;smtp&amp;#39;; // mailgun or smtp or sendgrid 选择">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/e734e89f86c1469b0d9146de73ebd7204c03e3bc/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f44505935364e44324b514a52555359542e706e67">
 
 
@@ -429,7 +429,10 @@
       
 
       
-        <p>目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。</p>
+        <blockquote>
+<p>状态： mailgun不稳定、使用gcp邮件不稳定</p>
+</blockquote>
+<p>目前sspanel发邮件模式支持smtp、mailgun和sendgrid，下面说说这些邮件的设置以及注意的事项等。</p>
 <h2 id="一、smtp">一、smtp</h2><p>使用smtp发送邮件先要在配置中设置：<br><code>$System_Config[&#39;mailDriver&#39;] = &#39;smtp&#39;; // mailgun or smtp or sendgrid 选择发送邮件的方式</code></p>
 <h3 id="1-1_使用qq邮箱发送方法">1.1 使用qq邮箱发送方法</h3><ol>
 <li>去qq邮箱开启smtp服务<br><img src="https://camo.githubusercontent.com/e734e89f86c1469b0d9146de73ebd7204c03e3bc/687474703a2f2f7777772e776a6c35382e636c75622f77702d636f6e74656e742f75706c6f6164732f323031382f30342f44505935364e44324b514a52555359542e706e67" alt=""></li>
@@ -608,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">246</span>
+                <span class="site-state-item-count">257</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
